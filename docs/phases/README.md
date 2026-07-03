@@ -5,6 +5,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | Phase | Title | Status | Document |
 |-------|-------|--------|----------|
 | 0 | Foundation | Complete | [phase-0-foundation.md](./phase-0-foundation.md) |
+| 0.1 | Tooling hygiene | Complete | [phase-0.1-tooling-hygiene.md](./phase-0.1-tooling-hygiene.md) |
 | 1 | Case intake & identity | Planned | — |
 | 2 | Residence category & permits | Planned | — |
 | 3 | Address & household | Planned | — |
