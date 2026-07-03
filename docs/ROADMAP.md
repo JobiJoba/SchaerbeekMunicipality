@@ -6,26 +6,17 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 0 — Foundation
+## Phase 0 — Foundation ✅
+
+**Status:** Complete — see [phases/phase-0-foundation.md](./phases/phase-0-foundation.md) for full delivery notes.
 
 **Goal:** Runnable solution skeleton with architecture enforced by structure.
 
-**Deliverables:**
-
-- [ ] Solution: `AppHost`, `ServiceDefaults`, `Domain`, `Infrastructure`, `Web`, plus `Domain.Tests` and `Integration.Tests`
-- [ ] .NET Aspire AppHost with PostgreSQL container and Web project reference
-- [ ] ServiceDefaults wired into Web (`AddServiceDefaults`, `MapDefaultEndpoints`) — provides `/health` and `/alive`; no separate health Minimal API route needed
-- [ ] Blazor Web App template with MudBlazor theme and layout
-- [ ] Minimal API route group scaffold (e.g. `/api/registration/...`) — business endpoints only; health is not a feature slice
-- [ ] EF Core + Npgsql + initial empty migration
-- [ ] `RegistrationCase` aggregate stub (id + status only)
-- [ ] `ICurrentOfficer` fake auth (switch role in UI)
-- [ ] README “getting started” commands verified (`dotnet run --project AppHost`)
-- [x] CI workflow: GitHub Actions build + test (see [CI.md](./CI.md); passes after solution scaffold)
+**Deliverables:** Solution scaffold, Aspire + PostgreSQL, ServiceDefaults health, Blazor/MudBlazor shell, registration API group, EF migration, `RegistrationCase` stub, fake officer auth, CI.
 
 **Demo:** Run AppHost → Aspire dashboard shows Web + PostgreSQL healthy; empty case list; role switcher in nav.
 
-**Tests:** Smoke test — WebApplicationFactory returns 200 on `/health` via ServiceDefaults (Development environment; SQLite, no AppHost).
+**Tests:** Domain factory test + integration smoke test on `/health` (SQLite, no AppHost).
 
 ---
 
@@ -318,6 +309,7 @@ That gives a tangible vertical slice through all layers before expanding horizon
 
 ## Related documents
 
+- [phases/](./phases/) — detailed delivery notes per completed phase
 - [DOMAIN.md](./DOMAIN.md) — context and aggregate reference
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — slice conventions
 - [TESTING.md](./TESTING.md) — test types per phase

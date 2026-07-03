@@ -1,0 +1,41 @@
+@page "/registration/cases"
+@using SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases
+@inject ListRegistrationCasesHandler Handler
+
+<PageTitle>Registration cases</PageTitle>
+
+<MudText Typo="Typo.h4" GutterBottom="true">Registration cases</MudText>
+<MudText Typo="Typo.body1" Class="mb-4">
+    First-registration procedures managed by the Population Department.
+</MudText>
+
+@if (_loading)
+{
+    <MudProgressLinear Indeterminate="true" Color="Color.Primary" Class="mb-4" />
+}
+else if (_cases.Count == 0)
+{
+    <MudAlert Severity="Severity.Info" Variant="Variant.Outlined">
+        No registration cases yet. Cases will appear here once intake begins (Phase 1).
+    </MudAlert>
+}
+else
+{
+    <MudDataGrid Items="_cases" Dense="true" Hover="true">
+        <Columns>
+            <PropertyColumn Property="x => x.Id" Title="Case ID" />
+            <PropertyColumn Property="x => x.Status" Title="Status" />
+        </Columns>
+    </MudDataGrid>
+}
+
+@code {
+    private IReadOnlyList<RegistrationCaseSummary> _cases = [];
+    private bool _loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _cases = await Handler.Handle(CancellationToken.None);
+        _loading = false;
+    }
+}

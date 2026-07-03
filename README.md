@@ -25,6 +25,7 @@ Every first registration ultimately resolves four sequential decisions (see [IDE
 | [Domain model](./docs/DOMAIN.md) | Bounded contexts, aggregates, workflows, state machines |
 | [Technology stack](./docs/TECH-STACK.md) | Stack choices, libraries, and what we deliberately avoid |
 | [Roadmap](./docs/ROADMAP.md) | Phased delivery plan from MVP to advanced scenarios |
+| [Phase delivery notes](./docs/phases/) | What was built in each completed phase (start with [Phase 0](./docs/phases/phase-0-foundation.md)) |
 | [Testing strategy](./docs/TESTING.md) | Unit, integration, and UI test approach |
 | [Continuous integration](./docs/CI.md) | GitHub Actions workflow for public repo |
 | [Decision records](./docs/adr/) | Architecture Decision Records for key choices |
@@ -41,7 +42,7 @@ Every first registration ultimately resolves four sequential decisions (see [IDE
 - FluentValidation
 - MediatR **only when** cross-cutting pipelines justify it (see [TECH-STACK.md](./docs/TECH-STACK.md))
 
-## Solution layout (planned)
+## Solution layout
 
 ```
 SchaerbeekMunicipality/
@@ -55,24 +56,25 @@ SchaerbeekMunicipality/
 │   ├── SchaerbeekMunicipality.Domain.Tests/       # Pure domain rules, no I/O
 │   └── SchaerbeekMunicipality.Integration.Tests/  # Handlers, API, EF, selective bUnit
 └── docs/
+    └── phases/                                  # Delivery notes per roadmap phase
 ```
 
 Feature code lives in **vertical slices** inside `Web/Features/{Context}/{UseCase}/`, not in horizontal “Services” or “Repositories” folders.
 
 ## Getting started
 
-> The solution scaffold is not yet generated. Follow [ROADMAP.md](./docs/ROADMAP.md) Phase 0 to bootstrap the repository.
-
-Once scaffolded:
-
 ```bash
 dotnet restore
 dotnet build
 dotnet test
-dotnet run --project src/SchaerbeekMunicipality.AppHost   # starts Web + dependencies + Aspire dashboard
+dotnet run --project src/SchaerbeekMunicipality.AppHost   # starts Web + PostgreSQL + Aspire dashboard
 ```
 
+**Prerequisites:** .NET 10 SDK and Docker (for the PostgreSQL container started by AppHost).
+
 Integration tests run against `Web` directly (SQLite, no AppHost). Day-to-day development uses the AppHost.
+
+**Phase 0 demo:** Open the Aspire dashboard → confirm Web and PostgreSQL are healthy → browse to the Web app → empty registration case list → switch officer role in the app bar.
 
 ## Design principles
 
