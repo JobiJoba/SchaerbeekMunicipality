@@ -1,0 +1,25 @@
+﻿@page "/"
+
+<PageTitle>Schaerbeek Municipality</PageTitle>
+
+<MudText Typo="Typo.h4" GutterBottom="true">Population Department</MudText>
+<MudText Typo="Typo.body1" Class="mb-4">
+    Educational simulation of Belgian municipal population registration workflows.
+</MudText>
+
+<MudPaper Class="pa-4 mb-4" Elevation="1">
+    <MudText Typo="Typo.h6" GutterBottom="true">Four core decisions</MudText>
+    <MudList T="string" Dense="true">
+        <MudListItem Icon="@Icons.Material.Filled.Person">Identity established with sufficient certainty</MudListItem>
+        <MudListItem Icon="@Icons.Material.Filled.Gavel">Legal basis to reside in Belgium</MudListItem>
+        <MudListItem Icon="@Icons.Material.Filled.Home">Genuine residence at declared address</MudListItem>
+        <MudListItem Icon="@Icons.Material.Filled.Badge">Correct register and legal status</MudListItem>
+    </MudList>
+</MudPaper>
+
+<MudButton Href="/registration/cases"
+           Variant="Variant.Filled"
+           Color="Color.Primary"
+           StartIcon="@Icons.Material.Filled.FolderOpen">
+    View registration cases
+</MudButton>

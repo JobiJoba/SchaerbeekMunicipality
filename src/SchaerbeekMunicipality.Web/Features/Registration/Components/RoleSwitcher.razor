@@ -1,0 +1,25 @@
+@using SchaerbeekMunicipality.Web.Auth
+@inject ICurrentOfficer CurrentOfficer
+
+<div class="role-switcher">
+    <MudSelect T="OfficerRole"
+               Value="CurrentOfficer.Role"
+               ValueChanged="OnRoleChanged"
+               Dense="true"
+               FullWidth="false"
+               Variant="Variant.Outlined"
+               Style="background: var(--mud-palette-surface);">
+        <MudSelectItem Value="OfficerRole.ReceptionOfficer">Reception officer</MudSelectItem>
+        <MudSelectItem Value="OfficerRole.PopulationOfficer">Population officer</MudSelectItem>
+        <MudSelectItem Value="OfficerRole.PoliceClerk">Police clerk</MudSelectItem>
+    </MudSelect>
+</div>
+
+@code {
+
+    private void OnRoleChanged(OfficerRole role)
+    {
+        CurrentOfficer.SetRole(role);
+    }
+
+}
