@@ -10,6 +10,8 @@ using SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity;
 using SchaerbeekMunicipality.Web.Features.Registration.DeclareAddress;
 using SchaerbeekMunicipality.Web.Features.Registration.DownloadDocument;
 using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
+using SchaerbeekMunicipality.Web.Features.Registration.ConvertBisNumber;
+using SchaerbeekMunicipality.Web.Features.Registration.LinkExistingPerson;
 using SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases;
 using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordCivilStatus;
@@ -20,6 +22,7 @@ using SchaerbeekMunicipality.Web.Features.Registration.RecordImmigrationDecision
 using SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit;
 using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument;
 using SchaerbeekMunicipality.Web.Features.Registration.SearchReferenceData;
+using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
 using SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,6 +45,9 @@ builder.Services.AddScoped<ListRegistrationCasesHandler>();
 builder.Services.AddScoped<OpenRegistrationCaseHandler>();
 builder.Services.AddScoped<GetRegistrationCaseHandler>();
 builder.Services.AddScoped<RecordIdentityHandler>();
+builder.Services.AddScoped<LinkExistingPersonHandler>();
+builder.Services.AddScoped<ConvertBisNumberHandler>();
+builder.Services.AddScoped<SearchNationalRegisterHandler>();
 builder.Services.AddScoped<CorrectIdentityHandler>();
 builder.Services.AddScoped<AttachDocumentHandler>();
 builder.Services.AddScoped<DownloadDocumentHandler>();

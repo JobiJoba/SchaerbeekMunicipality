@@ -4,6 +4,7 @@ using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
 
@@ -19,7 +20,10 @@ public sealed record PersonDto(
     string GivenName,
     string FamilyName,
     DateOnly BirthDate,
-    string Nationality);
+    string Nationality,
+    string? BisNumber,
+    string? NationalRegisterNumber,
+    bool LinkedFromRegister);
 
 public sealed record DocumentDto(
     Guid Id,
@@ -76,4 +80,5 @@ public sealed record RegistrationCaseDetailDto(
     HousingSituation? HousingSituation,
     IReadOnlyList<HouseholdMemberDto> HouseholdMembers,
     CivilStatusDto? CivilStatus,
-    IReadOnlyList<DocumentDto> Documents);
+    IReadOnlyList<DocumentDto> Documents,
+    IReadOnlyList<NationalRegisterMatchDto> PossibleDuplicateMatches);

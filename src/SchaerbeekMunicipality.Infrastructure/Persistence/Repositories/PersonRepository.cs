@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.NationalRegister;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
 
@@ -21,5 +22,23 @@ internal sealed class PersonRepository(MunicipalDbContext dbContext) : IPersonRe
     public async Task AddAsync(Person person, CancellationToken cancellationToken)
     {
         await dbContext.Persons.AddAsync(person, cancellationToken);
+    }
+
+    public Task<bool> IsRegisterRecordLinkedAsync(
+        NationalRegisterPersonId registerPersonId,
+        CancellationToken cancellationToken)
+    {
+        return dbContext.Persons
+            .AsNoTracking()
+            .AnyAsync(p => p.LinkedRegisterRecordId == registerPersonId, cancellationToken);
+    }
+
+    public Task<bool> IsNationalRegisterNumberAssignedAsync(
+        NationalRegisterNumber nationalRegisterNumber,
+        CancellationToken cancellationToken)
+    {
+        return dbContext.Persons
+            .AsNoTracking()
+            .AnyAsync(p => p.NationalRegisterNumber == nationalRegisterNumber, cancellationToken);
     }
 }

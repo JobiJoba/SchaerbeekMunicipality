@@ -1,17 +1,25 @@
 @page "/registration/cases/{CaseId:guid}"
 @using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument
+@using SchaerbeekMunicipality.Web.Features.Registration.ConvertBisNumber
 @using SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity
 @using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
+@using SchaerbeekMunicipality.Web.Features.Registration.LinkExistingPerson
 @using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity
 @using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument
+@using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister
 @using SchaerbeekMunicipality.Domain.Documents
+@using SchaerbeekMunicipality.Domain.NationalRegister
 @using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
 @inject GetRegistrationCaseHandler GetHandler
 @inject RecordIdentityHandler RecordIdentityHandler
 @inject CorrectIdentityHandler CorrectIdentityHandler
+@inject SearchNationalRegisterHandler SearchNationalRegisterHandler
+@inject LinkExistingPersonHandler LinkExistingPersonHandler
+@inject ConvertBisNumberHandler ConvertBisNumberHandler
 @inject AttachDocumentHandler AttachDocumentHandler
 @inject RemoveDocumentHandler RemoveDocumentHandler
 @inject IAppDialogService DialogService
+@inject IDialogService MudDialogService
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
 
@@ -53,12 +61,40 @@
             </MudStack>
         </AppSection>
 
+        @if (_case.Person is not null && _case.PossibleDuplicateMatches.Count > 0 && !_case.Person.LinkedFromRegister)
+        {
+            <AppSection>
+                <AppAlert Severity="Severity.Warning"
+                          Title="Possible duplicate detected"
+                          Class="mb-0">
+                    @_case.PossibleDuplicateMatches.Count possible match(es) found in the National Register for this identity.
+                    Review before proceeding — linking an existing record avoids duplicate person files.
+                    <MudButton Variant="Variant.Text"
+                               Color="Color.Warning"
+                               Class="mt-2"
+                               StartIcon="@Icons.Material.Outlined.Search"
+                               OnClick="OpenNationalRegisterSearch">
+                        Review matches
+                    </MudButton>
+                </AppAlert>
+            </AppSection>
+        }
+
         <MudGrid Spacing="4">
             <MudItem xs="12" lg="7">
         @if (_case.Person is null)
         {
             <AppSection>
                 <AppCard Title="Identity" Outlined="true">
+                    <HeaderActions>
+                        <MudButton StartIcon="@Icons.Material.Outlined.Search"
+                                   Variant="Variant.Outlined"
+                                   Color="Color.Primary"
+                                   OnClick="OpenNationalRegisterSearch">
+                            Search National Register
+                        </MudButton>
+                    </HeaderActions>
+                    <ChildContent>
                     <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
                         <AppFormSection Title="Personal details">
                             <MudItem xs="12" md="6">
@@ -76,6 +112,7 @@
                         </AppFormSection>
 
                         <AppInfoBox Class="mb-4">
+                            Search the National Register first when the person may already have a BIS or NR record.
                             Record identity only when you have verified the supporting documents on file.
                         </AppInfoBox>
 
@@ -85,6 +122,7 @@
                                           OnSave="SaveIdentity"
                                           OnCancel="ClearIdentityForm" />
                     </MudForm>
+                    </ChildContent>
                 </AppCard>
             </AppSection>
         }
@@ -138,6 +176,35 @@
                         <MudText Typo="Typo.body2" Color="Color.Secondary">
                             Born @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
                         </MudText>
+                        @if (_case.Person.LinkedFromRegister)
+                        {
+                            <AppStatusChip Label="Linked from National Register"
+                                           Severity="AppSeverity.Info"
+                                           Class="mt-2" />
+                        }
+                        @if (!string.IsNullOrWhiteSpace(_case.Person.BisNumber))
+                        {
+                            <MudText Typo="Typo.body2" Class="mt-2">
+                                BIS @FormatRegisterNumber(_case.Person.BisNumber)
+                            </MudText>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(_case.Person.NationalRegisterNumber))
+                        {
+                            <MudText Typo="Typo.body2" Class="mt-1">
+                                NR @FormatRegisterNumber(_case.Person.NationalRegisterNumber)
+                            </MudText>
+                        }
+                        @if (CanConvertBis)
+                        {
+                            <MudButton Variant="Variant.Outlined"
+                                       Color="Color.Primary"
+                                       Class="mt-3"
+                                       StartIcon="@Icons.Material.Outlined.SwapHoriz"
+                                       Disabled="_convertingBis"
+                                       OnClick="ConvertBis">
+                                Convert BIS to National Register number
+                            </MudButton>
+                        }
                     </ChildContent>
                 </AppCard>
             </AppSection>
@@ -175,6 +242,7 @@
     private MudForm _identityForm = null!;
     private bool _identityFormValid;
     private bool _savingIdentity;
+    private bool _convertingBis;
 
     private string _givenName = string.Empty;
     private string _familyName = string.Empty;
@@ -184,6 +252,10 @@
     private bool CanEditIntakeData =>
         _case is not null &&
         _case.Status is RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview;
+
+    private bool CanConvertBis =>
+        CanEditIntakeData &&
+        _case?.Person is { BisNumber: not null, NationalRegisterNumber: null };
 
     private bool IdentityFormDirty =>
         _case?.Person is not null &&
@@ -329,6 +401,63 @@
             _savingIdentity = false;
         }
     }
+
+    private async Task OpenNationalRegisterSearch()
+    {
+        var parameters = new DialogParameters<NationalRegisterSearchDialog>
+        {
+            { x => x.CaseId, CaseId },
+            { x => x.SearchHandler, SearchNationalRegisterHandler },
+            { x => x.LinkHandler, LinkExistingPersonHandler },
+            { x => x.InitialGivenName, string.IsNullOrWhiteSpace(_givenName) ? null : _givenName },
+            { x => x.InitialFamilyName, string.IsNullOrWhiteSpace(_familyName) ? null : _familyName },
+            { x => x.InitialBirthDate, _birthDate.HasValue ? DateOnly.FromDateTime(_birthDate.Value) : null },
+        };
+
+        var dialog = await MudDialogService.ShowAsync<NationalRegisterSearchDialog>(
+            "Search National Register",
+            parameters,
+            AppDialogOptions.Large);
+
+        var result = await dialog.Result;
+
+        if (result is { Canceled: false })
+        {
+            Snackbar.Add("Existing register record linked.", Severity.Success);
+            await ReloadCase();
+        }
+    }
+
+    private async Task ConvertBis()
+    {
+        _convertingBis = true;
+        try
+        {
+            var response = await ConvertBisNumberHandler.Handle(
+                new RegistrationCaseId(CaseId),
+                CancellationToken.None);
+
+            Snackbar.Add($"BIS converted to NR {FormatRegisterNumber(response.NationalRegisterNumber)}.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        catch (NationalRegisterConflictException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _convertingBis = false;
+        }
+    }
+
+    private static string FormatRegisterNumber(string value) =>
+        value.Length == 11
+            ? $"{value[..6]}-{value[6..9]}.{value[9..]}"
+            : value;
 
     private async Task RemoveDocument(Guid documentId)
     {

@@ -111,7 +111,9 @@ Multi-step case processing (identity → residence → address → household). `
 
 ## 6. Search results (Phase 5, NR search)
 
-Search dialog/page: `AppSearchBar` + structured criteria (name, birth date), results as `AppDataTable` with match score, each row expandable to `AppPersonCard`; explicit actions "Link existing person" / "Create new person"; zero-results state uses `AppEmptyState` with "create new" action; possible-duplicate warning is a persistent `AppAlert Severity.Warning` on the case afterwards.
+Search dialog (`NationalRegisterSearchDialog`): optional criteria fields (given name, family name, birth date — at least one required); results as `MudTable` with match score chip and **Link** per row; partial queries such as `Marie` or `Dupont` return multiple propositions; zero-results state uses `AppInfoBox`; possible-duplicate warning is a persistent `AppAlert Severity.Warning` on the case detail page when identity was created without linking.
+
+Implemented: [search-national-register.md](../features/registration/search-national-register.md), [phase-5-national-register-search-bis.md](../phases/phase-5-national-register-search-bis.md).
 
 ## 7. Dashboard (Phase 7 review dashboard)
 

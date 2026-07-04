@@ -139,6 +139,26 @@ stateDiagram-v2
     note right of Intake: Case stays in Intake;<br/>only checklist updates
 ```
 
+## National Register workflow (Phase 5)
+
+`RecordIdentity` is the **create new person** path. Prefer searching the register first:
+
+| Step | Slice | Doc |
+|------|-------|-----|
+| 1. Search (optional partial criteria) | `SearchNationalRegister` | [search-national-register.md](./search-national-register.md) |
+| 2a. Match found → link | `LinkExistingPerson` | [link-existing-person.md](./link-existing-person.md) |
+| 2b. No match → this slice | `RecordIdentity` | (this doc) |
+
+If the officer records identity manually without linking, `GetRegistrationCase` may return `possibleDuplicateMatches` and the UI shows a duplicate warning banner.
+
+**Create new vs link:**
+
+| | `RecordIdentity` | `LinkExistingPerson` |
+|---|---|---|
+| Person created via | `Person.Create()` | `Person.CreateFromRegisterRecord()` |
+| `linkedFromRegister` | false | true |
+| BIS/NR on person | null | copied from stub |
+
 ## Correction path
 
 Identity is one of two slices that use the **explicit `Correct*`** pattern (see [intake corrections](./README.md#intake-corrections-phase-21)): first record and correction have different domain invariants, so they are separate handlers.
