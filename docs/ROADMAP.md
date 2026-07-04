@@ -20,7 +20,9 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 1 — Case intake & identity (IDEA Phases 1–2, 12 partial)
+## Phase 1 — Case intake & identity (IDEA Phases 1–2, 12 partial) ✅
+
+**Status:** Complete — see [phases/phase-1-case-intake-identity.md](./phases/phase-1-case-intake-identity.md) for full delivery notes.
 
 **Goal:** Open a registration case and record identity.
 

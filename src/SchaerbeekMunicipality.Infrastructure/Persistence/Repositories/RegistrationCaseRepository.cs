@@ -9,7 +9,7 @@ internal sealed class RegistrationCaseRepository(MunicipalDbContext dbContext) :
     {
         return await dbContext.RegistrationCases
             .AsNoTracking()
-            .OrderByDescending(c => c.Id)
+            .OrderByDescending(c => c.OpenedAt)
             .ToListAsync(cancellationToken);
     }
 
