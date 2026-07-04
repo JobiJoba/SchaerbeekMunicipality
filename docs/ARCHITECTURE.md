@@ -115,7 +115,7 @@ Handlers should **not** contain business rules that belong in the domain (e.g. �
 | `/health` | Readiness — all registered checks must pass |
 | `/alive` | Liveness — process is running |
 
-These are exposed in **Development** by default (which covers local dev and `WebApplicationFactory` smoke tests). Phase 9 adds a **database check** (`AddDbContextCheck`) to the same pipeline — still no custom route.
+These are exposed in **Development** by default (which covers local dev and `WebApplicationFactory` smoke tests). Phase 10 adds a **database check** (`AddDbContextCheck`) to the same pipeline — still no custom route.
 
 The Aspire **dashboard** monitors resource health separately (Web + PostgreSQL containers). That is orchestration-level; `/health` on Web is application-level.
 
@@ -294,7 +294,7 @@ Authorization checks live in handlers: `if (!_currentOfficer.CanApproveRegistrat
 
 - **Development (Aspire):** PostgreSQL container started by AppHost; connection string injected into Web.
 - **Integration tests:** SQLite in-memory with `EnsureCreated()` — tests host `Web` directly via `WebApplicationFactory`, bypassing AppHost. Migrations are PostgreSQL-specific and validated separately with Testcontainers (see [TESTING.md](./TESTING.md)).
-- **Production-like deploy (Phase 9+):** PostgreSQL via Aspire publish manifest or managed cloud database.
+- **Production-like deploy (Phase 10+):** PostgreSQL via Aspire publish manifest or managed cloud database.
 - EF Core migrations in `Infrastructure`; provider chosen from connection string (Npgsql vs SQLite).
 - Use `snake_case` column naming in PostgreSQL via EF naming convention plugin or explicit configuration.
 

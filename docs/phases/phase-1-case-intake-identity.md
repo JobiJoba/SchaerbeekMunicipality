@@ -120,7 +120,7 @@ Expected: **12 tests passing** in the fast suite (4 domain + 8 integration).
 | `SetResidenceCategory` | 2 |
 | Residence permit evidence | 2 |
 | `LegalResidenceEstablished` checklist flag | 2 |
-| Address declaration | 3 |
+| Address declaration | 4 |
 
 ---
 

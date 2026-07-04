@@ -87,7 +87,36 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 3 — Address & household (IDEA Phases 5–8, 9–10)
+## Phase 3 — Design system & UI kit (Schaerbeek visual identity)
+
+**Goal:** Reverse-engineer the design language of [www.1030.be](https://www.1030.be/fr) into an enterprise-grade MudBlazor design system so every subsequent phase builds pages from a consistent, branded UI kit instead of raw MudBlazor defaults.
+
+**Plan:** See [phases/phase-3-design-system.md](./phases/phase-3-design-system.md). Full specification lives in [design-system/](./design-system/).
+
+**Slices (infrastructure-style, no domain changes):**
+
+- `SchaerbeekTheme` — production `MudTheme` (palette, typography, layout, shadows) replacing the inline theme in `MainLayout`
+- Design tokens (`SchaerbeekColors`, `SchaerbeekSpacing`, `SchaerbeekElevation`, `SchaerbeekMotion`, `SchaerbeekLayout`)
+- `DesignSystem/` component library — `App*` wrapper components (`AppPage`, `AppPageHeader`, `AppCard`, `AppDataTable`, `AppStatusChip`, `AppEmptyState`, `AppConfirmDialog`, …)
+- Rebranded `MainLayout` (app bar, drawer, footer) following the 1030.be identity
+- Minimal `app.css` rewrite (fonts, focus ring, print rules only)
+- Retrofit existing Phase 1 pages (case list, case detail, dialogs) onto the UI kit
+
+**Docs:**
+
+- Design system guide: tokens, theme, accessibility, component catalogue, page templates, developer guidelines — [design-system/](./design-system/)
+
+**Demo:** Case list and case detail pages restyled in Schaerbeek identity; a style-guide page (`/design-system`) showcasing every wrapper component.
+
+**Tests:**
+
+- bUnit: wrapper components render expected MudBlazor structure and parameters
+- Contrast assertions on token pairs (WCAG AA) as plain unit tests
+- Existing integration tests stay green (no behavior change)
+
+---
+
+## Phase 4 — Address & household (IDEA Phases 5–8, 9–10)
 
 **Goal:** Declare domicile and household; civil status.
 
@@ -119,7 +148,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 4 — National Register search & BIS (IDEA Phases 13–14)
+## Phase 5 — National Register search & BIS (IDEA Phases 13–14)
 
 **Goal:** Duplicate detection and BIS handling.
 
@@ -148,7 +177,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 5 — Police verification loop (IDEA Phases 15–17)
+## Phase 6 — Police verification loop (IDEA Phases 15–17)
 
 **Goal:** Async residence check with separate police role.
 
@@ -177,7 +206,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 6 — Decision & registration (IDEA Phases 18–20)
+## Phase 7 — Decision & registration (IDEA Phases 18–20)
 
 **Goal:** Officer decision and official registration in correct register.
 
@@ -209,7 +238,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 7 — Certificates & outbound stubs (IDEA Phases 21–23)
+## Phase 8 — Certificates & outbound stubs (IDEA Phases 21–23)
 
 **Goal:** Citizen-facing outputs and administration notifications.
 
@@ -233,7 +262,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 8 — Exception scenarios (IDEA “Major Exceptions”)
+## Phase 9 — Exception scenarios (IDEA “Major Exceptions”)
 
 **Goal:** Teach edge cases as explicit workflows.
 
@@ -254,7 +283,7 @@ Each adds domain rules + UI branch + dedicated tests.
 
 ---
 
-## Phase 9 — PostgreSQL hardening & Aspire deployment
+## Phase 10 — PostgreSQL hardening & Aspire deployment
 
 **Goal:** Production habits and deployable manifests.
 
@@ -269,7 +298,7 @@ Each adds domain rules + UI branch + dedicated tests.
 
 ---
 
-## Phase 10 — Extended municipality (optional)
+## Phase 11 — Extended municipality (optional)
 
 Ideas beyond first registration:
 
@@ -312,6 +341,7 @@ That gives a tangible vertical slice through all layers before expanding horizon
 ## Related documents
 
 - [phases/](./phases/) — detailed delivery notes per completed phase
+- [design-system/](./design-system/README.md) — Schaerbeek design system & UI kit specification (Phase 3)
 - [DOMAIN.md](./DOMAIN.md) — context and aggregate reference
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — slice conventions
 - [TESTING.md](./TESTING.md) — test types per phase

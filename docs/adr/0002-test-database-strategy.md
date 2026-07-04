@@ -18,5 +18,5 @@ Two-tier strategy:
 
 - `dotnet test` stays fast and Docker-free locally and in PR CI.
 - Migration bugs are caught by the PostgreSQL job, not the fast suite — a red nightly run must be treated as blocking.
-- Provider-specific behavior differences (collations, case sensitivity) can slip through the SQLite suite; Phase 9 expands full-suite PostgreSQL coverage.
+- Provider-specific behavior differences (collations, case sensitivity) can slip through the SQLite suite; Phase 10 expands full-suite PostgreSQL coverage.
 - Revisit when: the PostgreSQL job becomes fast enough to run on every PR, at which point SQLite could be dropped entirely.

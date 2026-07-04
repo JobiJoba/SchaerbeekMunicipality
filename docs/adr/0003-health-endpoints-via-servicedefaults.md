@@ -9,10 +9,10 @@ The app needs health endpoints for smoke tests, orchestration, and eventual depl
 
 ## Decision
 
-Do not write a custom health Minimal API endpoint. Use ServiceDefaults' `/health` and `/alive`. Minimal API is reserved for business use cases under `/api/...`. Domain-specific checks (e.g. `AddDbContextCheck`) plug into the same health-check pipeline in Phase 9.
+Do not write a custom health Minimal API endpoint. Use ServiceDefaults' `/health` and `/alive`. Minimal API is reserved for business use cases under `/api/...`. Domain-specific checks (e.g. `AddDbContextCheck`) plug into the same health-check pipeline in Phase 10.
 
 ## Consequences
 
 - One less hand-rolled endpoint; smoke tests hit `/health` through `WebApplicationFactory` (Development environment, so endpoints are mapped).
-- Production deployment (Phase 9) must explicitly expose health endpoints outside Development, with response caching and access restrictions.
+- Production deployment (Phase 10) must explicitly expose health endpoints outside Development, with response caching and access restrictions.
 - Revisit when: deployment target requires custom probe semantics ServiceDefaults cannot express.

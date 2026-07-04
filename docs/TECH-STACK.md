@@ -75,7 +75,7 @@ var app = builder.Build();
 app.MapDefaultEndpoints(); // /health, /alive in Development — no custom health endpoint needed
 ```
 
-**Health checks:** ServiceDefaults owns `/health` and `/alive`. Add domain-specific checks (e.g. EF Core database) via `AddHealthChecks()` in Phase 9 — not a separate Minimal API route. The Aspire dashboard additionally shows container and project resource status.
+**Health checks:** ServiceDefaults owns `/health` and `/alive`. Add domain-specific checks (e.g. EF Core database) via `AddHealthChecks()` in Phase 10 — not a separate Minimal API route. The Aspire dashboard additionally shows container and project resource status.
 
 **Database strategy with Aspire:**
 
@@ -84,7 +84,7 @@ app.MapDefaultEndpoints(); // /health, /alive in Development — no custom healt
 | **Aspire + PostgreSQL** | `dotnet run --project AppHost` | Daily development, demo, prod-like runs |
 | **SQLite (test factory)** | `EnsureCreated()` in `WebApplicationFactory` | Fast integration tests — no Docker |
 | **Testcontainers PostgreSQL** | `Category=PostgreSQL` tests | Migration validation in CI |
-| **Aspire deployment** | `aspire publish` / manifest (Phase 9+) | Deploy to Azure Container Apps or Docker |
+| **Aspire deployment** | `aspire publish` / manifest (Phase 10+) | Deploy to Azure Container Apps or Docker |
 
 SQLite remains for **tests only** — not wired through AppHost. This keeps `dotnet test` fast while dev runs use real PostgreSQL in a container.
 
@@ -332,7 +332,7 @@ Secrets: **User Secrets** for non-Aspire standalone runs; Aspire manages contain
 
 **Local (default):** `dotnet run --project src/SchaerbeekMunicipality.AppHost`
 
-**Phase 9+ — Aspire deployment:**
+**Phase 10+ — Aspire deployment:**
 
 - `aspire publish` generates deployment manifests
 - Target: Azure Container Apps, Kubernetes, or Docker Compose (generated from manifest)

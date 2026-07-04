@@ -8,13 +8,14 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 0.1 | Tooling hygiene | Complete | [phase-0.1-tooling-hygiene.md](./phase-0.1-tooling-hygiene.md) |
 | 1 | Case intake & identity | Complete | [phase-1-case-intake-identity.md](./phase-1-case-intake-identity.md) |
 | 2 | Residence category & permits | Planned | — |
-| 3 | Address & household | Planned | — |
-| 4 | National Register search & BIS | Planned | — |
-| 5 | Police verification loop | Planned | — |
-| 6 | Decision & registration | Planned | — |
-| 7 | Certificates & outbound stubs | Planned | — |
-| 8 | Exception scenarios | Planned | — |
-| 9 | PostgreSQL hardening & Aspire deployment | Planned | — |
-| 10 | Extended municipality | Optional | — |
+| 3 | Design system & UI kit | Planned | [phase-3-design-system.md](./phase-3-design-system.md) |
+| 4 | Address & household | Planned | — |
+| 5 | National Register search & BIS | Planned | — |
+| 6 | Police verification loop | Planned | — |
+| 7 | Decision & registration | Planned | — |
+| 8 | Certificates & outbound stubs | Planned | — |
+| 9 | Exception scenarios | Planned | — |
+| 10 | PostgreSQL hardening & Aspire deployment | Planned | — |
+| 11 | Extended municipality | Optional | — |
 
 When a phase is completed, add a document here using the same naming pattern: `phase-N-short-title.md`.
