@@ -7,7 +7,7 @@ The Registration bounded context manages first-registration procedures for the P
 ```mermaid
 erDiagram
     RegistrationCase ||--o| Person : "PersonId"
-    RegistrationCase ||--{ AdministrativeDocument : "RegistrationCaseId"
+    RegistrationCase ||--o{ AdministrativeDocument : "RegistrationCaseId"
 
     RegistrationCase {
         guid Id
