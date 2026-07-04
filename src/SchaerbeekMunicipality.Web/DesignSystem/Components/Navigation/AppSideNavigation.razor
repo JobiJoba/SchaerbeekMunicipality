@@ -1,0 +1,69 @@
+@using SchaerbeekMunicipality.Web.Auth
+@using Microsoft.AspNetCore.Components.Routing
+@inject NavigationManager Navigation
+
+<nav aria-label="Main navigation">
+    <MudNavMenu>
+        @foreach (var item in VisibleItems)
+        {
+            var isActive = IsActive(item.Href);
+            var accessibleName = item.BadgeCount is > 0
+                ? $"{item.Label}, {item.BadgeCount} pending"
+                : item.Label;
+
+            @if (item.BadgeCount is > 0)
+            {
+                <MudBadge Content="@item.BadgeCount" Color="Color.Warning" Overlap="true" Class="mx-4">
+                    <MudNavLink Href="@item.Href"
+                                Match="@GetMatch(item.Href)"
+                                Icon="@item.Icon"
+                                aria-label="@accessibleName"
+                                Class="@NavClass(isActive)">
+                        @item.Label
+                    </MudNavLink>
+                </MudBadge>
+            }
+            else
+            {
+                <MudNavLink Href="@item.Href"
+                            Match="@GetMatch(item.Href)"
+                            Icon="@item.Icon"
+                            aria-label="@accessibleName"
+                            Class="@NavClass(isActive)">
+                    @item.Label
+                </MudNavLink>
+            }
+        }
+    </MudNavMenu>
+</nav>
+
+@code {
+    [Parameter, EditorRequired]
+    public IReadOnlyList<AppNavItem> Items { get; set; } = [];
+
+    [Parameter]
+    public OfficerRole CurrentRole { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    private IEnumerable<AppNavItem> VisibleItems =>
+        Items.Where(i => i.RequiredRole is null || CurrentRole.ToString() == i.RequiredRole);
+
+    private bool IsActive(string href)
+    {
+        var relative = Navigation.ToBaseRelativePath(Navigation.Uri);
+        if (href == "/")
+        {
+            return string.IsNullOrEmpty(relative);
+        }
+
+        return relative.StartsWith(href.TrimStart('/'), StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static NavLinkMatch GetMatch(string href) =>
+        href == "/" ? NavLinkMatch.All : NavLinkMatch.Prefix;
+
+    private static string NavClass(bool isActive) =>
+        isActive ? "app-nav-active" : string.Empty;
+}

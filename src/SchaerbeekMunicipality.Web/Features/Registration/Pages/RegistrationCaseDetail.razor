@@ -1,6 +1,5 @@
 @page "/registration/cases/{CaseId:guid}"
 @using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity
 @inject GetRegistrationCaseHandler GetHandler
@@ -9,110 +8,115 @@
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
 
-<PageTitle>Case @CaseId</PageTitle>
-
-@if (_loading)
-{
-    <MudProgressLinear Indeterminate="true" Color="Color.Primary" Class="mb-4" />
-}
-else if (_case is null)
-{
-    <MudAlert Severity="Severity.Error">Registration case not found.</MudAlert>
-}
-else
-{
-    <MudStack Row="true" AlignItems="AlignItems.Center" Class="mb-4">
-        <MudButton StartIcon="@Icons.Material.Filled.ArrowBack"
-                   Variant="Variant.Text"
-                   OnClick="@(() => Navigation.NavigateTo("/registration/cases"))">
-            Back to list
-        </MudButton>
-        <MudSpacer />
-        <MudChip T="string" Color="Color.Primary" Variant="Variant.Outlined">@_case.Status</MudChip>
-    </MudStack>
-
-    <MudText Typo="Typo.h4" GutterBottom="true">Registration case</MudText>
-    <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
-        @CaseId.ToString()[..8]… · @_case.VisitReason · opened @_case.OpenedAt.LocalDateTime.ToString("g")
-    </MudText>
-
-    <MudPaper Class="pa-4 mb-4" Outlined="true">
-        <MudText Typo="Typo.h6" GutterBottom="true">Completeness checklist</MudText>
-        <MudStack Row="true" Spacing="2">
-            <MudChip T="string" Color="@ChecklistColor(_case.Checklist.IdentityEstablished)" Size="Size.Small">
-                Identity @(_case.Checklist.IdentityEstablished ? "✓" : "—")
-            </MudChip>
-            <MudChip T="string" Color="@ChecklistColor(_case.Checklist.LegalResidenceEstablished)" Size="Size.Small">
-                Legal residence @(_case.Checklist.LegalResidenceEstablished ? "✓" : "—")
-            </MudChip>
-            <MudChip T="string" Color="@ChecklistColor(_case.Checklist.AddressDeclared)" Size="Size.Small">
-                Address @(_case.Checklist.AddressDeclared ? "✓" : "—")
-            </MudChip>
-        </MudStack>
-    </MudPaper>
-
-    @if (_case.Person is null)
+<AppPage Title="Registration case">
+    @if (_loading)
     {
-        <MudPaper Class="pa-4 mb-4" Outlined="true">
-            <MudText Typo="Typo.h6" GutterBottom="true">Identity</MudText>
-            <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
-                <MudGrid>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="_givenName" Label="Given name" Required="true" />
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
-                    </MudItem>
-                    <MudItem xs="12" sm="6">
-                        <MudTextField @bind-Value="_nationality" Label="Nationality" Required="true" />
-                    </MudItem>
-                </MudGrid>
-                <MudButton Class="mt-3"
-                           Variant="Variant.Filled"
-                           Color="Color.Primary"
-                           Disabled="_savingIdentity"
-                           OnClick="SaveIdentity">
-                    Record identity
-                </MudButton>
-            </MudForm>
-        </MudPaper>
+        <AppLoading />
+    }
+    else if (_case is null)
+    {
+        <AppAlert Severity="Severity.Error" Title="Not found">
+            Registration case not found.
+        </AppAlert>
     }
     else
     {
-        <MudPaper Class="pa-4 mb-4" Outlined="true">
-            <MudText Typo="Typo.h6" GutterBottom="true">Identity</MudText>
-            <MudText Typo="Typo.body1">@_case.Person.GivenName @_case.Person.FamilyName</MudText>
-            <MudText Typo="Typo.body2" Color="Color.Secondary">
-                Born @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
-            </MudText>
-        </MudPaper>
-    }
+        <AppPageHeader Title="Registration case"
+                       Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.VisitReason} · opened {_case.OpenedAt.LocalDateTime:g}")">
+            <StatusChip>
+                <AppStatusChip Status="_case.Status" />
+            </StatusChip>
+            <Actions>
+                <MudButton StartIcon="@Icons.Material.Outlined.ArrowBack"
+                           Variant="Variant.Text"
+                           OnClick="@(() => Navigation.NavigateTo("/registration/cases"))">
+                    Back to list
+                </MudButton>
+            </Actions>
+        </AppPageHeader>
 
-    <DocumentUpload CaseId="CaseId"
-                    Handler="AttachDocumentHandler"
-                    OnUploaded="ReloadCase" />
+        <AppSection Title="Completeness checklist">
+            <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap">
+                <AppStatusChip Label="@($"Identity {(_case.Checklist.IdentityEstablished ? "✓" : "—")}")"
+                               Severity="@(_case.Checklist.IdentityEstablished ? AppSeverity.Success : AppSeverity.Neutral)" />
+                <AppStatusChip Label="@($"Legal residence {(_case.Checklist.LegalResidenceEstablished ? "✓" : "—")}")"
+                               Severity="@(_case.Checklist.LegalResidenceEstablished ? AppSeverity.Success : AppSeverity.Neutral)" />
+                <AppStatusChip Label="@($"Address {(_case.Checklist.AddressDeclared ? "✓" : "—")}")"
+                               Severity="@(_case.Checklist.AddressDeclared ? AppSeverity.Success : AppSeverity.Neutral)" />
+            </MudStack>
+        </AppSection>
 
-    @if (_case.Documents.Count > 0)
-    {
-        <MudPaper Class="pa-4" Outlined="true">
-            <MudText Typo="Typo.h6" GutterBottom="true">Attached documents</MudText>
-            <MudList T="string" Dense="true">
-                @foreach (var doc in _case.Documents)
-                {
-                    <MudListItem T="string" Icon="@Icons.Material.Filled.AttachFile">
-                        @doc.DocumentType — @doc.FileName
-                        <MudText Typo="Typo.caption" Color="Color.Secondary">
-                            @doc.UploadedAt.LocalDateTime.ToString("g")
-                        </MudText>
-                    </MudListItem>
-                }
-            </MudList>
-        </MudPaper>
+        @if (_case.Person is null)
+        {
+            <AppSection>
+                <AppCard Title="Identity" Outlined="true">
+                    <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
+                        <AppFormSection Title="Personal details">
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_givenName" Label="Given name" Required="true" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_nationality" Label="Nationality" Required="true" />
+                            </MudItem>
+                        </AppFormSection>
+
+                        <AppInfoBox Class="mb-4">
+                            Record identity only when you have verified the supporting documents on file.
+                        </AppInfoBox>
+
+                        <AppSaveCancelBar SaveText="Record identity"
+                                          CancelText="Clear"
+                                          Saving="_savingIdentity"
+                                          OnSave="SaveIdentity"
+                                          OnCancel="ClearIdentityForm" />
+                    </MudForm>
+                </AppCard>
+            </AppSection>
+        }
+        else
+        {
+            <AppSection>
+                <AppCard Title="Identity" Outlined="true">
+                    <MudText Typo="Typo.body1">@_case.Person.GivenName @_case.Person.FamilyName</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">
+                        Born @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
+                    </MudText>
+                </AppCard>
+            </AppSection>
+        }
+
+        <AppSection>
+            <DocumentUpload CaseId="CaseId"
+                            Handler="AttachDocumentHandler"
+                            OnUploaded="ReloadCase" />
+        </AppSection>
+
+        @if (_case.Documents.Count > 0)
+        {
+            <AppSection Title="Attached documents">
+                <AppCard Outlined="true">
+                    <MudList T="string" Dense="true">
+                        @foreach (var doc in _case.Documents)
+                        {
+                            <MudListItem T="string" Icon="@Icons.Material.Outlined.AttachFile">
+                                @doc.DocumentType — @doc.FileName
+                                <MudText Typo="Typo.caption" Color="Color.Secondary">
+                                    @doc.UploadedAt.LocalDateTime.ToString("g")
+                                </MudText>
+                            </MudListItem>
+                        }
+                    </MudList>
+                </AppCard>
+            </AppSection>
+        }
     }
-}
+</AppPage>
 
 @code {
     [Parameter]
@@ -138,9 +142,17 @@ else
     {
         _loading = true;
         _case = await GetHandler.Handle(
-            new Domain.Registration.RegistrationCaseId(CaseId),
+            new RegistrationCaseId(CaseId),
             CancellationToken.None);
         _loading = false;
+    }
+
+    private void ClearIdentityForm()
+    {
+        _givenName = string.Empty;
+        _familyName = string.Empty;
+        _birthDate = null;
+        _nationality = string.Empty;
     }
 
     private async Task SaveIdentity()
@@ -161,7 +173,7 @@ else
                 _nationality);
 
             await RecordIdentityHandler.Handle(
-                new Domain.Registration.RegistrationCaseId(CaseId),
+                new RegistrationCaseId(CaseId),
                 request,
                 CancellationToken.None);
 
@@ -172,7 +184,7 @@ else
         {
             Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
         }
-        catch (Domain.Registration.InvalidRegistrationTransitionException ex)
+        catch (InvalidRegistrationTransitionException ex)
         {
             Snackbar.Add(ex.Message, Severity.Error);
         }
@@ -181,7 +193,4 @@ else
             _savingIdentity = false;
         }
     }
-
-    private static Color ChecklistColor(bool complete) =>
-        complete ? Color.Success : Color.Default;
 }

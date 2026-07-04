@@ -3,7 +3,7 @@
 
 <MudDialog>
     <TitleContent>
-        <MudText Typo="Typo.h6">Open registration case</MudText>
+        <MudText Typo="Typo.h4">Open registration case</MudText>
     </TitleContent>
     <DialogContent>
         <MudForm @ref="_form" @bind-IsValid="_formValid">
@@ -19,8 +19,13 @@
         </MudForm>
     </DialogContent>
     <DialogActions>
-        <MudButton OnClick="Cancel">Cancel</MudButton>
-        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Submit" Disabled="_submitting">
+        <MudButton Variant="Variant.Outlined" OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary"
+                   Variant="Variant.Filled"
+                   Style="min-height: 48px;"
+                   OnClick="Submit"
+                   Disabled="_submitting"
+                   aria-busy="@_submitting">
             Open case
         </MudButton>
     </DialogActions>
@@ -28,7 +33,7 @@
 
 @code {
     [CascadingParameter]
-  private IMudDialogInstance MudDialog { get; set; } = null!;
+    private IMudDialogInstance MudDialog { get; set; } = null!;
 
     [Parameter]
     public string OfficerName { get; set; } = string.Empty;

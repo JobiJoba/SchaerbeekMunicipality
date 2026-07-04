@@ -39,7 +39,7 @@ public sealed class GetRegistrationCaseHandler(
 
         return new RegistrationCaseDetailDto(
             registrationCase.Id.Value,
-            registrationCase.Status.ToString(),
+            registrationCase.Status,
             registrationCase.VisitReason,
             registrationCase.AssignedOfficerId.Value,
             registrationCase.OpenedAt,

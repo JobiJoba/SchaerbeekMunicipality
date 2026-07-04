@@ -1,0 +1,56 @@
+@implements IDisposable
+
+<MudTextField T="string"
+              Value="@Value"
+              ValueChanged="HandleValueChanged"
+              Placeholder="@Placeholder"
+              Variant="Variant.Outlined"
+              Margin="Margin.Dense"
+              Adornment="Adornment.Start"
+              AdornmentIcon="@Icons.Material.Outlined.Search"
+              Clearable="true"
+              Immediate="true"
+              DebounceInterval="@DebounceMs"
+              aria-label="@Placeholder"
+              Class="@Class"
+              Style="@Style" />
+
+@code {
+    [Parameter]
+    public string Value { get; set; } = string.Empty;
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    [Parameter]
+    public string Placeholder { get; set; } = "Search…";
+
+    [Parameter]
+    public int DebounceMs { get; set; } = 300;
+
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+
+    private async Task HandleValueChanged(string value)
+    {
+        if (ValueChanged.HasDelegate)
+        {
+            await ValueChanged.InvokeAsync(value);
+        }
+
+        if (OnSearch.HasDelegate)
+        {
+            await OnSearch.InvokeAsync(value);
+        }
+    }
+
+    public void Dispose()
+    {
+    }
+}

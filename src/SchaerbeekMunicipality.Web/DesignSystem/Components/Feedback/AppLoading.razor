@@ -1,0 +1,47 @@
+<div role="status" class="@Class" style="@Style">
+    <span class="visually-hidden">@Label</span>
+    @if (Kind == AppLoadingKind.Spinner)
+    {
+        <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Class="pa-8">
+            <MudProgressCircular Color="Color.Primary" Indeterminate="true" aria-hidden="true" />
+        </MudStack>
+    }
+    else
+    {
+        @for (var i = 0; i < SkeletonRows; i++)
+        {
+            <MudSkeleton Height="40px" Class="mb-2" aria-hidden="true" />
+        }
+    }
+</div>
+
+@code {
+    [Parameter]
+    public AppLoadingKind Kind { get; set; } = AppLoadingKind.Spinner;
+
+    [Parameter]
+    public int SkeletonRows { get; set; } = 5;
+
+    [Parameter]
+    public string Label { get; set; } = "Loading…";
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+}
+
+<style>
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+</style>

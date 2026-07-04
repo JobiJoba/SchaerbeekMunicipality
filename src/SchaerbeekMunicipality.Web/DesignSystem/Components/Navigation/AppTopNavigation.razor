@@ -1,0 +1,40 @@
+@using SchaerbeekMunicipality.Web.Auth
+@inject NavigationManager Navigation
+
+<MudAppBar Elevation="@SchaerbeekElevation.Card" Color="Color.Primary" Class="@Class" Style="@Style">
+    <MudIconButton Icon="@Icons.Material.Outlined.Menu"
+                   Color="Color.Inherit"
+                   Edge="Edge.Start"
+                   aria-label="Toggle navigation menu"
+                   OnClick="OnMenuToggle" />
+    <MudText Typo="Typo.h6">@Title</MudText>
+    <MudSpacer />
+    @if (OfficerDisplayName is not null)
+    {
+        <MudText Typo="Typo.body2" Class="mr-3 d-none d-sm-flex">@OfficerDisplayName</MudText>
+    }
+    @if (TrailingContent is not null)
+    {
+        @TrailingContent
+    }
+</MudAppBar>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "Schaerbeek — Population Department";
+
+    [Parameter]
+    public string? OfficerDisplayName { get; set; }
+
+    [Parameter]
+    public EventCallback OnMenuToggle { get; set; }
+
+    [Parameter]
+    public RenderFragment? TrailingContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+}

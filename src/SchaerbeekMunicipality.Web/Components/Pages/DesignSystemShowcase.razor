@@ -1,0 +1,169 @@
+@page "/design-system"
+@inject IWebHostEnvironment Environment
+@inject NavigationManager Navigation
+@using SchaerbeekMunicipality.Domain.Registration
+
+<AppPage Title="Design system">
+    @if (!Environment.IsDevelopment())
+    {
+        <AppAlert Severity="Severity.Warning" Title="Development only">
+            This page is available in Development environment only.
+        </AppAlert>
+    }
+    else
+    {
+        <AppPageHeader Title="Design system"
+                       Subtitle="Living reference for Schaerbeek tokens and UI kit wrappers." />
+
+        <AppSection Title="Color tokens">
+            <MudGrid Spacing="3">
+                @foreach (var swatch in _colorSwatches)
+                {
+                    <MudItem xs="6" sm="4" md="3">
+                        <MudPaper Class="pa-3" Style="@($"background:{swatch.Color}; min-height:80px;")">
+                            <MudText Typo="Typo.caption" Style="color: #111;">@swatch.Name</MudText>
+                            <MudText Typo="Typo.caption" Style="color: #444;">@swatch.Color</MudText>
+                        </MudPaper>
+                    </MudItem>
+                }
+            </MudGrid>
+        </AppSection>
+
+        <AppSection Title="Typography">
+            <MudText Typo="Typo.h1">Heading 1 — page title</MudText>
+            <MudText Typo="Typo.h2">Heading 2 — section</MudText>
+            <MudText Typo="Typo.h3">Heading 3 — card title</MudText>
+            <MudText Typo="Typo.body1">Body 1 — default paragraph text at 16px.</MudText>
+            <MudText Typo="Typo.body2">Body 2 — dense metadata at 14px.</MudText>
+            <MudText Typo="Typo.caption">Caption — timestamps and footnotes.</MudText>
+        </AppSection>
+
+        <AppSection Title="Status chips">
+            <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap">
+                @foreach (RegistrationCaseStatus status in Enum.GetValues<RegistrationCaseStatus>())
+                {
+                    <AppStatusChip Status="status" />
+                }
+            </MudStack>
+        </AppSection>
+
+        <AppSection Title="Data table"
+                    Description="Work-queue tables use AppDataTable — dense, striped, with status chips and paging.">
+            <AppDataTable T="DemoCaseRow"
+                          Items="_demoCases"
+                          Caption="Sample registration cases">
+                <HeaderContent>
+                    <MudTh Class="app-table-header">Case ID</MudTh>
+                    <MudTh Class="app-table-header">Visit reason</MudTh>
+                    <MudTh Class="app-table-header">Status</MudTh>
+                    <MudTh Class="app-table-header">Opened</MudTh>
+                    <MudTh Class="app-table-header">Identity</MudTh>
+                </HeaderContent>
+                <RowTemplate Context="row">
+                    <MudTd DataLabel="Case ID">@row.CaseId</MudTd>
+                    <MudTd DataLabel="Visit reason">@row.VisitReason</MudTd>
+                    <MudTd DataLabel="Status">
+                        <AppStatusChip Status="row.Status" />
+                    </MudTd>
+                    <MudTd DataLabel="Opened">@row.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+                    <MudTd DataLabel="Identity">
+                        @if (row.IdentityEstablished)
+                        {
+                            <MudIcon Icon="@Icons.Material.Outlined.CheckCircle" Color="Color.Success" Size="Size.Small" aria-label="Identity established" />
+                        }
+                        else
+                        {
+                            <MudIcon Icon="@Icons.Material.Outlined.RadioButtonUnchecked" Color="Color.Default" Size="Size.Small" aria-label="Identity not established" />
+                        }
+                    </MudTd>
+                </RowTemplate>
+            </AppDataTable>
+        </AppSection>
+
+        <AppSection Title="Alerts">
+            <MudStack Spacing="3">
+                <AppAlert Severity="Severity.Info" Title="Information">Procedural guidance for officers.</AppAlert>
+                <AppAlert Severity="Severity.Success" Title="Success">Identity recorded successfully.</AppAlert>
+                <AppAlert Severity="Severity.Warning" Title="Warning">Police verification pending.</AppAlert>
+                <AppAlert Severity="Severity.Error" Title="Error">Validation failed — check required fields.</AppAlert>
+            </MudStack>
+        </AppSection>
+
+        <AppSection Title="Feedback">
+            <AppInfoBox>Compact hint box for in-form procedural guidance.</AppInfoBox>
+            <AppEmptyState Title="No items"
+                           Description="Example empty state with optional action."
+                           Icon="@Icons.Material.Outlined.Inbox">
+                <Action>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary">Primary action</MudButton>
+                </Action>
+            </AppEmptyState>
+        </AppSection>
+
+        <AppSection Title="Card and form section">
+            <AppCard Title="Sample card" Outlined="true">
+                <AppFormSection Title="Form section">
+                    <MudItem xs="12" md="6">
+                        <MudTextField T="string" Label="Sample field" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField T="string" Label="Another field" />
+                    </MudItem>
+                </AppFormSection>
+                <AppSaveCancelBar SaveText="Save" CancelText="Cancel" />
+            </AppCard>
+        </AppSection>
+
+        <AppSection Title="Search bar">
+            <AppSearchBar @bind-Value="_searchDemo" Placeholder="Search demo…" />
+        </AppSection>
+
+        <AppSection Title="Loading">
+            <AppLoading Kind="AppLoadingKind.Spinner" Label="Loading demo" />
+        </AppSection>
+    }
+</AppPage>
+
+@code {
+    private sealed record DemoCaseRow(
+        string CaseId,
+        VisitReason VisitReason,
+        RegistrationCaseStatus Status,
+        DateTimeOffset OpenedAt,
+        bool IdentityEstablished);
+
+    private string _searchDemo = string.Empty;
+
+    private readonly IReadOnlyList<DemoCaseRow> _demoCases =
+    [
+        new("a1b2c3d4…", VisitReason.FirstRegistration, RegistrationCaseStatus.Intake, DateTimeOffset.Now.AddDays(-2), false),
+        new("e5f6g7h8…", VisitReason.EuCitizenRegistration, RegistrationCaseStatus.AwaitingPoliceVerification, DateTimeOffset.Now.AddDays(-5), true),
+        new("i9j0k1l2…", VisitReason.ChangeOfAddress, RegistrationCaseStatus.UnderReview, DateTimeOffset.Now.AddDays(-1), true),
+        new("m3n4o5p6…", VisitReason.BirthDeclaration, RegistrationCaseStatus.Registered, DateTimeOffset.Now.AddDays(-14), true),
+        new("q7r8s9t0…", VisitReason.FirstRegistration, RegistrationCaseStatus.Rejected, DateTimeOffset.Now.AddDays(-7), true),
+    ];
+
+    protected override void OnInitialized()
+    {
+        if (!Environment.IsDevelopment())
+        {
+            Navigation.NavigateTo("/");
+        }
+    }
+
+    private readonly (string Name, string Color)[] _colorSwatches =
+    [
+        ("Primary", SchaerbeekColors.Primary),
+        ("Secondary", SchaerbeekColors.Secondary),
+        ("Accent", SchaerbeekColors.Accent),
+        ("Success", SchaerbeekColors.Success),
+        ("Warning", SchaerbeekColors.Warning),
+        ("Error", SchaerbeekColors.Error),
+        ("Info", SchaerbeekColors.Info),
+        ("Text primary", SchaerbeekColors.TextPrimary),
+        ("Text muted", SchaerbeekColors.TextMuted),
+        ("Background", SchaerbeekColors.Background),
+        ("Surface", SchaerbeekColors.Surface),
+        ("Focus", SchaerbeekColors.Focus),
+    ];
+}

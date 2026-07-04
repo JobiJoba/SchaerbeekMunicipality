@@ -26,7 +26,7 @@ public sealed record DocumentDto(
 
 public sealed record RegistrationCaseDetailDto(
     Guid Id,
-    string Status,
+    RegistrationCaseStatus Status,
     VisitReason VisitReason,
     Guid AssignedOfficerId,
     DateTimeOffset OpenedAt,

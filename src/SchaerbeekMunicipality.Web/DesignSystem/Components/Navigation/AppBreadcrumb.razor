@@ -1,0 +1,14 @@
+<nav aria-label="Breadcrumb" class="@Class" style="@Style">
+    <MudBreadcrumbs Items="Items" Separator="›" />
+</nav>
+
+@code {
+    [Parameter, EditorRequired]
+    public List<BreadcrumbItem> Items { get; set; } = [];
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+}

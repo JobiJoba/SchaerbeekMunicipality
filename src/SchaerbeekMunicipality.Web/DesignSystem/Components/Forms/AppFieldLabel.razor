@@ -1,0 +1,39 @@
+<MudText Typo="Typo.subtitle2" Class="@Class" Style="@Style">
+    @Text
+    @if (Required)
+    {
+        <span aria-hidden="true" style="color: var(--mud-palette-error);"> *</span>
+        <span class="visually-hidden"> (required)</span>
+    }
+</MudText>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Text { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool Required { get; set; }
+
+    [Parameter]
+    public string? For { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+}
+
+<style>
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+</style>
