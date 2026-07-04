@@ -1,6 +1,8 @@
+using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
+using SchaerbeekMunicipality.Domain.ReferenceData;
 
 namespace SchaerbeekMunicipality.Domain.Registration;
 
@@ -24,6 +26,10 @@ public sealed class RegistrationCase
     public ResidenceCategory? ResidenceCategory { get; private set; }
 
     public ImmigrationDecisionReference? ImmigrationDecision { get; private set; }
+
+    public BelgianAddress? DeclaredAddress { get; private set; }
+
+    public HousingSituation? HousingSituation { get; private set; }
 
     public DateTimeOffset OpenedAt { get; private set; }
 
@@ -84,7 +90,7 @@ public sealed class RegistrationCase
     public void SetResidenceCategory(ResidenceCategory category)
     {
         EnsureIntakeDataEditable(nameof(SetResidenceCategory));
-        EnsureIdentityEstablished();
+        EnsureIdentityEstablished("residence information");
 
         ResidenceCategory = category;
     }
@@ -92,7 +98,7 @@ public sealed class RegistrationCase
     public void RecordImmigrationDecision(ImmigrationDecisionDetails details)
     {
         EnsureIntakeDataEditable(nameof(RecordImmigrationDecision));
-        EnsureIdentityEstablished();
+        EnsureIdentityEstablished("residence information");
 
         ImmigrationDecision = ImmigrationDecisionReference.Create(details);
     }
@@ -109,6 +115,36 @@ public sealed class RegistrationCase
         }
     }
 
+    public void DeclareAddress(AddressDetails details)
+    {
+        EnsureIntakeDataEditable(nameof(DeclareAddress));
+        EnsureIdentityEstablished("address information");
+        EnsureSchaerbeekDomicile(details);
+
+        DeclaredAddress = BelgianAddress.Create(
+            details.Street,
+            details.HouseNumber,
+            details.Box,
+            details.PostalCode,
+            details.Municipality);
+
+        Checklist.MarkAddressDeclared();
+    }
+
+    public void RecordHousingSituation(HousingSituation situation)
+    {
+        EnsureIntakeDataEditable(nameof(RecordHousingSituation));
+        EnsureIdentityEstablished("housing information");
+
+        if (DeclaredAddress is null)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Address must be declared before recording housing situation.");
+        }
+
+        HousingSituation = situation;
+    }
+
     public void EnsureIntakeDataEditable(string operation)
     {
         if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
@@ -123,12 +159,22 @@ public sealed class RegistrationCase
         EnsureIntakeDataEditable(nameof(EnsureCanAttachDocuments));
     }
 
-    private void EnsureIdentityEstablished()
+    private void EnsureIdentityEstablished(string stepDescription)
     {
         if (!Checklist.IdentityEstablished)
         {
             throw new InvalidRegistrationTransitionException(
-                "Identity must be recorded before residence information can be captured.");
+                $"Identity must be recorded before {stepDescription} can be captured.");
+        }
+    }
+
+    private static void EnsureSchaerbeekDomicile(AddressDetails details)
+    {
+        if (details.PostalCode.Trim() != SchaerbeekCommune.PostalCode
+            || !details.Municipality.Trim().Equals(SchaerbeekCommune.Name, StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidRegistrationTransitionException(
+                $"Registration at Schaerbeek requires a domicile in {SchaerbeekCommune.PostalCode} {SchaerbeekCommune.Name}.");
         }
     }
 

@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Domain.Documents;
+using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -9,7 +10,8 @@ public sealed class GetRegistrationCaseHandler(
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     IAdministrativeDocumentRepository documentRepository,
-    IResidencePermitRepository permitRepository)
+    IResidencePermitRepository permitRepository,
+    IHouseholdRepository householdRepository)
 {
     public async Task<RegistrationCaseDetailDto?> Handle(
         RegistrationCaseId caseId,
@@ -29,15 +31,17 @@ public sealed class GetRegistrationCaseHandler(
 
         var documents = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
         var permit = await permitRepository.GetByCaseIdAsync(caseId, cancellationToken);
+        var household = await householdRepository.GetByCaseIdAsync(caseId, cancellationToken);
 
-        return Map(registrationCase, person, documents, permit);
+        return Map(registrationCase, person, documents, permit, household);
     }
 
     private static RegistrationCaseDetailDto Map(
         RegistrationCase registrationCase,
         Person? person,
         IReadOnlyList<AdministrativeDocument> documents,
-        ResidencePermit? permit)
+        ResidencePermit? permit,
+        Household? household)
     {
         var checklist = registrationCase.Checklist;
 
@@ -77,6 +81,31 @@ public sealed class GetRegistrationCaseHandler(
                 : new ImmigrationDecisionDto(
                     registrationCase.ImmigrationDecision.ReferenceNumber,
                     registrationCase.ImmigrationDecision.DecisionDate),
+            registrationCase.DeclaredAddress is null
+                ? null
+                : new BelgianAddressDto(
+                    registrationCase.DeclaredAddress.Street,
+                    registrationCase.DeclaredAddress.HouseNumber,
+                    registrationCase.DeclaredAddress.Box,
+                    registrationCase.DeclaredAddress.PostalCode,
+                    registrationCase.DeclaredAddress.Municipality),
+            registrationCase.HousingSituation,
+            household?.Members
+                .Select(m => new HouseholdMemberDto(
+                    m.Id.Value,
+                    m.GivenName,
+                    m.FamilyName,
+                    m.BirthDate,
+                    m.Role))
+                .ToList() ?? [],
+            person?.CivilStatus is null
+                ? null
+                : new CivilStatusDto(
+                    person.CivilStatus.Status,
+                    person.CivilStatus.SpouseGivenName,
+                    person.CivilStatus.SpouseFamilyName,
+                    person.CivilStatus.MarriageDate,
+                    person.CivilStatus.MarriagePlace),
             documents
                 .Select(d => new DocumentDto(
                     d.Id.Value,

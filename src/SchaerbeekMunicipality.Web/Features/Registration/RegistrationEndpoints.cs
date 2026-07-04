@@ -1,12 +1,17 @@
 using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
 using SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity;
+using SchaerbeekMunicipality.Web.Features.Registration.DeclareAddress;
 using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases;
 using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Web.Features.Registration.RecordCivilStatus;
+using SchaerbeekMunicipality.Web.Features.Registration.RecordHouseholdComposition;
+using SchaerbeekMunicipality.Web.Features.Registration.RecordHousingSituation;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordImmigrationDecision;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit;
 using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument;
+using SchaerbeekMunicipality.Web.Features.Registration.SearchReferenceData;
 using SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration;
@@ -48,6 +53,30 @@ public static class RegistrationEndpoints
         group.MapPost("/cases/{id:guid}/immigration-decision", RecordImmigrationDecisionEndpoint.Handle)
             .WithName("RecordImmigrationDecision")
             .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/address", DeclareAddressEndpoint.Handle)
+            .WithName("DeclareAddress")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/housing-situation", RecordHousingSituationEndpoint.Handle)
+            .WithName("RecordHousingSituation")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/household", RecordHouseholdCompositionEndpoint.Handle)
+            .WithName("RecordHouseholdComposition")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/civil-status", RecordCivilStatusEndpoint.Handle)
+            .WithName("RecordCivilStatus")
+            .WithTags("Registration");
+
+        group.MapGet("/municipalities", SearchReferenceDataEndpoints.ListMunicipalities)
+            .WithName("ListMunicipalities")
+            .WithTags("ReferenceData");
+
+        group.MapGet("/streets", SearchReferenceDataEndpoints.SearchStreets)
+            .WithName("SearchStreets")
+            .WithTags("ReferenceData");
 
         group.MapPost("/cases/{id:guid}/documents", AttachDocumentEndpoint.Handle)
             .DisableAntiforgery()

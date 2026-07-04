@@ -35,5 +35,28 @@ internal sealed class PersonConfiguration : IEntityTypeConfiguration<Person>
             .HasColumnName("nationality")
             .HasMaxLength(64)
             .IsRequired();
+
+        builder.OwnsOne(p => p.CivilStatus, civilStatus =>
+        {
+            civilStatus.Property(c => c.Status)
+                .HasColumnName("civil_status")
+                .HasConversion<string>()
+                .HasMaxLength(32);
+
+            civilStatus.Property(c => c.SpouseGivenName)
+                .HasColumnName("spouse_given_name")
+                .HasMaxLength(128);
+
+            civilStatus.Property(c => c.SpouseFamilyName)
+                .HasColumnName("spouse_family_name")
+                .HasMaxLength(128);
+
+            civilStatus.Property(c => c.MarriageDate)
+                .HasColumnName("marriage_date");
+
+            civilStatus.Property(c => c.MarriagePlace)
+                .HasColumnName("marriage_place")
+                .HasMaxLength(128);
+        });
     }
 }

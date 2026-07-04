@@ -7,7 +7,9 @@ The Registration bounded context manages first-registration procedures for the P
 ```mermaid
 erDiagram
     RegistrationCase ||--o| Person : "PersonId"
+    RegistrationCase ||--o| Household : "RegistrationCaseId"
     RegistrationCase ||--o{ AdministrativeDocument : "RegistrationCaseId"
+    Household ||--o{ HouseholdMember : "HouseholdId"
 
     RegistrationCase {
         guid Id
@@ -15,6 +17,8 @@ erDiagram
         enum VisitReason
         guid AssignedOfficerId
         guid PersonId
+        address DeclaredAddress
+        enum HousingSituation
         datetime OpenedAt
         checklist Checklist
     }
@@ -25,6 +29,20 @@ erDiagram
         string FamilyName
         date BirthDate
         string Nationality
+        civilStatus CivilStatusRecord
+    }
+
+    Household {
+        guid Id
+        guid RegistrationCaseId
+    }
+
+    HouseholdMember {
+        guid Id
+        string GivenName
+        string FamilyName
+        date BirthDate
+        enum Role
     }
 
     AdministrativeDocument {
@@ -93,6 +111,10 @@ Saved section → summary + **Edit** button → pre-filled form → save via cor
 | Residence category | `SetResidenceCategory` | Same handler (upsert) + edit UI |
 | Residence permit | `RecordResidencePermit` | Same handler (upsert) + edit UI |
 | Immigration decision | `RecordImmigrationDecision` | Same handler (upsert) + edit UI |
+| Address | `DeclareAddress` | Same handler (upsert) + edit UI — [doc](./declare-address.md) |
+| Housing situation | `RecordHousingSituation` | Same handler (upsert) + edit UI — [doc](./record-housing-situation.md) |
+| Household | `RecordHouseholdComposition` | Same handler (upsert) + member list UI — [doc](./record-household-composition.md) |
+| Civil status | `RecordCivilStatus` | Same handler (upsert) + edit UI — [doc](./record-civil-status.md) |
 | Documents | `AttachDocument` | `RemoveDocument` — [doc](./remove-document.md) |
 
 ## Slice documentation
@@ -105,6 +127,10 @@ Saved section → summary + **Edit** button → pre-filled form → save via cor
 - [Set residence category](./set-residence-category.md)
 - [Record residence permit](./record-residence-permit.md)
 - [Record immigration decision](./record-immigration-decision.md)
+- [Declare address](./declare-address.md)
+- [Record housing situation](./record-housing-situation.md)
+- [Record household composition](./record-household-composition.md)
+- [Record civil status](./record-civil-status.md)
 - [Attach document](./attach-document.md)
 - [Remove document](./remove-document.md)
 

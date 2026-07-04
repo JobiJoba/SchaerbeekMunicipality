@@ -3,9 +3,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SchaerbeekMunicipality.Domain.Documents;
+using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
+using SchaerbeekMunicipality.Domain.ReferenceData;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
@@ -39,6 +41,8 @@ public static class DependencyInjection
         services.AddScoped<IPersonRepository, PersonRepository>();
         services.AddScoped<IAdministrativeDocumentRepository, AdministrativeDocumentRepository>();
         services.AddScoped<IResidencePermitRepository, ResidencePermitRepository>();
+        services.AddScoped<IHouseholdRepository, HouseholdRepository>();
+        services.AddScoped<IReferenceDataRepository, ReferenceDataRepository>();
         services.AddSingleton<IDocumentStorage, LocalFileDocumentStorage>();
 
         services.AddSingleton<IResidencePolicy, EuCitizenPolicy>();
@@ -65,6 +69,8 @@ public static class DependencyInjection
         {
             await dbContext.Database.MigrateAsync();
         }
+
+        await ReferenceDataSeeder.SeedAsync(dbContext, CancellationToken.None);
     }
 
     private static bool IsSqlite(string connectionString) =>

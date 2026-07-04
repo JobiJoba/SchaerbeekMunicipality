@@ -16,6 +16,8 @@ public sealed class Person
 
     public string Nationality { get; private set; } = string.Empty;
 
+    public CivilStatusRecord? CivilStatus { get; private set; }
+
     public static Person Create(IdentityDetails details)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(details.GivenName);
@@ -42,5 +44,10 @@ public sealed class Person
         FamilyName = details.FamilyName.Trim();
         BirthDate = details.BirthDate;
         Nationality = details.Nationality.Trim();
+    }
+
+    public void RecordCivilStatus(CivilStatusDetails details)
+    {
+        CivilStatus = CivilStatusRecord.Create(details);
     }
 }
