@@ -1,6 +1,7 @@
 using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
 using SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity;
 using SchaerbeekMunicipality.Web.Features.Registration.DeclareAddress;
+using SchaerbeekMunicipality.Web.Features.Registration.DownloadDocument;
 using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases;
 using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
@@ -81,6 +82,10 @@ public static class RegistrationEndpoints
         group.MapPost("/cases/{id:guid}/documents", AttachDocumentEndpoint.Handle)
             .DisableAntiforgery()
             .WithName("AttachDocument")
+            .WithTags("Registration");
+
+        group.MapGet("/cases/{id:guid}/documents/{documentId:guid}", DownloadDocumentEndpoint.Handle)
+            .WithName("DownloadDocument")
             .WithTags("Registration");
 
         group.MapDelete("/cases/{id:guid}/documents/{documentId:guid}", RemoveDocumentEndpoint.Handle)

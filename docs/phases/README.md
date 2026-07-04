@@ -11,6 +11,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 2.1 | Intake corrections | Complete | [phase-2.1-intake-corrections.md](./phase-2.1-intake-corrections.md) |
 | 3 | Design system & UI kit | Complete | [phase-3-design-system.md](./phase-3-design-system.md) |
 | 4 | Address & household | Complete | [phase-4-address-household.md](./phase-4-address-household.md) |
+| 4.1 | Document preview & case UX | Complete | [phase-4.1-document-preview-case-ux.md](./phase-4.1-document-preview-case-ux.md) |
 | 5 | National Register search & BIS | Planned | — |
 | 6 | Police verification loop | Planned | — |
 | 7 | Decision & registration | Planned | — |

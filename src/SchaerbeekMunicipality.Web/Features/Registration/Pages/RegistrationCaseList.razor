@@ -58,7 +58,7 @@
                     <MudTh Class="app-table-header">Visit reason</MudTh>
                     <MudTh Class="app-table-header">Status</MudTh>
                     <MudTh Class="app-table-header">Opened</MudTh>
-                    <MudTh Class="app-table-header">Identity</MudTh>
+                    <MudTh Class="app-table-header">Progress</MudTh>
                 </HeaderContent>
                 <RowTemplate Context="item">
                     <MudTd DataLabel="Case ID">
@@ -71,15 +71,10 @@
                         <AppStatusChip Status="item.Status" />
                     </MudTd>
                     <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
-                    <MudTd DataLabel="Identity">
-                        @if (item.IdentityEstablished)
-                        {
-                            <MudIcon Icon="@Icons.Material.Outlined.CheckCircle" Color="Color.Success" Size="Size.Small" aria-label="Identity established" />
-                        }
-                        else
-                        {
-                            <MudIcon Icon="@Icons.Material.Outlined.RadioButtonUnchecked" Color="Color.Default" Size="Size.Small" aria-label="Identity not established" />
-                        }
+                    <MudTd DataLabel="Progress">
+                        <RegistrationCaseChecklistProgress IdentityEstablished="item.IdentityEstablished"
+                                                           LegalResidenceEstablished="item.LegalResidenceEstablished"
+                                                           AddressDeclared="item.AddressDeclared" />
                     </MudTd>
                 </RowTemplate>
             </AppDataTable>

@@ -8,6 +8,8 @@ public interface IDocumentStorage
         CancellationToken cancellationToken);
 
     Task DeleteAsync(string storagePath, CancellationToken cancellationToken);
+
+    Task<Stream> OpenReadAsync(string storagePath, CancellationToken cancellationToken);
 }
 
 public sealed record StoredDocument(string StoragePath, string ContentHash);

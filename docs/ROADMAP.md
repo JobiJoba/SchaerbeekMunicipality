@@ -15,6 +15,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 2.1 | Intake corrections | ✅ Complete |
 | 3 | Design system & UI kit | ✅ Complete |
 | 4 | Address & household | ✅ Complete |
+| 4.1 | Document preview & case UX | ✅ Complete |
 | 5+ | NR search, police, decision, … | Planned |
 
 Delivery notes for completed phases: [phases/](./phases/).
@@ -219,6 +220,35 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 - Invalid postal code rejected
 - Cannot declare address without identity recorded
+
+---
+
+## Phase 4.1 — Document preview & case UX ✅
+
+**Status:** Complete — see [phases/phase-4.1-document-preview-case-ux.md](./phases/phase-4.1-document-preview-case-ux.md).
+
+**Goal:** Preview and download attached documents inline; improve case list and detail layout for day-to-day intake work.
+
+**Why now:** Phase 4 lengthened the case detail page; officers need evidence visible while filling address and household steps. The case list still only showed identity progress.
+
+**Slices:**
+
+- `DownloadDocument` (read stream from `IDocumentStorage`)
+
+**Infrastructure:**
+
+- `IDocumentStorage.OpenReadAsync`
+- `GET /api/registration/cases/{id}/documents/{documentId}` with range support for PDFs
+
+**UI:**
+
+- `RegistrationCaseDocumentPanel` — sticky right column on case detail (upload, list, inline preview, fullscreen dialog, download)
+- `RegistrationCaseChecklistProgress` — `n/3` + icons on case list (identity, legal residence, address)
+- Case detail two-column layout (`MaxWidth.False`, intake left / documents right)
+
+**Demo:** Open a case with a PDF scan → click to preview in the sidebar → expand fullscreen → download; case list shows `2/3` progress.
+
+**Tests:** Existing suite stays green (77 tests); no new automated tests in this phase.
 
 ---
 

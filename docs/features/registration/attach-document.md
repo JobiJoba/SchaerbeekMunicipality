@@ -10,7 +10,7 @@ Uploads a supporting document to a registration case: stores the file on disk an
 | **Endpoint** | `AttachDocumentEndpoint` |
 | **Validator** | `AttachDocumentRequestValidator` (validates `AttachDocumentForm`) |
 | **Route** | `POST /api/registration/cases/{id}/documents` |
-| **Blazor entry** | `DocumentUpload.razor` (embedded in `RegistrationCaseDetail.razor`) |
+| **Blazor entry** | `DocumentUpload.razor` inside `RegistrationCaseDocumentPanel` on `RegistrationCaseDetail.razor` |
 | **Response** | `AttachDocumentResponse(DocumentId, DocumentType, FileName, UploadedAt)` |
 
 ## Flow diagram
@@ -83,10 +83,11 @@ sequenceDiagram
 ## Call chain
 
 ```
-DocumentUpload.razor
-  └─ Upload()
-       ├─ IBrowserFile.OpenReadStream(max 10 MB)
-       └─ AttachDocumentHandler.Handle(caseId, documentType, fileName, stream)
+RegistrationCaseDocumentPanel.razor
+  └─ DocumentUpload.razor
+       └─ Upload()
+            ├─ IBrowserFile.OpenReadStream(max 10 MB)
+            └─ AttachDocumentHandler.Handle(caseId, documentType, fileName, stream)
             ├─ IRegistrationCaseRepository.GetByIdAsync()
             ├─ RegistrationCase.EnsureCanAttachDocuments()   [Domain]
             ├─ IDocumentStorage.SaveAsync()                  [Infrastructure]
@@ -158,7 +159,7 @@ Document correction is **remove + re-attach** (see [intake corrections](./README
 1. [Remove document](./remove-document.md) — `DELETE …/documents/{documentId}` deletes the row and stored file
 2. Attach a replacement via this slice
 
-There is no in-place replace handler in Phase 2.1.
+There is no in-place replace handler in Phase 2.1. After upload, officers can [preview or download](./download-document.md) the file (Phase 4.1).
 
 ## Dependencies
 

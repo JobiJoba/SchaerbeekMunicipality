@@ -41,6 +41,18 @@ internal sealed class LocalFileDocumentStorage(IHostEnvironment environment) : I
         return Task.CompletedTask;
     }
 
+    public Task<Stream> OpenReadAsync(string storagePath, CancellationToken cancellationToken)
+    {
+        var fullPath = Path.Combine(environment.ContentRootPath, storagePath);
+        if (!File.Exists(fullPath))
+        {
+            throw new FileNotFoundException("The stored document file was not found.", fullPath);
+        }
+
+        Stream stream = File.OpenRead(fullPath);
+        return Task.FromResult(stream);
+    }
+
     private static async Task<string> ComputeSha256Async(string path, CancellationToken cancellationToken)
     {
         await using var stream = File.OpenRead(path);

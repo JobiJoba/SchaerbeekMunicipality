@@ -15,7 +15,7 @@
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
 
-<AppPage Title="Registration case">
+<AppPage Title="Registration case" MaxWidth="MaxWidth.False">
     @if (_loading)
     {
         <AppLoading />
@@ -53,6 +53,8 @@
             </MudStack>
         </AppSection>
 
+        <MudGrid Spacing="4">
+            <MudItem xs="12" lg="7">
         @if (_case.Person is null)
         {
             <AppSection>
@@ -149,42 +151,17 @@
 
         <CivilStatusStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
 
-        <AppSection>
-            <DocumentUpload CaseId="CaseId"
-                            Handler="AttachDocumentHandler"
-                            OnUploaded="ReloadCase" />
-        </AppSection>
+            </MudItem>
 
-        @if (_case.Documents.Count > 0)
-        {
-            <AppSection Title="Attached documents">
-                <AppCard Outlined="true">
-                    <MudList T="string" Dense="true">
-                        @foreach (var doc in _case.Documents)
-                        {
-                            <MudListItem T="string" Icon="@Icons.Material.Outlined.AttachFile">
-                                <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="flex-grow-1">
-                                    <div>
-                                        @doc.DocumentType — @doc.FileName
-                                        <MudText Typo="Typo.caption" Color="Color.Secondary">
-                                            @doc.UploadedAt.LocalDateTime.ToString("g")
-                                        </MudText>
-                                    </div>
-                                    @if (CanEditIntakeData)
-                                    {
-                                        <MudIconButton Icon="@Icons.Material.Outlined.Delete"
-                                                       Color="Color.Error"
-                                                       Size="Size.Small"
-                                                       aria-label="@($"Remove {doc.FileName}")"
-                                                       OnClick="@(() => RemoveDocument(doc.Id))" />
-                                    }
-                                </MudStack>
-                            </MudListItem>
-                        }
-                    </MudList>
-                </AppCard>
-            </AppSection>
-        }
+            <MudItem xs="12" lg="5">
+                <RegistrationCaseDocumentPanel CaseId="CaseId"
+                                               Documents="_case.Documents"
+                                               AttachHandler="AttachDocumentHandler"
+                                               CanEdit="CanEditIntakeData"
+                                               OnRemoveDocument="RemoveDocument"
+                                               OnUploaded="ReloadCase" />
+            </MudItem>
+        </MudGrid>
     }
 </AppPage>
 

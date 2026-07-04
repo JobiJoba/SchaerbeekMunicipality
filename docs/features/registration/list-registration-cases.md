@@ -34,7 +34,7 @@ sequenceDiagram
     DB-->>Repo: List<RegistrationCase>
     Repo-->>H: aggregates
 
-    H->>H: Map to RegistrationCaseSummary<br/>(Id, Status, VisitReason,<br/>OpenedAt, IdentityEstablished)
+    H->>H: Map to RegistrationCaseSummary<br/>(Id, Status, VisitReason,<br/>OpenedAt, IdentityEstablished,<br/>LegalResidenceEstablished, AddressDeclared)
     H-->>Client: IReadOnlyList<RegistrationCaseSummary>
 
     opt HTTP only
@@ -60,6 +60,7 @@ On page load, `RegistrationCaseList.razor`:
 1. Calls the handler directly (no HTTP).
 2. Applies client-side search filtering on case ID, visit reason, and status.
 3. Renders an `AppDataTable` with row click navigation to `/registration/cases/{id}`.
+4. The **Progress** column uses `RegistrationCaseChecklistProgress` — `n/3` plus icons for identity, legal residence, and address (Phase 4.1).
 
 The page also hosts the **New case** dialog (see [open-registration-case.md](./open-registration-case.md)).
 
@@ -72,7 +73,9 @@ The page also hosts the **New case** dialog (see [open-registration-case.md](./o
     "status": "Intake",
     "visitReason": "FirstRegistration",
     "openedAt": "2026-07-04T10:30:00+00:00",
-    "identityEstablished": false
+    "identityEstablished": false,
+    "legalResidenceEstablished": false,
+    "addressDeclared": false
   }
 ]
 ```

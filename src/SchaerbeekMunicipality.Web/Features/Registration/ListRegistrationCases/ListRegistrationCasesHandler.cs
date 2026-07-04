@@ -7,7 +7,9 @@ public sealed record RegistrationCaseSummary(
     RegistrationCaseStatus Status,
     VisitReason VisitReason,
     DateTimeOffset OpenedAt,
-    bool IdentityEstablished);
+    bool IdentityEstablished,
+    bool LegalResidenceEstablished,
+    bool AddressDeclared);
 
 public sealed class ListRegistrationCasesHandler(IRegistrationCaseRepository repository)
 {
@@ -21,7 +23,9 @@ public sealed class ListRegistrationCasesHandler(IRegistrationCaseRepository rep
                 c.Status,
                 c.VisitReason,
                 c.OpenedAt,
-                c.Checklist.IdentityEstablished))
+                c.Checklist.IdentityEstablished,
+                c.Checklist.LegalResidenceEstablished,
+                c.Checklist.AddressDeclared))
             .ToList();
     }
 }

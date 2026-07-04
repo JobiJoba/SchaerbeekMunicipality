@@ -132,6 +132,7 @@ Saved section → summary + **Edit** button → pre-filled form → save via cor
 - [Record household composition](./record-household-composition.md)
 - [Record civil status](./record-civil-status.md)
 - [Attach document](./attach-document.md)
+- [Download document](./download-document.md)
 - [Remove document](./remove-document.md)
 
 ## Route registration

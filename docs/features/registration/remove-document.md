@@ -11,7 +11,7 @@ This is the document **correction** slice in the [intake correction pattern](./R
 | **Handler** | `RemoveDocumentHandler` |
 | **Endpoint** | `RemoveDocumentEndpoint` |
 | **Route** | `DELETE /api/registration/cases/{id}/documents/{documentId}` |
-| **Blazor entry** | `RegistrationCaseDetail.razor` (per-row remove action with `AppConfirmDialog`) |
+| **Blazor entry** | `RegistrationCaseDocumentPanel` on `RegistrationCaseDetail.razor` (per-row remove action with `AppConfirmDialog`) |
 | **Response** | `RemoveDocumentResponse(CaseId, DocumentId, LegalResidenceEstablished, PolicyMessage)` |
 
 ## Domain logic

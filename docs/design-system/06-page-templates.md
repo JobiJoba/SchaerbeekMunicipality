@@ -56,11 +56,19 @@ Rules: one primary action in the header; search left, filters right; status alwa
 
 ## 2. Details page
 
-Example: case detail. Header carries identity + status; content splits into tabbed facets once a record has more than two aspects.
+Example: case detail. Header carries identity + status; intake steps and documents split into a two-column grid on large viewports (Phase 4.1).
 
 ```
 AppPageHeader (Title = case number, StatusChip, Actions = workflow verbs)
 AppInfoBox (optional procedural guidance)
+MudGrid:
+  Left (lg=7)  → intake steps (identity, residence, address, household, civil status)
+  Right (lg=5) → RegistrationCaseDocumentPanel (sticky upload + list + preview)
+```
+
+Future phases may add `MudTabs` for history and review facets once a record has more than two aspects:
+
+```
 MudTabs: Overview | Identity | Documents | History
   Overview  → AppPropertyGrid in AppCards (2-column MudGrid)
   Identity  → form template (see below) or read-only AppPropertyGrid
@@ -116,7 +124,11 @@ AppSection "Quick actions" → AppQuickActions grid
 
 Rules: statistics link to the corresponding filtered list; queues before charts; yellow accent bar only on the single most important KPI.
 
-## 8. Document viewer (Phase 8)
+## 8. Document viewer (Phase 4.1 partial; Phase 8 full)
+
+**Phase 4.1** ships a practical subset on the case detail page: sticky right column with document list + inline preview (`RegistrationCaseDocumentPanel`, `DocumentPreviewContent`). PDFs use an iframe; images use `<img>`; other types fall back to download only. Fullscreen via `DocumentPreviewDialog`.
+
+The **full** template below (print toolbar, dedicated `AppDocumentPreview` wrapper, left-list/right-preview swap) remains planned for Phase 8:
 
 Two-pane details layout: left = document list (`AppDocumentPreview`), right = preview area (PDF iframe/image) inside `AppCard` with toolbar (download, print). Falls back to metadata + download when preview is impossible. Print uses the global print CSS.
 

@@ -100,6 +100,8 @@ KPI tile: `Label`, `Value`, `Icon`, `Accent (bool)` (yellow top bar), `Href`. Co
 
 Document row/tile: type icon, name, size, upload date, download & delete actions. Wraps the Phase 1 document list; delete goes through `AppConfirmDialog`.
 
+**Interim (Phase 4.1):** case detail uses feature-local `RegistrationCaseDocumentPanel` + `DocumentPreviewContent` until this wrapper ships.
+
 ## Search & filtering (Wave 1: SearchBar; Wave 2: FilterPanel)
 
 ### `<AppSearchBar>`

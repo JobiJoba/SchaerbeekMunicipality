@@ -69,4 +69,5 @@ Expected: **77 tests passing** in the fast suite (30 domain + 47 integration).
 - [ROADMAP.md](../ROADMAP.md)
 - [phase-2.1-intake-corrections.md](./phase-2.1-intake-corrections.md)
 - [phase-3-design-system.md](./phase-3-design-system.md)
+- [phase-4.1-document-preview-case-ux.md](./phase-4.1-document-preview-case-ux.md)
 - [DOMAIN.md](../DOMAIN.md)

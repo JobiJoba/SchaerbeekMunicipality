@@ -1,6 +1,6 @@
 # Application overview
 
-Visual tour of the Schaerbeek Population Department back-office as of **Phase 4** (address, household, civil status), on the Schaerbeek design system from **Phase 3**, with intake correction UI from **Phase 2.1**.
+Visual tour of the Schaerbeek Population Department back-office as of **Phase 4.1** (document preview & case UX), building on **Phase 4** (address, household, civil status), the Schaerbeek design system from **Phase 3**, and intake correction UI from **Phase 2.1**.
 
 Run the app locally:
 
@@ -22,7 +22,7 @@ Landing page summarising the four core registration decisions from [IDEA.md](../
 
 ## Registration case list
 
-Officers browse open first-registration procedures. The table shows visit reason, intake status, opened date, and whether identity has been established. Search and pagination are built in.
+Officers browse open first-registration procedures. The table shows visit reason, intake status, opened date, and **intake progress** (`n/3` with icons for identity, legal residence, and address). Search and pagination are built in.
 
 ![Registration case list with search and status badges](./screenshots/01-registration-case-list.png)
 
@@ -106,11 +106,20 @@ A fully progressed case shows declared domicile, housing situation, household me
 
 ---
 
-## Document upload & attached files
+## Document panel — upload, preview & download
 
-Immigration decision stub, file upload by document type, and a list of attached documents with remove action.
+The case detail page uses a **two-column layout**: intake steps on the left, a **sticky document panel** on the right (on wide screens). Officers upload files, click a row to preview PDFs and images inline, expand to fullscreen, or download.
 
 ![Document upload, immigration decision, and attached files](./screenshots/07-document-upload-and-attached-files.png)
+
+**Capabilities:**
+
+| Area | Use cases |
+|------|-----------|
+| Upload | `AttachDocument` — same upload form as before, now in the side panel |
+| Preview | `DownloadDocument` — stream via `GET …/documents/{id}`; PDF iframe or image |
+| Remove | `RemoveDocument` — per-row delete with confirmation |
+| Layout | `RegistrationCaseDocumentPanel`, `DocumentPreviewContent`, `DocumentPreviewDialog` |
 
 ---
 
