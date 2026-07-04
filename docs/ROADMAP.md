@@ -16,7 +16,8 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 3 | Design system & UI kit | ✅ Complete |
 | 4 | Address & household | ✅ Complete |
 | 4.1 | Document preview & case UX | ✅ Complete |
-| 5+ | NR search, police, decision, … | Planned |
+| 5 | National Register search & BIS | ✅ Complete |
+| 6+ | Police, decision, … | Planned |
 
 Delivery notes for completed phases: [phases/](./phases/).
 
@@ -252,7 +253,9 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 ---
 
-## Phase 5 — National Register search & BIS (IDEA Phases 13–14)
+## Phase 5 — National Register search & BIS (IDEA Phases 13–14) ✅
+
+**Status:** Complete — see [phases/phase-5-national-register-search-bis.md](./phases/phase-5-national-register-search-bis.md).
 
 **Goal:** Duplicate detection and BIS handling.
 
@@ -266,18 +269,19 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 - `national_register_persons` seed table
 - Search by name + birth date + fuzzy match
+- **Partial search:** optional criteria (any of given name, family name, birth date)
 
 **UI:**
 
-- Search dialog before creating person
+- Search dialog before creating person (multiple ranked results; link per row)
 - “Possible duplicate” warning banner on case
 
-**Demo:** Search finds existing BIS record; officer links instead of duplicate create.
+**Demo:** Search `Marie` → link BIS record; or record Amélie Bernard manually → duplicate warning. Convert BIS to stub NR.
 
 **Tests:**
 
 - Duplicate link prevents second NR assignment
-- Search returns scored matches
+- Search returns scored matches (including partial single-field queries)
 
 ---
 

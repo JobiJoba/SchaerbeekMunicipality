@@ -29,6 +29,9 @@ erDiagram
         string FamilyName
         date BirthDate
         string Nationality
+        guid LinkedRegisterRecordId
+        string BisNumber
+        string NationalRegisterNumber
         civilStatus CivilStatusRecord
     }
 
@@ -117,6 +120,38 @@ Saved section → summary + **Edit** button → pre-filled form → save via cor
 | Civil status | `RecordCivilStatus` | Same handler (upsert) + edit UI — [doc](./record-civil-status.md) |
 | Documents | `AttachDocument` | `RemoveDocument` — [doc](./remove-document.md) |
 
+### National Register & identity (Phase 5)
+
+Before creating a new person, officers should search the stubbed National Register. Phase notes: [phase-5-national-register-search-bis.md](../../phases/phase-5-national-register-search-bis.md).
+
+```mermaid
+flowchart LR
+    Open["Case opened<br/>(no person)"]
+    Search["SearchNationalRegister<br/>(optional criteria)"]
+    Link["LinkExistingPerson"]
+    Create["RecordIdentity<br/>(create new)"]
+    Warn["Duplicate warning<br/>(GetRegistrationCase)"]
+    Convert["ConvertBisNumber"]
+
+    Open --> Search
+    Search -->|"match selected"| Link
+    Search -->|"no match / skip"| Create
+    Create --> Warn
+    Link --> Convert
+    Create --> Identity["Identity established ✓"]
+    Link --> Identity
+    Convert --> Identity
+```
+
+| Step | Slice | Correction path |
+|------|-------|-----------------|
+| Search register | `SearchNationalRegister` | N/A (read-only) — [doc](./search-national-register.md) |
+| Link existing | `LinkExistingPerson` | Not supported yet (Phase 5 scope) — [doc](./link-existing-person.md) |
+| Create new person | `RecordIdentity` | `CorrectIdentity` — [doc](./record-identity.md) |
+| Convert BIS → NR | `ConvertBisNumber` | One-way stub assignment — [doc](./convert-bis-number.md) |
+
+**Partial search:** all search fields are optional individually; at least one of given name, family name, or birth date is required. Example: `givenName=Marie` returns Marie Leclerc; `familyName=Dupont` returns Jean and J. Dupont.
+
 ## Slice documentation
 
 - [List registration cases](./list-registration-cases.md)
@@ -124,6 +159,9 @@ Saved section → summary + **Edit** button → pre-filled form → save via cor
 - [Get registration case](./get-registration-case.md)
 - [Record identity](./record-identity.md)
 - [Correct identity](./correct-identity.md)
+- [Search National Register](./search-national-register.md)
+- [Link existing person](./link-existing-person.md)
+- [Convert BIS number](./convert-bis-number.md)
 - [Set residence category](./set-residence-category.md)
 - [Record residence permit](./record-residence-permit.md)
 - [Record immigration decision](./record-immigration-decision.md)

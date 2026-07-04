@@ -92,11 +92,15 @@ The same handler is called again after identity recording or document upload to 
   },
   "person": {
     "id": "...",
-    "givenName": "Luc",
-    "familyName": "Vermeulen",
-    "birthDate": "1988-11-05",
-    "nationality": "Belgian"
+    "givenName": "Marie",
+    "familyName": "Leclerc",
+    "birthDate": "1975-01-01",
+    "nationality": "Belgian",
+    "bisNumber": "75010112345",
+    "nationalRegisterNumber": null,
+    "linkedFromRegister": true
   },
+  "possibleDuplicateMatches": [],
   "documents": [
     {
       "id": "...",
@@ -110,15 +114,22 @@ The same handler is called again after identity recording or document upload to 
 
 When identity has not been recorded, `person` is `null`.
 
+### Possible duplicate matches (Phase 5)
+
+When a person exists **without** `linkedFromRegister`, the handler runs a National Register search using the person's identity and returns high-confidence matches in `possibleDuplicateMatches` (score ≥ 80). The case detail page shows a warning banner when this list is non-empty.
+
+Each match includes `registerPersonId`, name, birth date, BIS/NR numbers, `matchScore`, and `matchReason`. See [search-national-register.md](./search-national-register.md).
+
 ## Blazor UI behaviour
 
 `RegistrationCaseDetail.razor` uses the DTO to:
 
 - Show case header (status chip, visit reason, opened date)
 - Render checklist status chips
-- Show identity form **or** read-only person card (based on `person == null`)
-- Embed `DocumentUpload` component
-- List attached documents
+- Show **duplicate warning** when `possibleDuplicateMatches` is non-empty and person not linked
+- Show identity form **or** read-only person card with BIS/NR and convert button
+- Open `NationalRegisterSearchDialog` from search button or warning
+- Embed intake steps and `RegistrationCaseDocumentPanel`
 
 ## Error responses (HTTP)
 
@@ -134,5 +145,6 @@ When identity has not been recorded, `person` is `null`.
 | `IRegistrationCaseRepository` | Load case aggregate |
 | `IPersonRepository` | Load linked person |
 | `IAdministrativeDocumentRepository` | Load case documents |
+| `INationalRegisterRepository` | Duplicate detection search (Phase 5) |
 
 This is a read-only slice with no domain mutations.

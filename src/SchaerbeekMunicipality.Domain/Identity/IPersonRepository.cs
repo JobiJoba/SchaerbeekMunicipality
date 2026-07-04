@@ -1,3 +1,5 @@
+using SchaerbeekMunicipality.Domain.NationalRegister;
+
 namespace SchaerbeekMunicipality.Domain.Identity;
 
 public interface IPersonRepository
@@ -7,4 +9,12 @@ public interface IPersonRepository
     Task<Person?> GetForUpdateAsync(PersonId id, CancellationToken cancellationToken);
 
     Task AddAsync(Person person, CancellationToken cancellationToken);
+
+    Task<bool> IsRegisterRecordLinkedAsync(
+        NationalRegisterPersonId registerPersonId,
+        CancellationToken cancellationToken);
+
+    Task<bool> IsNationalRegisterNumberAssignedAsync(
+        NationalRegisterNumber nationalRegisterNumber,
+        CancellationToken cancellationToken);
 }

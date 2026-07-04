@@ -139,6 +139,7 @@ The app bar shows a fake officer identity (**Marie Dupont**) and a role switcher
 
 See [ROADMAP.md](./ROADMAP.md) for upcoming phases:
 
-- **Phase 5** — National Register search and BIS duplicate detection
 - **Phase 6** — Police verification loop
 - **Phase 7+** — Final decision, registration, certificates
+
+**Phase 5 (complete):** National Register search, partial criteria, link existing person, BIS conversion, duplicate warnings — [phase-5-national-register-search-bis.md](./phases/phase-5-national-register-search-bis.md).

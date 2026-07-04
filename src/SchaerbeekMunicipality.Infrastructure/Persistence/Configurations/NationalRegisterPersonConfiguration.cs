@@ -1,22 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence.Configurations;
 
-internal sealed class PersonConfiguration : IEntityTypeConfiguration<Person>
+internal sealed class NationalRegisterPersonConfiguration : IEntityTypeConfiguration<NationalRegisterPerson>
 {
-    public void Configure(EntityTypeBuilder<Person> builder)
+    public void Configure(EntityTypeBuilder<NationalRegisterPerson> builder)
     {
-        builder.ToTable("persons");
+        builder.ToTable("national_register_persons");
 
         builder.HasKey(p => p.Id);
 
         builder.Property(p => p.Id)
             .HasConversion(
                 id => id.Value,
-                value => new PersonId(value))
+                value => NationalRegisterPersonId.From(value))
             .HasColumnName("id");
 
         builder.Property(p => p.GivenName)
@@ -37,12 +36,6 @@ internal sealed class PersonConfiguration : IEntityTypeConfiguration<Person>
             .HasMaxLength(64)
             .IsRequired();
 
-        builder.Property(p => p.LinkedRegisterRecordId)
-            .HasConversion(
-                id => id.HasValue ? id.Value.Value : (Guid?)null,
-                value => value.HasValue ? NationalRegisterPersonId.From(value.Value) : null)
-            .HasColumnName("linked_register_record_id");
-
         builder.Property(p => p.BisNumber)
             .HasConversion(
                 number => number.HasValue ? number.Value.Value : null,
@@ -57,30 +50,7 @@ internal sealed class PersonConfiguration : IEntityTypeConfiguration<Person>
             .HasColumnName("national_register_number")
             .HasMaxLength(11);
 
-        builder.HasIndex(p => p.LinkedRegisterRecordId);
+        builder.HasIndex(p => p.BisNumber).IsUnique();
         builder.HasIndex(p => p.NationalRegisterNumber).IsUnique();
-
-        builder.OwnsOne(p => p.CivilStatus, civilStatus =>
-        {
-            civilStatus.Property(c => c.Status)
-                .HasColumnName("civil_status")
-                .HasConversion<string>()
-                .HasMaxLength(32);
-
-            civilStatus.Property(c => c.SpouseGivenName)
-                .HasColumnName("spouse_given_name")
-                .HasMaxLength(128);
-
-            civilStatus.Property(c => c.SpouseFamilyName)
-                .HasColumnName("spouse_family_name")
-                .HasMaxLength(128);
-
-            civilStatus.Property(c => c.MarriageDate)
-                .HasColumnName("marriage_date");
-
-            civilStatus.Property(c => c.MarriagePlace)
-                .HasColumnName("marriage_place")
-                .HasMaxLength(128);
-        });
     }
 }

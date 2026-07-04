@@ -2,6 +2,7 @@ using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
+using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.ReferenceData;
 
 namespace SchaerbeekMunicipality.Domain.Registration;
@@ -54,14 +55,21 @@ public sealed class RegistrationCase
     public Person RecordIdentity(IdentityDetails identity)
     {
         EnsureStatus(RegistrationCaseStatus.Intake, nameof(RecordIdentity));
-
-        if (PersonId is not null)
-        {
-            throw new InvalidRegistrationTransitionException(
-                "Identity has already been recorded for this case.");
-        }
+        EnsureIdentityNotYetRecorded(nameof(RecordIdentity));
 
         var person = Person.Create(identity);
+        PersonId = person.Id;
+        Checklist.MarkIdentityEstablished();
+
+        return person;
+    }
+
+    public Person LinkExistingPerson(NationalRegisterPerson registerPerson)
+    {
+        EnsureStatus(RegistrationCaseStatus.Intake, nameof(LinkExistingPerson));
+        EnsureIdentityNotYetRecorded(nameof(LinkExistingPerson));
+
+        var person = Person.CreateFromRegisterRecord(registerPerson);
         PersonId = person.Id;
         Checklist.MarkIdentityEstablished();
 
@@ -184,6 +192,15 @@ public sealed class RegistrationCase
         {
             throw new InvalidRegistrationTransitionException(
                 $"Cannot perform '{operation}' while the case is in status '{Status}'.");
+        }
+    }
+
+    private void EnsureIdentityNotYetRecorded(string operation)
+    {
+        if (PersonId is not null)
+        {
+            throw new InvalidRegistrationTransitionException(
+                $"Identity has already been recorded for this case.");
         }
     }
 }

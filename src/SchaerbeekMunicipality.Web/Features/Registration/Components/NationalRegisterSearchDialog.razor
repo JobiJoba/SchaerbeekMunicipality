@@ -1,0 +1,215 @@
+@using SchaerbeekMunicipality.Domain.NationalRegister
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.LinkExistingPerson
+@using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h4">Search National Register</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
+            Search for an existing BIS or National Register record. Enter any combination of name and date of birth — all fields are optional.
+        </MudText>
+
+        <AppFormSection Title="Search criteria">
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="_givenName" Label="Given name" />
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="_familyName" Label="Family name" />
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" MaxDate="DateTime.Today" Clearable="true" />
+            </MudItem>
+        </AppFormSection>
+
+        <MudStack Row="true" Spacing="2" Class="mb-4">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Outlined.Search"
+                       OnClick="Search"
+                       Disabled="_searching">
+                Search
+            </MudButton>
+        </MudStack>
+
+        @if (_searched && _matches.Count == 0)
+        {
+            <AppInfoBox>
+                No matching records found. You can create a new person file on the case.
+            </AppInfoBox>
+        }
+        else if (_matches.Count > 0)
+        {
+            <MudText Typo="Typo.subtitle2" Class="mb-2">Possible matches</MudText>
+            <MudTable Items="_matches" Dense="true" Hover="true">
+                <HeaderContent>
+                    <MudTh>Name</MudTh>
+                    <MudTh>Birth date</MudTh>
+                    <MudTh>Number</MudTh>
+                    <MudTh>Score</MudTh>
+                    <MudTh></MudTh>
+                </HeaderContent>
+                <RowTemplate Context="match">
+                    <MudTd DataLabel="Name">@match.GivenName @match.FamilyName</MudTd>
+                    <MudTd DataLabel="Birth date">@match.BirthDate.ToString("d")</MudTd>
+                    <MudTd DataLabel="Number">
+                        @if (!string.IsNullOrWhiteSpace(match.NationalRegisterNumber))
+                        {
+                            <MudText Typo="Typo.body2">NR @FormatNumber(match.NationalRegisterNumber)</MudText>
+                        }
+                        else if (!string.IsNullOrWhiteSpace(match.BisNumber))
+                        {
+                            <MudText Typo="Typo.body2">BIS @FormatNumber(match.BisNumber)</MudText>
+                        }
+                    </MudTd>
+                    <MudTd DataLabel="Score">
+                        <AppStatusChip Label="@($"{match.MatchScore}%")"
+                                       Severity="@(match.MatchScore >= 100 ? AppSeverity.Success : AppSeverity.Warning)" />
+                        <MudText Typo="Typo.caption" Color="Color.Secondary">@match.MatchReason</MudText>
+                    </MudTd>
+                    <MudTd>
+                        <MudButton Variant="Variant.Outlined"
+                                   Color="Color.Primary"
+                                   Size="Size.Small"
+                                   Disabled="_linking"
+                                   OnClick="@(() => LinkMatch(match))">
+                            Link
+                        </MudButton>
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(_error))
+        {
+            <AppAlert Severity="Severity.Error" Title="Error" Class="mt-4">@_error</AppAlert>
+        }
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Outlined" OnClick="Cancel">Close</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter]
+    public Guid CaseId { get; set; }
+
+    [Parameter]
+    public SearchNationalRegisterHandler SearchHandler { get; set; } = null!;
+
+    [Parameter]
+    public LinkExistingPersonHandler LinkHandler { get; set; } = null!;
+
+    [Parameter]
+    public string? InitialGivenName { get; set; }
+
+    [Parameter]
+    public string? InitialFamilyName { get; set; }
+
+    [Parameter]
+    public DateOnly? InitialBirthDate { get; set; }
+
+    private bool _searching;
+    private bool _linking;
+    private bool _searched;
+    private string? _error;
+
+    private string _givenName = string.Empty;
+    private string _familyName = string.Empty;
+    private DateTime? _birthDate;
+
+    private IReadOnlyList<NationalRegisterMatchDto> _matches = [];
+
+    private bool HasSearchCriterion =>
+        !string.IsNullOrWhiteSpace(_givenName) ||
+        !string.IsNullOrWhiteSpace(_familyName) ||
+        _birthDate.HasValue;
+
+    protected override void OnParametersSet()
+    {
+        _givenName = InitialGivenName ?? string.Empty;
+        _familyName = InitialFamilyName ?? string.Empty;
+        _birthDate = InitialBirthDate?.ToDateTime(TimeOnly.MinValue);
+    }
+
+    private async Task Search()
+    {
+        if (!HasSearchCriterion)
+        {
+            _error = "Enter at least one search criterion.";
+            return;
+        }
+
+        _searching = true;
+        _error = null;
+
+        try
+        {
+            var response = await SearchHandler.Handle(
+                new SearchNationalRegisterRequest(
+                    string.IsNullOrWhiteSpace(_givenName) ? null : _givenName.Trim(),
+                    string.IsNullOrWhiteSpace(_familyName) ? null : _familyName.Trim(),
+                    _birthDate.HasValue ? DateOnly.FromDateTime(_birthDate.Value) : null),
+                CancellationToken.None);
+
+            _matches = response.Matches;
+            _searched = true;
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            _error = string.Join(" ", ex.Errors.Select(e => e.ErrorMessage));
+        }
+        finally
+        {
+            _searching = false;
+        }
+    }
+
+    private async Task LinkMatch(NationalRegisterMatchDto match)
+    {
+        _linking = true;
+        _error = null;
+
+        try
+        {
+            await LinkHandler.Handle(
+                new RegistrationCaseId(CaseId),
+                new LinkExistingPersonRequest(match.RegisterPersonId),
+                CancellationToken.None);
+
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            _error = string.Join(" ", ex.Errors.Select(e => e.ErrorMessage));
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (NationalRegisterConflictException ex)
+        {
+            _error = ex.Message;
+        }
+        catch (KeyNotFoundException ex)
+        {
+            _error = ex.Message;
+        }
+        finally
+        {
+            _linking = false;
+        }
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+
+    private static string FormatNumber(string value) =>
+        value.Length == 11
+            ? $"{value[..6]}-{value[6..9]}.{value[9..]}"
+            : value;
+}

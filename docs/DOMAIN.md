@@ -202,13 +202,17 @@ public interface IResidencePolicy
 
 **Purpose:** Search for existing persons; BIS → NR conversion simulation.
 
+**Implemented (Phase 5):** see [phase-5-national-register-search-bis.md](./phases/phase-5-national-register-search-bis.md).
+
 **Operations:**
 
-- `SearchByIdentity` → possible matches (duplicate detection)
-- `AssignNationalRegisterNumber` → on successful registration
-- `ConvertBisToNationalRegister` → when applicable
+- `SearchNationalRegister` → scored matches (optional partial criteria: given name, family name, and/or birth date)
+- `LinkExistingPerson` → attach stub record to case as `Person`
+- `RecordIdentity` → create new person when no link (duplicate warning on read)
+- `ConvertBisNumber` → stub NR assignment for BIS-only persons
+- `AssignNationalRegisterNumber` → planned Phase 7 (official registration)
 
-**Educational stub:** In-memory or DB table `national_register_persons` with search by name + birth date.
+**Educational stub:** PostgreSQL/SQLite table `national_register_persons` seeded at startup; `NationalRegisterSearchScorer` ranks candidates (scores 40–100).
 
 ---
 

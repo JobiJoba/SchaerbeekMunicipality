@@ -1,3 +1,5 @@
+using SchaerbeekMunicipality.Domain.NationalRegister;
+
 namespace SchaerbeekMunicipality.Domain.Identity;
 
 public sealed class Person
@@ -15,6 +17,12 @@ public sealed class Person
     public DateOnly BirthDate { get; private set; }
 
     public string Nationality { get; private set; } = string.Empty;
+
+    public NationalRegisterPersonId? LinkedRegisterRecordId { get; private set; }
+
+    public BisNumber? BisNumber { get; private set; }
+
+    public NationalRegisterNumber? NationalRegisterNumber { get; private set; }
 
     public CivilStatusRecord? CivilStatus { get; private set; }
 
@@ -34,6 +42,23 @@ public sealed class Person
         };
     }
 
+    public static Person CreateFromRegisterRecord(NationalRegisterPerson registerPerson)
+    {
+        ArgumentNullException.ThrowIfNull(registerPerson);
+
+        return new Person
+        {
+            Id = PersonId.New(),
+            GivenName = registerPerson.GivenName,
+            FamilyName = registerPerson.FamilyName,
+            BirthDate = registerPerson.BirthDate,
+            Nationality = registerPerson.Nationality,
+            LinkedRegisterRecordId = registerPerson.Id,
+            BisNumber = registerPerson.BisNumber,
+            NationalRegisterNumber = registerPerson.NationalRegisterNumber,
+        };
+    }
+
     public void Update(IdentityDetails details)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(details.GivenName);
@@ -44,6 +69,21 @@ public sealed class Person
         FamilyName = details.FamilyName.Trim();
         BirthDate = details.BirthDate;
         Nationality = details.Nationality.Trim();
+    }
+
+    public void ConvertBisToNationalRegister(NationalRegisterNumber nationalRegisterNumber)
+    {
+        if (BisNumber is null)
+        {
+            throw new InvalidOperationException("Person does not have a BIS number to convert.");
+        }
+
+        if (NationalRegisterNumber is not null)
+        {
+            throw new InvalidOperationException("Person already has a National Register number.");
+        }
+
+        NationalRegisterNumber = nationalRegisterNumber;
     }
 
     public void RecordCivilStatus(CivilStatusDetails details)

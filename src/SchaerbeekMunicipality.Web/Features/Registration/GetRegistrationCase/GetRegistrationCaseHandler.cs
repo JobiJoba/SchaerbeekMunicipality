@@ -2,7 +2,9 @@ using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
 
@@ -11,7 +13,8 @@ public sealed class GetRegistrationCaseHandler(
     IPersonRepository personRepository,
     IAdministrativeDocumentRepository documentRepository,
     IResidencePermitRepository permitRepository,
-    IHouseholdRepository householdRepository)
+    IHouseholdRepository householdRepository,
+    INationalRegisterRepository nationalRegisterRepository)
 {
     public async Task<RegistrationCaseDetailDto?> Handle(
         RegistrationCaseId caseId,
@@ -32,8 +35,40 @@ public sealed class GetRegistrationCaseHandler(
         var documents = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
         var permit = await permitRepository.GetByCaseIdAsync(caseId, cancellationToken);
         var household = await householdRepository.GetByCaseIdAsync(caseId, cancellationToken);
+        var possibleDuplicates = await FindPossibleDuplicatesAsync(person, cancellationToken);
 
-        return Map(registrationCase, person, documents, permit, household);
+        return Map(registrationCase, person, documents, permit, household, possibleDuplicates);
+    }
+
+    private async Task<IReadOnlyList<NationalRegisterMatchDto>> FindPossibleDuplicatesAsync(
+        Person? person,
+        CancellationToken cancellationToken)
+    {
+        if (person is null || person.LinkedRegisterRecordId is not null)
+        {
+            return [];
+        }
+
+        var criteria = new NationalRegisterSearchCriteria(
+            person.GivenName,
+            person.FamilyName,
+            person.BirthDate);
+
+        var matches = await nationalRegisterRepository.SearchAsync(criteria, cancellationToken);
+
+        return matches
+            .Where(m => m.MatchScore >= NationalRegisterSearchScorer.ExactMatchScore - 20)
+            .Select(m => new NationalRegisterMatchDto(
+                m.RegisterPersonId.Value,
+                m.GivenName,
+                m.FamilyName,
+                m.BirthDate,
+                m.Nationality,
+                m.BisNumber,
+                m.NationalRegisterNumber,
+                m.MatchScore,
+                m.MatchReason))
+            .ToList();
     }
 
     private static RegistrationCaseDetailDto Map(
@@ -41,7 +76,8 @@ public sealed class GetRegistrationCaseHandler(
         Person? person,
         IReadOnlyList<AdministrativeDocument> documents,
         ResidencePermit? permit,
-        Household? household)
+        Household? household,
+        IReadOnlyList<NationalRegisterMatchDto> possibleDuplicates)
     {
         var checklist = registrationCase.Checklist;
 
@@ -64,7 +100,10 @@ public sealed class GetRegistrationCaseHandler(
                     person.GivenName,
                     person.FamilyName,
                     person.BirthDate,
-                    person.Nationality),
+                    person.Nationality,
+                    person.BisNumber?.Value,
+                    person.NationalRegisterNumber?.Value,
+                    person.LinkedRegisterRecordId is not null),
             registrationCase.ResidenceCategory,
             permit is null
                 ? null
@@ -112,6 +151,7 @@ public sealed class GetRegistrationCaseHandler(
                     d.DocumentType,
                     d.FileName,
                     d.UploadedAt))
-                .ToList());
+                .ToList(),
+            possibleDuplicates);
     }
 }
