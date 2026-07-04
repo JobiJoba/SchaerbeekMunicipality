@@ -22,3 +22,4 @@ Data-recording methods update checklist flags without changing status. Guarded t
 - Fewer statuses to test; invariants become "flag required for transition" rules.
 - The checklist must be recomputed consistently — it lives on the aggregate, not in the UI.
 - Revisit when: a workflow step genuinely requires strict ordering (then add a targeted guard, not more statuses).
+- **Phase 2.1** implements intake corrections for all data-recording steps during `Intake` and `UnderReview` — see [phase-2.1-intake-corrections.md](../phases/phase-2.1-intake-corrections.md).

@@ -49,6 +49,20 @@ erDiagram
 
 The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalResidenceEstablished`, `AddressDeclared`, etc.) independently of status. Recording identity sets `IdentityEstablished = true`; residence policies set `LegalResidenceEstablished` when evidence passes validation.
 
+### Intake corrections (Phase 2.1 — planned)
+
+Officers must be able to fix mistakes on any intake step after saving (e.g. wrong name after starting legal residence). First-time recording slices are listed below; correction behaviour is specified in [phase-2.1-intake-corrections.md](../../phases/phase-2.1-intake-corrections.md):
+
+| Step | First record | Correction (Phase 2.1) |
+|------|--------------|------------------------|
+| Identity | `RecordIdentity` | `CorrectIdentity` (new) |
+| Residence category | `SetResidenceCategory` | Same handler (upsert) + edit UI |
+| Residence permit | `RecordResidencePermit` | Same handler (upsert) + edit UI |
+| Immigration decision | `RecordImmigrationDecision` | Same handler (upsert) + edit UI |
+| Documents | `AttachDocument` | `RemoveDocument` (new) |
+
+Corrections are allowed while the case is in `Intake` or `UnderReview`; checklist flags are recomputed after each correction.
+
 ## Slice documentation
 
 - [List registration cases](./list-registration-cases.md)

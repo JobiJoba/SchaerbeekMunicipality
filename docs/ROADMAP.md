@@ -89,6 +89,45 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
+## Phase 2.1 — Intake corrections
+
+**Status:** Planned — see [phases/phase-2.1-intake-corrections.md](./phases/phase-2.1-intake-corrections.md).
+
+**Goal:** Let officers correct any intake step after it has been saved — identity, legal residence (category, permit, decision), and documents — without abandoning the case or losing later progress.
+
+**Why now:** Phases 1–2 only support first-time recording; the UI locks sections after save. [ADR-0004](./adr/0004-checklist-over-linear-state-machine.md) and [ARCHITECTURE.md](./ARCHITECTURE.md) already assume flexible intake with corrections during `Intake` and `UnderReview`.
+
+**Slices:**
+
+- `CorrectIdentity` (new domain method + handler + endpoint)
+- Legal residence correction — expose edit UI for category, permit, and immigration decision (permit/decision handlers largely upsert already)
+- `RemoveDocument` (minimum viable document correction)
+
+**Domain:**
+
+- `Person.Update(IdentityDetails)`; `RegistrationCase.CorrectIdentity(...)`
+- Shared `EnsureIntakeDataEditable()` guard (`Intake` + `UnderReview`)
+- Post-correction checklist re-evaluation (e.g. identity/nationality change → re-run residence policy)
+- Cascade rules when category and permit disagree
+
+**UI:**
+
+- Edit button + pre-filled form on every saved intake section (design-system edit form pattern)
+- Policy warning when correction leaves checklist invalid until a related step is fixed
+
+**Demo:** Record identity → start residence → fix wrong name; change non-EU category → update permit; remove and re-attach wrong document.
+
+**Tests:**
+
+- Correct identity with residence already set; nationality change clears or restores `LegalResidenceEstablished`
+- Category change with incompatible permit → policy failure until permit corrected
+- Correction blocked after approval
+- Document remove persists and updates storage
+
+**Carries forward:** Phase 4+ intake slices must ship record **and** correction in the same phase (see phase doc).
+
+---
+
 ## Phase 3 — Design system & UI kit (Schaerbeek visual identity)
 
 **Goal:** Reverse-engineer the design language of [www.1030.be](https://www.1030.be/fr) into an enterprise-grade MudBlazor design system so every subsequent phase builds pages from a consistent, branded UI kit instead of raw MudBlazor defaults.
@@ -121,6 +160,8 @@ Estimates are rough learning-project sizing, not calendar commitments.
 ## Phase 4 — Address & household (IDEA Phases 5–8, 9–10)
 
 **Goal:** Declare domicile and household; civil status.
+
+**Note:** Ship each slice with a **correction path** in the same phase (record + edit UI). See [Phase 2.1](./phases/phase-2.1-intake-corrections.md) for the established pattern.
 
 **Slices:**
 
@@ -326,6 +367,7 @@ When implementing any slice, complete:
 [ ] Integration test
 [ ] Seed data if reference data needed
 [ ] Glossary update if new terms
+[ ] Correction path (domain + handler + UI edit) if slice records intake data — see Phase 2.1
 ```
 
 ---

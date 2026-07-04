@@ -65,6 +65,8 @@ flowchart TB
 | Record immigration decision | [record-immigration-decision.md](./registration/record-immigration-decision.md) | `POST /api/registration/cases/{id}/immigration-decision` | `ResidenceStep.razor` |
 | Attach document | [attach-document.md](./registration/attach-document.md) | `POST /api/registration/cases/{id}/documents` | `DocumentUpload.razor` |
 
+**Phase 2.1 (planned):** intake corrections — [phase-2.1-intake-corrections.md](../phases/phase-2.1-intake-corrections.md). Adds `CorrectIdentity`, `RemoveDocument`, and edit UI for all saved intake sections.
+
 ## End-to-end user journey
 
 ```mermaid
