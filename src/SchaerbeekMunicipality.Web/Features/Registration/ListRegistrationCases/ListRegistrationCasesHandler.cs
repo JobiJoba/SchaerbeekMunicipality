@@ -4,7 +4,7 @@ namespace SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases
 
 public sealed record RegistrationCaseSummary(
     Guid Id,
-    string Status,
+    RegistrationCaseStatus Status,
     VisitReason VisitReason,
     DateTimeOffset OpenedAt,
     bool IdentityEstablished);
@@ -18,7 +18,7 @@ public sealed class ListRegistrationCasesHandler(IRegistrationCaseRepository rep
         return cases
             .Select(c => new RegistrationCaseSummary(
                 c.Id.Value,
-                c.Status.ToString(),
+                c.Status,
                 c.VisitReason,
                 c.OpenedAt,
                 c.Checklist.IdentityEstablished))

@@ -3,6 +3,7 @@ using MudBlazor.Services;
 using SchaerbeekMunicipality.Infrastructure;
 using SchaerbeekMunicipality.Web.Auth;
 using SchaerbeekMunicipality.Web.Components;
+using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs;
 using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
 using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
@@ -19,6 +20,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddMudServices();
+
+builder.Services.AddScoped<IAppDialogService, AppDialogService>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<OpenRegistrationCaseValidator>();
 

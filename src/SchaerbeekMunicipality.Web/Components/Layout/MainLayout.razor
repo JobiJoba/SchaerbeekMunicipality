@@ -1,32 +1,44 @@
 ﻿@inherits LayoutComponentBase
 @implements IDisposable
 @using SchaerbeekMunicipality.Web.Auth
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Web.DesignSystem.Components.Navigation
+@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
+@using SchaerbeekMunicipality.Web.DesignSystem.Theme
+@using SchaerbeekMunicipality.Web.Auth.Components
 @inject ICurrentOfficer CurrentOfficer
+@inject IWebHostEnvironment HostEnvironment
 
-<MudThemeProvider Theme="_theme" />
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<MudThemeProvider Theme="SchaerbeekTheme.Default" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="1" Color="Color.Primary">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="ToggleDrawer" />
-        <MudText Typo="Typo.h6">Schaerbeek — Population Department</MudText>
-        <MudSpacer />
-        <MudText Typo="Typo.body2" Class="mr-3 d-none d-sm-flex">@CurrentOfficer.DisplayName</MudText>
-        <RoleSwitcher />
-    </MudAppBar>
+    <AppTopNavigation Title="Schaerbeek — Population Department"
+                      OfficerDisplayName="@CurrentOfficer.DisplayName"
+                      OnMenuToggle="ToggleDrawer">
+        <TrailingContent>
+            <RoleSwitcher />
+        </TrailingContent>
+    </AppTopNavigation>
 
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-        <MudNavMenu>
-            <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-            <MudNavLink Href="/registration/cases" Icon="@Icons.Material.Filled.FolderOpen">Registration cases</MudNavLink>
-        </MudNavMenu>
+    <MudDrawer @bind-Open="_drawerOpen"
+               ClipMode="DrawerClipMode.Always"
+               Elevation="@SchaerbeekElevation.Flat"
+               Variant="DrawerVariant.Responsive"
+               Style="border-right: 1px solid var(--mud-palette-lines-default);">
+        <AppSideNavigation Items="_navItems" CurrentRole="@CurrentOfficer.Role" />
     </MudDrawer>
 
-    <MudMainContent Class="pa-4">
-        @Body
+    <MudMainContent Class="app-main-content">
+        <div class="app-main-body">
+            @Body
+        </div>
+        <AppFooter>
+            Schaerbeek – Schaarbeek · Population Department · @HostEnvironment.EnvironmentName
+        </AppFooter>
     </MudMainContent>
 </MudLayout>
 
@@ -38,20 +50,24 @@
 
 @code {
     private bool _drawerOpen = true;
-
-    private readonly MudTheme _theme = new()
-    {
-        PaletteLight = new PaletteLight
-        {
-            Primary = "#1B4F72",
-            Secondary = "#2874A6",
-            AppbarBackground = "#1B4F72",
-        },
-    };
+    private IReadOnlyList<AppNavItem> _navItems = [];
 
     protected override void OnInitialized()
     {
         CurrentOfficer.Changed += OnOfficerChanged;
+
+        var items = new List<AppNavItem>
+        {
+            new("Home", "/", Icons.Material.Outlined.Home),
+            new("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+        };
+
+        if (HostEnvironment.IsDevelopment())
+        {
+            items.Add(new AppNavItem("Design system", "/design-system", Icons.Material.Outlined.Palette));
+        }
+
+        _navItems = items;
     }
 
     private void OnOfficerChanged() => InvokeAsync(StateHasChanged);

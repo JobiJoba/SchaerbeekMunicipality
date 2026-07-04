@@ -1,7 +1,4 @@
 @page "/registration/cases"
-@using SchaerbeekMunicipality.Web.Auth
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
-@using SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases
 @using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase
 @inject ListRegistrationCasesHandler Handler
 @inject OpenRegistrationCaseHandler OpenHandler
@@ -10,72 +7,91 @@
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
 
-<PageTitle>Registration cases</PageTitle>
+<AppPage Title="Registration cases">
+    <AppPageHeader Title="Registration cases"
+                   Subtitle="First-registration procedures managed by the Population Department.">
+        <Actions>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Outlined.Add"
+                       Style="min-height: 48px;"
+                       OnClick="OpenNewCaseDialog">
+                New case
+            </MudButton>
+        </Actions>
+    </AppPageHeader>
 
-<div class="registration-cases-header mb-4">
-    <MudText Typo="Typo.h4" Class="mb-0">Registration cases</MudText>
-    <MudButton Variant="Variant.Filled"
-               Color="Color.Primary"
-               StartIcon="@Icons.Material.Filled.Add"
-               OnClick="OpenNewCaseDialog">
-        New case
-    </MudButton>
-</div>
+    <AppSection>
+        @if (_loading)
+        {
+            <AppLoading Kind="AppLoadingKind.Skeleton" />
+        }
+        else if (_cases.Count == 0)
+        {
+            <AppEmptyState Title="No registration cases yet"
+                           Description="Open an intake file to get started."
+                           Icon="@Icons.Material.Outlined.FolderOpen">
+                <Action>
+                    <MudButton Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               StartIcon="@Icons.Material.Outlined.Add"
+                               Style="min-height: 48px;"
+                               OnClick="OpenNewCaseDialog">
+                        New case
+                    </MudButton>
+                </Action>
+            </AppEmptyState>
+        }
+        else
+        {
+            <AppSearchBar @bind-Value="_searchText"
+                          Placeholder="Search cases…"
+                          Class="mb-4"
+                          OnSearch="OnSearch" />
 
-<MudText Typo="Typo.body1" Class="mb-4">
-    First-registration procedures managed by the Population Department.
-</MudText>
-
-@if (_loading)
-{
-    <MudProgressLinear Indeterminate="true" Color="Color.Primary" Class="mb-4" />
-}
-else if (_cases.Count == 0)
-{
-    <MudAlert Severity="Severity.Info" Variant="Variant.Outlined" Class="mb-4">
-        No registration cases yet. Open an intake file to get started.
-    </MudAlert>
-    <MudButton Variant="Variant.Filled"
-               Color="Color.Primary"
-               Size="Size.Large"
-               StartIcon="@Icons.Material.Filled.Add"
-               OnClick="OpenNewCaseDialog">
-        New case
-    </MudButton>
-}
-else
-{
-    <MudDataGrid Items="_cases" Dense="true" Hover="true">
-        <Columns>
-            <TemplateColumn Title="Case ID">
-                <CellTemplate>
-                    <MudLink Href="@($"/registration/cases/{context.Item.Id}")">
-                        @context.Item.Id.ToString()[..8]…
-                    </MudLink>
-                </CellTemplate>
-            </TemplateColumn>
-            <PropertyColumn Property="x => x.VisitReason" Title="Visit reason" />
-            <PropertyColumn Property="x => x.Status" Title="Status" />
-            <PropertyColumn Property="x => x.OpenedAt" Title="Opened" Format="g" />
-            <TemplateColumn Title="Identity">
-                <CellTemplate>
-                    @if (context.Item.IdentityEstablished)
-                    {
-                        <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Color="Color.Success" Size="Size.Small" />
-                    }
-                    else
-                    {
-                        <MudIcon Icon="@Icons.Material.Filled.RadioButtonUnchecked" Color="Color.Default" Size="Size.Small" />
-                    }
-                </CellTemplate>
-            </TemplateColumn>
-        </Columns>
-    </MudDataGrid>
-}
+            <AppDataTable T="RegistrationCaseSummary"
+                          Items="_filteredCases"
+                          Caption="Registration cases"
+                          OnRowClick="NavigateToCase">
+                <HeaderContent>
+                    <MudTh Class="app-table-header">Case ID</MudTh>
+                    <MudTh Class="app-table-header">Visit reason</MudTh>
+                    <MudTh Class="app-table-header">Status</MudTh>
+                    <MudTh Class="app-table-header">Opened</MudTh>
+                    <MudTh Class="app-table-header">Identity</MudTh>
+                </HeaderContent>
+                <RowTemplate Context="item">
+                    <MudTd DataLabel="Case ID">
+                        <MudLink Href="@($"/registration/cases/{item.Id}")">
+                            @item.Id.ToString()[..8]…
+                        </MudLink>
+                    </MudTd>
+                    <MudTd DataLabel="Visit reason">@item.VisitReason</MudTd>
+                    <MudTd DataLabel="Status">
+                        <AppStatusChip Status="item.Status" />
+                    </MudTd>
+                    <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+                    <MudTd DataLabel="Identity">
+                        @if (item.IdentityEstablished)
+                        {
+                            <MudIcon Icon="@Icons.Material.Outlined.CheckCircle" Color="Color.Success" Size="Size.Small" aria-label="Identity established" />
+                        }
+                        else
+                        {
+                            <MudIcon Icon="@Icons.Material.Outlined.RadioButtonUnchecked" Color="Color.Default" Size="Size.Small" aria-label="Identity not established" />
+                        }
+                    </MudTd>
+                </RowTemplate>
+            </AppDataTable>
+        }
+    </AppSection>
+</AppPage>
 
 @code {
     private IReadOnlyList<RegistrationCaseSummary> _cases = [];
+    private IReadOnlyList<RegistrationCaseSummary> _filteredCases = [];
     private bool _loading = true;
+    private string _searchText = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -86,8 +102,31 @@ else
     {
         _loading = true;
         _cases = await Handler.Handle(CancellationToken.None);
+        ApplyFilter();
         _loading = false;
     }
+
+    private void OnSearch(string _) => ApplyFilter();
+
+    private void ApplyFilter()
+    {
+        if (string.IsNullOrWhiteSpace(_searchText))
+        {
+            _filteredCases = _cases;
+            return;
+        }
+
+        var term = _searchText.Trim();
+        _filteredCases = _cases
+            .Where(c =>
+                c.Id.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.VisitReason.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.Status.ToString().Contains(term, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+    }
+
+    private void NavigateToCase(RegistrationCaseSummary item) =>
+        Navigation.NavigateTo($"/registration/cases/{item.Id}");
 
     private async Task OpenNewCaseDialog()
     {
@@ -97,8 +136,11 @@ else
             { x => x.Handler, OpenHandler },
         };
 
-        var options = new DialogOptions { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Small, FullWidth = true };
-        var dialog = await DialogService.ShowAsync<NewCaseDialog>("Open case", parameters, options);
+        var dialog = await DialogService.ShowAsync<NewCaseDialog>(
+            "Open case",
+            parameters,
+            AppDialogOptions.Medium);
+
         var result = await dialog.Result;
 
         if (result is { Canceled: false, Data: Guid caseId })
@@ -107,5 +149,4 @@ else
             Navigation.NavigateTo($"/registration/cases/{caseId}");
         }
     }
-
 }

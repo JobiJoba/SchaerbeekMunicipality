@@ -1,0 +1,46 @@
+@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
+
+<MudPaper Elevation="0" Outlined="false" Class="@PaperClass" Style="@InfoStyle">
+    <MudStack Row="true" Spacing="2" AlignItems="AlignItems.Start">
+        <MudIcon Icon="@(_icon)" Style="@($"color: {SchaerbeekColors.Info}")" aria-hidden="true" />
+        <MudText Typo="Typo.body2" Style="@($"color: {SchaerbeekColors.TextPrimary}")">
+            @ChildContent
+        </MudText>
+    </MudStack>
+</MudPaper>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Icon { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+
+    private string _icon = Icons.Material.Outlined.Info;
+
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrWhiteSpace(Icon))
+        {
+            _icon = Icon;
+        }
+    }
+
+    private string PaperClass => new CssBuilder("pa-4 mb-4")
+        .AddClass(Class)
+        .Build();
+
+    private string InfoStyle =>
+        new StyleBuilder()
+            .AddStyle("background-color", SchaerbeekColors.InfoBackground)
+            .AddStyle("border", $"1px solid {SchaerbeekColors.Info}")
+            .AddStyle("border-radius", "4px")
+            .AddStyle(Style)
+            .Build();
+}

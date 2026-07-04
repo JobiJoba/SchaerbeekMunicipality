@@ -1,0 +1,65 @@
+@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
+
+<MudAlert Severity="@Severity"
+          Variant="Variant.Text"
+          Dense="true"
+          Class="@AlertClass"
+          Style="@AlertStyle"
+          role="alert"
+          ShowCloseIcon="@Dismissible"
+          CloseIconClicked="OnDismiss">
+    @if (!string.IsNullOrWhiteSpace(Title))
+    {
+        <MudText Typo="Typo.subtitle2" Class="mb-1">@Title</MudText>
+    }
+    @ChildContent
+</MudAlert>
+
+@code {
+    [Parameter]
+    public Severity Severity { get; set; } = Severity.Info;
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public bool Dismissible { get; set; }
+
+    [Parameter]
+    public EventCallback OnDismiss { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+
+    private string AlertClass => new CssBuilder()
+        .AddClass("app-alert", true)
+        .AddClass(Class)
+        .Build();
+
+    private string AlertStyle
+    {
+        get
+        {
+            var (background, foreground) = Severity switch
+            {
+                Severity.Success => (SchaerbeekColors.SuccessBackground, SchaerbeekColors.Success),
+                Severity.Warning => (SchaerbeekColors.WarningBackground, SchaerbeekColors.Warning),
+                Severity.Error => (SchaerbeekColors.ErrorBackground, SchaerbeekColors.Error),
+                _ => (SchaerbeekColors.InfoBackground, SchaerbeekColors.Info),
+            };
+
+            return new StyleBuilder()
+                .AddStyle("background-color", background)
+                .AddStyle("color", foreground)
+                .AddStyle("border", $"1px solid {foreground}")
+                .AddStyle(Style)
+                .Build();
+        }
+    }
+}

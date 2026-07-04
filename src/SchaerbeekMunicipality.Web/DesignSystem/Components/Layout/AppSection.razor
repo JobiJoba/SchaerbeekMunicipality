@@ -1,0 +1,32 @@
+<section class="@SectionClass" style="@Style">
+    @if (!string.IsNullOrWhiteSpace(Title))
+    {
+        <MudText Typo="Typo.h2" GutterBottom="true">@Title</MudText>
+    }
+    @if (!string.IsNullOrWhiteSpace(Description))
+    {
+        <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">@Description</MudText>
+    }
+    @ChildContent
+</section>
+
+@code {
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Description { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+
+    private string SectionClass => new CssBuilder("mb-8")
+        .AddClass(Class)
+        .Build();
+}

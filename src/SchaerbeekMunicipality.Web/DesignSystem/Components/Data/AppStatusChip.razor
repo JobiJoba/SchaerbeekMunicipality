@@ -1,0 +1,58 @@
+@using SchaerbeekMunicipality.Domain.Registration
+
+<MudChip T="string"
+         Size="@Size"
+         Class="@Class"
+         Style="@ChipStyle"
+         Icon="@_icon">
+    @_label
+</MudChip>
+
+@code {
+    [Parameter]
+    public RegistrationCaseStatus? Status { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public AppSeverity Severity { get; set; } = AppSeverity.Neutral;
+
+    [Parameter]
+    public Size Size { get; set; } = Size.Small;
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+
+    private string _label = string.Empty;
+    private string _icon = string.Empty;
+    private string _background = SchaerbeekColors.SurfaceSunken;
+    private string _foreground = SchaerbeekColors.TextSecondary;
+
+    protected override void OnParametersSet()
+    {
+        if (Status is { } status)
+        {
+            (_label, _icon, _background, _foreground) = AppStatusChipMappings.ForRegistrationCaseStatus(status);
+        }
+        else if (!string.IsNullOrWhiteSpace(Label))
+        {
+            _label = Label;
+            var mapping = AppStatusChipMappings.ForSeverity(Severity);
+            _icon = mapping.Icon;
+            _background = mapping.Background;
+            _foreground = mapping.Foreground;
+        }
+    }
+
+    private string ChipStyle =>
+        new StyleBuilder()
+            .AddStyle("background-color", _background)
+            .AddStyle("color", _foreground)
+            .AddStyle("border-radius", "12px")
+            .AddStyle(Style)
+            .Build();
+}
