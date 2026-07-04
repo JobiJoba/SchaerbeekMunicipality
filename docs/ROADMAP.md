@@ -262,7 +262,7 @@ Delivery notes for completed phases: [phases/](./phases/).
 **Slices:**
 
 - `SearchNationalRegister`
-- `LinkExistingPerson` / `CreateNewPerson`
+- `LinkExistingPerson` / `RecordIdentity` (create new)
 - `ConvertBisNumber` (simplified)
 
 **Infrastructure:**

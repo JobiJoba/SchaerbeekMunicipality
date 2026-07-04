@@ -25,6 +25,8 @@ Two test projects only — API tests and handler tests overlap heavily (both use
 
 **Target:** Domain tests for every invariant; at least one integration test per vertical slice; API test for each Minimal API route.
 
+**Fast suite (Phase 5):** `dotnet test --filter "Category!=PostgreSQL"` — **90 tests** (38 domain + 52 integration).
+
 ---
 
 ## Domain tests (`SchaerbeekMunicipality.Domain.Tests`)

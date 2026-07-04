@@ -132,6 +132,16 @@ Same as [Record identity](./record-identity.md#validation-rules) — shared `Rec
 | `409` | Identity not recorded, wrong person, or case not editable | Snackbar with domain message |
 | `200` | Success | Snackbar + optional policy warning + page reload |
 
+## National Register link (Phase 5 limitation)
+
+If identity was established via [Link existing person](./link-existing-person.md), `CorrectIdentity` only updates name, date of birth, and nationality through `Person.Update()`. It does **not**:
+
+- Clear `LinkedRegisterRecordId`, `BisNumber`, or `NationalRegisterNumber`
+- Update the stub `national_register_persons` row
+- Support unlink-and-re-link to a different register record
+
+Changing identity on a linked person may cause the [duplicate warning](./search-national-register.md) to reappear or disagree with the linked register record. Unlink/re-link is deferred — see [Phase 5 carries forward](../../phases/phase-5-national-register-search-bis.md#carries-forward).
+
 ## Audit
 
 Structured log at handler level: case id, person id, timestamp (`ILogger`). Persistent `CaseAuditEntry` is Phase 7 scope.
@@ -148,5 +158,6 @@ Structured log at handler level: case id, person id, timestamp (`ILogger`). Pers
 ## Related
 
 - [Record identity](./record-identity.md) — first-time recording (`POST`)
+- [Link existing person](./link-existing-person.md) — alternative first-time path; limited correction support (see above)
 - [Phase 2.1 — Intake corrections](../../phases/phase-2.1-intake-corrections.md) — cross-cutting correction policy
 - [ADR-0004](../../adr/0004-checklist-over-linear-state-machine.md) — flexible, non-linear intake rationale

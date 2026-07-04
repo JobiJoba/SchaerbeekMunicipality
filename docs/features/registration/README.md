@@ -147,7 +147,7 @@ flowchart LR
 |------|-------|-----------------|
 | Search register | `SearchNationalRegister` | N/A (read-only) — [doc](./search-national-register.md) |
 | Link existing | `LinkExistingPerson` | Not supported yet (Phase 5 scope) — [doc](./link-existing-person.md) |
-| Create new person | `RecordIdentity` | `CorrectIdentity` — [doc](./record-identity.md) |
+| Create new person | `RecordIdentity` | `CorrectIdentity` — [doc](./correct-identity.md) (linked-register limits apply) |
 | Convert BIS → NR | `ConvertBisNumber` | One-way stub assignment — [doc](./convert-bis-number.md) |
 
 **Partial search:** all search fields are optional individually; at least one of given name, family name, or birth date is required. Example: `givenName=Marie` returns Marie Leclerc; `familyName=Dupont` returns Jean and J. Dupont.

@@ -192,6 +192,6 @@ Feature dialogs (e.g. `NewCaseDialog`) keep using `IDialogService` with standard
 | `AppWizard` (stepper form shell) | Phase 4 (address & household wizard) |
 | `AppTimeline` (case audit trail) | Phase 7 |
 | `AppQuickActions` (dashboard shortcut grid) | Phase 7 |
-| `AppPersonCard` / citizen summary header | Phase 5 (NR search results) |
+| `AppPersonCard` / citizen summary header | Phase 11 (citizen profile) — Phase 5 NR search uses `MudTable` in `NationalRegisterSearchDialog` |
 | `AppAppointmentCard` | Phase 11 |
 | `AppPageTitle`, `AppContentContainer` | Not planned — covered by `AppPage`/`AppPageHeader` |
