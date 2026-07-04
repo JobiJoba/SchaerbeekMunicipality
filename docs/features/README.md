@@ -6,7 +6,7 @@ This folder documents how each vertical slice in the application works — from 
 
 | Context | Slices | Entry points |
 |---------|--------|--------------|
-| [Registration](./registration/README.md) | 5 use cases | Blazor pages + `/api/registration/*` |
+| [Registration](./registration/README.md) | 8 use cases | Blazor pages + `/api/registration/*` |
 
 ## Shared architecture
 
@@ -60,7 +60,12 @@ flowchart TB
 | Open case | [open-registration-case.md](./registration/open-registration-case.md) | `POST /api/registration/cases` | `NewCaseDialog.razor` |
 | Get case detail | [get-registration-case.md](./registration/get-registration-case.md) | `GET /api/registration/cases/{id}` | `RegistrationCaseDetail.razor` |
 | Record identity | [record-identity.md](./registration/record-identity.md) | `POST /api/registration/cases/{id}/identity` | `RegistrationCaseDetail.razor` |
+| Set residence category | [set-residence-category.md](./registration/set-residence-category.md) | `POST /api/registration/cases/{id}/residence-category` | `ResidenceStep.razor` |
+| Record residence permit | [record-residence-permit.md](./registration/record-residence-permit.md) | `POST /api/registration/cases/{id}/residence-permit` | `ResidenceStep.razor` |
+| Record immigration decision | [record-immigration-decision.md](./registration/record-immigration-decision.md) | `POST /api/registration/cases/{id}/immigration-decision` | `ResidenceStep.razor` |
 | Attach document | [attach-document.md](./registration/attach-document.md) | `POST /api/registration/cases/{id}/documents` | `DocumentUpload.razor` |
+
+**Phase 2.1 (planned):** intake corrections — [phase-2.1-intake-corrections.md](../phases/phase-2.1-intake-corrections.md). Adds `CorrectIdentity`, `RemoveDocument`, and edit UI for all saved intake sections.
 
 ## End-to-end user journey
 

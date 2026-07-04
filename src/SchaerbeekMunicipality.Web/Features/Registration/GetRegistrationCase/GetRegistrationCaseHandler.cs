@@ -1,5 +1,6 @@
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
@@ -7,7 +8,8 @@ namespace SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
 public sealed class GetRegistrationCaseHandler(
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
-    IAdministrativeDocumentRepository documentRepository)
+    IAdministrativeDocumentRepository documentRepository,
+    IResidencePermitRepository permitRepository)
 {
     public async Task<RegistrationCaseDetailDto?> Handle(
         RegistrationCaseId caseId,
@@ -26,14 +28,16 @@ public sealed class GetRegistrationCaseHandler(
         }
 
         var documents = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        var permit = await permitRepository.GetByCaseIdAsync(caseId, cancellationToken);
 
-        return Map(registrationCase, person, documents);
+        return Map(registrationCase, person, documents, permit);
     }
 
     private static RegistrationCaseDetailDto Map(
         RegistrationCase registrationCase,
         Person? person,
-        IReadOnlyList<AdministrativeDocument> documents)
+        IReadOnlyList<AdministrativeDocument> documents,
+        ResidencePermit? permit)
     {
         var checklist = registrationCase.Checklist;
 
@@ -57,6 +61,22 @@ public sealed class GetRegistrationCaseHandler(
                     person.FamilyName,
                     person.BirthDate,
                     person.Nationality),
+            registrationCase.ResidenceCategory,
+            permit is null
+                ? null
+                : new ResidencePermitDto(
+                    permit.Id.Value,
+                    permit.PermitType,
+                    permit.CardNumber,
+                    permit.ValidFrom,
+                    permit.ValidUntil,
+                    permit.IssuingAuthority,
+                    permit.RecordedAt),
+            registrationCase.ImmigrationDecision is null
+                ? null
+                : new ImmigrationDecisionDto(
+                    registrationCase.ImmigrationDecision.ReferenceNumber,
+                    registrationCase.ImmigrationDecision.DecisionDate),
             documents
                 .Select(d => new DocumentDto(
                     d.Id.Value,

@@ -10,6 +10,9 @@ using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases;
 using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Web.Features.Registration.RecordImmigrationDecision;
+using SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit;
+using SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +35,10 @@ builder.Services.AddScoped<OpenRegistrationCaseHandler>();
 builder.Services.AddScoped<GetRegistrationCaseHandler>();
 builder.Services.AddScoped<RecordIdentityHandler>();
 builder.Services.AddScoped<AttachDocumentHandler>();
+builder.Services.AddScoped<RegistrationResidenceEvaluator>();
+builder.Services.AddScoped<SetResidenceCategoryHandler>();
+builder.Services.AddScoped<RecordResidencePermitHandler>();
+builder.Services.AddScoped<RecordImmigrationDecisionHandler>();
 
 builder.Services.AddOpenApi();
 

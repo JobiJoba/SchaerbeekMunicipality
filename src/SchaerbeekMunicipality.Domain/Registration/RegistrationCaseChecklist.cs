@@ -19,4 +19,8 @@ public sealed class RegistrationCaseChecklist
     public static RegistrationCaseChecklist Empty() => new();
 
     internal void MarkIdentityEstablished() => IdentityEstablished = true;
+
+    internal void MarkLegalResidenceEstablished() => LegalResidenceEstablished = true;
+
+    internal void ClearLegalResidenceEstablished() => LegalResidenceEstablished = false;
 }

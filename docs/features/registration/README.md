@@ -43,11 +43,25 @@ erDiagram
 
 | Status | Meaning |
 |--------|---------|
-| `Intake` | Case opened; identity and documents can be collected |
+| `Intake` | Case opened; identity, residence, and documents can be collected |
 | `UnderReview` | (future) Case under review |
 | Others | Defined in `RegistrationCaseStatus` for later phases |
 
-The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalResidenceEstablished`, etc.) independently of status. Recording identity sets `IdentityEstablished = true`.
+The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalResidenceEstablished`, `AddressDeclared`, etc.) independently of status. Recording identity sets `IdentityEstablished = true`; residence policies set `LegalResidenceEstablished` when evidence passes validation.
+
+### Intake corrections (Phase 2.1 — planned)
+
+Officers must be able to fix mistakes on any intake step after saving (e.g. wrong name after starting legal residence). First-time recording slices are listed below; correction behaviour is specified in [phase-2.1-intake-corrections.md](../../phases/phase-2.1-intake-corrections.md):
+
+| Step | First record | Correction (Phase 2.1) |
+|------|--------------|------------------------|
+| Identity | `RecordIdentity` | `CorrectIdentity` (new) |
+| Residence category | `SetResidenceCategory` | Same handler (upsert) + edit UI |
+| Residence permit | `RecordResidencePermit` | Same handler (upsert) + edit UI |
+| Immigration decision | `RecordImmigrationDecision` | Same handler (upsert) + edit UI |
+| Documents | `AttachDocument` | `RemoveDocument` (new) |
+
+Corrections are allowed while the case is in `Intake` or `UnderReview`; checklist flags are recomputed after each correction.
 
 ## Slice documentation
 
@@ -55,6 +69,9 @@ The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalReside
 - [Open registration case](./open-registration-case.md)
 - [Get registration case](./get-registration-case.md)
 - [Record identity](./record-identity.md)
+- [Set residence category](./set-residence-category.md)
+- [Record residence permit](./record-residence-permit.md)
+- [Record immigration decision](./record-immigration-decision.md)
 - [Attach document](./attach-document.md)
 
 ## Route registration

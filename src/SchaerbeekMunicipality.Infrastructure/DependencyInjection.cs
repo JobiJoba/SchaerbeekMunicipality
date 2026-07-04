@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
@@ -36,7 +38,13 @@ public static class DependencyInjection
         services.AddScoped<IRegistrationCaseRepository, RegistrationCaseRepository>();
         services.AddScoped<IPersonRepository, PersonRepository>();
         services.AddScoped<IAdministrativeDocumentRepository, AdministrativeDocumentRepository>();
+        services.AddScoped<IResidencePermitRepository, ResidencePermitRepository>();
         services.AddSingleton<IDocumentStorage, LocalFileDocumentStorage>();
+
+        services.AddSingleton<IResidencePolicy, EuCitizenPolicy>();
+        services.AddSingleton<IResidencePolicy, NonEuWorkerPolicy>();
+        services.AddSingleton<IResidencePolicy, StudentPolicy>();
+        services.AddSingleton<ResidencePolicyEvaluator>();
 
         return services;
     }

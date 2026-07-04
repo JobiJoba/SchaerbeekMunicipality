@@ -11,11 +11,14 @@ internal sealed class AdministrativeDocumentRepository(MunicipalDbContext dbCont
         RegistrationCaseId registrationCaseId,
         CancellationToken cancellationToken)
     {
-        return await dbContext.AdministrativeDocuments
+        var documents = await dbContext.AdministrativeDocuments
             .AsNoTracking()
             .Where(d => d.RegistrationCaseId == registrationCaseId)
-            .OrderByDescending(d => d.UploadedAt)
             .ToListAsync(cancellationToken);
+
+        return documents
+            .OrderByDescending(d => d.UploadedAt)
+            .ToList();
     }
 
     public async Task AddAsync(AdministrativeDocument document, CancellationToken cancellationToken)

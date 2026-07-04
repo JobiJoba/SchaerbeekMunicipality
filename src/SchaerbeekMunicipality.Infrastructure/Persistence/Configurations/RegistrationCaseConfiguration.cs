@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence.Configurations;
@@ -41,6 +42,11 @@ internal sealed class RegistrationCaseConfiguration : IEntityTypeConfiguration<R
                 value => value.HasValue ? new PersonId(value.Value) : null)
             .HasColumnName("person_id");
 
+        builder.Property(c => c.ResidenceCategory)
+            .HasColumnName("residence_category")
+            .HasConversion<string>()
+            .HasMaxLength(64);
+
         builder.Property(c => c.OpenedAt)
             .HasColumnName("opened_at");
 
@@ -51,6 +57,12 @@ internal sealed class RegistrationCaseConfiguration : IEntityTypeConfiguration<R
             checklist.Property(c => c.AddressDeclared).HasColumnName("address_declared");
             checklist.Property(c => c.AddressConfirmed).HasColumnName("address_confirmed");
             checklist.Property(c => c.RegisterDeterminable).HasColumnName("register_determinable");
+        });
+
+        builder.OwnsOne(c => c.ImmigrationDecision, decision =>
+        {
+            decision.Property(d => d.ReferenceNumber).HasColumnName("immigration_decision_reference").HasMaxLength(128);
+            decision.Property(d => d.DecisionDate).HasColumnName("immigration_decision_date");
         });
     }
 }
