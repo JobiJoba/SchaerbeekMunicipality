@@ -8,5 +8,11 @@ public interface IAdministrativeDocumentRepository
         RegistrationCaseId registrationCaseId,
         CancellationToken cancellationToken);
 
+    Task<AdministrativeDocument?> GetByIdAsync(
+        AdministrativeDocumentId id,
+        CancellationToken cancellationToken);
+
     Task AddAsync(AdministrativeDocument document, CancellationToken cancellationToken);
+
+    void Remove(AdministrativeDocument document);
 }

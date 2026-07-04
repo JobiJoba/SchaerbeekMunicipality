@@ -89,9 +89,9 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 2.1 — Intake corrections
+## Phase 2.1 — Intake corrections ✅
 
-**Status:** Planned — see [phases/phase-2.1-intake-corrections.md](./phases/phase-2.1-intake-corrections.md).
+**Status:** Complete — see [phases/phase-2.1-intake-corrections.md](./phases/phase-2.1-intake-corrections.md).
 
 **Goal:** Let officers correct any intake step after it has been saved — identity, legal residence (category, permit, decision), and documents — without abandoning the case or losing later progress.
 

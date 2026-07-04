@@ -1,10 +1,17 @@
 @page "/registration/cases/{CaseId:guid}"
 @using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument
+@using SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity
 @using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity
+@using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument
+@using SchaerbeekMunicipality.Domain.Documents
+@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
 @inject GetRegistrationCaseHandler GetHandler
 @inject RecordIdentityHandler RecordIdentityHandler
+@inject CorrectIdentityHandler CorrectIdentityHandler
 @inject AttachDocumentHandler AttachDocumentHandler
+@inject RemoveDocumentHandler RemoveDocumentHandler
+@inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
 
@@ -79,19 +86,62 @@
                 </AppCard>
             </AppSection>
         }
+        else if (_editingIdentity)
+        {
+            <AppSection>
+                <AppCard Title="Identity" Outlined="true">
+                    <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
+                        <AppFormSection Title="Personal details">
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_givenName" Label="Given name" Required="true" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_nationality" Label="Nationality" Required="true" />
+                            </MudItem>
+                        </AppFormSection>
+
+                        <AppSaveCancelBar SaveText="Save changes"
+                                          CancelText="Cancel"
+                                          Saving="_savingIdentity"
+                                          Disabled="!IdentityFormDirty"
+                                          OnSave="SaveIdentityCorrection"
+                                          OnCancel="CancelIdentityEdit" />
+                    </MudForm>
+                </AppCard>
+            </AppSection>
+        }
         else
         {
             <AppSection>
                 <AppCard Title="Identity" Outlined="true">
-                    <MudText Typo="Typo.body1">@_case.Person.GivenName @_case.Person.FamilyName</MudText>
-                    <MudText Typo="Typo.body2" Color="Color.Secondary">
-                        Born @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
-                    </MudText>
+                    <HeaderActions>
+                        @if (CanEditIntakeData)
+                        {
+                            <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                                       Variant="Variant.Text"
+                                       OnClick="StartEditingIdentity"
+                                       aria-label="Edit identity">
+                                Edit
+                            </MudButton>
+                        }
+                    </HeaderActions>
+                    <ChildContent>
+                        <MudText Typo="Typo.body1">@_case.Person.GivenName @_case.Person.FamilyName</MudText>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">
+                            Born @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
+                        </MudText>
+                    </ChildContent>
                 </AppCard>
             </AppSection>
         }
 
-        <ResidenceStep Case="_case" CaseId="CaseId" OnUpdated="ReloadCase" />
+        <ResidenceStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
 
         <AppSection>
             <DocumentUpload CaseId="CaseId"
@@ -107,10 +157,22 @@
                         @foreach (var doc in _case.Documents)
                         {
                             <MudListItem T="string" Icon="@Icons.Material.Outlined.AttachFile">
-                                @doc.DocumentType — @doc.FileName
-                                <MudText Typo="Typo.caption" Color="Color.Secondary">
-                                    @doc.UploadedAt.LocalDateTime.ToString("g")
-                                </MudText>
+                                <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="flex-grow-1">
+                                    <div>
+                                        @doc.DocumentType — @doc.FileName
+                                        <MudText Typo="Typo.caption" Color="Color.Secondary">
+                                            @doc.UploadedAt.LocalDateTime.ToString("g")
+                                        </MudText>
+                                    </div>
+                                    @if (CanEditIntakeData)
+                                    {
+                                        <MudIconButton Icon="@Icons.Material.Outlined.Delete"
+                                                       Color="Color.Error"
+                                                       Size="Size.Small"
+                                                       aria-label="@($"Remove {doc.FileName}")"
+                                                       OnClick="@(() => RemoveDocument(doc.Id))" />
+                                    }
+                                </MudStack>
                             </MudListItem>
                         }
                     </MudList>
@@ -126,6 +188,7 @@
 
     private RegistrationCaseDetailDto? _case;
     private bool _loading = true;
+    private bool _editingIdentity;
     private MudForm _identityForm = null!;
     private bool _identityFormValid;
     private bool _savingIdentity;
@@ -135,6 +198,17 @@
     private DateTime? _birthDate;
     private string _nationality = string.Empty;
 
+    private bool CanEditIntakeData =>
+        _case is not null &&
+        _case.Status is RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview;
+
+    private bool IdentityFormDirty =>
+        _case?.Person is not null &&
+        (_givenName != _case.Person.GivenName ||
+         _familyName != _case.Person.FamilyName ||
+         _birthDate?.Date != _case.Person.BirthDate.ToDateTime(TimeOnly.MinValue).Date ||
+         _nationality != _case.Person.Nationality);
+
     protected override async Task OnParametersSetAsync()
     {
         await ReloadCase();
@@ -143,6 +217,7 @@
     private async Task ReloadCase()
     {
         _loading = true;
+        _editingIdentity = false;
         _case = await GetHandler.Handle(
             new RegistrationCaseId(CaseId),
             CancellationToken.None);
@@ -155,6 +230,38 @@
         _familyName = string.Empty;
         _birthDate = null;
         _nationality = string.Empty;
+    }
+
+    private void StartEditingIdentity()
+    {
+        if (_case?.Person is null)
+        {
+            return;
+        }
+
+        _givenName = _case.Person.GivenName;
+        _familyName = _case.Person.FamilyName;
+        _birthDate = _case.Person.BirthDate.ToDateTime(TimeOnly.MinValue);
+        _nationality = _case.Person.Nationality;
+        _editingIdentity = true;
+    }
+
+    private async Task CancelIdentityEdit()
+    {
+        if (IdentityFormDirty)
+        {
+            var confirmed = await DialogService.ConfirmAsync(
+                "Discard changes?",
+                "You have unsaved identity changes.",
+                "Discard");
+
+            if (!confirmed)
+            {
+                return;
+            }
+        }
+
+        _editingIdentity = false;
     }
 
     private async Task SaveIdentity()
@@ -193,6 +300,85 @@
         finally
         {
             _savingIdentity = false;
+        }
+    }
+
+    private async Task SaveIdentityCorrection()
+    {
+        await _identityForm.Validate();
+        if (!_identityFormValid || _birthDate is null)
+        {
+            return;
+        }
+
+        _savingIdentity = true;
+        try
+        {
+            var request = new RecordIdentityRequest(
+                _givenName,
+                _familyName,
+                DateOnly.FromDateTime(_birthDate.Value),
+                _nationality);
+
+            var response = await CorrectIdentityHandler.Handle(
+                new RegistrationCaseId(CaseId),
+                request,
+                CancellationToken.None);
+
+            Snackbar.Add("Identity updated.", Severity.Success);
+            if (!string.IsNullOrWhiteSpace(response.PolicyMessage))
+            {
+                Snackbar.Add(response.PolicyMessage, Severity.Warning);
+            }
+
+            await ReloadCase();
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _savingIdentity = false;
+        }
+    }
+
+    private async Task RemoveDocument(Guid documentId)
+    {
+        var confirmed = await DialogService.ConfirmAsync(
+            "Remove document?",
+            "This will permanently delete the attached file.",
+            "Remove",
+            destructive: true,
+            consequence: "The document cannot be recovered after removal.");
+
+        if (!confirmed)
+        {
+            return;
+        }
+
+        try
+        {
+            await RemoveDocumentHandler.Handle(
+                new RegistrationCaseId(CaseId),
+                new AdministrativeDocumentId(documentId),
+                CancellationToken.None);
+
+            Snackbar.Add("Document removed.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        catch (KeyNotFoundException)
+        {
+            Snackbar.Add("Document not found.", Severity.Error);
+            await ReloadCase();
         }
     }
 }
