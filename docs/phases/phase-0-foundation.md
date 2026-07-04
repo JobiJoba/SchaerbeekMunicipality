@@ -147,15 +147,22 @@ Snake-case naming convention is applied for PostgreSQL via `EFCore.NamingConvent
 **First vertical slice — `ListRegistrationCases`:**
 
 ```
-Web/Features/Registration/
-├── ListRegistrationCases/
-│   ├── ListRegistrationCasesHandler.cs
-│   └── ListRegistrationCasesEndpoint.cs
-├── Pages/
-│   └── RegistrationCaseList.razor
-├── Components/
-│   └── RoleSwitcher.razor
-└── RegistrationEndpoints.cs      # MapGroup /api/registration
+Web/
+├── Auth/
+│   ├── ICurrentOfficer.cs
+│   ├── CurrentOfficer.cs
+│   ├── OfficerRole.cs
+│   └── Components/
+│       └── RoleSwitcher.razor      # fake-auth role picker in app bar
+├── Features/Registration/
+│   ├── ListRegistrationCases/
+│   │   ├── ListRegistrationCasesHandler.cs
+│   │   └── ListRegistrationCasesEndpoint.cs
+│   ├── Pages/
+│   │   └── RegistrationCaseList.razor
+│   ├── Components/
+│   │   └── (registration-specific shared UI)
+│   └── RegistrationEndpoints.cs  # MapGroup /api/registration
 ```
 
 Handler loads all cases from the repository and maps to `RegistrationCaseSummary` DTOs. Blazor page injects the handler directly (no HTTP round-trip in Server mode).
