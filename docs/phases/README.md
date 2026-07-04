@@ -7,7 +7,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 0 | Foundation | Complete | [phase-0-foundation.md](./phase-0-foundation.md) |
 | 0.1 | Tooling hygiene | Complete | [phase-0.1-tooling-hygiene.md](./phase-0.1-tooling-hygiene.md) |
 | 1 | Case intake & identity | Complete | [phase-1-case-intake-identity.md](./phase-1-case-intake-identity.md) |
-| 2 | Residence category & permits | Planned | — |
+| 2 | Residence category & permits | Complete | [phase-2-residence-category-permits.md](./phase-2-residence-category-permits.md) |
 | 3 | Design system & UI kit | Planned | [phase-3-design-system.md](./phase-3-design-system.md) |
 | 4 | Address & household | Planned | — |
 | 5 | National Register search & BIS | Planned | — |

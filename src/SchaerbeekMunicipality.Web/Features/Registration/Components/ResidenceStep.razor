@@ -1,0 +1,375 @@
+@using SchaerbeekMunicipality.Domain.Immigration
+@using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
+@using SchaerbeekMunicipality.Web.Features.Registration.RecordImmigrationDecision
+@using SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit
+@using SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory
+@inject SetResidenceCategoryHandler SetResidenceCategoryHandler
+@inject RecordResidencePermitHandler RecordResidencePermitHandler
+@inject RecordImmigrationDecisionHandler RecordImmigrationDecisionHandler
+@inject ISnackbar Snackbar
+
+<AppSection Title="Legal residence">
+    @if (!_case.Checklist.IdentityEstablished)
+    {
+        <AppInfoBox>
+            Record identity before classifying legal residence.
+        </AppInfoBox>
+    }
+    else if (_case.ResidenceCategory is null)
+    {
+        <AppCard Title="Residence category" Outlined="true">
+            <MudForm @ref="_categoryForm" @bind-IsValid="_categoryFormValid">
+                <AppFormSection Title="Why is the person in Belgium?">
+                    <MudItem xs="12" md="8">
+                        <MudSelect T="ResidenceCategory?"
+                                   @bind-Value="_selectedCategory"
+                                   Label="Residence category"
+                                   Required="true"
+                                   ToStringFunc="@FormatCategory">
+                            <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.EuCitizen">EU citizen</MudSelectItem>
+                            <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.NonEuWorker">Non-EU worker</MudSelectItem>
+                            <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Student">Student</MudSelectItem>
+                        </MudSelect>
+                    </MudItem>
+                </AppFormSection>
+
+                <AppInfoBox Class="mb-4">
+                    EU citizens have lighter permit requirements. Non-EU workers and students must record a valid permit.
+                </AppInfoBox>
+
+                <AppSaveCancelBar SaveText="Set category"
+                                  CancelText="Clear"
+                                  Saving="_savingCategory"
+                                  OnSave="SaveCategory"
+                                  OnCancel="ClearCategoryForm" />
+            </MudForm>
+        </AppCard>
+    }
+    else
+    {
+        <AppCard Title="Residence category" Outlined="true">
+            <MudText Typo="Typo.body1">@FormatCategory(_case.ResidenceCategory)</MudText>
+            @if (_case.Checklist.LegalResidenceEstablished)
+            {
+                <MudText Typo="Typo.body2" Color="Color.Success" Class="mt-2">
+                    Legal residence established.
+                </MudText>
+            }
+            else if (!string.IsNullOrWhiteSpace(_policyMessage))
+            {
+                <MudText Typo="Typo.body2" Color="Color.Warning" Class="mt-2">
+                    @_policyMessage
+                </MudText>
+            }
+        </AppCard>
+
+        @if (RequiresPermit(_case.ResidenceCategory.Value))
+        {
+            @if (_case.ResidencePermit is null)
+            {
+                <AppCard Title="Residence permit" Outlined="true" Class="mt-4">
+                    <MudForm @ref="_permitForm" @bind-IsValid="_permitFormValid">
+                        <AppFormSection Title="Permit details">
+                            <MudItem xs="12" md="6">
+                                <MudSelect T="ResidencePermitType?"
+                                           @bind-Value="_permitType"
+                                           Label="Permit type"
+                                           Required="true"
+                                           ToStringFunc="@FormatPermitType">
+                                    @foreach (var permitType in PermitTypesFor(_case.ResidenceCategory.Value))
+                                    {
+                                        <MudSelectItem T="ResidencePermitType?" Value="@permitType">@FormatPermitType(permitType)</MudSelectItem>
+                                    }
+                                </MudSelect>
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_cardNumber" Label="Card number" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudDatePicker @bind-Date="_validFrom" Label="Valid from" Required="true" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudDatePicker @bind-Date="_validUntil" Label="Valid until" Required="true" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_issuingAuthority" Label="Issuing authority" />
+                            </MudItem>
+                        </AppFormSection>
+
+                        <AppSaveCancelBar SaveText="Record permit"
+                                          CancelText="Clear"
+                                          Saving="_savingPermit"
+                                          OnSave="SavePermit"
+                                          OnCancel="ClearPermitForm" />
+                    </MudForm>
+                </AppCard>
+            }
+            else
+            {
+                <AppCard Title="Residence permit" Outlined="true" Class="mt-4">
+                    <MudText Typo="Typo.body1">
+                        @FormatPermitType(_case.ResidencePermit.PermitType)
+                        @if (!string.IsNullOrWhiteSpace(_case.ResidencePermit.CardNumber))
+                        {
+                            <span> · @_case.ResidencePermit.CardNumber</span>
+                        }
+                    </MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">
+                        @_case.ResidencePermit.ValidFrom.ToString("d") – @_case.ResidencePermit.ValidUntil.ToString("d")
+                        @if (!string.IsNullOrWhiteSpace(_case.ResidencePermit.IssuingAuthority))
+                        {
+                            <span> · @_case.ResidencePermit.IssuingAuthority</span>
+                        }
+                    </MudText>
+                </AppCard>
+            }
+        }
+
+        <AppCard Title="Immigration decision (optional)" Outlined="true" Class="mt-4">
+            @if (_case.ImmigrationDecision is null)
+            {
+                <MudForm @ref="_decisionForm" @bind-IsValid="_decisionFormValid">
+                    <AppFormSection Title="External decision reference">
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="_decisionReference" Label="Reference number" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudDatePicker @bind-Date="_decisionDate" Label="Decision date" />
+                        </MudItem>
+                    </AppFormSection>
+
+                    <AppInfoBox Class="mb-4">
+                        Stub for federal immigration office decisions — optional for most categories.
+                    </AppInfoBox>
+
+                    <AppSaveCancelBar SaveText="Record decision"
+                                      CancelText="Clear"
+                                      Saving="_savingDecision"
+                                      OnSave="SaveDecision"
+                                      OnCancel="ClearDecisionForm" />
+                </MudForm>
+            }
+            else
+            {
+                <MudText Typo="Typo.body1">@_case.ImmigrationDecision.ReferenceNumber</MudText>
+                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                    Decision date @_case.ImmigrationDecision.DecisionDate.ToString("d")
+                </MudText>
+            }
+        </AppCard>
+    }
+</AppSection>
+
+@code {
+    [Parameter, EditorRequired]
+    public RegistrationCaseDetailDto Case { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public Guid CaseId { get; set; }
+
+    [Parameter]
+    public EventCallback OnUpdated { get; set; }
+
+    private RegistrationCaseDetailDto _case = null!;
+    private string? _policyMessage;
+
+    private MudForm _categoryForm = null!;
+    private bool _categoryFormValid;
+    private bool _savingCategory;
+    private ResidenceCategory? _selectedCategory;
+
+    private MudForm _permitForm = null!;
+    private bool _permitFormValid;
+    private bool _savingPermit;
+    private ResidencePermitType? _permitType;
+    private string? _cardNumber;
+    private DateTime? _validFrom;
+    private DateTime? _validUntil;
+    private string? _issuingAuthority;
+
+    private MudForm _decisionForm = null!;
+    private bool _decisionFormValid;
+    private bool _savingDecision;
+    private string? _decisionReference;
+    private DateTime? _decisionDate;
+
+    protected override void OnParametersSet()
+    {
+        _case = Case;
+    }
+
+    private static bool RequiresPermit(ResidenceCategory category) =>
+        category is ResidenceCategory.NonEuWorker or ResidenceCategory.Student;
+
+    private static IEnumerable<ResidencePermitType> PermitTypesFor(ResidenceCategory category) =>
+        category switch
+        {
+            ResidenceCategory.NonEuWorker =>
+            [
+                ResidencePermitType.ACard,
+                ResidencePermitType.BCard,
+            ],
+            ResidenceCategory.Student =>
+            [
+                ResidencePermitType.Annex15,
+                ResidencePermitType.BCard,
+            ],
+            _ => [],
+        };
+
+    private static string FormatCategory(ResidenceCategory? category) =>
+        category switch
+        {
+            ResidenceCategory.EuCitizen => "EU citizen",
+            ResidenceCategory.NonEuWorker => "Non-EU worker",
+            ResidenceCategory.Student => "Student",
+            _ => "Select category",
+        };
+
+    private static string FormatPermitType(ResidencePermitType? permitType) =>
+        permitType switch
+        {
+            ResidencePermitType.ACard => "A card",
+            ResidencePermitType.BCard => "B card",
+            ResidencePermitType.CCard => "C card",
+            ResidencePermitType.Annex15 => "Annex 15",
+            ResidencePermitType.EuRegistrationCertificate => "EU registration certificate",
+            _ => "Select permit type",
+        };
+
+    private void ClearCategoryForm() => _selectedCategory = null;
+
+    private async Task SaveCategory()
+    {
+        await _categoryForm.Validate();
+        if (!_categoryFormValid || _selectedCategory is null)
+        {
+            return;
+        }
+
+        _savingCategory = true;
+        try
+        {
+            var response = await SetResidenceCategoryHandler.Handle(
+                new Domain.Registration.RegistrationCaseId(CaseId),
+                new SetResidenceCategoryRequest(_selectedCategory.Value),
+                CancellationToken.None);
+
+            _policyMessage = response.PolicyMessage;
+            Snackbar.Add(
+                response.LegalResidenceEstablished
+                    ? "Residence category set — legal residence established."
+                    : "Residence category set.",
+                response.LegalResidenceEstablished ? Severity.Success : Severity.Info);
+
+            await OnUpdated.InvokeAsync();
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _savingCategory = false;
+        }
+    }
+
+    private void ClearPermitForm()
+    {
+        _permitType = null;
+        _cardNumber = null;
+        _validFrom = null;
+        _validUntil = null;
+        _issuingAuthority = null;
+    }
+
+    private async Task SavePermit()
+    {
+        await _permitForm.Validate();
+        if (!_permitFormValid || _permitType is null || _validFrom is null || _validUntil is null)
+        {
+            return;
+        }
+
+        _savingPermit = true;
+        try
+        {
+            var response = await RecordResidencePermitHandler.Handle(
+                new Domain.Registration.RegistrationCaseId(CaseId),
+                new RecordResidencePermitRequest(
+                    _permitType.Value,
+                    DateOnly.FromDateTime(_validFrom.Value),
+                    DateOnly.FromDateTime(_validUntil.Value),
+                    _cardNumber,
+                    _issuingAuthority),
+                CancellationToken.None);
+
+            _policyMessage = response.PolicyMessage;
+            Snackbar.Add(
+                response.LegalResidenceEstablished
+                    ? "Residence permit recorded — legal residence established."
+                    : "Residence permit recorded.",
+                response.LegalResidenceEstablished ? Severity.Success : Severity.Warning);
+
+            await OnUpdated.InvokeAsync();
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _savingPermit = false;
+        }
+    }
+
+    private void ClearDecisionForm()
+    {
+        _decisionReference = null;
+        _decisionDate = null;
+    }
+
+    private async Task SaveDecision()
+    {
+        await _decisionForm.Validate();
+        if (!_decisionFormValid || string.IsNullOrWhiteSpace(_decisionReference) || _decisionDate is null)
+        {
+            return;
+        }
+
+        _savingDecision = true;
+        try
+        {
+            var response = await RecordImmigrationDecisionHandler.Handle(
+                new Domain.Registration.RegistrationCaseId(CaseId),
+                new RecordImmigrationDecisionRequest(
+                    _decisionReference,
+                    DateOnly.FromDateTime(_decisionDate.Value)),
+                CancellationToken.None);
+
+            _policyMessage = response.PolicyMessage;
+            Snackbar.Add("Immigration decision recorded.", Severity.Success);
+            await OnUpdated.InvokeAsync();
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _savingDecision = false;
+        }
+    }
+}

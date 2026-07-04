@@ -1,5 +1,6 @@
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
@@ -24,6 +25,19 @@ public sealed record DocumentDto(
     string FileName,
     DateTimeOffset UploadedAt);
 
+public sealed record ResidencePermitDto(
+    Guid Id,
+    ResidencePermitType PermitType,
+    string? CardNumber,
+    DateOnly ValidFrom,
+    DateOnly ValidUntil,
+    string? IssuingAuthority,
+    DateTimeOffset RecordedAt);
+
+public sealed record ImmigrationDecisionDto(
+    string ReferenceNumber,
+    DateOnly DecisionDate);
+
 public sealed record RegistrationCaseDetailDto(
     Guid Id,
     RegistrationCaseStatus Status,
@@ -32,4 +46,7 @@ public sealed record RegistrationCaseDetailDto(
     DateTimeOffset OpenedAt,
     RegistrationCaseChecklistDto Checklist,
     PersonDto? Person,
+    ResidenceCategory? ResidenceCategory,
+    ResidencePermitDto? ResidencePermit,
+    ImmigrationDecisionDto? ImmigrationDecision,
     IReadOnlyList<DocumentDto> Documents);

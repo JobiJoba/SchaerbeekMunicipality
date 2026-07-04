@@ -1,4 +1,6 @@
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Immigration.Policies;
 
 namespace SchaerbeekMunicipality.Domain.Registration;
 
@@ -18,6 +20,10 @@ public sealed class RegistrationCase
     public OfficerId AssignedOfficerId { get; private set; }
 
     public PersonId? PersonId { get; private set; }
+
+    public ResidenceCategory? ResidenceCategory { get; private set; }
+
+    public ImmigrationDecisionReference? ImmigrationDecision { get; private set; }
 
     public DateTimeOffset OpenedAt { get; private set; }
 
@@ -56,12 +62,49 @@ public sealed class RegistrationCase
         return person;
     }
 
+    public void SetResidenceCategory(ResidenceCategory category)
+    {
+        EnsureStatus(RegistrationCaseStatus.Intake, nameof(SetResidenceCategory));
+        EnsureIdentityEstablished();
+
+        ResidenceCategory = category;
+    }
+
+    public void RecordImmigrationDecision(ImmigrationDecisionDetails details)
+    {
+        EnsureStatus(RegistrationCaseStatus.Intake, nameof(RecordImmigrationDecision));
+        EnsureIdentityEstablished();
+
+        ImmigrationDecision = ImmigrationDecisionReference.Create(details);
+    }
+
+    public void ApplyResidencePolicyResult(ResidencePolicyResult result)
+    {
+        if (result.IsValid)
+        {
+            Checklist.MarkLegalResidenceEstablished();
+        }
+        else
+        {
+            Checklist.ClearLegalResidenceEstablished();
+        }
+    }
+
     public void EnsureCanAttachDocuments()
     {
         if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
         {
             throw new InvalidRegistrationTransitionException(
                 $"Documents cannot be attached while the case is in status '{Status}'.");
+        }
+    }
+
+    private void EnsureIdentityEstablished()
+    {
+        if (!Checklist.IdentityEstablished)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Identity must be recorded before residence information can be captured.");
         }
     }
 

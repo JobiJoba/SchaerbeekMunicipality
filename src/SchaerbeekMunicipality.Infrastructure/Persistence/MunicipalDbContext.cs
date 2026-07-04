@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence;
@@ -12,6 +13,8 @@ public sealed class MunicipalDbContext(DbContextOptions<MunicipalDbContext> opti
     public DbSet<Person> Persons => Set<Person>();
 
     public DbSet<AdministrativeDocument> AdministrativeDocuments => Set<AdministrativeDocument>();
+
+    public DbSet<ResidencePermit> ResidencePermits => Set<ResidencePermit>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

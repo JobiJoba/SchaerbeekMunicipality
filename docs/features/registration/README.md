@@ -43,11 +43,11 @@ erDiagram
 
 | Status | Meaning |
 |--------|---------|
-| `Intake` | Case opened; identity and documents can be collected |
+| `Intake` | Case opened; identity, residence, and documents can be collected |
 | `UnderReview` | (future) Case under review |
 | Others | Defined in `RegistrationCaseStatus` for later phases |
 
-The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalResidenceEstablished`, etc.) independently of status. Recording identity sets `IdentityEstablished = true`.
+The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalResidenceEstablished`, `AddressDeclared`, etc.) independently of status. Recording identity sets `IdentityEstablished = true`; residence policies set `LegalResidenceEstablished` when evidence passes validation.
 
 ## Slice documentation
 
@@ -55,6 +55,9 @@ The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalReside
 - [Open registration case](./open-registration-case.md)
 - [Get registration case](./get-registration-case.md)
 - [Record identity](./record-identity.md)
+- [Set residence category](./set-residence-category.md)
+- [Record residence permit](./record-residence-permit.md)
+- [Record immigration decision](./record-immigration-decision.md)
 - [Attach document](./attach-document.md)
 
 ## Route registration

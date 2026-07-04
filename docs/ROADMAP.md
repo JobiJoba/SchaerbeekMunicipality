@@ -57,7 +57,9 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 2 — Residence category & permits (IDEA Phases 3–4, 11)
+## Phase 2 — Residence category & permits (IDEA Phases 3–4, 11) ✅
+
+**Status:** Complete — see [phases/phase-2-residence-category-permits.md](./phases/phase-2-residence-category-permits.md).
 
 **Goal:** Classify legal stay and attach permit evidence.
 
