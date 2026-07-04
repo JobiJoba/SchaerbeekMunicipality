@@ -21,6 +21,7 @@ Every first registration ultimately resolves four sequential decisions (see [IDE
 
 | Document | Purpose |
 |----------|---------|
+| [Application overview](./docs/APP-OVERVIEW.md) | Screenshots and current UI capabilities |
 | [Architecture](./docs/ARCHITECTURE.md) | Solution layout, vertical slices, DDD boundaries, API and UI conventions |
 | [Domain model](./docs/DOMAIN.md) | Bounded contexts, aggregates, workflows, state machines |
 | [Technology stack](./docs/TECH-STACK.md) | Stack choices, libraries, and what we deliberately avoid |
@@ -75,6 +76,8 @@ dotnet run --project src/SchaerbeekMunicipality.AppHost   # starts Web + Postgre
 Integration tests run against `Web` directly (SQLite, no AppHost). Day-to-day development uses the AppHost.
 
 **Phase 0 demo:** Open the Aspire dashboard → confirm Web and PostgreSQL are healthy → browse to the Web app → empty registration case list → switch officer role in the app bar.
+
+See [Application overview](./docs/APP-OVERVIEW.md) for screenshots of the current UI (case list, intake wizard, residence & permits, documents).
 
 ## Design principles
 
