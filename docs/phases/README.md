@@ -9,7 +9,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 1 | Case intake & identity | Complete | [phase-1-case-intake-identity.md](./phase-1-case-intake-identity.md) |
 | 2 | Residence category & permits | Complete | [phase-2-residence-category-permits.md](./phase-2-residence-category-permits.md) |
 | 2.1 | Intake corrections | Complete | [phase-2.1-intake-corrections.md](./phase-2.1-intake-corrections.md) |
-| 3 | Design system & UI kit | Planned | [phase-3-design-system.md](./phase-3-design-system.md) |
+| 3 | Design system & UI kit | Complete | [phase-3-design-system.md](./phase-3-design-system.md) |
 | 4 | Address & household | Planned | — |
 | 5 | National Register search & BIS | Planned | — |
 | 6 | Police verification loop | Planned | — |

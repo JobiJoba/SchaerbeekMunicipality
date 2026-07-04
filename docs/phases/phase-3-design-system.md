@@ -1,6 +1,6 @@
 # Phase 3 — Design system & UI kit
 
-**Status:** Planned (specification complete)
+**Status:** Complete — July 2026
 
 **Goal:** Turn the visual identity and UX philosophy of [www.1030.be](https://www.1030.be/fr) — the official Schaerbeek municipal website — into an enterprise-grade, reusable MudBlazor design system, so all subsequent phases build screens from one branded UI kit instead of ad-hoc MudBlazor defaults.
 

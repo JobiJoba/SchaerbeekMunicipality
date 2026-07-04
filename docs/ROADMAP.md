@@ -4,6 +4,20 @@ Phased plan to grow the educational municipality from an empty repository to a r
 
 Estimates are rough learning-project sizing, not calendar commitments.
 
+## Progress
+
+| Phase | Title | Status |
+|-------|-------|--------|
+| 0 | Foundation | ✅ Complete |
+| 0.1 | Tooling hygiene | ✅ Complete |
+| 1 | Case intake & identity | ✅ Complete |
+| 2 | Residence category & permits | ✅ Complete |
+| 2.1 | Intake corrections | ✅ Complete |
+| 3 | Design system & UI kit | ✅ Complete |
+| 4+ | Address, NR search, police, decision, … | Planned |
+
+Delivery notes for completed phases: [phases/](./phases/).
+
 ---
 
 ## Phase 0 — Foundation ✅
@@ -17,6 +31,20 @@ Estimates are rough learning-project sizing, not calendar commitments.
 **Demo:** Run AppHost → Aspire dashboard shows Web + PostgreSQL healthy; empty case list; role switcher in nav.
 
 **Tests:** Domain factory test + integration smoke test on `/health` (SQLite, no AppHost).
+
+---
+
+## Phase 0.1 — Tooling hygiene ✅
+
+**Status:** Complete — see [phases/phase-0.1-tooling-hygiene.md](./phases/phase-0.1-tooling-hygiene.md).
+
+**Goal:** Modernize solution and dependency management before business slices expand.
+
+**Deliverables:** SLNX solution format, `Directory.Packages.props` central package management, legacy `.sln` removed.
+
+**Demo:** `dotnet restore` / `dotnet build` unchanged for developers; all package versions live in one manifest.
+
+**Tests:** Existing Phase 0 tests stay green (no behavior change).
 
 ---
 
@@ -128,11 +156,11 @@ Estimates are rough learning-project sizing, not calendar commitments.
 
 ---
 
-## Phase 3 — Design system & UI kit (Schaerbeek visual identity)
+## Phase 3 — Design system & UI kit (Schaerbeek visual identity) ✅
+
+**Status:** Complete — see [phases/phase-3-design-system.md](./phases/phase-3-design-system.md). Full specification lives in [design-system/](./design-system/).
 
 **Goal:** Reverse-engineer the design language of [www.1030.be](https://www.1030.be/fr) into an enterprise-grade MudBlazor design system so every subsequent phase builds pages from a consistent, branded UI kit instead of raw MudBlazor defaults.
-
-**Plan:** See [phases/phase-3-design-system.md](./phases/phase-3-design-system.md). Full specification lives in [design-system/](./design-system/).
 
 **Slices (infrastructure-style, no domain changes):**
 
