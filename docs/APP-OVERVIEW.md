@@ -1,6 +1,6 @@
 # Application overview
 
-Visual tour of the Schaerbeek Population Department back-office as of **Phase 2** (residence category & permits), with intake correction UI from **Phase 2.1** in progress.
+Visual tour of the Schaerbeek Population Department back-office as of **Phase 4** (address, household, civil status), on the Schaerbeek design system from **Phase 3**, with intake correction UI from **Phase 2.1**.
 
 Run the app locally:
 
@@ -42,7 +42,7 @@ The **New case** button opens a dialog to choose a visit reason. The current off
 
 ## Record identity (intake step)
 
-A freshly opened case starts on the identity step. The completeness checklist tracks progress across identity, legal residence, and address. Later steps stay locked until identity is recorded.
+A freshly opened case starts on the identity step. The completeness checklist tracks progress across identity, legal residence, and address. Later steps stay visible; address and household require identity first.
 
 ![Identity intake form on a new case](./screenshots/03-identity-intake-form.png)
 
@@ -60,11 +60,11 @@ Once identity is saved, the legal residence section unlocks. EU citizens can be 
 
 ---
 
-## Legal residence — non-EU worker with permit & documents
+## Legal residence — non-EU worker with permit
 
-Non-EU categories require a residence permit. Officers can attach supporting documents (local file upload) and review what is already on file.
+Non-EU categories require a residence permit. Officers can attach supporting documents and review what is already on file.
 
-![Full case — non-EU worker, B card permit, attached document](./screenshots/06-full-case-with-permit-and-documents.png)
+![Full case — identity, non-EU permit, address checklist](./screenshots/06-full-case-with-permit-and-documents.png)
 
 **Capabilities:**
 
@@ -75,7 +75,38 @@ Non-EU categories require a residence permit. Officers can attach supporting doc
 | Documents | `AttachDocument`, `RemoveDocument` |
 | Policies | `EuCitizenPolicy`, `NonEuWorkerPolicy`, `StudentPolicy` — checklist `LegalResidenceEstablished` |
 
-### Document upload & attached files
+---
+
+## Address declaration (1030 Schaerbeek)
+
+First registration at this desk requires a domicile **within Schaerbeek**. The municipality is fixed to `1030 Schaerbeek`; officers pick a street from the local register, then enter number and box.
+
+![Address declaration form — fixed municipality and street autocomplete](./screenshots/10-address-declaration-form.png)
+
+**Capabilities:** `DeclareAddress` — sets checklist `AddressDeclared`; `RecordHousingSituation` (tenant, owner, …). Both support edit after save.
+
+---
+
+## Address, household & civil status (complete case)
+
+A fully progressed case shows declared domicile, housing situation, household members, and civil status with marriage details when applicable.
+
+![Declared address and housing situation](./screenshots/08-address-household-civil-status.png)
+
+![Household members, civil status, and document upload](./screenshots/09-civil-status-and-household.png)
+
+**Capabilities:**
+
+| Area | Use cases |
+|------|-----------|
+| Address | `DeclareAddress`, `RecordHousingSituation` |
+| Household | `RecordHouseholdComposition` — add/remove members (spouse, child, …) |
+| Civil status | `RecordCivilStatus` — conditional marriage fields when married |
+| Reference data | Schaerbeek street autocomplete (`GET /api/registration/streets?postalCode=1030`) |
+
+---
+
+## Document upload & attached files
 
 Immigration decision stub, file upload by document type, and a list of attached documents with remove action.
 
@@ -89,7 +120,7 @@ Immigration decision stub, file upload by document type, and a list of attached 
 |------|-------|---------|
 | Home | `/home` | Dashboard and workflow overview |
 | Registration cases | `/registration/cases` | Case list and detail wizard |
-| Design system | `/design-system` | MudBlazor component showcase (Phase 3) |
+| Design system | `/design-system` | Schaerbeek UI kit showcase (Phase 3) |
 
 The app bar shows a fake officer identity (**Marie Dupont**) and a role switcher for development (`PopulationOfficer`, etc.).
 
@@ -99,6 +130,6 @@ The app bar shows a fake officer identity (**Marie Dupont**) and a role switcher
 
 See [ROADMAP.md](./ROADMAP.md) for upcoming phases:
 
-- **Phase 4** — address declaration and household
-- **Phase 5+** — National Register search, police verification, final decision, certificates
-- **Phase 3** — Schaerbeek-branded design system (current UI uses default MudBlazor theme)
+- **Phase 5** — National Register search and BIS duplicate detection
+- **Phase 6** — Police verification loop
+- **Phase 7+** — Final decision, registration, certificates

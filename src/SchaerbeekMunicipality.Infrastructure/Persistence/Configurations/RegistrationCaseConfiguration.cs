@@ -64,5 +64,19 @@ internal sealed class RegistrationCaseConfiguration : IEntityTypeConfiguration<R
             decision.Property(d => d.ReferenceNumber).HasColumnName("immigration_decision_reference").HasMaxLength(128);
             decision.Property(d => d.DecisionDate).HasColumnName("immigration_decision_date");
         });
+
+        builder.OwnsOne(c => c.DeclaredAddress, address =>
+        {
+            address.Property(a => a.Street).HasColumnName("address_street").HasMaxLength(256);
+            address.Property(a => a.HouseNumber).HasColumnName("address_house_number").HasMaxLength(16);
+            address.Property(a => a.Box).HasColumnName("address_box").HasMaxLength(16);
+            address.Property(a => a.PostalCode).HasColumnName("address_postal_code").HasMaxLength(4);
+            address.Property(a => a.Municipality).HasColumnName("address_municipality").HasMaxLength(128);
+        });
+
+        builder.Property(c => c.HousingSituation)
+            .HasColumnName("housing_situation")
+            .HasConversion<string>()
+            .HasMaxLength(64);
     }
 }

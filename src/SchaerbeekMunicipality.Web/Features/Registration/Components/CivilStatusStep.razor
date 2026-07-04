@@ -1,0 +1,254 @@
+@using SchaerbeekMunicipality.Domain.Identity
+@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
+@using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
+@using SchaerbeekMunicipality.Web.Features.Registration.RecordCivilStatus
+@inject RecordCivilStatusHandler RecordCivilStatusHandler
+@inject IAppDialogService DialogService
+@inject ISnackbar Snackbar
+
+<AppSection Title="Civil status">
+    @if (!_case.Checklist.IdentityEstablished)
+    {
+        <AppInfoBox>
+            Record identity before capturing civil status.
+        </AppInfoBox>
+    }
+    else if (_case.CivilStatus is null || _editing)
+    {
+        <AppCard Title="Civil status" Outlined="true">
+            <MudForm @ref="_form" @bind-IsValid="_formValid">
+                <AppFormSection Title="Marital status">
+                    <MudItem xs="12" md="6">
+                        <MudSelect T="CivilStatus?"
+                                   @bind-Value="_status"
+                                   Label="Civil status"
+                                   Required="true"
+                                   ToStringFunc="@FormatStatus">
+                            <MudSelectItem T="CivilStatus?" Value="CivilStatus.Single">Single</MudSelectItem>
+                            <MudSelectItem T="CivilStatus?" Value="CivilStatus.Married">Married</MudSelectItem>
+                            <MudSelectItem T="CivilStatus?" Value="CivilStatus.Divorced">Divorced</MudSelectItem>
+                            <MudSelectItem T="CivilStatus?" Value="CivilStatus.Widowed">Widowed</MudSelectItem>
+                            <MudSelectItem T="CivilStatus?" Value="CivilStatus.Separated">Separated</MudSelectItem>
+                            <MudSelectItem T="CivilStatus?" Value="CivilStatus.RegisteredPartnership">Registered partnership</MudSelectItem>
+                        </MudSelect>
+                    </MudItem>
+                </AppFormSection>
+
+                @if (RequiresMarriageDetails(_status))
+                {
+                    <AppFormSection Title="Marriage / partnership details">
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="_spouseGivenName" Label="Spouse given name" Required="true" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="_spouseFamilyName" Label="Spouse family name" Required="true" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudDatePicker @bind-Date="_marriageDate" Label="Marriage date" Required="true" MaxDate="DateTime.Today" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="_marriagePlace" Label="Marriage place" />
+                        </MudItem>
+                    </AppFormSection>
+                }
+
+                <AppSaveCancelBar SaveText="@(_editing ? "Save changes" : "Record civil status")"
+                                  CancelText="@(_editing ? "Cancel" : "Clear")"
+                                  Saving="_saving"
+                                  Disabled="@(_editing && !FormDirty)"
+                                  OnSave="Save"
+                                  OnCancel="HandleCancel" />
+            </MudForm>
+        </AppCard>
+    }
+    else
+    {
+        <AppCard Title="Civil status" Outlined="true">
+            <HeaderActions>
+                @if (CanEdit)
+                {
+                    <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                               Variant="Variant.Text"
+                               OnClick="StartEditing"
+                               aria-label="Edit civil status">
+                        Edit
+                    </MudButton>
+                }
+            </HeaderActions>
+            <ChildContent>
+                <MudText Typo="Typo.body1">@FormatStatus(_case.CivilStatus!.Status)</MudText>
+                @if (RequiresMarriageDetails(_case.CivilStatus.Status))
+                {
+                    <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">
+                        @_case.CivilStatus.SpouseGivenName @_case.CivilStatus.SpouseFamilyName
+                        @if (_case.CivilStatus.MarriageDate is { } marriageDate)
+                        {
+                            <span> · married @marriageDate.ToString("d")</span>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(_case.CivilStatus.MarriagePlace))
+                        {
+                            <span> · @_case.CivilStatus.MarriagePlace</span>
+                        }
+                    </MudText>
+                }
+            </ChildContent>
+        </AppCard>
+    }
+</AppSection>
+
+@code {
+    [Parameter, EditorRequired]
+    public RegistrationCaseDetailDto Case { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public Guid CaseId { get; set; }
+
+    [Parameter]
+    public bool CanEdit { get; set; }
+
+    [Parameter]
+    public EventCallback OnUpdated { get; set; }
+
+    private RegistrationCaseDetailDto _case = null!;
+    private bool _editing;
+    private MudForm _form = null!;
+    private bool _formValid;
+    private bool _saving;
+
+    private CivilStatus? _status;
+    private string? _spouseGivenName;
+    private string? _spouseFamilyName;
+    private DateTime? _marriageDate;
+    private string? _marriagePlace;
+
+    protected override void OnParametersSet()
+    {
+        _case = Case;
+        _editing = false;
+    }
+
+    private bool FormDirty =>
+        _case.CivilStatus is not null &&
+        (_status != _case.CivilStatus.Status ||
+         _spouseGivenName != _case.CivilStatus.SpouseGivenName ||
+         _spouseFamilyName != _case.CivilStatus.SpouseFamilyName ||
+         _marriageDate?.Date != _case.CivilStatus.MarriageDate?.ToDateTime(TimeOnly.MinValue).Date ||
+         _marriagePlace != _case.CivilStatus.MarriagePlace);
+
+    private static bool RequiresMarriageDetails(CivilStatus? status) =>
+        status is CivilStatus.Married or CivilStatus.RegisteredPartnership;
+
+    private static string FormatStatus(CivilStatus? status) =>
+        status switch
+        {
+            CivilStatus.Single => "Single",
+            CivilStatus.Married => "Married",
+            CivilStatus.Divorced => "Divorced",
+            CivilStatus.Widowed => "Widowed",
+            CivilStatus.Separated => "Separated",
+            CivilStatus.RegisteredPartnership => "Registered partnership",
+            _ => "Select status",
+        };
+
+    private void StartEditing()
+    {
+        if (_case.CivilStatus is null)
+        {
+            return;
+        }
+
+        _status = _case.CivilStatus.Status;
+        _spouseGivenName = _case.CivilStatus.SpouseGivenName;
+        _spouseFamilyName = _case.CivilStatus.SpouseFamilyName;
+        _marriageDate = _case.CivilStatus.MarriageDate?.ToDateTime(TimeOnly.MinValue);
+        _marriagePlace = _case.CivilStatus.MarriagePlace;
+        _editing = true;
+    }
+
+    private async Task CancelEditing()
+    {
+        if (FormDirty)
+        {
+            var confirmed = await DialogService.ConfirmAsync(
+                "Discard changes?",
+                "You have unsaved civil status changes.",
+                "Discard");
+
+            if (!confirmed)
+            {
+                return;
+            }
+        }
+
+        _editing = false;
+    }
+
+    private void ClearForm()
+    {
+        _status = null;
+        _spouseGivenName = null;
+        _spouseFamilyName = null;
+        _marriageDate = null;
+        _marriagePlace = null;
+    }
+
+    private async Task HandleCancel()
+    {
+        if (_editing)
+        {
+            await CancelEditing();
+        }
+        else
+        {
+            ClearForm();
+        }
+    }
+
+    private async Task Save()
+    {
+        await _form.Validate();
+        if (!_formValid || _status is null)
+        {
+            return;
+        }
+
+        if (RequiresMarriageDetails(_status) && _marriageDate is null)
+        {
+            return;
+        }
+
+        _saving = true;
+        try
+        {
+            await RecordCivilStatusHandler.Handle(
+                new Domain.Registration.RegistrationCaseId(CaseId),
+                new RecordCivilStatusRequest(
+                    _status.Value,
+                    _spouseGivenName,
+                    _spouseFamilyName,
+                    _marriageDate is null ? null : DateOnly.FromDateTime(_marriageDate.Value),
+                    _marriagePlace),
+                CancellationToken.None);
+
+            _editing = false;
+            Snackbar.Add("Civil status saved.", Severity.Success);
+            await OnUpdated.InvokeAsync();
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        catch (ArgumentException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _saving = false;
+        }
+    }
+}

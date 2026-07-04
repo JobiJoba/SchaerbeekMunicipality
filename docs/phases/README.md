@@ -10,7 +10,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 2 | Residence category & permits | Complete | [phase-2-residence-category-permits.md](./phase-2-residence-category-permits.md) |
 | 2.1 | Intake corrections | Complete | [phase-2.1-intake-corrections.md](./phase-2.1-intake-corrections.md) |
 | 3 | Design system & UI kit | Complete | [phase-3-design-system.md](./phase-3-design-system.md) |
-| 4 | Address & household | Planned | — |
+| 4 | Address & household | Complete | [phase-4-address-household.md](./phase-4-address-household.md) |
 | 5 | National Register search & BIS | Planned | — |
 | 6 | Police verification loop | Planned | — |
 | 7 | Decision & registration | Planned | — |

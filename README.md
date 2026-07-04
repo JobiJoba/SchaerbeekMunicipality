@@ -77,7 +77,7 @@ Integration tests run against `Web` directly (SQLite, no AppHost). Day-to-day de
 
 **Phase 0 demo:** Open the Aspire dashboard → confirm Web and PostgreSQL are healthy → browse to the Web app → empty registration case list → switch officer role in the app bar.
 
-See [Application overview](./docs/APP-OVERVIEW.md) for screenshots of the current UI (case list, intake wizard, residence & permits, documents).
+See [Application overview](./docs/APP-OVERVIEW.md) for screenshots of the current UI (case list, intake wizard, residence & permits, address & household, civil status, documents).
 
 ## Design principles
 

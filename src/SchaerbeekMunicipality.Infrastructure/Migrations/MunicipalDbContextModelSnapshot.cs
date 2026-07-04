@@ -73,6 +73,67 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.ToTable("administrative_documents", (string)null);
                 });
 
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.Household.Household", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("RegistrationCaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("registration_case_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_households");
+
+                    b.HasIndex("RegistrationCaseId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_households_registration_case_id");
+
+                    b.ToTable("households", (string)null);
+                });
+
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.Household.HouseholdMember", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<DateOnly>("BirthDate")
+                        .HasColumnType("date")
+                        .HasColumnName("birth_date");
+
+                    b.Property<string>("FamilyName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("family_name");
+
+                    b.Property<string>("GivenName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("given_name");
+
+                    b.Property<Guid>("HouseholdId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("household_id");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("role");
+
+                    b.HasKey("Id")
+                        .HasName("pk_household_members");
+
+                    b.HasIndex("HouseholdId")
+                        .HasDatabaseName("ix_household_members_household_id");
+
+                    b.ToTable("household_members", (string)null);
+                });
+
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Identity.Person", b =>
                 {
                     b.Property<Guid>("Id")
@@ -155,6 +216,52 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.ToTable("residence_permits", (string)null);
                 });
 
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.ReferenceData.MunicipalityReference", b =>
+                {
+                    b.Property<string>("PostalCode")
+                        .HasMaxLength(4)
+                        .HasColumnType("character varying(4)")
+                        .HasColumnName("postal_code");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("name");
+
+                    b.HasKey("PostalCode")
+                        .HasName("pk_municipalities");
+
+                    b.ToTable("municipalities", (string)null);
+                });
+
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.ReferenceData.StreetReference", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("character varying(4)")
+                        .HasColumnName("postal_code");
+
+                    b.HasKey("Id")
+                        .HasName("pk_streets");
+
+                    b.HasIndex("PostalCode")
+                        .HasDatabaseName("ix_streets_postal_code");
+
+                    b.ToTable("streets", (string)null);
+                });
+
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Registration.RegistrationCase", b =>
                 {
                     b.Property<Guid>("Id")
@@ -164,6 +271,11 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.Property<Guid>("AssignedOfficerId")
                         .HasColumnType("uuid")
                         .HasColumnName("assigned_officer_id");
+
+                    b.Property<string>("HousingSituation")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("housing_situation");
 
                     b.Property<DateTimeOffset>("OpenedAt")
                         .HasColumnType("timestamp with time zone")
@@ -196,8 +308,107 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.ToTable("registration_cases", (string)null);
                 });
 
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.Household.HouseholdMember", b =>
+                {
+                    b.HasOne("SchaerbeekMunicipality.Domain.Household.Household", null)
+                        .WithMany("Members")
+                        .HasForeignKey("HouseholdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_household_members_households_household_id");
+                });
+
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.Identity.Person", b =>
+                {
+                    b.OwnsOne("SchaerbeekMunicipality.Domain.Identity.CivilStatusRecord", "CivilStatus", b1 =>
+                        {
+                            b1.Property<Guid>("PersonId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<DateOnly?>("MarriageDate")
+                                .HasColumnType("date")
+                                .HasColumnName("marriage_date");
+
+                            b1.Property<string>("MarriagePlace")
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("marriage_place");
+
+                            b1.Property<string>("SpouseFamilyName")
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("spouse_family_name");
+
+                            b1.Property<string>("SpouseGivenName")
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("spouse_given_name");
+
+                            b1.Property<string>("Status")
+                                .IsRequired()
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
+                                .HasColumnName("civil_status");
+
+                            b1.HasKey("PersonId");
+
+                            b1.ToTable("persons");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PersonId")
+                                .HasConstraintName("fk_persons_persons_id");
+                        });
+
+                    b.Navigation("CivilStatus");
+                });
+
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Registration.RegistrationCase", b =>
                 {
+                    b.OwnsOne("SchaerbeekMunicipality.Domain.Address.BelgianAddress", "DeclaredAddress", b1 =>
+                        {
+                            b1.Property<Guid>("RegistrationCaseId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<string>("Box")
+                                .HasMaxLength(16)
+                                .HasColumnType("character varying(16)")
+                                .HasColumnName("address_box");
+
+                            b1.Property<string>("HouseNumber")
+                                .IsRequired()
+                                .HasMaxLength(16)
+                                .HasColumnType("character varying(16)")
+                                .HasColumnName("address_house_number");
+
+                            b1.Property<string>("Municipality")
+                                .IsRequired()
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("address_municipality");
+
+                            b1.Property<string>("PostalCode")
+                                .IsRequired()
+                                .HasMaxLength(4)
+                                .HasColumnType("character varying(4)")
+                                .HasColumnName("address_postal_code");
+
+                            b1.Property<string>("Street")
+                                .IsRequired()
+                                .HasMaxLength(256)
+                                .HasColumnType("character varying(256)")
+                                .HasColumnName("address_street");
+
+                            b1.HasKey("RegistrationCaseId");
+
+                            b1.ToTable("registration_cases");
+
+                            b1.WithOwner()
+                                .HasForeignKey("RegistrationCaseId")
+                                .HasConstraintName("fk_registration_cases_registration_cases_id");
+                        });
+
                     b.OwnsOne("SchaerbeekMunicipality.Domain.Immigration.ImmigrationDecisionReference", "ImmigrationDecision", b1 =>
                         {
                             b1.Property<Guid>("RegistrationCaseId")
@@ -261,7 +472,14 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.Navigation("Checklist")
                         .IsRequired();
 
+                    b.Navigation("DeclaredAddress");
+
                     b.Navigation("ImmigrationDecision");
+                });
+
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.Household.Household", b =>
+                {
+                    b.Navigation("Members");
                 });
 #pragma warning restore 612, 618
         }

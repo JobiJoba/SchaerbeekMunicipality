@@ -14,7 +14,8 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 2 | Residence category & permits | ✅ Complete |
 | 2.1 | Intake corrections | ✅ Complete |
 | 3 | Design system & UI kit | ✅ Complete |
-| 4+ | Address, NR search, police, decision, … | Planned |
+| 4 | Address & household | ✅ Complete |
+| 5+ | NR search, police, decision, … | Planned |
 
 Delivery notes for completed phases: [phases/](./phases/).
 
@@ -185,7 +186,9 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 ---
 
-## Phase 4 — Address & household (IDEA Phases 5–8, 9–10)
+## Phase 4 — Address & household (IDEA Phases 5–8, 9–10) ✅
+
+**Status:** Complete — see [phases/phase-4-address-household.md](./phases/phase-4-address-household.md).
 
 **Goal:** Declare domicile and household; civil status.
 

@@ -1,0 +1,235 @@
+@using SchaerbeekMunicipality.Domain.Household
+@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
+@using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
+@using SchaerbeekMunicipality.Web.Features.Registration.RecordHouseholdComposition
+@inject RecordHouseholdCompositionHandler RecordHouseholdCompositionHandler
+@inject IAppDialogService DialogService
+@inject ISnackbar Snackbar
+
+<AppSection Title="Household composition">
+    @if (!_case.Checklist.IdentityEstablished)
+    {
+        <AppInfoBox>
+            Record identity before adding household members.
+        </AppInfoBox>
+    }
+    else if (_case.DeclaredAddress is null)
+    {
+        <AppInfoBox>
+            Declare an address before recording household composition.
+        </AppInfoBox>
+    }
+    else
+    {
+        <AppCard Title="Household members" Outlined="true">
+            @if (_members.Count > 0)
+            {
+                <MudList T="string" Dense="true" Class="mb-4">
+                    @foreach (var member in _members)
+                    {
+                        <MudListItem T="string">
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="flex-grow-1">
+                                <div>
+                                    <MudText Typo="Typo.body1">@member.GivenName @member.FamilyName</MudText>
+                                    <MudText Typo="Typo.caption" Color="Color.Secondary">
+                                        @FormatRole(member.Role) · born @member.BirthDate.ToString("d")
+                                    </MudText>
+                                </div>
+                                @if (CanEdit)
+                                {
+                                    <MudIconButton Icon="@Icons.Material.Outlined.Delete"
+                                                   Color="Color.Error"
+                                                   Size="Size.Small"
+                                                   aria-label="@($"Remove {member.GivenName} {member.FamilyName}")"
+                                                   OnClick="@(() => RemoveMember(member))" />
+                                }
+                            </MudStack>
+                        </MudListItem>
+                    }
+                </MudList>
+            }
+            else
+            {
+                <AppInfoBox Class="mb-4">
+                    Add household members who live at the declared address (spouse, children, …).
+                </AppInfoBox>
+            }
+
+            @if (CanEdit)
+            {
+                <MudForm @ref="_memberForm" @bind-IsValid="_memberFormValid">
+                    <AppFormSection Title="Add member">
+                        <MudItem xs="12" md="4">
+                            <MudTextField @bind-Value="_newGivenName" Label="Given name" Required="true" />
+                        </MudItem>
+                        <MudItem xs="12" md="4">
+                            <MudTextField @bind-Value="_newFamilyName" Label="Family name" Required="true" />
+                        </MudItem>
+                        <MudItem xs="12" md="4">
+                            <MudDatePicker @bind-Date="_newBirthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudSelect T="HouseholdMemberRole?"
+                                       @bind-Value="_newRole"
+                                       Label="Role"
+                                       Required="true"
+                                       ToStringFunc="@FormatRole">
+                                <MudSelectItem T="HouseholdMemberRole?" Value="HouseholdMemberRole.Head">Head of household</MudSelectItem>
+                                <MudSelectItem T="HouseholdMemberRole?" Value="HouseholdMemberRole.Spouse">Spouse</MudSelectItem>
+                                <MudSelectItem T="HouseholdMemberRole?" Value="HouseholdMemberRole.Child">Child</MudSelectItem>
+                                <MudSelectItem T="HouseholdMemberRole?" Value="HouseholdMemberRole.Other">Other</MudSelectItem>
+                            </MudSelect>
+                        </MudItem>
+                    </AppFormSection>
+
+                    <MudButton Variant="Variant.Outlined"
+                               StartIcon="@Icons.Material.Outlined.PersonAdd"
+                               OnClick="AddMember"
+                               Disabled="@(!CanAddMember)">
+                        Add to list
+                    </MudButton>
+                </MudForm>
+
+                @if (CompositionDirty)
+                {
+                    <AppSaveCancelBar Class="mt-4"
+                                      SaveText="Save household"
+                                      CancelText="Reset"
+                                      Saving="_saving"
+                                      OnSave="SaveComposition"
+                                      OnCancel="ResetMembers" />
+                }
+            }
+        </AppCard>
+    }
+</AppSection>
+
+@code {
+    [Parameter, EditorRequired]
+    public RegistrationCaseDetailDto Case { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public Guid CaseId { get; set; }
+
+    [Parameter]
+    public bool CanEdit { get; set; }
+
+    [Parameter]
+    public EventCallback OnUpdated { get; set; }
+
+    private RegistrationCaseDetailDto _case = null!;
+    private readonly List<MemberDraft> _members = [];
+    private MudForm _memberForm = null!;
+    private bool _memberFormValid;
+    private bool _saving;
+
+    private string? _newGivenName;
+    private string? _newFamilyName;
+    private DateTime? _newBirthDate;
+    private HouseholdMemberRole? _newRole;
+
+    protected override void OnParametersSet()
+    {
+        _case = Case;
+        _members.Clear();
+        _members.AddRange(_case.HouseholdMembers.Select(m => new MemberDraft(
+            m.GivenName,
+            m.FamilyName,
+            m.BirthDate,
+            m.Role)));
+    }
+
+    private bool CompositionDirty =>
+        _members.Count != _case.HouseholdMembers.Count ||
+        _members.Zip(_case.HouseholdMembers).Any(pair =>
+            pair.First.GivenName != pair.Second.GivenName ||
+            pair.First.FamilyName != pair.Second.FamilyName ||
+            pair.First.BirthDate != pair.Second.BirthDate ||
+            pair.First.Role != pair.Second.Role);
+
+    private bool CanAddMember =>
+        !string.IsNullOrWhiteSpace(_newGivenName) &&
+        !string.IsNullOrWhiteSpace(_newFamilyName) &&
+        _newBirthDate is not null &&
+        _newRole is not null;
+
+    private static string FormatRole(HouseholdMemberRole? role) =>
+        role switch
+        {
+            HouseholdMemberRole.Head => "Head of household",
+            HouseholdMemberRole.Spouse => "Spouse",
+            HouseholdMemberRole.Child => "Child",
+            HouseholdMemberRole.Other => "Other",
+            _ => "Select role",
+        };
+
+    private async Task AddMember()
+    {
+        await _memberForm.Validate();
+        if (!_memberFormValid || _newBirthDate is null || _newRole is null)
+        {
+            return;
+        }
+
+        _members.Add(new MemberDraft(
+            _newGivenName!,
+            _newFamilyName!,
+            DateOnly.FromDateTime(_newBirthDate.Value),
+            _newRole.Value));
+
+        _newGivenName = null;
+        _newFamilyName = null;
+        _newBirthDate = null;
+        _newRole = null;
+    }
+
+    private void RemoveMember(MemberDraft member) => _members.Remove(member);
+
+    private void ResetMembers()
+    {
+        _members.Clear();
+        _members.AddRange(_case.HouseholdMembers.Select(m => new MemberDraft(
+            m.GivenName,
+            m.FamilyName,
+            m.BirthDate,
+            m.Role)));
+    }
+
+    private async Task SaveComposition()
+    {
+        _saving = true;
+        try
+        {
+            await RecordHouseholdCompositionHandler.Handle(
+                new Domain.Registration.RegistrationCaseId(CaseId),
+                new RecordHouseholdCompositionRequest(
+                    _members.Select(m => new HouseholdMemberRequest(
+                        m.GivenName,
+                        m.FamilyName,
+                        m.BirthDate,
+                        m.Role)).ToList()),
+                CancellationToken.None);
+
+            Snackbar.Add("Household composition saved.", Severity.Success);
+            await OnUpdated.InvokeAsync();
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _saving = false;
+        }
+    }
+
+    private sealed record MemberDraft(
+        string GivenName,
+        string FamilyName,
+        DateOnly BirthDate,
+        HouseholdMemberRole Role);
+}
