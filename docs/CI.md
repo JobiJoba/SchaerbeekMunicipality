@@ -72,12 +72,13 @@ Once the repository is on GitHub, enable branch protection on `main`:
 | **Dependencies** | NuGet packages are restored from public feeds only |
 | **Credentials** | Never commit connection strings, API keys, or `.env` files |
 
-## PostgreSQL migration job (from Phase 1)
+## PostgreSQL migration job (Phase 1+)
 
-The SQLite suite creates its schema with `EnsureCreated()` and **cannot validate migrations** (they are PostgreSQL-specific). Once the first real migration exists (Phase 1), add a separate job that applies all migrations against Testcontainers PostgreSQL:
+The SQLite suite creates its schema with `EnsureCreated()` and **cannot validate migrations** (they are PostgreSQL-specific). A separate workflow applies all migrations against Testcontainers PostgreSQL:
+
+File: [`.github/workflows/ci-postgres.yml`](../.github/workflows/ci-postgres.yml)
 
 ```yaml
-# .github/workflows/ci-postgres.yml (add in Phase 1, when the first migration exists)
 jobs:
   integration-postgres:
     runs-on: ubuntu-latest
@@ -86,11 +87,10 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
-      # Testcontainers requires Docker — available on ubuntu-latest
       - run: dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter Category=PostgreSQL
 ```
 
-Keep this **off the critical PR path** (nightly or push-to-main trigger) so PR feedback stays fast. SQLite tests remain the gate for merge.
+Runs on push to `main` and via `workflow_dispatch`. Keep this **off the critical PR path** so PR feedback stays fast. SQLite tests remain the gate for merge.
 
 ## Troubleshooting
 

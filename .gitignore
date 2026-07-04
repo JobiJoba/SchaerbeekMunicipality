@@ -38,6 +38,7 @@ Thumbs.db
 ## Test / local
 TestResults/
 coverage/
+uploads/
 *.db
 *.db-shm
 *.db-wal

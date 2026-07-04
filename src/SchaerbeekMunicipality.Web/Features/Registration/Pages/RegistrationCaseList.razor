@@ -1,10 +1,27 @@
 @page "/registration/cases"
+@using SchaerbeekMunicipality.Web.Auth
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases
+@using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase
 @inject ListRegistrationCasesHandler Handler
+@inject OpenRegistrationCaseHandler OpenHandler
+@inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+@inject NavigationManager Navigation
 
 <PageTitle>Registration cases</PageTitle>
 
-<MudText Typo="Typo.h4" GutterBottom="true">Registration cases</MudText>
+<div class="registration-cases-header mb-4">
+    <MudText Typo="Typo.h4" Class="mb-0">Registration cases</MudText>
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Primary"
+               StartIcon="@Icons.Material.Filled.Add"
+               OnClick="OpenNewCaseDialog">
+        New case
+    </MudButton>
+</div>
+
 <MudText Typo="Typo.body1" Class="mb-4">
     First-registration procedures managed by the Population Department.
 </MudText>
@@ -15,16 +32,43 @@
 }
 else if (_cases.Count == 0)
 {
-    <MudAlert Severity="Severity.Info" Variant="Variant.Outlined">
-        No registration cases yet. Cases will appear here once intake begins (Phase 1).
+    <MudAlert Severity="Severity.Info" Variant="Variant.Outlined" Class="mb-4">
+        No registration cases yet. Open an intake file to get started.
     </MudAlert>
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Primary"
+               Size="Size.Large"
+               StartIcon="@Icons.Material.Filled.Add"
+               OnClick="OpenNewCaseDialog">
+        New case
+    </MudButton>
 }
 else
 {
     <MudDataGrid Items="_cases" Dense="true" Hover="true">
         <Columns>
-            <PropertyColumn Property="x => x.Id" Title="Case ID" />
+            <TemplateColumn Title="Case ID">
+                <CellTemplate>
+                    <MudLink Href="@($"/registration/cases/{context.Item.Id}")">
+                        @context.Item.Id.ToString()[..8]…
+                    </MudLink>
+                </CellTemplate>
+            </TemplateColumn>
+            <PropertyColumn Property="x => x.VisitReason" Title="Visit reason" />
             <PropertyColumn Property="x => x.Status" Title="Status" />
+            <PropertyColumn Property="x => x.OpenedAt" Title="Opened" Format="g" />
+            <TemplateColumn Title="Identity">
+                <CellTemplate>
+                    @if (context.Item.IdentityEstablished)
+                    {
+                        <MudIcon Icon="@Icons.Material.Filled.CheckCircle" Color="Color.Success" Size="Size.Small" />
+                    }
+                    else
+                    {
+                        <MudIcon Icon="@Icons.Material.Filled.RadioButtonUnchecked" Color="Color.Default" Size="Size.Small" />
+                    }
+                </CellTemplate>
+            </TemplateColumn>
         </Columns>
     </MudDataGrid>
 }
@@ -35,7 +79,33 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        await LoadCases();
+    }
+
+    private async Task LoadCases()
+    {
+        _loading = true;
         _cases = await Handler.Handle(CancellationToken.None);
         _loading = false;
     }
+
+    private async Task OpenNewCaseDialog()
+    {
+        var parameters = new DialogParameters<NewCaseDialog>
+        {
+            { x => x.OfficerName, CurrentOfficer.DisplayName },
+            { x => x.Handler, OpenHandler },
+        };
+
+        var options = new DialogOptions { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Small, FullWidth = true };
+        var dialog = await DialogService.ShowAsync<NewCaseDialog>("Open case", parameters, options);
+        var result = await dialog.Result;
+
+        if (result is { Canceled: false, Data: Guid caseId })
+        {
+            Snackbar.Add("Registration case opened.", Severity.Success);
+            Navigation.NavigateTo($"/registration/cases/{caseId}");
+        }
+    }
+
 }

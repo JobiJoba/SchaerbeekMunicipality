@@ -2,9 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SchaerbeekMunicipality.Domain.Documents;
+using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
+using SchaerbeekMunicipality.Infrastructure.Storage;
 
 namespace SchaerbeekMunicipality.Infrastructure;
 
@@ -31,6 +34,9 @@ public static class DependencyInjection
         });
 
         services.AddScoped<IRegistrationCaseRepository, RegistrationCaseRepository>();
+        services.AddScoped<IPersonRepository, PersonRepository>();
+        services.AddScoped<IAdministrativeDocumentRepository, AdministrativeDocumentRepository>();
+        services.AddSingleton<IDocumentStorage, LocalFileDocumentStorage>();
 
         return services;
     }

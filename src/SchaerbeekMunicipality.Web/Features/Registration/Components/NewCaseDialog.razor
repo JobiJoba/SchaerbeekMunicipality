@@ -1,0 +1,68 @@
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h6">Open registration case</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudForm @ref="_form" @bind-IsValid="_formValid">
+            <MudSelect T="VisitReason" @bind-Value="_visitReason" Label="Visit reason" Required="true" Class="mb-3">
+                <MudSelectItem Value="VisitReason.FirstRegistration">First registration</MudSelectItem>
+                <MudSelectItem Value="VisitReason.EuCitizenRegistration">EU citizen registration</MudSelectItem>
+                <MudSelectItem Value="VisitReason.ChangeOfAddress">Change of address</MudSelectItem>
+                <MudSelectItem Value="VisitReason.BirthDeclaration">Birth declaration</MudSelectItem>
+            </MudSelect>
+            <MudText Typo="Typo.body2" Color="Color.Secondary">
+                Assigned officer: @OfficerName
+            </MudText>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Submit" Disabled="_submitting">
+            Open case
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+  private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter]
+    public string OfficerName { get; set; } = string.Empty;
+
+    [Parameter]
+    public OpenRegistrationCaseHandler Handler { get; set; } = null!;
+
+    private MudForm _form = null!;
+    private bool _formValid;
+    private bool _submitting;
+    private VisitReason _visitReason = VisitReason.FirstRegistration;
+
+    private void Cancel() => MudDialog.Cancel();
+
+    private async Task Submit()
+    {
+        await _form.Validate();
+        if (!_formValid)
+        {
+            return;
+        }
+
+        _submitting = true;
+        try
+        {
+            var result = await Handler.Handle(
+                new OpenRegistrationCaseRequest(_visitReason, null),
+                CancellationToken.None);
+
+            MudDialog.Close(DialogResult.Ok(result.CaseId));
+        }
+        finally
+        {
+            _submitting = false;
+        }
+    }
+}
