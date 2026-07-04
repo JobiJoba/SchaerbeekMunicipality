@@ -1,4 +1,5 @@
 @using SchaerbeekMunicipality.Domain.Immigration
+@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
 @using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Web.Features.Registration.RecordImmigrationDecision
 @using SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit
@@ -6,6 +7,7 @@
 @inject SetResidenceCategoryHandler SetResidenceCategoryHandler
 @inject RecordResidencePermitHandler RecordResidencePermitHandler
 @inject RecordImmigrationDecisionHandler RecordImmigrationDecisionHandler
+@inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
 <AppSection Title="Legal residence">
@@ -15,7 +17,7 @@
             Record identity before classifying legal residence.
         </AppInfoBox>
     }
-    else if (_case.ResidenceCategory is null)
+    else if (_case.ResidenceCategory is null || _editingCategory)
     {
         <AppCard Title="Residence category" Outlined="true">
             <MudForm @ref="_categoryForm" @bind-IsValid="_categoryFormValid">
@@ -37,35 +39,49 @@
                     EU citizens have lighter permit requirements. Non-EU workers and students must record a valid permit.
                 </AppInfoBox>
 
-                <AppSaveCancelBar SaveText="Set category"
-                                  CancelText="Clear"
+                <AppSaveCancelBar SaveText="@(_editingCategory ? "Save changes" : "Set category")"
+                                  CancelText="@(_editingCategory ? "Cancel" : "Clear")"
                                   Saving="_savingCategory"
+                                  Disabled="@(_editingCategory && !CategoryFormDirty)"
                                   OnSave="SaveCategory"
-                                  OnCancel="ClearCategoryForm" />
+                                  OnCancel="HandleCategoryCancel" />
             </MudForm>
         </AppCard>
     }
     else
     {
         <AppCard Title="Residence category" Outlined="true">
-            <MudText Typo="Typo.body1">@FormatCategory(_case.ResidenceCategory)</MudText>
-            @if (_case.Checklist.LegalResidenceEstablished)
-            {
-                <MudText Typo="Typo.body2" Color="Color.Success" Class="mt-2">
-                    Legal residence established.
-                </MudText>
-            }
-            else if (!string.IsNullOrWhiteSpace(_policyMessage))
-            {
-                <MudText Typo="Typo.body2" Color="Color.Warning" Class="mt-2">
-                    @_policyMessage
-                </MudText>
-            }
+            <HeaderActions>
+                @if (CanEdit)
+                {
+                    <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                               Variant="Variant.Text"
+                               OnClick="StartEditingCategory"
+                               aria-label="Edit residence category">
+                        Edit
+                    </MudButton>
+                }
+            </HeaderActions>
+            <ChildContent>
+                <MudText Typo="Typo.body1">@FormatCategory(_case.ResidenceCategory)</MudText>
+                @if (_case.Checklist.LegalResidenceEstablished)
+                {
+                    <MudText Typo="Typo.body2" Color="Color.Success" Class="mt-2">
+                        Legal residence established.
+                    </MudText>
+                }
+                else if (!string.IsNullOrWhiteSpace(_policyMessage))
+                {
+                    <MudText Typo="Typo.body2" Color="Color.Warning" Class="mt-2">
+                        @_policyMessage
+                    </MudText>
+                }
+            </ChildContent>
         </AppCard>
 
         @if (RequiresPermit(_case.ResidenceCategory.Value))
         {
-            @if (_case.ResidencePermit is null)
+            @if (_case.ResidencePermit is null || _editingPermit)
             {
                 <AppCard Title="Residence permit" Outlined="true" Class="mt-4">
                     <MudForm @ref="_permitForm" @bind-IsValid="_permitFormValid">
@@ -96,67 +112,99 @@
                             </MudItem>
                         </AppFormSection>
 
-                        <AppSaveCancelBar SaveText="Record permit"
-                                          CancelText="Clear"
+                        <AppSaveCancelBar SaveText="@(_editingPermit ? "Save changes" : "Record permit")"
+                                          CancelText="@(_editingPermit ? "Cancel" : "Clear")"
                                           Saving="_savingPermit"
+                                          Disabled="@(_editingPermit && !PermitFormDirty)"
                                           OnSave="SavePermit"
-                                          OnCancel="ClearPermitForm" />
+                                          OnCancel="HandlePermitCancel" />
                     </MudForm>
                 </AppCard>
             }
             else
             {
                 <AppCard Title="Residence permit" Outlined="true" Class="mt-4">
-                    <MudText Typo="Typo.body1">
-                        @FormatPermitType(_case.ResidencePermit.PermitType)
-                        @if (!string.IsNullOrWhiteSpace(_case.ResidencePermit.CardNumber))
+                    <HeaderActions>
+                        @if (CanEdit)
                         {
-                            <span> · @_case.ResidencePermit.CardNumber</span>
+                            <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                                       Variant="Variant.Text"
+                                       OnClick="StartEditingPermit"
+                                       aria-label="Edit residence permit">
+                                Edit
+                            </MudButton>
                         }
-                    </MudText>
-                    <MudText Typo="Typo.body2" Color="Color.Secondary">
-                        @_case.ResidencePermit.ValidFrom.ToString("d") – @_case.ResidencePermit.ValidUntil.ToString("d")
-                        @if (!string.IsNullOrWhiteSpace(_case.ResidencePermit.IssuingAuthority))
-                        {
-                            <span> · @_case.ResidencePermit.IssuingAuthority</span>
-                        }
-                    </MudText>
+                    </HeaderActions>
+                    <ChildContent>
+                        <MudText Typo="Typo.body1">
+                            @FormatPermitType(_case.ResidencePermit.PermitType)
+                            @if (!string.IsNullOrWhiteSpace(_case.ResidencePermit.CardNumber))
+                            {
+                                <span> · @_case.ResidencePermit.CardNumber</span>
+                            }
+                        </MudText>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">
+                            @_case.ResidencePermit.ValidFrom.ToString("d") – @_case.ResidencePermit.ValidUntil.ToString("d")
+                            @if (!string.IsNullOrWhiteSpace(_case.ResidencePermit.IssuingAuthority))
+                            {
+                                <span> · @_case.ResidencePermit.IssuingAuthority</span>
+                            }
+                        </MudText>
+                    </ChildContent>
                 </AppCard>
             }
         }
 
-        <AppCard Title="Immigration decision (optional)" Outlined="true" Class="mt-4">
-            @if (_case.ImmigrationDecision is null)
-            {
-                <MudForm @ref="_decisionForm" @bind-IsValid="_decisionFormValid">
-                    <AppFormSection Title="External decision reference">
-                        <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="_decisionReference" Label="Reference number" />
-                        </MudItem>
-                        <MudItem xs="12" md="6">
-                            <MudDatePicker @bind-Date="_decisionDate" Label="Decision date" />
-                        </MudItem>
-                    </AppFormSection>
+        @if (_case.ImmigrationDecision is null || _editingDecision)
+        {
+            <AppCard Title="Immigration decision (optional)" Outlined="true" Class="mt-4">
+                <ChildContent>
+                    <MudForm @ref="_decisionForm" @bind-IsValid="_decisionFormValid">
+                        <AppFormSection Title="External decision reference">
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_decisionReference" Label="Reference number" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudDatePicker @bind-Date="_decisionDate" Label="Decision date" />
+                            </MudItem>
+                        </AppFormSection>
 
-                    <AppInfoBox Class="mb-4">
-                        Stub for federal immigration office decisions — optional for most categories.
-                    </AppInfoBox>
+                        <AppInfoBox Class="mb-4">
+                            Stub for federal immigration office decisions — optional for most categories.
+                        </AppInfoBox>
 
-                    <AppSaveCancelBar SaveText="Record decision"
-                                      CancelText="Clear"
-                                      Saving="_savingDecision"
-                                      OnSave="SaveDecision"
-                                      OnCancel="ClearDecisionForm" />
-                </MudForm>
-            }
-            else
-            {
-                <MudText Typo="Typo.body1">@_case.ImmigrationDecision.ReferenceNumber</MudText>
-                <MudText Typo="Typo.body2" Color="Color.Secondary">
-                    Decision date @_case.ImmigrationDecision.DecisionDate.ToString("d")
-                </MudText>
-            }
-        </AppCard>
+                        <AppSaveCancelBar SaveText="@(_editingDecision ? "Save changes" : "Record decision")"
+                                          CancelText="@(_editingDecision ? "Cancel" : "Clear")"
+                                          Saving="_savingDecision"
+                                          Disabled="@(_editingDecision && !DecisionFormDirty)"
+                                          OnSave="SaveDecision"
+                                          OnCancel="HandleDecisionCancel" />
+                    </MudForm>
+                </ChildContent>
+            </AppCard>
+        }
+        else
+        {
+            <AppCard Title="Immigration decision (optional)" Outlined="true" Class="mt-4">
+                <HeaderActions>
+                    @if (CanEdit)
+                    {
+                        <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                                   Variant="Variant.Text"
+                                   OnClick="StartEditingDecision"
+                                   aria-label="Edit immigration decision">
+                            Edit
+                        </MudButton>
+                    }
+                </HeaderActions>
+                <ChildContent>
+                    <MudText Typo="Typo.body1">@_case.ImmigrationDecision!.ReferenceNumber</MudText>
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">
+                        Decision date @_case.ImmigrationDecision.DecisionDate.ToString("d")
+                    </MudText>
+                </ChildContent>
+            </AppCard>
+        }
     }
 </AppSection>
 
@@ -168,16 +216,21 @@
     public Guid CaseId { get; set; }
 
     [Parameter]
+    public bool CanEdit { get; set; }
+
+    [Parameter]
     public EventCallback OnUpdated { get; set; }
 
     private RegistrationCaseDetailDto _case = null!;
     private string? _policyMessage;
 
+    private bool _editingCategory;
     private MudForm _categoryForm = null!;
     private bool _categoryFormValid;
     private bool _savingCategory;
     private ResidenceCategory? _selectedCategory;
 
+    private bool _editingPermit;
     private MudForm _permitForm = null!;
     private bool _permitFormValid;
     private bool _savingPermit;
@@ -187,6 +240,7 @@
     private DateTime? _validUntil;
     private string? _issuingAuthority;
 
+    private bool _editingDecision;
     private MudForm _decisionForm = null!;
     private bool _decisionFormValid;
     private bool _savingDecision;
@@ -196,7 +250,26 @@
     protected override void OnParametersSet()
     {
         _case = Case;
+        _editingCategory = false;
+        _editingPermit = false;
+        _editingDecision = false;
     }
+
+    private bool CategoryFormDirty =>
+        _selectedCategory != _case.ResidenceCategory;
+
+    private bool PermitFormDirty =>
+        _case.ResidencePermit is not null &&
+        (_permitType != _case.ResidencePermit.PermitType ||
+         _cardNumber != _case.ResidencePermit.CardNumber ||
+         _validFrom?.Date != _case.ResidencePermit.ValidFrom.ToDateTime(TimeOnly.MinValue).Date ||
+         _validUntil?.Date != _case.ResidencePermit.ValidUntil.ToDateTime(TimeOnly.MinValue).Date ||
+         _issuingAuthority != _case.ResidencePermit.IssuingAuthority);
+
+    private bool DecisionFormDirty =>
+        _case.ImmigrationDecision is not null &&
+        (_decisionReference != _case.ImmigrationDecision.ReferenceNumber ||
+         _decisionDate?.Date != _case.ImmigrationDecision.DecisionDate.ToDateTime(TimeOnly.MinValue).Date);
 
     private static bool RequiresPermit(ResidenceCategory category) =>
         category is ResidenceCategory.NonEuWorker or ResidenceCategory.Student;
@@ -237,7 +310,44 @@
             _ => "Select permit type",
         };
 
+    private void StartEditingCategory()
+    {
+        _selectedCategory = _case.ResidenceCategory;
+        _editingCategory = true;
+    }
+
+    private async Task CancelEditingCategory()
+    {
+        if (CategoryFormDirty)
+        {
+            var confirmed = await DialogService.ConfirmAsync(
+                "Discard changes?",
+                "You have unsaved category changes.",
+                "Discard");
+
+            if (!confirmed)
+            {
+                return;
+            }
+        }
+
+        _editingCategory = false;
+        _selectedCategory = null;
+    }
+
     private void ClearCategoryForm() => _selectedCategory = null;
+
+    private async Task HandleCategoryCancel()
+    {
+        if (_editingCategory)
+        {
+            await CancelEditingCategory();
+        }
+        else
+        {
+            ClearCategoryForm();
+        }
+    }
 
     private async Task SaveCategory()
     {
@@ -256,11 +366,12 @@
                 CancellationToken.None);
 
             _policyMessage = response.PolicyMessage;
+            _editingCategory = false;
             Snackbar.Add(
                 response.LegalResidenceEstablished
-                    ? "Residence category set — legal residence established."
-                    : "Residence category set.",
-                response.LegalResidenceEstablished ? Severity.Success : Severity.Info);
+                    ? "Residence category saved — legal residence established."
+                    : "Residence category saved.",
+                response.LegalResidenceEstablished ? Severity.Success : Severity.Warning);
 
             await OnUpdated.InvokeAsync();
         }
@@ -278,6 +389,39 @@
         }
     }
 
+    private void StartEditingPermit()
+    {
+        if (_case.ResidencePermit is null)
+        {
+            return;
+        }
+
+        _permitType = _case.ResidencePermit.PermitType;
+        _cardNumber = _case.ResidencePermit.CardNumber;
+        _validFrom = _case.ResidencePermit.ValidFrom.ToDateTime(TimeOnly.MinValue);
+        _validUntil = _case.ResidencePermit.ValidUntil.ToDateTime(TimeOnly.MinValue);
+        _issuingAuthority = _case.ResidencePermit.IssuingAuthority;
+        _editingPermit = true;
+    }
+
+    private async Task CancelEditingPermit()
+    {
+        if (PermitFormDirty)
+        {
+            var confirmed = await DialogService.ConfirmAsync(
+                "Discard changes?",
+                "You have unsaved permit changes.",
+                "Discard");
+
+            if (!confirmed)
+            {
+                return;
+            }
+        }
+
+        _editingPermit = false;
+    }
+
     private void ClearPermitForm()
     {
         _permitType = null;
@@ -285,6 +429,18 @@
         _validFrom = null;
         _validUntil = null;
         _issuingAuthority = null;
+    }
+
+    private async Task HandlePermitCancel()
+    {
+        if (_editingPermit)
+        {
+            await CancelEditingPermit();
+        }
+        else
+        {
+            ClearPermitForm();
+        }
     }
 
     private async Task SavePermit()
@@ -309,10 +465,11 @@
                 CancellationToken.None);
 
             _policyMessage = response.PolicyMessage;
+            _editingPermit = false;
             Snackbar.Add(
                 response.LegalResidenceEstablished
-                    ? "Residence permit recorded — legal residence established."
-                    : "Residence permit recorded.",
+                    ? "Residence permit saved — legal residence established."
+                    : "Residence permit saved.",
                 response.LegalResidenceEstablished ? Severity.Success : Severity.Warning);
 
             await OnUpdated.InvokeAsync();
@@ -331,10 +488,52 @@
         }
     }
 
+    private void StartEditingDecision()
+    {
+        if (_case.ImmigrationDecision is null)
+        {
+            return;
+        }
+
+        _decisionReference = _case.ImmigrationDecision.ReferenceNumber;
+        _decisionDate = _case.ImmigrationDecision.DecisionDate.ToDateTime(TimeOnly.MinValue);
+        _editingDecision = true;
+    }
+
+    private async Task CancelEditingDecision()
+    {
+        if (DecisionFormDirty)
+        {
+            var confirmed = await DialogService.ConfirmAsync(
+                "Discard changes?",
+                "You have unsaved decision changes.",
+                "Discard");
+
+            if (!confirmed)
+            {
+                return;
+            }
+        }
+
+        _editingDecision = false;
+    }
+
     private void ClearDecisionForm()
     {
         _decisionReference = null;
         _decisionDate = null;
+    }
+
+    private async Task HandleDecisionCancel()
+    {
+        if (_editingDecision)
+        {
+            await CancelEditingDecision();
+        }
+        else
+        {
+            ClearDecisionForm();
+        }
     }
 
     private async Task SaveDecision()
@@ -356,7 +555,8 @@
                 CancellationToken.None);
 
             _policyMessage = response.PolicyMessage;
-            Snackbar.Add("Immigration decision recorded.", Severity.Success);
+            _editingDecision = false;
+            Snackbar.Add("Immigration decision saved.", Severity.Success);
             await OnUpdated.InvokeAsync();
         }
         catch (FluentValidation.ValidationException ex)

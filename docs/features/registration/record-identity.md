@@ -139,6 +139,18 @@ stateDiagram-v2
     note right of Intake: Case stays in Intake;<br/>only checklist updates
 ```
 
+## Correction path
+
+Identity is one of two slices that use the **explicit `Correct*`** pattern (see [intake corrections](./README.md#intake-corrections-phase-21)): first record and correction have different domain invariants, so they are separate handlers.
+
+| | First record (this doc) | Correction |
+|---|---|---|
+| Route | `POST …/identity` | `PUT …/identity` |
+| Handler | `RecordIdentityHandler` | `CorrectIdentityHandler` |
+| Domain | `RecordIdentity()` → `Person.Create()` | `CorrectIdentity()` → `Person.Update()` |
+
+After a correction, `RegistrationResidenceEvaluator` re-runs in case nationality or other fields affect legal residence. See [Correct identity](./correct-identity.md).
+
 ## Dependencies
 
 | Dependency | Role |

@@ -151,6 +151,15 @@ Antiforgery is disabled for this endpoint (`DisableAntiforgery()`) to allow prog
 | `ResidencePermit` | Residence permit |
 | `Other` | Other |
 
+## Correction path
+
+Document correction is **remove + re-attach** (see [intake corrections](./README.md#intake-corrections-phase-21)):
+
+1. [Remove document](./remove-document.md) — `DELETE …/documents/{documentId}` deletes the row and stored file
+2. Attach a replacement via this slice
+
+There is no in-place replace handler in Phase 2.1.
+
 ## Dependencies
 
 | Dependency | Role |

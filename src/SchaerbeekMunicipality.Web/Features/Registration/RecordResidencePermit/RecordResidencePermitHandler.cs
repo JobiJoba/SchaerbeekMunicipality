@@ -27,11 +27,7 @@ public sealed class RecordResidencePermitHandler(
                 "Residence category must be set before recording a permit.");
         }
 
-        if (registrationCase.Status != RegistrationCaseStatus.Intake)
-        {
-            throw new InvalidRegistrationTransitionException(
-                $"Cannot record a residence permit while the case is in status '{registrationCase.Status}'.");
-        }
+        registrationCase.EnsureIntakeDataEditable(nameof(RecordResidencePermit));
 
         if (!registrationCase.Checklist.IdentityEstablished)
         {

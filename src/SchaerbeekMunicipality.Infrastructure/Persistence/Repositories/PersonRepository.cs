@@ -12,6 +12,12 @@ internal sealed class PersonRepository(MunicipalDbContext dbContext) : IPersonRe
             .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
     }
 
+    public Task<Person?> GetForUpdateAsync(PersonId id, CancellationToken cancellationToken)
+    {
+        return dbContext.Persons
+            .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+    }
+
     public async Task AddAsync(Person person, CancellationToken cancellationToken)
     {
         await dbContext.Persons.AddAsync(person, cancellationToken);

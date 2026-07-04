@@ -49,19 +49,51 @@ erDiagram
 
 The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalResidenceEstablished`, `AddressDeclared`, etc.) independently of status. Recording identity sets `IdentityEstablished = true`; residence policies set `LegalResidenceEstablished` when evidence passes validation.
 
-### Intake corrections (Phase 2.1 — planned)
+### Intake corrections (Phase 2.1)
 
-Officers must be able to fix mistakes on any intake step after saving (e.g. wrong name after starting legal residence). First-time recording slices are listed below; correction behaviour is specified in [phase-2.1-intake-corrections.md](../../phases/phase-2.1-intake-corrections.md):
+Officers can fix mistakes on any intake step after saving — without reopening the case or losing later progress. Full phase notes: [phase-2.1-intake-corrections.md](../../phases/phase-2.1-intake-corrections.md).
 
-| Step | First record | Correction (Phase 2.1) |
-|------|--------------|------------------------|
-| Identity | `RecordIdentity` | `CorrectIdentity` (new) |
+#### When corrections are allowed
+
+| Case status | Corrections |
+|-------------|-------------|
+| `Intake` | Allowed (primary use case) |
+| `UnderReview` | Allowed |
+| `Approved`, `Registered`, `Rejected` | Blocked — terminal or post-decision |
+
+Domain guard: `RegistrationCase.EnsureIntakeDataEditable()` (also used by `EnsureCanAttachDocuments()`).
+
+#### Record-or-correct convention
+
+Each intake slice supports both first record and correction. Pick one pattern per slice:
+
+| Approach | When to use | Registration examples |
+|----------|-------------|----------------------|
+| **Explicit `Correct*`** | First record and correction have different invariants | `RecordIdentity` / `CorrectIdentity` |
+| **Upsert handler** | Create and update share the same validation | `SetResidenceCategory`, `RecordResidencePermit`, `RecordImmigrationDecision` |
+| **Separate remove** | Attach-only model; correction = delete + re-attach | `AttachDocument` / `RemoveDocument` |
+
+#### Checklist re-evaluation
+
+Corrections must never leave stale checklist flags. After every correction handler saves:
+
+1. Re-run relevant evaluators (`RegistrationResidenceEvaluator` today)
+2. Update checklist on the aggregate (`ApplyResidencePolicyResult`, etc.)
+3. Return policy state in the response so the UI can show warnings
+
+#### UI pattern
+
+Saved section → summary + **Edit** button → pre-filled form → save via correction handler → `ReloadCase()`. See [design-system edit form](../../design-system/06-page-templates.md#4-edit-form).
+
+#### Slice map
+
+| Step | First record | Correction |
+|------|--------------|------------|
+| Identity | `RecordIdentity` | `CorrectIdentity` — [doc](./correct-identity.md) |
 | Residence category | `SetResidenceCategory` | Same handler (upsert) + edit UI |
 | Residence permit | `RecordResidencePermit` | Same handler (upsert) + edit UI |
 | Immigration decision | `RecordImmigrationDecision` | Same handler (upsert) + edit UI |
-| Documents | `AttachDocument` | `RemoveDocument` (new) |
-
-Corrections are allowed while the case is in `Intake` or `UnderReview`; checklist flags are recomputed after each correction.
+| Documents | `AttachDocument` | `RemoveDocument` — [doc](./remove-document.md) |
 
 ## Slice documentation
 
@@ -69,10 +101,12 @@ Corrections are allowed while the case is in `Intake` or `UnderReview`; checklis
 - [Open registration case](./open-registration-case.md)
 - [Get registration case](./get-registration-case.md)
 - [Record identity](./record-identity.md)
+- [Correct identity](./correct-identity.md)
 - [Set residence category](./set-residence-category.md)
 - [Record residence permit](./record-residence-permit.md)
 - [Record immigration decision](./record-immigration-decision.md)
 - [Attach document](./attach-document.md)
+- [Remove document](./remove-document.md)
 
 ## Route registration
 

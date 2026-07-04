@@ -30,6 +30,17 @@ internal sealed class LocalFileDocumentStorage(IHostEnvironment environment) : I
         return new StoredDocument(relativePath, hash);
     }
 
+    public Task DeleteAsync(string storagePath, CancellationToken cancellationToken)
+    {
+        var fullPath = Path.Combine(environment.ContentRootPath, storagePath);
+        if (File.Exists(fullPath))
+        {
+            File.Delete(fullPath);
+        }
+
+        return Task.CompletedTask;
+    }
+
     private static async Task<string> ComputeSha256Async(string path, CancellationToken cancellationToken)
     {
         await using var stream = File.OpenRead(path);

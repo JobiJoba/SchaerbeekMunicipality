@@ -25,4 +25,17 @@ internal sealed class AdministrativeDocumentRepository(MunicipalDbContext dbCont
     {
         await dbContext.AdministrativeDocuments.AddAsync(document, cancellationToken);
     }
+
+    public Task<AdministrativeDocument?> GetByIdAsync(
+        AdministrativeDocumentId id,
+        CancellationToken cancellationToken)
+    {
+        return dbContext.AdministrativeDocuments
+            .FirstOrDefaultAsync(d => d.Id == id, cancellationToken);
+    }
+
+    public void Remove(AdministrativeDocument document)
+    {
+        dbContext.AdministrativeDocuments.Remove(document);
+    }
 }

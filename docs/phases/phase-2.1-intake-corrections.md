@@ -1,6 +1,6 @@
 # Phase 2.1 — Intake corrections
 
-- **Status:** Planned
+- **Status:** Complete
 - **Goal:** Allow officers to correct any intake step after it has been saved — identity, legal residence, and documents — without reopening the case or losing later progress.
 
 ---
@@ -97,20 +97,20 @@ Full `CaseAuditEntry` collection is Phase 7 scope. Phase 2.1 **should** log corr
 
 | # | Deliverable | Status | Notes |
 |---|-------------|--------|-------|
-| 2.1.1 | Domain: `Person.Update(IdentityDetails)` | Planned | Trim/validate like `Create` |
-| 2.1.2 | Domain: `RegistrationCase.CorrectIdentity(Person, …)` | Planned | Requires `PersonId`; stays `Intake`/`UnderReview` |
-| 2.1.3 | Slice: `CorrectIdentity` | Planned | Handler, validator, endpoint, tests |
-| 2.1.4 | UI: Identity edit on case detail | Planned | Edit button + pre-filled form |
-| 2.1.5 | Domain: `ImmigrationDecisionReference.Update(…)` or overwrite via case method | Planned | Mirror permit pattern |
-| 2.1.6 | Confirm/document upsert: residence category | Planned | Already overwrites; add tests + UI edit |
-| 2.1.7 | Confirm/document upsert: residence permit | Planned | Backend done; add UI edit |
-| 2.1.8 | Confirm/document upsert: immigration decision | Planned | Add explicit update if needed + UI edit |
-| 2.1.9 | Slice: `RemoveDocument` (or `ReplaceDocument`) | Planned | Soft-delete or hard-delete + storage cleanup |
-| 2.1.10 | UI: Document remove/replace | Planned | Per-row action on document list |
-| 2.1.11 | Shared: `EnsureIntakeDataEditable()` guard | Planned | Used by all correction paths |
-| 2.1.12 | Shared: post-correction re-evaluation | Planned | Identity correction triggers residence re-eval |
-| 2.1.13 | Feature docs for correction slices | Planned | Under `docs/features/registration/` |
-| 2.1.14 | Domain + integration tests | Planned | Per slice + cascade scenarios |
+| 2.1.1 | Domain: `Person.Update(IdentityDetails)` | Done | Trim/validate like `Create` |
+| 2.1.2 | Domain: `RegistrationCase.CorrectIdentity(Person, …)` | Done | Requires `PersonId`; stays `Intake`/`UnderReview` |
+| 2.1.3 | Slice: `CorrectIdentity` | Done | Handler, validator, endpoint, tests |
+| 2.1.4 | UI: Identity edit on case detail | Done | Edit button + pre-filled form |
+| 2.1.5 | Domain: `ImmigrationDecisionReference.Update(…)` or overwrite via case method | Done | Overwrite via `RecordImmigrationDecision` |
+| 2.1.6 | Confirm/document upsert: residence category | Done | Already overwrites; tests + UI edit |
+| 2.1.7 | Confirm/document upsert: residence permit | Done | Backend done; UI edit |
+| 2.1.8 | Confirm/document upsert: immigration decision | Done | Upsert via handler + UI edit |
+| 2.1.9 | Slice: `RemoveDocument` (or `ReplaceDocument`) | Done | Hard-delete + storage cleanup |
+| 2.1.10 | UI: Document remove/replace | Done | Per-row remove with confirm dialog |
+| 2.1.11 | Shared: `EnsureIntakeDataEditable()` guard | Done | Used by all correction paths |
+| 2.1.12 | Shared: post-correction re-evaluation | Done | Identity + document removal trigger residence re-eval |
+| 2.1.13 | Feature docs for correction slices | Done | Under `docs/features/registration/` |
+| 2.1.14 | Domain + integration tests | Done | Per slice + cascade scenarios |
 
 ---
 

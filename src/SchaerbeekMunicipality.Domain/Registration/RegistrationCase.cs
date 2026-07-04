@@ -62,9 +62,28 @@ public sealed class RegistrationCase
         return person;
     }
 
+    public void CorrectIdentity(Person person, IdentityDetails identity)
+    {
+        EnsureIntakeDataEditable(nameof(CorrectIdentity));
+
+        if (PersonId is null)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Identity has not been recorded for this case.");
+        }
+
+        if (person.Id != PersonId)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "The person does not belong to this registration case.");
+        }
+
+        person.Update(identity);
+    }
+
     public void SetResidenceCategory(ResidenceCategory category)
     {
-        EnsureStatus(RegistrationCaseStatus.Intake, nameof(SetResidenceCategory));
+        EnsureIntakeDataEditable(nameof(SetResidenceCategory));
         EnsureIdentityEstablished();
 
         ResidenceCategory = category;
@@ -72,7 +91,7 @@ public sealed class RegistrationCase
 
     public void RecordImmigrationDecision(ImmigrationDecisionDetails details)
     {
-        EnsureStatus(RegistrationCaseStatus.Intake, nameof(RecordImmigrationDecision));
+        EnsureIntakeDataEditable(nameof(RecordImmigrationDecision));
         EnsureIdentityEstablished();
 
         ImmigrationDecision = ImmigrationDecisionReference.Create(details);
@@ -90,13 +109,18 @@ public sealed class RegistrationCase
         }
     }
 
-    public void EnsureCanAttachDocuments()
+    public void EnsureIntakeDataEditable(string operation)
     {
         if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
         {
             throw new InvalidRegistrationTransitionException(
-                $"Documents cannot be attached while the case is in status '{Status}'.");
+                $"Cannot perform '{operation}' while the case is in status '{Status}'.");
         }
+    }
+
+    public void EnsureCanAttachDocuments()
+    {
+        EnsureIntakeDataEditable(nameof(EnsureCanAttachDocuments));
     }
 
     private void EnsureIdentityEstablished()
