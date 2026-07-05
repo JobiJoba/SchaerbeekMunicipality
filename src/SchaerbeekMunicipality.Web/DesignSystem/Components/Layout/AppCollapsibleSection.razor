@@ -1,0 +1,101 @@
+@if (Collapsible)
+{
+    <MudExpansionPanels Class="@PanelClass" Elevation="0">
+        <MudExpansionPanel Expanded="@IsExpanded"
+                           ExpandedChanged="OnExpandedChanged"
+                           Class="app-collapsible-panel"
+                           HideIcon="false">
+            <TitleContent>
+                @HeaderContent
+            </TitleContent>
+            <ChildContent>
+                <div class="app-collapsible-panel-body pt-2">
+                    @ChildContent
+                </div>
+            </ChildContent>
+        </MudExpansionPanel>
+    </MudExpansionPanels>
+}
+else
+{
+    <section class="@FixedSectionClass">
+        @HeaderContent
+        <div class="app-collapsible-panel-body mt-4">
+            @ChildContent
+        </div>
+    </section>
+}
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public string? Summary { get; set; }
+
+    [Parameter]
+    public string? StatusLabel { get; set; }
+
+    [Parameter]
+    public AppSeverity StatusSeverity { get; set; } = AppSeverity.Neutral;
+
+    [Parameter]
+    public bool Collapsible { get; set; } = true;
+
+    [Parameter]
+    public bool IsExpanded { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> IsExpandedChanged { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? HeaderActions { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    private string PanelClass => new CssBuilder("app-collapsible-section mb-4")
+        .AddClass(Class)
+        .Build();
+
+    private string FixedSectionClass => new CssBuilder("app-collapsible-section app-collapsible-section--fixed mb-8")
+        .AddClass(Class)
+        .Build();
+
+    private RenderFragment HeaderContent => __builder =>
+    {
+        <MudStack Row="true"
+                  AlignItems="AlignItems.Center"
+                  Justify="Justify.SpaceBetween"
+                  Spacing="2"
+                  Wrap="Wrap.Wrap"
+                  Class="app-collapsible-header flex-grow-1">
+            <MudStack Spacing="0" Class="app-collapsible-header-text min-width-0">
+                <MudText Typo="Typo.h3">@Title</MudText>
+                @if (!string.IsNullOrWhiteSpace(Summary))
+                {
+                    <MudText Typo="Typo.body2"
+                             Color="Color.Secondary"
+                             Class="app-collapsible-summary">
+                        @Summary
+                    </MudText>
+                }
+            </MudStack>
+            <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Wrap="Wrap.Wrap">
+                @if (!string.IsNullOrWhiteSpace(StatusLabel))
+                {
+                    <AppStatusChip Label="@StatusLabel" Severity="@StatusSeverity" />
+                }
+                @if (HeaderActions is not null)
+                {
+                    @HeaderActions
+                }
+            </MudStack>
+        </MudStack>
+    };
+
+    private Task OnExpandedChanged(bool expanded) => IsExpandedChanged.InvokeAsync(expanded);
+}

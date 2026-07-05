@@ -187,6 +187,36 @@ body {
     object-fit: contain;
 }
 
+.app-collapsible-section .mud-expand-panel {
+    border: 1px solid var(--mud-palette-lines-default);
+    border-radius: 4px;
+    background: var(--mud-palette-surface);
+}
+
+.app-collapsible-section .mud-expand-panel:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.app-collapsible-section .mud-expand-panel-header {
+    min-height: 64px;
+    padding: 16px;
+}
+
+.app-collapsible-summary {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.app-collapsible-header-text.min-width-0 {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.app-collapsible-section--fixed {
+    padding-bottom: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

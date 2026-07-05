@@ -100,6 +100,24 @@
             </AppEmptyState>
         </AppSection>
 
+        <AppSection Title="Collapsible section"
+                    Description="Case detail intake steps use AppCollapsibleSection — summary and status chip in the header.">
+            <AppCollapsibleSection Title="Legal residence"
+                                   Summary="EU citizen"
+                                   StatusLabel="Complete"
+                                   StatusSeverity="AppSeverity.Success"
+                                   IsExpanded="false">
+                <AppInfoBox>Step body renders here when expanded.</AppInfoBox>
+            </AppCollapsibleSection>
+            <AppCollapsibleSection Title="Identity"
+                                   Summary="Marie Leclerc · born 01/01/1975 · Belgian"
+                                   StatusLabel="Complete"
+                                   StatusSeverity="AppSeverity.Success"
+                                   Collapsible="false">
+                <AppInfoBox>Identity stays always expanded on the case detail page.</AppInfoBox>
+            </AppCollapsibleSection>
+        </AppSection>
+
         <AppSection Title="Card and form section">
             <AppCard Title="Sample card" Outlined="true">
                 <AppFormSection Title="Form section">

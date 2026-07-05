@@ -56,15 +56,19 @@ Rules: one primary action in the header; search left, filters right; status alwa
 
 ## 2. Details page
 
-Example: case detail. Header carries identity + status; intake steps and documents split into a two-column grid on large viewports (Phase 4.1).
+Example: case detail. Header carries identity + status; intake steps and documents split into a two-column grid on large viewports (Phase 4.1). Intake steps use collapsible panels with header summaries (Phase 6.1).
 
 ```
 AppPageHeader (Title = case number, StatusChip, Actions = workflow verbs)
-AppInfoBox (optional procedural guidance)
+AppSection "Completeness checklist" (status chips)
 MudGrid:
-  Left (lg=7)  → intake steps (identity, residence, address, household, civil status)
+  Left (lg=7)  → AppCollapsibleSection per intake step
+                 Identity (always expanded)
+                 Legal residence | Address | Household | Civil status | Police verification
   Right (lg=5) → RegistrationCaseDocumentPanel (sticky upload + list + preview)
 ```
+
+Each collapsible header shows a one-line summary and status chip. On load, Identity plus the first incomplete step are expanded; completed steps collapse by default.
 
 Future phases may add `MudTabs` for history and review facets once a record has more than two aspects:
 

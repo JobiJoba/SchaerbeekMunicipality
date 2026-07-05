@@ -18,6 +18,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 4.1 | Document preview & case UX | ✅ Complete |
 | 5 | National Register search & BIS | ✅ Complete |
 | 6 | Police verification loop | ✅ Complete |
+| 6.1 | Collapsible intake sections | ✅ Complete |
 | 7+ | Decision, certificates, … | Planned |
 
 Delivery notes for completed phases: [phases/](./phases/).
@@ -317,6 +318,27 @@ Delivery notes for completed phases: [phases/](./phases/).
 - Cannot approve with negative police result (Phase 7)
 - Second visit (`AttemptNumber`) allowed when incomplete
 - `GetRegistrationCase` returns history with officer notes
+
+---
+
+## Phase 6.1 — Collapsible intake sections ✅
+
+**Status:** Complete — see [phases/phase-6.1-collapsible-intake-sections.md](./phases/phase-6.1-collapsible-intake-sections.md).
+
+**Goal:** Reduce scroll on the case detail page; collapse completed intake categories and auto-expand the next step.
+
+**Why now:** Phase 6 lengthened the case detail page further; officers need to reach the current task without scrolling past every completed section.
+
+**UI:**
+
+- `AppCollapsibleSection` — design-system collapsible panel with header summary and status chip
+- `RegistrationIntakeStepSummaries` — summary text, completion checks, default expansion
+- Case detail accordion: Identity always expanded; legal residence → address → household → civil status → police verification
+- Police awaiting alert moved into police section body
+
+**Demo:** Open new case → only Identity expanded → record identity → Legal residence auto-expands → completed steps collapse with summaries in headers.
+
+**Tests:** `RegistrationIntakeStepSummariesTests` (default expansion matrix).
 
 ---
 

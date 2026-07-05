@@ -149,6 +149,7 @@ See [record-police-result.md](./record-police-result.md) and [phase-6-police-ver
 
 - Show case header (status chip, visit reason, opened date)
 - Render checklist status chips (including **Address confirmed**)
+- Collapse completed intake sections; auto-expand the next actionable step (Phase 6.1)
 - Show **Police verification** section when a visit was sent or recorded
 - Show **Send to police** when identity + address declared and no pending request
 - Show **duplicate warning** when `possibleDuplicateMatches` is non-empty and person not linked

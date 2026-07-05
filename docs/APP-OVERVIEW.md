@@ -108,7 +108,7 @@ A fully progressed case shows declared domicile, housing situation, household me
 
 ## Document panel — upload, preview & download
 
-The case detail page uses a **two-column layout**: intake steps on the left, a **sticky document panel** on the right (on wide screens). Officers upload files, click a row to preview PDFs and images inline, expand to fullscreen, or download.
+The case detail page uses a **two-column layout**: collapsible intake steps on the left (Identity always open; next step auto-expanded; header summaries), and a **sticky document panel** on the right (on wide screens). Officers upload files, click a row to preview PDFs and images inline, expand to fullscreen, or download.
 
 ![Document upload, immigration decision, and attached files](./screenshots/07-document-upload-and-attached-files.png)
 

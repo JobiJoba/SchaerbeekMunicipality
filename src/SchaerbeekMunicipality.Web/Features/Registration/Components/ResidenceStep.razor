@@ -10,8 +10,7 @@
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
-<AppSection Title="Legal residence">
-    @if (!_case.Checklist.IdentityEstablished)
+@if (!_case.Checklist.IdentityEstablished)
     {
         <AppInfoBox>
             Record identity before classifying legal residence.
@@ -206,7 +205,6 @@
             </AppCard>
         }
     }
-</AppSection>
 
 @code {
     [Parameter, EditorRequired]
