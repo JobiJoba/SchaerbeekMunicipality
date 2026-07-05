@@ -1,0 +1,44 @@
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
+
+<AppCard Title="Citizen certificates" Outlined="true">
+    <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
+        Issue printable certificates for this registered person. Each print creates a new reference number in the audit log.
+    </MudText>
+
+    <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap">
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Material.Outlined.Description"
+                   Href="@ResidenceCertificateUrl"
+                   Target="_blank">
+            Residence certificate
+        </MudButton>
+        <MudButton Variant="Variant.Outlined"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Material.Outlined.Groups"
+                   Href="@HouseholdCertificateUrl"
+                   Target="_blank"
+                   Disabled="@(Case.HouseholdMembers.Count == 0)">
+            Household composition
+        </MudButton>
+    </MudStack>
+
+    @if (Case.HouseholdMembers.Count == 0)
+    {
+        <MudText Typo="Typo.caption" Color="Color.Secondary" Class="mt-2">
+            Record household composition before issuing a household certificate.
+        </MudText>
+    }
+</AppCard>
+
+@code {
+    [Parameter, EditorRequired]
+    public RegistrationCaseDetailDto Case { get; set; } = null!;
+
+    private string ResidenceCertificateUrl =>
+        $"/api/registration/cases/{Case.Id}/certificates/residence";
+
+    private string HouseholdCertificateUrl =>
+        $"/api/registration/cases/{Case.Id}/certificates/household-composition";
+}
