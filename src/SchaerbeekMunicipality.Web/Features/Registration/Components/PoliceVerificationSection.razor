@@ -1,0 +1,108 @@
+@using SchaerbeekMunicipality.Domain.Police
+@using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
+
+@if (ActiveVerification is not null || History.Count > 0)
+{
+    <AppSection Title="Police verification">
+        @if (ActiveVerification is not null)
+        {
+            <AppCard Title="@($"Visit {ActiveVerification.AttemptNumber} — pending")" Outlined="true" Class="mb-4">
+                <MudStack Spacing="2">
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">
+                        Sent to police on @ActiveVerification.RequestedAt.LocalDateTime.ToString("g")
+                    </MudText>
+                    <AppStatusChip Label="Awaiting result" Severity="AppSeverity.Warning" />
+                </MudStack>
+            </AppCard>
+        }
+
+        @if (OrderedHistory.Count == 1)
+        {
+            var visit = OrderedHistory[0];
+            <AppCard Title="@($"Visit {visit.AttemptNumber}")" Outlined="true" Class="mb-4">
+                <MudStack Spacing="2">
+                    <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center">
+                        <AppStatusChip Label="@FormatResult(visit.Result!.Value)"
+                                       Severity="@ResultSeverity(visit.Result!.Value)" />
+                        @if (visit.CompletedAt is not null)
+                        {
+                            <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                Recorded @visit.CompletedAt.Value.LocalDateTime.ToString("g")
+                            </MudText>
+                        }
+                    </MudStack>
+
+                    <MudText Typo="Typo.caption" Color="Color.Secondary">
+                        Requested @visit.RequestedAt.LocalDateTime.ToString("g")
+                    </MudText>
+
+                    @if (!string.IsNullOrWhiteSpace(visit.OfficerNotes))
+                    {
+                        <MudPaper Class="pa-3" Elevation="0" Style="background: var(--mud-palette-background-grey);">
+                            <MudText Typo="Typo.subtitle2" Class="mb-1">Police clerk notes</MudText>
+                            <MudText Typo="Typo.body2" Style="white-space: pre-wrap;">@visit.OfficerNotes</MudText>
+                        </MudPaper>
+                    }
+                </MudStack>
+            </AppCard>
+        }
+        else if (OrderedHistory.Count > 1)
+        {
+            <AppDataTable T="PoliceVerificationDto"
+                          Items="OrderedHistory"
+                          Caption="Recorded police visits">
+                <HeaderContent>
+                    <MudTh Class="app-table-header">Visit</MudTh>
+                    <MudTh Class="app-table-header">Outcome</MudTh>
+                    <MudTh Class="app-table-header">Requested</MudTh>
+                    <MudTh Class="app-table-header">Recorded</MudTh>
+                    <MudTh Class="app-table-header">Police clerk notes</MudTh>
+                </HeaderContent>
+                <RowTemplate Context="visit">
+                    <MudTd DataLabel="Visit">@visit.AttemptNumber</MudTd>
+                    <MudTd DataLabel="Outcome">
+                        <AppStatusChip Label="@FormatResult(visit.Result!.Value)"
+                                       Severity="@ResultSeverity(visit.Result!.Value)" />
+                    </MudTd>
+                    <MudTd DataLabel="Requested">@visit.RequestedAt.LocalDateTime.ToString("g")</MudTd>
+                    <MudTd DataLabel="Recorded">
+                        @(visit.CompletedAt?.LocalDateTime.ToString("g") ?? "—")
+                    </MudTd>
+                    <MudTd DataLabel="Police clerk notes" Style="white-space: pre-wrap; max-width: 320px;">
+                        @(string.IsNullOrWhiteSpace(visit.OfficerNotes) ? "—" : visit.OfficerNotes)
+                    </MudTd>
+                </RowTemplate>
+            </AppDataTable>
+        }
+    </AppSection>
+}
+
+@code {
+    [Parameter]
+    public PoliceVerificationDto? ActiveVerification { get; set; }
+
+    [Parameter]
+    public IReadOnlyList<PoliceVerificationDto> History { get; set; } = [];
+
+    private IReadOnlyList<PoliceVerificationDto> OrderedHistory =>
+        History.OrderByDescending(v => v.AttemptNumber).ToList();
+
+    private static string FormatResult(PoliceVerificationResult result) => result switch
+    {
+        PoliceVerificationResult.Confirmed => "Confirmed",
+        PoliceVerificationResult.NotFound => "Not found",
+        PoliceVerificationResult.AddressIncorrect => "Address incorrect",
+        PoliceVerificationResult.MailboxOnly => "Mailbox only",
+        PoliceVerificationResult.EmptyDwelling => "Empty dwelling",
+        PoliceVerificationResult.RefusedAccess => "Refused access",
+        PoliceVerificationResult.Incomplete => "Incomplete",
+        _ => result.ToString(),
+    };
+
+    private static AppSeverity ResultSeverity(PoliceVerificationResult result) => result switch
+    {
+        PoliceVerificationResult.Confirmed => AppSeverity.Success,
+        PoliceVerificationResult.Incomplete => AppSeverity.Warning,
+        _ => AppSeverity.Error,
+    };
+}

@@ -1,0 +1,99 @@
+@using SchaerbeekMunicipality.Domain.Police
+@using SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h4">Record police verification result</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
+            @PersonName · @Address
+        </MudText>
+
+        <MudForm @ref="_form">
+            <AppFormSection Title="Verification outcome">
+                <MudItem xs="12">
+                    <MudSelect @bind-Value="_result"
+                               Label="Result"
+                               Required="true"
+                               RequiredError="Select an outcome">
+                        @foreach (var outcome in Enum.GetValues<PoliceVerificationResult>())
+                        {
+                            <MudSelectItem Value="outcome">@FormatResult(outcome)</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="_officerNotes"
+                                  Label="Officer notes"
+                                  Lines="3"
+                                  MaxLength="2000"
+                                  Counter="2000" />
+                </MudItem>
+            </AppFormSection>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   OnClick="Submit"
+                   Disabled="_submitting">
+            Save result
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public Guid RequestId { get; set; }
+
+    [Parameter, EditorRequired]
+    public string PersonName { get; set; } = string.Empty;
+
+    [Parameter, EditorRequired]
+    public string Address { get; set; } = string.Empty;
+
+    [Parameter, EditorRequired]
+    public RecordPoliceResultHandler Handler { get; set; } = null!;
+
+    private MudForm _form = null!;
+    private PoliceVerificationResult _result = PoliceVerificationResult.Confirmed;
+    private string? _officerNotes;
+    private bool _submitting;
+
+    private void Cancel() => MudDialog.Cancel();
+
+    private async Task Submit()
+    {
+        _submitting = true;
+        try
+        {
+            await Handler.Handle(
+                PoliceVerificationRequestId.From(RequestId),
+                new RecordPoliceResultRequest(_result, _officerNotes),
+                CancellationToken.None);
+
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+        finally
+        {
+            _submitting = false;
+        }
+    }
+
+    private static string FormatResult(PoliceVerificationResult result) => result switch
+    {
+        PoliceVerificationResult.Confirmed => "Confirmed — person found at address",
+        PoliceVerificationResult.NotFound => "Not found — person not present",
+        PoliceVerificationResult.AddressIncorrect => "Address incorrect",
+        PoliceVerificationResult.MailboxOnly => "Mailbox only — not actually residing",
+        PoliceVerificationResult.EmptyDwelling => "Empty dwelling",
+        PoliceVerificationResult.RefusedAccess => "Refused access — could not verify",
+        PoliceVerificationResult.Incomplete => "Incomplete — needs second visit",
+        _ => result.ToString(),
+    };
+}

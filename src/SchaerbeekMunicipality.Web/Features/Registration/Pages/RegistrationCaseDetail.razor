@@ -5,10 +5,12 @@
 @using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Web.Features.Registration.LinkExistingPerson
 @using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity
+@using SchaerbeekMunicipality.Web.Features.Registration.RequestPoliceVerification
 @using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument
 @using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister
 @using SchaerbeekMunicipality.Domain.Documents
 @using SchaerbeekMunicipality.Domain.NationalRegister
+@using SchaerbeekMunicipality.Domain.Police
 @using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
 @inject GetRegistrationCaseHandler GetHandler
 @inject RecordIdentityHandler RecordIdentityHandler
@@ -16,6 +18,7 @@
 @inject SearchNationalRegisterHandler SearchNationalRegisterHandler
 @inject LinkExistingPersonHandler LinkExistingPersonHandler
 @inject ConvertBisNumberHandler ConvertBisNumberHandler
+@inject RequestPoliceVerificationHandler RequestPoliceVerificationHandler
 @inject AttachDocumentHandler AttachDocumentHandler
 @inject RemoveDocumentHandler RemoveDocumentHandler
 @inject IAppDialogService DialogService
@@ -42,6 +45,16 @@
                 <AppStatusChip Status="_case.Status" />
             </StatusChip>
             <Actions>
+                @if (CanSendToPolice)
+                {
+                    <MudButton Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               StartIcon="@Icons.Material.Outlined.LocalPolice"
+                               Disabled="_sendingToPolice"
+                               OnClick="SendToPolice">
+                        Send to police
+                    </MudButton>
+                }
                 <MudButton StartIcon="@Icons.Material.Outlined.ArrowBack"
                            Variant="Variant.Text"
                            OnClick="@(() => Navigation.NavigateTo("/registration/cases"))">
@@ -58,8 +71,28 @@
                                Severity="@(_case.Checklist.LegalResidenceEstablished ? AppSeverity.Success : AppSeverity.Neutral)" />
                 <AppStatusChip Label="@($"Address {(_case.Checklist.AddressDeclared ? "✓" : "—")}")"
                                Severity="@(_case.Checklist.AddressDeclared ? AppSeverity.Success : AppSeverity.Neutral)" />
+                <AppStatusChip Label="@($"Address confirmed {(_case.Checklist.AddressConfirmed ? "✓" : "—")}")"
+                               Severity="@(_case.Checklist.AddressConfirmed ? AppSeverity.Success : (_case.Status == RegistrationCaseStatus.AwaitingPoliceVerification ? AppSeverity.Warning : AppSeverity.Neutral))" />
             </MudStack>
         </AppSection>
+
+        @if (_case.Status == RegistrationCaseStatus.AwaitingPoliceVerification)
+        {
+            <AppSection>
+                <AppAlert Severity="Severity.Info"
+                          Title="Awaiting police verification"
+                          Class="mb-0">
+                    This case has been sent to the local police for a residence check.
+                    @if (_case.ActivePoliceVerification is not null)
+                    {
+                        <text> Request sent @_case.ActivePoliceVerification.RequestedAt.LocalDateTime.ToString("g") (attempt @_case.ActivePoliceVerification.AttemptNumber).</text>
+                    }
+                </AppAlert>
+            </AppSection>
+        }
+
+        <PoliceVerificationSection ActiveVerification="_case.ActivePoliceVerification"
+                                   History="_case.PoliceVerificationHistory" />
 
         @if (_case.Person is not null && _case.PossibleDuplicateMatches.Count > 0 && !_case.Person.LinkedFromRegister)
         {
@@ -243,6 +276,7 @@
     private bool _identityFormValid;
     private bool _savingIdentity;
     private bool _convertingBis;
+    private bool _sendingToPolice;
 
     private string _givenName = string.Empty;
     private string _familyName = string.Empty;
@@ -256,6 +290,13 @@
     private bool CanConvertBis =>
         CanEditIntakeData &&
         _case?.Person is { BisNumber: not null, NationalRegisterNumber: null };
+
+    private bool CanSendToPolice =>
+        _case is not null &&
+        _case.Checklist.IdentityEstablished &&
+        _case.Checklist.AddressDeclared &&
+        _case.ActivePoliceVerification is null &&
+        _case.Status is RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview;
 
     private bool IdentityFormDirty =>
         _case?.Person is not null &&
@@ -451,6 +492,43 @@
         finally
         {
             _convertingBis = false;
+        }
+    }
+
+    private async Task SendToPolice()
+    {
+        var confirmed = await DialogService.ConfirmAsync(
+            "Send to police?",
+            "The local police will verify that the person actually resides at the declared address.",
+            "Send to police",
+            consequence: "The case will be locked for intake edits until the police clerk records a result.");
+
+        if (!confirmed)
+        {
+            return;
+        }
+
+        _sendingToPolice = true;
+        try
+        {
+            await RequestPoliceVerificationHandler.Handle(
+                new RegistrationCaseId(CaseId),
+                CancellationToken.None);
+
+            Snackbar.Add("Case sent to police for residence verification.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        catch (InvalidPoliceVerificationException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _sendingToPolice = false;
         }
     }
 

@@ -129,6 +129,7 @@ The case detail page uses a **two-column layout**: intake steps on the left, a *
 |------|-------|---------|
 | Home | `/home` | Dashboard and workflow overview |
 | Registration cases | `/registration/cases` | Case list and detail wizard |
+| Police verifications | `/registration/police-verifications` | Police clerk pending queue (Phase 6) |
 | Design system | `/design-system` | Schaerbeek UI kit showcase (Phase 3) |
 
 The app bar shows a fake officer identity (**Marie Dupont**) and a role switcher for development (`PopulationOfficer`, etc.).
@@ -139,7 +140,8 @@ The app bar shows a fake officer identity (**Marie Dupont**) and a role switcher
 
 See [ROADMAP.md](./ROADMAP.md) for upcoming phases:
 
-- **Phase 6** — Police verification loop
 - **Phase 7+** — Final decision, registration, certificates
+
+**Phase 6 (complete):** Police verification loop — send to police, clerk portal, outcome history on case detail — [phase-6-police-verification-loop.md](./phases/phase-6-police-verification-loop.md).
 
 **Phase 5 (complete):** National Register search, partial criteria, link existing person, BIS conversion, duplicate warnings — [phase-5-national-register-search-bis.md](./phases/phase-5-national-register-search-bis.md).

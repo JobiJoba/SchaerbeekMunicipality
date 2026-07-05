@@ -25,4 +25,8 @@ public sealed class RegistrationCaseChecklist
     internal void ClearLegalResidenceEstablished() => LegalResidenceEstablished = false;
 
     internal void MarkAddressDeclared() => AddressDeclared = true;
+
+    internal void MarkAddressConfirmed() => AddressConfirmed = true;
+
+    internal void ClearAddressConfirmed() => AddressConfirmed = false;
 }

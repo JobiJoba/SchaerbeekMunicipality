@@ -16,6 +16,9 @@ using SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit;
 using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument;
 using SchaerbeekMunicipality.Web.Features.Registration.SearchReferenceData;
 using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
+using SchaerbeekMunicipality.Web.Features.Registration.ListPendingPoliceVerifications;
+using SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult;
+using SchaerbeekMunicipality.Web.Features.Registration.RequestPoliceVerification;
 using SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration;
@@ -106,6 +109,18 @@ public static class RegistrationEndpoints
         group.MapDelete("/cases/{id:guid}/documents/{documentId:guid}", RemoveDocumentEndpoint.Handle)
             .WithName("RemoveDocument")
             .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/police-verification", RequestPoliceVerificationEndpoint.Handle)
+            .WithName("RequestPoliceVerification")
+            .WithTags("PoliceVerification");
+
+        group.MapGet("/police-verifications/pending", ListPendingPoliceVerificationsEndpoint.Handle)
+            .WithName("ListPendingPoliceVerifications")
+            .WithTags("PoliceVerification");
+
+        group.MapPost("/police-verifications/{requestId:guid}/result", RecordPoliceResultEndpoint.Handle)
+            .WithName("RecordPoliceResult")
+            .WithTags("PoliceVerification");
 
         return app;
     }

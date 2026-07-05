@@ -23,6 +23,9 @@ using SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit;
 using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument;
 using SchaerbeekMunicipality.Web.Features.Registration.SearchReferenceData;
 using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
+using SchaerbeekMunicipality.Web.Features.Registration.ListPendingPoliceVerifications;
+using SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult;
+using SchaerbeekMunicipality.Web.Features.Registration.RequestPoliceVerification;
 using SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -60,6 +63,9 @@ builder.Services.AddScoped<DeclareAddressHandler>();
 builder.Services.AddScoped<RecordHousingSituationHandler>();
 builder.Services.AddScoped<RecordHouseholdCompositionHandler>();
 builder.Services.AddScoped<RecordCivilStatusHandler>();
+builder.Services.AddScoped<RequestPoliceVerificationHandler>();
+builder.Services.AddScoped<ListPendingPoliceVerificationsHandler>();
+builder.Services.AddScoped<RecordPoliceResultHandler>();
 builder.Services.AddScoped<SearchMunicipalitiesHandler>();
 builder.Services.AddScoped<SearchStreetsHandler>();
 

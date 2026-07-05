@@ -101,6 +101,18 @@ The same handler is called again after identity recording or document upload to 
     "linkedFromRegister": true
   },
   "possibleDuplicateMatches": [],
+  "activePoliceVerification": null,
+  "policeVerificationHistory": [
+    {
+      "requestId": "a1b2c3d4-...",
+      "attemptNumber": 1,
+      "requestedAt": "2026-07-05T08:00:00+00:00",
+      "completedAt": "2026-07-05T14:30:00+00:00",
+      "result": "Confirmed",
+      "officerNotes": "Person present at declared address.",
+      "isPending": false
+    }
+  ],
   "documents": [
     {
       "id": "...",
@@ -120,12 +132,25 @@ When a person exists **without** `linkedFromRegister`, the handler runs a Nation
 
 Each match includes `registerPersonId`, name, birth date, BIS/NR numbers, `matchScore`, and `matchReason`. See [search-national-register.md](./search-national-register.md).
 
+### Police verification (Phase 6)
+
+| Field | When set | Description |
+|-------|----------|-------------|
+| `activePoliceVerification` | Case has a pending police request | Current open visit (`isPending: true`) |
+| `policeVerificationHistory` | One or more completed visits | Outcome, dates, and `officerNotes` from police clerk |
+
+History excludes pending requests and is ordered by `attemptNumber` descending. Rendered on case detail by `PoliceVerificationSection` — one visit as a card, multiple visits as `AppDataTable`.
+
+See [record-police-result.md](./record-police-result.md) and [phase-6-police-verification-loop.md](../../phases/phase-6-police-verification-loop.md).
+
 ## Blazor UI behaviour
 
 `RegistrationCaseDetail.razor` uses the DTO to:
 
 - Show case header (status chip, visit reason, opened date)
-- Render checklist status chips
+- Render checklist status chips (including **Address confirmed**)
+- Show **Police verification** section when a visit was sent or recorded
+- Show **Send to police** when identity + address declared and no pending request
 - Show **duplicate warning** when `possibleDuplicateMatches` is non-empty and person not linked
 - Show identity form **or** read-only person card with BIS/NR and convert button
 - Open `NationalRegisterSearchDialog` from search button or warning
@@ -146,5 +171,6 @@ Each match includes `registerPersonId`, name, birth date, BIS/NR numbers, `match
 | `IPersonRepository` | Load linked person |
 | `IAdministrativeDocumentRepository` | Load case documents |
 | `INationalRegisterRepository` | Duplicate detection search (Phase 5) |
+| `IPoliceVerificationRepository` | Active request + completed visit history (Phase 6) |
 
 This is a read-only slice with no domain mutations.

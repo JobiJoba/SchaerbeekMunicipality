@@ -3,6 +3,7 @@ using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.ReferenceData;
 
 namespace SchaerbeekMunicipality.Domain.Registration;
@@ -153,6 +154,37 @@ public sealed class RegistrationCase
         HousingSituation = situation;
     }
 
+    public void RequestPoliceVerification()
+    {
+        if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
+        {
+            throw new InvalidRegistrationTransitionException(
+                $"Cannot request police verification while the case is in status '{Status}'.");
+        }
+
+        EnsurePoliceVerificationPrerequisites();
+
+        Status = RegistrationCaseStatus.AwaitingPoliceVerification;
+    }
+
+    public void ApplyPoliceVerificationResult(PoliceVerificationResult result)
+    {
+        EnsureStatus(RegistrationCaseStatus.AwaitingPoliceVerification, nameof(ApplyPoliceVerificationResult));
+
+        if (result == PoliceVerificationResult.Confirmed)
+        {
+            Checklist.MarkAddressConfirmed();
+        }
+        else
+        {
+            Checklist.ClearAddressConfirmed();
+        }
+
+        Status = RegistrationCaseStatus.UnderReview;
+    }
+
+    public bool HasPositivePoliceVerification => Checklist.AddressConfirmed;
+
     public void EnsureIntakeDataEditable(string operation)
     {
         if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
@@ -201,6 +233,27 @@ public sealed class RegistrationCase
         {
             throw new InvalidRegistrationTransitionException(
                 $"Identity has already been recorded for this case.");
+        }
+    }
+
+    private void EnsurePoliceVerificationPrerequisites()
+    {
+        if (!Checklist.IdentityEstablished)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Identity must be established before requesting police verification.");
+        }
+
+        if (!Checklist.AddressDeclared)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Address must be declared before requesting police verification.");
+        }
+
+        if (DeclaredAddress is null)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "A declared address is required before requesting police verification.");
         }
     }
 }

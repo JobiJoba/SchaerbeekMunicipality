@@ -1,0 +1,120 @@
+@page "/registration/police-verifications"
+@using SchaerbeekMunicipality.Domain.Police
+@using SchaerbeekMunicipality.Web.Auth
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Web.Features.Registration.ListPendingPoliceVerifications
+@using SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult
+@inject ListPendingPoliceVerificationsHandler ListHandler
+@inject RecordPoliceResultHandler RecordHandler
+@inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+@inject NavigationManager Navigation
+
+<AppPage Title="Police verifications">
+    <AppPageHeader Title="Police verifications"
+                   Subtitle="Residence checks requested by the Population Department.">
+        <Actions>
+            <MudButton StartIcon="@Icons.Material.Outlined.Refresh"
+                       Variant="Variant.Text"
+                       OnClick="Reload">
+                Refresh
+            </MudButton>
+        </Actions>
+    </AppPageHeader>
+
+    @if (CurrentOfficer.Role != OfficerRole.PoliceClerk)
+    {
+        <AppAlert Severity="Severity.Info" Title="Police clerk role required">
+            Switch to the <strong>Police clerk</strong> role in the app bar to record verification results.
+        </AppAlert>
+    }
+
+    @if (_loading)
+    {
+        <AppLoading />
+    }
+    else if (_items.Count == 0)
+    {
+        <AppEmptyState Title="No pending verifications"
+                       Description="When a population officer sends a case for police verification, it will appear here."
+                       Icon="@Icons.Material.Outlined.LocalPolice" />
+    }
+    else
+    {
+        <AppSection>
+            <AppDataTable T="PendingPoliceVerificationDto"
+                          Items="_items"
+                          Caption="Pending police verifications">
+                <HeaderContent>
+                    <MudTh Class="app-table-header">Person</MudTh>
+                    <MudTh Class="app-table-header">Address</MudTh>
+                    <MudTh Class="app-table-header">Requested</MudTh>
+                    <MudTh Class="app-table-header">Attempt</MudTh>
+                    <MudTh Class="app-table-header"></MudTh>
+                </HeaderContent>
+                <RowTemplate Context="item">
+                    <MudTd DataLabel="Person">
+                        <MudLink Href="@($"/registration/cases/{item.CaseId}")">
+                            @item.PersonName
+                        </MudLink>
+                    </MudTd>
+                    <MudTd DataLabel="Address">@item.Address</MudTd>
+                    <MudTd DataLabel="Requested">@item.RequestedAt.LocalDateTime.ToString("g")</MudTd>
+                    <MudTd DataLabel="Attempt">@item.AttemptNumber</MudTd>
+                    <MudTd>
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   Size="Size.Small"
+                                   Disabled="CurrentOfficer.Role != OfficerRole.PoliceClerk"
+                                   OnClick="@(() => OpenRecordResult(item))">
+                            Record result
+                        </MudButton>
+                    </MudTd>
+                </RowTemplate>
+            </AppDataTable>
+        </AppSection>
+    }
+</AppPage>
+
+@code {
+    private IReadOnlyList<PendingPoliceVerificationDto> _items = [];
+    private bool _loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Reload();
+    }
+
+    private async Task Reload()
+    {
+        _loading = true;
+        var response = await ListHandler.Handle(CancellationToken.None);
+        _items = response.Items;
+        _loading = false;
+    }
+
+    private async Task OpenRecordResult(PendingPoliceVerificationDto item)
+    {
+        var parameters = new DialogParameters<RecordPoliceResultDialog>
+        {
+            { x => x.RequestId, item.RequestId },
+            { x => x.PersonName, item.PersonName },
+            { x => x.Address, item.Address },
+            { x => x.Handler, RecordHandler },
+        };
+
+        var dialog = await DialogService.ShowAsync<RecordPoliceResultDialog>(
+            "Record result",
+            parameters,
+            AppDialogOptions.Medium);
+
+        var result = await dialog.Result;
+
+        if (result is { Canceled: false })
+        {
+            Snackbar.Add("Police verification result recorded.", Severity.Success);
+            await Reload();
+        }
+    }
+}

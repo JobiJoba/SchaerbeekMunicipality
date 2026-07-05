@@ -179,7 +179,9 @@ public interface IResidencePolicy
 
 **Integration:** Case transitions to `AwaitingPoliceVerification` on request; `RecordPoliceResult` updates both request and case.
 
-**Educational UI:** Separate “Police clerk” role screen to submit results.
+**Educational UI:** Police clerk portal at `/registration/police-verifications`; case detail `PoliceVerificationSection` shows pending visit and completed history (card for one visit, table for multiple) including clerk notes.
+
+**Implemented (Phase 6):** see [phase-6-police-verification-loop.md](./phases/phase-6-police-verification-loop.md).
 
 ---
 

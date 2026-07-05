@@ -4,6 +4,7 @@ using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.ReferenceData;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -28,6 +29,8 @@ public sealed class MunicipalDbContext(DbContextOptions<MunicipalDbContext> opti
     public DbSet<StreetReference> Streets => Set<StreetReference>();
 
     public DbSet<NationalRegisterPerson> NationalRegisterPersons => Set<NationalRegisterPerson>();
+
+    public DbSet<PoliceVerificationRequest> PoliceVerificationRequests => Set<PoliceVerificationRequest>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

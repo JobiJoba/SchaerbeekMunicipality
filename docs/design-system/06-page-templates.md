@@ -115,7 +115,22 @@ Search dialog (`NationalRegisterSearchDialog`): optional criteria fields (given 
 
 Implemented: [search-national-register.md](../features/registration/search-national-register.md), [phase-5-national-register-search-bis.md](../phases/phase-5-national-register-search-bis.md).
 
-## 7. Dashboard (Phase 7 review dashboard)
+## 7. Police verification on case detail (Phase 6)
+
+`PoliceVerificationSection` on `RegistrationCaseDetail.razor`, below the checklist:
+
+```
+AppSection "Police verification"
+  Pending visit     → AppCard (attempt N, sent date, Awaiting result chip)
+  1 completed visit → AppCard (outcome chip, dates, notes block)
+  2+ completed      → AppDataTable (Visit | Outcome | Requested | Recorded | Notes)
+```
+
+Pending card and completed history can appear together (e.g. attempt 1 done, attempt 2 pending). Population officer **Send to police** lives in `AppPageHeader` actions. Police clerk portal uses `PoliceVerificationList` + `RecordPoliceResultDialog`.
+
+Implemented: [phase-6-police-verification-loop.md](../phases/phase-6-police-verification-loop.md), [record-police-result.md](../features/registration/record-police-result.md).
+
+## 8. Dashboard (Phase 7 review dashboard)
 
 ```
 AppPageHeader ("Good morning, Officer …")
@@ -126,7 +141,7 @@ AppSection "Quick actions" → AppQuickActions grid
 
 Rules: statistics link to the corresponding filtered list; queues before charts; yellow accent bar only on the single most important KPI.
 
-## 8. Document viewer (Phase 4.1 partial; Phase 8 full)
+## 9. Document viewer (Phase 4.1 partial; Phase 8 full)
 
 **Phase 4.1** ships a practical subset on the case detail page: sticky right column with document list + inline preview (`RegistrationCaseDocumentPanel`, `DocumentPreviewContent`). PDFs use an iframe; images use `<img>`; other types fall back to download only. Fullscreen via `DocumentPreviewDialog`.
 
@@ -134,19 +149,19 @@ The **full** template below (print toolbar, dedicated `AppDocumentPreview` wrapp
 
 Two-pane details layout: left = document list (`AppDocumentPreview`), right = preview area (PDF iframe/image) inside `AppCard` with toolbar (download, print). Falls back to metadata + download when preview is impossible. Print uses the global print CSS.
 
-## 9. Citizen profile / person file (Phase 11 read model)
+## 10. Citizen profile / person file (Phase 11 read model)
 
 Header = person identity (`MudAvatar` initials, name, national number, `AppStatusChip` register type) + `AppPropertyGrid` facts; tabs: Household | Addresses | Cases | Certificates. Composes the details-page template — no new primitives.
 
-## 10. Administration & settings pages
+## 11. Administration & settings pages
 
 Simple stacked `AppSection`s of `AppCard`s, each card one concern (seed data, notification log, feature toggles later). Left-aligned, `MaxWidth.Medium`; no dashboards, no tabs until a page exceeds ~4 cards.
 
-## 11. Login / role selection
+## 12. Login / role selection
 
 Current fake-auth `RoleSwitcher` stays in the app bar. If a real login page arrives (Phase 10+): centered `MudPaper Elevation=1` card 444px on `Background` canvas, municipal wordmark, form, primary button full-width — mirrors the sober site identity, no hero imagery.
 
-## 12. Error page & not found
+## 13. Error page & not found
 
 `Error.razor` / `NotFound.razor` re-skinned with the kit (site 404 is a plain message + search + home link):
 
@@ -160,6 +175,6 @@ AppPage → AppEmptyState
 
 Never expose stack traces; log correlation id shown as caption.
 
-## 13. Empty page (scaffold)
+## 14. Empty page (scaffold)
 
 The starting point for any new page — `AppPage` + `AppPageHeader` + one `AppSection` — documented in [07-architecture-and-guidelines.md](./07-architecture-and-guidelines.md#building-a-new-page) as the copy-paste snippet.

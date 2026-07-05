@@ -3,6 +3,7 @@ using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
 
@@ -65,6 +66,15 @@ public sealed record CivilStatusDto(
     DateOnly? MarriageDate,
     string? MarriagePlace);
 
+public sealed record PoliceVerificationDto(
+    Guid RequestId,
+    int AttemptNumber,
+    DateTimeOffset RequestedAt,
+    DateTimeOffset? CompletedAt,
+    PoliceVerificationResult? Result,
+    string? OfficerNotes,
+    bool IsPending);
+
 public sealed record RegistrationCaseDetailDto(
     Guid Id,
     RegistrationCaseStatus Status,
@@ -81,4 +91,6 @@ public sealed record RegistrationCaseDetailDto(
     IReadOnlyList<HouseholdMemberDto> HouseholdMembers,
     CivilStatusDto? CivilStatus,
     IReadOnlyList<DocumentDto> Documents,
-    IReadOnlyList<NationalRegisterMatchDto> PossibleDuplicateMatches);
+    IReadOnlyList<NationalRegisterMatchDto> PossibleDuplicateMatches,
+    PoliceVerificationDto? ActivePoliceVerification,
+    IReadOnlyList<PoliceVerificationDto> PoliceVerificationHistory);

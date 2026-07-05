@@ -64,11 +64,12 @@ erDiagram
 
 | Status | Meaning |
 |--------|---------|
-| `Intake` | Case opened; identity, residence, and documents can be collected |
-| `UnderReview` | (future) Case under review |
-| Others | Defined in `RegistrationCaseStatus` for later phases |
+| `Intake` | Case opened; identity, residence, address, and documents can be collected |
+| `AwaitingPoliceVerification` | Sent to local police for residence check |
+| `UnderReview` | Police result recorded; officer evaluates the four core decisions |
+| `Approved`, `Registered`, `Rejected`, `Suspended` | See `RegistrationCaseStatus` and [GLOSSARY.md](../../GLOSSARY.md) |
 
-The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalResidenceEstablished`, `AddressDeclared`, etc.) independently of status. Recording identity sets `IdentityEstablished = true`; residence policies set `LegalResidenceEstablished` when evidence passes validation.
+The **checklist** tracks completeness flags (`IdentityEstablished`, `LegalResidenceEstablished`, `AddressDeclared`, `AddressConfirmed`, etc.) independently of status. Recording identity sets `IdentityEstablished = true`; residence policies set `LegalResidenceEstablished` when evidence passes validation; a **Confirmed** police result sets `AddressConfirmed`.
 
 ### Intake corrections (Phase 2.1)
 
@@ -152,6 +153,32 @@ flowchart LR
 
 **Partial search:** all search fields are optional individually; at least one of given name, family name, or birth date is required. Example: `givenName=Marie` returns Marie Leclerc; `familyName=Dupont` returns Jean and J. Dupont.
 
+### Police verification loop (Phase 6)
+
+After identity and address are declared, the population officer sends the case to police. A police clerk records the visit outcome on a separate portal. Phase notes: [phase-6-police-verification-loop.md](../../phases/phase-6-police-verification-loop.md).
+
+```mermaid
+flowchart LR
+    Intake["Intake / UnderReview<br/>identity + address ✓"]
+    Request["RequestPoliceVerification"]
+    Await["AwaitingPoliceVerification"]
+    Record["RecordPoliceResult"]
+    Review["UnderReview<br/>AddressConfirmed?"]
+
+    Intake --> Request --> Await
+    Await --> Record --> Review
+    Review -->|"re-send after incomplete"| Request
+```
+
+| Step | Slice | Doc |
+|------|-------|-----|
+| Send to police | `RequestPoliceVerification` | [request-police-verification.md](./request-police-verification.md) |
+| Police clerk queue | `ListPendingPoliceVerifications` | [list-pending-police-verifications.md](./list-pending-police-verifications.md) |
+| Record visit outcome | `RecordPoliceResult` | [record-police-result.md](./record-police-result.md) |
+| View on case detail | `GetRegistrationCase` | [get-registration-case.md](./get-registration-case.md) — `activePoliceVerification`, `policeVerificationHistory` |
+
+**Case detail UI:** `PoliceVerificationSection` shows a pending visit card, one completed visit as a summary card, or multiple visits in an `AppDataTable` (outcome, dates, police clerk notes).
+
 ## Slice documentation
 
 - [List registration cases](./list-registration-cases.md)
@@ -172,6 +199,9 @@ flowchart LR
 - [Attach document](./attach-document.md)
 - [Download document](./download-document.md)
 - [Remove document](./remove-document.md)
+- [Request police verification](./request-police-verification.md)
+- [List pending police verifications](./list-pending-police-verifications.md)
+- [Record police result](./record-police-result.md)
 
 ## Route registration
 

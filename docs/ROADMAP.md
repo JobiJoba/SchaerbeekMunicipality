@@ -17,7 +17,8 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 4 | Address & household | ✅ Complete |
 | 4.1 | Document preview & case UX | ✅ Complete |
 | 5 | National Register search & BIS | ✅ Complete |
-| 6+ | Police, decision, … | Planned |
+| 6 | Police verification loop | ✅ Complete |
+| 7+ | Decision, certificates, … | Planned |
 
 Delivery notes for completed phases: [phases/](./phases/).
 
@@ -285,7 +286,9 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 ---
 
-## Phase 6 — Police verification loop (IDEA Phases 15–17)
+## Phase 6 — Police verification loop (IDEA Phases 15–17) ✅
+
+**Status:** Complete — see [phases/phase-6-police-verification-loop.md](./phases/phase-6-police-verification-loop.md).
 
 **Goal:** Async residence check with separate police role.
 
@@ -302,15 +305,18 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 **UI:**
 
-- Population officer: “Send to police” action
-- Police clerk portal: pending list, result form (confirmed / not found / …)
+- Population officer: “Send to police” action on case detail
+- `PoliceVerificationSection` — pending visit + completed history (card or table)
+- Police clerk portal: pending list, result form with optional notes
+- Nav badge with pending count (police clerk role)
 
-**Demo:** Full wait loop — request → police confirms → case returns to review.
+**Demo:** Full wait loop — request → police confirms with notes → case shows outcome on detail → second visit switches history to grid.
 
 **Tests:**
 
-- Cannot approve with negative police result
+- Cannot approve with negative police result (Phase 7)
 - Second visit (`AttemptNumber`) allowed when incomplete
+- `GetRegistrationCase` returns history with officer notes
 
 ---
 

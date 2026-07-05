@@ -3,6 +3,7 @@ using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
 
@@ -14,7 +15,8 @@ public sealed class GetRegistrationCaseHandler(
     IAdministrativeDocumentRepository documentRepository,
     IResidencePermitRepository permitRepository,
     IHouseholdRepository householdRepository,
-    INationalRegisterRepository nationalRegisterRepository)
+    INationalRegisterRepository nationalRegisterRepository,
+    IPoliceVerificationRepository policeVerificationRepository)
 {
     public async Task<RegistrationCaseDetailDto?> Handle(
         RegistrationCaseId caseId,
@@ -36,8 +38,20 @@ public sealed class GetRegistrationCaseHandler(
         var permit = await permitRepository.GetByCaseIdAsync(caseId, cancellationToken);
         var household = await householdRepository.GetByCaseIdAsync(caseId, cancellationToken);
         var possibleDuplicates = await FindPossibleDuplicatesAsync(person, cancellationToken);
+        var activePoliceVerification = await policeVerificationRepository.GetPendingByCaseIdAsync(
+            caseId,
+            cancellationToken);
+        var policeVerifications = await policeVerificationRepository.ListByCaseIdAsync(caseId, cancellationToken);
 
-        return Map(registrationCase, person, documents, permit, household, possibleDuplicates);
+        return Map(
+            registrationCase,
+            person,
+            documents,
+            permit,
+            household,
+            possibleDuplicates,
+            activePoliceVerification,
+            policeVerifications);
     }
 
     private async Task<IReadOnlyList<NationalRegisterMatchDto>> FindPossibleDuplicatesAsync(
@@ -77,7 +91,9 @@ public sealed class GetRegistrationCaseHandler(
         IReadOnlyList<AdministrativeDocument> documents,
         ResidencePermit? permit,
         Household? household,
-        IReadOnlyList<NationalRegisterMatchDto> possibleDuplicates)
+        IReadOnlyList<NationalRegisterMatchDto> possibleDuplicates,
+        PoliceVerificationRequest? activePoliceVerification,
+        IReadOnlyList<PoliceVerificationRequest> policeVerifications)
     {
         var checklist = registrationCase.Checklist;
 
@@ -152,6 +168,21 @@ public sealed class GetRegistrationCaseHandler(
                     d.FileName,
                     d.UploadedAt))
                 .ToList(),
-            possibleDuplicates);
+            possibleDuplicates,
+            activePoliceVerification is null ? null : MapPoliceVerification(activePoliceVerification),
+            policeVerifications
+                .Where(v => !v.IsPending)
+                .Select(MapPoliceVerification)
+                .ToList());
     }
+
+    private static PoliceVerificationDto MapPoliceVerification(PoliceVerificationRequest request) =>
+        new(
+            request.Id.Value,
+            request.AttemptNumber,
+            request.RequestedAt,
+            request.CompletedAt,
+            request.Result,
+            request.OfficerNotes,
+            request.IsPending);
 }

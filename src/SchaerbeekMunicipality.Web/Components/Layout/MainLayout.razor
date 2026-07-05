@@ -5,8 +5,11 @@
 @using SchaerbeekMunicipality.Web.DesignSystem.Tokens
 @using SchaerbeekMunicipality.Web.DesignSystem.Theme
 @using SchaerbeekMunicipality.Web.Auth.Components
+@using Microsoft.Extensions.DependencyInjection
+@using SchaerbeekMunicipality.Web.Features.Registration.ListPendingPoliceVerifications
 @inject ICurrentOfficer CurrentOfficer
 @inject IWebHostEnvironment HostEnvironment
+@inject IServiceScopeFactory ScopeFactory
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
@@ -56,10 +59,34 @@
     {
         CurrentOfficer.Changed += OnOfficerChanged;
 
+        _ = RefreshNavItemsAsync();
+    }
+
+    private async Task RefreshNavItemsAsync()
+    {
+        var pendingCount = 0;
+        try
+        {
+            await using var scope = ScopeFactory.CreateAsyncScope();
+            var handler = scope.ServiceProvider.GetRequiredService<ListPendingPoliceVerificationsHandler>();
+            var pending = await handler.Handle(CancellationToken.None);
+            pendingCount = pending.TotalCount;
+        }
+        catch
+        {
+            pendingCount = 0;
+        }
+
         var items = new List<AppNavItem>
         {
             new("Home", "/", Icons.Material.Outlined.Home),
             new("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+            new(
+                "Police verifications",
+                "/registration/police-verifications",
+                Icons.Material.Outlined.LocalPolice,
+                OfficerRole.PoliceClerk.ToString(),
+                pendingCount > 0 ? pendingCount : null),
         };
 
         if (HostEnvironment.IsDevelopment())
@@ -68,9 +95,13 @@
         }
 
         _navItems = items;
+        await InvokeAsync(StateHasChanged);
     }
 
-    private void OnOfficerChanged() => InvokeAsync(StateHasChanged);
+    private void OnOfficerChanged()
+    {
+        _ = RefreshNavItemsAsync();
+    }
 
     private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
 
