@@ -11,8 +11,7 @@
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
-<AppSection Title="Address & housing">
-    @if (!_case.Checklist.IdentityEstablished)
+@if (!_case.Checklist.IdentityEstablished)
     {
         <AppInfoBox>
             Record identity before declaring an address.
@@ -131,7 +130,6 @@
             </AppCard>
         }
     }
-</AppSection>
 
 @code {
     [Parameter, EditorRequired]

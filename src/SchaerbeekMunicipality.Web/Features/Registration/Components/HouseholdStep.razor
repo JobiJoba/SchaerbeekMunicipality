@@ -6,8 +6,7 @@
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
-<AppSection Title="Household composition">
-    @if (!_case.Checklist.IdentityEstablished)
+@if (!_case.Checklist.IdentityEstablished)
     {
         <AppInfoBox>
             Record identity before adding household members.
@@ -102,7 +101,6 @@
             }
         </AppCard>
     }
-</AppSection>
 
 @code {
     [Parameter, EditorRequired]

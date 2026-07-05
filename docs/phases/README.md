@@ -14,6 +14,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 4.1 | Document preview & case UX | Complete | [phase-4.1-document-preview-case-ux.md](./phase-4.1-document-preview-case-ux.md) |
 | 5 | National Register search & BIS | Complete | [phase-5-national-register-search-bis.md](./phase-5-national-register-search-bis.md) |
 | 6 | Police verification loop | Complete | [phase-6-police-verification-loop.md](./phase-6-police-verification-loop.md) |
+| 6.1 | Collapsible intake sections | Complete | [phase-6.1-collapsible-intake-sections.md](./phase-6.1-collapsible-intake-sections.md) |
 | 7 | Decision & registration | Planned | — |
 | 8 | Certificates & outbound stubs | Planned | — |
 | 9 | Exception scenarios | Planned | — |

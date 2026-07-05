@@ -1,5 +1,6 @@
 @page "/registration/cases/{CaseId:guid}"
 @using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Web.Features.Registration.ConvertBisNumber
 @using SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity
 @using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
@@ -76,181 +77,201 @@
             </MudStack>
         </AppSection>
 
-        @if (_case.Status == RegistrationCaseStatus.AwaitingPoliceVerification)
-        {
-            <AppSection>
-                <AppAlert Severity="Severity.Info"
-                          Title="Awaiting police verification"
-                          Class="mb-0">
-                    This case has been sent to the local police for a residence check.
-                    @if (_case.ActivePoliceVerification is not null)
-                    {
-                        <text> Request sent @_case.ActivePoliceVerification.RequestedAt.LocalDateTime.ToString("g") (attempt @_case.ActivePoliceVerification.AttemptNumber).</text>
-                    }
-                </AppAlert>
-            </AppSection>
-        }
-
-        <PoliceVerificationSection ActiveVerification="_case.ActivePoliceVerification"
-                                   History="_case.PoliceVerificationHistory" />
-
-        @if (_case.Person is not null && _case.PossibleDuplicateMatches.Count > 0 && !_case.Person.LinkedFromRegister)
-        {
-            <AppSection>
-                <AppAlert Severity="Severity.Warning"
-                          Title="Possible duplicate detected"
-                          Class="mb-0">
-                    @_case.PossibleDuplicateMatches.Count possible match(es) found in the National Register for this identity.
-                    Review before proceeding — linking an existing record avoids duplicate person files.
-                    <MudButton Variant="Variant.Text"
-                               Color="Color.Warning"
-                               Class="mt-2"
-                               StartIcon="@Icons.Material.Outlined.Search"
-                               OnClick="OpenNationalRegisterSearch">
-                        Review matches
-                    </MudButton>
-                </AppAlert>
-            </AppSection>
-        }
-
         <MudGrid Spacing="4">
             <MudItem xs="12" lg="7">
-        @if (_case.Person is null)
-        {
-            <AppSection>
-                <AppCard Title="Identity" Outlined="true">
-                    <HeaderActions>
-                        <MudButton StartIcon="@Icons.Material.Outlined.Search"
-                                   Variant="Variant.Outlined"
-                                   Color="Color.Primary"
-                                   OnClick="OpenNationalRegisterSearch">
-                            Search National Register
-                        </MudButton>
-                    </HeaderActions>
-                    <ChildContent>
-                    <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
-                        <AppFormSection Title="Personal details">
-                            <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_givenName" Label="Given name" Required="true" />
-                            </MudItem>
-                            <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
-                            </MudItem>
-                            <MudItem xs="12" md="6">
-                                <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
-                            </MudItem>
-                            <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_nationality" Label="Nationality" Required="true" />
-                            </MudItem>
-                        </AppFormSection>
-
-                        <AppInfoBox Class="mb-4">
-                            Search the National Register first when the person may already have a BIS or NR record.
-                            Record identity only when you have verified the supporting documents on file.
-                        </AppInfoBox>
-
-                        <AppSaveCancelBar SaveText="Record identity"
-                                          CancelText="Clear"
-                                          Saving="_savingIdentity"
-                                          OnSave="SaveIdentity"
-                                          OnCancel="ClearIdentityForm" />
-                    </MudForm>
-                    </ChildContent>
-                </AppCard>
-            </AppSection>
-        }
-        else if (_editingIdentity)
-        {
-            <AppSection>
-                <AppCard Title="Identity" Outlined="true">
-                    <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
-                        <AppFormSection Title="Personal details">
-                            <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_givenName" Label="Given name" Required="true" />
-                            </MudItem>
-                            <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
-                            </MudItem>
-                            <MudItem xs="12" md="6">
-                                <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
-                            </MudItem>
-                            <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_nationality" Label="Nationality" Required="true" />
-                            </MudItem>
-                        </AppFormSection>
-
-                        <AppSaveCancelBar SaveText="Save changes"
-                                          CancelText="Cancel"
-                                          Saving="_savingIdentity"
-                                          Disabled="!IdentityFormDirty"
-                                          OnSave="SaveIdentityCorrection"
-                                          OnCancel="CancelIdentityEdit" />
-                    </MudForm>
-                </AppCard>
-            </AppSection>
-        }
-        else
-        {
-            <AppSection>
-                <AppCard Title="Identity" Outlined="true">
-                    <HeaderActions>
-                        @if (CanEditIntakeData)
-                        {
-                            <MudButton StartIcon="@Icons.Material.Outlined.Edit"
-                                       Variant="Variant.Text"
-                                       OnClick="StartEditingIdentity"
-                                       aria-label="Edit identity">
-                                Edit
+                <AppCollapsibleSection Title="Identity"
+                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Identity, _case)"
+                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Identity, _case)"
+                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Identity, _case)"
+                                       Collapsible="false">
+                    @if (_case.Person is not null && _case.PossibleDuplicateMatches.Count > 0 && !_case.Person.LinkedFromRegister)
+                    {
+                        <AppAlert Severity="Severity.Warning"
+                                  Title="Possible duplicate detected"
+                                  Class="mb-4">
+                            @_case.PossibleDuplicateMatches.Count possible match(es) found in the National Register for this identity.
+                            Review before proceeding — linking an existing record avoids duplicate person files.
+                            <MudButton Variant="Variant.Text"
+                                       Color="Color.Warning"
+                                       Class="mt-2"
+                                       StartIcon="@Icons.Material.Outlined.Search"
+                                       OnClick="OpenNationalRegisterSearch">
+                                Review matches
                             </MudButton>
-                        }
-                    </HeaderActions>
-                    <ChildContent>
-                        <MudText Typo="Typo.body1">@_case.Person.GivenName @_case.Person.FamilyName</MudText>
-                        <MudText Typo="Typo.body2" Color="Color.Secondary">
-                            Born @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
-                        </MudText>
-                        @if (_case.Person.LinkedFromRegister)
-                        {
-                            <AppStatusChip Label="Linked from National Register"
-                                           Severity="AppSeverity.Info"
-                                           Class="mt-2" />
-                        }
-                        @if (!string.IsNullOrWhiteSpace(_case.Person.BisNumber))
-                        {
-                            <MudText Typo="Typo.body2" Class="mt-2">
-                                BIS @FormatRegisterNumber(_case.Person.BisNumber)
-                            </MudText>
-                        }
-                        @if (!string.IsNullOrWhiteSpace(_case.Person.NationalRegisterNumber))
-                        {
-                            <MudText Typo="Typo.body2" Class="mt-1">
-                                NR @FormatRegisterNumber(_case.Person.NationalRegisterNumber)
-                            </MudText>
-                        }
-                        @if (CanConvertBis)
-                        {
-                            <MudButton Variant="Variant.Outlined"
-                                       Color="Color.Primary"
-                                       Class="mt-3"
-                                       StartIcon="@Icons.Material.Outlined.SwapHoriz"
-                                       Disabled="_convertingBis"
-                                       OnClick="ConvertBis">
-                                Convert BIS to National Register number
-                            </MudButton>
-                        }
-                    </ChildContent>
-                </AppCard>
-            </AppSection>
-        }
+                        </AppAlert>
+                    }
 
-        <ResidenceStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
+                    @if (_case.Person is null)
+                    {
+                        <AppCard Title="Identity" Outlined="true">
+                            <HeaderActions>
+                                <MudButton StartIcon="@Icons.Material.Outlined.Search"
+                                           Variant="Variant.Outlined"
+                                           Color="Color.Primary"
+                                           OnClick="OpenNationalRegisterSearch">
+                                    Search National Register
+                                </MudButton>
+                            </HeaderActions>
+                            <ChildContent>
+                                <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
+                                    <AppFormSection Title="Personal details">
+                                        <MudItem xs="12" md="6">
+                                            <MudTextField @bind-Value="_givenName" Label="Given name" Required="true" />
+                                        </MudItem>
+                                        <MudItem xs="12" md="6">
+                                            <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
+                                        </MudItem>
+                                        <MudItem xs="12" md="6">
+                                            <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
+                                        </MudItem>
+                                        <MudItem xs="12" md="6">
+                                            <MudTextField @bind-Value="_nationality" Label="Nationality" Required="true" />
+                                        </MudItem>
+                                    </AppFormSection>
 
-        <AddressStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
+                                    <AppInfoBox Class="mb-4">
+                                        Search the National Register first when the person may already have a BIS or NR record.
+                                        Record identity only when you have verified the supporting documents on file.
+                                    </AppInfoBox>
 
-        <HouseholdStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
+                                    <AppSaveCancelBar SaveText="Record identity"
+                                                      CancelText="Clear"
+                                                      Saving="_savingIdentity"
+                                                      OnSave="SaveIdentity"
+                                                      OnCancel="ClearIdentityForm" />
+                                </MudForm>
+                            </ChildContent>
+                        </AppCard>
+                    }
+                    else if (_editingIdentity)
+                    {
+                        <AppCard Title="Identity" Outlined="true">
+                            <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
+                                <AppFormSection Title="Personal details">
+                                    <MudItem xs="12" md="6">
+                                        <MudTextField @bind-Value="_givenName" Label="Given name" Required="true" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="6">
+                                        <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="6">
+                                        <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="6">
+                                        <MudTextField @bind-Value="_nationality" Label="Nationality" Required="true" />
+                                    </MudItem>
+                                </AppFormSection>
 
-        <CivilStatusStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
+                                <AppSaveCancelBar SaveText="Save changes"
+                                                  CancelText="Cancel"
+                                                  Saving="_savingIdentity"
+                                                  Disabled="!IdentityFormDirty"
+                                                  OnSave="SaveIdentityCorrection"
+                                                  OnCancel="CancelIdentityEdit" />
+                            </MudForm>
+                        </AppCard>
+                    }
+                    else
+                    {
+                        <AppCard Title="Identity" Outlined="true">
+                            <HeaderActions>
+                                @if (CanEditIntakeData)
+                                {
+                                    <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                                               Variant="Variant.Text"
+                                               OnClick="StartEditingIdentity"
+                                               aria-label="Edit identity">
+                                        Edit
+                                    </MudButton>
+                                }
+                            </HeaderActions>
+                            <ChildContent>
+                                <MudText Typo="Typo.body1">@_case.Person.GivenName @_case.Person.FamilyName</MudText>
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                    Born @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
+                                </MudText>
+                                @if (_case.Person.LinkedFromRegister)
+                                {
+                                    <AppStatusChip Label="Linked from National Register"
+                                                   Severity="AppSeverity.Info"
+                                                   Class="mt-2" />
+                                }
+                                @if (!string.IsNullOrWhiteSpace(_case.Person.BisNumber))
+                                {
+                                    <MudText Typo="Typo.body2" Class="mt-2">
+                                        BIS @FormatRegisterNumber(_case.Person.BisNumber)
+                                    </MudText>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(_case.Person.NationalRegisterNumber))
+                                {
+                                    <MudText Typo="Typo.body2" Class="mt-1">
+                                        NR @FormatRegisterNumber(_case.Person.NationalRegisterNumber)
+                                    </MudText>
+                                }
+                                @if (CanConvertBis)
+                                {
+                                    <MudButton Variant="Variant.Outlined"
+                                               Color="Color.Primary"
+                                               Class="mt-3"
+                                               StartIcon="@Icons.Material.Outlined.SwapHoriz"
+                                               Disabled="_convertingBis"
+                                               OnClick="ConvertBis">
+                                        Convert BIS to National Register number
+                                    </MudButton>
+                                }
+                            </ChildContent>
+                        </AppCard>
+                    }
+                </AppCollapsibleSection>
 
+                <AppCollapsibleSection Title="Legal residence"
+                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.LegalResidence, _case)"
+                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.LegalResidence, _case)"
+                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.LegalResidence, _case)"
+                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.LegalResidence)"
+                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.LegalResidence, value))">
+                    <ResidenceStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
+                </AppCollapsibleSection>
+
+                <AppCollapsibleSection Title="Address & housing"
+                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Address, _case)"
+                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Address, _case)"
+                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Address, _case)"
+                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.Address)"
+                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.Address, value))">
+                    <AddressStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
+                </AppCollapsibleSection>
+
+                <AppCollapsibleSection Title="Household composition"
+                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Household, _case)"
+                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Household, _case)"
+                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Household, _case)"
+                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.Household)"
+                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.Household, value))">
+                    <HouseholdStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
+                </AppCollapsibleSection>
+
+                <AppCollapsibleSection Title="Civil status"
+                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.CivilStatus, _case)"
+                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.CivilStatus, _case)"
+                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.CivilStatus, _case)"
+                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.CivilStatus)"
+                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.CivilStatus, value))">
+                    <CivilStatusStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
+                </AppCollapsibleSection>
+
+                @if (RegistrationIntakeStepSummaries.IsVisible(RegistrationIntakeStep.PoliceVerification, _case))
+                {
+                    <AppCollapsibleSection Title="Police verification"
+                                           Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.PoliceVerification, _case)"
+                                           StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.PoliceVerification, _case)"
+                                           StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.PoliceVerification, _case)"
+                                           IsExpanded="IsStepExpanded(RegistrationIntakeStep.PoliceVerification)"
+                                           IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.PoliceVerification, value))">
+                        <PoliceVerificationSection ActiveVerification="_case.ActivePoliceVerification"
+                                                   History="_case.PoliceVerificationHistory" />
+                    </AppCollapsibleSection>
+                }
             </MudItem>
 
             <MudItem xs="12" lg="5">
@@ -277,6 +298,7 @@
     private bool _savingIdentity;
     private bool _convertingBis;
     private bool _sendingToPolice;
+    private Dictionary<RegistrationIntakeStep, bool> _stepExpanded = [];
 
     private string _givenName = string.Empty;
     private string _familyName = string.Empty;
@@ -317,8 +339,27 @@
         _case = await GetHandler.Handle(
             new RegistrationCaseId(CaseId),
             CancellationToken.None);
+        ApplyDefaultExpansion();
         _loading = false;
     }
+
+    private void ApplyDefaultExpansion()
+    {
+        if (_case is null)
+        {
+            return;
+        }
+
+        var defaults = RegistrationIntakeStepSummaries.GetDefaultExpandedSteps(_case);
+        _stepExpanded = Enum.GetValues<RegistrationIntakeStep>()
+            .ToDictionary(step => step, step => defaults.Contains(step));
+    }
+
+    private bool IsStepExpanded(RegistrationIntakeStep step) =>
+        _stepExpanded.GetValueOrDefault(step);
+
+    private void SetStepExpanded(RegistrationIntakeStep step, bool expanded) =>
+        _stepExpanded[step] = expanded;
 
     private void ClearIdentityForm()
     {
