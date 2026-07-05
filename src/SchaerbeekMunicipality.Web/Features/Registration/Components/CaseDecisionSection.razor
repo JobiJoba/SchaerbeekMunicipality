@@ -1,0 +1,237 @@
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Domain.NationalRegister
+@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
+@using SchaerbeekMunicipality.Web.Features.Registration.ApproveCase
+@using SchaerbeekMunicipality.Web.Features.Registration.ConfirmRegistration
+@using SchaerbeekMunicipality.Web.Features.Registration.GetCaseReviewChecklist
+@using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
+@using SchaerbeekMunicipality.Web.Features.Registration.RejectCase
+@using SchaerbeekMunicipality.Web.Features.Registration.ResumeCase
+@using SchaerbeekMunicipality.Web.Features.Registration.SuspendCase
+@using SchaerbeekMunicipality.Web.Auth
+@inject ApproveCaseHandler ApproveHandler
+@inject RejectCaseHandler RejectHandler
+@inject SuspendCaseHandler SuspendHandler
+@inject ResumeCaseHandler ResumeHandler
+@inject ConfirmRegistrationHandler ConfirmHandler
+@inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+
+<AppCard Title="Officer decision" Outlined="true">
+    @if (_checklist is null)
+    {
+        <MudText Typo="Typo.body2" Color="Color.Secondary">Review checklist unavailable.</MudText>
+    }
+    else
+    {
+        <MudList T="string" Dense="true" Class="mb-4">
+            @foreach (var question in _checklist.Questions)
+            {
+                <MudListItem Icon="@(question.IsSatisfied ? Icons.Material.Outlined.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)">
+                    <MudText Typo="Typo.body2">
+                        @question.Question
+                        @if (!question.IsSatisfied && !string.IsNullOrWhiteSpace(question.BlockingReason))
+                        {
+                            <MudText Typo="Typo.caption" Color="Color.Secondary" Class="d-block">
+                                @question.BlockingReason
+                            </MudText>
+                        }
+                    </MudText>
+                </MudListItem>
+            }
+        </MudList>
+
+        @if (Case.Status == RegistrationCaseStatus.Rejected)
+        {
+            <AppAlert Severity="Severity.Error" Title="Case rejected">
+                @Case.RejectionReason — @Case.DecisionNotes
+            </AppAlert>
+        }
+        else if (Case.Status == RegistrationCaseStatus.Suspended)
+        {
+            <AppAlert Severity="Severity.Warning" Title="Case suspended">
+                @Case.SuspensionReason — @Case.DecisionNotes
+            </AppAlert>
+        }
+        else if (Case.Status == RegistrationCaseStatus.Approved)
+        {
+            <AppAlert Severity="Severity.Info" Title="Approved — pending registration">
+                Register target: @Case.SelectedRegisterTarget
+            </AppAlert>
+        }
+        else if (Case.Status == RegistrationCaseStatus.Registered)
+        {
+            <AppAlert Severity="Severity.Success" Title="Registered">
+                Person entered in @Case.SelectedRegisterTarget.
+            </AppAlert>
+        }
+
+        @if (CanDecide)
+        {
+            <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mt-4">
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.CheckCircle"
+                           Disabled="_busy || !_checklist.IsReadyForApproval"
+                           OnClick="OpenApproveDialog">
+                    Approve
+                </MudButton>
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Error"
+                           StartIcon="@Icons.Material.Outlined.Cancel"
+                           Disabled="_busy"
+                           OnClick="OpenRejectDialog">
+                    Reject
+                </MudButton>
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Warning"
+                           StartIcon="@Icons.Material.Outlined.PauseCircle"
+                           Disabled="_busy"
+                           OnClick="OpenSuspendDialog">
+                    Suspend
+                </MudButton>
+            </MudStack>
+        }
+
+        @if (Case.Status == RegistrationCaseStatus.Approved && CanDecide)
+        {
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Success"
+                       Class="mt-4"
+                       StartIcon="@Icons.Material.Outlined.Verified"
+                       Disabled="_busy"
+                       OnClick="ConfirmRegistration">
+                Confirm registration
+            </MudButton>
+        }
+
+        @if (Case.Status == RegistrationCaseStatus.Suspended && CanDecide)
+        {
+            <MudButton Variant="Variant.Outlined"
+                       Color="Color.Primary"
+                       Class="mt-4"
+                       StartIcon="@Icons.Material.Outlined.PlayCircle"
+                       Disabled="_busy"
+                       OnClick="ResumeCase">
+                Resume case
+            </MudButton>
+        }
+    }
+</AppCard>
+
+@code {
+    [Parameter, EditorRequired]
+    public RegistrationCaseDetailDto Case { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public EventCallback OnUpdated { get; set; }
+
+    private GetCaseReviewChecklistResponse? _checklist;
+    private bool _busy;
+
+    private bool CanDecide =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.Status is RegistrationCaseStatus.UnderReview
+            or RegistrationCaseStatus.Approved
+            or RegistrationCaseStatus.Suspended;
+
+    protected override void OnParametersSet()
+    {
+        _checklist = CaseReviewChecklistMapper.FromCaseDetail(Case);
+    }
+
+    private async Task OpenApproveDialog()
+    {
+        var parameters = new DialogParameters<ApproveCaseDialog>
+        {
+            { x => x.SuggestedRegisterTarget, Case.SuggestedRegisterTarget },
+        };
+
+        var dialog = await DialogService.ShowAsync<ApproveCaseDialog>(
+            "Approve case",
+            parameters,
+            AppDialogOptions.Small);
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false } && result.Data is RegisterTarget registerTarget)
+        {
+            await ExecuteAsync(() => ApproveHandler.Handle(
+                new RegistrationCaseId(Case.Id),
+                new ApproveCaseRequest(registerTarget),
+                CancellationToken.None),
+                "Case approved.");
+        }
+    }
+
+    private async Task OpenRejectDialog()
+    {
+        var dialog = await DialogService.ShowAsync<RejectCaseDialog>(
+            "Reject case",
+            AppDialogOptions.Small);
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false } && result.Data is RejectCaseRequest request)
+        {
+            await ExecuteAsync(() => RejectHandler.Handle(
+                new RegistrationCaseId(Case.Id),
+                request,
+                CancellationToken.None),
+                "Case rejected.");
+        }
+    }
+
+    private async Task OpenSuspendDialog()
+    {
+        var dialog = await DialogService.ShowAsync<SuspendCaseDialog>(
+            "Suspend case",
+            AppDialogOptions.Small);
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false } && result.Data is SuspendCaseRequest request)
+        {
+            await ExecuteAsync(() => SuspendHandler.Handle(
+                new RegistrationCaseId(Case.Id),
+                request,
+                CancellationToken.None),
+                "Case suspended.");
+        }
+    }
+
+    private Task ConfirmRegistration() =>
+        ExecuteAsync(
+            () => ConfirmHandler.Handle(new RegistrationCaseId(Case.Id), CancellationToken.None),
+            "Registration confirmed.");
+
+    private Task ResumeCase() =>
+        ExecuteAsync(
+            () => ResumeHandler.Handle(new RegistrationCaseId(Case.Id), CancellationToken.None),
+            "Case resumed.");
+
+    private async Task ExecuteAsync<T>(Func<Task<T>> action, string successMessage)
+    {
+        _busy = true;
+        try
+        {
+            await action();
+            Snackbar.Add(successMessage, Severity.Success);
+            await OnUpdated.InvokeAsync();
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        catch (NationalRegisterConflictException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+}

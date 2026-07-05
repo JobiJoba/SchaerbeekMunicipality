@@ -50,6 +50,39 @@ internal sealed class RegistrationCaseConfiguration : IEntityTypeConfiguration<R
         builder.Property(c => c.OpenedAt)
             .HasColumnName("opened_at");
 
+        builder.Property(c => c.ClosedAt)
+            .HasColumnName("closed_at");
+
+        builder.Property(c => c.SelectedRegisterTarget)
+            .HasColumnName("register_target")
+            .HasConversion<string>()
+            .HasMaxLength(64);
+
+        builder.Property(c => c.DecisionOfficerId)
+            .HasConversion(
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? OfficerId.From(value.Value) : null)
+            .HasColumnName("decision_officer_id");
+
+        builder.Property(c => c.RejectionReason)
+            .HasColumnName("rejection_reason")
+            .HasConversion<string>()
+            .HasMaxLength(64);
+
+        builder.Property(c => c.SuspensionReason)
+            .HasColumnName("suspension_reason")
+            .HasConversion<string>()
+            .HasMaxLength(64);
+
+        builder.Property(c => c.DecisionNotes)
+            .HasColumnName("decision_notes")
+            .HasMaxLength(2000);
+
+        builder.Property(c => c.StatusBeforeSuspension)
+            .HasColumnName("status_before_suspension")
+            .HasConversion<string>()
+            .HasMaxLength(64);
+
         builder.OwnsOne(c => c.Checklist, checklist =>
         {
             checklist.Property(c => c.IdentityEstablished).HasColumnName("identity_established");

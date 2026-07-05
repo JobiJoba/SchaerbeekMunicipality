@@ -379,6 +379,44 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.ToTable("streets", (string)null);
                 });
 
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.Registration.CaseAuditEntry", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("action");
+
+                    b.Property<Guid>("CaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("case_id");
+
+                    b.Property<string>("Details")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)")
+                        .HasColumnName("details");
+
+                    b.Property<DateTimeOffset>("OccurredAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("occurred_at");
+
+                    b.Property<Guid>("OfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("officer_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_case_audit_entries");
+
+                    b.HasIndex("CaseId")
+                        .HasDatabaseName("ix_case_audit_entries_case_id");
+
+                    b.ToTable("case_audit_entries", (string)null);
+                });
+
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Registration.RegistrationCase", b =>
                 {
                     b.Property<Guid>("Id")
@@ -388,6 +426,19 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.Property<Guid>("AssignedOfficerId")
                         .HasColumnType("uuid")
                         .HasColumnName("assigned_officer_id");
+
+                    b.Property<DateTimeOffset?>("ClosedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("closed_at");
+
+                    b.Property<string>("DecisionNotes")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)")
+                        .HasColumnName("decision_notes");
+
+                    b.Property<Guid?>("DecisionOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("decision_officer_id");
 
                     b.Property<string>("HousingSituation")
                         .HasMaxLength(64)
@@ -402,16 +453,36 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("person_id");
 
+                    b.Property<string>("RejectionReason")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("rejection_reason");
+
                     b.Property<string>("ResidenceCategory")
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)")
                         .HasColumnName("residence_category");
+
+                    b.Property<string>("SelectedRegisterTarget")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("register_target");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)")
                         .HasColumnName("status");
+
+                    b.Property<string>("StatusBeforeSuspension")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("status_before_suspension");
+
+                    b.Property<string>("SuspensionReason")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("suspension_reason");
 
                     b.Property<string>("VisitReason")
                         .IsRequired()

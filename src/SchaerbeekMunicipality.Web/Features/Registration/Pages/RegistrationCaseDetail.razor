@@ -5,6 +5,7 @@
 @using SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity
 @using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Web.Features.Registration.LinkExistingPerson
+@using SchaerbeekMunicipality.Web.Features.Registration.ListCaseAudit
 @using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity
 @using SchaerbeekMunicipality.Web.Features.Registration.RequestPoliceVerification
 @using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument
@@ -22,6 +23,7 @@
 @inject RequestPoliceVerificationHandler RequestPoliceVerificationHandler
 @inject AttachDocumentHandler AttachDocumentHandler
 @inject RemoveDocumentHandler RemoveDocumentHandler
+@inject ListCaseAuditHandler ListCaseAuditHandler
 @inject IAppDialogService DialogService
 @inject IDialogService MudDialogService
 @inject ISnackbar Snackbar
@@ -275,6 +277,17 @@
             </MudItem>
 
             <MudItem xs="12" lg="5">
+                <div class="mb-4">
+                    <CaseDecisionSection Case="_case" OnUpdated="ReloadCase" />
+                </div>
+
+                @if (_auditEntries.Count > 0)
+                {
+                    <AppSection Title="Case history" Class="mb-4">
+                        <AppTimeline Items="_auditEntries" />
+                    </AppSection>
+                }
+
                 <RegistrationCaseDocumentPanel CaseId="CaseId"
                                                Documents="_case.Documents"
                                                AttachHandler="AttachDocumentHandler"
@@ -299,6 +312,7 @@
     private bool _convertingBis;
     private bool _sendingToPolice;
     private Dictionary<RegistrationIntakeStep, bool> _stepExpanded = [];
+    private IReadOnlyList<AppTimeline.AppTimelineItem> _auditEntries = [];
 
     private string _givenName = string.Empty;
     private string _familyName = string.Empty;
@@ -336,12 +350,44 @@
     {
         _loading = true;
         _editingIdentity = false;
-        _case = await GetHandler.Handle(
-            new RegistrationCaseId(CaseId),
-            CancellationToken.None);
+
+        var caseId = new RegistrationCaseId(CaseId);
+        var caseDetail = await GetHandler.Handle(caseId, CancellationToken.None);
+        var audit = caseDetail is null
+            ? null
+            : await ListCaseAuditHandler.Handle(caseId, CancellationToken.None);
+
+        _case = caseDetail;
+        _auditEntries = audit?.Entries
+            .Select(e => new AppTimeline.AppTimelineItem(
+                FormatAuditAction(e.Action),
+                e.OccurredAt,
+                e.Details,
+                GetAuditSeverity(e.Action)))
+            .ToList() ?? [];
         ApplyDefaultExpansion();
         _loading = false;
     }
+
+    private static string FormatAuditAction(string action) =>
+        action switch
+        {
+            "CaseApproved" => "Case approved",
+            "CaseRejected" => "Case rejected",
+            "CaseSuspended" => "Case suspended",
+            "CaseResumed" => "Case resumed",
+            "RegistrationConfirmed" => "Registration confirmed",
+            _ => action,
+        };
+
+    private static AppSeverity GetAuditSeverity(string action) =>
+        action switch
+        {
+            "CaseRejected" => AppSeverity.Error,
+            "CaseSuspended" => AppSeverity.Warning,
+            "CaseApproved" or "RegistrationConfirmed" => AppSeverity.Success,
+            _ => AppSeverity.Info,
+        };
 
     private void ApplyDefaultExpansion()
     {

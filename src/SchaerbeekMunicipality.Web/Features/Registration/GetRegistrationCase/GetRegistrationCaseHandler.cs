@@ -96,6 +96,9 @@ public sealed class GetRegistrationCaseHandler(
         IReadOnlyList<PoliceVerificationRequest> policeVerifications)
     {
         var checklist = registrationCase.Checklist;
+        var suggested = RegisterTargetResolver.Suggest(
+            registrationCase.ResidenceCategory,
+            person?.Nationality);
 
         return new RegistrationCaseDetailDto(
             registrationCase.Id.Value,
@@ -103,12 +106,19 @@ public sealed class GetRegistrationCaseHandler(
             registrationCase.VisitReason,
             registrationCase.AssignedOfficerId.Value,
             registrationCase.OpenedAt,
+            registrationCase.ClosedAt,
             new RegistrationCaseChecklistDto(
                 checklist.IdentityEstablished,
                 checklist.LegalResidenceEstablished,
                 checklist.AddressDeclared,
                 checklist.AddressConfirmed,
                 checklist.RegisterDeterminable),
+            registrationCase.IsReadyForApproval,
+            suggested?.ToString(),
+            registrationCase.SelectedRegisterTarget,
+            registrationCase.RejectionReason,
+            registrationCase.SuspensionReason,
+            registrationCase.DecisionNotes,
             person is null
                 ? null
                 : new PersonDto(

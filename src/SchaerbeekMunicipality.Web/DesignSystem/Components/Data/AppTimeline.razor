@@ -1,0 +1,46 @@
+@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
+
+@if (Items.Count == 0)
+{
+    <MudText Typo="Typo.body2" Color="Color.Secondary">No history recorded yet.</MudText>
+}
+else
+{
+    <MudTimeline TimelinePosition="TimelinePosition.Start">
+        @foreach (var item in Items)
+        {
+            <MudTimelineItem Color="@GetColor(item.Severity)">
+                <ItemContent>
+                    <MudText Typo="Typo.subtitle2">@item.Title</MudText>
+                    <MudText Typo="Typo.caption" Color="Color.Secondary">
+                        @item.Timestamp.LocalDateTime.ToString("g")
+                    </MudText>
+                    @if (!string.IsNullOrWhiteSpace(item.Description))
+                    {
+                        <MudText Typo="Typo.body2" Class="mt-1">@item.Description</MudText>
+                    }
+                </ItemContent>
+            </MudTimelineItem>
+        }
+    </MudTimeline>
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public IReadOnlyList<AppTimelineItem> Items { get; set; } = [];
+
+    public sealed record AppTimelineItem(
+        string Title,
+        DateTimeOffset Timestamp,
+        string? Description,
+        AppSeverity Severity = AppSeverity.Info);
+
+    private static Color GetColor(AppSeverity severity) =>
+        severity switch
+        {
+            AppSeverity.Success => Color.Success,
+            AppSeverity.Warning => Color.Warning,
+            AppSeverity.Error => Color.Error,
+            _ => Color.Info,
+        };
+}

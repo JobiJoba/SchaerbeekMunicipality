@@ -1,0 +1,49 @@
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.RejectCase
+
+<MudDialog>
+    <DialogContent>
+        <MudSelect T="RejectionReason"
+                   @bind-Value="_reason"
+                   Label="Rejection reason"
+                   Required="true"
+                   Class="mb-4">
+            @foreach (var reason in Enum.GetValues<RejectionReason>())
+            {
+                <MudSelectItem T="RejectionReason" Value="reason">@FormatReason(reason)</MudSelectItem>
+            }
+        </MudSelect>
+        <MudTextField @bind-Value="_notes"
+                      Label="Notes"
+                      Lines="3"
+                      MaxLength="2000" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="Confirm">Reject case</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    private RejectionReason _reason = RejectionReason.Other;
+    private string? _notes;
+
+    private void Cancel() => MudDialog.Cancel();
+
+    private void Confirm() =>
+        MudDialog.Close(DialogResult.Ok(new RejectCaseRequest(_reason, _notes)));
+
+    private static string FormatReason(RejectionReason reason) =>
+        reason switch
+        {
+            RejectionReason.InsufficientIdentityEvidence => "Insufficient identity evidence",
+            RejectionReason.NoLegalResidenceBasis => "No legal residence basis",
+            RejectionReason.AddressNotGenuine => "Address not genuine",
+            RejectionReason.DuplicateIdentity => "Duplicate identity",
+            RejectionReason.IllegalStay => "Illegal stay",
+            _ => "Other",
+        };
+}

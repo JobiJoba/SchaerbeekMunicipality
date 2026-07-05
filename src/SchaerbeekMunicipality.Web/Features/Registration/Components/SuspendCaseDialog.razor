@@ -1,0 +1,48 @@
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.SuspendCase
+
+<MudDialog>
+    <DialogContent>
+        <MudSelect T="SuspensionReason"
+                   @bind-Value="_reason"
+                   Label="Suspension reason"
+                   Required="true"
+                   Class="mb-4">
+            @foreach (var reason in Enum.GetValues<SuspensionReason>())
+            {
+                <MudSelectItem T="SuspensionReason" Value="reason">@FormatReason(reason)</MudSelectItem>
+            }
+        </MudSelect>
+        <MudTextField @bind-Value="_notes"
+                      Label="Notes"
+                      Lines="3"
+                      MaxLength="2000" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Warning" Variant="Variant.Filled" OnClick="Confirm">Suspend case</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    private SuspensionReason _reason = SuspensionReason.MissingDocuments;
+    private string? _notes;
+
+    private void Cancel() => MudDialog.Cancel();
+
+    private void Confirm() =>
+        MudDialog.Close(DialogResult.Ok(new SuspendCaseRequest(_reason, _notes)));
+
+    private static string FormatReason(SuspensionReason reason) =>
+        reason switch
+        {
+            SuspensionReason.MissingDocuments => "Missing documents",
+            SuspensionReason.AwaitingFederalDecision => "Awaiting federal decision",
+            SuspensionReason.MarriageRecognitionPending => "Marriage recognition pending",
+            SuspensionReason.InvestigationRequired => "Investigation required",
+            _ => "Other",
+        };
+}

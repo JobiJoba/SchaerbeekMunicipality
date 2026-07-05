@@ -28,6 +28,7 @@ public sealed class LinkExistingPersonHandler(
         await EnsureCanLinkAsync(registerPerson, cancellationToken);
 
         var person = registrationCase.LinkExistingPerson(registerPerson);
+        registrationCase.RefreshRegisterDeterminability(person.Nationality);
 
         await personRepository.AddAsync(person, cancellationToken);
         await caseRepository.SaveChangesAsync(cancellationToken);

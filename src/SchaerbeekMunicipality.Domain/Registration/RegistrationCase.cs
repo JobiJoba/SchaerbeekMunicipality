@@ -35,6 +35,20 @@ public sealed class RegistrationCase
 
     public DateTimeOffset OpenedAt { get; private set; }
 
+    public DateTimeOffset? ClosedAt { get; private set; }
+
+    public RegisterTarget? SelectedRegisterTarget { get; private set; }
+
+    public OfficerId? DecisionOfficerId { get; private set; }
+
+    public RejectionReason? RejectionReason { get; private set; }
+
+    public SuspensionReason? SuspensionReason { get; private set; }
+
+    public string? DecisionNotes { get; private set; }
+
+    public RegistrationCaseStatus? StatusBeforeSuspension { get; private set; }
+
     public RegistrationCaseChecklist Checklist { get; private set; }
 
     public static RegistrationCase Open(
@@ -102,6 +116,19 @@ public sealed class RegistrationCase
         EnsureIdentityEstablished("residence information");
 
         ResidenceCategory = category;
+    }
+
+    public void RefreshRegisterDeterminability(string? nationality)
+    {
+        var suggested = RegisterTargetResolver.Suggest(ResidenceCategory, nationality);
+        if (suggested is not null)
+        {
+            Checklist.MarkRegisterDeterminable();
+        }
+        else
+        {
+            Checklist.ClearRegisterDeterminable();
+        }
     }
 
     public void RecordImmigrationDecision(ImmigrationDecisionDetails details)
@@ -184,6 +211,116 @@ public sealed class RegistrationCase
     }
 
     public bool HasPositivePoliceVerification => Checklist.AddressConfirmed;
+
+    public bool IsReadyForApproval =>
+        Status == RegistrationCaseStatus.UnderReview &&
+        Checklist.IdentityEstablished &&
+        Checklist.LegalResidenceEstablished &&
+        Checklist.AddressDeclared &&
+        Checklist.AddressConfirmed &&
+        Checklist.RegisterDeterminable &&
+        HasPositivePoliceVerification;
+
+    public void Approve(OfficerId officer, RegisterTarget registerTarget, string? nationality, DateTimeOffset approvedAt)
+    {
+        EnsureStatus(RegistrationCaseStatus.UnderReview, nameof(Approve));
+
+        if (!IsReadyForApproval)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Cannot approve the case until all review checklist items are satisfied.");
+        }
+
+        if (!RegisterTargetResolver.IsAllowed(ResidenceCategory, nationality, registerTarget))
+        {
+            throw new InvalidRegistrationTransitionException(
+                $"Register target '{registerTarget}' is not allowed for this residence category.");
+        }
+
+        SelectedRegisterTarget = registerTarget;
+        DecisionOfficerId = officer;
+        Status = RegistrationCaseStatus.Approved;
+        RejectionReason = null;
+        SuspensionReason = null;
+        DecisionNotes = null;
+        StatusBeforeSuspension = null;
+        ClosedAt = null;
+    }
+
+    public void Reject(
+        OfficerId officer,
+        RejectionReason reason,
+        string? notes,
+        DateTimeOffset rejectedAt)
+    {
+        EnsureStatus(RegistrationCaseStatus.UnderReview, nameof(Reject));
+
+        DecisionOfficerId = officer;
+        RejectionReason = reason;
+        SuspensionReason = null;
+        DecisionNotes = notes?.Trim();
+        Status = RegistrationCaseStatus.Rejected;
+        StatusBeforeSuspension = null;
+        ClosedAt = rejectedAt;
+    }
+
+    public void Suspend(
+        OfficerId officer,
+        SuspensionReason reason,
+        string? notes,
+        DateTimeOffset suspendedAt)
+    {
+        if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
+        {
+            throw new InvalidRegistrationTransitionException(
+                $"Cannot suspend the case while it is in status '{Status}'.");
+        }
+
+        StatusBeforeSuspension = Status;
+        DecisionOfficerId = officer;
+        SuspensionReason = reason;
+        RejectionReason = null;
+        DecisionNotes = notes?.Trim();
+        Status = RegistrationCaseStatus.Suspended;
+        ClosedAt = null;
+    }
+
+    public void ResumeFromSuspension()
+    {
+        EnsureStatus(RegistrationCaseStatus.Suspended, nameof(ResumeFromSuspension));
+
+        Status = StatusBeforeSuspension ?? RegistrationCaseStatus.Intake;
+        StatusBeforeSuspension = null;
+        SuspensionReason = null;
+        DecisionNotes = null;
+        DecisionOfficerId = null;
+    }
+
+    public RegistrationConfirmedEventDetails ConfirmRegistration(DateTimeOffset confirmedAt)
+    {
+        EnsureStatus(RegistrationCaseStatus.Approved, nameof(ConfirmRegistration));
+
+        if (SelectedRegisterTarget is null)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "A register target must be selected before confirming registration.");
+        }
+
+        if (PersonId is null)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Identity must be recorded before confirming registration.");
+        }
+
+        Status = RegistrationCaseStatus.Registered;
+        ClosedAt = confirmedAt;
+
+        return new RegistrationConfirmedEventDetails(
+            Id,
+            PersonId.Value,
+            SelectedRegisterTarget.Value,
+            confirmedAt);
+    }
 
     public void EnsureIntakeDataEditable(string operation)
     {
