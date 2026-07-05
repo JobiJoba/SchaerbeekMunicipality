@@ -26,6 +26,7 @@ public sealed class RecordIdentityHandler(
             request.Nationality);
 
         var person = registrationCase.RecordIdentity(identity);
+        registrationCase.RefreshRegisterDeterminability(request.Nationality);
 
         await personRepository.AddAsync(person, cancellationToken);
         await caseRepository.SaveChangesAsync(cancellationToken);

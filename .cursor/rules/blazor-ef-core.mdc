@@ -1,0 +1,39 @@
+---
+description: Avoid DbContext concurrency issues in Blazor Server components
+globs: src/SchaerbeekMunicipality.Web/**/*.razor
+alwaysApply: false
+---
+
+# Blazor Server + EF Core concurrency
+
+`MunicipalDbContext` is **scoped per circuit**. All handlers and repositories injected into a page share one instance. EF Core does not allow overlapping queries on the same context.
+
+## Rules
+
+1. **Pages own data loading.** Routable pages (`Pages/*.razor`) may call handlers in `OnInitializedAsync` / `OnParametersSetAsync`. Child components (`Components/*.razor`) must not load data in lifecycle hooks — receive DTOs via `[Parameter]` instead.
+
+2. **Finish DB work before assigning state that re-renders children.** In reload methods, await all handler calls first, then assign fields (`_case`, `_auditEntries`, etc.) in one batch. Never assign a parameter-bound field mid-method and continue with more DB calls.
+
+```csharp
+// BAD — assigning _case triggers child OnParametersSetAsync while LoadAuditAsync still runs
+_case = await GetHandler.Handle(...);
+await LoadAuditAsync();
+
+// GOOD — all queries complete before children re-render
+var caseDetail = await GetHandler.Handle(...);
+var audit = await ListCaseAuditHandler.Handle(...);
+_case = caseDetail;
+_auditEntries = MapAudit(audit);
+```
+
+3. **Derive display data from existing DTOs when possible.** If a child only needs checklist/status fields already on the parent DTO, map synchronously in `OnParametersSet()` — do not re-query.
+
+4. **User actions (button clicks) may inject handlers directly.** Sequential `await handler.Handle(...)` from event handlers is safe.
+
+5. **Independent background loads need their own scope.** For layout-level or fire-and-forget loads that must not share the page's DbContext, use `IServiceScopeFactory` (see `MainLayout.razor`).
+
+## Red flags
+
+- `OnParametersSetAsync` + handler injection in a child component
+- `Task.WhenAll` with multiple handlers on the same page
+- Assigning `[Parameter]`-bound state before all related `await` calls finish

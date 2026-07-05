@@ -71,6 +71,16 @@ public sealed class Person
         Nationality = details.Nationality.Trim();
     }
 
+    public void AssignNationalRegisterNumber(NationalRegisterNumber nationalRegisterNumber)
+    {
+        if (NationalRegisterNumber is not null)
+        {
+            throw new InvalidOperationException("Person already has a National Register number.");
+        }
+
+        NationalRegisterNumber = nationalRegisterNumber;
+    }
+
     public void ConvertBisToNationalRegister(NationalRegisterNumber nationalRegisterNumber)
     {
         if (BisNumber is null)

@@ -3,7 +3,6 @@ using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
-using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Features.Registration.Components;
 using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
@@ -179,22 +178,29 @@ public sealed class RegistrationIntakeStepSummariesTests
         CivilStatusDto? civilStatus = null,
         PoliceVerificationDto? activePoliceVerification = null) =>
         new(
-            Guid.NewGuid(),
-            status,
-            VisitReason.FirstRegistration,
-            Guid.NewGuid(),
-            DateTimeOffset.UtcNow,
-            checklist ?? new RegistrationCaseChecklistDto(false, false, false, false, false),
-            person,
-            residenceCategory,
-            null,
-            null,
-            declaredAddress,
-            housingSituation,
-            householdMembers ?? [],
-            civilStatus,
-            [],
-            [],
-            activePoliceVerification,
-            []);
+            Id: Guid.NewGuid(),
+            Status: status,
+            VisitReason: VisitReason.FirstRegistration,
+            AssignedOfficerId: Guid.NewGuid(),
+            OpenedAt: DateTimeOffset.UtcNow,
+            ClosedAt: null,
+            Checklist: checklist ?? new RegistrationCaseChecklistDto(false, false, false, false, false),
+            IsReadyForApproval: false,
+            SuggestedRegisterTarget: null,
+            SelectedRegisterTarget: null,
+            RejectionReason: null,
+            SuspensionReason: null,
+            DecisionNotes: null,
+            Person: person,
+            ResidenceCategory: residenceCategory,
+            ResidencePermit: null,
+            ImmigrationDecision: null,
+            DeclaredAddress: declaredAddress,
+            HousingSituation: housingSituation,
+            HouseholdMembers: householdMembers ?? [],
+            CivilStatus: civilStatus,
+            Documents: [],
+            PossibleDuplicateMatches: [],
+            ActivePoliceVerification: activePoliceVerification,
+            PoliceVerificationHistory: []);
 }

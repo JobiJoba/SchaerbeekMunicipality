@@ -149,6 +149,22 @@ public static class RegistrationEndpoints
 - Pages call the **same handlers** the API uses (inject handler directly in Server mode) OR call internal API — prefer **direct handler injection** in Blazor Server to avoid HTTP overhead during development.
 - MudBlazor for layout, forms, dialogs, data grids, and snackbar notifications.
 
+#### DbContext concurrency (Blazor Server)
+
+`MunicipalDbContext` is scoped per Blazor circuit. Every handler and repository injected into a page shares that single instance — EF Core does not allow overlapping operations on it.
+
+| Layer | May load from DB in lifecycle hooks? | Pattern |
+|-------|--------------------------------------|---------|
+| Routable page (`Pages/*.razor`) | Yes | `OnInitializedAsync` / `OnParametersSetAsync` → handlers |
+| Child component (`Components/*.razor`) | **No** | Receive DTOs via `[Parameter]`; map display data synchronously |
+| Layout / background refresh | Own scope | `IServiceScopeFactory.CreateAsyncScope()` (see `MainLayout.razor`) |
+
+**Page reload rule:** finish all handler `await` calls before assigning fields that trigger child re-renders. Assign `_case`, `_auditEntries`, etc. in one batch after queries complete — not mid-method.
+
+**Child components** must not call handlers in `OnParametersSetAsync`. If the parent DTO already contains the needed data (checklists, status flags), derive it locally. Re-querying from a child while the parent is still loading causes the classic *"second operation was started on this context"* error.
+
+Button-click handlers (`OnSave`, `OnApprove`, …) may inject handlers directly — those run sequentially and are safe.
+
 ```
 Web/Features/Registration/Pages/
 ├── RegistrationCaseList.razor

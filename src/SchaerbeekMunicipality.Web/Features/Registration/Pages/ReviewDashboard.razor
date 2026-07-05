@@ -1,0 +1,98 @@
+@page "/registration/review-dashboard"
+@using SchaerbeekMunicipality.Web.DesignSystem.Components.Navigation
+@using SchaerbeekMunicipality.Web.Features.Registration.GetReviewDashboard
+@using SchaerbeekMunicipality.Web.Auth
+@inject GetReviewDashboardHandler Handler
+@inject ICurrentOfficer CurrentOfficer
+@inject NavigationManager Navigation
+
+<AppPage Title="Review dashboard">
+  <AppPageHeader Title="Review dashboard"
+                 Subtitle="@($"Good morning, {CurrentOfficer.DisplayName}")" />
+
+  @if (_loading)
+  {
+    <AppLoading />
+  }
+  else if (_dashboard is not null)
+  {
+    <MudGrid Spacing="4" Class="mb-6">
+      @foreach (var stat in _dashboard.Statistics)
+      {
+        <MudItem xs="12" sm="6" md="3">
+          <AppStatisticCard Label="@stat.Label"
+                            Value="@stat.Value"
+                            Href="@stat.Href"
+                            Accent="@stat.Accent"
+                            Icon="@GetStatisticIcon(stat.Label)" />
+        </MudItem>
+      }
+    </MudGrid>
+
+    <AppSection Title="Needs my attention">
+      @if (_dashboard.ActionableCases.Count == 0)
+      {
+        <AppEmptyState Title="All caught up"
+                       Description="No cases need immediate action."
+                       Icon="@Icons.Material.Outlined.CheckCircle" />
+      }
+      else
+      {
+        <AppDataTable T="ActionableCaseRow"
+                      Items="_dashboard.ActionableCases"
+                      Caption="Actionable cases"
+                      OnRowClick="NavigateToCase">
+          <HeaderContent>
+            <MudTh Class="app-table-header">Case</MudTh>
+            <MudTh Class="app-table-header">Status</MudTh>
+            <MudTh Class="app-table-header">Visit reason</MudTh>
+            <MudTh Class="app-table-header">Opened</MudTh>
+            <MudTh Class="app-table-header">Summary</MudTh>
+          </HeaderContent>
+          <RowTemplate Context="item">
+            <MudTd DataLabel="Case">@item.CaseId.ToString()[..8]…</MudTd>
+            <MudTd DataLabel="Status">@item.Status</MudTd>
+            <MudTd DataLabel="Visit reason">@item.VisitReason</MudTd>
+            <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+            <MudTd DataLabel="Summary">@item.Summary</MudTd>
+          </RowTemplate>
+        </AppDataTable>
+      }
+    </AppSection>
+
+    <AppSection Title="Quick actions">
+      <AppQuickActions Actions="_quickActions" />
+    </AppSection>
+  }
+</AppPage>
+
+@code {
+  private GetReviewDashboardResponse? _dashboard;
+  private bool _loading = true;
+
+  private IReadOnlyList<AppQuickActions.AppQuickAction> _quickActions =
+  [
+    new("Open new case", "/registration/cases", Icons.Material.Outlined.Add),
+    new("All cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+    new("Police verifications", "/registration/police-verifications", Icons.Material.Outlined.LocalPolice),
+  ];
+
+  protected override async Task OnInitializedAsync()
+  {
+    _dashboard = await Handler.Handle(CancellationToken.None);
+    _loading = false;
+  }
+
+  private void NavigateToCase(ActionableCaseRow row) =>
+    Navigation.NavigateTo($"/registration/cases/{row.CaseId}");
+
+  private static string GetStatisticIcon(string label) =>
+    label switch
+    {
+      "My open cases" => Icons.Material.Outlined.FolderOpen,
+      "Awaiting police" => Icons.Material.Outlined.LocalPolice,
+      "Ready for decision" => Icons.Material.Outlined.Gavel,
+      "Suspended" => Icons.Material.Outlined.PauseCircle,
+      _ => Icons.Material.Outlined.Analytics,
+    };
+}

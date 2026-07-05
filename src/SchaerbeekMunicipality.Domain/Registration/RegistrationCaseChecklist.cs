@@ -29,4 +29,8 @@ public sealed class RegistrationCaseChecklist
     internal void MarkAddressConfirmed() => AddressConfirmed = true;
 
     internal void ClearAddressConfirmed() => AddressConfirmed = false;
+
+    internal void MarkRegisterDeterminable() => RegisterDeterminable = true;
+
+    internal void ClearRegisterDeterminable() => RegisterDeterminable = false;
 }

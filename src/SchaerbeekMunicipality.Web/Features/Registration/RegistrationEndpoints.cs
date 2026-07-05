@@ -1,3 +1,11 @@
+using SchaerbeekMunicipality.Web.Features.Registration.ApproveCase;
+using SchaerbeekMunicipality.Web.Features.Registration.ConfirmRegistration;
+using SchaerbeekMunicipality.Web.Features.Registration.GetCaseReviewChecklist;
+using SchaerbeekMunicipality.Web.Features.Registration.GetReviewDashboard;
+using SchaerbeekMunicipality.Web.Features.Registration.ListCaseAudit;
+using SchaerbeekMunicipality.Web.Features.Registration.RejectCase;
+using SchaerbeekMunicipality.Web.Features.Registration.ResumeCase;
+using SchaerbeekMunicipality.Web.Features.Registration.SuspendCase;
 using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
 using SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity;
 using SchaerbeekMunicipality.Web.Features.Registration.DeclareAddress;
@@ -121,6 +129,38 @@ public static class RegistrationEndpoints
         group.MapPost("/police-verifications/{requestId:guid}/result", RecordPoliceResultEndpoint.Handle)
             .WithName("RecordPoliceResult")
             .WithTags("PoliceVerification");
+
+        group.MapGet("/cases/{id:guid}/review-checklist", GetCaseReviewChecklistEndpoint.Handle)
+            .WithName("GetCaseReviewChecklist")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/approve", ApproveCaseEndpoint.Handle)
+            .WithName("ApproveCase")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/reject", RejectCaseEndpoint.Handle)
+            .WithName("RejectCase")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/suspend", SuspendCaseEndpoint.Handle)
+            .WithName("SuspendCase")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/resume", ResumeCaseEndpoint.Handle)
+            .WithName("ResumeCase")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/confirm-registration", ConfirmRegistrationEndpoint.Handle)
+            .WithName("ConfirmRegistration")
+            .WithTags("Registration");
+
+        group.MapGet("/cases/{id:guid}/audit", ListCaseAuditEndpoint.Handle)
+            .WithName("ListCaseAudit")
+            .WithTags("Registration");
+
+        group.MapGet("/review-dashboard", GetReviewDashboardEndpoint.Handle)
+            .WithName("GetReviewDashboard")
+            .WithTags("Registration");
 
         return app;
     }

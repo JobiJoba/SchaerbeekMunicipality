@@ -40,6 +40,7 @@ public sealed class CorrectIdentityHandler(
             request.Nationality);
 
         registrationCase.CorrectIdentity(person, identity);
+        registrationCase.RefreshRegisterDeterminability(request.Nationality);
 
         var policyResult = await residenceEvaluator.EvaluateAndApplyAsync(
             registrationCase,

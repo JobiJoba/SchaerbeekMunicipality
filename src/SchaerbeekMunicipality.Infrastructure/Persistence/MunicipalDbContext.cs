@@ -32,6 +32,8 @@ public sealed class MunicipalDbContext(DbContextOptions<MunicipalDbContext> opti
 
     public DbSet<PoliceVerificationRequest> PoliceVerificationRequests => Set<PoliceVerificationRequest>();
 
+    public DbSet<CaseAuditEntry> CaseAuditEntries => Set<CaseAuditEntry>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(MunicipalDbContext).Assembly);

@@ -11,6 +11,7 @@ using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.ReferenceData;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Infrastructure.Events;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
 using SchaerbeekMunicipality.Infrastructure.Storage;
@@ -47,6 +48,9 @@ public static class DependencyInjection
         services.AddScoped<IReferenceDataRepository, ReferenceDataRepository>();
         services.AddScoped<INationalRegisterRepository, NationalRegisterRepository>();
         services.AddScoped<IPoliceVerificationRepository, PoliceVerificationRepository>();
+        services.AddScoped<ICaseAuditRepository, CaseAuditRepository>();
+        services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
+        services.AddScoped<IRegistrationConfirmedHandler, RegistrationConfirmedLoggingHandler>();
         services.AddSingleton<IDocumentStorage, LocalFileDocumentStorage>();
 
         services.AddSingleton<IResidencePolicy, EuCitizenPolicy>();

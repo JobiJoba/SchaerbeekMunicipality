@@ -342,7 +342,9 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 ---
 
-## Phase 7 — Decision & registration (IDEA Phases 18–20)
+## Phase 7 — Decision & registration (IDEA Phases 18–20) ✅
+
+**Status:** Complete — see [phases/phase-7-decision-registration.md](./phases/phase-7-decision-registration.md).
 
 **Goal:** Officer decision and official registration in correct register.
 
