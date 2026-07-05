@@ -281,6 +281,13 @@
                     <CaseDecisionSection Case="_case" OnUpdated="ReloadCase" />
                 </div>
 
+                @if (_case.Status == RegistrationCaseStatus.Registered)
+                {
+                    <div class="mb-4">
+                        <CertificatesSection Case="_case" />
+                    </div>
+                }
+
                 @if (_auditEntries.Count > 0)
                 {
                     <AppSection Title="Case history" Class="mb-4">

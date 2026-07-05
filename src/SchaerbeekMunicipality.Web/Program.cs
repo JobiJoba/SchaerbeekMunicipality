@@ -34,6 +34,9 @@ using SchaerbeekMunicipality.Web.Features.Registration.ListCaseAudit;
 using SchaerbeekMunicipality.Web.Features.Registration.RejectCase;
 using SchaerbeekMunicipality.Web.Features.Registration.ResumeCase;
 using SchaerbeekMunicipality.Web.Features.Registration.SuspendCase;
+using SchaerbeekMunicipality.Web.Features.Registration.IssueResidenceCertificate;
+using SchaerbeekMunicipality.Web.Features.Registration.IssueHouseholdComposition;
+using SchaerbeekMunicipality.Web.Features.Registration.ListOutboundNotifications;
 using SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -83,6 +86,9 @@ builder.Services.AddScoped<ConfirmRegistrationHandler>();
 builder.Services.AddScoped<GetReviewDashboardHandler>();
 builder.Services.AddScoped<ListCaseAuditHandler>();
 builder.Services.AddScoped<CaseAuditRecorder>();
+builder.Services.AddScoped<IssueResidenceCertificateHandler>();
+builder.Services.AddScoped<IssueHouseholdCompositionHandler>();
+builder.Services.AddScoped<ListOutboundNotificationsHandler>();
 builder.Services.AddScoped<SearchMunicipalitiesHandler>();
 builder.Services.AddScoped<SearchStreetsHandler>();
 

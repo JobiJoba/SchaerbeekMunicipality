@@ -27,6 +27,9 @@ using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
 using SchaerbeekMunicipality.Web.Features.Registration.ListPendingPoliceVerifications;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult;
 using SchaerbeekMunicipality.Web.Features.Registration.RequestPoliceVerification;
+using SchaerbeekMunicipality.Web.Features.Registration.IssueResidenceCertificate;
+using SchaerbeekMunicipality.Web.Features.Registration.IssueHouseholdComposition;
+using SchaerbeekMunicipality.Web.Features.Registration.ListOutboundNotifications;
 using SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration;
@@ -161,6 +164,18 @@ public static class RegistrationEndpoints
         group.MapGet("/review-dashboard", GetReviewDashboardEndpoint.Handle)
             .WithName("GetReviewDashboard")
             .WithTags("Registration");
+
+        group.MapGet("/cases/{id:guid}/certificates/residence", IssueResidenceCertificateEndpoint.Handle)
+            .WithName("IssueResidenceCertificate")
+            .WithTags("Certificates");
+
+        group.MapGet("/cases/{id:guid}/certificates/household-composition", IssueHouseholdCompositionEndpoint.Handle)
+            .WithName("IssueHouseholdComposition")
+            .WithTags("Certificates");
+
+        group.MapGet("/outbound-notifications", ListOutboundNotificationsEndpoint.Handle)
+            .WithName("ListOutboundNotifications")
+            .WithTags("Notifications");
 
         return app;
     }

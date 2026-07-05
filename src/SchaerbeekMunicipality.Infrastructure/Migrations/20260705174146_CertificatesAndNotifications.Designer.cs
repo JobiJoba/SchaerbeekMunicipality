@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
@@ -11,9 +12,11 @@ using SchaerbeekMunicipality.Infrastructure.Persistence;
 namespace SchaerbeekMunicipality.Infrastructure.Migrations
 {
     [DbContext(typeof(MunicipalDbContext))]
-    partial class MunicipalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260705174146_CertificatesAndNotifications")]
+    partial class CertificatesAndNotifications
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

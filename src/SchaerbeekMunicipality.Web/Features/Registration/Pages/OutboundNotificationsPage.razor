@@ -1,0 +1,73 @@
+@page "/administration/outbound-notifications"
+@using SchaerbeekMunicipality.Web.Features.Registration.ListOutboundNotifications
+@inject ListOutboundNotificationsHandler Handler
+@inject NavigationManager Navigation
+
+<AppPage Title="Outbound notifications" MaxWidth="MaxWidth.Large">
+    <AppPageHeader Title="Outbound notifications"
+                   Subtitle="Simulated messages to other Belgian administrations after registration is confirmed.">
+        <Actions>
+            <MudButton StartIcon="@Icons.Material.Outlined.ArrowBack"
+                       Variant="Variant.Text"
+                       OnClick="@(() => Navigation.NavigateTo("/registration/cases"))">
+                Back to cases
+            </MudButton>
+        </Actions>
+    </AppPageHeader>
+
+    @if (_loading)
+    {
+        <AppLoading />
+    }
+    else if (_notifications.Count == 0)
+    {
+        <AppEmptyState Icon="@Icons.Material.Outlined.NotificationsNone"
+                       Title="No outbound notifications yet"
+                       Description="Notifications are created automatically when a registration case is confirmed." />
+    }
+    else
+    {
+        <AppSection Title="@($"{_notifications.Count} notification(s)")">
+            <MudTable Items="_notifications" Hover="true" Dense="true" Breakpoint="Breakpoint.Sm">
+                <HeaderContent>
+                    <MudTh>Created</MudTh>
+                    <MudTh>Recipient</MudTh>
+                    <MudTh>Message</MudTh>
+                    <MudTh>Case</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Created">@context.CreatedAt.LocalDateTime:g</MudTd>
+                    <MudTd DataLabel="Recipient">
+                        <AppStatusChip Label="@FormatRecipient(context.Recipient)" Severity="AppSeverity.Info" />
+                    </MudTd>
+                    <MudTd DataLabel="Message">@context.Message</MudTd>
+                    <MudTd DataLabel="Case">
+                        <MudLink Href="@($"/registration/cases/{context.CaseId}")">
+                            @context.CaseId.ToString()[..8]…
+                        </MudLink>
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </AppSection>
+    }
+</AppPage>
+
+@code {
+    private bool _loading = true;
+    private IReadOnlyList<OutboundNotificationDto> _notifications = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await Handler.Handle(null, CancellationToken.None);
+        _notifications = response.Items;
+        _loading = false;
+    }
+
+    private static string FormatRecipient(string recipient) => recipient switch
+    {
+        "TaxAdministration" => "Tax administration",
+        "SocialSecurity" => "Social security",
+        "HealthInsurance" => "Health insurance",
+        _ => recipient,
+    };
+}

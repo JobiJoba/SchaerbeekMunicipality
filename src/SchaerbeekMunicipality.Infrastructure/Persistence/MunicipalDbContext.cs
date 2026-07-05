@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Domain.Notifications;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.ReferenceData;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -33,6 +35,10 @@ public sealed class MunicipalDbContext(DbContextOptions<MunicipalDbContext> opti
     public DbSet<PoliceVerificationRequest> PoliceVerificationRequests => Set<PoliceVerificationRequest>();
 
     public DbSet<CaseAuditEntry> CaseAuditEntries => Set<CaseAuditEntry>();
+
+    public DbSet<CertificateRequest> CertificateRequests => Set<CertificateRequest>();
+
+    public DbSet<OutboundNotification> OutboundNotifications => Set<OutboundNotification>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

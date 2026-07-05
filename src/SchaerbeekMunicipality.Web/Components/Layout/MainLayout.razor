@@ -88,6 +88,11 @@
                 Icons.Material.Outlined.LocalPolice,
                 OfficerRole.PoliceClerk.ToString(),
                 pendingCount > 0 ? pendingCount : null),
+            new(
+                "Outbound notifications",
+                "/administration/outbound-notifications",
+                Icons.Material.Outlined.Send,
+                OfficerRole.PopulationOfficer.ToString()),
         };
 
         if (HostEnvironment.IsDevelopment())
