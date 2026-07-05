@@ -2,6 +2,7 @@ using FluentAssertions;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Domain.Tests.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Tests.NationalRegister;
 
@@ -16,10 +17,7 @@ public sealed class RegistrationCaseNationalRegisterTests
     [Fact]
     public void LinkExistingPerson_CreatesPersonWithRegisterNumbers()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         var registerPerson = NationalRegisterPerson.Create(
             NationalRegisterPersonId.New(),

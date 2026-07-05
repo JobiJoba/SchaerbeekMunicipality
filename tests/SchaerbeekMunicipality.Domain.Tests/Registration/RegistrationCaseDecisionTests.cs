@@ -16,10 +16,7 @@ public sealed class RegistrationCaseDecisionTests
 
     private static RegistrationCase CreateReadyForApprovalCase(string nationality = "Belgian")
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         registrationCase.RecordIdentity(
             new IdentityDetails("Sophie", "Lambert", new DateOnly(1988, 6, 12), nationality));
@@ -59,10 +56,7 @@ public sealed class RegistrationCaseDecisionTests
     [Fact]
     public void Approve_WhenPoliceResultNegative_Throws()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         registrationCase.RecordIdentity(
             new IdentityDetails("Sophie", "Lambert", new DateOnly(1988, 6, 12), "Belgian"));

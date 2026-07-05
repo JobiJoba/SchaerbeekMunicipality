@@ -179,6 +179,28 @@ flowchart LR
 
 **Case detail UI:** `PoliceVerificationSection` shows a pending visit card, one completed visit as a summary card, or multiple visits in an `AppDataTable` (outcome, dates, police clerk notes).
 
+### Role boundaries, case locking & officer UX (Phase 8.1)
+
+Officer roles are enforced beyond the nav switcher. Phase notes: [phase-8.1-role-boundaries-case-locking.md](../../phases/phase-8.1-role-boundaries-case-locking.md).
+
+| Role | Case list / detail | Edit | Create case |
+|------|-------------------|------|-------------|
+| Reception | No | No | Yes (dedicated new-case page) |
+| Population | Yes | Lock holder only | Yes (dialog from list) |
+| Police | No | No (police queue only) | No |
+
+When a population officer opens case detail, the case is **claimed** (assigned + locked) if unassigned. Another population officer sees a read-only view until the lock is released. Reception-created cases start **unassigned** and surface on the review dashboard and case list **Unassigned** filter.
+
+**Officer UX highlights:**
+
+- **New case page** (`/registration/new-case`) — two-column intake with visit-reason guidance; success keeps handoff instructions visible.
+- **Review dashboard** — unassigned intakes in **Needs my attention**; tiles deep-link to filtered case list.
+- **Case list** — one-click **My cases** / **Unassigned** filters (`?filter=mine`, `?filter=unassigned`).
+- **Case detail** — case history as collapsed datagrid at bottom; officer decision aligned with Identity card.
+- **Demo roles** — `?demoOfficer={guid}` in URL; role switch preserves host port.
+
+The case timeline records `CaseOpened`, `CaseAssigned`, `CaseLockReleased`, police actions, and decision events.
+
 ## Slice documentation
 
 - [List registration cases](./list-registration-cases.md)

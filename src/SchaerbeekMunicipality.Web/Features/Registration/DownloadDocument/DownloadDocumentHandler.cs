@@ -1,12 +1,15 @@
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Auth;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.DownloadDocument;
 
 public sealed record DownloadDocumentResult(Stream Content, string FileName, string ContentType);
 
 public sealed class DownloadDocumentHandler(
-    IRegistrationCaseRepository caseRepository,
+    RegistrationCaseGuard caseGuard,
+    RegistrationCaseAuthorization authorization,
+    ICurrentOfficer currentOfficer,
     IAdministrativeDocumentRepository documentRepository,
     IDocumentStorage documentStorage)
 {
@@ -15,8 +18,8 @@ public sealed class DownloadDocumentHandler(
         AdministrativeDocumentId documentId,
         CancellationToken cancellationToken)
     {
-        _ = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        authorization.EnsureCanView(currentOfficer);
+        _ = await caseGuard.GetForViewAsync(caseId, cancellationToken);
 
         var document = await documentRepository.GetByIdAsync(documentId, cancellationToken)
             ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");

@@ -2,12 +2,14 @@ using SchaerbeekMunicipality.Domain.Events;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Infrastructure.Events;
 using SchaerbeekMunicipality.Web.Auth;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.ConfirmRegistration;
 
 public sealed class ConfirmRegistrationHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     INationalRegisterRepository nationalRegisterRepository,
@@ -25,8 +27,10 @@ public sealed class ConfirmRegistrationHandler(
             throw new UnauthorizedAccessException("Only population officers can confirm registration.");
         }
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(ConfirmRegistration),
+            cancellationToken);
 
         var confirmedAt = timeProvider.GetUtcNow();
         var eventDetails = registrationCase.ConfirmRegistration(confirmedAt);

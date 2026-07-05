@@ -19,7 +19,10 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 5 | National Register search & BIS | ✅ Complete |
 | 6 | Police verification loop | ✅ Complete |
 | 6.1 | Collapsible intake sections | ✅ Complete |
-| 7+ | Decision, certificates, … | Planned |
+| 7 | Decision & registration | ✅ Complete |
+| 8 | Certificates & outbound stubs | In progress |
+| 8.1 | Role boundaries, case locking & officer UX | ✅ Complete |
+| 9+ | Exception scenarios, … | Planned |
 
 Delivery notes for completed phases: [phases/](./phases/).
 
@@ -397,6 +400,27 @@ Delivery notes for completed phases: [phases/](./phases/).
 - Admin view of simulated outbound messages
 
 **Demo:** Registration complete → certificate PDF → log shows “Notify tax administration.”
+
+---
+
+## Phase 8.1 — Role boundaries, case locking & officer UX ✅
+
+**Status:** Complete — see [phases/phase-8.1-role-boundaries-case-locking.md](./phases/phase-8.1-role-boundaries-case-locking.md).
+
+**Goal:** Enforce officer role boundaries and case edit locks; polish reception intake, review dashboard queue, case list filters, and case detail layout.
+
+**Deliverables:**
+
+- Claim / release lock on `RegistrationCase`; nullable assignee until claim
+- `RegistrationCaseAuthorization` + guards on all registration handlers
+- Reception **New case** page; population case list/detail with lock UX
+- Unassigned intakes on review dashboard and case list quick filters
+- Case history datagrid (collapsible); officer decision aligned with Identity card
+- Demo officer URL persistence (`?demoOfficer=`) with port-safe role switching
+
+**Demo:** Reception opens case → population sees it as unassigned on dashboard → claims and edits → colleague read-only until release.
+
+**Tests:** `RegistrationCaseLockingTests`, `RoleBoundariesAndCaseLockingTests`.
 
 ---
 

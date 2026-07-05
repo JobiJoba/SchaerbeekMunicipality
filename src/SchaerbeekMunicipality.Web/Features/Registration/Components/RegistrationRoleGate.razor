@@ -1,0 +1,27 @@
+@using SchaerbeekMunicipality.Web.Auth
+@inject ICurrentOfficer CurrentOfficer
+@inject NavigationManager Navigation
+
+@code {
+    [Parameter]
+    public OfficerRole[] AllowedRoles { get; set; } = [];
+
+    [Parameter]
+    public string RedirectTo { get; set; } = "/";
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (AllowedRoles.Length > 0 && !AllowedRoles.Contains(CurrentOfficer.Role))
+        {
+            Navigation.NavigateTo(RedirectTo);
+        }
+    }
+}
+
+@if (AllowedRoles.Length == 0 || AllowedRoles.Contains(CurrentOfficer.Role))
+{
+    @ChildContent
+}

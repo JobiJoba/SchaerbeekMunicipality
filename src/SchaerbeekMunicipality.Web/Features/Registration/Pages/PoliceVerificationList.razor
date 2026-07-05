@@ -54,11 +54,7 @@
                     <MudTh Class="app-table-header"></MudTh>
                 </HeaderContent>
                 <RowTemplate Context="item">
-                    <MudTd DataLabel="Person">
-                        <MudLink Href="@($"/registration/cases/{item.CaseId}")">
-                            @item.PersonName
-                        </MudLink>
-                    </MudTd>
+                    <MudTd DataLabel="Person">@item.PersonName</MudTd>
                     <MudTd DataLabel="Address">@item.Address</MudTd>
                     <MudTd DataLabel="Requested">@item.RequestedAt.LocalDateTime.ToString("g")</MudTd>
                     <MudTd DataLabel="Attempt">@item.AttemptNumber</MudTd>

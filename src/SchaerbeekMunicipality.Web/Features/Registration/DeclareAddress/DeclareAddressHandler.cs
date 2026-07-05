@@ -1,10 +1,12 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.DeclareAddress;
 
 public sealed class DeclareAddressHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IValidator<DeclareAddressRequest> validator)
 {
@@ -15,8 +17,10 @@ public sealed class DeclareAddressHandler(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(DeclareAddress),
+            cancellationToken);
 
         registrationCase.DeclareAddress(new AddressDetails(
             request.Street,

@@ -15,4 +15,6 @@ public enum CaseAuditAction
     CaseResumed = 10,
     RegistrationConfirmed = 11,
     CertificateIssued = 12,
+    CaseAssigned = 13,
+    CaseLockReleased = 14,
 }

@@ -90,14 +90,11 @@ public sealed class ResidenceCategoryTests
         await using var factory = new MunicipalAppFactory();
         await using var scope = factory.Services.CreateAsyncScope();
 
-        var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
 
         var handler = scope.ServiceProvider.GetRequiredService<SetResidenceCategoryHandler>();
         var act = () => handler.Handle(
-            new RegistrationCaseId(opened.CaseId),
+            caseId,
             new SetResidenceCategoryRequest(ResidenceCategory.EuCitizen),
             CancellationToken.None);
 
@@ -109,11 +106,7 @@ public sealed class ResidenceCategoryTests
         var openHandler = services.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
-
-        var caseId = new RegistrationCaseId(opened.CaseId);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);
         await recordHandler.Handle(
             caseId,
             new RecordIdentityRequest("Amélie", "Bernard", new DateOnly(1992, 3, 20), "French"),

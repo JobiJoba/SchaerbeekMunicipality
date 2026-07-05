@@ -217,6 +217,16 @@ body {
     padding-bottom: 0;
 }
 
+.registration-case-detail-sidebar__align {
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+}
+
+.registration-case-detail-sidebar__align-gap {
+    height: 1rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

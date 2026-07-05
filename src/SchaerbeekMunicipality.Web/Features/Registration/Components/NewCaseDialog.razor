@@ -1,4 +1,5 @@
 @using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration
 @using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase
 
 <MudDialog>
@@ -8,10 +9,10 @@
     <DialogContent>
         <MudForm @ref="_form" @bind-IsValid="_formValid">
             <MudSelect T="VisitReason" @bind-Value="_visitReason" Label="Visit reason" Required="true" Class="mb-3">
-                <MudSelectItem Value="VisitReason.FirstRegistration">First registration</MudSelectItem>
-                <MudSelectItem Value="VisitReason.EuCitizenRegistration">EU citizen registration</MudSelectItem>
-                <MudSelectItem Value="VisitReason.ChangeOfAddress">Change of address</MudSelectItem>
-                <MudSelectItem Value="VisitReason.BirthDeclaration">Birth declaration</MudSelectItem>
+                @foreach (var reason in Enum.GetValues<VisitReason>())
+                {
+                    <MudSelectItem Value="reason">@VisitReasonLabels.For(reason)</MudSelectItem>
+                }
             </MudSelect>
             <MudText Typo="Typo.body2" Color="Color.Secondary">
                 Assigned officer: @OfficerName

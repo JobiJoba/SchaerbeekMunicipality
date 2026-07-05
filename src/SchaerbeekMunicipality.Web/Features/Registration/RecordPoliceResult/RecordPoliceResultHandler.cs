@@ -1,12 +1,16 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Auth;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult;
 
 public sealed class RecordPoliceResultHandler(
     IPoliceVerificationRepository policeVerificationRepository,
     IRegistrationCaseRepository caseRepository,
+    RegistrationCaseAuthorization authorization,
+    CaseAuditRecorder auditRecorder,
+    ICurrentOfficer currentOfficer,
     IValidator<RecordPoliceResultRequest> validator,
     TimeProvider timeProvider)
 {
@@ -15,6 +19,7 @@ public sealed class RecordPoliceResultHandler(
         RecordPoliceResultRequest request,
         CancellationToken cancellationToken)
     {
+        authorization.EnsureCanRecordPoliceResult(currentOfficer);
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
         var verificationRequest = await policeVerificationRepository.GetByIdAsync(requestId, cancellationToken)
@@ -38,6 +43,12 @@ public sealed class RecordPoliceResultHandler(
             timeProvider.GetUtcNow());
 
         registrationCase.ApplyPoliceVerificationResult(request.Result);
+
+        await auditRecorder.RecordAsync(
+            registrationCase.Id,
+            CaseAuditAction.PoliceResultRecorded,
+            request.Result.ToString(),
+            cancellationToken);
 
         await policeVerificationRepository.SaveChangesAsync(cancellationToken);
 

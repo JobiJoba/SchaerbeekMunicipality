@@ -1,10 +1,12 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
 
 public sealed class SetResidenceCategoryHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     RegistrationResidenceEvaluator residenceEvaluator,
@@ -17,8 +19,10 @@ public sealed class SetResidenceCategoryHandler(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(SetResidenceCategory),
+            cancellationToken);
 
         registrationCase.SetResidenceCategory(request.Category);
 

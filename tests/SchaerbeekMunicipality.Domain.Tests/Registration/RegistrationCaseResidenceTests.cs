@@ -14,10 +14,7 @@ public sealed class RegistrationCaseResidenceTests
     [Fact]
     public void SetResidenceCategory_WithoutIdentity_Throws()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         var act = () => registrationCase.SetResidenceCategory(ResidenceCategory.EuCitizen);
 
@@ -27,10 +24,7 @@ public sealed class RegistrationCaseResidenceTests
     [Fact]
     public void SetResidenceCategory_AfterIdentity_SetsCategory()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         registrationCase.RecordIdentity(
             new IdentityDetails("Marie", "Dupont", new DateOnly(1990, 5, 15), "French"));
@@ -44,10 +38,7 @@ public sealed class RegistrationCaseResidenceTests
     [Fact]
     public void ApplyResidencePolicyResult_WhenValid_MarksLegalResidenceEstablished()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         registrationCase.ApplyResidencePolicyResult(ResidencePolicyResult.Valid());
 

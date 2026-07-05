@@ -3,6 +3,7 @@ using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Infrastructure.Certificates;
 using SchaerbeekMunicipality.Web.Auth;
 using SchaerbeekMunicipality.Web.Features.Registration.IssueResidenceCertificate;
@@ -10,7 +11,7 @@ using SchaerbeekMunicipality.Web.Features.Registration.IssueResidenceCertificate
 namespace SchaerbeekMunicipality.Web.Features.Registration.IssueHouseholdComposition;
 
 public sealed class IssueHouseholdCompositionHandler(
-    IRegistrationCaseRepository caseRepository,
+    RegistrationCaseGuard caseGuard,
     IPersonRepository personRepository,
     IHouseholdRepository householdRepository,
     ICertificateRequestRepository certificateRepository,
@@ -23,8 +24,7 @@ public sealed class IssueHouseholdCompositionHandler(
         RegistrationCaseId caseId,
         CancellationToken cancellationToken)
     {
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForViewAsync(caseId, cancellationToken);
 
         if (registrationCase.Status != RegistrationCaseStatus.Registered)
         {

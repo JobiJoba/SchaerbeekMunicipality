@@ -1,0 +1,168 @@
+@page "/registration/new-case"
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Auth
+@using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase
+@inject OpenRegistrationCaseHandler OpenHandler
+@inject ICurrentOfficer CurrentOfficer
+@inject ISnackbar Snackbar
+@inject NavigationManager Navigation
+
+<AppPage Title="New registration case" MaxWidth="MaxWidth.Medium">
+    <AppPageHeader Title="New registration case"
+                   Subtitle="Reception desk — open an intake file for the Population Department." />
+
+    @if (CurrentOfficer.Role != OfficerRole.ReceptionOfficer && CurrentOfficer.Role != OfficerRole.PopulationOfficer)
+    {
+        <AppAlert Severity="Severity.Warning" Title="Access restricted">
+            Your role cannot open registration cases.
+        </AppAlert>
+    }
+    else
+    {
+        <MudGrid Spacing="4">
+            <MudItem xs="12" md="7">
+                @if (_createdCaseId is Guid createdId)
+                {
+                    <AppCard Title="Case created"
+                             Icon="@Icons.Material.Outlined.CheckCircle"
+                             Outlined="true">
+                        <ChildContent>
+                            <MudStack Spacing="2">
+                                <MudText Typo="Typo.body1">
+                                    Reference <strong>@createdId.ToString()[..8]…</strong>
+                                </MudText>
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                    @VisitReasonLabels.For(_visitReason) — hand the citizen over to the Population Department.
+                                </MudText>
+                            </MudStack>
+                        </ChildContent>
+                        <Actions>
+                            <MudButton Variant="Variant.Filled"
+                                       Color="Color.Primary"
+                                       StartIcon="@Icons.Material.Outlined.Add"
+                                       Style="min-height: 48px;"
+                                       OnClick="StartAnotherCase">
+                                Create another case
+                            </MudButton>
+                        </Actions>
+                    </AppCard>
+                }
+                else
+                {
+                    <AppCard Title="Case details"
+                             Icon="@Icons.Material.Outlined.FolderOpen"
+                             Outlined="true">
+                        <ChildContent>
+                            <MudForm @ref="_form">
+                                <MudSelect T="VisitReason"
+                                           @bind-Value="_visitReason"
+                                           Label="Visit reason"
+                                           Required="true"
+                                           RequiredError="Visit reason is required"
+                                           Class="mb-2">
+                                    @foreach (var reason in Enum.GetValues<VisitReason>())
+                                    {
+                                        <MudSelectItem Value="reason">@VisitReasonLabels.For(reason)</MudSelectItem>
+                                    }
+                                </MudSelect>
+
+                                <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
+                                    @VisitReasonLabels.Description(_visitReason)
+                                </MudText>
+
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                    Recording officer: <strong>@CurrentOfficer.DisplayName</strong>
+                                </MudText>
+                            </MudForm>
+                        </ChildContent>
+                        <Actions>
+                            <MudButton Variant="Variant.Filled"
+                                       Color="Color.Primary"
+                                       StartIcon="@Icons.Material.Outlined.Add"
+                                       Style="min-height: 48px;"
+                                       Disabled="_submitting"
+                                       aria-busy="@_submitting"
+                                       OnClick="Submit">
+                                Create case
+                            </MudButton>
+                        </Actions>
+                    </AppCard>
+                }
+            </MudItem>
+
+            <MudItem xs="12" md="5">
+                <AppSection Title="What happens next?">
+                    <MudStack Spacing="3">
+                        <AppInfoBox Class="mb-0">
+                            @if (_createdCaseId is null)
+                            {
+                                @:Select the reason for the citizen's visit, then create the case. Only the visit reason is needed at reception — identity and address details are captured later by a population officer.
+                            }
+                            else
+                            {
+                                @:The intake file is open. Direct the citizen to the Population Department counter — a population officer will take the case from the review dashboard and continue the procedure.
+                            }
+                        </AppInfoBox>
+
+                        <MudList T="string" Dense="true" Class="pa-0">
+                            <MudListItem Icon="@Icons.Material.Outlined.Edit">
+                                <MudText Typo="Typo.body2">You record the visit reason and open the file.</MudText>
+                            </MudListItem>
+                            <MudListItem Icon="@Icons.Material.Outlined.AssignmentInd">
+                                <MudText Typo="Typo.body2">A population officer takes the case and completes the intake.</MudText>
+                            </MudListItem>
+                            <MudListItem Icon="@Icons.Material.Outlined.VerifiedUser">
+                                <MudText Typo="Typo.body2">Police verification and final registration follow when required.</MudText>
+                            </MudListItem>
+                        </MudList>
+                    </MudStack>
+                </AppSection>
+            </MudItem>
+        </MudGrid>
+    }
+</AppPage>
+
+@code {
+    private MudForm _form = null!;
+    private bool _submitting;
+    private VisitReason _visitReason = VisitReason.FirstRegistration;
+    private Guid? _createdCaseId;
+
+    protected override void OnInitialized()
+    {
+        if (CurrentOfficer.Role == OfficerRole.PopulationOfficer)
+        {
+            Navigation.NavigateTo("/registration/cases");
+        }
+    }
+
+    private void StartAnotherCase()
+    {
+        _createdCaseId = null;
+        _visitReason = VisitReason.FirstRegistration;
+    }
+
+    private async Task Submit()
+    {
+        await _form.Validate();
+        if (!_form.IsValid)
+        {
+            return;
+        }
+
+        _submitting = true;
+        try
+        {
+            var result = await OpenHandler.Handle(
+                new OpenRegistrationCaseRequest(_visitReason, null),
+                CancellationToken.None);
+
+            _createdCaseId = result.CaseId;
+            Snackbar.Add("Registration case created.", Severity.Success);
+        }
+        finally
+        {
+            _submitting = false;
+        }
+    }
+}

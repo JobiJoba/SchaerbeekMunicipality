@@ -512,7 +512,7 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<Guid>("AssignedOfficerId")
+                    b.Property<Guid?>("AssignedOfficerId")
                         .HasColumnType("uuid")
                         .HasColumnName("assigned_officer_id");
 
@@ -533,6 +533,14 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)")
                         .HasColumnName("housing_situation");
+
+                    b.Property<DateTimeOffset?>("LockedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("locked_at");
+
+                    b.Property<Guid?>("LockedByOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("locked_by_officer_id");
 
                     b.Property<DateTimeOffset>("OpenedAt")
                         .HasColumnType("timestamp with time zone")

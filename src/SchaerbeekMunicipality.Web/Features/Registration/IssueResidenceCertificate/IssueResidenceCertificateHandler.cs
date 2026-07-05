@@ -3,6 +3,7 @@ using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Infrastructure.Certificates;
 using SchaerbeekMunicipality.Web.Auth;
 
@@ -14,7 +15,7 @@ public sealed record IssueCertificateResult(
     string HtmlContent);
 
 public sealed class IssueResidenceCertificateHandler(
-    IRegistrationCaseRepository caseRepository,
+    RegistrationCaseGuard caseGuard,
     IPersonRepository personRepository,
     ICertificateRequestRepository certificateRepository,
     ICertificateRenderer certificateRenderer,
@@ -26,8 +27,7 @@ public sealed class IssueResidenceCertificateHandler(
         RegistrationCaseId caseId,
         CancellationToken cancellationToken)
     {
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForViewAsync(caseId, cancellationToken);
 
         EnsureRegistered(registrationCase);
 

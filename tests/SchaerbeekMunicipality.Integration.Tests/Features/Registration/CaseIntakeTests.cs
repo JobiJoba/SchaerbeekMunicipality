@@ -28,6 +28,7 @@ public sealed class OpenRegistrationCaseTests
         registrationCase.Should().NotBeNull();
         registrationCase!.Status.Should().Be(RegistrationCaseStatus.Intake);
         registrationCase.VisitReason.Should().Be(VisitReason.FirstRegistration);
+        registrationCase.AssignedOfficerId.Should().BeNull();
         registrationCase.Checklist.IdentityEstablished.Should().BeFalse();
     }
 }
@@ -42,11 +43,7 @@ public sealed class RecordIdentityTests
         var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = scope.ServiceProvider.GetRequiredService<RecordIdentityHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
-
-        var caseId = new RegistrationCaseId(opened.CaseId);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
         await recordHandler.Handle(
             caseId,
             new RecordIdentityRequest("Amélie", "Bernard", new DateOnly(1992, 3, 20), "French"),

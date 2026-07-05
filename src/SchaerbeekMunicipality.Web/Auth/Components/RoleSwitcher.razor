@@ -2,24 +2,21 @@
 @inject ICurrentOfficer CurrentOfficer
 
 <div class="role-switcher">
-    <MudSelect T="OfficerRole"
-               Value="CurrentOfficer.Role"
-               ValueChanged="OnRoleChanged"
+    <MudSelect T="Guid"
+               Value="CurrentOfficer.OfficerId"
+               ValueChanged="OnOfficerChanged"
                Dense="true"
                FullWidth="false"
                Variant="Variant.Outlined"
                Style="background: var(--mud-palette-surface);">
-        <MudSelectItem Value="OfficerRole.ReceptionOfficer">Reception officer</MudSelectItem>
-        <MudSelectItem Value="OfficerRole.PopulationOfficer">Population officer</MudSelectItem>
-        <MudSelectItem Value="OfficerRole.PoliceClerk">Police clerk</MudSelectItem>
+        @foreach (var officer in DemoOfficers.All)
+        {
+            <MudSelectItem Value="officer.Id">@officer.DisplayName</MudSelectItem>
+        }
     </MudSelect>
 </div>
 
 @code {
-
-    private void OnRoleChanged(OfficerRole role)
-    {
-        CurrentOfficer.SetRole(role);
-    }
-
+    private void OnOfficerChanged(Guid officerId) =>
+        CurrentOfficer.SelectOfficer(officerId);
 }

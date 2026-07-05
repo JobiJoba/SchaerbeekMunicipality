@@ -132,6 +132,7 @@
 
     private bool CanDecide =>
         CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
         Case.Status is RegistrationCaseStatus.UnderReview
             or RegistrationCaseStatus.Approved
             or RegistrationCaseStatus.Suspended;

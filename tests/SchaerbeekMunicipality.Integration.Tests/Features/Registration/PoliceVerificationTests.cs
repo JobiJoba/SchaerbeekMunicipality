@@ -21,11 +21,7 @@ public sealed class PoliceVerificationTests
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
         var declareHandler = services.GetRequiredService<DeclareAddressHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
-
-        var caseId = new RegistrationCaseId(opened.CaseId);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);
 
         await recordHandler.Handle(
             caseId,
@@ -61,10 +57,11 @@ public sealed class PoliceVerificationTests
         var pending = await listHandler.Handle(CancellationToken.None);
         pending.Items.Should().ContainSingle(i => i.CaseId == caseId.Value);
 
-        await recordHandler.Handle(
-            PoliceVerificationRequestId.From(request.RequestId),
-            new RecordPoliceResultRequest(PoliceVerificationResult.Confirmed, "Person present"),
-            CancellationToken.None);
+        await RegistrationTestHelpers.RecordPoliceResultAsync(
+            scope.ServiceProvider,
+            request.RequestId,
+            PoliceVerificationResult.Confirmed,
+            "Person present");
 
         registrationCase = await caseRepo.GetByIdAsync(caseId, CancellationToken.None);
         registrationCase!.Status.Should().Be(RegistrationCaseStatus.UnderReview);
@@ -84,10 +81,10 @@ public sealed class PoliceVerificationTests
 
         var request = await requestHandler.Handle(caseId, CancellationToken.None);
 
-        await recordHandler.Handle(
-            PoliceVerificationRequestId.From(request.RequestId),
-            new RecordPoliceResultRequest(PoliceVerificationResult.NotFound, null),
-            CancellationToken.None);
+        await RegistrationTestHelpers.RecordPoliceResultAsync(
+            scope.ServiceProvider,
+            request.RequestId,
+            PoliceVerificationResult.NotFound);
 
         var registrationCase = await caseRepo.GetByIdAsync(caseId, CancellationToken.None);
         registrationCase!.Checklist.AddressConfirmed.Should().BeFalse();
@@ -107,10 +104,11 @@ public sealed class PoliceVerificationTests
 
         var first = await requestHandler.Handle(caseId, CancellationToken.None);
 
-        await recordHandler.Handle(
-            PoliceVerificationRequestId.From(first.RequestId),
-            new RecordPoliceResultRequest(PoliceVerificationResult.Incomplete, "Nobody home"),
-            CancellationToken.None);
+        await RegistrationTestHelpers.RecordPoliceResultAsync(
+            scope.ServiceProvider,
+            first.RequestId,
+            PoliceVerificationResult.Incomplete,
+            "Nobody home");
 
         var second = await requestHandler.Handle(caseId, CancellationToken.None);
         second.AttemptNumber.Should().Be(2);
@@ -147,10 +145,11 @@ public sealed class PoliceVerificationTests
 
         var request = await requestHandler.Handle(caseId, CancellationToken.None);
 
-        await recordHandler.Handle(
-            PoliceVerificationRequestId.From(request.RequestId),
-            new RecordPoliceResultRequest(PoliceVerificationResult.NotFound, "Nobody answered the door."),
-            CancellationToken.None);
+        await RegistrationTestHelpers.RecordPoliceResultAsync(
+            scope.ServiceProvider,
+            request.RequestId,
+            PoliceVerificationResult.NotFound,
+            "Nobody answered the door.");
 
         var detail = await getHandler.Handle(caseId, CancellationToken.None);
 

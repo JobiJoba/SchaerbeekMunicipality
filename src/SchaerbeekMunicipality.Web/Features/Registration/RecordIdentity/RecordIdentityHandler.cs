@@ -5,6 +5,7 @@ using SchaerbeekMunicipality.Domain.Registration;
 namespace SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
 
 public sealed class RecordIdentityHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     IValidator<RecordIdentityRequest> validator)
@@ -16,8 +17,10 @@ public sealed class RecordIdentityHandler(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(RecordIdentity),
+            cancellationToken);
 
         var identity = new IdentityDetails(
             request.GivenName,

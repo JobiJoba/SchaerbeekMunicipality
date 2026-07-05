@@ -6,6 +6,8 @@ namespace SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
 
 public sealed class OpenRegistrationCaseHandler(
     IRegistrationCaseRepository repository,
+    RegistrationCaseAuthorization authorization,
+    CaseAuditRecorder auditRecorder,
     ICurrentOfficer currentOfficer,
     TimeProvider timeProvider,
     IValidator<OpenRegistrationCaseRequest> validator)
@@ -14,18 +16,21 @@ public sealed class OpenRegistrationCaseHandler(
         OpenRegistrationCaseRequest request,
         CancellationToken cancellationToken)
     {
+        authorization.EnsureCanCreate(currentOfficer);
         await validator.ValidateAndThrowAsync(request, cancellationToken);
-
-        var assignedOfficer = request.AssignedOfficerId is { } officerId
-            ? OfficerId.From(officerId)
-            : OfficerId.From(currentOfficer.OfficerId);
 
         var registrationCase = RegistrationCase.Open(
             request.VisitReason,
-            assignedOfficer,
             timeProvider.GetUtcNow());
 
         await repository.AddAsync(registrationCase, cancellationToken);
+
+        await auditRecorder.RecordAsync(
+            registrationCase.Id,
+            CaseAuditAction.CaseOpened,
+            request.VisitReason.ToString(),
+            cancellationToken);
+
         await repository.SaveChangesAsync(cancellationToken);
 
         return new OpenRegistrationCaseResponse(
