@@ -21,7 +21,11 @@ public sealed class RegistrationCase
 
     public VisitReason VisitReason { get; private set; }
 
-    public OfficerId AssignedOfficerId { get; private set; }
+    public OfficerId? AssignedOfficerId { get; private set; }
+
+    public OfficerId? LockedByOfficerId { get; private set; }
+
+    public DateTimeOffset? LockedAt { get; private set; }
 
     public PersonId? PersonId { get; private set; }
 
@@ -51,21 +55,70 @@ public sealed class RegistrationCase
 
     public RegistrationCaseChecklist Checklist { get; private set; }
 
-    public static RegistrationCase Open(
-        VisitReason visitReason,
-        OfficerId assignedOfficer,
-        DateTimeOffset openedAt)
+    public static RegistrationCase Open(VisitReason visitReason, DateTimeOffset openedAt)
     {
         return new RegistrationCase
         {
             Id = RegistrationCaseId.New(),
             Status = RegistrationCaseStatus.Intake,
             VisitReason = visitReason,
-            AssignedOfficerId = assignedOfficer,
             OpenedAt = openedAt,
             Checklist = RegistrationCaseChecklist.Empty(),
         };
     }
+
+    public CaseClaimResult Claim(OfficerId officer, DateTimeOffset at)
+    {
+        if (LockedByOfficerId is { } locked && locked != officer)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "This case is locked to another officer.");
+        }
+
+        if (LockedByOfficerId == officer)
+        {
+            return CaseClaimResult.AlreadyHeld;
+        }
+
+        var hadAssignee = AssignedOfficerId is not null;
+        AssignedOfficerId = officer;
+        LockedByOfficerId = officer;
+        LockedAt = at;
+
+        return hadAssignee ? CaseClaimResult.Reclaimed : CaseClaimResult.NewlyClaimed;
+    }
+
+    public void ReleaseLock(OfficerId officer)
+    {
+        if (LockedByOfficerId != officer)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Only the officer holding the lock can release it.");
+        }
+
+        LockedByOfficerId = null;
+        LockedAt = null;
+    }
+
+    public void EnsureEditableBy(OfficerId officer, string operation)
+    {
+        if (LockedByOfficerId is null)
+        {
+            throw new InvalidRegistrationTransitionException(
+                $"Cannot perform '{operation}' before the case is claimed.");
+        }
+
+        if (LockedByOfficerId != officer)
+        {
+            throw new InvalidRegistrationTransitionException(
+                $"Cannot perform '{operation}' while the case is locked to another officer.");
+        }
+    }
+
+    public bool IsLockedTo(OfficerId officer) => LockedByOfficerId == officer;
+
+    public bool IsLockedToAnother(OfficerId officer) =>
+        LockedByOfficerId is { } locked && locked != officer;
 
     public Person RecordIdentity(IdentityDetails identity)
     {

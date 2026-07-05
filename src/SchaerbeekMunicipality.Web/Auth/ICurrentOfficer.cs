@@ -12,5 +12,11 @@ public interface ICurrentOfficer
 
     event Action? Changed;
 
+    void SelectOfficer(Guid officerId);
+
+    void RestoreOfficer(Guid officerId);
+
     void SetRole(OfficerRole role);
+
+    void Impersonate(Guid officerId, OfficerRole role, string displayName);
 }

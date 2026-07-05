@@ -1,4 +1,7 @@
 @page "/registration/cases"
+@using SchaerbeekMunicipality.Web.Auth
+@using SchaerbeekMunicipality.Web.Features.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase
 @inject ListRegistrationCasesHandler Handler
 @inject OpenRegistrationCaseHandler OpenHandler
@@ -7,91 +10,159 @@
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
 
-<AppPage Title="Registration cases">
-    <AppPageHeader Title="Registration cases"
-                   Subtitle="First-registration procedures managed by the Population Department.">
-        <Actions>
-            <MudButton Variant="Variant.Filled"
-                       Color="Color.Primary"
-                       StartIcon="@Icons.Material.Outlined.Add"
-                       Style="min-height: 48px;"
-                       OnClick="OpenNewCaseDialog">
-                New case
-            </MudButton>
-        </Actions>
-    </AppPageHeader>
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
+    <AppPage Title="Registration cases">
+        <AppPageHeader Title="Registration cases"
+                       Subtitle="First-registration procedures managed by the Population Department.">
+            <Actions>
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.Add"
+                           Style="min-height: 48px;"
+                           OnClick="OpenNewCaseDialog">
+                    New case
+                </MudButton>
+            </Actions>
+        </AppPageHeader>
 
-    <AppSection>
-        @if (_loading)
-        {
-            <AppLoading Kind="AppLoadingKind.Skeleton" />
-        }
-        else if (_cases.Count == 0)
-        {
-            <AppEmptyState Title="No registration cases yet"
-                           Description="Open an intake file to get started."
-                           Icon="@Icons.Material.Outlined.FolderOpen">
-                <Action>
-                    <MudButton Variant="Variant.Filled"
-                               Color="Color.Primary"
-                               StartIcon="@Icons.Material.Outlined.Add"
-                               Style="min-height: 48px;"
-                               OnClick="OpenNewCaseDialog">
-                        New case
-                    </MudButton>
-                </Action>
-            </AppEmptyState>
-        }
-        else
-        {
-            <AppSearchBar @bind-Value="_searchText"
-                          Placeholder="Search cases…"
-                          Class="mb-4"
-                          OnSearch="OnSearch" />
+        <AppSection>
+            @if (_loading)
+            {
+                <AppLoading Kind="AppLoadingKind.Skeleton" />
+            }
+            else if (_cases.Count == 0)
+            {
+                <AppEmptyState Title="No registration cases yet"
+                               Description="Open an intake file to get started."
+                               Icon="@Icons.Material.Outlined.FolderOpen">
+                    <Action>
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   StartIcon="@Icons.Material.Outlined.Add"
+                                   Style="min-height: 48px;"
+                                   OnClick="OpenNewCaseDialog">
+                            New case
+                        </MudButton>
+                    </Action>
+                </AppEmptyState>
+            }
+            else
+            {
+                <AppSearchBar @bind-Value="_searchText"
+                              Placeholder="Search cases…"
+                              Class="mb-3"
+                              OnSearch="OnSearch" />
 
-            <AppDataTable T="RegistrationCaseSummary"
-                          Items="_filteredCases"
-                          Caption="Registration cases"
-                          OnRowClick="NavigateToCase">
-                <HeaderContent>
-                    <MudTh Class="app-table-header">Case ID</MudTh>
-                    <MudTh Class="app-table-header">Visit reason</MudTh>
-                    <MudTh Class="app-table-header">Status</MudTh>
-                    <MudTh Class="app-table-header">Opened</MudTh>
-                    <MudTh Class="app-table-header">Progress</MudTh>
-                </HeaderContent>
-                <RowTemplate Context="item">
-                    <MudTd DataLabel="Case ID">
-                        <MudLink Href="@($"/registration/cases/{item.Id}")">
-                            @item.Id.ToString()[..8]…
-                        </MudLink>
-                    </MudTd>
-                    <MudTd DataLabel="Visit reason">@item.VisitReason</MudTd>
-                    <MudTd DataLabel="Status">
-                        <AppStatusChip Status="item.Status" />
-                    </MudTd>
-                    <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
-                    <MudTd DataLabel="Progress">
-                        <RegistrationCaseChecklistProgress IdentityEstablished="item.IdentityEstablished"
-                                                           LegalResidenceEstablished="item.LegalResidenceEstablished"
-                                                           AddressDeclared="item.AddressDeclared" />
-                    </MudTd>
-                </RowTemplate>
-            </AppDataTable>
-        }
-    </AppSection>
-</AppPage>
+                <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center" Class="mb-4">
+                    @foreach (var option in _filterOptions)
+                    {
+                        <MudButton Variant="@GetFilterVariant(option.Filter)"
+                                   Color="@GetFilterColor(option.Filter)"
+                                   StartIcon="@option.Icon"
+                                   OnClick="@(() => SetQuickFilter(option.Filter))">
+                            @option.Label
+                        </MudButton>
+                    }
+                </MudStack>
+
+                @if (_filteredCases.Count == 0)
+                {
+                    <AppEmptyState Title="No matching cases"
+                                   Description="@GetEmptyFilterDescription()"
+                                   Icon="@Icons.Material.Outlined.FilterList" />
+                }
+                else
+                {
+                    <AppDataTable T="RegistrationCaseSummary"
+                                  Items="_filteredCases"
+                                  Caption="Registration cases"
+                                  OnRowClick="NavigateToCase">
+                    <HeaderContent>
+                        <MudTh Class="app-table-header">Case ID</MudTh>
+                        <MudTh Class="app-table-header">Visit reason</MudTh>
+                        <MudTh Class="app-table-header">Status</MudTh>
+                        <MudTh Class="app-table-header">Officer</MudTh>
+                        <MudTh Class="app-table-header">Opened</MudTh>
+                        <MudTh Class="app-table-header">Progress</MudTh>
+                    </HeaderContent>
+                    <RowTemplate Context="item">
+                        <MudTd DataLabel="Case ID">
+                            <MudLink Href="@($"/registration/cases/{item.Id}")">
+                                @item.Id.ToString()[..8]…
+                            </MudLink>
+                        </MudTd>
+                        <MudTd DataLabel="Visit reason">@item.VisitReason</MudTd>
+                        <MudTd DataLabel="Status">
+                            <AppStatusChip Status="item.Status" />
+                        </MudTd>
+                        <MudTd DataLabel="Officer">
+                            @OfficerDisplayNames.LockStatus(item.AssignedOfficerId, item.LockedByOfficerId)
+                        </MudTd>
+                        <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+                        <MudTd DataLabel="Progress">
+                            <RegistrationCaseChecklistProgress IdentityEstablished="item.IdentityEstablished"
+                                                               LegalResidenceEstablished="item.LegalResidenceEstablished"
+                                                               AddressDeclared="item.AddressDeclared" />
+                        </MudTd>
+                    </RowTemplate>
+                </AppDataTable>
+                }
+            }
+        </AppSection>
+    </AppPage>
+</RegistrationRoleGate>
 
 @code {
+    private enum CaseListFilter
+    {
+        All,
+        MyCases,
+        Unassigned,
+    }
+
+    private sealed record FilterOption(CaseListFilter Filter, string Label, string Icon);
+
+    private static readonly FilterOption[] _filterOptions =
+    [
+        new(CaseListFilter.All, "All cases", Icons.Material.Outlined.FolderOpen),
+        new(CaseListFilter.MyCases, "My cases", Icons.Material.Outlined.Person),
+        new(CaseListFilter.Unassigned, "Unassigned", Icons.Material.Outlined.Inbox),
+    ];
+
+    [SupplyParameterFromQuery(Name = "filter")]
+    public string? Filter { get; set; }
+
     private IReadOnlyList<RegistrationCaseSummary> _cases = [];
     private IReadOnlyList<RegistrationCaseSummary> _filteredCases = [];
     private bool _loading = true;
     private string _searchText = string.Empty;
+    private CaseListFilter _quickFilter = CaseListFilter.All;
 
     protected override async Task OnInitializedAsync()
     {
+        if (CurrentOfficer.Role == OfficerRole.ReceptionOfficer)
+        {
+            Navigation.NavigateTo("/registration/new-case");
+            return;
+        }
+
+        if (CurrentOfficer.Role == OfficerRole.PoliceClerk)
+        {
+            Navigation.NavigateTo("/registration/police-verifications");
+            return;
+        }
+
+        _quickFilter = ParseFilter(Filter);
         await LoadCases();
     }
+
+    private static CaseListFilter ParseFilter(string? filter) =>
+        filter?.Trim().ToLowerInvariant() switch
+        {
+            "mine" or "my" or "my-cases" => CaseListFilter.MyCases,
+            "unassigned" => CaseListFilter.Unassigned,
+            _ => CaseListFilter.All,
+        };
 
     private async Task LoadCases()
     {
@@ -103,22 +174,62 @@
 
     private void OnSearch(string _) => ApplyFilter();
 
+    private void SetQuickFilter(CaseListFilter filter)
+    {
+        _quickFilter = filter;
+        ApplyFilter();
+    }
+
     private void ApplyFilter()
     {
-        if (string.IsNullOrWhiteSpace(_searchText))
-        {
-            _filteredCases = _cases;
-            return;
-        }
+        IEnumerable<RegistrationCaseSummary> query = _cases;
 
-        var term = _searchText.Trim();
-        _filteredCases = _cases
-            .Where(c =>
+        query = _quickFilter switch
+        {
+            CaseListFilter.MyCases => query.Where(IsMyCase),
+            CaseListFilter.Unassigned => query.Where(IsUnassigned),
+            _ => query,
+        };
+
+        if (!string.IsNullOrWhiteSpace(_searchText))
+        {
+            var term = _searchText.Trim();
+            query = query.Where(c =>
                 c.Id.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
                 c.VisitReason.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
-                c.Status.ToString().Contains(term, StringComparison.OrdinalIgnoreCase))
-            .ToList();
+                c.Status.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                OfficerDisplayNames.LockStatus(c.AssignedOfficerId, c.LockedByOfficerId)
+                    .Contains(term, StringComparison.OrdinalIgnoreCase));
+        }
+
+        _filteredCases = query.ToList();
     }
+
+    private bool IsMyCase(RegistrationCaseSummary item) =>
+        item.LockedByOfficerId == CurrentOfficer.OfficerId ||
+        item.AssignedOfficerId == CurrentOfficer.OfficerId;
+
+    private static bool IsUnassigned(RegistrationCaseSummary item) =>
+        item.AssignedOfficerId is null && item.LockedByOfficerId is null;
+
+    private Variant GetFilterVariant(CaseListFilter filter) =>
+        _quickFilter == filter ? Variant.Filled : Variant.Outlined;
+
+    private Color GetFilterColor(CaseListFilter filter) =>
+        _quickFilter == filter ? Color.Primary : Color.Default;
+
+    private string GetEmptyFilterDescription() =>
+        _quickFilter switch
+        {
+            CaseListFilter.MyCases when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No cases assigned to you match your search.",
+            CaseListFilter.MyCases => "You have no assigned or locked cases right now.",
+            CaseListFilter.Unassigned when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No unassigned cases match your search.",
+            CaseListFilter.Unassigned => "There are no unassigned cases waiting for intake.",
+            _ when !string.IsNullOrWhiteSpace(_searchText) => "Try a different search term.",
+            _ => "No cases match the current filters.",
+        };
 
     private void NavigateToCase(RegistrationCaseSummary item) =>
         Navigation.NavigateTo($"/registration/cases/{item.Id}");

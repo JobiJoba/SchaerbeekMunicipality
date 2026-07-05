@@ -1,9 +1,11 @@
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Web.Auth;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.ResumeCase;
 
 public sealed class ResumeCaseHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     CaseAuditRecorder auditRecorder,
     ICurrentOfficer currentOfficer)
@@ -17,8 +19,10 @@ public sealed class ResumeCaseHandler(
             throw new UnauthorizedAccessException("Only population officers can resume suspended cases.");
         }
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(ResumeCase),
+            cancellationToken);
 
         registrationCase.ResumeFromSuspension();
 

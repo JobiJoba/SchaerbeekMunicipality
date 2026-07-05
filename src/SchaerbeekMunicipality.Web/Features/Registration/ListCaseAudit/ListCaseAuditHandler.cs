@@ -1,13 +1,21 @@
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Auth;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.ListCaseAudit;
 
-public sealed class ListCaseAuditHandler(ICaseAuditRepository auditRepository)
+public sealed class ListCaseAuditHandler(
+    RegistrationCaseGuard caseGuard,
+    RegistrationCaseAuthorization authorization,
+    ICurrentOfficer currentOfficer,
+    ICaseAuditRepository auditRepository)
 {
     public async Task<ListCaseAuditResponse> Handle(
         RegistrationCaseId caseId,
         CancellationToken cancellationToken)
     {
+        authorization.EnsureCanView(currentOfficer);
+        _ = await caseGuard.GetForViewAsync(caseId, cancellationToken);
+
         var entries = await auditRepository.ListByCaseIdAsync(caseId, cancellationToken);
 
         return new ListCaseAuditResponse(

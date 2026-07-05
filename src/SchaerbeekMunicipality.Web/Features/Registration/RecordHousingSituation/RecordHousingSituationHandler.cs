@@ -1,9 +1,11 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.RecordHousingSituation;
 
 public sealed class RecordHousingSituationHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IValidator<RecordHousingSituationRequest> validator)
 {
@@ -14,8 +16,10 @@ public sealed class RecordHousingSituationHandler(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(RecordHousingSituation),
+            cancellationToken);
 
         registrationCase.RecordHousingSituation(request.Situation);
 

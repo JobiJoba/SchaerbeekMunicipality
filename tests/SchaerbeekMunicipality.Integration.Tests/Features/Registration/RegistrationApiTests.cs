@@ -38,8 +38,10 @@ public sealed class RegistrationApiTests
         var created = await createResponse.Content.ReadFromJsonAsync<OpenRegistrationCaseResponse>();
         created.Should().NotBeNull();
 
+        await client.PostAsync($"/api/registration/cases/{created!.CaseId}/claim", null);
+
         var identityResponse = await client.PostAsJsonAsync(
-            $"/api/registration/cases/{created!.CaseId}/identity",
+            $"/api/registration/cases/{created.CaseId}/identity",
             new RecordIdentityRequest("Luc", "Vermeulen", new DateOnly(1988, 11, 5), "Belgian"));
 
         identityResponse.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -97,8 +99,10 @@ public sealed class RegistrationApiTests
         var created = await createResponse.Content.ReadFromJsonAsync<OpenRegistrationCaseResponse>();
         created.Should().NotBeNull();
 
+        await client.PostAsync($"/api/registration/cases/{created!.CaseId}/claim", null);
+
         await client.PostAsJsonAsync(
-            $"/api/registration/cases/{created!.CaseId}/identity",
+            $"/api/registration/cases/{created.CaseId}/identity",
             new RecordIdentityRequest("Luc", "Vermeulen", new DateOnly(1988, 11, 5), "Belgian"));
 
         return created.CaseId;

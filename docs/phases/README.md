@@ -16,7 +16,8 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 6 | Police verification loop | Complete | [phase-6-police-verification-loop.md](./phase-6-police-verification-loop.md) |
 | 6.1 | Collapsible intake sections | Complete | [phase-6.1-collapsible-intake-sections.md](./phase-6.1-collapsible-intake-sections.md) |
 | 7 | Decision & registration | Complete | [phase-7-decision-registration.md](./phase-7-decision-registration.md) |
-| 8 | Certificates & outbound stubs | Planned | — |
+| 8 | Certificates & outbound stubs | In progress | — |
+| 8.1 | Role boundaries, case locking & officer UX | Complete | [phase-8.1-role-boundaries-case-locking.md](./phase-8.1-role-boundaries-case-locking.md) |
 | 9 | Exception scenarios | Planned | — |
 | 10 | PostgreSQL hardening & Aspire deployment | Planned | — |
 | 11 | Extended municipality | Optional | — |

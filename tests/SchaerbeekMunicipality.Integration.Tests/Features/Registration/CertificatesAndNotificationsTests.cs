@@ -36,11 +36,7 @@ public sealed class CertificatesAndNotificationsTests
         var approveHandler = services.GetRequiredService<ApproveCaseHandler>();
         var confirmHandler = services.GetRequiredService<ConfirmRegistrationHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
-
-        var caseId = new RegistrationCaseId(opened.CaseId);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);
 
         await recordHandler.Handle(
             caseId,
@@ -67,10 +63,11 @@ public sealed class CertificatesAndNotificationsTests
 
         var policeRequest = await requestPoliceHandler.Handle(caseId, CancellationToken.None);
 
-        await recordPoliceHandler.Handle(
-            PoliceVerificationRequestId.From(policeRequest.RequestId),
-            new RecordPoliceResultRequest(PoliceVerificationResult.Confirmed, "Present"),
-            CancellationToken.None);
+        await RegistrationTestHelpers.RecordPoliceResultAsync(
+            services,
+            policeRequest.RequestId,
+            PoliceVerificationResult.Confirmed,
+            "Present");
 
         await approveHandler.Handle(
             caseId,

@@ -32,9 +32,18 @@ internal sealed class RegistrationCaseConfiguration : IEntityTypeConfiguration<R
 
         builder.Property(c => c.AssignedOfficerId)
             .HasConversion(
-                id => id.Value,
-                value => OfficerId.From(value))
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? OfficerId.From(value.Value) : null)
             .HasColumnName("assigned_officer_id");
+
+        builder.Property(c => c.LockedByOfficerId)
+            .HasConversion(
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? OfficerId.From(value.Value) : null)
+            .HasColumnName("locked_by_officer_id");
+
+        builder.Property(c => c.LockedAt)
+            .HasColumnName("locked_at");
 
         builder.Property(c => c.PersonId)
             .HasConversion(

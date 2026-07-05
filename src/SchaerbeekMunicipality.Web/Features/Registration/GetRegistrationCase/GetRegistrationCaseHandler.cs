@@ -5,12 +5,15 @@ using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Auth;
 using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
 
 public sealed class GetRegistrationCaseHandler(
-    IRegistrationCaseRepository caseRepository,
+    RegistrationCaseGuard caseGuard,
+    RegistrationCaseAuthorization authorization,
+    ICurrentOfficer currentOfficer,
     IPersonRepository personRepository,
     IAdministrativeDocumentRepository documentRepository,
     IResidencePermitRepository permitRepository,
@@ -22,11 +25,9 @@ public sealed class GetRegistrationCaseHandler(
         RegistrationCaseId caseId,
         CancellationToken cancellationToken)
     {
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken);
-        if (registrationCase is null)
-        {
-            return null;
-        }
+        authorization.EnsureCanView(currentOfficer);
+
+        var registrationCase = await caseGuard.GetForViewAsync(caseId, cancellationToken);
 
         Person? person = null;
         if (registrationCase.PersonId is { } personId)
@@ -85,7 +86,7 @@ public sealed class GetRegistrationCaseHandler(
             .ToList();
     }
 
-    private static RegistrationCaseDetailDto Map(
+    private RegistrationCaseDetailDto Map(
         RegistrationCase registrationCase,
         Person? person,
         IReadOnlyList<AdministrativeDocument> documents,
@@ -95,6 +96,13 @@ public sealed class GetRegistrationCaseHandler(
         PoliceVerificationRequest? activePoliceVerification,
         IReadOnlyList<PoliceVerificationRequest> policeVerifications)
     {
+        var officerId = OfficerId.From(currentOfficer.OfficerId);
+        var canEdit = authorization.CanEditCase(currentOfficer.Role, registrationCase, officerId);
+        var isReadOnlyDueToLock = authorization.IsReadOnlyDueToLock(
+            currentOfficer.Role,
+            registrationCase,
+            officerId);
+
         var checklist = registrationCase.Checklist;
         var suggested = RegisterTargetResolver.Suggest(
             registrationCase.ResidenceCategory,
@@ -104,7 +112,11 @@ public sealed class GetRegistrationCaseHandler(
             registrationCase.Id.Value,
             registrationCase.Status,
             registrationCase.VisitReason,
-            registrationCase.AssignedOfficerId.Value,
+            registrationCase.AssignedOfficerId?.Value,
+            registrationCase.LockedByOfficerId?.Value,
+            registrationCase.LockedAt,
+            canEdit,
+            isReadOnlyDueToLock,
             registrationCase.OpenedAt,
             registrationCase.ClosedAt,
             new RegistrationCaseChecklistDto(

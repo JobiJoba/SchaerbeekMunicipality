@@ -1,11 +1,13 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Web.Auth;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.ApproveCase;
 
 public sealed class ApproveCaseHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     CaseAuditRecorder auditRecorder,
@@ -25,8 +27,10 @@ public sealed class ApproveCaseHandler(
 
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(ApproveCase),
+            cancellationToken);
 
         string? nationality = null;
         if (registrationCase.PersonId is { } personId)

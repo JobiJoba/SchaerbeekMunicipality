@@ -54,12 +54,10 @@ public sealed class LinkExistingPersonTests
         var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var linkHandler = scope.ServiceProvider.GetRequiredService<LinkExistingPersonHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
 
         var response = await linkHandler.Handle(
-            new RegistrationCaseId(opened.CaseId),
+            caseId,
             new LinkExistingPersonRequest(NationalRegisterSeeder.MarieLeclercId.Value),
             CancellationToken.None);
 
@@ -76,21 +74,17 @@ public sealed class LinkExistingPersonTests
         var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var linkHandler = scope.ServiceProvider.GetRequiredService<LinkExistingPersonHandler>();
 
-        var firstCase = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
+        var firstCaseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
 
         await linkHandler.Handle(
-            new RegistrationCaseId(firstCase.CaseId),
+            firstCaseId,
             new LinkExistingPersonRequest(NationalRegisterSeeder.JeanDupontId.Value),
             CancellationToken.None);
 
-        var secondCase = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
+        var secondCaseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
 
         var act = () => linkHandler.Handle(
-            new RegistrationCaseId(secondCase.CaseId),
+            secondCaseId,
             new LinkExistingPersonRequest(NationalRegisterSeeder.JeanDupontId.Value),
             CancellationToken.None);
 
@@ -106,12 +100,10 @@ public sealed class LinkExistingPersonTests
         var recordHandler = scope.ServiceProvider.GetRequiredService<RecordIdentityHandler>();
         var searchHandler = scope.ServiceProvider.GetRequiredService<SearchNationalRegisterHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
 
         await recordHandler.Handle(
-            new RegistrationCaseId(opened.CaseId),
+            caseId,
             new RecordIdentityRequest("Amélie", "Bernard", new DateOnly(1992, 3, 20), "French"),
             CancellationToken.None);
 

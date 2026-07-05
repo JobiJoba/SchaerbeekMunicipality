@@ -29,11 +29,7 @@ public sealed class CaseDecisionTests
         var requestPoliceHandler = services.GetRequiredService<RequestPoliceVerificationHandler>();
         var recordPoliceHandler = services.GetRequiredService<RecordPoliceResultHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
-
-        var caseId = new RegistrationCaseId(opened.CaseId);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);
 
         await recordHandler.Handle(
             caseId,
@@ -52,10 +48,11 @@ public sealed class CaseDecisionTests
 
         var policeRequest = await requestPoliceHandler.Handle(caseId, CancellationToken.None);
 
-        await recordPoliceHandler.Handle(
-            PoliceVerificationRequestId.From(policeRequest.RequestId),
-            new RecordPoliceResultRequest(PoliceVerificationResult.Confirmed, "Present"),
-            CancellationToken.None);
+        await RegistrationTestHelpers.RecordPoliceResultAsync(
+            services,
+            policeRequest.RequestId,
+            PoliceVerificationResult.Confirmed,
+            "Present");
 
         return caseId;
     }
@@ -124,10 +121,7 @@ public sealed class CaseDecisionTests
         var recordPoliceHandler = scope.ServiceProvider.GetRequiredService<RecordPoliceResultHandler>();
         var approveHandler = scope.ServiceProvider.GetRequiredService<ApproveCaseHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
-        var caseId = new RegistrationCaseId(opened.CaseId);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
 
         await recordHandler.Handle(
             caseId,
@@ -140,10 +134,10 @@ public sealed class CaseDecisionTests
             CancellationToken.None);
 
         var policeRequest = await requestPoliceHandler.Handle(caseId, CancellationToken.None);
-        await recordPoliceHandler.Handle(
-            PoliceVerificationRequestId.From(policeRequest.RequestId),
-            new RecordPoliceResultRequest(PoliceVerificationResult.NotFound, null),
-            CancellationToken.None);
+        await RegistrationTestHelpers.RecordPoliceResultAsync(
+            scope.ServiceProvider,
+            policeRequest.RequestId,
+            PoliceVerificationResult.NotFound);
 
         var act = () => approveHandler.Handle(
             caseId,

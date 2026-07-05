@@ -1,10 +1,12 @@
 using Microsoft.Extensions.Logging;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument;
 
 public sealed class RemoveDocumentHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IAdministrativeDocumentRepository documentRepository,
     IDocumentStorage documentStorage,
@@ -16,8 +18,10 @@ public sealed class RemoveDocumentHandler(
         AdministrativeDocumentId documentId,
         CancellationToken cancellationToken)
     {
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(RemoveDocument),
+            cancellationToken);
 
         registrationCase.EnsureCanAttachDocuments();
 

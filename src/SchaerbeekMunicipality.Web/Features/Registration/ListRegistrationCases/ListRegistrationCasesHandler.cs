@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Auth;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases;
 
@@ -7,14 +8,21 @@ public sealed record RegistrationCaseSummary(
     RegistrationCaseStatus Status,
     VisitReason VisitReason,
     DateTimeOffset OpenedAt,
+    Guid? AssignedOfficerId,
+    Guid? LockedByOfficerId,
     bool IdentityEstablished,
     bool LegalResidenceEstablished,
     bool AddressDeclared);
 
-public sealed class ListRegistrationCasesHandler(IRegistrationCaseRepository repository)
+public sealed class ListRegistrationCasesHandler(
+    IRegistrationCaseRepository repository,
+    RegistrationCaseAuthorization authorization,
+    ICurrentOfficer currentOfficer)
 {
     public async Task<IReadOnlyList<RegistrationCaseSummary>> Handle(CancellationToken cancellationToken)
     {
+        authorization.EnsureCanList(currentOfficer);
+
         var cases = await repository.ListAsync(cancellationToken);
 
         return cases
@@ -23,6 +31,8 @@ public sealed class ListRegistrationCasesHandler(IRegistrationCaseRepository rep
                 c.Status,
                 c.VisitReason,
                 c.OpenedAt,
+                c.AssignedOfficerId?.Value,
+                c.LockedByOfficerId?.Value,
                 c.Checklist.IdentityEstablished,
                 c.Checklist.LegalResidenceEstablished,
                 c.Checklist.AddressDeclared))

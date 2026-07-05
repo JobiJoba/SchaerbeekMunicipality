@@ -2,10 +2,12 @@ using FluentValidation;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.ConvertBisNumber;
 
 public sealed class ConvertBisNumberHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     INationalRegisterRepository nationalRegisterRepository)
@@ -14,8 +16,10 @@ public sealed class ConvertBisNumberHandler(
         RegistrationCaseId caseId,
         CancellationToken cancellationToken)
     {
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(ConvertBisNumber),
+            cancellationToken);
 
         registrationCase.EnsureIntakeDataEditable(nameof(ConvertBisNumber));
 

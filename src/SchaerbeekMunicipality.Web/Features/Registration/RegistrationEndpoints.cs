@@ -1,3 +1,5 @@
+using SchaerbeekMunicipality.Web.Features.Registration.ClaimRegistrationCase;
+using SchaerbeekMunicipality.Web.Features.Registration.ReleaseCaseLock;
 using SchaerbeekMunicipality.Web.Features.Registration.ApproveCase;
 using SchaerbeekMunicipality.Web.Features.Registration.ConfirmRegistration;
 using SchaerbeekMunicipality.Web.Features.Registration.GetCaseReviewChecklist;
@@ -50,6 +52,14 @@ public static class RegistrationEndpoints
 
         group.MapGet("/cases/{id:guid}", GetRegistrationCaseEndpoint.Handle)
             .WithName("GetRegistrationCase")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/claim", ClaimRegistrationCaseEndpoint.Handle)
+            .WithName("ClaimRegistrationCase")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/release-lock", ReleaseCaseLockEndpoint.Handle)
+            .WithName("ReleaseCaseLock")
             .WithTags("Registration");
 
         group.MapPost("/cases/{id:guid}/identity", RecordIdentityEndpoint.Handle)

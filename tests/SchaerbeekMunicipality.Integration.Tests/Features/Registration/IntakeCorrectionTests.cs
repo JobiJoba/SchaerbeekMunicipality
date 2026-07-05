@@ -149,6 +149,8 @@ public sealed class IntakeCorrectionTests
         var created = await createResponse.Content.ReadFromJsonAsync<OpenRegistrationCaseResponse>();
         created.Should().NotBeNull();
 
+        await client.PostAsync($"/api/registration/cases/{created!.CaseId}/claim", null);
+
         await client.PostAsJsonAsync(
             $"/api/registration/cases/{created!.CaseId}/identity",
             new RecordIdentityRequest("Jon", "Vermeulen", new DateOnly(1988, 11, 5), "Belgian"));
@@ -161,11 +163,7 @@ public sealed class IntakeCorrectionTests
         var openHandler = services.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
-
-        var caseId = new RegistrationCaseId(opened.CaseId);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);
         await recordHandler.Handle(
             caseId,
             new RecordIdentityRequest("Amélie", "Bernard", new DateOnly(1992, 3, 20), "French"),

@@ -20,11 +20,7 @@ public sealed class AddressAndHouseholdTests
         var openHandler = services.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
-
-        var caseId = new RegistrationCaseId(opened.CaseId);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);
         await recordHandler.Handle(
             caseId,
             new RecordIdentityRequest("Sophie", "Lambert", new DateOnly(1988, 6, 12), "Belgian"),
@@ -41,12 +37,10 @@ public sealed class AddressAndHouseholdTests
         var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var declareHandler = scope.ServiceProvider.GetRequiredService<DeclareAddressHandler>();
 
-        var opened = await openHandler.Handle(
-            new OpenRegistrationCaseRequest(VisitReason.FirstRegistration, null),
-            CancellationToken.None);
+        var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
 
         var act = () => declareHandler.Handle(
-            new RegistrationCaseId(opened.CaseId),
+            caseId,
             new DeclareAddressRequest(
                 "Chaussée de Louvain",
                 "10",

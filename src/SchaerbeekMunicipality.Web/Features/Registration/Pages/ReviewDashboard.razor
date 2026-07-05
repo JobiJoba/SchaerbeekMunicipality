@@ -79,6 +79,14 @@
 
   protected override async Task OnInitializedAsync()
   {
+    if (CurrentOfficer.Role != OfficerRole.PopulationOfficer)
+    {
+      Navigation.NavigateTo(CurrentOfficer.Role == OfficerRole.ReceptionOfficer
+        ? "/registration/new-case"
+        : "/registration/police-verifications");
+      return;
+    }
+
     _dashboard = await Handler.Handle(CancellationToken.None);
     _loading = false;
   }
@@ -90,6 +98,7 @@
     label switch
     {
       "My open cases" => Icons.Material.Outlined.FolderOpen,
+      "Unassigned" => Icons.Material.Outlined.Inbox,
       "Awaiting police" => Icons.Material.Outlined.LocalPolice,
       "Ready for decision" => Icons.Material.Outlined.Gavel,
       "Suspended" => Icons.Material.Outlined.PauseCircle,

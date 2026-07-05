@@ -1,19 +1,24 @@
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.RequestPoliceVerification;
 
 public sealed class RequestPoliceVerificationHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPoliceVerificationRepository policeVerificationRepository,
+    CaseAuditRecorder auditRecorder,
     TimeProvider timeProvider)
 {
     public async Task<RequestPoliceVerificationResponse> Handle(
         RegistrationCaseId caseId,
         CancellationToken cancellationToken)
     {
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(RequestPoliceVerification),
+            cancellationToken);
 
         var pending = await policeVerificationRepository.GetPendingByCaseIdAsync(caseId, cancellationToken);
         if (pending is not null)
@@ -31,6 +36,11 @@ public sealed class RequestPoliceVerificationHandler(
             timeProvider.GetUtcNow());
 
         await policeVerificationRepository.AddAsync(request, cancellationToken);
+        await auditRecorder.RecordAsync(
+            caseId,
+            CaseAuditAction.PoliceVerificationRequested,
+            $"Attempt {request.AttemptNumber}",
+            cancellationToken);
         await caseRepository.SaveChangesAsync(cancellationToken);
 
         return new RequestPoliceVerificationResponse(

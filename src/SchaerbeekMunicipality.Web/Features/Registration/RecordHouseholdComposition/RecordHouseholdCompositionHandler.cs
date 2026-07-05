@@ -1,11 +1,12 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.RecordHouseholdComposition;
 
 public sealed class RecordHouseholdCompositionHandler(
-    IRegistrationCaseRepository caseRepository,
+    RegistrationCaseGuard caseGuard,
     IHouseholdRepository householdRepository,
     IValidator<RecordHouseholdCompositionRequest> validator)
 {
@@ -16,8 +17,10 @@ public sealed class RecordHouseholdCompositionHandler(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(RecordHouseholdComposition),
+            cancellationToken);
 
         registrationCase.EnsureIntakeDataEditable(nameof(RecordHouseholdComposition));
 

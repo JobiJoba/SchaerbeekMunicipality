@@ -10,6 +10,7 @@
 @inject ICurrentOfficer CurrentOfficer
 @inject IWebHostEnvironment HostEnvironment
 @inject IServiceScopeFactory ScopeFactory
+@inject NavigationManager Navigation
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
@@ -57,6 +58,11 @@
 
     protected override void OnInitialized()
     {
+        if (DemoOfficerPersistence.TryGetOfficerId(Navigation, out var officerId))
+        {
+            CurrentOfficer.RestoreOfficer(officerId);
+        }
+
         CurrentOfficer.Changed += OnOfficerChanged;
 
         _ = RefreshNavItemsAsync();
@@ -80,20 +86,41 @@
         var items = new List<AppNavItem>
         {
             new("Home", "/", Icons.Material.Outlined.Home),
-            new("Review dashboard", "/registration/review-dashboard", Icons.Material.Outlined.Dashboard),
-            new("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
-            new(
+        };
+
+        if (CurrentOfficer.Role == OfficerRole.ReceptionOfficer)
+        {
+            items.Add(new AppNavItem("New case", "/registration/new-case", Icons.Material.Outlined.Add));
+        }
+        else if (CurrentOfficer.Role == OfficerRole.PopulationOfficer)
+        {
+            items.AddRange(
+            [
+                new AppNavItem("Review dashboard", "/registration/review-dashboard", Icons.Material.Outlined.Dashboard),
+                new AppNavItem("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+                new AppNavItem(
+                    "Outbound notifications",
+                    "/administration/outbound-notifications",
+                    Icons.Material.Outlined.Send),
+            ]);
+        }
+        else if (CurrentOfficer.Role == OfficerRole.PoliceClerk)
+        {
+            items.Add(new AppNavItem(
                 "Police verifications",
                 "/registration/police-verifications",
                 Icons.Material.Outlined.LocalPolice,
                 OfficerRole.PoliceClerk.ToString(),
-                pendingCount > 0 ? pendingCount : null),
-            new(
-                "Outbound notifications",
-                "/administration/outbound-notifications",
-                Icons.Material.Outlined.Send,
-                OfficerRole.PopulationOfficer.ToString()),
-        };
+                pendingCount > 0 ? pendingCount : null));
+        }
+        else
+        {
+            items.AddRange(
+            [
+                new AppNavItem("Review dashboard", "/registration/review-dashboard", Icons.Material.Outlined.Dashboard),
+                new AppNavItem("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+            ]);
+        }
 
         if (HostEnvironment.IsDevelopment())
         {
@@ -107,7 +134,32 @@
     private void OnOfficerChanged()
     {
         _ = RefreshNavItemsAsync();
+        var targetUri = DemoOfficerPersistence.AppendToUri(
+            ResolveUriAfterRoleSwitch(),
+            CurrentOfficer.OfficerId);
+        Navigation.NavigateTo(targetUri, forceLoad: true);
     }
+
+    private string ResolveUriAfterRoleSwitch()
+    {
+        var path = Navigation.ToBaseRelativePath(Navigation.Uri).Split('?')[0].TrimEnd('/');
+
+        return CurrentOfficer.Role switch
+        {
+            OfficerRole.ReceptionOfficer when IsPopulationOnlyPath(path) || path is "registration/police-verifications" =>
+                "/registration/new-case",
+            OfficerRole.PoliceClerk when IsPopulationOnlyPath(path) || path is "registration/new-case" =>
+                "/registration/police-verifications",
+            OfficerRole.PopulationOfficer when path is "registration/new-case" or "registration/police-verifications" =>
+                "/registration/cases",
+            _ => Navigation.Uri,
+        };
+    }
+
+    private static bool IsPopulationOnlyPath(string path) =>
+        path is "registration/cases" or "registration/review-dashboard" ||
+        path.StartsWith("registration/cases/", StringComparison.OrdinalIgnoreCase) ||
+        path.StartsWith("administration/outbound-notifications", StringComparison.OrdinalIgnoreCase);
 
     private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
 

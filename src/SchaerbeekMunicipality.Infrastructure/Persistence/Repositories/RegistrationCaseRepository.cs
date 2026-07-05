@@ -7,10 +7,13 @@ internal sealed class RegistrationCaseRepository(MunicipalDbContext dbContext) :
 {
     public async Task<IReadOnlyList<RegistrationCase>> ListAsync(CancellationToken cancellationToken)
     {
-        return await dbContext.RegistrationCases
+        var cases = await dbContext.RegistrationCases
             .AsNoTracking()
-            .OrderByDescending(c => c.OpenedAt)
             .ToListAsync(cancellationToken);
+
+        return cases
+            .OrderByDescending(c => c.OpenedAt)
+            .ToList();
     }
 
     public Task<RegistrationCase?> GetByIdAsync(RegistrationCaseId id, CancellationToken cancellationToken)

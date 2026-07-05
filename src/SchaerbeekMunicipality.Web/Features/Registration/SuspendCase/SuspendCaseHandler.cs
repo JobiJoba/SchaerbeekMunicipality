@@ -1,10 +1,12 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Web.Auth;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.SuspendCase;
 
 public sealed class SuspendCaseHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     CaseAuditRecorder auditRecorder,
     ICurrentOfficer currentOfficer,
@@ -23,8 +25,10 @@ public sealed class SuspendCaseHandler(
 
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(SuspendCase),
+            cancellationToken);
 
         var officer = OfficerId.From(currentOfficer.OfficerId);
         registrationCase.Suspend(

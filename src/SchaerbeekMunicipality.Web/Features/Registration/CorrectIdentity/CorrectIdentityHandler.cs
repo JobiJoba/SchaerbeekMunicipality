@@ -2,11 +2,13 @@ using FluentValidation;
 using Microsoft.Extensions.Logging;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity;
 
 public sealed class CorrectIdentityHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     RegistrationResidenceEvaluator residenceEvaluator,
@@ -20,8 +22,10 @@ public sealed class CorrectIdentityHandler(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(CorrectIdentity),
+            cancellationToken);
 
         if (registrationCase.PersonId is null)
         {

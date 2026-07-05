@@ -1,10 +1,12 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.RecordImmigrationDecision;
 
 public sealed class RecordImmigrationDecisionHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     RegistrationResidenceEvaluator residenceEvaluator,
     IValidator<RecordImmigrationDecisionRequest> validator)
@@ -16,8 +18,10 @@ public sealed class RecordImmigrationDecisionHandler(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(RecordImmigrationDecision),
+            cancellationToken);
 
         registrationCase.RecordImmigrationDecision(
             new ImmigrationDecisionDetails(request.ReferenceNumber, request.DecisionDate));

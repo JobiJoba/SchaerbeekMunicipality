@@ -1,10 +1,12 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.RecordCivilStatus;
 
 public sealed class RecordCivilStatusHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     IValidator<RecordCivilStatusRequest> validator)
@@ -16,8 +18,10 @@ public sealed class RecordCivilStatusHandler(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(RecordCivilStatus),
+            cancellationToken);
 
         registrationCase.EnsureIntakeDataEditable(nameof(RecordCivilStatus));
 

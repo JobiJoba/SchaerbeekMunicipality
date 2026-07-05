@@ -13,10 +13,7 @@ public sealed class RegistrationCaseCorrectionTests
     [Fact]
     public void CorrectIdentity_UpdatesLinkedPerson()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         var person = registrationCase.RecordIdentity(
             new IdentityDetails("Marie", "Dupont", new DateOnly(1990, 5, 15), "French"));
@@ -32,10 +29,7 @@ public sealed class RegistrationCaseCorrectionTests
     [Fact]
     public void CorrectIdentity_WhenIdentityNotRecorded_Throws()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         var person = Person.Create(
             new IdentityDetails("Marie", "Dupont", new DateOnly(1990, 5, 15), "French"));
@@ -64,10 +58,7 @@ public sealed class RegistrationCaseCorrectionTests
     [Fact]
     public void CorrectIdentity_WhenApproved_Throws()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         var person = registrationCase.RecordIdentity(
             new IdentityDetails("Marie", "Dupont", new DateOnly(1990, 5, 15), "French"));
@@ -105,10 +96,7 @@ public sealed class RegistrationCaseCorrectionTests
 
     private static RegistrationCase OpenCaseWithIdentity()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         registrationCase.RecordIdentity(
             new IdentityDetails("Marie", "Dupont", new DateOnly(1990, 5, 15), "French"));

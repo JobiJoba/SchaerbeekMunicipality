@@ -1,11 +1,13 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Web.Auth;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
 
 public sealed class AttachDocumentHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IAdministrativeDocumentRepository documentRepository,
     IDocumentStorage documentStorage,
@@ -19,8 +21,10 @@ public sealed class AttachDocumentHandler(
         Stream fileContent,
         CancellationToken cancellationToken)
     {
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(AttachDocument),
+            cancellationToken);
 
         registrationCase.EnsureCanAttachDocuments();
 

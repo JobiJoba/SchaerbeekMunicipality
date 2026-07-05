@@ -2,10 +2,12 @@ using FluentValidation;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.LinkExistingPerson;
 
 public sealed class LinkExistingPersonHandler(
+    RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     INationalRegisterRepository nationalRegisterRepository,
@@ -18,8 +20,10 @@ public sealed class LinkExistingPersonHandler(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        var registrationCase = await caseGuard.GetForEditAsync(
+            caseId,
+            nameof(LinkExistingPerson),
+            cancellationToken);
 
         var registerPersonId = NationalRegisterPersonId.From(request.RegisterPersonId);
         var registerPerson = await nationalRegisterRepository.GetByIdAsync(registerPersonId, cancellationToken)

@@ -20,10 +20,7 @@ public sealed class RegistrationCaseAddressTests
     [Fact]
     public void DeclareAddress_WithoutIdentity_Throws()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         var act = () => registrationCase.DeclareAddress(SampleAddress);
 
@@ -77,10 +74,7 @@ public sealed class RegistrationCaseAddressTests
 
     private static RegistrationCase OpenCaseWithIdentity()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         registrationCase.RecordIdentity(
             new IdentityDetails("Jean", "Martin", new DateOnly(1985, 1, 10), "Belgian"));

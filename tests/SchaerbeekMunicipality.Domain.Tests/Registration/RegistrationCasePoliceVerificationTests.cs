@@ -13,10 +13,7 @@ public sealed class RegistrationCasePoliceVerificationTests
 
     private static RegistrationCase CreateCaseWithIdentityAndAddress()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         registrationCase.RecordIdentity(
             new IdentityDetails("Sophie", "Lambert", new DateOnly(1988, 6, 12), "Belgian"));
@@ -44,10 +41,7 @@ public sealed class RegistrationCasePoliceVerificationTests
     [Fact]
     public void RequestPoliceVerification_WithoutAddress_Throws()
     {
-        var registrationCase = RegistrationCase.Open(
-            VisitReason.FirstRegistration,
-            DemoOfficer,
-            OpenedAt);
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
         registrationCase.RecordIdentity(
             new IdentityDetails("Sophie", "Lambert", new DateOnly(1988, 6, 12), "Belgian"));
