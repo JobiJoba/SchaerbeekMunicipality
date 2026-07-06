@@ -11,11 +11,13 @@ public sealed class RegisterTargetResolverTests
     [InlineData(ResidenceCategory.EuCitizen, "French", RegisterTarget.ForeignersRegister)]
     [InlineData(ResidenceCategory.NonEuWorker, "Moroccan", RegisterTarget.ForeignersRegister)]
     [InlineData(ResidenceCategory.Student, "Chinese", RegisterTarget.ForeignersRegister)]
+    [InlineData(ResidenceCategory.Refugee, "Syrian", RegisterTarget.WaitingRegister)]
     public void Suggest_ReturnsExpectedTarget(
         ResidenceCategory category,
         string nationality,
         RegisterTarget expected)
     {
-        RegisterTargetResolver.Suggest(category, nationality).Should().Be(expected);
+        var hasDecision = category == ResidenceCategory.Refugee;
+        RegisterTargetResolver.Suggest(category, nationality, hasDecision).Should().Be(expected);
     }
 }

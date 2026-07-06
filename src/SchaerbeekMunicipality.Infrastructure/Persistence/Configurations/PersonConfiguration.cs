@@ -37,6 +37,14 @@ internal sealed class PersonConfiguration : IEntityTypeConfiguration<Person>
             .HasMaxLength(64)
             .IsRequired();
 
+        builder.Property(p => p.BirthPlace)
+            .HasColumnName("birth_place")
+            .HasMaxLength(128);
+
+        builder.Property(p => p.BirthCountry)
+            .HasColumnName("birth_country")
+            .HasMaxLength(64);
+
         builder.Property(p => p.LinkedRegisterRecordId)
             .HasConversion(
                 id => id.HasValue ? id.Value.Value : (Guid?)null,
@@ -81,6 +89,11 @@ internal sealed class PersonConfiguration : IEntityTypeConfiguration<Person>
             civilStatus.Property(c => c.MarriagePlace)
                 .HasColumnName("marriage_place")
                 .HasMaxLength(128);
+
+            civilStatus.Property(c => c.MarriageRecognitionStatus)
+                .HasColumnName("marriage_recognition_status")
+                .HasConversion<string>()
+                .HasMaxLength(32);
         });
     }
 }

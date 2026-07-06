@@ -48,6 +48,8 @@ public sealed class CertificatesAndNotificationsTests
             new SetResidenceCategoryRequest(ResidenceCategory.EuCitizen),
             CancellationToken.None);
 
+        await RegistrationTestHelpers.SatisfyPhase9RequirementsAsync(services, caseId);
+
         await declareHandler.Handle(
             caseId,
             new DeclareAddressRequest("Chaussée de Louvain", "10", null, "1030", "Schaerbeek"),

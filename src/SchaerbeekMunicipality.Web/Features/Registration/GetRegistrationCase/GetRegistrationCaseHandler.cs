@@ -2,6 +2,7 @@ using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -19,7 +20,8 @@ public sealed class GetRegistrationCaseHandler(
     IResidencePermitRepository permitRepository,
     IHouseholdRepository householdRepository,
     INationalRegisterRepository nationalRegisterRepository,
-    IPoliceVerificationRepository policeVerificationRepository)
+    IPoliceVerificationRepository policeVerificationRepository,
+    ResidencePolicyEvaluator policyEvaluator)
 {
     public async Task<RegistrationCaseDetailDto?> Handle(
         RegistrationCaseId caseId,
@@ -44,6 +46,14 @@ public sealed class GetRegistrationCaseHandler(
             cancellationToken);
         var policeVerifications = await policeVerificationRepository.ListByCaseIdAsync(caseId, cancellationToken);
 
+        var documentTypes = documents.Select(d => d.DocumentType).ToList();
+        var policyResult = policyEvaluator.Evaluate(registrationCase, permit, documentTypes);
+        var exceptionState = RegistrationExceptionStateCalculator.Calculate(
+            registrationCase,
+            person,
+            documentTypes,
+            policyResult);
+
         return Map(
             registrationCase,
             person,
@@ -52,7 +62,8 @@ public sealed class GetRegistrationCaseHandler(
             household,
             possibleDuplicates,
             activePoliceVerification,
-            policeVerifications);
+            policeVerifications,
+            exceptionState);
     }
 
     private async Task<IReadOnlyList<NationalRegisterMatchDto>> FindPossibleDuplicatesAsync(
@@ -72,7 +83,7 @@ public sealed class GetRegistrationCaseHandler(
         var matches = await nationalRegisterRepository.SearchAsync(criteria, cancellationToken);
 
         return matches
-            .Where(m => m.MatchScore >= NationalRegisterSearchScorer.ExactMatchScore - 20)
+            .Where(m => m.MatchScore >= RegistrationExceptionRules.DuplicateInvestigationThreshold)
             .Select(m => new NationalRegisterMatchDto(
                 m.RegisterPersonId.Value,
                 m.GivenName,
@@ -94,7 +105,8 @@ public sealed class GetRegistrationCaseHandler(
         Household? household,
         IReadOnlyList<NationalRegisterMatchDto> possibleDuplicates,
         PoliceVerificationRequest? activePoliceVerification,
-        IReadOnlyList<PoliceVerificationRequest> policeVerifications)
+        IReadOnlyList<PoliceVerificationRequest> policeVerifications,
+        RegistrationExceptionDisplayState exceptionState)
     {
         var officerId = OfficerId.From(currentOfficer.OfficerId);
         var canEdit = authorization.CanEditCase(currentOfficer.Role, registrationCase, officerId);
@@ -106,7 +118,8 @@ public sealed class GetRegistrationCaseHandler(
         var checklist = registrationCase.Checklist;
         var suggested = RegisterTargetResolver.Suggest(
             registrationCase.ResidenceCategory,
-            person?.Nationality);
+            person?.Nationality,
+            registrationCase.ImmigrationDecision is not null);
 
         return new RegistrationCaseDetailDto(
             registrationCase.Id.Value,
@@ -124,8 +137,13 @@ public sealed class GetRegistrationCaseHandler(
                 checklist.LegalResidenceEstablished,
                 checklist.AddressDeclared,
                 checklist.AddressConfirmed,
-                checklist.RegisterDeterminable),
-            registrationCase.IsReadyForApproval,
+                checklist.RegisterDeterminable,
+                exceptionState.BirthEvidenceEstablished,
+                checklist.DuplicateInvestigationResolved),
+            exceptionState.IsReadyForApproval,
+            exceptionState.IllegalStayDetected,
+            exceptionState.MarriageRecognitionBlocking,
+            registrationCase.DuplicateInvestigationStatus,
             suggested?.ToString(),
             registrationCase.SelectedRegisterTarget,
             registrationCase.RejectionReason,
@@ -141,7 +159,10 @@ public sealed class GetRegistrationCaseHandler(
                     person.Nationality,
                     person.BisNumber?.Value,
                     person.NationalRegisterNumber?.Value,
-                    person.LinkedRegisterRecordId is not null),
+                    person.LinkedRegisterRecordId is not null,
+                    person.BirthPlace is null
+                        ? null
+                        : new BirthInformationDto(person.BirthPlace, person.BirthCountry)),
             registrationCase.ResidenceCategory,
             permit is null
                 ? null
@@ -179,10 +200,12 @@ public sealed class GetRegistrationCaseHandler(
                 ? null
                 : new CivilStatusDto(
                     person.CivilStatus.Status,
+                    person.CivilStatus.EffectiveRegisterStatus,
                     person.CivilStatus.SpouseGivenName,
                     person.CivilStatus.SpouseFamilyName,
                     person.CivilStatus.MarriageDate,
-                    person.CivilStatus.MarriagePlace),
+                    person.CivilStatus.MarriagePlace,
+                    person.CivilStatus.MarriageRecognitionStatus),
             documents
                 .Select(d => new DocumentDto(
                     d.Id.Value,

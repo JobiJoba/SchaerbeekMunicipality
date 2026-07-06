@@ -10,6 +10,7 @@ public sealed class ApproveCaseHandler(
     RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     CaseAuditRecorder auditRecorder,
     ICurrentOfficer currentOfficer,
     TimeProvider timeProvider,
@@ -31,6 +32,28 @@ public sealed class ApproveCaseHandler(
             caseId,
             nameof(ApproveCase),
             cancellationToken);
+
+        var evaluation = await exceptionEvaluator.EvaluateAndApplyAsync(
+            registrationCase,
+            cancellationToken);
+
+        if (evaluation.IllegalStayDetected)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Cannot approve a case with no legal residence basis — reject and refer to Immigration Office.");
+        }
+
+        if (evaluation.MarriageRecognitionBlocking)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Cannot approve while foreign marriage recognition is pending.");
+        }
+
+        if (!registrationCase.IsReadyForApproval)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Cannot approve the case until all review checklist items are satisfied.");
+        }
 
         string? nationality = null;
         if (registrationCase.PersonId is { } personId)

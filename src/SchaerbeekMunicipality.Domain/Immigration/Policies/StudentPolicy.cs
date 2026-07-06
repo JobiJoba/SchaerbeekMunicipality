@@ -6,6 +6,12 @@ public sealed class StudentPolicy : IResidencePolicy
 
     public ResidencePolicyResult Validate(ResidenceValidationContext context)
     {
+        var identityResult = ResidenceDocumentRules.RequireIdentityDocument(context.AttachedDocumentTypes);
+        if (!identityResult.IsValid)
+        {
+            return identityResult;
+        }
+
         if (context.Permit is null)
         {
             return ResidencePolicyResult.Invalid(

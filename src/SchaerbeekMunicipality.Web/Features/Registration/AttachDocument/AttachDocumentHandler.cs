@@ -1,5 +1,6 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Documents;
+using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Features.Registration;
 using SchaerbeekMunicipality.Web.Auth;
@@ -11,6 +12,7 @@ public sealed class AttachDocumentHandler(
     IRegistrationCaseRepository caseRepository,
     IAdministrativeDocumentRepository documentRepository,
     IDocumentStorage documentStorage,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     ICurrentOfficer currentOfficer,
     TimeProvider timeProvider)
 {
@@ -40,6 +42,17 @@ public sealed class AttachDocumentHandler(
             timeProvider.GetUtcNow());
 
         await documentRepository.AddAsync(document, cancellationToken);
+
+        var existingDocuments = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        var documentTypes = existingDocuments
+            .Select(d => d.DocumentType)
+            .Append(documentType)
+            .ToList();
+
+        await exceptionEvaluator.EvaluateAndApplyAsync(
+            registrationCase,
+            cancellationToken,
+            documentTypesOverride: documentTypes);
         await caseRepository.SaveChangesAsync(cancellationToken);
 
         return new AttachDocumentResponse(

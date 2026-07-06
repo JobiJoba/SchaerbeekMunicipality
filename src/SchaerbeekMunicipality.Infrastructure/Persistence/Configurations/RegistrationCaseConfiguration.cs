@@ -99,7 +99,14 @@ internal sealed class RegistrationCaseConfiguration : IEntityTypeConfiguration<R
             checklist.Property(c => c.AddressDeclared).HasColumnName("address_declared");
             checklist.Property(c => c.AddressConfirmed).HasColumnName("address_confirmed");
             checklist.Property(c => c.RegisterDeterminable).HasColumnName("register_determinable");
+            checklist.Property(c => c.BirthEvidenceEstablished).HasColumnName("birth_evidence_established");
+            checklist.Property(c => c.DuplicateInvestigationResolved).HasColumnName("duplicate_investigation_resolved");
         });
+
+        builder.Property(c => c.DuplicateInvestigationStatus)
+            .HasColumnName("duplicate_investigation_status")
+            .HasConversion<string>()
+            .HasMaxLength(64);
 
         builder.OwnsOne(c => c.ImmigrationDecision, decision =>
         {

@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Domain.Address;
+using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
@@ -54,6 +55,8 @@ public sealed class RegistrationCase
     public RegistrationCaseStatus? StatusBeforeSuspension { get; private set; }
 
     public RegistrationCaseChecklist Checklist { get; private set; }
+
+    public DuplicateInvestigationStatus DuplicateInvestigationStatus { get; private set; }
 
     public static RegistrationCase Open(VisitReason visitReason, DateTimeOffset openedAt)
     {
@@ -140,6 +143,7 @@ public sealed class RegistrationCase
         var person = Person.CreateFromRegisterRecord(registerPerson);
         PersonId = person.Id;
         Checklist.MarkIdentityEstablished();
+        ResolveDuplicateInvestigationAsLinked();
 
         return person;
     }
@@ -171,9 +175,79 @@ public sealed class RegistrationCase
         ResidenceCategory = category;
     }
 
+    public void RecordBirthInformation(Person person, BirthInformationDetails details)
+    {
+        EnsureIntakeDataEditable(nameof(RecordBirthInformation));
+        EnsurePersonBelongsToCase(person);
+
+        person.RecordBirthInformation(details);
+    }
+
+    public void ApplyBirthEvidenceRule(Person? person, IReadOnlyList<DocumentType> documentTypes)
+    {
+        if (RegistrationExceptionRules.IsBirthEvidenceComplete(person, documentTypes))
+        {
+            Checklist.MarkBirthEvidenceEstablished();
+        }
+        else
+        {
+            Checklist.ClearBirthEvidenceEstablished();
+        }
+    }
+
+    public void ApplyDuplicateInvestigationRule(
+        Person? person,
+        IReadOnlyList<NationalRegisterMatch> matches)
+    {
+        if (DuplicateInvestigationStatus is DuplicateInvestigationStatus.ResolvedLinked
+            or DuplicateInvestigationStatus.ResolvedDistinct)
+        {
+            Checklist.MarkDuplicateInvestigationResolved();
+            return;
+        }
+
+        if (RegistrationExceptionRules.RequiresDuplicateInvestigation(person, matches))
+        {
+            DuplicateInvestigationStatus = DuplicateInvestigationStatus.Open;
+            Checklist.ClearDuplicateInvestigationResolved();
+            return;
+        }
+
+        if (DuplicateInvestigationStatus == DuplicateInvestigationStatus.Open)
+        {
+            return;
+        }
+
+        DuplicateInvestigationStatus = DuplicateInvestigationStatus.None;
+        Checklist.MarkDuplicateInvestigationResolved();
+    }
+
+    public void ResolveDuplicateAsDistinct(OfficerId officer, string? notes)
+    {
+        EnsureIntakeDataEditable(nameof(ResolveDuplicateAsDistinct));
+
+        if (DuplicateInvestigationStatus != DuplicateInvestigationStatus.Open)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Duplicate investigation is not open for this case.");
+        }
+
+        DuplicateInvestigationStatus = DuplicateInvestigationStatus.ResolvedDistinct;
+        Checklist.MarkDuplicateInvestigationResolved();
+    }
+
+    public bool IsIllegalStayDetected(ResidencePolicyResult? policyResult) =>
+        RegistrationExceptionRules.IsIllegalStay(this, policyResult);
+
+    public bool IsMarriageRecognitionBlocking(Person? person) =>
+        person?.CivilStatus is { } civilStatus && civilStatus.IsMarriageRecognitionBlocking();
+
     public void RefreshRegisterDeterminability(string? nationality)
     {
-        var suggested = RegisterTargetResolver.Suggest(ResidenceCategory, nationality);
+        var suggested = RegisterTargetResolver.Suggest(
+            ResidenceCategory,
+            nationality,
+            ImmigrationDecision is not null);
         if (suggested is not null)
         {
             Checklist.MarkRegisterDeterminable();
@@ -272,11 +346,20 @@ public sealed class RegistrationCase
         Checklist.AddressDeclared &&
         Checklist.AddressConfirmed &&
         Checklist.RegisterDeterminable &&
+        Checklist.BirthEvidenceEstablished &&
+        Checklist.DuplicateInvestigationResolved &&
+        DuplicateInvestigationStatus != DuplicateInvestigationStatus.Open &&
         HasPositivePoliceVerification;
 
     public void Approve(OfficerId officer, RegisterTarget registerTarget, string? nationality, DateTimeOffset approvedAt)
     {
         EnsureStatus(RegistrationCaseStatus.UnderReview, nameof(Approve));
+
+        if (DuplicateInvestigationStatus == DuplicateInvestigationStatus.Open)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Cannot approve the case while duplicate identity investigation is open.");
+        }
 
         if (!IsReadyForApproval)
         {
@@ -284,7 +367,11 @@ public sealed class RegistrationCase
                 "Cannot approve the case until all review checklist items are satisfied.");
         }
 
-        if (!RegisterTargetResolver.IsAllowed(ResidenceCategory, nationality, registerTarget))
+        if (!RegisterTargetResolver.IsAllowed(
+                ResidenceCategory,
+                nationality,
+                registerTarget,
+                ImmigrationDecision is not null))
         {
             throw new InvalidRegistrationTransitionException(
                 $"Register target '{registerTarget}' is not allowed for this residence category.");
@@ -387,6 +474,27 @@ public sealed class RegistrationCase
     public void EnsureCanAttachDocuments()
     {
         EnsureIntakeDataEditable(nameof(EnsureCanAttachDocuments));
+    }
+
+    private void ResolveDuplicateInvestigationAsLinked()
+    {
+        DuplicateInvestigationStatus = DuplicateInvestigationStatus.ResolvedLinked;
+        Checklist.MarkDuplicateInvestigationResolved();
+    }
+
+    private void EnsurePersonBelongsToCase(Person person)
+    {
+        if (PersonId is null || person.Id != PersonId)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "The person does not belong to this registration case.");
+        }
+
+        if (!Checklist.IdentityEstablished)
+        {
+            throw new InvalidRegistrationTransitionException(
+                "Identity must be recorded before birth information can be captured.");
+        }
     }
 
     private void EnsureIdentityEstablished(string stepDescription)

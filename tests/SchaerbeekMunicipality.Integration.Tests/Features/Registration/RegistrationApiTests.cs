@@ -55,6 +55,8 @@ public sealed class RegistrationApiTests
 
         var caseId = await CreateCaseWithIdentityAsync(client);
 
+        await RegistrationTestHelpers.AttachPassportViaApiAsync(client, caseId);
+
         var response = await client.PostAsJsonAsync(
             $"/api/registration/cases/{caseId}/residence-category",
             new SetResidenceCategoryRequest(ResidenceCategory.EuCitizen));
@@ -75,6 +77,8 @@ public sealed class RegistrationApiTests
         await client.PostAsJsonAsync(
             $"/api/registration/cases/{caseId}/residence-category",
             new SetResidenceCategoryRequest(ResidenceCategory.NonEuWorker));
+
+        await RegistrationTestHelpers.AttachPassportViaApiAsync(client, caseId);
 
         var response = await client.PostAsJsonAsync(
             $"/api/registration/cases/{caseId}/residence-permit",

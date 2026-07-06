@@ -429,18 +429,20 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 **Goal:** Teach edge cases as explicit workflows.
 
+**Status:** Complete (high + medium slices) — see [phases/phase-9-exception-scenarios.md](./phases/phase-9-exception-scenarios.md).
+
 **Incremental slices:**
 
-| Feature | Priority |
-|---------|----------|
-| Missing birth certificate → suspend | High |
-| Marriage not recognised | Medium |
-| Duplicate identity investigation flag | High |
-| Illegal stay → reject + refer | Medium |
-| Refugee / temporary protection path | Medium |
-| Diplomat separate rules | Low |
-| Homeless reference address | Low |
-| EU vs non-EU policy differences (deepen) | High |
+| Feature | Priority | Status |
+|---------|----------|--------|
+| Missing birth certificate → suspend | High | Done |
+| Marriage not recognised | Medium | Done |
+| Duplicate identity investigation flag | High | Done |
+| Illegal stay → reject + refer | Medium | Done |
+| Refugee / temporary protection path | Medium | Done |
+| EU vs non-EU policy differences (deepen) | High | Done |
+| Diplomat separate rules | Low | Deferred |
+| Homeless reference address | Low | Deferred |
 
 Each adds domain rules + UI branch + dedicated tests.
 

@@ -17,6 +17,7 @@ public static class RegistrationIntakeStepSummaries
         RegistrationIntakeStep.Address,
         RegistrationIntakeStep.Household,
         RegistrationIntakeStep.CivilStatus,
+        RegistrationIntakeStep.BirthInformation,
         RegistrationIntakeStep.PoliceVerification,
     ];
 
@@ -32,6 +33,7 @@ public static class RegistrationIntakeStepSummaries
         RegistrationIntakeStep.Address => dto.Checklist.AddressDeclared,
         RegistrationIntakeStep.Household => dto.HouseholdMembers.Count > 0,
         RegistrationIntakeStep.CivilStatus => dto.CivilStatus is not null,
+        RegistrationIntakeStep.BirthInformation => dto.Person?.BirthInformation is not null,
         RegistrationIntakeStep.PoliceVerification => dto.ActivePoliceVerification is null,
         _ => false,
     };
@@ -74,6 +76,7 @@ public static class RegistrationIntakeStepSummaries
         RegistrationIntakeStep.Address => FormatAddressSummary(dto),
         RegistrationIntakeStep.Household => FormatHouseholdSummary(dto),
         RegistrationIntakeStep.CivilStatus => FormatCivilStatusSummary(dto),
+        RegistrationIntakeStep.BirthInformation => FormatBirthInformationSummary(dto),
         RegistrationIntakeStep.PoliceVerification => FormatPoliceSummary(dto),
         _ => string.Empty,
     };
@@ -81,6 +84,13 @@ public static class RegistrationIntakeStepSummaries
     public static AppSeverity GetStatusSeverity(RegistrationIntakeStep step, RegistrationCaseDetailDto dto)
     {
         if (step == RegistrationIntakeStep.PoliceVerification && dto.ActivePoliceVerification is not null)
+        {
+            return AppSeverity.Warning;
+        }
+
+        if (step == RegistrationIntakeStep.BirthInformation
+            && dto.Person?.BirthInformation is not null
+            && !dto.Checklist.BirthEvidenceEstablished)
         {
             return AppSeverity.Warning;
         }
@@ -175,6 +185,34 @@ public static class RegistrationIntakeStepSummaries
             summary += $" · {dto.CivilStatus.SpouseGivenName} {dto.CivilStatus.SpouseFamilyName}".Trim();
         }
 
+        if (dto.CivilStatus.MarriageRecognitionStatus == MarriageRecognitionStatus.PendingRecognition)
+        {
+            summary += " · recognition pending";
+        }
+
+        return summary;
+    }
+
+    private static string FormatBirthInformationSummary(RegistrationCaseDetailDto dto)
+    {
+        if (dto.Person?.BirthInformation is null)
+        {
+            return "Not recorded";
+        }
+
+        var birth = dto.Person.BirthInformation;
+        var summary = birth.BirthPlace;
+
+        if (!string.IsNullOrWhiteSpace(birth.BirthCountry))
+        {
+            summary += $", {birth.BirthCountry}";
+        }
+
+        if (!dto.Checklist.BirthEvidenceEstablished)
+        {
+            summary += " · certificate missing";
+        }
+
         return summary;
     }
 
@@ -202,6 +240,7 @@ public static class RegistrationIntakeStepSummaries
         ResidenceCategory.EuCitizen => "EU citizen",
         ResidenceCategory.NonEuWorker => "Non-EU worker",
         ResidenceCategory.Student => "Student",
+        ResidenceCategory.Refugee => "Refugee / temporary protection",
         _ => category.ToString(),
     };
 

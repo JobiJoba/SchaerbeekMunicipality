@@ -5,4 +5,5 @@ public sealed record CivilStatusDetails(
     string? SpouseGivenName,
     string? SpouseFamilyName,
     DateOnly? MarriageDate,
-    string? MarriagePlace);
+    string? MarriagePlace,
+    MarriageRecognitionStatus MarriageRecognitionStatus = MarriageRecognitionStatus.NotApplicable);

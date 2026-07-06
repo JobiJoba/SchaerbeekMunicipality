@@ -8,7 +8,7 @@ namespace SchaerbeekMunicipality.Web.Features.Registration.RecordImmigrationDeci
 public sealed class RecordImmigrationDecisionHandler(
     RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
-    RegistrationResidenceEvaluator residenceEvaluator,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     IValidator<RecordImmigrationDecisionRequest> validator)
 {
     public async Task<RecordImmigrationDecisionResponse> Handle(
@@ -26,7 +26,7 @@ public sealed class RecordImmigrationDecisionHandler(
         registrationCase.RecordImmigrationDecision(
             new ImmigrationDecisionDetails(request.ReferenceNumber, request.DecisionDate));
 
-        var policyResult = await residenceEvaluator.EvaluateAndApplyAsync(
+        var evaluation = await exceptionEvaluator.EvaluateAndApplyAsync(
             registrationCase,
             cancellationToken);
 
@@ -36,6 +36,6 @@ public sealed class RecordImmigrationDecisionHandler(
             registrationCase.Id.Value,
             request.ReferenceNumber,
             registrationCase.Checklist.LegalResidenceEstablished,
-            policyResult.IsValid ? null : policyResult.FailureReason);
+            evaluation.PolicyResult.IsValid ? null : evaluation.PolicyResult.FailureReason);
     }
 }

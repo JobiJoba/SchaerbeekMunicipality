@@ -8,8 +8,7 @@ namespace SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
 public sealed class SetResidenceCategoryHandler(
     RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
-    IPersonRepository personRepository,
-    RegistrationResidenceEvaluator residenceEvaluator,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     IValidator<SetResidenceCategoryRequest> validator)
 {
     public async Task<SetResidenceCategoryResponse> Handle(
@@ -26,16 +25,7 @@ public sealed class SetResidenceCategoryHandler(
 
         registrationCase.SetResidenceCategory(request.Category);
 
-        string? nationality = null;
-        if (registrationCase.PersonId is { } personId)
-        {
-            var person = await personRepository.GetByIdAsync(personId, cancellationToken);
-            nationality = person?.Nationality;
-        }
-
-        registrationCase.RefreshRegisterDeterminability(nationality);
-
-        var policyResult = await residenceEvaluator.EvaluateAndApplyAsync(
+        var evaluation = await exceptionEvaluator.EvaluateAndApplyAsync(
             registrationCase,
             cancellationToken);
 
@@ -45,6 +35,6 @@ public sealed class SetResidenceCategoryHandler(
             registrationCase.Id.Value,
             request.Category,
             registrationCase.Checklist.LegalResidenceEstablished,
-            policyResult.IsValid ? null : policyResult.FailureReason);
+            evaluation.PolicyResult.IsValid ? null : evaluation.PolicyResult.FailureReason);
     }
 }

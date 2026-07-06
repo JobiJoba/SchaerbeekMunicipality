@@ -18,7 +18,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 7 | Decision & registration | Complete | [phase-7-decision-registration.md](./phase-7-decision-registration.md) |
 | 8 | Certificates & outbound stubs | In progress | — |
 | 8.1 | Role boundaries, case locking & officer UX | Complete | [phase-8.1-role-boundaries-case-locking.md](./phase-8.1-role-boundaries-case-locking.md) |
-| 9 | Exception scenarios | Planned | — |
+| 9 | Exception scenarios | Complete | [phase-9-exception-scenarios.md](./phase-9-exception-scenarios.md) |
 | 10 | Azure deployment | Complete | [phase-10-azure-deployment.md](./phase-10-azure-deployment.md) |
 | 11 | Extended municipality | Optional | — |
 

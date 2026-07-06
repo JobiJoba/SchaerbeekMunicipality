@@ -10,14 +10,24 @@ public sealed class RegistrationResidenceEvaluator(
     IAdministrativeDocumentRepository documentRepository,
     IResidencePermitRepository permitRepository)
 {
+    public async Task<IReadOnlyList<DocumentType>> GetAttachedDocumentTypesAsync(
+        RegistrationCaseId caseId,
+        CancellationToken cancellationToken)
+    {
+        var documents = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        return documents.Select(d => d.DocumentType).ToList();
+    }
+
     public async Task<ResidencePolicyResult> EvaluateAndApplyAsync(
         RegistrationCase registrationCase,
         CancellationToken cancellationToken,
-        ResidencePermit? permit = null)
+        ResidencePermit? permitOverride = null,
+        IReadOnlyList<DocumentType>? documentTypesOverride = null)
     {
-        permit ??= await permitRepository.GetByCaseIdAsync(registrationCase.Id, cancellationToken);
-        var documents = await documentRepository.ListByCaseIdAsync(registrationCase.Id, cancellationToken);
-        var documentTypes = documents.Select(d => d.DocumentType).ToList();
+        var permit = permitOverride
+            ?? await permitRepository.GetByCaseIdAsync(registrationCase.Id, cancellationToken);
+        var documentTypes = documentTypesOverride
+            ?? await GetAttachedDocumentTypesAsync(registrationCase.Id, cancellationToken);
 
         var result = policyEvaluator.Evaluate(registrationCase, permit, documentTypes);
         registrationCase.ApplyResidencePolicyResult(result);

@@ -11,6 +11,7 @@ public sealed class LinkExistingPersonHandler(
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
     INationalRegisterRepository nationalRegisterRepository,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     IValidator<LinkExistingPersonRequest> validator)
 {
     public async Task<LinkExistingPersonResponse> Handle(
@@ -35,6 +36,7 @@ public sealed class LinkExistingPersonHandler(
         registrationCase.RefreshRegisterDeterminability(person.Nationality);
 
         await personRepository.AddAsync(person, cancellationToken);
+        await exceptionEvaluator.EvaluateAndApplyAsync(registrationCase, cancellationToken);
         await caseRepository.SaveChangesAsync(cancellationToken);
 
         return new LinkExistingPersonResponse(

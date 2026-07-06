@@ -30,12 +30,13 @@
                             <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.EuCitizen">EU citizen</MudSelectItem>
                             <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.NonEuWorker">Non-EU worker</MudSelectItem>
                             <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Student">Student</MudSelectItem>
+                            <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Refugee">Refugee / temporary protection</MudSelectItem>
                         </MudSelect>
                     </MudItem>
                 </AppFormSection>
 
                 <AppInfoBox Class="mb-4">
-                    EU citizens have lighter permit requirements. Non-EU workers and students must record a valid permit.
+                    EU citizens need a passport or national ID on file. Non-EU workers and students must record a valid permit plus identity document. Refugees require a federal protection decision.
                 </AppInfoBox>
 
                 <AppSaveCancelBar SaveText="@(_editingCategory ? "Save changes" : "Set category")"
@@ -77,6 +78,20 @@
                 }
             </ChildContent>
         </AppCard>
+
+        @if (_case.ResidenceCategory == ResidenceCategory.Refugee)
+        {
+            <AppAlert Severity="Severity.Info" Title="Federal decision required" Class="mt-4">
+                Refugee and temporary protection cases require an Immigration Office protection decision before registration can proceed.
+            </AppAlert>
+        }
+
+        @if (_case.ResidenceCategory == ResidenceCategory.EuCitizen && !_case.Checklist.LegalResidenceEstablished)
+        {
+            <AppAlert Severity="Severity.Warning" Title="Identity document required" Class="mt-4">
+                Attach a passport or national identity card to establish legal residence for EU citizens.
+            </AppAlert>
+        }
 
         @if (RequiresPermit(_case.ResidenceCategory.Value))
         {
@@ -156,7 +171,7 @@
 
         @if (_case.ImmigrationDecision is null || _editingDecision)
         {
-            <AppCard Title="Immigration decision (optional)" Outlined="true" Class="mt-4">
+            <AppCard Title="@(_case.ResidenceCategory == ResidenceCategory.Refugee ? "Immigration decision (required)" : "Immigration decision (optional)")" Outlined="true" Class="mt-4">
                 <ChildContent>
                     <MudForm @ref="_decisionForm" @bind-IsValid="_decisionFormValid">
                         <AppFormSection Title="External decision reference">
@@ -184,7 +199,7 @@
         }
         else
         {
-            <AppCard Title="Immigration decision (optional)" Outlined="true" Class="mt-4">
+            <AppCard Title="@(_case.ResidenceCategory == ResidenceCategory.Refugee ? "Immigration decision (required)" : "Immigration decision (optional)")" Outlined="true" Class="mt-4">
                 <HeaderActions>
                     @if (CanEdit)
                     {
@@ -294,6 +309,7 @@
             ResidenceCategory.EuCitizen => "EU citizen",
             ResidenceCategory.NonEuWorker => "Non-EU worker",
             ResidenceCategory.Student => "Student",
+            ResidenceCategory.Refugee => "Refugee / temporary protection",
             _ => "Select category",
         };
 
