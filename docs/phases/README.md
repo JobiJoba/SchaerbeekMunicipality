@@ -19,7 +19,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 8 | Certificates & outbound stubs | In progress | — |
 | 8.1 | Role boundaries, case locking & officer UX | Complete | [phase-8.1-role-boundaries-case-locking.md](./phase-8.1-role-boundaries-case-locking.md) |
 | 9 | Exception scenarios | Complete | [phase-9-exception-scenarios.md](./phase-9-exception-scenarios.md) |
-| 10 | PostgreSQL hardening & Aspire deployment | Planned | — |
+| 10 | Azure deployment | Complete | [phase-10-azure-deployment.md](./phase-10-azure-deployment.md) |
 | 11 | Extended municipality | Optional | — |
 
 When a phase is completed, add a document here using the same naming pattern: `phase-N-short-title.md`.

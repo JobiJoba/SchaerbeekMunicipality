@@ -47,6 +47,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddMunicipalDatabaseHealthCheck();
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -107,7 +108,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-await app.Services.InitializeDatabaseAsync(app.Environment);
+await app.Services.InitializeDatabaseAsync();
 
 if (!app.Environment.IsDevelopment())
 {
@@ -123,11 +124,9 @@ app.MapRazorComponents<App>()
 
 app.MapRegistrationEndpoints();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.MapOpenApi();
 
+app.UseHealthCheckApiKeyProtection();
 app.MapDefaultEndpoints();
 
 app.Run();

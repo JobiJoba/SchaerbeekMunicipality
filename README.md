@@ -28,7 +28,7 @@ Every first registration ultimately resolves four sequential decisions (see [IDE
 | [Roadmap](./docs/ROADMAP.md) | Phased delivery plan from MVP to advanced scenarios |
 | [Phase delivery notes](./docs/phases/) | What was built in each completed phase (start with [Phase 0](./docs/phases/phase-0-foundation.md)) |
 | [Testing strategy](./docs/TESTING.md) | Unit, integration, and UI test approach |
-| [Continuous integration](./docs/CI.md) | GitHub Actions workflow for public repo |
+| [Continuous integration](./docs/CI.md) | GitHub Actions (build, test, container publish) |
 | [Decision records](./docs/adr/) | Architecture Decision Records for key choices |
 | [Glossary](./docs/GLOSSARY.md) | Belgian administrative terminology used in the codebase |
 | [Domain source](./IDEA.md) | Original process walkthrough (Population Department perspective) |
@@ -39,7 +39,7 @@ Every first registration ultimately resolves four sequential decisions (see [IDE
 - **.NET Aspire** — local orchestration, dashboard, and service wiring (AppHost + ServiceDefaults)
 - Minimal API endpoints co-hosted with the Blazor app
 - Vertical Slice Architecture with lightweight DDD
-- EF Core (SQLite for fast tests → PostgreSQL via Aspire in dev/prod-like runs)
+- EF Core — **PostgreSQL** locally via Aspire; **SQLite** in tests and default Azure production deploy
 - FluentValidation
 - MediatR **only when** cross-cutting pipelines justify it (see [TECH-STACK.md](./docs/TECH-STACK.md))
 
@@ -74,6 +74,19 @@ dotnet run --project src/SchaerbeekMunicipality.AppHost   # starts Web + Postgre
 **Prerequisites:** .NET 10 SDK and Docker (for the PostgreSQL container started by AppHost).
 
 Integration tests run against `Web` directly (SQLite, no AppHost). Day-to-day development uses the AppHost.
+
+## Deploy to Azure (optional)
+
+Production hosting uses **Azure Container Apps** with an **ephemeral SQLite** database (fresh demo on each cold start). Images are published to **GHCR** on push to `main`.
+
+1. Enable **Actions → Workflow permissions → Read and write** in GitHub.
+2. Push to `main` (or run the **Container publish** workflow).
+3. Set the GHCR package to **Public** (or configure ACA registry credentials).
+4. Run `deploy/azure/sqlite/deploy.sh` with your `CONTAINER_IMAGE`.
+
+Optional **PostgreSQL** profile: [deploy/azure/postgres/](./deploy/azure/postgres/README.md).
+
+Full notes: [docs/phases/phase-10-azure-deployment.md](./docs/phases/phase-10-azure-deployment.md).
 
 **Phase 0 demo:** Open the Aspire dashboard → confirm Web and PostgreSQL are healthy → browse to the Web app → empty registration case list → switch officer role in the app bar.
 

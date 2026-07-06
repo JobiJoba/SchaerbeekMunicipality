@@ -92,6 +92,22 @@ jobs:
 
 Runs on push to `main` and via `workflow_dispatch`. Keep this **off the critical PR path** so PR feedback stays fast. SQLite tests remain the gate for merge.
 
+## Container publish (Phase 10)
+
+File: [`.github/workflows/container-publish.yml`](../.github/workflows/container-publish.yml)
+
+| Step | Purpose |
+|------|---------|
+| Checkout | Clone the repository |
+| Log in to GHCR | `GITHUB_TOKEN` with `packages: write` |
+| Build + push | Docker image to `ghcr.io/<owner>/schaerbeek-municipality-web` |
+
+Triggers: push to `main`, manual `workflow_dispatch`.
+
+**GitHub setup (once):** **Settings → Actions → General → Workflow permissions → Read and write**. After the first run, set the package visibility to **Public** for easy Azure Container Apps pull (or configure ACA registry credentials for a private package).
+
+Deploy to Azure is **manual** — see [deploy/azure/](../deploy/azure/README.md). No Azure secrets are stored in GitHub for this workflow.
+
 ## Troubleshooting
 
 | Failure | Likely cause |

@@ -308,9 +308,10 @@ Authorization checks live in handlers: `if (!_currentOfficer.CanApproveRegistrat
 
 ## Database strategy
 
-- **Development (Aspire):** PostgreSQL container started by AppHost; connection string injected into Web.
+- **Development (Aspire):** PostgreSQL container started by AppHost; connection string injected into Web; `MigrateAsync` on startup.
 - **Integration tests:** SQLite in-memory with `EnsureCreated()` — tests host `Web` directly via `WebApplicationFactory`, bypassing AppHost. Migrations are PostgreSQL-specific and validated separately with Testcontainers (see [TESTING.md](./TESTING.md)).
-- **Production-like deploy (Phase 10+):** PostgreSQL via Aspire publish manifest or managed cloud database.
+- **Azure production (default):** Ephemeral SQLite on container disk (`appsettings.Production.json` → `/tmp/schaerbeek.db`); `EnsureCreated` + seeders; data does not survive cold start. See [deploy/azure/sqlite/](../deploy/azure/sqlite/) and [ADR-0005](./adr/0005-deployment-database-by-environment.md).
+- **Azure production (optional):** PostgreSQL Flexible Server; `MigrateAsync` on startup. See [deploy/azure/postgres/](../deploy/azure/postgres/).
 - EF Core migrations in `Infrastructure`; provider chosen from connection string (Npgsql vs SQLite).
 - Use `snake_case` column naming in PostgreSQL via EF naming convention plugin or explicit configuration.
 

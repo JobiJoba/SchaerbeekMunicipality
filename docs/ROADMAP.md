@@ -23,6 +23,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 8 | Certificates & outbound stubs | In progress |
 | 8.1 | Role boundaries, case locking & officer UX | ✅ Complete |
 | 9+ | Exception scenarios, … | Planned |
+| 10 | Azure deployment | Complete |
 
 Delivery notes for completed phases: [phases/](./phases/).
 
@@ -447,18 +448,25 @@ Each adds domain rules + UI branch + dedicated tests.
 
 ---
 
-## Phase 10 — PostgreSQL hardening & Aspire deployment
+## Phase 10 — Azure deployment ✅
 
-**Goal:** Production habits and deployable manifests.
+**Status:** Complete — see [phases/phase-10-azure-deployment.md](./phases/phase-10-azure-deployment.md).
 
-- [ ] PostgreSQL provider validated under Aspire (persistent volume, migrations on startup)
-- [ ] Expand Testcontainers PostgreSQL coverage (full integration suite against PG, not just migrations)
-- [ ] Snake case naming
-- [ ] Structured logging via OpenTelemetry (ServiceDefaults)
-- [ ] Database health check (`AddDbContextCheck`) wired into the existing `/health` pipeline
-- [ ] Expose `/health` and `/alive` outside Development (ServiceDefaults maps them dev-only by default) with response caching and access restrictions
-- [ ] `aspire publish` manifest for Azure Container Apps or Docker
-- [ ] OpenAPI document published
+**Goal:** Containerized Azure deployment with production hardening; local dev unchanged on Aspire + PostgreSQL.
+
+**Deliverables:**
+
+- [x] `Dockerfile` + GHCR publish workflow
+- [x] Azure Container Apps — **SQLite ephemeral** (default production)
+- [x] Azure Container Apps — **PostgreSQL optional** (`deploy/azure/postgres/`)
+- [x] Snake case naming (PostgreSQL — existing)
+- [x] OpenTelemetry via ServiceDefaults (existing)
+- [x] `AddDbContextCheck` on `/health`
+- [x] `/health` and `/alive` in Production (+ optional `HEALTH_CHECK_API_KEY`)
+- [x] OpenAPI at `/openapi/v1.json` in Production
+- [x] `MigrateAsync` for Npgsql in all environments
+
+**Deferred:** full Testcontainers PG integration suite; `aspire publish` / ACR (GHCR + Bicep instead).
 
 ---
 
