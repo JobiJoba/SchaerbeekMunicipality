@@ -1,9 +1,11 @@
 using FluentAssertions;
 using SchaerbeekMunicipality.Domain.Address;
+using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.Police;
+using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Tests.Registration;
@@ -18,8 +20,13 @@ public sealed class RegistrationCaseDecisionTests
     {
         var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
 
-        registrationCase.RecordIdentity(
+        var person = registrationCase.RecordIdentity(
             new IdentityDetails("Sophie", "Lambert", new DateOnly(1988, 6, 12), nationality));
+
+        person.RecordBirthInformation(new BirthInformationDetails("Brussels", "Belgium"));
+        registrationCase.ApplyBirthEvidenceRule(
+            person,
+            [DocumentType.BirthCertificate, DocumentType.Passport]);
 
         registrationCase.SetResidenceCategory(ResidenceCategory.EuCitizen);
         registrationCase.ApplyResidencePolicyResult(ResidencePolicyResult.Valid());
@@ -148,6 +155,55 @@ public sealed class RegistrationCaseDecisionTests
         registrationCase.Status.Should().Be(RegistrationCaseStatus.Registered);
         details.RegisterTarget.Should().Be(RegisterTarget.PopulationRegister);
         registrationCase.ClosedAt.Should().NotBeNull();
+    }
+
+    [Fact]
+    public void Approve_WhenDuplicateInvestigationOpen_Throws()
+    {
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
+        var person = registrationCase.RecordIdentity(
+            new IdentityDetails("Jean", "Dupont", new DateOnly(1985, 6, 12), "Belgian"));
+        person.RecordBirthInformation(new BirthInformationDetails("Brussels", "Belgium"));
+        registrationCase.ApplyBirthEvidenceRule(
+            person,
+            [DocumentType.BirthCertificate, DocumentType.Passport]);
+        registrationCase.SetResidenceCategory(ResidenceCategory.EuCitizen);
+        registrationCase.ApplyResidencePolicyResult(ResidencePolicyResult.Valid());
+        registrationCase.RefreshRegisterDeterminability("Belgian");
+        registrationCase.DeclareAddress(new AddressDetails(
+            "Chaussée de Louvain",
+            "10",
+            null,
+            "1030",
+            "Schaerbeek"));
+        registrationCase.RequestPoliceVerification();
+        registrationCase.ApplyPoliceVerificationResult(PoliceVerificationResult.Confirmed);
+
+        registrationCase.ApplyDuplicateInvestigationRule(
+            person,
+            [
+                new NationalRegisterMatch(
+                    NationalRegisterPersonId.New(),
+                    "Jean",
+                    "Dupont",
+                    new DateOnly(1985, 6, 12),
+                    "Belgian",
+                    null,
+                    null,
+                    NationalRegisterSearchScorer.ExactMatchScore,
+                    "Exact match"),
+            ]);
+
+        registrationCase.DuplicateInvestigationStatus.Should().Be(DuplicateInvestigationStatus.Open);
+
+        var act = () => registrationCase.Approve(
+            DemoOfficer,
+            RegisterTarget.PopulationRegister,
+            "Belgian",
+            DecisionAt);
+
+        act.Should().Throw<InvalidRegistrationTransitionException>()
+            .WithMessage("*duplicate*");
     }
 
     [Fact]

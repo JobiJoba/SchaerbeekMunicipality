@@ -7,5 +7,6 @@ public enum RegistrationIntakeStep
     Address,
     Household,
     CivilStatus,
+    BirthInformation,
     PoliceVerification,
 }

@@ -7,12 +7,16 @@ public sealed record RecordCivilStatusRequest(
     string? SpouseGivenName,
     string? SpouseFamilyName,
     DateOnly? MarriageDate,
-    string? MarriagePlace);
+    string? MarriagePlace,
+    MarriageRecognitionStatus MarriageRecognitionStatus = MarriageRecognitionStatus.NotApplicable);
 
 public sealed record RecordCivilStatusResponse(
     Guid CaseId,
     CivilStatus Status,
+    CivilStatus EffectiveRegisterStatus,
     string? SpouseGivenName,
     string? SpouseFamilyName,
     DateOnly? MarriageDate,
-    string? MarriagePlace);
+    string? MarriagePlace,
+    MarriageRecognitionStatus MarriageRecognitionStatus,
+    bool MarriageRecognitionBlocking);

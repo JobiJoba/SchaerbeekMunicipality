@@ -14,7 +14,13 @@ public sealed record RegistrationCaseChecklistDto(
     bool LegalResidenceEstablished,
     bool AddressDeclared,
     bool AddressConfirmed,
-    bool RegisterDeterminable);
+    bool RegisterDeterminable,
+    bool BirthEvidenceEstablished,
+    bool DuplicateInvestigationResolved);
+
+public sealed record BirthInformationDto(
+    string BirthPlace,
+    string? BirthCountry);
 
 public sealed record PersonDto(
     Guid Id,
@@ -24,7 +30,8 @@ public sealed record PersonDto(
     string Nationality,
     string? BisNumber,
     string? NationalRegisterNumber,
-    bool LinkedFromRegister);
+    bool LinkedFromRegister,
+    BirthInformationDto? BirthInformation);
 
 public sealed record DocumentDto(
     Guid Id,
@@ -61,10 +68,12 @@ public sealed record HouseholdMemberDto(
 
 public sealed record CivilStatusDto(
     CivilStatus Status,
+    CivilStatus EffectiveRegisterStatus,
     string? SpouseGivenName,
     string? SpouseFamilyName,
     DateOnly? MarriageDate,
-    string? MarriagePlace);
+    string? MarriagePlace,
+    MarriageRecognitionStatus MarriageRecognitionStatus);
 
 public sealed record PoliceVerificationDto(
     Guid RequestId,
@@ -88,6 +97,9 @@ public sealed record RegistrationCaseDetailDto(
     DateTimeOffset? ClosedAt,
     RegistrationCaseChecklistDto Checklist,
     bool IsReadyForApproval,
+    bool IllegalStayDetected,
+    bool MarriageRecognitionBlocking,
+    DuplicateInvestigationStatus DuplicateInvestigationStatus,
     string? SuggestedRegisterTarget,
     RegisterTarget? SelectedRegisterTarget,
     RejectionReason? RejectionReason,

@@ -48,6 +48,19 @@
                         <MudItem xs="12" md="6">
                             <MudTextField @bind-Value="_marriagePlace" Label="Marriage place" />
                         </MudItem>
+                        @if (RequiresMarriageRecognition(_marriagePlace))
+                        {
+                            <MudItem xs="12" md="6">
+                                <MudSelect T="MarriageRecognitionStatus"
+                                           @bind-Value="_marriageRecognitionStatus"
+                                           Label="Marriage recognition"
+                                           Required="true"
+                                           ToStringFunc="@FormatRecognitionStatus">
+                                    <MudSelectItem Value="MarriageRecognitionStatus.PendingRecognition">Pending recognition</MudSelectItem>
+                                    <MudSelectItem Value="MarriageRecognitionStatus.Recognised">Recognised</MudSelectItem>
+                                </MudSelect>
+                            </MudItem>
+                        }
                     </AppFormSection>
                 }
 
@@ -76,6 +89,18 @@
             </HeaderActions>
             <ChildContent>
                 <MudText Typo="Typo.body1">@FormatStatus(_case.CivilStatus!.Status)</MudText>
+                @if (_case.CivilStatus.EffectiveRegisterStatus != _case.CivilStatus.Status)
+                {
+                    <MudText Typo="Typo.body2" Color="Color.Warning" Class="mt-1">
+                        Register status: @FormatStatus(_case.CivilStatus.EffectiveRegisterStatus) (marriage recognition pending)
+                    </MudText>
+                }
+                @if (_case.MarriageRecognitionBlocking)
+                {
+                    <AppAlert Severity="Severity.Warning" Title="Marriage not yet recognised" Class="mt-3">
+                        Foreign marriage recognition is pending. The person remains single for register purposes until recognition is complete — consider suspending the case.
+                    </AppAlert>
+                }
                 @if (RequiresMarriageDetails(_case.CivilStatus.Status))
                 {
                     <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">
@@ -118,6 +143,7 @@
     private string? _spouseFamilyName;
     private DateTime? _marriageDate;
     private string? _marriagePlace;
+    private MarriageRecognitionStatus _marriageRecognitionStatus = MarriageRecognitionStatus.NotApplicable;
 
     protected override void OnParametersSet()
     {
@@ -131,10 +157,25 @@
          _spouseGivenName != _case.CivilStatus.SpouseGivenName ||
          _spouseFamilyName != _case.CivilStatus.SpouseFamilyName ||
          _marriageDate?.Date != _case.CivilStatus.MarriageDate?.ToDateTime(TimeOnly.MinValue).Date ||
-         _marriagePlace != _case.CivilStatus.MarriagePlace);
+         _marriagePlace != _case.CivilStatus.MarriagePlace ||
+         _marriageRecognitionStatus != _case.CivilStatus.MarriageRecognitionStatus);
 
     private static bool RequiresMarriageDetails(CivilStatus? status) =>
         status is CivilStatus.Married or CivilStatus.RegisteredPartnership;
+
+    private static bool RequiresMarriageRecognition(string? marriagePlace) =>
+        !string.IsNullOrWhiteSpace(marriagePlace)
+        && !marriagePlace.Contains("Belgium", StringComparison.OrdinalIgnoreCase)
+        && !marriagePlace.Contains("België", StringComparison.OrdinalIgnoreCase)
+        && !marriagePlace.Contains("Belgique", StringComparison.OrdinalIgnoreCase);
+
+    private static string FormatRecognitionStatus(MarriageRecognitionStatus status) =>
+        status switch
+        {
+            MarriageRecognitionStatus.Recognised => "Recognised",
+            MarriageRecognitionStatus.PendingRecognition => "Pending recognition",
+            _ => "Not applicable",
+        };
 
     private static string FormatStatus(CivilStatus? status) =>
         status switch
@@ -160,6 +201,7 @@
         _spouseFamilyName = _case.CivilStatus.SpouseFamilyName;
         _marriageDate = _case.CivilStatus.MarriageDate?.ToDateTime(TimeOnly.MinValue);
         _marriagePlace = _case.CivilStatus.MarriagePlace;
+        _marriageRecognitionStatus = _case.CivilStatus.MarriageRecognitionStatus;
         _editing = true;
     }
 
@@ -188,6 +230,7 @@
         _spouseFamilyName = null;
         _marriageDate = null;
         _marriagePlace = null;
+        _marriageRecognitionStatus = MarriageRecognitionStatus.NotApplicable;
     }
 
     private async Task HandleCancel()
@@ -225,7 +268,10 @@
                     _spouseGivenName,
                     _spouseFamilyName,
                     _marriageDate is null ? null : DateOnly.FromDateTime(_marriageDate.Value),
-                    _marriagePlace),
+                    _marriagePlace,
+                    RequiresMarriageRecognition(_marriagePlace)
+                        ? _marriageRecognitionStatus
+                        : MarriageRecognitionStatus.NotApplicable),
                 CancellationToken.None);
 
             _editing = false;

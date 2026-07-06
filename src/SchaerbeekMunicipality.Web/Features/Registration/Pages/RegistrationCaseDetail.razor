@@ -14,6 +14,7 @@
 @using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity
 @using SchaerbeekMunicipality.Web.Features.Registration.RequestPoliceVerification
 @using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument
+@using SchaerbeekMunicipality.Web.Features.Registration.ResolveDuplicateInvestigation
 @using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister
 @using SchaerbeekMunicipality.Domain.Documents
 @using SchaerbeekMunicipality.Domain.NationalRegister
@@ -22,6 +23,7 @@
 @inject GetRegistrationCaseHandler GetHandler
 @inject RecordIdentityHandler RecordIdentityHandler
 @inject CorrectIdentityHandler CorrectIdentityHandler
+@inject ResolveDuplicateInvestigationHandler ResolveDuplicateInvestigationHandler
 @inject SearchNationalRegisterHandler SearchNationalRegisterHandler
 @inject LinkExistingPersonHandler LinkExistingPersonHandler
 @inject ConvertBisNumberHandler ConvertBisNumberHandler
@@ -132,7 +134,33 @@
                                        StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Identity, _case)"
                                        StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Identity, _case)"
                                        Collapsible="false">
-                    @if (_case.Person is not null && _case.PossibleDuplicateMatches.Count > 0 && !_case.Person.LinkedFromRegister)
+                    @if (_case.DuplicateInvestigationStatus == DuplicateInvestigationStatus.Open)
+                    {
+                        <AppAlert Severity="Severity.Warning"
+                                  Title="Duplicate identity investigation open"
+                                  Class="mb-4">
+                            Possible National Register match requires investigation before registration can proceed.
+                            <MudStack Row="true" Spacing="2" Class="mt-2" Wrap="Wrap.Wrap">
+                                <MudButton Variant="Variant.Text"
+                                           Color="Color.Warning"
+                                           StartIcon="@Icons.Material.Outlined.Search"
+                                           OnClick="OpenNationalRegisterSearch">
+                                    Link existing record
+                                </MudButton>
+                                @if (CanEditIntakeData)
+                                {
+                                    <MudButton Variant="Variant.Text"
+                                               Color="Color.Warning"
+                                               StartIcon="@Icons.Material.Outlined.PersonSearch"
+                                               Disabled="_resolvingDuplicate"
+                                               OnClick="ConfirmDistinctPerson">
+                                        Confirm distinct person
+                                    </MudButton>
+                                }
+                            </MudStack>
+                        </AppAlert>
+                    }
+                    else if (_case.Person is not null && _case.PossibleDuplicateMatches.Count > 0 && !_case.Person.LinkedFromRegister)
                     {
                         <AppAlert Severity="Severity.Warning"
                                   Title="Possible duplicate detected"
@@ -308,6 +336,15 @@
                     <CivilStatusStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
                 </AppCollapsibleSection>
 
+                <AppCollapsibleSection Title="Birth information"
+                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.BirthInformation, _case)"
+                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.BirthInformation, _case)"
+                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.BirthInformation, _case)"
+                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.BirthInformation)"
+                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.BirthInformation, value))">
+                    <BirthInformationStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
+                </AppCollapsibleSection>
+
                 @if (RegistrationIntakeStepSummaries.IsVisible(RegistrationIntakeStep.PoliceVerification, _case))
                 {
                     <AppCollapsibleSection Title="Police verification"
@@ -409,6 +446,7 @@
     private bool _sendingToPolice;
     private bool _releasingLock;
     private bool _claimingCase;
+    private bool _resolvingDuplicate;
     private Dictionary<RegistrationIntakeStep, bool> _stepExpanded = [];
     private IReadOnlyList<CaseAuditEntryDto> _auditEntries = [];
     private bool _caseHistoryExpanded;
@@ -731,6 +769,40 @@
         {
             Snackbar.Add("Existing register record linked.", Severity.Success);
             await ReloadCase();
+        }
+    }
+
+    private async Task ConfirmDistinctPerson()
+    {
+        var confirmed = await DialogService.ConfirmAsync(
+            "Confirm distinct person?",
+            "You have verified this is not the same person as the National Register match.",
+            "Confirm",
+            consequence: "Duplicate investigation will be closed and registration may proceed.");
+
+        if (!confirmed)
+        {
+            return;
+        }
+
+        _resolvingDuplicate = true;
+        try
+        {
+            await ResolveDuplicateInvestigationHandler.Handle(
+                new RegistrationCaseId(CaseId),
+                new ResolveDuplicateInvestigationRequest("Officer confirmed distinct person after investigation."),
+                CancellationToken.None);
+
+            Snackbar.Add("Duplicate investigation resolved.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _resolvingDuplicate = false;
         }
     }
 

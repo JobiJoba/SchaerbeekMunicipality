@@ -187,9 +187,19 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<string>("BirthCountry")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("birth_country");
+
                     b.Property<DateOnly>("BirthDate")
                         .HasColumnType("date")
                         .HasColumnName("birth_date");
+
+                    b.Property<string>("BirthPlace")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("birth_place");
 
                     b.Property<string>("BisNumber")
                         .HasMaxLength(11)
@@ -529,6 +539,12 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("decision_officer_id");
 
+                    b.Property<string>("DuplicateInvestigationStatus")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("duplicate_investigation_status");
+
                     b.Property<string>("HousingSituation")
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)")
@@ -619,6 +635,12 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                                 .HasMaxLength(128)
                                 .HasColumnType("character varying(128)")
                                 .HasColumnName("marriage_place");
+
+                            b1.Property<string>("MarriageRecognitionStatus")
+                                .IsRequired()
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
+                                .HasColumnName("marriage_recognition_status");
 
                             b1.Property<string>("SpouseFamilyName")
                                 .HasMaxLength(128)
@@ -732,6 +754,14 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                             b1.Property<bool>("AddressDeclared")
                                 .HasColumnType("boolean")
                                 .HasColumnName("address_declared");
+
+                            b1.Property<bool>("BirthEvidenceEstablished")
+                                .HasColumnType("boolean")
+                                .HasColumnName("birth_evidence_established");
+
+                            b1.Property<bool>("DuplicateInvestigationResolved")
+                                .HasColumnType("boolean")
+                                .HasColumnName("duplicate_investigation_resolved");
 
                             b1.Property<bool>("IdentityEstablished")
                                 .HasColumnType("boolean")
