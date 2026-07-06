@@ -84,7 +84,8 @@ app.MapDefaultEndpoints(); // /health, /alive in Development — no custom healt
 | **Aspire + PostgreSQL** | `dotnet run --project AppHost` | Daily development, demo, prod-like runs |
 | **SQLite (test factory)** | `EnsureCreated()` in `WebApplicationFactory` | Fast integration tests — no Docker |
 | **Testcontainers PostgreSQL** | `Category=PostgreSQL` tests | Migration validation in CI |
-| **Aspire deployment** | `aspire publish` / manifest (Phase 10+) | Deploy to Azure Container Apps or Docker |
+| **Aspire deployment** | `dotnet run` via AppHost → PostgreSQL | Local development only |
+| **Azure Container Apps** | GHCR image + Bicep (`deploy/azure/`) | Production demo hosting |
 
 SQLite remains for **tests only** — not wired through AppHost. This keeps `dotnet test` fast while dev runs use real PostgreSQL in a container.
 
@@ -330,15 +331,20 @@ Secrets: **User Secrets** for non-Aspire standalone runs; Aspire manages contain
 
 ## Deployment
 
-**Local (default):** `dotnet run --project src/SchaerbeekMunicipality.AppHost`
+**Local (default):** `dotnet run --project src/SchaerbeekMunicipality.AppHost` — PostgreSQL via Aspire.
 
-**Phase 10+ — Aspire deployment:**
+**Azure (Phase 10):**
 
-- `aspire publish` generates deployment manifests
-- Target: Azure Container Apps, Kubernetes, or Docker Compose (generated from manifest)
-- Replaces hand-written Docker Compose as the primary deployment story
+| Profile | Database | Deploy path |
+|---------|----------|-------------|
+| Default production | Ephemeral SQLite | [deploy/azure/sqlite/](../deploy/azure/sqlite/) |
+| Optional | PostgreSQL Flexible Server | [deploy/azure/postgres/](../deploy/azure/postgres/) |
 
-Educational note: learn orchestration locally first; cloud deploy is optional stretch goal.
+- Container image: **GHCR** (`ghcr.io/<owner>/schaerbeek-municipality-web`) — built by [.github/workflows/container-publish.yml](../.github/workflows/container-publish.yml).
+- Registry: public GHCR package (no ACR) or private package + ACA registry credentials.
+- Target: Azure Container Apps (Bicep + `deploy.sh`).
+
+See [phases/phase-10-azure-deployment.md](./phases/phase-10-azure-deployment.md).
 
 ---
 

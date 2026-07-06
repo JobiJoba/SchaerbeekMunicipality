@@ -243,7 +243,7 @@ dotnet watch test --project tests/SchaerbeekMunicipality.Domain.Tests
 
 ## CI pipeline
 
-GitHub Actions runs on every push and PR to `main`. See [CI.md](./CI.md) for the full workflow, badge setup, branch protection, and Phase 10 PostgreSQL options.
+GitHub Actions runs on every push and PR to `main`. See [CI.md](./CI.md) for the build/test workflow, container publish to GHCR, and PostgreSQL migration job.
 
 ```bash
 dotnet restore

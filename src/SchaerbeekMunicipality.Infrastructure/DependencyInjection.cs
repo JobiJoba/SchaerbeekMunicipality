@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
@@ -68,7 +67,7 @@ public static class DependencyInjection
         return services;
     }
 
-    public static async Task InitializeDatabaseAsync(this IServiceProvider services, IHostEnvironment environment)
+    public static async Task InitializeDatabaseAsync(this IServiceProvider services)
     {
         await using var scope = services.CreateAsyncScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<MunicipalDbContext>();
@@ -80,7 +79,7 @@ public static class DependencyInjection
         {
             await dbContext.Database.EnsureCreatedAsync();
         }
-        else if (environment.IsDevelopment())
+        else
         {
             await dbContext.Database.MigrateAsync();
         }

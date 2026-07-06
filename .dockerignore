@@ -1,0 +1,25 @@
+# Build
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+
+# Git and tooling
+.git/
+.gitignore
+.specstory/
+.cursor/
+
+# Tests (not needed in production image)
+tests/
+
+# Docs and deploy scripts
+docs/
+deploy/
+*.md
+!README.md
+
+# Local / IDE
+**/*.user
+**/*.suo
+**/launchSettings.json

@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ServiceDiscovery;
 using OpenTelemetry;
@@ -17,6 +19,7 @@ public static class Extensions
 {
     private const string HealthEndpointPath = "/health";
     private const string AlivenessEndpointPath = "/alive";
+    private const string HealthCheckApiKeyHeader = "X-Health-Check-Key";
 
     public static TBuilder AddServiceDefaults<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
@@ -106,22 +109,57 @@ public static class Extensions
         return builder;
     }
 
+    public static WebApplication UseHealthCheckApiKeyProtection(this WebApplication app)
+    {
+        if (app.Environment.IsDevelopment())
+        {
+            return app;
+        }
+
+        var apiKey = app.Configuration["HEALTH_CHECK_API_KEY"];
+        if (string.IsNullOrWhiteSpace(apiKey))
+        {
+            return app;
+        }
+
+        app.Use(async (context, next) =>
+        {
+            if (IsHealthEndpoint(context.Request.Path))
+            {
+                if (!context.Request.Headers.TryGetValue(HealthCheckApiKeyHeader, out var provided)
+                    || provided != apiKey)
+                {
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    return;
+                }
+            }
+
+            await next();
+        });
+
+        return app;
+    }
+
     public static WebApplication MapDefaultEndpoints(this WebApplication app)
     {
         // Adding health checks endpoints to applications in non-development environments has security implications.
         // See https://aka.ms/dotnet/aspire/healthchecks for details before enabling these endpoints in non-development environments.
-        if (app.Environment.IsDevelopment())
-        {
-            // All health checks must pass for app to be considered ready to accept traffic after starting
-            app.MapHealthChecks(HealthEndpointPath);
+        var readiness = app.MapHealthChecks(HealthEndpointPath);
 
-            // Only health checks tagged with the "live" tag must pass for app to be considered alive
-            app.MapHealthChecks(AlivenessEndpointPath, new HealthCheckOptions
-            {
-                Predicate = r => r.Tags.Contains("live")
-            });
+        var liveness = app.MapHealthChecks(AlivenessEndpointPath, new HealthCheckOptions
+        {
+            Predicate = r => r.Tags.Contains("live")
+        });
+
+        if (!app.Environment.IsDevelopment())
+        {
+            readiness.CacheOutput(policy => policy.Expire(TimeSpan.FromSeconds(10)));
+            liveness.CacheOutput(policy => policy.Expire(TimeSpan.FromSeconds(10)));
         }
 
         return app;
     }
+
+    private static bool IsHealthEndpoint(PathString path) =>
+        path.StartsWithSegments(HealthEndpointPath) || path.StartsWithSegments(AlivenessEndpointPath);
 }

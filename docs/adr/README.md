@@ -10,6 +10,7 @@ Short, dated records of significant technical decisions and their rationale. Whe
 | [0002](./0002-test-database-strategy.md) | SQLite fast suite + Testcontainers PostgreSQL for migrations | Accepted |
 | [0003](./0003-health-endpoints-via-servicedefaults.md) | Health endpoints via Aspire ServiceDefaults | Accepted |
 | [0004](./0004-checklist-over-linear-state-machine.md) | Completeness checklist over linear state machine | Accepted |
+| [0005](./0005-deployment-database-by-environment.md) | Deployment database by environment (local PG, Azure SQLite/PG) | Accepted |
 
 ## Template
 

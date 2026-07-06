@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "westeurope"
+    },
+    "environmentName": {
+      "value": "schaerbeek-env"
+    },
+    "containerAppName": {
+      "value": "schaerbeek-web"
+    },
+    "containerImage": {
+      "value": "ghcr.io/YOUR_GITHUB_USER/schaerbeek-municipality-web:latest"
+    },
+    "postgresServerName": {
+      "value": "schaerbeek-pg"
+    },
+    "postgresAdminLogin": {
+      "value": "schaerbeekadmin"
+    },
+    "postgresAdminPassword": {
+      "value": "REPLACE_ME_OR_PASS_VIA_CLI"
+    },
+    "databaseName": {
+      "value": "schaerbeek"
+    },
+    "minReplicas": {
+      "value": 1
+    },
+    "maxReplicas": {
+      "value": 1
+    }
+  }
+}
