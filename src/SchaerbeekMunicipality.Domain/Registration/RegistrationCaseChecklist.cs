@@ -16,7 +16,14 @@ public sealed class RegistrationCaseChecklist
 
     public bool RegisterDeterminable { get; private set; }
 
-    public static RegistrationCaseChecklist Empty() => new();
+    public bool BirthEvidenceEstablished { get; private set; }
+
+    public bool DuplicateInvestigationResolved { get; private set; }
+
+    public static RegistrationCaseChecklist Empty() => new()
+    {
+        DuplicateInvestigationResolved = true,
+    };
 
     internal void MarkIdentityEstablished() => IdentityEstablished = true;
 
@@ -33,4 +40,12 @@ public sealed class RegistrationCaseChecklist
     internal void MarkRegisterDeterminable() => RegisterDeterminable = true;
 
     internal void ClearRegisterDeterminable() => RegisterDeterminable = false;
+
+    internal void MarkBirthEvidenceEstablished() => BirthEvidenceEstablished = true;
+
+    internal void ClearBirthEvidenceEstablished() => BirthEvidenceEstablished = false;
+
+    internal void MarkDuplicateInvestigationResolved() => DuplicateInvestigationResolved = true;
+
+    internal void ClearDuplicateInvestigationResolved() => DuplicateInvestigationResolved = false;
 }

@@ -8,7 +8,7 @@ namespace SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit
 public sealed class RecordResidencePermitHandler(
     RegistrationCaseGuard caseGuard,
     IResidencePermitRepository permitRepository,
-    RegistrationResidenceEvaluator residenceEvaluator,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     TimeProvider timeProvider,
     IValidator<RecordResidencePermitRequest> validator)
 {
@@ -60,10 +60,10 @@ public sealed class RecordResidencePermitHandler(
             permit = existingPermit;
         }
 
-        var policyResult = await residenceEvaluator.EvaluateAndApplyAsync(
+        var evaluation = await exceptionEvaluator.EvaluateAndApplyAsync(
             registrationCase,
             cancellationToken,
-            permit);
+            permitOverride: permit);
 
         await permitRepository.SaveChangesAsync(cancellationToken);
 
@@ -71,6 +71,6 @@ public sealed class RecordResidencePermitHandler(
             registrationCase.Id.Value,
             permit.Id.Value,
             registrationCase.Checklist.LegalResidenceEstablished,
-            policyResult.IsValid ? null : policyResult.FailureReason);
+            evaluation.PolicyResult.IsValid ? null : evaluation.PolicyResult.FailureReason);
     }
 }

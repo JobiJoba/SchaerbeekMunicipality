@@ -1,5 +1,7 @@
 namespace SchaerbeekMunicipality.Domain.Identity;
 
+using SchaerbeekMunicipality.Domain.Registration;
+
 public sealed class CivilStatusRecord
 {
     private CivilStatusRecord()
@@ -15,6 +17,8 @@ public sealed class CivilStatusRecord
     public DateOnly? MarriageDate { get; private set; }
 
     public string? MarriagePlace { get; private set; }
+
+    public MarriageRecognitionStatus MarriageRecognitionStatus { get; private set; }
 
     public static CivilStatusRecord Create(CivilStatusDetails details)
     {
@@ -42,7 +46,45 @@ public sealed class CivilStatusRecord
             MarriagePlace = string.IsNullOrWhiteSpace(details.MarriagePlace)
                 ? null
                 : details.MarriagePlace.Trim(),
+            MarriageRecognitionStatus = ResolveMarriageRecognitionStatus(details),
         };
+    }
+
+    public CivilStatus EffectiveRegisterStatus =>
+        IsMarriageRecognitionBlocking()
+            ? CivilStatus.Single
+            : Status;
+
+    public bool IsMarriageRecognitionBlocking() =>
+        RegistrationExceptionRules.IsMarriageRecognitionBlocking(this);
+
+    private static MarriageRecognitionStatus ResolveMarriageRecognitionStatus(CivilStatusDetails details)
+    {
+        if (!RequiresMarriageDetails(details.Status))
+        {
+            return MarriageRecognitionStatus.NotApplicable;
+        }
+
+        if (details.MarriageRecognitionStatus != MarriageRecognitionStatus.NotApplicable)
+        {
+            return details.MarriageRecognitionStatus;
+        }
+
+        if (string.IsNullOrWhiteSpace(details.MarriagePlace))
+        {
+            return MarriageRecognitionStatus.NotApplicable;
+        }
+
+        var record = new CivilStatusRecord
+        {
+            Status = details.Status,
+            MarriagePlace = details.MarriagePlace.Trim(),
+            MarriageRecognitionStatus = MarriageRecognitionStatus.NotApplicable,
+        };
+
+        return RegistrationExceptionRules.IsMarriageAbroad(record)
+            ? MarriageRecognitionStatus.PendingRecognition
+            : MarriageRecognitionStatus.Recognised;
     }
 
     public static bool RequiresMarriageDetails(CivilStatus status) =>

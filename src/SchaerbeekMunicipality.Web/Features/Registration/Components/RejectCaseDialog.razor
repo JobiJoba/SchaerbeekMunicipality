@@ -28,8 +28,27 @@
     [CascadingParameter]
     private IMudDialogInstance MudDialog { get; set; } = null!;
 
+    [Parameter]
+    public RejectionReason? InitialReason { get; set; }
+
+    [Parameter]
+    public string? InitialNotes { get; set; }
+
     private RejectionReason _reason = RejectionReason.Other;
     private string? _notes;
+
+    protected override void OnParametersSet()
+    {
+        if (InitialReason is { } reason)
+        {
+            _reason = reason;
+        }
+
+        if (!string.IsNullOrWhiteSpace(InitialNotes))
+        {
+            _notes = InitialNotes;
+        }
+    }
 
     private void Cancel() => MudDialog.Cancel();
 

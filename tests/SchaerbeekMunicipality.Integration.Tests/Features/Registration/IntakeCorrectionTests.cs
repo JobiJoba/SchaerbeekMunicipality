@@ -25,6 +25,8 @@ public sealed class IntakeCorrectionTests
 
         var caseId = await CreateCaseWithIdentityAsync(client);
 
+        await RegistrationTestHelpers.AttachPassportViaApiAsync(client, caseId);
+
         await client.PostAsJsonAsync(
             $"/api/registration/cases/{caseId}/residence-category",
             new SetResidenceCategoryRequest(ResidenceCategory.EuCitizen));
@@ -79,6 +81,7 @@ public sealed class IntakeCorrectionTests
         await using var scope = factory.Services.CreateAsyncScope();
 
         var caseId = await OpenAndRecordIdentityAsync(scope.ServiceProvider);
+        await RegistrationTestHelpers.AttachIdentityDocumentAsync(scope.ServiceProvider, caseId);
 
         var categoryHandler = scope.ServiceProvider.GetRequiredService<SetResidenceCategoryHandler>();
         await categoryHandler.Handle(

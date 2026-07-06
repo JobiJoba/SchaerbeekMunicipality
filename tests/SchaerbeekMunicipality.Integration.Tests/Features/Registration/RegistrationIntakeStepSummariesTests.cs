@@ -14,12 +14,7 @@ public sealed class RegistrationIntakeStepSummariesTests
     [Fact]
     public void GetDefaultExpandedSteps_FreshCase_ExpandsIdentityOnly()
     {
-        var dto = CreateCase(checklist: new RegistrationCaseChecklistDto(
-            IdentityEstablished: false,
-            LegalResidenceEstablished: false,
-            AddressDeclared: false,
-            AddressConfirmed: false,
-            RegisterDeterminable: false));
+        var dto = CreateCase(checklist: EmptyChecklist(identityEstablished: false));
 
         var expanded = RegistrationIntakeStepSummaries.GetDefaultExpandedSteps(dto);
 
@@ -30,12 +25,7 @@ public sealed class RegistrationIntakeStepSummariesTests
     public void GetDefaultExpandedSteps_IdentityComplete_ExpandsLegalResidence()
     {
         var dto = CreateCase(
-            checklist: new RegistrationCaseChecklistDto(
-                IdentityEstablished: true,
-                LegalResidenceEstablished: false,
-                AddressDeclared: false,
-                AddressConfirmed: false,
-                RegisterDeterminable: false),
+            checklist: EmptyChecklist(identityEstablished: true),
             person: SamplePerson());
 
         var expanded = RegistrationIntakeStepSummaries.GetDefaultExpandedSteps(dto);
@@ -51,12 +41,10 @@ public sealed class RegistrationIntakeStepSummariesTests
     public void GetDefaultExpandedSteps_AddressCompleteNoHousehold_ExpandsHousehold()
     {
         var dto = CreateCase(
-            checklist: new RegistrationCaseChecklistDto(
-                IdentityEstablished: true,
-                LegalResidenceEstablished: true,
-                AddressDeclared: true,
-                AddressConfirmed: false,
-                RegisterDeterminable: false),
+            checklist: EmptyChecklist(
+                identityEstablished: true,
+                legalResidenceEstablished: true,
+                addressDeclared: true),
             person: SamplePerson(),
             residenceCategory: ResidenceCategory.EuCitizen,
             declaredAddress: SampleAddress(),
@@ -76,18 +64,17 @@ public sealed class RegistrationIntakeStepSummariesTests
     {
         var dto = CreateCase(
             status: RegistrationCaseStatus.AwaitingPoliceVerification,
-            checklist: new RegistrationCaseChecklistDto(
-                IdentityEstablished: true,
-                LegalResidenceEstablished: true,
-                AddressDeclared: true,
-                AddressConfirmed: false,
-                RegisterDeterminable: false),
+            checklist: EmptyChecklist(
+                identityEstablished: true,
+                legalResidenceEstablished: true,
+                addressDeclared: true),
             person: SamplePerson(),
             residenceCategory: ResidenceCategory.EuCitizen,
             declaredAddress: SampleAddress(),
             housingSituation: HousingSituation.Owner,
             householdMembers: [SampleHouseholdMember()],
-            civilStatus: new CivilStatusDto(CivilStatus.Single, null, null, null, null),
+            civilStatus: SampleCivilStatus(),
+            birthInformation: new BirthInformationDto("Brussels", "Belgium"),
             activePoliceVerification: new PoliceVerificationDto(
                 Guid.NewGuid(),
                 1,
@@ -142,15 +129,31 @@ public sealed class RegistrationIntakeStepSummariesTests
             .Should().BeTrue();
     }
 
-    private static RegistrationCaseChecklistDto CompleteChecklist() =>
+    private static RegistrationCaseChecklistDto EmptyChecklist(
+        bool identityEstablished = false,
+        bool legalResidenceEstablished = false,
+        bool addressDeclared = false,
+        bool addressConfirmed = false,
+        bool registerDeterminable = false,
+        bool birthEvidenceEstablished = false,
+        bool duplicateInvestigationResolved = true) =>
         new(
-            IdentityEstablished: true,
-            LegalResidenceEstablished: true,
-            AddressDeclared: true,
-            AddressConfirmed: false,
-            RegisterDeterminable: false);
+            identityEstablished,
+            legalResidenceEstablished,
+            addressDeclared,
+            addressConfirmed,
+            registerDeterminable,
+            birthEvidenceEstablished,
+            duplicateInvestigationResolved);
 
-    private static PersonDto SamplePerson() =>
+    private static RegistrationCaseChecklistDto CompleteChecklist() =>
+        EmptyChecklist(
+            identityEstablished: true,
+            legalResidenceEstablished: true,
+            addressDeclared: true,
+            birthEvidenceEstablished: true);
+
+    private static PersonDto SamplePerson(BirthInformationDto? birthInformation = null) =>
         new(
             Guid.NewGuid(),
             "Marie",
@@ -159,7 +162,18 @@ public sealed class RegistrationIntakeStepSummariesTests
             "Belgian",
             null,
             null,
-            false);
+            false,
+            birthInformation);
+
+    private static CivilStatusDto SampleCivilStatus() =>
+        new(
+            CivilStatus.Single,
+            CivilStatus.Single,
+            null,
+            null,
+            null,
+            null,
+            MarriageRecognitionStatus.NotApplicable);
 
     private static BelgianAddressDto SampleAddress() =>
         new("Chaussée de Louvain", "42", null, "1030", "Schaerbeek");
@@ -176,6 +190,7 @@ public sealed class RegistrationIntakeStepSummariesTests
         HousingSituation? housingSituation = null,
         IReadOnlyList<HouseholdMemberDto>? householdMembers = null,
         CivilStatusDto? civilStatus = null,
+        BirthInformationDto? birthInformation = null,
         PoliceVerificationDto? activePoliceVerification = null) =>
         new(
             Id: Guid.NewGuid(),
@@ -188,14 +203,21 @@ public sealed class RegistrationIntakeStepSummariesTests
             IsReadOnlyDueToLock: false,
             OpenedAt: DateTimeOffset.UtcNow,
             ClosedAt: null,
-            Checklist: checklist ?? new RegistrationCaseChecklistDto(false, false, false, false, false),
+            Checklist: checklist ?? EmptyChecklist(),
             IsReadyForApproval: false,
+            IllegalStayDetected: false,
+            MarriageRecognitionBlocking: false,
+            DuplicateInvestigationStatus: DuplicateInvestigationStatus.None,
             SuggestedRegisterTarget: null,
             SelectedRegisterTarget: null,
             RejectionReason: null,
             SuspensionReason: null,
             DecisionNotes: null,
-            Person: person,
+            Person: person is null
+                ? null
+                : birthInformation is null
+                    ? person
+                    : person with { BirthInformation = birthInformation },
             ResidenceCategory: residenceCategory,
             ResidencePermit: null,
             ImmigrationDecision: null,

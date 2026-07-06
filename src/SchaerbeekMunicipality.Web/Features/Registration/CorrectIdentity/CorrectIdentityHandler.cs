@@ -11,7 +11,7 @@ public sealed class CorrectIdentityHandler(
     RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
-    RegistrationResidenceEvaluator residenceEvaluator,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     IValidator<RecordIdentityRequest> validator,
     ILogger<CorrectIdentityHandler> logger)
 {
@@ -44,9 +44,8 @@ public sealed class CorrectIdentityHandler(
             request.Nationality);
 
         registrationCase.CorrectIdentity(person, identity);
-        registrationCase.RefreshRegisterDeterminability(request.Nationality);
 
-        var policyResult = await residenceEvaluator.EvaluateAndApplyAsync(
+        var evaluation = await exceptionEvaluator.EvaluateAndApplyAsync(
             registrationCase,
             cancellationToken);
 
@@ -62,6 +61,6 @@ public sealed class CorrectIdentityHandler(
             person.Id.Value,
             registrationCase.Checklist.IdentityEstablished,
             registrationCase.Checklist.LegalResidenceEstablished,
-            policyResult.IsValid ? null : policyResult.FailureReason);
+            evaluation.PolicyResult.IsValid ? null : evaluation.PolicyResult.FailureReason);
     }
 }

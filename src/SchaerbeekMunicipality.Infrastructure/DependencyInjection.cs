@@ -63,6 +63,7 @@ public static class DependencyInjection
         services.AddSingleton<IResidencePolicy, EuCitizenPolicy>();
         services.AddSingleton<IResidencePolicy, NonEuWorkerPolicy>();
         services.AddSingleton<IResidencePolicy, StudentPolicy>();
+        services.AddSingleton<IResidencePolicy, RefugeePolicy>();
         services.AddSingleton<ResidencePolicyEvaluator>();
 
         return services;

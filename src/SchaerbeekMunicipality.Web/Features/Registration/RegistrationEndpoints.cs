@@ -21,6 +21,8 @@ using SchaerbeekMunicipality.Web.Features.Registration.RecordCivilStatus;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordHouseholdComposition;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordHousingSituation;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Web.Features.Registration.RecordBirthInformation;
+using SchaerbeekMunicipality.Web.Features.Registration.ResolveDuplicateInvestigation;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordImmigrationDecision;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit;
 using SchaerbeekMunicipality.Web.Features.Registration.RemoveDocument;
@@ -108,6 +110,14 @@ public static class RegistrationEndpoints
 
         group.MapPost("/cases/{id:guid}/civil-status", RecordCivilStatusEndpoint.Handle)
             .WithName("RecordCivilStatus")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/birth-information", RecordBirthInformationEndpoint.Handle)
+            .WithName("RecordBirthInformation")
+            .WithTags("Registration");
+
+        group.MapPost("/cases/{id:guid}/duplicate-investigation/resolve", ResolveDuplicateInvestigationEndpoint.Handle)
+            .WithName("ResolveDuplicateInvestigation")
             .WithTags("Registration");
 
         group.MapGet("/municipalities", SearchReferenceDataEndpoints.ListMunicipalities)

@@ -4,7 +4,10 @@ namespace SchaerbeekMunicipality.Domain.Registration;
 
 public static class RegisterTargetResolver
 {
-    public static RegisterTarget? Suggest(ResidenceCategory? category, string? nationality)
+    public static RegisterTarget? Suggest(
+        ResidenceCategory? category,
+        string? nationality,
+        bool hasImmigrationDecision = false)
     {
         if (category is null)
         {
@@ -17,6 +20,7 @@ public static class RegisterTargetResolver
             ResidenceCategory.EuCitizen => RegisterTarget.ForeignersRegister,
             ResidenceCategory.NonEuWorker => RegisterTarget.ForeignersRegister,
             ResidenceCategory.Student => RegisterTarget.ForeignersRegister,
+            ResidenceCategory.Refugee when hasImmigrationDecision => RegisterTarget.WaitingRegister,
             _ => null,
         };
     }
@@ -24,9 +28,10 @@ public static class RegisterTargetResolver
     public static bool IsAllowed(
         ResidenceCategory? category,
         string? nationality,
-        RegisterTarget target)
+        RegisterTarget target,
+        bool hasImmigrationDecision = false)
     {
-        var suggested = Suggest(category, nationality);
+        var suggested = Suggest(category, nationality, hasImmigrationDecision);
         return suggested == target;
     }
 

@@ -8,6 +8,7 @@ public sealed class RecordIdentityHandler(
     RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     IValidator<RecordIdentityRequest> validator)
 {
     public async Task<RecordIdentityResponse> Handle(
@@ -32,6 +33,7 @@ public sealed class RecordIdentityHandler(
         registrationCase.RefreshRegisterDeterminability(request.Nationality);
 
         await personRepository.AddAsync(person, cancellationToken);
+        await exceptionEvaluator.EvaluateAndApplyAsync(registrationCase, cancellationToken, person);
         await caseRepository.SaveChangesAsync(cancellationToken);
 
         return new RecordIdentityResponse(

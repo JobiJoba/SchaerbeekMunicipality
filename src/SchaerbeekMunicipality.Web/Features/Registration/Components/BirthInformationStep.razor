@@ -1,0 +1,211 @@
+@using SchaerbeekMunicipality.Domain.Documents
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
+@using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
+@using SchaerbeekMunicipality.Web.Features.Registration.RecordBirthInformation
+@using SchaerbeekMunicipality.Web.Features.Registration.SuspendCase
+@inject RecordBirthInformationHandler RecordBirthInformationHandler
+@inject SuspendCaseHandler SuspendCaseHandler
+@inject IAppDialogService DialogService
+@inject ISnackbar Snackbar
+
+@if (!_case.Checklist.IdentityEstablished)
+{
+    <AppInfoBox>
+        Record identity before capturing birth information.
+    </AppInfoBox>
+}
+else if (_case.Person?.BirthInformation is null || _editing)
+{
+    <AppCard Title="Birth information" Outlined="true">
+        <MudForm @ref="_form" @bind-IsValid="_formValid">
+            <AppFormSection Title="Place of birth">
+                <MudItem xs="12" md="6">
+                    <MudTextField @bind-Value="_birthPlace" Label="Birth place" Required="true" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField @bind-Value="_birthCountry" Label="Birth country" />
+                </MudItem>
+            </AppFormSection>
+
+            <AppSaveCancelBar SaveText="@(_editing ? "Save changes" : "Record birth information")"
+                              CancelText="@(_editing ? "Cancel" : "Clear")"
+                              Saving="_saving"
+                              Disabled="@(_editing && !FormDirty)"
+                              OnSave="Save"
+                              OnCancel="HandleCancel" />
+        </MudForm>
+    </AppCard>
+}
+else
+{
+    <AppCard Title="Birth information" Outlined="true">
+        <HeaderActions>
+            @if (CanEdit)
+            {
+                <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                           Variant="Variant.Text"
+                           OnClick="StartEditing"
+                           aria-label="Edit birth information">
+                    Edit
+                </MudButton>
+            }
+        </HeaderActions>
+        <ChildContent>
+            <MudText Typo="Typo.body1">@_case.Person!.BirthInformation!.BirthPlace</MudText>
+            @if (!string.IsNullOrWhiteSpace(_case.Person.BirthInformation.BirthCountry))
+            {
+                <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-1">
+                    @_case.Person.BirthInformation.BirthCountry
+                </MudText>
+            }
+        </ChildContent>
+    </AppCard>
+}
+
+@if (_case.Person?.BirthInformation is not null && !_case.Checklist.BirthEvidenceEstablished)
+{
+    <AppAlert Severity="Severity.Warning"
+              Title="Birth certificate required"
+              Class="mt-4">
+        Registration may be delayed until a birth certificate (with translation or legalisation if needed) is on file.
+        @if (CanEdit)
+        {
+            <MudButton Variant="Variant.Text"
+                       Color="Color.Warning"
+                       Class="mt-2"
+                       StartIcon="@Icons.Material.Outlined.PauseCircle"
+                       OnClick="SuspendForMissingDocuments">
+                Suspend case
+            </MudButton>
+        }
+    </AppAlert>
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public RegistrationCaseDetailDto Case { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public Guid CaseId { get; set; }
+
+    [Parameter]
+    public bool CanEdit { get; set; }
+
+    [Parameter]
+    public EventCallback OnUpdated { get; set; }
+
+    private RegistrationCaseDetailDto _case = null!;
+    private bool _editing;
+    private MudForm _form = null!;
+    private bool _formValid;
+    private bool _saving;
+
+    private string? _birthPlace;
+    private string? _birthCountry;
+
+    protected override void OnParametersSet()
+    {
+        _case = Case;
+        _editing = false;
+    }
+
+    private bool FormDirty =>
+        _case.Person?.BirthInformation is not null &&
+        (_birthPlace != _case.Person.BirthInformation.BirthPlace ||
+         _birthCountry != _case.Person.BirthInformation.BirthCountry);
+
+    private void StartEditing()
+    {
+        if (_case.Person?.BirthInformation is null)
+        {
+            return;
+        }
+
+        _birthPlace = _case.Person.BirthInformation.BirthPlace;
+        _birthCountry = _case.Person.BirthInformation.BirthCountry;
+        _editing = true;
+    }
+
+    private async Task HandleCancel()
+    {
+        if (_editing)
+        {
+            _editing = false;
+        }
+        else
+        {
+            _birthPlace = null;
+            _birthCountry = null;
+        }
+    }
+
+    private async Task Save()
+    {
+        await _form.Validate();
+        if (!_formValid || string.IsNullOrWhiteSpace(_birthPlace))
+        {
+            return;
+        }
+
+        _saving = true;
+        try
+        {
+            await RecordBirthInformationHandler.Handle(
+                new RegistrationCaseId(CaseId),
+                new RecordBirthInformationRequest(_birthPlace.Trim(), _birthCountry),
+                CancellationToken.None);
+
+            _editing = false;
+            Snackbar.Add("Birth information saved.", Severity.Success);
+            await OnUpdated.InvokeAsync();
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _saving = false;
+        }
+    }
+
+    private async Task SuspendForMissingDocuments()
+    {
+        var confirmed = await DialogService.ConfirmAsync(
+            "Suspend case?",
+            "The case will be suspended until the birth certificate is on file.",
+            "Suspend",
+            consequence: "The applicant must return with the missing document.");
+
+        if (!confirmed)
+        {
+            return;
+        }
+
+        try
+        {
+            await SuspendCaseHandler.Handle(
+                new RegistrationCaseId(CaseId),
+                new SuspendCaseRequest(
+                    SuspensionReason.MissingDocuments,
+                    "Birth certificate missing or awaiting translation/legalisation."),
+                CancellationToken.None);
+
+            Snackbar.Add("Case suspended.", Severity.Warning);
+            await OnUpdated.InvokeAsync();
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+    }
+}

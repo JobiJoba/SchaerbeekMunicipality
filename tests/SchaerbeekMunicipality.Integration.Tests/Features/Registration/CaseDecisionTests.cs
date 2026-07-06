@@ -10,6 +10,8 @@ using SchaerbeekMunicipality.Web.Features.Registration.DeclareAddress;
 using SchaerbeekMunicipality.Web.Features.Registration.GetCaseReviewChecklist;
 using SchaerbeekMunicipality.Web.Features.Registration.ListCaseAudit;
 using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
+using SchaerbeekMunicipality.Web.Features.Registration.RecordBirthInformation;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult;
 using SchaerbeekMunicipality.Web.Features.Registration.RejectCase;
@@ -40,6 +42,8 @@ public sealed class CaseDecisionTests
             caseId,
             new SetResidenceCategoryRequest(ResidenceCategory.EuCitizen),
             CancellationToken.None);
+
+        await RegistrationTestHelpers.SatisfyPhase9RequirementsAsync(services, caseId);
 
         await declareHandler.Handle(
             caseId,

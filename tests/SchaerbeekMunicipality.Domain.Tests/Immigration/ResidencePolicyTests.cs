@@ -7,6 +7,8 @@ namespace SchaerbeekMunicipality.Domain.Tests.Immigration;
 
 public sealed class ResidencePolicyTests
 {
+    private static readonly IReadOnlyList<DocumentType> PassportOnly = [DocumentType.Passport];
+
     private static readonly ResidenceValidationContext EmptyDocuments = new(
         ResidenceCategory.EuCitizen,
         null,
@@ -14,13 +16,14 @@ public sealed class ResidencePolicyTests
         []);
 
     [Fact]
-    public void EuCitizenPolicy_WithoutPermit_IsValid()
+    public void EuCitizenPolicy_WithoutIdentityDocument_IsInvalid()
     {
         var policy = new EuCitizenPolicy();
 
         var result = policy.Validate(EmptyDocuments with { Category = ResidenceCategory.EuCitizen });
 
-        result.IsValid.Should().BeTrue();
+        result.IsValid.Should().BeFalse();
+        result.FailureReason.Should().Contain("passport");
     }
 
     [Fact]
@@ -28,7 +31,11 @@ public sealed class ResidencePolicyTests
     {
         var policy = new NonEuWorkerPolicy();
 
-        var result = policy.Validate(EmptyDocuments with { Category = ResidenceCategory.NonEuWorker });
+        var result = policy.Validate(EmptyDocuments with
+        {
+            Category = ResidenceCategory.NonEuWorker,
+            AttachedDocumentTypes = PassportOnly,
+        });
 
         result.IsValid.Should().BeFalse();
         result.FailureReason.Should().Contain("permit");
@@ -44,6 +51,7 @@ public sealed class ResidencePolicyTests
         {
             Category = ResidenceCategory.NonEuWorker,
             Permit = permit,
+            AttachedDocumentTypes = PassportOnly,
         });
 
         result.IsValid.Should().BeTrue();
@@ -59,6 +67,7 @@ public sealed class ResidencePolicyTests
         {
             Category = ResidenceCategory.Student,
             Permit = permit,
+            AttachedDocumentTypes = PassportOnly,
         });
 
         result.IsValid.Should().BeTrue();
@@ -72,7 +81,7 @@ public sealed class ResidencePolicyTests
         var result = policy.Validate(EmptyDocuments with
         {
             Category = ResidenceCategory.EuCitizen,
-            AttachedDocumentTypes = [DocumentType.Passport],
+            AttachedDocumentTypes = PassportOnly,
         });
 
         result.IsValid.Should().BeTrue();

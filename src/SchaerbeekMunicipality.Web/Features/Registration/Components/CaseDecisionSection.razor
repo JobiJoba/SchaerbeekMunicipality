@@ -42,6 +42,15 @@
             }
         </MudList>
 
+        @if (Case.IllegalStayDetected && Case.Status == RegistrationCaseStatus.UnderReview)
+        {
+            <AppAlert Severity="Severity.Error"
+                      Title="Illegal stay — refer to Immigration Office"
+                      Class="mb-4">
+                Population cannot regularise immigration status. Reject the case and refer the person to the Immigration Office.
+            </AppAlert>
+        }
+
         @if (Case.Status == RegistrationCaseStatus.Rejected)
         {
             <AppAlert Severity="Severity.Error" Title="Case rejected">
@@ -167,8 +176,18 @@
 
     private async Task OpenRejectDialog()
     {
+        var parameters = new DialogParameters<RejectCaseDialog>();
+        if (Case.IllegalStayDetected)
+        {
+            parameters.Add(x => x.InitialReason, RejectionReason.IllegalStay);
+            parameters.Add(
+                x => x.InitialNotes,
+                "Referred to Immigration Office — population department cannot regularise immigration status.");
+        }
+
         var dialog = await DialogService.ShowAsync<RejectCaseDialog>(
             "Reject case",
+            parameters,
             AppDialogOptions.Small);
 
         var result = await dialog.Result;

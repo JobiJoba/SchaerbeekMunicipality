@@ -10,7 +10,7 @@ public sealed class RemoveDocumentHandler(
     IRegistrationCaseRepository caseRepository,
     IAdministrativeDocumentRepository documentRepository,
     IDocumentStorage documentStorage,
-    RegistrationResidenceEvaluator residenceEvaluator,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     ILogger<RemoveDocumentHandler> logger)
 {
     public async Task<RemoveDocumentResponse> Handle(
@@ -37,9 +37,16 @@ public sealed class RemoveDocumentHandler(
         documentRepository.Remove(document);
         await documentStorage.DeleteAsync(document.StoragePath, cancellationToken);
 
-        var policyResult = await residenceEvaluator.EvaluateAndApplyAsync(
+        var remainingDocuments = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        var documentTypes = remainingDocuments
+            .Where(d => d.Id != documentId)
+            .Select(d => d.DocumentType)
+            .ToList();
+
+        var evaluation = await exceptionEvaluator.EvaluateAndApplyAsync(
             registrationCase,
-            cancellationToken);
+            cancellationToken,
+            documentTypesOverride: documentTypes);
 
         await caseRepository.SaveChangesAsync(cancellationToken);
 
@@ -52,6 +59,6 @@ public sealed class RemoveDocumentHandler(
             registrationCase.Id.Value,
             documentId.Value,
             registrationCase.Checklist.LegalResidenceEstablished,
-            policyResult.IsValid ? null : policyResult.FailureReason);
+            evaluation.PolicyResult.IsValid ? null : evaluation.PolicyResult.FailureReason);
     }
 }

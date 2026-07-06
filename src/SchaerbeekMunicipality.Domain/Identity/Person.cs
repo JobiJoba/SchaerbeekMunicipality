@@ -26,6 +26,10 @@ public sealed class Person
 
     public CivilStatusRecord? CivilStatus { get; private set; }
 
+    public string? BirthPlace { get; private set; }
+
+    public string? BirthCountry { get; private set; }
+
     public static Person Create(IdentityDetails details)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(details.GivenName);
@@ -99,5 +103,15 @@ public sealed class Person
     public void RecordCivilStatus(CivilStatusDetails details)
     {
         CivilStatus = CivilStatusRecord.Create(details);
+    }
+
+    public void RecordBirthInformation(BirthInformationDetails details)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(details.BirthPlace);
+
+        BirthPlace = details.BirthPlace.Trim();
+        BirthCountry = string.IsNullOrWhiteSpace(details.BirthCountry)
+            ? null
+            : details.BirthCountry.Trim();
     }
 }

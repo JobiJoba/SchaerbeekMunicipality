@@ -1,6 +1,10 @@
+using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Auth;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.GetCaseReviewChecklist;
 
@@ -8,7 +12,10 @@ public sealed class GetCaseReviewChecklistHandler(
     RegistrationCaseGuard caseGuard,
     RegistrationCaseAuthorization authorization,
     ICurrentOfficer currentOfficer,
-    IPersonRepository personRepository)
+    IPersonRepository personRepository,
+    IAdministrativeDocumentRepository documentRepository,
+    IResidencePermitRepository permitRepository,
+    ResidencePolicyEvaluator policyEvaluator)
 {
     public async Task<GetCaseReviewChecklistResponse?> Handle(
         RegistrationCaseId caseId,
@@ -18,20 +25,36 @@ public sealed class GetCaseReviewChecklistHandler(
 
         var registrationCase = await caseGuard.GetForViewAsync(caseId, cancellationToken);
 
-        string? nationality = null;
+        Person? person = null;
         if (registrationCase.PersonId is { } personId)
         {
-            var person = await personRepository.GetByIdAsync(personId, cancellationToken);
-            nationality = person?.Nationality;
+            person = await personRepository.GetByIdAsync(personId, cancellationToken);
         }
 
-        var suggested = RegisterTargetResolver.Suggest(registrationCase.ResidenceCategory, nationality);
+        var permit = await permitRepository.GetByCaseIdAsync(caseId, cancellationToken);
+        var documents = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        var documentTypes = documents.Select(d => d.DocumentType).ToList();
+        var policyResult = policyEvaluator.Evaluate(registrationCase, permit, documentTypes);
+        var exceptionState = RegistrationExceptionStateCalculator.Calculate(
+            registrationCase,
+            person,
+            documentTypes,
+            policyResult);
+
+        var suggested = RegisterTargetResolver.Suggest(
+            registrationCase.ResidenceCategory,
+            person?.Nationality,
+            registrationCase.ImmigrationDecision is not null);
 
         return new GetCaseReviewChecklistResponse(
             registrationCase.Id.Value,
             registrationCase.Status.ToString(),
-            registrationCase.IsReadyForApproval,
+            exceptionState.IsReadyForApproval,
             suggested?.ToString(),
-            CaseReviewChecklistMapper.BuildQuestions(registrationCase.Checklist));
+            CaseReviewChecklistMapper.BuildQuestions(
+                registrationCase.Checklist,
+                exceptionState.BirthEvidenceEstablished,
+                exceptionState.MarriageRecognitionBlocking,
+                exceptionState.IllegalStayDetected));
     }
 }

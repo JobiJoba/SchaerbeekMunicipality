@@ -19,6 +19,7 @@ public sealed class ResidenceCategoryTests
         await using var scope = factory.Services.CreateAsyncScope();
 
         var caseId = await OpenAndRecordIdentityAsync(scope.ServiceProvider);
+        await RegistrationTestHelpers.AttachIdentityDocumentAsync(scope.ServiceProvider, caseId);
 
         var handler = scope.ServiceProvider.GetRequiredService<SetResidenceCategoryHandler>();
         var result = await handler.Handle(
@@ -49,7 +50,7 @@ public sealed class ResidenceCategoryTests
             CancellationToken.None);
 
         result.LegalResidenceEstablished.Should().BeFalse();
-        result.PolicyMessage.Should().Contain("permit");
+        result.PolicyMessage.Should().Contain("passport");
     }
 
     [Fact]
@@ -64,6 +65,8 @@ public sealed class ResidenceCategoryTests
             caseId,
             new SetResidenceCategoryRequest(ResidenceCategory.NonEuWorker),
             CancellationToken.None);
+
+        await RegistrationTestHelpers.AttachIdentityDocumentAsync(scope.ServiceProvider, caseId);
 
         var permitHandler = scope.ServiceProvider.GetRequiredService<RecordResidencePermitHandler>();
         var result = await permitHandler.Handle(

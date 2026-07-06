@@ -1,7 +1,6 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.RecordCivilStatus;
 
@@ -9,6 +8,7 @@ public sealed class RecordCivilStatusHandler(
     RegistrationCaseGuard caseGuard,
     IRegistrationCaseRepository caseRepository,
     IPersonRepository personRepository,
+    RegistrationExceptionEvaluator exceptionEvaluator,
     IValidator<RecordCivilStatusRequest> validator)
 {
     public async Task<RecordCivilStatusResponse> Handle(
@@ -39,7 +39,12 @@ public sealed class RecordCivilStatusHandler(
             request.SpouseGivenName,
             request.SpouseFamilyName,
             request.MarriageDate,
-            request.MarriagePlace));
+            request.MarriagePlace,
+            request.MarriageRecognitionStatus));
+
+        var evaluation = await exceptionEvaluator.EvaluateAndApplyAsync(
+            registrationCase,
+            cancellationToken);
 
         await caseRepository.SaveChangesAsync(cancellationToken);
 
@@ -48,9 +53,12 @@ public sealed class RecordCivilStatusHandler(
         return new RecordCivilStatusResponse(
             caseId.Value,
             civilStatus.Status,
+            civilStatus.EffectiveRegisterStatus,
             civilStatus.SpouseGivenName,
             civilStatus.SpouseFamilyName,
             civilStatus.MarriageDate,
-            civilStatus.MarriagePlace);
+            civilStatus.MarriagePlace,
+            civilStatus.MarriageRecognitionStatus,
+            evaluation.MarriageRecognitionBlocking);
     }
 }
