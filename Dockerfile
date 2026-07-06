@@ -16,6 +16,9 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
+# The aspnet image runs as a non-root user ($APP_UID) that cannot create /app/uploads at runtime.
+RUN mkdir -p /app/uploads && chown $APP_UID /app/uploads
+
 USER $APP_UID
 
 ENV ASPNETCORE_URLS=http://+:8080

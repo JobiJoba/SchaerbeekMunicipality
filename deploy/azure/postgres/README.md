@@ -8,13 +8,13 @@ Same as the [SQLite profile](../sqlite/README.md), plus budget for PostgreSQL (~
 
 ## Configure
 
+1. Edit [parameters.json](./parameters.json) — set `containerImage` (required unless you use `CONTAINER_IMAGE` env var).
+2. Optionally override:
+
 ```bash
 export CONTAINER_IMAGE=ghcr.io/YOUR_GITHUB_USER/schaerbeek-municipality-web:latest
 export RESOURCE_GROUP=schaerbeek-rg
 export LOCATION=westeurope
-# Optional — generated when omitted:
-# export POSTGRES_ADMIN_PASSWORD='your-secure-password'
-# export POSTGRES_SERVER_NAME='schaerbeek-pg-unique'
 ```
 
 ## Deploy

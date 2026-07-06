@@ -11,11 +11,11 @@ Ephemeral SQLite on Azure Container Apps: no PostgreSQL, no persistent volumes. 
 
 ## Configure
 
-1. Edit [parameters.json](./parameters.json) or pass environment variables.
-2. Set your image:
+1. Edit [parameters.json](./parameters.json) — set `containerImage` to your GHCR URL (this is the default).
+2. Optionally override via environment variables:
 
 ```bash
-export CONTAINER_IMAGE=ghcr.io/YOUR_GITHUB_USER/schaerbeek-municipality-web:latest
+export CONTAINER_IMAGE=ghcr.io/YOUR_GITHUB_USER/schaerbeek-municipality-web:latest  # overrides parameters.json
 export RESOURCE_GROUP=schaerbeek-rg
 export LOCATION=westeurope
 ```
