@@ -241,7 +241,7 @@ Target: all existing tests stay green; add ~10–15 new tests for correction pat
 - Corrections during `AwaitingPoliceVerification` and police-result invalidation (Phase 6).
 - Address / household / civil status correction (Phase 4 — **must ship as upsert from day one**).
 - National Register link/unlink after identity correction (Phase 5).
-- Formal amendment workflow post-registration (Phase 11).
+- Formal amendment workflow post-registration (Phase 17).
 
 ---
 

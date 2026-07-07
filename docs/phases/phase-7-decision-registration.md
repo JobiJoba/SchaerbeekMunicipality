@@ -171,7 +171,7 @@ Phase 7 coverage:
 
 - Phase 8: `IssueResidenceCertificate`, `ListOutboundNotifications` (replace logging handler)
 - Phase 9: exception scenarios hook into reject/suspend reasons
-- Phase 11: person file read model uses register target + NR from confirmed cases
+- Phase 16: person file read model uses register target + NR from confirmed cases
 
 ---
 

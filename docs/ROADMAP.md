@@ -20,10 +20,18 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 6 | Police verification loop | ✅ Complete |
 | 6.1 | Collapsible intake sections | ✅ Complete |
 | 7 | Decision & registration | ✅ Complete |
-| 8 | Certificates & outbound stubs | In progress |
+| 8 | Certificates & outbound stubs | ✅ Complete |
 | 8.1 | Role boundaries, case locking & officer UX | ✅ Complete |
-| 9+ | Exception scenarios, … | Planned |
-| 10 | Azure deployment | Complete |
+| 9 | Exception scenarios | ✅ Complete |
+| 10 | Azure deployment | ✅ Complete |
+| 11 | Extended municipality (scope definition) | ✅ Complete |
+| 12 | Birth declaration | Planned |
+| 13 | Change of address | Planned |
+| 14 | Passport / ID card request | Planned |
+| 15 | Reporting dashboard | Planned |
+| 16 | Person file (read model) | Planned |
+| 17 | Post-registration amendments | Planned |
+| 18 | Remaining exception scenarios | Planned (optional) |
 
 Delivery notes for completed phases: [phases/](./phases/).
 
@@ -380,7 +388,9 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 ---
 
-## Phase 8 — Certificates & outbound stubs (IDEA Phases 21–23)
+## Phase 8 — Certificates & outbound stubs (IDEA Phases 21–23) ✅
+
+**Status:** Complete — certificates, household composition, and outbound notification log implemented in `Features/Registration/`.
 
 **Goal:** Citizen-facing outputs and administration notifications.
 
@@ -470,16 +480,87 @@ Each adds domain rules + UI branch + dedicated tests.
 
 ---
 
-## Phase 11 — Extended municipality (optional)
+## Phase 11 — Extended municipality (scope definition) ✅
 
-Ideas beyond first registration:
+**Status:** Complete — see [phases/phase-11-extended-municipality.md](./phases/phase-11-extended-municipality.md).
 
-- Change of address within municipality
-- Birth declaration
-- Passport / ID card request workflow (simplified)
-- Multi-language UI (FR / NL)
-- Reporting dashboard (cases per month, average police wait time)
-- Read model: consolidated **Person file** view
+**Goal:** Identify and sequence follow-on municipal workflows beyond first registration.
+
+The original optional backlog is split into **Phases 12–18**. Multi-language UI (FR / NL) is **not planned**.
+
+---
+
+## Phase 12 — Birth declaration
+
+**Status:** Planned — see [phases/phase-12-birth-declaration.md](./phases/phase-12-birth-declaration.md).
+
+**Goal:** Register a newborn child — new `BirthDeclaration` bounded context, separate from first-registration `RegistrationCase`.
+
+**Slices:** `OpenBirthDeclarationCase`, `RecordChildDetails`, `LinkParent`, medical declaration attach, household link, `ConfirmBirthDeclaration`.
+
+**Demo:** Parents in NR → declare child → attach hospital form → child receives stub NR number.
+
+**Tests:** Domain checklist gates; happy-path integration; distinct from Phase 9 `RecordBirthInformation` on adult applicants.
+
+---
+
+## Phase 13 — Change of address
+
+**Status:** Planned — see [phases/phase-13-change-of-address.md](./phases/phase-13-change-of-address.md).
+
+**Goal:** Registered resident moves within the municipality — `ChangeOfAddressCase` aggregate, new address, optional police verification, domicile update.
+
+**Demo:** NR lookup → new Schaerbeek address → police confirms → person domicile updated.
+
+---
+
+## Phase 14 — Passport / ID card request
+
+**Status:** Planned — see [phases/phase-14-passport-id-request.md](./phases/phase-14-passport-id-request.md).
+
+**Goal:** Simplified passport / eID request workflow for registered persons — photo, fee stub, production status, issue.
+
+**Demo:** Registered citizen requests eID renewal → photo attached → issued with stub document number.
+
+---
+
+## Phase 15 — Reporting dashboard
+
+**Status:** Planned — see [phases/phase-15-reporting-dashboard.md](./phases/phase-15-reporting-dashboard.md).
+
+**Goal:** Operational analytics — registrations per month, birth declarations, average police wait time, outcome breakdown.
+
+**Demo:** Reports page with KPI tiles and monthly volume chart.
+
+---
+
+## Phase 16 — Person file (read model)
+
+**Status:** Planned — see [phases/phase-16-person-file.md](./phases/phase-16-person-file.md).
+
+**Goal:** Consolidated citizen profile — identity, household, addresses, cases, certificates in one read-only view.
+
+**Demo:** NR search → person file with tabs; deep link from registration case detail.
+
+---
+
+## Phase 17 — Post-registration amendments
+
+**Status:** Planned — see [phases/phase-17-post-registration-amendments.md](./phases/phase-17-post-registration-amendments.md).
+
+**Goal:** Correct register data after registration (name, civil status, nationality) with approval workflow and audit trail.
+
+**Demo:** Legal name change with supporting judgment → approve → person file updated.
+
+---
+
+## Phase 18 — Remaining exception scenarios (optional)
+
+**Status:** Planned — see [phases/phase-18-remaining-exception-scenarios.md](./phases/phase-18-remaining-exception-scenarios.md).
+
+**Goal:** Phase 9 deferred slices — diplomat register rules and homeless reference address.
+
+**Demo:** Diplomat path to special register; reference address satisfies domicile checklist without fixed abode.
 
 ---
 
