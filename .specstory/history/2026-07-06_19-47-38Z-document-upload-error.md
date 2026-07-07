@@ -409,12 +409,14 @@ Using `/tmp/uploads` would be more honest about the ephemeral nature of the cont
 
 The storage logic combines `ContentRootPath` with a relative `uploads` folder. Moving uploads to `/tmp` would require absolute database paths or changing `ContentRootPath` in production. That is too invasive. The Dockerfile fix is the minimal viable solution.
 
-The Dockerfile fix is confirmed to work. The base `.NET aspnet` image already sets `APP_UID` as an environment variable, so `chown $APP_UID` during the build step will correctly assign ownership to the non-root runtime user.</details></think>
+The Dockerfile fix is confirmed to work. The base `.NET aspnet` image already sets `APP_UID` as an environment variable, so `chown $APP_UID` during the build step will correctly assign ownership to the non-root runtime user.
+
+Microsoft's official .NET container documentation confirms the standard pattern. They recommend creating writable directories such as `/app/DataProtection-Keys` with `chown $APP_UID` before switching to the non-root user. This validates the Dockerfile fix as the standard container approach.</details></think>
 
 _**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
 
 </details>
 </tool-use>
@@ -423,3 +425,1479 @@ _**Agent (default)**_
 <summary>Tool use: **read_file_v2**</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*Test*",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "LocalFileDocumentStorage|DocumentStorage"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "LocalFileDocumentStorage|DocumentStorage",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "docs/TESTING.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The cleanest fix is a Dockerfile change. Create `/app/uploads` with proper ownership before switching to the non-root user.
+
+This requires no code changes. I'll verify the Docker build locally and check that APP_UID works in the RUN chown command. Using `/tmp/uploads` was considered but rejected since LocalFileDocumentStorage stores relative paths.</details></think>
+
+_**Agent (default)**_
+
+The container runs as a non-root user but `/app/uploads` isn't created with write permissions. I'll fix the Dockerfile and verify the image builds.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Dockerfile</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && docker build -t schaerbeek-test .</summary>
+
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && docker build -t schaerbeek-test .
+```
+
+```
+#0 building with "orbstack" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 736B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for mcr.microsoft.com/dotnet/sdk:10.0
+#2 DONE 0.0s
+
+#3 [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:10.0
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 306B done
+#4 DONE 0.0s
+
+#5 [build 1/7] FROM mcr.microsoft.com/dotnet/sdk:10.0
+#5 DONE 0.0s
+
+#6 [final 1/4] FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:7644f992230d35cf230017189d4038c0ae0f7388b13f4f7ae1900a155bafb597
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 380.68kB 0.0s done
+#7 DONE 0.1s
+
+#8 [build 3/7] COPY Directory.Packages.props .
+#8 CACHED
+
+#9 [build 4/7] COPY Directory.Build.props .
+#9 CACHED
+
+#10 [build 2/7] WORKDIR /src
+#10 CACHED
+
+#11 [build 5/7] COPY SchaerbeekMunicipality.slnx .
+#11 CACHED
+
+#12 [build 6/7] COPY src/ src/
+#12 DONE 2.4s
+
+#13 [build 7/7] RUN dotnet publish src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj     -c Release     -o /app/publish     /p:UseAppHost=false
+#13 1.164   Determining projects to restore...
+#13 1.782   Restored /src/src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj (in 55 ms).
+#13 9.073   Restored /src/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj (in 7.29 sec).
+#13 18.12   Restored /src/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj (in 16.4 sec).
+#13 18.12   Restored /src/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj (in 16.4 sec).
+#13 19.86   SchaerbeekMunicipality.Domain -&gt; /src/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+#13 19.86   SchaerbeekMunicipality.ServiceDefaults -&gt; /src/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+#13 20.52   SchaerbeekMunicipality.Infrastructure -&gt; /src/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+#13 25.45   SchaerbeekMunicipality.Web -&gt; /src/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
+#13 26.48   SchaerbeekMunicipality.Web -&gt; /app/publish/
+#13 DONE 30.7s
+
+#14 [final 2/4] WORKDIR /app
+#14 CACHED
+
+#15 [final 3/4] COPY --from=build /app/publish .
+#15 DONE 0.1s
+
+#16 [final 4/4] RUN mkdir -p /app/uploads &amp;&amp; chown 1654 /app/uploads
+#16 DONE 0.2s
+
+#17 exporting to image
+#17 exporting layers
+#17 exporting layers 0.2s done
+#17 writing image sha256:8c4407cc785ef26bedb5aa987a9e06a8c3f1caa62d8f77e53006afbc22441707 done
+#17 naming to docker.io/library/schaerbeek-test 0.0s done
+#17 DONE 0.2s
+
+View build details: docker-desktop://dashboard/build/orbstack/orbstack/mh80yflczgow31685k2i5ta6g
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: docker run --rm schaerbeek-test sh -c 'touch /app/uploads/test && ls -la /app/uploads/'</summary>
+
+```bash
+docker run --rm schaerbeek-test sh -c 'touch /app/uploads/test && ls -la /app/uploads/'
+```
+
+```
+]633;Cinfo: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (22ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA journal_mode = 'wal';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "administrative_documents" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_administrative_documents" PRIMARY KEY,
+          "registration_case_id" TEXT NOT NULL,
+          "document_type" TEXT NOT NULL,
+          "file_name" TEXT NOT NULL,
+          "storage_path" TEXT NOT NULL,
+          "content_hash" TEXT NOT NULL,
+          "uploaded_by_officer_id" TEXT NOT NULL,
+          "uploaded_at" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "case_audit_entries" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_case_audit_entries" PRIMARY KEY,
+          "case_id" TEXT NOT NULL,
+          "action" TEXT NOT NULL,
+          "officer_id" TEXT NOT NULL,
+          "occurred_at" TEXT NOT NULL,
+          "details" TEXT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "certificate_requests" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_certificate_requests" PRIMARY KEY,
+          "registration_case_id" TEXT NOT NULL,
+          "certificate_type" TEXT NOT NULL,
+          "person_id" TEXT NOT NULL,
+          "issued_by_officer_id" TEXT NOT NULL,
+          "reference_number" TEXT NOT NULL,
+          "issued_at" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "households" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_households" PRIMARY KEY,
+          "registration_case_id" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "municipalities" (
+          "postal_code" TEXT NOT NULL CONSTRAINT "PK_municipalities" PRIMARY KEY,
+          "name" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "national_register_persons" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_national_register_persons" PRIMARY KEY,
+          "given_name" TEXT NOT NULL,
+          "family_name" TEXT NOT NULL,
+          "birth_date" TEXT NOT NULL,
+          "nationality" TEXT NOT NULL,
+          "bis_number" TEXT NULL,
+          "national_register_number" TEXT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "outbound_notifications" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_outbound_notifications" PRIMARY KEY,
+          "registration_case_id" TEXT NOT NULL,
+          "person_id" TEXT NOT NULL,
+          "recipient" TEXT NOT NULL,
+          "message" TEXT NOT NULL,
+          "created_at" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "persons" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_persons" PRIMARY KEY,
+          "given_name" TEXT NOT NULL,
+          "family_name" TEXT NOT NULL,
+          "birth_date" TEXT NOT NULL,
+          "nationality" TEXT NOT NULL,
+          "linked_register_record_id" TEXT NULL,
+          "bis_number" TEXT NULL,
+          "national_register_number" TEXT NULL,
+          "civil_status" TEXT NULL,
+          "spouse_given_name" TEXT NULL,
+          "spouse_family_name" TEXT NULL,
+          "marriage_date" TEXT NULL,
+          "marriage_place" TEXT NULL,
+          "marriage_recognition_status" TEXT NULL,
+          "birth_place" TEXT NULL,
+          "birth_country" TEXT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "police_verification_requests" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_police_verification_requests" PRIMARY KEY,
+          "registration_case_id" TEXT NOT NULL,
+          "requested_at" TEXT NOT NULL,
+          "completed_at" TEXT NULL,
+          "result" TEXT NULL,
+          "officer_notes" TEXT NULL,
+          "attempt_number" INTEGER NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "registration_cases" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_registration_cases" PRIMARY KEY,
+          "status" TEXT NOT NULL,
+          "visit_reason" TEXT NOT NULL,
+          "assigned_officer_id" TEXT NULL,
+          "locked_by_officer_id" TEXT NULL,
+          "locked_at" TEXT NULL,
+          "person_id" TEXT NULL,
+          "residence_category" TEXT NULL,
+          "immigration_decision_reference" TEXT NULL,
+          "immigration_decision_date" TEXT NULL,
+          "address_street" TEXT NULL,
+          "address_house_number" TEXT NULL,
+          "address_box" TEXT NULL,
+          "address_postal_code" TEXT NULL,
+          "address_municipality" TEXT NULL,
+          "housing_situation" TEXT NULL,
+          "opened_at" TEXT NOT NULL,
+          "closed_at" TEXT NULL,
+          "register_target" TEXT NULL,
+          "decision_officer_id" TEXT NULL,
+          "rejection_reason" TEXT NULL,
+          "suspension_reason" TEXT NULL,
+          "decision_notes" TEXT NULL,
+          "status_before_suspension" TEXT NULL,
+          "identity_established" INTEGER NOT NULL,
+          "legal_residence_established" INTEGER NOT NULL,
+          "address_declared" INTEGER NOT NULL,
+          "address_confirmed" INTEGER NOT NULL,
+          "register_determinable" INTEGER NOT NULL,
+          "birth_evidence_established" INTEGER NOT NULL,
+          "duplicate_investigation_resolved" INTEGER NOT NULL,
+          "duplicate_investigation_status" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "residence_permits" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_residence_permits" PRIMARY KEY,
+          "registration_case_id" TEXT NOT NULL,
+          "permit_type" TEXT NOT NULL,
+          "card_number" TEXT NULL,
+          "valid_from" TEXT NOT NULL,
+          "valid_until" TEXT NOT NULL,
+          "issuing_authority" TEXT NULL,
+          "recorded_at" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "streets" (
+          "id" INTEGER NOT NULL CONSTRAINT "PK_streets" PRIMARY KEY,
+          "postal_code" TEXT NOT NULL,
+          "name" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "household_members" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_household_members" PRIMARY KEY,
+          "household_id" TEXT NOT NULL,
+          "given_name" TEXT NOT NULL,
+          "family_name" TEXT NOT NULL,
+          "birth_date" TEXT NOT NULL,
+          "role" TEXT NOT NULL,
+          CONSTRAINT "FK_household_members_households_household_id" FOREIGN KEY ("household_id") REFERENCES "households" ("id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_administrative_documents_registration_case_id" ON "administrative_documents" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_case_audit_entries_case_id" ON "case_audit_entries" ("case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_certificate_requests_reference_number" ON "certificate_requests" ("reference_number");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_certificate_requests_registration_case_id" ON "certificate_requests" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_household_members_household_id" ON "household_members" ("household_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_households_registration_case_id" ON "households" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_national_register_persons_bis_number" ON "national_register_persons" ("bis_number");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_national_register_persons_national_register_number" ON "national_register_persons" ("national_register_number");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_outbound_notifications_created_at" ON "outbound_notifications" ("created_at");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_outbound_notifications_registration_case_id" ON "outbound_notifications" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_persons_linked_register_record_id" ON "persons" ("linked_register_record_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_persons_national_register_number" ON "persons" ("national_register_number");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_police_verification_requests_completed_at" ON "police_verification_requests" ("completed_at");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_police_verification_requests_registration_case_id" ON "police_verification_requests" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_residence_permits_registration_case_id" ON "residence_permits" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_streets_postal_code" ON "streets" ("postal_code");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "municipalities" AS "m")
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4), @p1='?' (Size = 9)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "municipalities" ("postal_code", "name")
+      VALUES (@p0, @p1);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4), @p1='?' (Size = 10)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "municipalities" ("postal_code", "name")
+      VALUES (@p0, @p1);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4), @p1='?' (Size = 9)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "municipalities" ("postal_code", "name")
+      VALUES (@p0, @p1);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4), @p1='?' (Size = 21)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "municipalities" ("postal_code", "name")
+      VALUES (@p0, @p1);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 19), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 12), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 17), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 20), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 16), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 19), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 11), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 16), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "national_register_persons" AS "n")
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?' (Size = 11), @p3='?' (Size = 7), @p4='?' (Size = 5), @p5='?', @p6='?' (Size = 7)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?' (Size = 11), @p3='?' (Size = 7), @p4='?' (Size = 6), @p5='?', @p6='?' (Size = 6)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?', @p3='?' (Size = 6), @p4='?' (Size = 4), @p5='?' (Size = 11), @p6='?' (Size = 7)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?' (Size = 11), @p3='?' (Size = 6), @p4='?' (Size = 2), @p5='?', @p6='?' (Size = 7)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?', @p3='?' (Size = 6), @p4='?' (Size = 5), @p5='?' (Size = 11), @p6='?' (Size = 10)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+warn: Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository[60]
+      Storing keys in a directory '/home/app/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed. For more information go to https://aka.ms/aspnet/dataprotectionwarning
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+      No XML encryptor configured. Key {225bba6e-da64-4b95-bb11-53af6b0944c1} may be persisted to storage in unencrypted form.
+warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
+      Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://[::]:8080
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /app
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: docker run --rm --entrypoint sh schaerbeek-test -c 'touch /app/uploads/test && ls -la /app/uploads/'</summary>
+
+```bash
+docker run --rm --entrypoint sh schaerbeek-test -c 'touch /app/uploads/test && ls -la /app/uploads/'
+```
+
+```
+total 0
+drwxr-xr-x 1 app  root  8 Jul  6 19:49 .
+drwxr-xr-x 1 root root 14 Jul  6 19:49 ..
+-rw-r--r-- 1 app  app   0 Jul  6 19:49 test
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The fix resolves the production upload failure. The non-root `app` user now has write access to `/app/uploads`.</details></think>
+
+_**Agent (default)**_
+
+The upload failed because the container runs as a non-root user (`$APP_UID`, uid 1654) and cannot create `/app/uploads` at runtime — only root-owned files exist under `/app`.
+
+`LocalFileDocumentStorage` writes to `{ContentRootPath}/uploads` → `/app/uploads`, and `Directory.CreateDirectory` fails with permission denied.
+
+## Fix
+
+The Dockerfile now creates the uploads directory at build time and gives ownership to the app user:
+
+```17:22:Dockerfile
+COPY --from=build /app/publish .
+
+# The aspnet image runs as a non-root user ($APP_UID) that cannot create /app/uploads at runtime.
+RUN mkdir -p /app/uploads && chown $APP_UID /app/uploads
+
+USER $APP_UID
+```
+
+I verified locally that the non-root user can write files there.
+
+## Redeploy
+
+1. Push this change to `main` so the **Container publish** workflow rebuilds the GHCR image.
+2. Force Azure Container Apps to pull the new image:
+
+```bash
+az containerapp update \
+  --name schaerbeek-web \
+  --resource-group schaerbeek-rg \
+  --image ghcr.io/jobijoba/schaerbeek-municipality-web:latest
+```
+
+Or trigger a new revision from the Azure portal.
+
+**Note:** With the SQLite ephemeral profile, uploaded documents are still lost when the container restarts or scales to zero — same as the database. That’s expected for this demo setup; only the permission error is fixed here.
+
+---
+
+_**User**_
+
+so now we did a change; I don't have to delete the schaerbeek-rg , can I just launch deploy.sh again? 
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user asks whether they can simply rerun `deploy.sh` after the Dockerfile fix, without deleting the `schaerbeek-rg` resource group first.</details></think>
+
+_**Agent (default)**_
+
+Checking what `deploy.sh` does on a repeat run and whether it picks up a new container image.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/deploy.sh</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/main.bicep</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Dockerfile</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user asks whether they can rerun deploy.sh without deleting the schaerbeek-rg resource group.
+
+Yes, you can rerun deploy.sh without deleting the resource group. The deployment command is incremental and updates existing resources.
+
+However, deploying again with the same `latest` image tag may not trigger a new revision. Azure Container Apps can cache the `latest` tag and skip pulling the updated image. You should push the Dockerfile change to main so GHCR builds a new image, then update the deployment to reference that new image.</details></think>
+
+_**Agent (default)**_
+
+Yes — you do **not** need to delete `schaerbeek-rg`. Running `deploy.sh` again is fine; it uses `az deployment group create`, which updates the existing resource group in place.
+
+There are two separate steps though, and `deploy.sh` only covers the second one.
+
+## 1. Build and push the new image first
+
+The Dockerfile fix only helps once a **new image** is in GHCR. That happens when you push the change to `main` and the **Container publish** workflow finishes.
+
+Until that workflow completes, redeploying won't change anything — ACA will still run the old image.
+
+## 2. Redeploy / restart the container app
+
+After the new image is on GHCR, you have two options:
+
+**Option A — run `deploy.sh` again** (simplest)
+
+```bash
+./deploy.sh
+```
+
+This is safe and won't recreate the resource group. Existing resources (Log Analytics, Container Apps environment, etc.) are updated, not deleted.
+
+**Option B — force a new revision** (more reliable with `:latest`)
+
+Because your image tag is still `ghcr.io/jobijoba/schaerbeek-municipality-web:latest`, Azure may **not** pull the new image digest if Bicep sees no change. In that case, explicitly update the container app:
+
+```bash
+az containerapp update \
+  --name schaerbeek-web \
+  --resource-group schaerbeek-rg \
+  --image ghcr.io/jobijoba/schaerbeek-municipality-web:latest
+```
+
+Or use the commit SHA tag from the workflow (e.g. `ghcr.io/jobijoba/schaerbeek-municipality-web:abc1234`) — that guarantees a new revision.
+
+## Summary
+
+| Step | Required? |
+|------|-----------|
+| Delete `schaerbeek-rg` | No |
+| Push Dockerfile fix → wait for GHCR build | Yes |
+| Run `./deploy.sh` again | Yes (or `az containerapp update`) |
+
+You only need to delete the resource group if you want a full teardown and fresh start — not for this fix.
+
+---
+
+_**User**_
+
+so i've done deploy after waiting for the package to release a new version but I'm not sure he did something ... I still see my case from the old database when I thought it was going to delete it? 
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user is confused because their old case data still appears after redeploying. They expected the previous case to be deleted.
+
+The ephemeral `/tmp` directory is only cleared when the container is replaced entirely. If the deployment script reruns without a new image revision, the same container keeps running and retains its old database file.</details></think>
+
+_**Agent (default)**_
+
+Checking how the SQLite profile handles data across redeploys and what actually triggers a container restart.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/appsettings.Production.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/adr/0005-deployment-database-by-environment.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user's misunderstanding is now clear.</details></think>
+
+_**Agent (default)**_
+
+That behavior is expected. Redeploying does **not** reset the database by itself.
+
+## What `deploy.sh` actually does
+
+`deploy.sh` runs a Bicep deployment that **updates Azure infrastructure** (resource group, Container Apps environment, container app settings). It does **not** delete application data.
+
+Your cases live in SQLite at `/tmp/schaerbeek.db` **inside the running container**. That file only disappears when the **container process is replaced** — not when you redeploy Bicep.
+
+## Why your case is still there
+
+A few likely reasons:
+
+1. **Deploy may have changed nothing** — If the image is still `ghcr.io/.../latest` and nothing else in Bicep changed, Azure often reports something like “no changes” and **keeps the same running container**. Same container → same `/tmp/schaerbeek.db` → same case.
+
+2. **Ephemeral ≠ reset on every deploy** — The README says data is lost when the **container is replaced** or on **cold start after scale-to-zero**, not on every `deploy.sh` run:
+
+   > *All registration cases and uploads are lost when the container is replaced.*
+
+3. **The app was still warm** — With `minReplicas: 0`, if you hit the app recently, the replica may still be running with its in-memory/disk state intact.
+
+## How to check whether deploy did anything
+
+```bash
+# See recent revisions
+az containerapp revision list \
+  --name schaerbeek-web \
+  --resource-group schaerbeek-rg \
+  --query "[].{name:name, active:properties.active, created:properties.createdTime, image:properties.template.containers[0].image}" \
+  -o table
+```
+
+If there’s no **new revision** with a recent `createdTime`, deploy didn’t restart the app — it only confirmed infra config.
+
+You can also check the deployment output: if it said resources were unchanged or only metadata updated, the container wasn’t recreated.
+
+## How to actually get a fresh database
+
+Any of these will wipe cases (and uploads):
+
+**Force a new revision** (after the new GHCR image exists):
+
+```bash
+az containerapp update \
+  --name schaerbeek-web \
+  --resource-group schaerbeek-rg \
+  --image ghcr.io/jobijoba/schaerbeek-municipality-web:latest
+```
+
+**Or restart the latest revision:**
+
+```bash
+az containerapp revision restart \
+  --name schaerbeek-web \
+  --resource-group schaerbeek-rg \
+  --revision $(az containerapp revision list -n schaerbeek-web -g schaerbeek-rg --query "[?properties.active].name" -o tsv)
+```
+
+**Or wait for scale-to-zero** — stop hitting the app for a while (often ~15+ minutes of idle), then come back. The next request cold-starts a new container with an empty `/tmp/schaerbeek.db` (re-seeded with streets/national register only).
+
+**Or nuclear option** — delete the resource group, but you don’t need that just to reset data.
+
+## Summary
+
+| Action | Wipes your cases? |
+|--------|-------------------|
+| Run `deploy.sh` again | Usually **no** |
+| New container revision / restart | **Yes** |
+| Cold start after scale-to-zero | **Yes** |
+| Delete `schaerbeek-rg` | **Yes** |
+
+So seeing your old case after `deploy.sh` is normal. To verify the uploads fix, force a new revision with `az containerapp update`, then try uploading again — you don’t need to delete the resource group for that.
+
+---
+
+_**User**_
+
+i got a Subscription 472113ae-7635-41e2-b158-f68f4ddf16b8 is not registered for the Microsoft.App resource provider. Please run "az provider register -n Microsoft.App --wait" to register your subscription. when I run your command
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user encountered an error while running the `az provider register` command.
+
+The subscription likely differs from the one used in deploy.sh. Registering the Microsoft.App provider should resolve the issue.
+
+Run `az provider register -n Microsoft.App --wait`. This may take a few minutes. The subscription used during the earlier deployment might differ from the current one. `Microsoft.OperationalInsights` may also need registration.</details></think>
+
+_**Agent (default)**_
+
+That error means the Azure subscription your CLI is using right now isn’t registered for **Container Apps** (`Microsoft.App`). The `az containerapp` commands won’t work until that’s fixed.
+
+## First: check you’re on the right subscription
+
+You already deployed successfully before, so either the provider was registered then or you’re on a **different subscription** now:
+
+```bash
+az account show --query "{name:name, id:id}" -o table
+az account list --query "[].{name:name, id:id, isDefault:isDefault}" -o table
+```
+
+If this isn’t the subscription where `schaerbeek-rg` lives, switch:
+
+```bash
+az account set --subscription "YOUR_SUBSCRIPTION_NAME_OR_ID"
+```
+
+## Register the provider
+
+```bash
+az provider register -n Microsoft.App --wait
+```
+
+`--wait` blocks until registration finishes. It often takes **1–5 minutes**, sometimes longer.
+
+You can check status with:
+
+```bash
+az provider show -n Microsoft.App --query registrationState -o tsv
+```
+
+You want: `Registered`.
+
+## If deploy worked before, you may also need
+
+Container Apps depends on a few other providers. If anything else fails, register these too:
+
+```bash
+az provider register -n Microsoft.OperationalInsights --wait
+az provider register -n Microsoft.OperationalInsights --wait  # logs (likely already done from deploy)
+```
+
+Actually the common ones for ACA are:
+- `Microsoft.App`
+- `Microsoft.OperationalInsights` 
+- `Microsoft.ContainerService` (sometimes)
+
+For your setup, `Microsoft.App` is the one in the error.
+
+## Then retry
+
+```bash
+az containerapp update \
+  --name schaerbeek-web \
+  --resource-group schaerbeek-rg \
+  --image ghcr.io/jobijoba/schaerbeek-municipality-web:latest
+```
+
+## If registration is blocked
+
+On some subscriptions (new free accounts, student accounts, certain tenants), provider registration can be restricted. In that case:
+
+- Use the **Azure Portal** → your Container App → **Revision management** → **Create new revision** or **Restart**
+- Or wait for scale-to-zero and cold start (slower, less reliable for forcing a new image)
+
+## Why this is odd if deploy already worked
+
+If `./deploy.sh` succeeded and you can use the app, `Microsoft.App` was almost certainly registered at deploy time. The most common cause of this error afterward is **`az account set` pointing at a different subscription** than the one that owns `schaerbeek-rg`.
+
+Quick sanity check:
+
+```bash
+az group show --name schaerbeek-rg -o table
+```
+
+If that fails with “not found”, you’re on the wrong subscription. If it works but `az containerapp` still complains about the provider, run the register command on that same subscription.
+
+---
+
+_**User**_
+
+it is not applying the latest package that was generated on github. the script does not recreat anything 
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Azure Container Apps is not pulling the latest Docker image from GHCR after GitHub Actions builds and pushes a new version. The script is not recreating anything.</details></think>
+
+_**Agent (default)**_
+
+Reviewing how images are tagged and how the deploy script references them — that's usually why `:latest` doesn't trigger a new pull.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github/workflows/container-publish.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/parameters.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The root cause is the `:latest` Docker tag. Docker caches this tag locally, so the script never pulls the newly generated package from GitHub.
+
+Bicep sees no change because the image string is still `latest`. It skips creating a new revision. Azure Container Apps may also cache the resolved digest from the original deployment. Use the SHA tag from the latest GitHub Actions run instead of `latest`.
+
+Set the image variable to the full SHA tag before running deploy.sh. Other options include forcing a revision bump with a dummy environment variable, updating via az containerapp update, or manually creating a new revision in the portal.</details></think>
+
+_**Agent (default)**_
+
+You're hitting a very common Container Apps + `:latest` issue. **`deploy.sh` is working as designed** — it only updates Azure when Bicep sees a **change**. Right now nothing changes.
+
+## Why nothing happens
+
+Your workflow publishes two tags:
+
+```text
+ghcr.io/jobijoba/schaerbeek-municipality-web:latest
+ghcr.io/jobijoba/schaerbeek-municipality-web:<git-sha>
+```
+
+But `parameters.json` always says:
+
+```text
+ghcr.io/jobijoba/schaerbeek-municipality-web:latest
+```
+
+So when you run `./deploy.sh` again:
+
+1. Bicep compares desired vs actual config
+2. Image string is still `...:latest` → **no diff**
+3. Azure reports no changes / doesn't create a new revision
+4. The **old container keeps running** with the old image digest (and your old SQLite data in `/tmp`)
+
+Redeploy ≠ pull latest from GHCR. It only redeploys **if the template parameters changed**.
+
+## Fix: deploy with the commit SHA tag
+
+1. Open GitHub → **Actions** → **Container publish** → latest successful run
+2. Copy the commit SHA from that run (short form is fine, e.g. `a1b2c3d`)
+3. Deploy with that explicit tag:
+
+```bash
+export CONTAINER_IMAGE=ghcr.io/jobijoba/schaerbeek-municipality-web:a1b2c3d
+cd deploy/azure/sqlite
+./deploy.sh
+```
+
+Because the image string **changed**, Bicep will update the Container App and ACA will create a **new revision** that pulls the new image.
+
+If `az containerapp` works for you (after provider registration):
+
+```bash
+az containerapp update \
+  --name schaerbeek-web \
+  --resource-group schaerbeek-rg \
+  --image ghcr.io/jobijoba/schaerbeek-municipality-web:a1b2c3d
+```
+
+## Verify it actually updated
+
+```bash
+az containerapp revision list \
+  --name schaerbeek-web \
+  --resource-group schaerbeek-rg \
+  --query "[].{name:name, active:properties.active, created:properties.createdTime, image:properties.template.containers[0].image}" \
+  -o table
+```
+
+You should see a **new revision** with a recent `createdTime` and the SHA tag (or a new digest if you used `latest` via `containerapp update`).
+
+On GHCR, open **Packages** → `schaerbeek-municipality-web` and confirm the SHA tag exists and was published **after** your Dockerfile fix.
+
+## What you should expect after a real update
+
+- **Cases gone** — new container → fresh `/tmp/schaerbeek.db`
+- **Reference data back** — streets / national register re-seeded on startup
+- **Uploads should work** — if the new image includes the `/app/uploads` fix
+
+## Why `latest` is unreliable here
+
+`:latest` is a **moving tag** — GHCR points it at a new image, but Azure may keep running the **old digest** it resolved when the revision was first created. `deploy.sh` won't fix that unless you change something in the deployment.
+
+**Reliable approach:** always deploy with the **git SHA tag** from the workflow, not `latest`.
+
+## Portal alternative (no CLI)
+
+Azure Portal → **Container Apps** → `schaerbeek-web` → **Revisions and replicas** → **Create new revision** → set image to `ghcr.io/jobijoba/schaerbeek-municipality-web:<sha>` → create.
+
+---
+
+**TL;DR:** GitHub built a new package, but Azure was never told the image changed. Use the SHA tag in `CONTAINER_IMAGE` and run `deploy.sh` again — that will force a new revision. If you want, switch to Agent mode and we can update `deploy.sh` / docs to make SHA-based deploys the default workflow.
+
+---
+
+_**User**_
+
+btw what will be the URL of aspire ? 
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Determining the local URL for Aspire.</details></think>
+
+_**Agent (default)**_
+
+Checking how Aspire is configured locally and which URLs it exposes.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (0 files)
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.{cs,json,md}",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "aspire|dashboard|WithHttpEndpoint|launchUrl"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "aspire|dashboard|WithHttpEndpoint|launchUrl",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-05_18-27-04Z-case-access-and-locking-rules.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/adr/0005-deployment-database-by-environment.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-05_18-23-47Z-difference-between-officer-roles.md"
+    },
+    {
+      "matchCount": 12,
+      "uri": "docs/phases/phase-8.1-role-boundaries-case-locking.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/features/registration/README.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": ".specstory/history/2026-07-05_18-18-58Z-registration-feature-discussion.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 15,
+      "uri": ".specstory/history/2026-07-06_18-43-21Z-phase-10-overview.md"
+    }
+  ],
+  "totalFiles": 8,
+  "totalMatches": 137
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (5 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj` |
+| `src/SchaerbeekMunicipality.AppHost/appsettings.Development.json` |
+| `src/SchaerbeekMunicipality.AppHost/appsettings.json` |
+| `src/SchaerbeekMunicipality.AppHost/AppHost.cs` |
+| `src/SchaerbeekMunicipality.AppHost/Properties/launchSettings.json` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.md",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "dotnet run.*AppHost|AppHost"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "dotnet run.*AppHost|AppHost",
+  "topFiles": [
+    {
+      "matchCount": 20,
+      "uri": ".specstory/history/2026-07-06_18-43-21Z-phase-10-overview.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 140
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/AppHost.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/Properties/launchSettings.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (0 files)
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Considering the default URL for Aspire when running the AppHost.
+
+The Aspire dashboard is at https://localhost:17148. The web app receives a dynamic port from Aspire. Check the dashboard for the exact web URL.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (1 file)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Web/Properties/launchSettings.json` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "README*",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "localhost|17148|15096"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "localhost|17148|15096",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Properties/launchSettings.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.md",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "dotnet run.*AppHost|17148|Aspire"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "dotnet run.*AppHost|17148|Aspire",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "docs/APP-OVERVIEW.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": "README.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/README.md"
+    },
+    {
+      "matchCount": 7,
+      "uri": "docs/phases/phase-0.1-tooling-hygiene.md"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 140
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The Aspire Dashboard URL depends on the profile. The HTTPS default is https://localhost:17148. The HTTP fallback is http://localhost:15096.</details></think>
+
+_**Agent (default)**_
+
+Aspire is **local development only** — it doesn’t get a public URL like your Azure deployment. When you run it on your machine, you get two different things:
+
+## 1. Aspire dashboard (orchestrator UI)
+
+From `launchSettings.json` in the AppHost project:
+
+| Profile | Dashboard URL |
+|---------|----------------|
+| **https** (default in VS/Rider) | `https://localhost:17148` |
+| **http** | `http://localhost:15096` |
+
+Start it with:
+
+```bash
+dotnet run --project src/SchaerbeekMunicipality.AppHost
+```
+
+The dashboard usually opens automatically (`launchBrowser: true`). That’s where you see **web**, **postgres**, logs, traces, and health.
+
+## 2. Web app (the actual Schaerbeek app)
+
+When run **through Aspire**, the web port is assigned at runtime. Check the dashboard → click the **web** resource → use its endpoint URL.
+
+When run **standalone** (without AppHost), it’s:
+
+```text
+http://localhost:5155
+```
+
+(from `SchaerbeekMunicipality.Web/Properties/launchSettings.json`)
+
+The README also says to open the app from the dashboard, typically `http://localhost:5155` — that’s the usual port, but under Aspire the dashboard is the reliable source if it differs.
+
+## vs Azure production
+
+| Environment | URL |
+|-------------|-----|
+| **Aspire (local)** | Dashboard: `https://localhost:17148` · Web: from dashboard (often `http://localhost:5155`) |
+| **Azure Container Apps** | `https://<your-fqdn>.azurecontainerapps.io` from deploy output |
+
+There is no hosted “Aspire URL” in production — Azure runs only the **Web** container image, not the Aspire AppHost/dashboard.
+
+---
+
+_**User**_
+
+ok everything is working now; where do I see the money spent on Azure? 

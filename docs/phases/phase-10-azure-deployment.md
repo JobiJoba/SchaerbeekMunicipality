@@ -115,5 +115,5 @@ az group delete --name schaerbeek-rg --yes --no-wait
 
 ## Carries forward
 
-- Phase 11 optional features deploy with the same image and either profile.
+- Phase 12+ optional features deploy with the same image and either profile.
 - Expand Testcontainers PG coverage when PR CI time allows.

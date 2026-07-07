@@ -256,9 +256,9 @@ Seed tables / enums:
 
 ---
 
-## Person file (read model — later phase)
+## Person file (read model — Phase 16)
 
-Long term, a **PersonFile** read model consolidates everything IDEA lists under “Information maintained about the person.” Build this as a query/projection once multiple contexts exist — not as a writable mega-entity on day one.
+A **PersonFile** read model consolidates everything IDEA lists under “Information maintained about the person.” Build this as a query/projection once multiple contexts exist — not as a writable mega-entity on day one. See [phases/phase-16-person-file.md](./phases/phase-16-person-file.md).
 
 ---
 

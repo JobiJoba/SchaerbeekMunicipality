@@ -12,7 +12,7 @@
       "value": "schaerbeek-web"
     },
     "containerImage": {
-      "value": "ghcr.io/jobijoba/schaerbeek-municipality-web:latest"
+      "value": "ghcr.io/jobijoba/schaerbeek-municipality-web:28261b4"
     },
     "minReplicas": {
       "value": 0
