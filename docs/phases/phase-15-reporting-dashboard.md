@@ -82,7 +82,7 @@ Officer opens reports → sees 12 registrations and 3 birth declarations this mo
 
 ## Dependencies
 
-- **Phase 12+** recommended so birth and COA metrics are meaningful; can ship earlier with registration-only metrics.
+- **Phase 12** complete — birth declaration metrics available; **Phase 13+** recommended so COA metrics are meaningful; can ship earlier with registration + birth metrics only.
 
 ---
 

@@ -15,6 +15,9 @@ public sealed class DomainEventDispatcher(
             case RegistrationConfirmed confirmed:
                 await DispatchRegistrationConfirmedAsync(confirmed, cancellationToken);
                 break;
+            case BirthRegistered birthRegistered:
+                await DispatchBirthRegisteredAsync(birthRegistered, cancellationToken);
+                break;
             default:
                 logger.LogDebug("No handler registered for domain event {EventType}", domainEvent.GetType().Name);
                 break;
@@ -31,6 +34,19 @@ public sealed class DomainEventDispatcher(
         foreach (var handler in handlers)
         {
             await handler.HandleAsync(confirmed, cancellationToken);
+        }
+    }
+
+    private async Task DispatchBirthRegisteredAsync(
+        BirthRegistered birthRegistered,
+        CancellationToken cancellationToken)
+    {
+        await using var scope = serviceProvider.CreateAsyncScope();
+        var handlers = scope.ServiceProvider.GetServices<IBirthRegisteredHandler>();
+
+        foreach (var handler in handlers)
+        {
+            await handler.HandleAsync(birthRegistered, cancellationToken);
         }
     }
 }

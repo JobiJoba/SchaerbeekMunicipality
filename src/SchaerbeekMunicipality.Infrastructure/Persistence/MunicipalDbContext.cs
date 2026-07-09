@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
@@ -15,6 +16,8 @@ namespace SchaerbeekMunicipality.Infrastructure.Persistence;
 public sealed class MunicipalDbContext(DbContextOptions<MunicipalDbContext> options) : DbContext(options)
 {
     public DbSet<RegistrationCase> RegistrationCases => Set<RegistrationCase>();
+
+    public DbSet<BirthDeclarationCase> BirthDeclarationCases => Set<BirthDeclarationCase>();
 
     public DbSet<Person> Persons => Set<Person>();
 

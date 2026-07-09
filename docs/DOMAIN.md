@@ -101,6 +101,8 @@ This document maps the Belgian municipal population workflow ([IDEA.md](../IDEA.
 | `ReviewCase` / `ApproveCase` / `RejectCase` | Phase 18 |
 | `ConfirmRegistration` | Phase 19–20 |
 
+**Phase 12 (complete):** Newborn registration is a **separate** bounded context — aggregate `BirthDeclarationCase`, API `/api/birth-declarations/*`, not a variant of `RegistrationCase`. Reception visit reason `BirthDeclaration` opens a birth case. See [phase-12-birth-declaration.md](./phases/phase-12-birth-declaration.md).
+
 ---
 
 ### 3. Identity & civil status

@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Auth;
 
@@ -5,6 +6,7 @@ namespace SchaerbeekMunicipality.Web.Features.Registration.GetReviewDashboard;
 
 public sealed class GetReviewDashboardHandler(
     IRegistrationCaseRepository caseRepository,
+    IBirthDeclarationCaseRepository birthDeclarationCaseRepository,
     RegistrationCaseAuthorization authorization,
     ICurrentOfficer currentOfficer)
 {
@@ -12,67 +14,123 @@ public sealed class GetReviewDashboardHandler(
     {
         authorization.EnsureCanViewReviewDashboard(currentOfficer);
 
-        var cases = await caseRepository.ListAsync(cancellationToken);
+        var registrationCases = await caseRepository.ListAsync(cancellationToken);
+        var birthCases = await birthDeclarationCaseRepository.ListAsync(cancellationToken);
         var officerId = OfficerId.From(currentOfficer.OfficerId);
 
-        var openCases = cases.Count(c =>
+        var openCases = registrationCases.Count(c =>
             c.IsLockedTo(officerId) &&
             c.Status is RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview);
 
-        var unassigned = cases.Count(IsUnassigned);
+        var unassignedRegistration = registrationCases.Count(IsUnassignedRegistration);
 
-        var awaitingPolice = cases.Count(c =>
+        var awaitingPolice = registrationCases.Count(c =>
             c.Status == RegistrationCaseStatus.AwaitingPoliceVerification);
 
-        var readyForDecision = cases.Count(c => c.IsReadyForApproval);
+        var readyForDecision = registrationCases.Count(c => c.IsReadyForApproval);
 
-        var suspended = cases.Count(c => c.Status == RegistrationCaseStatus.Suspended);
+        var suspendedRegistration = registrationCases.Count(c =>
+            c.Status == RegistrationCaseStatus.Suspended);
+
+        var birthUnassigned = birthCases.Count(IsUnassignedBirth);
+
+        var readyForConfirmation = birthCases.Count(c => c.IsReadyForConfirmation);
 
         var statistics = new List<ReviewDashboardStatistic>
         {
             new("My open cases", openCases, "/registration/cases?filter=mine", false),
-            new("Unassigned", unassigned, "/registration/cases?filter=unassigned", unassigned > 0),
+            new("Unassigned", unassignedRegistration, "/registration/cases?filter=unassigned", unassignedRegistration > 0),
             new("Awaiting police", awaitingPolice, "/registration/police-verifications", false),
             new("Ready for decision", readyForDecision, "/registration/cases", true),
-            new("Suspended", suspended, "/registration/cases", false),
+            new("Suspended", suspendedRegistration, "/registration/cases", false),
+            new("Birth unassigned", birthUnassigned, "/birth-declarations?filter=unassigned", birthUnassigned > 0),
+            new("Ready for confirmation", readyForConfirmation, "/birth-declarations?filter=ready", readyForConfirmation > 0),
         };
 
-        var actionable = cases
-            .Where(IsActionable)
-            .OrderByDescending(c => c.IsReadyForApproval)
-            .ThenByDescending(IsUnassigned)
-            .ThenByDescending(c => c.Status == RegistrationCaseStatus.Suspended)
-            .ThenByDescending(c => c.OpenedAt)
+        var actionable = registrationCases
+            .Where(IsActionableRegistration)
+            .Select(c => new ActionableCandidate(
+                new ActionableCaseRow(
+                    c.Id.Value,
+                    ReviewDashboardCaseType.Registration,
+                    c.Status.ToString(),
+                    c.VisitReason.ToString(),
+                    c.OpenedAt,
+                    BuildRegistrationSummary(c)),
+                c.IsReadyForApproval,
+                IsUnassignedRegistration(c),
+                c.Status == RegistrationCaseStatus.Suspended,
+                c.Status == RegistrationCaseStatus.AwaitingPoliceVerification))
+            .Concat(birthCases
+                .Where(IsActionableBirth)
+                .Select(c => new ActionableCandidate(
+                    new ActionableCaseRow(
+                        c.Id.Value,
+                        ReviewDashboardCaseType.BirthDeclaration,
+                        c.Status.ToString(),
+                        "Birth declaration",
+                        c.OpenedAt,
+                        BuildBirthSummary(c)),
+                    c.IsReadyForConfirmation,
+                    IsUnassignedBirth(c),
+                    c.Status == BirthDeclarationCaseStatus.Suspended,
+                    false)))
+            .OrderByDescending(c => c.IsReady)
+            .ThenByDescending(c => c.IsUnassigned)
+            .ThenByDescending(c => c.IsSuspended)
+            .ThenByDescending(c => c.IsAwaitingPolice)
+            .ThenByDescending(c => c.Row.OpenedAt)
             .Take(10)
-            .Select(c => new ActionableCaseRow(
-                c.Id.Value,
-                c.Status.ToString(),
-                c.VisitReason.ToString(),
-                c.OpenedAt,
-                BuildSummary(c)))
+            .Select(c => c.Row)
             .ToList();
 
         return new GetReviewDashboardResponse(statistics, actionable);
     }
 
-    private static bool IsUnassigned(RegistrationCase registrationCase) =>
+    private sealed record ActionableCandidate(
+        ActionableCaseRow Row,
+        bool IsReady,
+        bool IsUnassigned,
+        bool IsSuspended,
+        bool IsAwaitingPolice);
+
+    private static bool IsUnassignedRegistration(RegistrationCase registrationCase) =>
         registrationCase.LockedByOfficerId is null &&
         registrationCase.AssignedOfficerId is null &&
         registrationCase.Status == RegistrationCaseStatus.Intake;
 
-    private static bool IsActionable(RegistrationCase registrationCase) =>
+    private static bool IsUnassignedBirth(BirthDeclarationCase birthDeclarationCase) =>
+        birthDeclarationCase.LockedByOfficerId is null &&
+        birthDeclarationCase.AssignedOfficerId is null &&
+        birthDeclarationCase.Status == BirthDeclarationCaseStatus.Intake;
+
+    private static bool IsActionableRegistration(RegistrationCase registrationCase) =>
         registrationCase.IsReadyForApproval ||
         registrationCase.Status == RegistrationCaseStatus.AwaitingPoliceVerification ||
         registrationCase.Status == RegistrationCaseStatus.Suspended ||
-        IsUnassigned(registrationCase);
+        IsUnassignedRegistration(registrationCase);
 
-    private static string BuildSummary(RegistrationCase registrationCase) =>
+    private static bool IsActionableBirth(BirthDeclarationCase birthDeclarationCase) =>
+        birthDeclarationCase.IsReadyForConfirmation ||
+        birthDeclarationCase.Status == BirthDeclarationCaseStatus.Suspended ||
+        IsUnassignedBirth(birthDeclarationCase);
+
+    private static string BuildRegistrationSummary(RegistrationCase registrationCase) =>
         registrationCase.Status switch
         {
             RegistrationCaseStatus.AwaitingPoliceVerification => "Awaiting police residence check",
             RegistrationCaseStatus.Suspended => $"Suspended — {registrationCase.SuspensionReason}",
             _ when registrationCase.IsReadyForApproval => "Ready for officer decision",
-            _ when IsUnassigned(registrationCase) => "Unassigned — awaiting intake",
+            _ when IsUnassignedRegistration(registrationCase) => "Unassigned — awaiting intake",
             _ => registrationCase.Status.ToString(),
+        };
+
+    private static string BuildBirthSummary(BirthDeclarationCase birthDeclarationCase) =>
+        birthDeclarationCase.Status switch
+        {
+            BirthDeclarationCaseStatus.Suspended => $"Suspended — {birthDeclarationCase.SuspensionReason}",
+            _ when birthDeclarationCase.IsReadyForConfirmation => "Ready for confirmation",
+            _ when IsUnassignedBirth(birthDeclarationCase) => "Unassigned — awaiting intake",
+            _ => birthDeclarationCase.Status.ToString(),
         };
 }

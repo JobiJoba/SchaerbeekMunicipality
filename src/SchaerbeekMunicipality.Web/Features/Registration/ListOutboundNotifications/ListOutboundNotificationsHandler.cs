@@ -28,7 +28,7 @@ public sealed class ListOutboundNotificationsHandler(IOutboundNotificationReposi
         var items = notifications
             .Select(n => new OutboundNotificationDto(
                 n.Id.Value,
-                n.RegistrationCaseId.Value,
+                GetSourceCaseId(n),
                 n.PersonId.Value,
                 n.Recipient.ToString(),
                 n.Message,
@@ -37,4 +37,9 @@ public sealed class ListOutboundNotificationsHandler(IOutboundNotificationReposi
 
         return new ListOutboundNotificationsResponse(items.Count, items);
     }
+
+    private static Guid GetSourceCaseId(OutboundNotification notification) =>
+        notification.RegistrationCaseId?.Value
+        ?? notification.BirthDeclarationCaseId?.Value
+        ?? throw new InvalidOperationException("Notification must reference a case.");
 }

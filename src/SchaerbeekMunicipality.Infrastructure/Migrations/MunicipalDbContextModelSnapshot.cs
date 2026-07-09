@@ -22,6 +22,113 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.BirthDeclaration.BirthDeclarationCase", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("AssignedOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("assigned_officer_id");
+
+                    b.Property<DateOnly?>("ChildDateOfBirth")
+                        .HasColumnType("date")
+                        .HasColumnName("child_date_of_birth");
+
+                    b.Property<string>("ChildFamilyName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("child_family_name");
+
+                    b.Property<string>("ChildGivenNames")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("child_given_names");
+
+                    b.Property<string>("ChildNationalRegisterNumber")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("child_national_register_number");
+
+                    b.Property<Guid?>("ChildPersonId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("child_person_id");
+
+                    b.Property<string>("ChildPlaceOfBirth")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("child_place_of_birth");
+
+                    b.Property<string>("ChildSex")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("child_sex");
+
+                    b.Property<TimeOnly?>("ChildTimeOfBirth")
+                        .HasColumnType("time without time zone")
+                        .HasColumnName("child_time_of_birth");
+
+                    b.Property<DateTimeOffset?>("ClosedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("closed_at");
+
+                    b.Property<DateTimeOffset?>("ConfirmedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("confirmed_at");
+
+                    b.Property<string>("DecisionNotes")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)")
+                        .HasColumnName("decision_notes");
+
+                    b.Property<Guid?>("DecisionOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("decision_officer_id");
+
+                    b.Property<DateTimeOffset?>("LockedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("locked_at");
+
+                    b.Property<Guid?>("LockedByOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("locked_by_officer_id");
+
+                    b.Property<Guid?>("MedicalDeclarationDocumentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("medical_declaration_document_id");
+
+                    b.Property<DateTimeOffset>("OpenedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("opened_at");
+
+                    b.Property<string>("RejectionReason")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("rejection_reason");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("status");
+
+                    b.Property<string>("StatusBeforeSuspension")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("status_before_suspension");
+
+                    b.Property<string>("SuspensionReason")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("suspension_reason");
+
+                    b.HasKey("Id")
+                        .HasName("pk_birth_declaration_cases");
+
+                    b.ToTable("birth_declaration_cases", (string)null);
+                });
+
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Certificates.CertificateRequest", b =>
                 {
                     b.Property<Guid>("Id")
@@ -75,6 +182,10 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<Guid?>("BirthDeclarationCaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("birth_declaration_case_id");
+
                     b.Property<string>("ContentHash")
                         .IsRequired()
                         .HasMaxLength(128)
@@ -93,7 +204,7 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("character varying(256)")
                         .HasColumnName("file_name");
 
-                    b.Property<Guid>("RegistrationCaseId")
+                    b.Property<Guid?>("RegistrationCaseId")
                         .HasColumnType("uuid")
                         .HasColumnName("registration_case_id");
 
@@ -113,6 +224,9 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_administrative_documents");
+
+                    b.HasIndex("BirthDeclarationCaseId")
+                        .HasDatabaseName("ix_administrative_documents_birth_declaration_case_id");
 
                     b.HasIndex("RegistrationCaseId")
                         .HasDatabaseName("ix_administrative_documents_registration_case_id");
@@ -352,6 +466,10 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<Guid?>("BirthDeclarationCaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("birth_declaration_case_id");
+
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
@@ -372,12 +490,15 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("character varying(64)")
                         .HasColumnName("recipient");
 
-                    b.Property<Guid>("RegistrationCaseId")
+                    b.Property<Guid?>("RegistrationCaseId")
                         .HasColumnType("uuid")
                         .HasColumnName("registration_case_id");
 
                     b.HasKey("Id")
                         .HasName("pk_outbound_notifications");
+
+                    b.HasIndex("BirthDeclarationCaseId")
+                        .HasDatabaseName("ix_outbound_notifications_birth_declaration_case_id");
 
                     b.HasIndex("CreatedAt")
                         .HasDatabaseName("ix_outbound_notifications_created_at");
@@ -609,6 +730,117 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.ToTable("registration_cases", (string)null);
                 });
 
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.BirthDeclaration.BirthDeclarationCase", b =>
+                {
+                    b.OwnsOne("SchaerbeekMunicipality.Domain.Address.BelgianAddress", "HouseholdAddress", b1 =>
+                        {
+                            b1.Property<Guid>("BirthDeclarationCaseId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<string>("Box")
+                                .HasMaxLength(16)
+                                .HasColumnType("character varying(16)")
+                                .HasColumnName("household_box");
+
+                            b1.Property<string>("HouseNumber")
+                                .IsRequired()
+                                .HasMaxLength(16)
+                                .HasColumnType("character varying(16)")
+                                .HasColumnName("household_house_number");
+
+                            b1.Property<string>("Municipality")
+                                .IsRequired()
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("household_municipality");
+
+                            b1.Property<string>("PostalCode")
+                                .IsRequired()
+                                .HasMaxLength(4)
+                                .HasColumnType("character varying(4)")
+                                .HasColumnName("household_postal_code");
+
+                            b1.Property<string>("Street")
+                                .IsRequired()
+                                .HasMaxLength(256)
+                                .HasColumnType("character varying(256)")
+                                .HasColumnName("household_street");
+
+                            b1.HasKey("BirthDeclarationCaseId");
+
+                            b1.ToTable("birth_declaration_cases");
+
+                            b1.WithOwner()
+                                .HasForeignKey("BirthDeclarationCaseId")
+                                .HasConstraintName("fk_birth_declaration_cases_birth_declaration_cases_id");
+                        });
+
+                    b.OwnsOne("SchaerbeekMunicipality.Domain.BirthDeclaration.BirthDeclarationCaseChecklist", "Checklist", b1 =>
+                        {
+                            b1.Property<Guid>("BirthDeclarationCaseId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<bool>("AtLeastOneParentLinked")
+                                .HasColumnType("boolean")
+                                .HasColumnName("at_least_one_parent_linked");
+
+                            b1.Property<bool>("ChildDetailsRecorded")
+                                .HasColumnType("boolean")
+                                .HasColumnName("child_details_recorded");
+
+                            b1.Property<bool>("HouseholdEstablished")
+                                .HasColumnType("boolean")
+                                .HasColumnName("household_established");
+
+                            b1.Property<bool>("MedicalDeclarationAttached")
+                                .HasColumnType("boolean")
+                                .HasColumnName("medical_declaration_attached");
+
+                            b1.HasKey("BirthDeclarationCaseId");
+
+                            b1.ToTable("birth_declaration_cases");
+
+                            b1.WithOwner()
+                                .HasForeignKey("BirthDeclarationCaseId")
+                                .HasConstraintName("fk_birth_declaration_cases_birth_declaration_cases_id");
+                        });
+
+                    b.OwnsMany("SchaerbeekMunicipality.Domain.BirthDeclaration.BirthDeclarationParentLink", "ParentLinks", b1 =>
+                        {
+                            b1.Property<Guid>("BirthDeclarationCaseId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("birth_declaration_case_id");
+
+                            b1.Property<Guid>("PersonId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("person_id");
+
+                            b1.Property<string>("Role")
+                                .IsRequired()
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
+                                .HasColumnName("role");
+
+                            b1.HasKey("BirthDeclarationCaseId", "PersonId")
+                                .HasName("pk_birth_declaration_parent_links");
+
+                            b1.ToTable("birth_declaration_parent_links", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("BirthDeclarationCaseId")
+                                .HasConstraintName("fk_birth_declaration_parent_links_birth_declaration_cases_birt");
+                        });
+
+                    b.Navigation("Checklist")
+                        .IsRequired();
+
+                    b.Navigation("HouseholdAddress");
+
+                    b.Navigation("ParentLinks");
+                });
+
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Household.HouseholdMember", b =>
                 {
                     b.HasOne("SchaerbeekMunicipality.Domain.Household.Household", null)
@@ -672,6 +904,31 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
 
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Registration.RegistrationCase", b =>
                 {
+                    b.OwnsOne("SchaerbeekMunicipality.Domain.Immigration.ImmigrationDecisionReference", "ImmigrationDecision", b1 =>
+                        {
+                            b1.Property<Guid>("RegistrationCaseId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<DateOnly>("DecisionDate")
+                                .HasColumnType("date")
+                                .HasColumnName("immigration_decision_date");
+
+                            b1.Property<string>("ReferenceNumber")
+                                .IsRequired()
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("immigration_decision_reference");
+
+                            b1.HasKey("RegistrationCaseId");
+
+                            b1.ToTable("registration_cases");
+
+                            b1.WithOwner()
+                                .HasForeignKey("RegistrationCaseId")
+                                .HasConstraintName("fk_registration_cases_registration_cases_id");
+                        });
+
                     b.OwnsOne("SchaerbeekMunicipality.Domain.Address.BelgianAddress", "DeclaredAddress", b1 =>
                         {
                             b1.Property<Guid>("RegistrationCaseId")
@@ -706,31 +963,6 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                                 .HasMaxLength(256)
                                 .HasColumnType("character varying(256)")
                                 .HasColumnName("address_street");
-
-                            b1.HasKey("RegistrationCaseId");
-
-                            b1.ToTable("registration_cases");
-
-                            b1.WithOwner()
-                                .HasForeignKey("RegistrationCaseId")
-                                .HasConstraintName("fk_registration_cases_registration_cases_id");
-                        });
-
-                    b.OwnsOne("SchaerbeekMunicipality.Domain.Immigration.ImmigrationDecisionReference", "ImmigrationDecision", b1 =>
-                        {
-                            b1.Property<Guid>("RegistrationCaseId")
-                                .HasColumnType("uuid")
-                                .HasColumnName("id");
-
-                            b1.Property<DateOnly>("DecisionDate")
-                                .HasColumnType("date")
-                                .HasColumnName("immigration_decision_date");
-
-                            b1.Property<string>("ReferenceNumber")
-                                .IsRequired()
-                                .HasMaxLength(128)
-                                .HasColumnType("character varying(128)")
-                                .HasColumnName("immigration_decision_reference");
 
                             b1.HasKey("RegistrationCaseId");
 

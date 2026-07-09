@@ -3,8 +3,10 @@
 @using SchaerbeekMunicipality.Web.Features.Registration
 @using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.OpenBirthDeclarationCase
 @inject ListRegistrationCasesHandler Handler
 @inject OpenRegistrationCaseHandler OpenHandler
+@inject OpenBirthDeclarationCaseHandler OpenBirthHandler
 @inject ICurrentOfficer CurrentOfficer
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
@@ -240,6 +242,7 @@
         {
             { x => x.OfficerName, CurrentOfficer.DisplayName },
             { x => x.Handler, OpenHandler },
+            { x => x.BirthHandler, OpenBirthHandler },
         };
 
         var dialog = await DialogService.ShowAsync<NewCaseDialog>(
@@ -249,10 +252,14 @@
 
         var result = await dialog.Result;
 
-        if (result is { Canceled: false, Data: Guid caseId })
+        if (result is { Canceled: false, Data: NewCaseDialogResult dialogResult })
         {
-            Snackbar.Add("Registration case opened.", Severity.Success);
-            Navigation.NavigateTo($"/registration/cases/{caseId}");
+            Snackbar.Add(dialogResult.IsBirthDeclaration
+                ? "Birth declaration case opened."
+                : "Registration case opened.", Severity.Success);
+            Navigation.NavigateTo(dialogResult.IsBirthDeclaration
+                ? $"/birth-declarations/{dialogResult.CaseId}"
+                : $"/registration/cases/{dialogResult.CaseId}");
         }
     }
 }

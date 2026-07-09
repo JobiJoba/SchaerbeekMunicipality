@@ -142,8 +142,8 @@ Officer must select the suggested target (strict policy for learning).
 ### C — Review dashboard
 
 1. Nav → **Review dashboard**.
-2. KPI tiles: open cases, awaiting police, ready for decision (yellow accent), suspended.
-3. **Needs my attention** table links to actionable cases.
+2. KPI tiles: open cases, awaiting police, ready for decision (yellow accent), suspended; plus birth declaration tiles (**Birth unassigned**, **Ready for confirmation**) added in Phase 12.
+3. **Needs my attention** table links to actionable registration and birth declaration cases (type column distinguishes workflows).
 
 ---
 

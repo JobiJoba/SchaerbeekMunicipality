@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -11,7 +12,9 @@ public sealed class OutboundNotification
 
     public OutboundNotificationId Id { get; private set; }
 
-    public RegistrationCaseId RegistrationCaseId { get; private set; }
+    public RegistrationCaseId? RegistrationCaseId { get; private set; }
+
+    public BirthDeclarationCaseId? BirthDeclarationCaseId { get; private set; }
 
     public PersonId PersonId { get; private set; }
 
@@ -21,7 +24,7 @@ public sealed class OutboundNotification
 
     public DateTimeOffset CreatedAt { get; private set; }
 
-    public static OutboundNotification Create(
+    public static OutboundNotification CreateForRegistration(
         RegistrationCaseId registrationCaseId,
         PersonId personId,
         OutboundNotificationRecipient recipient,
@@ -40,4 +43,37 @@ public sealed class OutboundNotification
             CreatedAt = createdAt,
         };
     }
+
+    public static OutboundNotification CreateForBirthDeclaration(
+        BirthDeclarationCaseId birthDeclarationCaseId,
+        PersonId personId,
+        OutboundNotificationRecipient recipient,
+        string message,
+        DateTimeOffset createdAt)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(message);
+
+        return new OutboundNotification
+        {
+            Id = OutboundNotificationId.New(),
+            BirthDeclarationCaseId = birthDeclarationCaseId,
+            PersonId = personId,
+            Recipient = recipient,
+            Message = message.Trim(),
+            CreatedAt = createdAt,
+        };
+    }
+
+    public static OutboundNotification Create(
+        RegistrationCaseId registrationCaseId,
+        PersonId personId,
+        OutboundNotificationRecipient recipient,
+        string message,
+        DateTimeOffset createdAt) =>
+        CreateForRegistration(
+            registrationCaseId,
+            personId,
+            recipient,
+            message,
+            createdAt);
 }

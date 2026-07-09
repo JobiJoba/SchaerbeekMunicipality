@@ -1,5 +1,11 @@
 namespace SchaerbeekMunicipality.Web.Features.Registration.GetReviewDashboard;
 
+public enum ReviewDashboardCaseType
+{
+    Registration,
+    BirthDeclaration,
+}
+
 public sealed record ReviewDashboardStatistic(
     string Label,
     int Value,
@@ -8,8 +14,9 @@ public sealed record ReviewDashboardStatistic(
 
 public sealed record ActionableCaseRow(
     Guid CaseId,
+    ReviewDashboardCaseType CaseType,
     string Status,
-    string VisitReason,
+    string Procedure,
     DateTimeOffset OpenedAt,
     string Summary);
 

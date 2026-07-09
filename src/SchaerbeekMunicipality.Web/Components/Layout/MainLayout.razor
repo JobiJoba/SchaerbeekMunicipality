@@ -83,10 +83,12 @@
             pendingCount = 0;
         }
 
-        var items = new List<AppNavItem>
+        var items = new List<AppNavItem>();
+
+        if (CurrentOfficer.Role != OfficerRole.PopulationOfficer)
         {
-            new("Home", "/", Icons.Material.Outlined.Home),
-        };
+            items.Add(new AppNavItem("Home", "/", Icons.Material.Outlined.Home));
+        }
 
         if (CurrentOfficer.Role == OfficerRole.ReceptionOfficer)
         {
@@ -98,6 +100,7 @@
             [
                 new AppNavItem("Review dashboard", "/registration/review-dashboard", Icons.Material.Outlined.Dashboard),
                 new AppNavItem("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+                new AppNavItem("Birth declarations", "/birth-declarations", Icons.Material.Outlined.ChildCare),
                 new AppNavItem(
                     "Outbound notifications",
                     "/administration/outbound-notifications",
@@ -119,6 +122,7 @@
             [
                 new AppNavItem("Review dashboard", "/registration/review-dashboard", Icons.Material.Outlined.Dashboard),
                 new AppNavItem("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+                new AppNavItem("Birth declarations", "/birth-declarations", Icons.Material.Outlined.ChildCare),
             ]);
         }
 
@@ -150,15 +154,16 @@
                 "/registration/new-case",
             OfficerRole.PoliceClerk when IsPopulationOnlyPath(path) || path is "registration/new-case" =>
                 "/registration/police-verifications",
-            OfficerRole.PopulationOfficer when path is "registration/new-case" or "registration/police-verifications" =>
-                "/registration/cases",
+            OfficerRole.PopulationOfficer when path is "" or "home" or "registration/new-case" or "registration/police-verifications" =>
+                "/registration/review-dashboard",
             _ => Navigation.Uri,
         };
     }
 
     private static bool IsPopulationOnlyPath(string path) =>
-        path is "registration/cases" or "registration/review-dashboard" ||
+        path is "registration/cases" or "registration/review-dashboard" or "birth-declarations" ||
         path.StartsWith("registration/cases/", StringComparison.OrdinalIgnoreCase) ||
+        path.StartsWith("birth-declarations/", StringComparison.OrdinalIgnoreCase) ||
         path.StartsWith("administration/outbound-notifications", StringComparison.OrdinalIgnoreCase);
 
     private void ToggleDrawer() => _drawerOpen = !_drawerOpen;

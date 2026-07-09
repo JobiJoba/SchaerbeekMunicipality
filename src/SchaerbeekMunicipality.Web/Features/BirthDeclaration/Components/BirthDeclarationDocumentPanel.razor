@@ -1,0 +1,180 @@
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.AttachDocument
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.GetBirthDeclarationCase
+@inject NavigationManager Navigation
+
+<div class="registration-case-document-panel">
+    @if (CanEdit)
+    {
+        <AppSection>
+            <MedicalDeclarationUpload CaseId="CaseId"
+                                      Handler="AttachHandler"
+                                      OnUploaded="OnDocumentUploaded" />
+        </AppSection>
+    }
+
+    @if (Documents.Count > 0)
+    {
+        <AppSection>
+            <AppCard Title="Attached documents" Outlined="true">
+                @if (_selectedDocumentId is null)
+                {
+                    <AppInfoBox Class="mb-3">
+                        Click a document to open a preview.
+                    </AppInfoBox>
+                }
+
+                <MudList T="Guid" Dense="true" Class="pa-0">
+                    @foreach (var doc in Documents)
+                    {
+                        <MudListItem T="Guid"
+                                     Value="doc.Id"
+                                     Icon="@Icons.Material.Outlined.AttachFile"
+                                     Class="@GetListItemClass(doc.Id)"
+                                     OnClick="@(() => SelectDocument(doc.Id))">
+                            <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="flex-grow-1">
+                                <div>
+                                    @doc.FileName
+                                    <MudText Typo="Typo.caption" Color="Color.Secondary">
+                                        @doc.UploadedAt.LocalDateTime.ToString("g")
+                                    </MudText>
+                                </div>
+                                @if (CanEdit)
+                                {
+                                    <span @onclick:stopPropagation="true">
+                                        <MudIconButton Icon="@Icons.Material.Outlined.Delete"
+                                                       Color="Color.Error"
+                                                       Size="Size.Small"
+                                                       aria-label="@($"Remove {doc.FileName}")"
+                                                       OnClick="@(() => OnRemoveDocument.InvokeAsync(doc.Id))" />
+                                    </span>
+                                }
+                            </MudStack>
+                        </MudListItem>
+                    }
+                </MudList>
+            </AppCard>
+        </AppSection>
+
+        @if (_selectedDocument is not null)
+        {
+            <AppSection>
+                <AppCard Title="Preview" Outlined="true">
+                    <HeaderActions>
+                        <MudButton Variant="Variant.Text"
+                                   Size="Size.Small"
+                                   StartIcon="@Icons.Material.Outlined.Download"
+                                   Href="@GetDocumentUrl(_selectedDocument.Id)"
+                                   Target="_blank">
+                            Download
+                        </MudButton>
+                    </HeaderActions>
+                    <ChildContent>
+                        <div class="registration-case-document-preview">
+                            @if (IsImage(_selectedDocument.FileName))
+                            {
+                                <img src="@GetDocumentUrl(_selectedDocument.Id)"
+                                     alt="@_selectedDocument.FileName"
+                                     class="registration-case-document-preview__image" />
+                            }
+                            else if (IsPdf(_selectedDocument.FileName))
+                            {
+                                <iframe src="@GetDocumentUrl(_selectedDocument.Id)"
+                                        title="@_selectedDocument.FileName"
+                                        class="registration-case-document-preview__frame" />
+                            }
+                            else
+                            {
+                                <AppEmptyState Icon="@Icons.Material.Outlined.VisibilityOff"
+                                               Title="Preview unavailable"
+                                               Description="Download the file to view this document type." />
+                            }
+                        </div>
+                    </ChildContent>
+                </AppCard>
+            </AppSection>
+        }
+    }
+    else if (!CanEdit)
+    {
+        <AppSection>
+            <AppCard Outlined="true">
+                <AppEmptyState Icon="@Icons.Material.Outlined.Description"
+                               Title="No medical declaration attached"
+                               Description="The hospital or midwife document has not been uploaded yet." />
+            </AppCard>
+        </AppSection>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public Guid CaseId { get; set; }
+
+    [Parameter, EditorRequired]
+    public IReadOnlyList<BirthDeclarationDocumentDto> Documents { get; set; } = [];
+
+    [Parameter, EditorRequired]
+    public AttachDocumentHandler AttachHandler { get; set; } = null!;
+
+    [Parameter]
+    public bool CanEdit { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid> OnRemoveDocument { get; set; }
+
+    [Parameter]
+    public EventCallback OnUploaded { get; set; }
+
+    private Guid? _selectedDocumentId;
+
+    private BirthDeclarationDocumentDto? _selectedDocument =>
+        _selectedDocumentId is null
+            ? null
+            : Documents.FirstOrDefault(d => d.Id == _selectedDocumentId);
+
+    protected override void OnParametersSet()
+    {
+        if (Documents.Count == 0)
+        {
+            _selectedDocumentId = null;
+            return;
+        }
+
+        if (_selectedDocumentId is not null && Documents.All(d => d.Id != _selectedDocumentId))
+        {
+            _selectedDocumentId = null;
+        }
+    }
+
+    private void SelectDocument(Guid documentId) => _selectedDocumentId = documentId;
+
+    private string? GetListItemClass(Guid documentId)
+    {
+        var classes = new List<string> { "registration-case-document-list-item" };
+        if (documentId == _selectedDocumentId)
+        {
+            classes.Add("registration-case-document-list-item--selected");
+        }
+
+        return string.Join(' ', classes);
+    }
+
+    private async Task OnDocumentUploaded()
+    {
+        await OnUploaded.InvokeAsync();
+    }
+
+    private string GetDocumentUrl(Guid documentId) =>
+        Navigation.ToAbsoluteUri($"/api/birth-declarations/cases/{CaseId}/documents/{documentId}").ToString();
+
+    private static bool IsPdf(string fileName) =>
+        fileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase);
+
+    private static bool IsImage(string fileName)
+    {
+        var extension = Path.GetExtension(fileName);
+        return extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase)
+            || extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)
+            || extension.Equals(".png", StringComparison.OrdinalIgnoreCase);
+    }
+}

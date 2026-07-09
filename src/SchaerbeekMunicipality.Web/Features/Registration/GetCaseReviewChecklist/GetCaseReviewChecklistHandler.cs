@@ -32,7 +32,7 @@ public sealed class GetCaseReviewChecklistHandler(
         }
 
         var permit = await permitRepository.GetByCaseIdAsync(caseId, cancellationToken);
-        var documents = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        var documents = await documentRepository.ListByRegistrationCaseIdAsync(caseId, cancellationToken);
         var documentTypes = documents.Select(d => d.DocumentType).ToList();
         var policyResult = policyEvaluator.Evaluate(registrationCase, permit, documentTypes);
         var exceptionState = RegistrationExceptionStateCalculator.Calculate(

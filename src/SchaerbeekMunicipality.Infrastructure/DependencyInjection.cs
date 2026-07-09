@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
@@ -43,6 +44,7 @@ public static class DependencyInjection
         });
 
         services.AddScoped<IRegistrationCaseRepository, RegistrationCaseRepository>();
+        services.AddScoped<IBirthDeclarationCaseRepository, BirthDeclarationCaseRepository>();
         services.AddScoped<IPersonRepository, PersonRepository>();
         services.AddScoped<IAdministrativeDocumentRepository, AdministrativeDocumentRepository>();
         services.AddScoped<IResidencePermitRepository, ResidencePermitRepository>();
@@ -56,6 +58,7 @@ public static class DependencyInjection
         services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         services.AddScoped<IRegistrationConfirmedHandler, RegistrationConfirmedLoggingHandler>();
         services.AddScoped<IRegistrationConfirmedHandler, RegistrationConfirmedNotificationHandler>();
+        services.AddScoped<IBirthRegisteredHandler, BirthRegisteredNotificationHandler>();
         services.AddSingleton<ICertificateRenderer, HtmlCertificateRenderer>();
         services.AddSingleton<IDocumentStorage, LocalFileDocumentStorage>();
 

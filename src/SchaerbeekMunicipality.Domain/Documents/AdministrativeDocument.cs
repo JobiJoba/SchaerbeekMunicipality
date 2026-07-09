@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Documents;
@@ -10,7 +11,9 @@ public sealed class AdministrativeDocument
 
     public AdministrativeDocumentId Id { get; private set; }
 
-    public RegistrationCaseId RegistrationCaseId { get; private set; }
+    public RegistrationCaseId? RegistrationCaseId { get; private set; }
+
+    public BirthDeclarationCaseId? BirthDeclarationCaseId { get; private set; }
 
     public DocumentType DocumentType { get; private set; }
 
@@ -24,7 +27,7 @@ public sealed class AdministrativeDocument
 
     public DateTimeOffset UploadedAt { get; private set; }
 
-    public static AdministrativeDocument Create(
+    public static AdministrativeDocument CreateForRegistrationCase(
         RegistrationCaseId registrationCaseId,
         DocumentType documentType,
         string fileName,
@@ -49,4 +52,42 @@ public sealed class AdministrativeDocument
             UploadedAt = uploadedAt,
         };
     }
+
+    public static AdministrativeDocument CreateForBirthDeclarationCase(
+        BirthDeclarationCaseId birthDeclarationCaseId,
+        DocumentType documentType,
+        string fileName,
+        string storagePath,
+        string contentHash,
+        OfficerId uploadedByOfficerId,
+        DateTimeOffset uploadedAt)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(fileName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(storagePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(contentHash);
+
+        if (documentType != DocumentType.MedicalBirthDeclaration)
+        {
+            throw new ArgumentException(
+                "Birth declaration cases only accept medical birth declaration documents.");
+        }
+
+        return new AdministrativeDocument
+        {
+            Id = AdministrativeDocumentId.New(),
+            BirthDeclarationCaseId = birthDeclarationCaseId,
+            DocumentType = documentType,
+            FileName = fileName.Trim(),
+            StoragePath = storagePath,
+            ContentHash = contentHash,
+            UploadedByOfficerId = uploadedByOfficerId,
+            UploadedAt = uploadedAt,
+        };
+    }
+
+    public bool BelongsToRegistrationCase(RegistrationCaseId caseId) =>
+        RegistrationCaseId == caseId;
+
+    public bool BelongsToBirthDeclarationCase(BirthDeclarationCaseId caseId) =>
+        BirthDeclarationCaseId == caseId;
 }

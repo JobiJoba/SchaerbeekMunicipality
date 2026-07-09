@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Notifications;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -22,9 +23,15 @@ internal sealed class OutboundNotificationConfiguration : IEntityTypeConfigurati
 
         builder.Property(n => n.RegistrationCaseId)
             .HasConversion(
-                id => id.Value,
-                value => new RegistrationCaseId(value))
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? new RegistrationCaseId(value.Value) : null)
             .HasColumnName("registration_case_id");
+
+        builder.Property(n => n.BirthDeclarationCaseId)
+            .HasConversion(
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? new BirthDeclarationCaseId(value.Value) : null)
+            .HasColumnName("birth_declaration_case_id");
 
         builder.Property(n => n.PersonId)
             .HasConversion(
@@ -45,6 +52,7 @@ internal sealed class OutboundNotificationConfiguration : IEntityTypeConfigurati
             .HasColumnName("created_at");
 
         builder.HasIndex(n => n.RegistrationCaseId);
+        builder.HasIndex(n => n.BirthDeclarationCaseId);
         builder.HasIndex(n => n.CreatedAt);
     }
 }

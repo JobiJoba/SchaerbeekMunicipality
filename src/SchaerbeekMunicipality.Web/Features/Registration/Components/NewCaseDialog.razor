@@ -1,6 +1,7 @@
 @using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Web.Features.Registration
 @using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.OpenBirthDeclarationCase
 
 <MudDialog>
     <TitleContent>
@@ -42,6 +43,9 @@
     [Parameter]
     public OpenRegistrationCaseHandler Handler { get; set; } = null!;
 
+    [Parameter]
+    public OpenBirthDeclarationCaseHandler BirthHandler { get; set; } = null!;
+
     private MudForm _form = null!;
     private bool _formValid;
     private bool _submitting;
@@ -60,11 +64,19 @@
         _submitting = true;
         try
         {
-            var result = await Handler.Handle(
-                new OpenRegistrationCaseRequest(_visitReason, null),
-                CancellationToken.None);
+            if (_visitReason == VisitReason.BirthDeclaration)
+            {
+                var birthResult = await BirthHandler.Handle(CancellationToken.None);
+                MudDialog.Close(DialogResult.Ok(new NewCaseDialogResult(birthResult.CaseId, true)));
+            }
+            else
+            {
+                var result = await Handler.Handle(
+                    new OpenRegistrationCaseRequest(_visitReason, null),
+                    CancellationToken.None);
 
-            MudDialog.Close(DialogResult.Ok(result.CaseId));
+                MudDialog.Close(DialogResult.Ok(new NewCaseDialogResult(result.CaseId, false)));
+            }
         }
         finally
         {

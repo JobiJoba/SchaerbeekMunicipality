@@ -85,7 +85,7 @@ Search NR `85.12.31-123.45` → open person file → see registered EU citizen, 
 ## Dependencies
 
 - Richest demo after **Phases 12–14** (multiple case types to show in Cases tab).
-- Can ship after Phase 12 with registration-only data if needed.
+- Cannot ship before **Phase 12** (birth declarations); **Phase 13+** recommended for COA metrics.
 
 ---
 

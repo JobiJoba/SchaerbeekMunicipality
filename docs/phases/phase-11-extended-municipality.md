@@ -18,7 +18,7 @@ Phase 11 was an **umbrella planning phase** — not a single delivery slice. It 
 
 | Former Phase 11 idea | New phase | Document |
 |----------------------|-----------|----------|
-| Birth declaration | **12** | [phase-12-birth-declaration.md](./phase-12-birth-declaration.md) |
+| Birth declaration | **12** ✅ | [phase-12-birth-declaration.md](./phase-12-birth-declaration.md) |
 | Change of address within municipality | **13** | [phase-13-change-of-address.md](./phase-13-change-of-address.md) |
 | Passport / ID card request (simplified) | **14** | [phase-14-passport-id-request.md](./phase-14-passport-id-request.md) |
 | Reporting dashboard | **15** | [phase-15-reporting-dashboard.md](./phase-15-reporting-dashboard.md) |
@@ -31,7 +31,7 @@ Phase 11 was an **umbrella planning phase** — not a single delivery slice. It 
 
 ## Suggested implementation order
 
-1. **Phase 12** — Birth declaration (new bounded context; reception already exposes `VisitReason.BirthDeclaration`)
+1. ~~**Phase 12** — Birth declaration~~ ✅ Complete — [phase-12-birth-declaration.md](./phase-12-birth-declaration.md)
 2. **Phase 13** — Change of address (second high-volume municipal procedure)
 3. **Phase 14** — Passport / ID request (citizen-facing output workflow)
 4. **Phase 15** — Reporting dashboard (cross-cutting metrics; benefits from more case types)

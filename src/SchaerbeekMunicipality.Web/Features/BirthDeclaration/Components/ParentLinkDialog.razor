@@ -1,0 +1,134 @@
+@using SchaerbeekMunicipality.Domain.BirthDeclaration
+@using SchaerbeekMunicipality.Domain.NationalRegister
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.GetBirthDeclarationCase
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.LinkParent
+@using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h4">Link parent — National Register search</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudSelect T="ParentRole" @bind-Value="_role" Label="Parent role" Class="mb-3">
+            <MudSelectItem Value="ParentRole.Mother">Mother</MudSelectItem>
+            <MudSelectItem Value="ParentRole.Father">Father</MudSelectItem>
+            <MudSelectItem Value="ParentRole.CoParent">Co-parent</MudSelectItem>
+        </MudSelect>
+
+        <MudTextField @bind-Value="_givenName" Label="Given name" Class="mb-2" />
+        <MudTextField @bind-Value="_familyName" Label="Family name" Class="mb-2" />
+        <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" MaxDate="DateTime.Today" Clearable="true" Class="mb-3" />
+
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Material.Outlined.Search"
+                   OnClick="Search"
+                   Disabled="_searching"
+                   Class="mb-3">
+            Search
+        </MudButton>
+
+        @if (_searched && _matches.Count == 0)
+        {
+            <AppInfoBox>No matching records found in the National Register.</AppInfoBox>
+        }
+        else if (_matches.Count > 0)
+        {
+            <MudTable Items="_matches" Dense="true" Hover="true">
+                <HeaderContent>
+                    <MudTh>Name</MudTh>
+                    <MudTh>Number</MudTh>
+                    <MudTh></MudTh>
+                </HeaderContent>
+                <RowTemplate Context="match">
+                    <MudTd>@match.GivenName @match.FamilyName</MudTd>
+                    <MudTd>@(match.NationalRegisterNumber ?? match.BisNumber)</MudTd>
+                    <MudTd>
+                        <MudButton Variant="Variant.Outlined"
+                                   Size="Size.Small"
+                                   Disabled="_linking"
+                                   OnClick="@(() => LinkMatch(match))">
+                            Link
+                        </MudButton>
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(_error))
+        {
+            <AppAlert Severity="Severity.Error" Title="Error" Class="mt-4">@_error</AppAlert>
+        }
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Outlined" OnClick="Cancel">Close</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter] public Guid CaseId { get; set; }
+    [Parameter] public SearchNationalRegisterHandler SearchHandler { get; set; } = null!;
+    [Parameter] public LinkParentHandler LinkHandler { get; set; } = null!;
+
+    private ParentRole _role = ParentRole.Mother;
+    private bool _searching;
+    private bool _linking;
+    private bool _searched;
+    private string? _error;
+    private string _givenName = string.Empty;
+    private string _familyName = string.Empty;
+    private DateTime? _birthDate;
+    private IReadOnlyList<NationalRegisterMatchDto> _matches = [];
+
+    private async Task Search()
+    {
+        _searching = true;
+        _error = null;
+        try
+        {
+            var response = await SearchHandler.Handle(
+                new SearchNationalRegisterRequest(
+                    string.IsNullOrWhiteSpace(_givenName) ? null : _givenName.Trim(),
+                    string.IsNullOrWhiteSpace(_familyName) ? null : _familyName.Trim(),
+                    _birthDate.HasValue ? DateOnly.FromDateTime(_birthDate.Value) : null),
+                CancellationToken.None);
+            _matches = response.Matches;
+            _searched = true;
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            _error = string.Join(" ", ex.Errors.Select(e => e.ErrorMessage));
+        }
+        finally
+        {
+            _searching = false;
+        }
+    }
+
+    private async Task LinkMatch(NationalRegisterMatchDto match)
+    {
+        _linking = true;
+        _error = null;
+        try
+        {
+            await LinkHandler.Handle(
+                new BirthDeclarationCaseId(CaseId),
+                new LinkParentRequest(match.RegisterPersonId, _role),
+                CancellationToken.None);
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+        catch (Exception ex) when (ex is InvalidBirthDeclarationTransitionException or NationalRegisterConflictException or FluentValidation.ValidationException)
+        {
+            _error = ex.Message;
+        }
+        finally
+        {
+            _linking = false;
+        }
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+}

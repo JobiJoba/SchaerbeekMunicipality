@@ -28,7 +28,7 @@ public sealed class RemoveDocumentHandler(
         var document = await documentRepository.GetByIdAsync(documentId, cancellationToken)
             ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
 
-        if (document.RegistrationCaseId != caseId)
+        if (!document.BelongsToRegistrationCase(caseId))
         {
             throw new InvalidRegistrationTransitionException(
                 "The document does not belong to this registration case.");
@@ -37,7 +37,7 @@ public sealed class RemoveDocumentHandler(
         documentRepository.Remove(document);
         await documentStorage.DeleteAsync(document.StoragePath, cancellationToken);
 
-        var remainingDocuments = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        var remainingDocuments = await documentRepository.ListByRegistrationCaseIdAsync(caseId, cancellationToken);
         var documentTypes = remainingDocuments
             .Where(d => d.Id != documentId)
             .Select(d => d.DocumentType)

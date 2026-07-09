@@ -1,0 +1,209 @@
+@page "/birth-declarations"
+@using SchaerbeekMunicipality.Domain.BirthDeclaration
+@using SchaerbeekMunicipality.Web.Auth
+@using SchaerbeekMunicipality.Web.Features.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ListBirthDeclarationCases
+@inject ListBirthDeclarationCasesHandler Handler
+@inject ICurrentOfficer CurrentOfficer
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
+    <AppPage Title="Birth declarations">
+        <AppPageHeader Title="Birth declarations"
+                       Subtitle="Newborn registration procedures in the population register." />
+
+        <AppSection>
+            @if (_loading)
+            {
+                <AppLoading Kind="AppLoadingKind.Skeleton" />
+            }
+            else if (_cases.Count == 0)
+            {
+                <AppEmptyState Title="No birth declaration cases yet"
+                               Description="Cases are opened at reception when parents declare a birth."
+                               Icon="@Icons.Material.Outlined.ChildCare" />
+            }
+            else
+            {
+                <AppSearchBar @bind-Value="_searchText"
+                              Placeholder="Search cases…"
+                              Class="mb-3"
+                              OnSearch="OnSearch" />
+
+                <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center" Class="mb-4">
+                    @foreach (var option in _filterOptions)
+                    {
+                        <MudButton Variant="@GetFilterVariant(option.Filter)"
+                                   Color="@GetFilterColor(option.Filter)"
+                                   StartIcon="@option.Icon"
+                                   OnClick="@(() => SetQuickFilter(option.Filter))">
+                            @option.Label
+                        </MudButton>
+                    }
+                </MudStack>
+
+                @if (_filteredCases.Count == 0)
+                {
+                    <AppEmptyState Title="No matching cases"
+                                   Description="@GetEmptyFilterDescription()"
+                                   Icon="@Icons.Material.Outlined.FilterList" />
+                }
+                else
+                {
+                    <AppDataTable T="BirthDeclarationCaseListItem"
+                                  Items="_filteredCases"
+                                  Caption="Birth declaration cases"
+                                  OnRowClick="NavigateToCase">
+                        <HeaderContent>
+                            <MudTh Class="app-table-header">Case ID</MudTh>
+                            <MudTh Class="app-table-header">Child</MudTh>
+                            <MudTh Class="app-table-header">Status</MudTh>
+                            <MudTh Class="app-table-header">Officer</MudTh>
+                            <MudTh Class="app-table-header">Opened</MudTh>
+                        </HeaderContent>
+                        <RowTemplate Context="item">
+                            <MudTd DataLabel="Case ID">
+                                <MudLink Href="@($"/birth-declarations/{item.Id}")">
+                                    @item.Id.ToString()[..8]…
+                                </MudLink>
+                            </MudTd>
+                            <MudTd DataLabel="Child">@(item.ChildDisplayName ?? "—")</MudTd>
+                            <MudTd DataLabel="Status">
+                                <AppStatusChip Label="@item.Status.ToString()" Severity="@GetSeverity(item.Status)" />
+                            </MudTd>
+                            <MudTd DataLabel="Officer">
+                                @OfficerDisplayNames.LockStatus(item.AssignedOfficerId, item.LockedByOfficerId)
+                            </MudTd>
+                            <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+                        </RowTemplate>
+                    </AppDataTable>
+                }
+            }
+        </AppSection>
+    </AppPage>
+</RegistrationRoleGate>
+
+@code {
+    private enum CaseListFilter
+    {
+        All,
+        MyCases,
+        Unassigned,
+        Ready,
+    }
+
+    private sealed record FilterOption(CaseListFilter Filter, string Label, string Icon);
+
+    private static readonly FilterOption[] _filterOptions =
+    [
+        new(CaseListFilter.All, "All cases", Icons.Material.Outlined.FolderOpen),
+        new(CaseListFilter.MyCases, "My cases", Icons.Material.Outlined.Person),
+        new(CaseListFilter.Unassigned, "Unassigned", Icons.Material.Outlined.Inbox),
+        new(CaseListFilter.Ready, "Ready for confirmation", Icons.Material.Outlined.CheckCircle),
+    ];
+
+    [SupplyParameterFromQuery(Name = "filter")]
+    public string? Filter { get; set; }
+
+    private IReadOnlyList<BirthDeclarationCaseListItem> _cases = [];
+    private IReadOnlyList<BirthDeclarationCaseListItem> _filteredCases = [];
+    private bool _loading = true;
+    private string _searchText = string.Empty;
+    private CaseListFilter _quickFilter = CaseListFilter.All;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _quickFilter = ParseFilter(Filter);
+        _cases = await Handler.Handle(CancellationToken.None);
+        ApplyFilter();
+        _loading = false;
+    }
+
+    private static CaseListFilter ParseFilter(string? filter) =>
+        filter?.Trim().ToLowerInvariant() switch
+        {
+            "mine" or "my" or "my-cases" => CaseListFilter.MyCases,
+            "unassigned" => CaseListFilter.Unassigned,
+            "ready" or "ready-for-confirmation" => CaseListFilter.Ready,
+            _ => CaseListFilter.All,
+        };
+
+    private void OnSearch(string _) => ApplyFilter();
+
+    private void SetQuickFilter(CaseListFilter filter)
+    {
+        _quickFilter = filter;
+        ApplyFilter();
+    }
+
+    private void ApplyFilter()
+    {
+        IEnumerable<BirthDeclarationCaseListItem> query = _cases;
+
+        query = _quickFilter switch
+        {
+            CaseListFilter.MyCases => query.Where(IsMyCase),
+            CaseListFilter.Unassigned => query.Where(IsUnassigned),
+            CaseListFilter.Ready => query.Where(c => c.IsReadyForConfirmation),
+            _ => query,
+        };
+
+        if (!string.IsNullOrWhiteSpace(_searchText))
+        {
+            var term = _searchText.Trim();
+            query = query.Where(c =>
+                c.Id.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.Status.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                (c.ChildDisplayName?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                OfficerDisplayNames.LockStatus(c.AssignedOfficerId, c.LockedByOfficerId)
+                    .Contains(term, StringComparison.OrdinalIgnoreCase));
+        }
+
+        _filteredCases = query.ToList();
+    }
+
+    private bool IsMyCase(BirthDeclarationCaseListItem item) =>
+        item.LockedByOfficerId == CurrentOfficer.OfficerId ||
+        item.AssignedOfficerId == CurrentOfficer.OfficerId;
+
+    private static bool IsUnassigned(BirthDeclarationCaseListItem item) =>
+        item.AssignedOfficerId is null &&
+        item.LockedByOfficerId is null &&
+        item.Status == BirthDeclarationCaseStatus.Intake;
+
+    private Variant GetFilterVariant(CaseListFilter filter) =>
+        _quickFilter == filter ? Variant.Filled : Variant.Outlined;
+
+    private Color GetFilterColor(CaseListFilter filter) =>
+        _quickFilter == filter ? Color.Primary : Color.Default;
+
+    private string GetEmptyFilterDescription() =>
+        _quickFilter switch
+        {
+            CaseListFilter.MyCases when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No cases assigned to you match your search.",
+            CaseListFilter.MyCases => "You have no assigned or locked birth declaration cases right now.",
+            CaseListFilter.Unassigned when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No unassigned cases match your search.",
+            CaseListFilter.Unassigned => "There are no unassigned birth declaration cases waiting for intake.",
+            CaseListFilter.Ready when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No cases ready for confirmation match your search.",
+            CaseListFilter.Ready => "No birth declaration cases are ready for confirmation right now.",
+            _ when !string.IsNullOrWhiteSpace(_searchText) => "Try a different search term.",
+            _ => "No cases match the current filters.",
+        };
+
+    private void NavigateToCase(BirthDeclarationCaseListItem item) =>
+        Navigation.NavigateTo($"/birth-declarations/{item.Id}");
+
+    private static AppSeverity GetSeverity(BirthDeclarationCaseStatus status) =>
+        status switch
+        {
+            BirthDeclarationCaseStatus.Confirmed => AppSeverity.Success,
+            BirthDeclarationCaseStatus.Rejected => AppSeverity.Error,
+            BirthDeclarationCaseStatus.Suspended => AppSeverity.Warning,
+            BirthDeclarationCaseStatus.UnderReview => AppSeverity.Info,
+            _ => AppSeverity.Neutral,
+        };
+}

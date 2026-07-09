@@ -1,0 +1,357 @@
+@page "/birth-declarations/{CaseId:guid}"
+@using SchaerbeekMunicipality.Domain.BirthDeclaration
+@using SchaerbeekMunicipality.Web.Auth
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.AttachDocument
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ClaimBirthDeclarationCase
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.Components
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.GetBirthDeclarationCase
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.LinkParent
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.RecordChildDetails
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ReleaseCaseLock
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.RemoveDocument
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.SetDeclarationHousehold
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.UnlinkParent
+@using SchaerbeekMunicipality.Web.Features.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister
+@inject GetBirthDeclarationCaseHandler GetHandler
+@inject ClaimBirthDeclarationCaseHandler ClaimHandler
+@inject ReleaseCaseLockHandler ReleaseLockHandler
+@inject RecordChildDetailsHandler RecordChildHandler
+@inject SetDeclarationHouseholdHandler SetHouseholdHandler
+@inject AttachDocumentHandler AttachDocumentHandler
+@inject RemoveDocumentHandler RemoveDocumentHandler
+@inject SearchNationalRegisterHandler SearchNationalRegisterHandler
+@inject LinkParentHandler LinkParentHandler
+@inject UnlinkParentHandler UnlinkParentHandler
+@inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
+    @if (_loading)
+    {
+        <AppLoading Kind="AppLoadingKind.Skeleton" />
+    }
+    else if (_case is null)
+    {
+        <AppAlert Severity="Severity.Error" Title="Case not found" />
+    }
+    else
+    {
+        <AppPage Title="Birth declaration">
+            <AppPageHeader Title="Birth declaration"
+                           Subtitle="@($"{CaseId.ToString()[..8]}… · opened {_case.OpenedAt.LocalDateTime:g}")">
+                <Actions>
+                    <AppStatusChip Label="@_case.Status.ToString()" Severity="@GetSeverity(_case.Status)" />
+                    @if (_case.IsReadOnlyDueToLock)
+                    {
+                        <MudButton Variant="Variant.Outlined" OnClick="TakeCase">Take case</MudButton>
+                    }
+                    else if (_case.CanEdit)
+                    {
+                        <MudButton Variant="Variant.Outlined" OnClick="ReleaseLock">Release lock</MudButton>
+                    }
+                    <MudButton Variant="Variant.Text"
+                               StartIcon="@Icons.Material.Outlined.ArrowBack"
+                               OnClick="@(() => Navigation.NavigateTo("/birth-declarations"))">
+                        Back to list
+                    </MudButton>
+                </Actions>
+            </AppPageHeader>
+
+            @if (_case.IsReadOnlyDueToLock)
+            {
+                <AppAlert Severity="Severity.Warning" Title="Read-only" Class="mb-4">
+                    This case is locked to another officer. Take the case to edit.
+                </AppAlert>
+            }
+
+            <MudGrid Spacing="4">
+                <MudItem xs="12" lg="7">
+                    <MudStack Spacing="4">
+                <AppCollapsibleSection Title="Child details"
+                                       Summary="@GetChildSummary()"
+                                       StatusLabel="@(_case.ChildDetailsRecorded ? "Complete" : "Pending")"
+                                       StatusSeverity="@(_case.ChildDetailsRecorded ? AppSeverity.Success : AppSeverity.Neutral)"
+                                       IsExpanded="@(!_case.ChildDetailsRecorded)">
+                    <MudForm @ref="_childForm" Disabled="!_case.CanEdit">
+                        <MudGrid>
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_givenNames" Label="Given names" Required="true" />
+                            </MudItem>
+                            <MudItem xs="12" md="6">
+                                <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
+                            </MudItem>
+                            <MudItem xs="12" md="4">
+                                <MudSelect T="NewbornSex" @bind-Value="_sex" Label="Sex" Required="true">
+                                    @foreach (var sex in Enum.GetValues<NewbornSex>())
+                                    {
+                                        <MudSelectItem Value="sex">@sex</MudSelectItem>
+                                    }
+                                </MudSelect>
+                            </MudItem>
+                            <MudItem xs="12" md="4">
+                                <MudDatePicker @bind-Date="_dateOfBirth" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
+                            </MudItem>
+                            <MudItem xs="12" md="4">
+                                <MudTimePicker @bind-Time="_timeOfBirth" Label="Time of birth" />
+                            </MudItem>
+                            <MudItem xs="12">
+                                <MudTextField @bind-Value="_placeOfBirth" Label="Place of birth" Required="true" />
+                            </MudItem>
+                        </MudGrid>
+                        @if (_case.CanEdit)
+                        {
+                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-3" OnClick="SaveChildDetails" Disabled="_busy">
+                                Save child details
+                            </MudButton>
+                        }
+                    </MudForm>
+                </AppCollapsibleSection>
+
+                <AppCollapsibleSection Title="Parents"
+                                       Summary="@($"{_case.Parents.Count} linked")"
+                                       StatusLabel="@(_case.AtLeastOneParentLinked ? "Complete" : "Pending")"
+                                       StatusSeverity="@(_case.AtLeastOneParentLinked ? AppSeverity.Success : AppSeverity.Neutral)"
+                                       IsExpanded="@(!_case.AtLeastOneParentLinked)">
+                    @foreach (var parent in _case.Parents)
+                    {
+                        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="mb-2">
+                            <MudText Typo="Typo.body2">
+                                <strong>@parent.Role</strong> — @parent.GivenName @parent.FamilyName
+                                @if (!string.IsNullOrWhiteSpace(parent.NationalRegisterNumber))
+                                {
+                                    <span> (NR @parent.NationalRegisterNumber)</span>
+                                }
+                            </MudText>
+                            @if (_case.CanEdit)
+                            {
+                                <MudIconButton Icon="@Icons.Material.Outlined.LinkOff"
+                                               Size="Size.Small"
+                                               OnClick="@(() => UnlinkParent(parent.PersonId))" />
+                            }
+                        </MudStack>
+                    }
+                    @if (_case.CanEdit)
+                    {
+                        <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.PersonSearch" OnClick="OpenParentSearch">
+                            Link parent via NR search
+                        </MudButton>
+                    }
+                </AppCollapsibleSection>
+
+                <AppCollapsibleSection Title="Medical declaration"
+                                       Summary="@($"{_case.Documents.Count} document(s)")"
+                                       StatusLabel="@(_case.MedicalDeclarationAttached ? "Complete" : "Pending")"
+                                       StatusSeverity="@(_case.MedicalDeclarationAttached ? AppSeverity.Success : AppSeverity.Neutral)"
+                                       IsExpanded="@(!_case.MedicalDeclarationAttached)">
+                    <BirthDeclarationDocumentPanel CaseId="CaseId"
+                                                   Documents="_case.Documents"
+                                                   AttachHandler="AttachDocumentHandler"
+                                                   CanEdit="_case.CanEdit"
+                                                   OnRemoveDocument="RemoveDocument"
+                                                   OnUploaded="ReloadCase" />
+                </AppCollapsibleSection>
+
+                <AppCollapsibleSection Title="Household domicile"
+                                       Summary="@(_case.HouseholdAddress ?? "Not set")"
+                                       StatusLabel="@(_case.HouseholdEstablished ? "Complete" : "Pending")"
+                                       StatusSeverity="@(_case.HouseholdEstablished ? AppSeverity.Success : AppSeverity.Neutral)"
+                                       IsExpanded="@(!_case.HouseholdEstablished)">
+                    <MudForm Disabled="!_case.CanEdit">
+                        <MudTextField @bind-Value="_street" Label="Street" Class="mb-2" />
+                        <MudTextField @bind-Value="_houseNumber" Label="House number" Class="mb-2" />
+                        <MudTextField @bind-Value="_box" Label="Box" Class="mb-2" />
+                        <MudTextField @bind-Value="_postalCode" Label="Postal code" Class="mb-2" />
+                        <MudTextField @bind-Value="_municipality" Label="Municipality" Class="mb-2" />
+                        @if (_case.CanEdit)
+                        {
+                            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveHousehold" Disabled="_busy">
+                                Save domicile
+                            </MudButton>
+                        }
+                    </MudForm>
+                    @if (!string.IsNullOrWhiteSpace(_case.HouseholdAddress))
+                    {
+                        <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">@_case.HouseholdAddress</MudText>
+                    }
+                </AppCollapsibleSection>
+                    </MudStack>
+                </MudItem>
+
+                <MudItem xs="12" lg="5">
+                    <BirthDeclarationDecisionSection Case="_case" OnChanged="ReloadCase" />
+                </MudItem>
+            </MudGrid>
+        </AppPage>
+    }
+</RegistrationRoleGate>
+
+@code {
+    [Parameter] public Guid CaseId { get; set; }
+
+    private bool _loading = true;
+    private bool _busy;
+    private BirthDeclarationCaseDetailDto? _case;
+    private MudForm _childForm = null!;
+
+    private string _givenNames = string.Empty;
+    private string _familyName = string.Empty;
+    private NewbornSex _sex = NewbornSex.Female;
+    private DateTime? _dateOfBirth;
+    private TimeSpan? _timeOfBirth;
+    private string _placeOfBirth = string.Empty;
+    private string _street = "Chaussée de Louvain";
+    private string _houseNumber = "10";
+    private string? _box;
+    private string _postalCode = "1030";
+    private string _municipality = "Schaerbeek";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ReloadCase();
+    }
+
+    private async Task ReloadCase()
+    {
+        _loading = true;
+        try
+        {
+            await ClaimHandler.TryAutoClaimAsync(new BirthDeclarationCaseId(CaseId), CancellationToken.None);
+            var detail = await GetHandler.Handle(new BirthDeclarationCaseId(CaseId), CancellationToken.None);
+            _case = detail;
+            if (detail is not null)
+            {
+                _givenNames = detail.ChildGivenNames ?? string.Empty;
+                _familyName = detail.ChildFamilyName ?? string.Empty;
+                _sex = detail.ChildSex ?? NewbornSex.Female;
+                _dateOfBirth = detail.ChildDateOfBirth?.ToDateTime(TimeOnly.MinValue);
+                _timeOfBirth = detail.ChildTimeOfBirth?.ToTimeSpan();
+                _placeOfBirth = detail.ChildPlaceOfBirth ?? string.Empty;
+            }
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    private async Task SaveChildDetails()
+    {
+        if (_dateOfBirth is null) return;
+        _busy = true;
+        try
+        {
+            await RecordChildHandler.Handle(
+                new BirthDeclarationCaseId(CaseId),
+                new RecordChildDetailsRequest(
+                    _givenNames,
+                    _familyName,
+                    _sex,
+                    DateOnly.FromDateTime(_dateOfBirth.Value),
+                    _timeOfBirth.HasValue ? TimeOnly.FromTimeSpan(_timeOfBirth.Value) : null,
+                    _placeOfBirth),
+                CancellationToken.None);
+            Snackbar.Add("Child details saved.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task SaveHousehold()
+    {
+        _busy = true;
+        try
+        {
+            await SetHouseholdHandler.Handle(
+                new BirthDeclarationCaseId(CaseId),
+                new SetDeclarationHouseholdRequest(_street, _houseNumber, _box, _postalCode, _municipality),
+                CancellationToken.None);
+            Snackbar.Add("Domicile saved.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task RemoveDocument(Guid documentId)
+    {
+        await RemoveDocumentHandler.Handle(
+            new BirthDeclarationCaseId(CaseId),
+            new Domain.Documents.AdministrativeDocumentId(documentId),
+            CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private async Task UnlinkParent(Guid personId)
+    {
+        await UnlinkParentHandler.Handle(
+            new BirthDeclarationCaseId(CaseId),
+            new Domain.Identity.PersonId(personId),
+            CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private async Task OpenParentSearch()
+    {
+        var parameters = new DialogParameters<ParentLinkDialog>
+        {
+            { x => x.CaseId, CaseId },
+            { x => x.SearchHandler, SearchNationalRegisterHandler },
+            { x => x.LinkHandler, LinkParentHandler },
+        };
+        var dialog = await DialogService.ShowAsync<ParentLinkDialog>("Link parent", parameters);
+        var result = await dialog.Result;
+        if (result is { Canceled: false })
+        {
+            await ReloadCase();
+        }
+    }
+
+    private async Task TakeCase()
+    {
+        await ClaimHandler.Handle(new BirthDeclarationCaseId(CaseId), CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private async Task ReleaseLock()
+    {
+        await ReleaseLockHandler.Handle(new BirthDeclarationCaseId(CaseId), CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private string GetChildSummary()
+    {
+        if (string.IsNullOrWhiteSpace(_case?.ChildGivenNames))
+        {
+            return "Newborn identity not yet recorded";
+        }
+
+        return $"{_case.ChildGivenNames} {_case.ChildFamilyName}";
+    }
+
+    private static AppSeverity GetSeverity(BirthDeclarationCaseStatus status) =>
+        status switch
+        {
+            BirthDeclarationCaseStatus.Confirmed => AppSeverity.Success,
+            BirthDeclarationCaseStatus.Rejected => AppSeverity.Error,
+            BirthDeclarationCaseStatus.Suspended => AppSeverity.Warning,
+            BirthDeclarationCaseStatus.UnderReview => AppSeverity.Info,
+            _ => AppSeverity.Neutral,
+        };
+}

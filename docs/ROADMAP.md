@@ -25,7 +25,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 9 | Exception scenarios | ✅ Complete |
 | 10 | Azure deployment | ✅ Complete |
 | 11 | Extended municipality (scope definition) | ✅ Complete |
-| 12 | Birth declaration | Planned |
+| 12 | Birth declaration | ✅ Complete |
 | 13 | Change of address | Planned |
 | 14 | Passport / ID card request | Planned |
 | 15 | Reporting dashboard | Planned |
@@ -490,17 +490,24 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 
 ---
 
-## Phase 12 — Birth declaration
+## Phase 12 — Birth declaration ✅
 
-**Status:** Planned — see [phases/phase-12-birth-declaration.md](./phases/phase-12-birth-declaration.md).
+**Status:** Complete — see [phases/phase-12-birth-declaration.md](./phases/phase-12-birth-declaration.md).
 
 **Goal:** Register a newborn child — new `BirthDeclaration` bounded context, separate from first-registration `RegistrationCase`.
 
-**Slices:** `OpenBirthDeclarationCase`, `RecordChildDetails`, `LinkParent`, medical declaration attach, household link, `ConfirmBirthDeclaration`.
+**Deliverables:**
 
-**Demo:** Parents in NR → declare child → attach hospital form → child receives stub NR number.
+- `BirthDeclarationCase` aggregate, checklist, claim/lock, confirm/reject/suspend
+- EF migration `Phase12BirthDeclaration`; API `/api/birth-declarations/*`
+- Blazor pages `/birth-declarations` (list + detail) with intake sections and decision panel
+- Reception routing: visit reason Birth declaration opens birth case
+- Review dashboard: birth unassigned + ready-for-confirmation tiles; unified actionable queue
+- Population officer landing: `/` → review dashboard
 
-**Tests:** Domain checklist gates; happy-path integration; distinct from Phase 9 `RecordBirthInformation` on adult applicants.
+**Demo:** Reception opens birth case → population officer sees it on dashboard → records child, links parent, attaches medical form → confirms → stub NR + notification log.
+
+**Tests:** `BirthDeclarationCaseTests`, `BirthDeclarationTests`, dashboard handoff in `RoleBoundariesAndCaseLockingTests`.
 
 ---
 
