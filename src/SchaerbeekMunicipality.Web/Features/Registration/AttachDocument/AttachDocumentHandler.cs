@@ -32,7 +32,7 @@ public sealed class AttachDocumentHandler(
 
         var stored = await documentStorage.SaveAsync(fileContent, fileName, cancellationToken);
 
-        var document = AdministrativeDocument.Create(
+        var document = AdministrativeDocument.CreateForRegistrationCase(
             caseId,
             documentType,
             fileName,
@@ -43,7 +43,7 @@ public sealed class AttachDocumentHandler(
 
         await documentRepository.AddAsync(document, cancellationToken);
 
-        var existingDocuments = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        var existingDocuments = await documentRepository.ListByRegistrationCaseIdAsync(caseId, cancellationToken);
         var documentTypes = existingDocuments
             .Select(d => d.DocumentType)
             .Append(documentType)

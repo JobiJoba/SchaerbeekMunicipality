@@ -1,34 +1,57 @@
 ﻿@page "/"
 @page "/home"
+@using SchaerbeekMunicipality.Web.Auth
+@inject ICurrentOfficer CurrentOfficer
+@inject NavigationManager Navigation
 
-<AppPage Title="Population Department">
-    <AppPageHeader Title="Population Department"
-                   Subtitle="Educational simulation of Belgian municipal population registration workflows." />
+@if (_redirecting)
+{
+    <AppLoading />
+}
+else
+{
+    <AppPage Title="Population Department">
+        <AppPageHeader Title="Population Department"
+                       Subtitle="Educational simulation of Belgian municipal population registration workflows." />
 
-    <AppSection>
-        <AppCard Title="Four core decisions" Icon="@Icons.Material.Outlined.Gavel">
-            <MudList T="string" Dense="true">
-                <MudListItem Icon="@Icons.Material.Outlined.Person">Identity established with sufficient certainty</MudListItem>
-                <MudListItem Icon="@Icons.Material.Outlined.Gavel">Legal basis to reside in Belgium</MudListItem>
-                <MudListItem Icon="@Icons.Material.Outlined.Home">Genuine residence at declared address</MudListItem>
-                <MudListItem Icon="@Icons.Material.Outlined.Badge">Correct register and legal status</MudListItem>
-            </MudList>
-        </AppCard>
-    </AppSection>
+        <AppSection>
+            <AppCard Title="Four core decisions" Icon="@Icons.Material.Outlined.Gavel">
+                <MudList T="string" Dense="true">
+                    <MudListItem Icon="@Icons.Material.Outlined.Person">Identity established with sufficient certainty</MudListItem>
+                    <MudListItem Icon="@Icons.Material.Outlined.Gavel">Legal basis to reside in Belgium</MudListItem>
+                    <MudListItem Icon="@Icons.Material.Outlined.Home">Genuine residence at declared address</MudListItem>
+                    <MudListItem Icon="@Icons.Material.Outlined.Badge">Correct register and legal status</MudListItem>
+                </MudList>
+            </AppCard>
+        </AppSection>
 
-    <MudButton Href="/registration/review-dashboard"
-               Variant="Variant.Filled"
-               Color="Color.Primary"
-               StartIcon="@Icons.Material.Outlined.Dashboard"
-               Style="min-height: 48px;"
-               Class="me-2">
-        Review dashboard
-    </MudButton>
-    <MudButton Href="/registration/cases"
-               Variant="Variant.Filled"
-               Color="Color.Primary"
-               StartIcon="@Icons.Material.Outlined.FolderOpen"
-               Style="min-height: 48px;">
-        View registration cases
-    </MudButton>
-</AppPage>
+        <MudButton Href="/registration/review-dashboard"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Material.Outlined.Dashboard"
+                   Style="min-height: 48px;"
+                   Class="me-2">
+            Review dashboard
+        </MudButton>
+        <MudButton Href="/registration/cases"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Material.Outlined.FolderOpen"
+                   Style="min-height: 48px;">
+            View registration cases
+        </MudButton>
+    </AppPage>
+}
+
+@code {
+    private bool _redirecting;
+
+    protected override void OnInitialized()
+    {
+        if (CurrentOfficer.Role == OfficerRole.PopulationOfficer)
+        {
+            _redirecting = true;
+            Navigation.NavigateTo("/registration/review-dashboard", replace: true);
+        }
+    }
+}

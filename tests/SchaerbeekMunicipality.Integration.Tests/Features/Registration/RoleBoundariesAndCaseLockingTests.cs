@@ -2,6 +2,7 @@ using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Auth;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.OpenBirthDeclarationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.ClaimRegistrationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.ListCaseAudit;
@@ -200,6 +201,30 @@ public sealed class RoleBoundariesAndCaseLockingTests
         dashboard.Statistics.Should().Contain(s => s.Label == "Unassigned" && s.Value == 1);
         dashboard.ActionableCases.Should().ContainSingle(c =>
             c.CaseId == opened.CaseId &&
+            c.CaseType == ReviewDashboardCaseType.Registration &&
+            c.Summary == "Unassigned — awaiting intake");
+    }
+
+    [Fact]
+    public async Task UnassignedBirthDeclaration_AppearsOnReviewDashboard_AsNeedingAttention()
+    {
+        await using var factory = new MunicipalAppFactory();
+        await using var scope = factory.Services.CreateAsyncScope();
+
+        RegistrationTestHelpers.SetRole(scope.ServiceProvider, OfficerRole.ReceptionOfficer);
+        var opened = await scope.ServiceProvider.GetRequiredService<OpenBirthDeclarationCaseHandler>()
+            .Handle(CancellationToken.None);
+
+        RegistrationTestHelpers.SetRole(scope.ServiceProvider, OfficerRole.PopulationOfficer);
+        var dashboard = await scope.ServiceProvider
+            .GetRequiredService<GetReviewDashboardHandler>()
+            .Handle(CancellationToken.None);
+
+        dashboard.Statistics.Should().Contain(s => s.Label == "Birth unassigned" && s.Value == 1);
+        dashboard.ActionableCases.Should().ContainSingle(c =>
+            c.CaseId == opened.CaseId &&
+            c.CaseType == ReviewDashboardCaseType.BirthDeclaration &&
+            c.Procedure == "Birth declaration" &&
             c.Summary == "Unassigned — awaiting intake");
     }
 }

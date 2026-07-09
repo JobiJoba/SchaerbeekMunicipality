@@ -130,8 +130,10 @@ Existing list/get handlers call `RegistrationCaseAuthorization` and `Registratio
 
 ### Population — review dashboard
 
-- **Unassigned** tile counts intake cases with no assignee and no lock.
-- **Needs my attention** includes unassigned intakes (summary: “Unassigned — awaiting intake”), ranked below ready-for-decision cases.
+- Population officers land on **Review dashboard** (`/` redirects; no separate Home nav item).
+- **Unassigned** tile counts intake registration cases with no assignee and no lock (links to `/registration/cases?filter=unassigned`).
+- **Birth unassigned** and **Ready for confirmation** tiles count birth declaration workload (links to `/birth-declarations?filter=unassigned` and `?filter=ready`).
+- **Needs my attention** includes unassigned intakes from **both** registration and birth declaration (summary: “Unassigned — awaiting intake”), plus ready-for-decision/confirmation and suspended cases; table has a **Type** column (`Registration` / `Birth declaration`) and rows navigate to the correct detail page.
 - Tile links: **My open cases** → `/registration/cases?filter=mine`, **Unassigned** → `/registration/cases?filter=unassigned`.
 
 ### Population — case list (`/registration/cases`)
@@ -156,7 +158,7 @@ Existing list/get handlers call `RegistrationCaseAuthorization` and `Registratio
 ### Demo role switching
 
 - `?demoOfficer={guid}` persists the selected demo officer across navigation.
-- Switching role from a page the new role cannot access redirects to the correct home route **without dropping the host port** (fix in `DemoOfficerPersistence.AppendToUri`).
+- Switching role from a page the new role cannot access redirects to the correct home route **without dropping the host port** (fix in `DemoOfficerPersistence.AppendToUri`). Population officers land on **Review dashboard** (`/registration/review-dashboard`); reception on **New case**; police on **Police verifications**.
 
 ---
 
@@ -181,12 +183,13 @@ Existing list/get handlers call `RegistrationCaseAuthorization` and `Registratio
 ## Demo script
 
 1. **Reception intake** — Switch to Jean Martin → **New case** → create with default visit reason → see reference and handoff guidance → **Create another case**.
-2. **Unassigned visibility** — Switch to Marie Dupont → **Review dashboard** → unassigned case appears in tile and **Needs my attention** → click **Unassigned** tile → case list filtered.
-3. **Claim & lock** — Open the case → auto-assigned and locked → timeline shows opened + assigned.
-4. **Colleague read-only** — Switch to Anne Leroy → case detail is read-only → **Take case** after Marie releases lock.
-5. **Case list filters** — **My cases** shows only yours; **Unassigned** shows reception handoffs; search still works within the active filter.
-6. **Case detail layout** — Officer decision aligns with Identity card; expand **Case history** at bottom for datagrid audit log.
-7. **Role switch URL** — From `/registration/cases` switch to reception → lands on `/registration/new-case?demoOfficer=…` with port intact.
+2. **Unassigned visibility** — Switch to Marie Dupont → **Review dashboard** → unassigned registration case appears in tile and **Needs my attention** → click **Unassigned** tile → case list filtered.
+3. **Birth declaration handoff** — Reception opens birth declaration → population officer sees it under **Birth unassigned** and in **Needs my attention** (type Birth declaration) → row opens `/birth-declarations/{id}`.
+4. **Claim & lock** — Open the case → auto-assigned and locked → timeline shows opened + assigned.
+5. **Colleague read-only** — Switch to Anne Leroy → case detail is read-only → **Take case** after Marie releases lock.
+6. **Case list filters** — **My cases** shows only yours; **Unassigned** shows reception handoffs; search still works within the active filter.
+7. **Case detail layout** — Officer decision aligns with Identity card; expand **Case history** at bottom for datagrid audit log.
+8. **Role switch URL** — From `/registration/cases` switch to reception → lands on `/registration/new-case?demoOfficer=…` with port intact.
 
 ---
 
@@ -195,7 +198,7 @@ Existing list/get handlers call `RegistrationCaseAuthorization` and `Registratio
 | Suite | Coverage |
 |-------|----------|
 | `RegistrationCaseLockingTests` | Domain claim, release, ensure-editable |
-| `RoleBoundariesAndCaseLockingTests` | Reception cannot list/view; claim + audit; lock enforcement; unassigned on review dashboard |
+| `RoleBoundariesAndCaseLockingTests` | Reception cannot list/view; claim + audit; lock enforcement; unassigned registration and birth declarations on review dashboard |
 
 ---
 

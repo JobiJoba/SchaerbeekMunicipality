@@ -189,13 +189,13 @@ Officer roles are enforced beyond the nav switcher. Phase notes: [phase-8.1-role
 | Population | Yes | Lock holder only | Yes (dialog from list) |
 | Police | No | No (police queue only) | No |
 
-When a population officer opens case detail, the case is **claimed** (assigned + locked) if unassigned. Another population officer sees a read-only view until the lock is released. Reception-created cases start **unassigned** and surface on the review dashboard and case list **Unassigned** filter.
+When a population officer opens case detail, the case is **claimed** (assigned + locked) if unassigned. Another population officer sees a read-only view until the lock is released. Reception-created cases start **unassigned** and surface on the review dashboard and case list **Unassigned** filter (registration and birth declaration cases each have their own list filters).
 
 **Officer UX highlights:**
 
 - **New case page** (`/registration/new-case`) — two-column intake with visit-reason guidance; success keeps handoff instructions visible.
-- **Review dashboard** — unassigned intakes in **Needs my attention**; tiles deep-link to filtered case list.
-- **Case list** — one-click **My cases** / **Unassigned** filters (`?filter=mine`, `?filter=unassigned`).
+- **Review dashboard** — population officer landing page (`/` redirects here); unassigned intakes in **Needs my attention** (registration + birth declaration); tiles deep-link to filtered case lists.
+- **Case list** — one-click **My cases** / **Unassigned** filters (`?filter=mine`, `?filter=unassigned`); birth declarations also support `?filter=ready`.
 - **Case detail** — case history as collapsed datagrid at bottom; officer decision aligned with Identity card.
 - **Demo roles** — `?demoOfficer={guid}` in URL; role switch preserves host port.
 

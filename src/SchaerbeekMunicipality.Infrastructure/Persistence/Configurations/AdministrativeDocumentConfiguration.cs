@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -21,9 +22,15 @@ internal sealed class AdministrativeDocumentConfiguration : IEntityTypeConfigura
 
         builder.Property(d => d.RegistrationCaseId)
             .HasConversion(
-                id => id.Value,
-                value => new RegistrationCaseId(value))
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? new RegistrationCaseId(value.Value) : null)
             .HasColumnName("registration_case_id");
+
+        builder.Property(d => d.BirthDeclarationCaseId)
+            .HasConversion(
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? new BirthDeclarationCaseId(value.Value) : null)
+            .HasColumnName("birth_declaration_case_id");
 
         builder.Property(d => d.DocumentType)
             .HasColumnName("document_type")
@@ -55,5 +62,6 @@ internal sealed class AdministrativeDocumentConfiguration : IEntityTypeConfigura
             .HasColumnName("uploaded_at");
 
         builder.HasIndex(d => d.RegistrationCaseId);
+        builder.HasIndex(d => d.BirthDeclarationCaseId);
     }
 }

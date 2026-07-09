@@ -7,6 +7,7 @@ This folder documents how each vertical slice in the application works — from 
 | Context | Slices | Entry points |
 |---------|--------|--------------|
 | [Registration](./registration/README.md) | 18+ use cases | Blazor pages + `/api/registration/*` |
+| Birth declaration | 12+ use cases | Blazor pages + `/api/birth-declarations/*` — see [phase-12-birth-declaration.md](../phases/phase-12-birth-declaration.md) |
 
 ## Shared architecture
 

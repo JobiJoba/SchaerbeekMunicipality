@@ -1901,3 +1901,70 @@ There is no hosted “Aspire URL” in production — Azure runs only the **Web*
 _**User**_
 
 ok everything is working now; where do I see the money spent on Azure? 
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user wants to know where Azure spending is displayed.</details></think>
+
+_**Agent (default)**_
+
+You can track Azure spend in a few places:
+
+## 1. Cost Management (main view)
+
+**Azure Portal** → search **“Cost Management + Billing”** → **Cost analysis**
+
+Useful filters:
+- **Scope:** your subscription (`472113ae-7635-41e2-b158-f68f4ddf16b8`)
+- **Resource group:** `schaerbeek-rg` (isolates just this project)
+- **Time range:** This month / Last 30 days
+
+That shows daily spend and breakdown by service (Container Apps, Log Analytics, etc.).
+
+## 2. Resource group blade
+
+**Portal** → **Resource groups** → **schaerbeek-rg**
+
+The overview often shows a **Cost** summary for that group. You can also open individual resources (Container App, Log Analytics) and check their metrics, though billing detail is still clearest in Cost analysis.
+
+## 3. Subscription overview
+
+**Portal** → **Subscriptions** → your subscription → **Cost analysis**
+
+Good for total spend across everything on that subscription, not only Schaerbeek.
+
+## 4. CLI (optional)
+
+```bash
+# Current month cost for your resource group (may take ~24h to appear)
+az consumption usage list \
+  --start-date $(date -u +%Y-%m-01) \
+  --end-date $(date -u +%Y-%m-%d) \
+  --query "[?contains(instanceName, 'schaerbeek')]" \
+  -o table
+```
+
+Cost data in CLI can lag and is less friendly than the portal; Cost analysis is usually easier.
+
+## What you should expect for your setup
+
+Your SQLite profile is designed to be cheap:
+
+| Resource | Typical cost |
+|----------|----------------|
+| Container Apps (scale to zero) | Often **$0** when idle; small charge when running |
+| Log Analytics | Usually **cents to a few dollars** depending on log volume |
+| PostgreSQL | **Not deployed** in sqlite profile |
+
+Your docs estimate roughly **$0–5/month** when scaled to zero most of the time.
+
+## Tips
+
+- **Set a budget alert:** Cost Management → **Budgets** → create e.g. €5/month on subscription or `schaerbeek-rg` so you get email if spend spikes.
+- **Costs aren’t real-time:** often delayed by **24–48 hours**.
+- **Free credits:** if you’re on Azure for Students / free trial, check **Credits** under Billing — spend may come from credits first.
+
+**Fastest path:** Portal → **Cost Management + Billing** → **Cost analysis** → filter **Resource group = schaerbeek-rg**.

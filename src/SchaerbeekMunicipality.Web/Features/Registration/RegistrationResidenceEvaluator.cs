@@ -14,7 +14,7 @@ public sealed class RegistrationResidenceEvaluator(
         RegistrationCaseId caseId,
         CancellationToken cancellationToken)
     {
-        var documents = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        var documents = await documentRepository.ListByRegistrationCaseIdAsync(caseId, cancellationToken);
         return documents.Select(d => d.DocumentType).ToList();
     }
 

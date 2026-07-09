@@ -6,6 +6,10 @@ public interface IPersonRepository
 {
     Task<Person?> GetByIdAsync(PersonId id, CancellationToken cancellationToken);
 
+    Task<Person?> GetByRegisterRecordIdAsync(
+        NationalRegisterPersonId registerPersonId,
+        CancellationToken cancellationToken);
+
     Task<Person?> GetForUpdateAsync(PersonId id, CancellationToken cancellationToken);
 
     Task AddAsync(Person person, CancellationToken cancellationToken);

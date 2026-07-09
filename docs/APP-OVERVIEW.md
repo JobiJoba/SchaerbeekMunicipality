@@ -127,10 +127,13 @@ The case detail page uses a **two-column layout**: collapsible intake steps on t
 
 | Item | Route | Purpose |
 |------|-------|---------|
-| Home | `/home` | Dashboard and workflow overview |
-| Registration cases | `/registration/cases` | Case list and detail wizard |
+| Review dashboard | `/registration/review-dashboard` | Population officer landing page and actionable queue (Phase 7 + 12) |
+| Registration cases | `/registration/cases` | First-registration case list and detail |
+| Birth declarations | `/birth-declarations` | Newborn registration cases (Phase 12) |
 | Police verifications | `/registration/police-verifications` | Police clerk pending queue (Phase 6) |
 | Design system | `/design-system` | Schaerbeek UI kit showcase (Phase 3) |
+
+Reception officers see **Home** (`/`) and **New case**. Population officers are redirected from `/` to the review dashboard.
 
 The app bar shows a fake officer identity (**Marie Dupont**) and a role switcher for development (`PopulationOfficer`, etc.).
 
@@ -138,10 +141,4 @@ The app bar shows a fake officer identity (**Marie Dupont**) and a role switcher
 
 ## What is not built yet
 
-See [ROADMAP.md](./ROADMAP.md) for upcoming phases:
-
-- **Phase 7+** — Final decision, registration, certificates
-
-**Phase 6 (complete):** Police verification loop — send to police, clerk portal, outcome history on case detail — [phase-6-police-verification-loop.md](./phases/phase-6-police-verification-loop.md).
-
-**Phase 5 (complete):** National Register search, partial criteria, link existing person, BIS conversion, duplicate warnings — [phase-5-national-register-search-bis.md](./phases/phase-5-national-register-search-bis.md).
+See [ROADMAP.md](./ROADMAP.md) for upcoming phases **13–18** (change of address, passport/ID request, reporting, person file, amendments, optional exception depth).

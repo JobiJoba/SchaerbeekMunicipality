@@ -37,7 +37,7 @@ public sealed class GetRegistrationCaseHandler(
             person = await personRepository.GetByIdAsync(personId, cancellationToken);
         }
 
-        var documents = await documentRepository.ListByCaseIdAsync(caseId, cancellationToken);
+        var documents = await documentRepository.ListByRegistrationCaseIdAsync(caseId, cancellationToken);
         var permit = await permitRepository.GetByCaseIdAsync(caseId, cancellationToken);
         var household = await householdRepository.GetByCaseIdAsync(caseId, cancellationToken);
         var possibleDuplicates = await FindPossibleDuplicatesAsync(person, cancellationToken);

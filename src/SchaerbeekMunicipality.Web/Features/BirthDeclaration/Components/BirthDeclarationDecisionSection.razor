@@ -1,0 +1,180 @@
+@using SchaerbeekMunicipality.Domain.BirthDeclaration
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ConfirmBirthDeclaration
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.GetBirthDeclarationCase
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.GetBirthDeclarationChecklist
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.RejectBirthDeclaration
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ResumeBirthDeclaration
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.SuspendBirthDeclaration
+@using SchaerbeekMunicipality.Web.Auth
+@inject ConfirmBirthDeclarationHandler ConfirmHandler
+@inject RejectBirthDeclarationHandler RejectHandler
+@inject SuspendBirthDeclarationHandler SuspendHandler
+@inject ResumeBirthDeclarationHandler ResumeHandler
+@inject ISnackbar Snackbar
+
+<AppCard Title="Officer decision" Outlined="true">
+    @if (_checklist is not null)
+    {
+        <MudList T="string" Dense="true" Class="mb-4">
+            @foreach (var question in _checklist.Questions)
+            {
+                <MudListItem Icon="@(question.IsSatisfied ? Icons.Material.Outlined.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)">
+                    <MudText Typo="Typo.body2">@question.Question</MudText>
+                    @if (!question.IsSatisfied && !string.IsNullOrWhiteSpace(question.BlockingReason))
+                    {
+                        <MudText Typo="Typo.caption" Color="Color.Secondary">@question.BlockingReason</MudText>
+                    }
+                </MudListItem>
+            }
+        </MudList>
+    }
+
+    @if (Case.Status == BirthDeclarationCaseStatus.Confirmed)
+    {
+        <AppAlert Severity="Severity.Success" Title="Birth registered">
+            Child NR @Case.ChildNationalRegisterNumber
+        </AppAlert>
+    }
+    else if (Case.Status == BirthDeclarationCaseStatus.Rejected)
+    {
+        <AppAlert Severity="Severity.Error" Title="Case rejected">@Case.RejectionReason — @Case.DecisionNotes</AppAlert>
+    }
+    else if (Case.Status == BirthDeclarationCaseStatus.Suspended)
+    {
+        <AppAlert Severity="Severity.Warning" Title="Case suspended">@Case.SuspensionReason — @Case.DecisionNotes</AppAlert>
+    }
+
+    @if (CanDecide)
+    {
+        <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mt-4">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Outlined.CheckCircle"
+                       Disabled="_busy || Case.Status != BirthDeclarationCaseStatus.UnderReview || !Case.ReadyForConfirmation"
+                       OnClick="Confirm">
+                Confirm birth declaration
+            </MudButton>
+            <MudButton Variant="Variant.Outlined"
+                       Color="Color.Error"
+                       Disabled="_busy"
+                       OnClick="Reject">
+                Reject
+            </MudButton>
+            <MudButton Variant="Variant.Outlined"
+                       Color="Color.Warning"
+                       Disabled="_busy"
+                       OnClick="Suspend">
+                Suspend
+            </MudButton>
+        </MudStack>
+    }
+    else if (Case.Status == BirthDeclarationCaseStatus.Suspended && Case.CanEdit)
+    {
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="_busy" OnClick="Resume" Class="mt-4">
+            Resume case
+        </MudButton>
+    }
+</AppCard>
+
+@code {
+    [Parameter] public BirthDeclarationCaseDetailDto Case { get; set; } = null!;
+    [Parameter] public EventCallback OnChanged { get; set; }
+
+    private BirthDeclarationChecklistResponse? _checklist;
+    private bool _busy;
+
+    private bool CanDecide =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
+        Case.Status is BirthDeclarationCaseStatus.UnderReview or BirthDeclarationCaseStatus.Intake;
+
+    [Inject] private ICurrentOfficer CurrentOfficer { get; set; } = null!;
+
+    protected override void OnParametersSet()
+    {
+        _checklist = BirthDeclarationChecklistMapper.FromCaseDetail(Case);
+    }
+
+    private async Task Confirm()
+    {
+        _busy = true;
+        try
+        {
+            var result = await ConfirmHandler.Handle(new BirthDeclarationCaseId(Case.Id), CancellationToken.None);
+            Snackbar.Add($"Birth confirmed — NR {result.NationalRegisterNumber}", Severity.Success);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task Reject()
+    {
+        _busy = true;
+        try
+        {
+            await RejectHandler.Handle(
+                new BirthDeclarationCaseId(Case.Id),
+                new RejectBirthDeclarationRequest(BirthDeclarationRejectionReason.Other, "Rejected by officer"),
+                CancellationToken.None);
+            Snackbar.Add("Case rejected.", Severity.Info);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task Suspend()
+    {
+        _busy = true;
+        try
+        {
+            await SuspendHandler.Handle(
+                new BirthDeclarationCaseId(Case.Id),
+                new SuspendBirthDeclarationRequest(SuspensionReason.MissingDocuments, "Suspended by officer"),
+                CancellationToken.None);
+            Snackbar.Add("Case suspended.", Severity.Info);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task Resume()
+    {
+        _busy = true;
+        try
+        {
+            await ResumeHandler.Handle(new BirthDeclarationCaseId(Case.Id), CancellationToken.None);
+            Snackbar.Add("Case resumed.", Severity.Success);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+}

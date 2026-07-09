@@ -8,4 +8,5 @@ public enum DocumentType
     ResidencePermit = 3,
     RentalContract = 4,
     Other = 5,
+    MedicalBirthDeclaration = 6,
 }

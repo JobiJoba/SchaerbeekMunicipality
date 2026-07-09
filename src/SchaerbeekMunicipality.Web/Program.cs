@@ -5,6 +5,20 @@ using SchaerbeekMunicipality.Web.Auth;
 using SchaerbeekMunicipality.Web.Components;
 using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs;
 using SchaerbeekMunicipality.Web.Features.Registration;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.OpenBirthDeclarationCase;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ListBirthDeclarationCases;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.GetBirthDeclarationCase;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ClaimBirthDeclarationCase;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.RecordChildDetails;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.LinkParent;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.UnlinkParent;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.SetDeclarationHousehold;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.GetBirthDeclarationChecklist;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ConfirmBirthDeclaration;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.RejectBirthDeclaration;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.SuspendBirthDeclaration;
+using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ResumeBirthDeclaration;
 using SchaerbeekMunicipality.Web.Features.Registration.ClaimRegistrationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.ReleaseCaseLock;
 using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
@@ -104,6 +118,26 @@ builder.Services.AddScoped<ListOutboundNotificationsHandler>();
 builder.Services.AddScoped<SearchMunicipalitiesHandler>();
 builder.Services.AddScoped<SearchStreetsHandler>();
 
+builder.Services.AddScoped<BirthDeclarationCaseAuthorization>();
+builder.Services.AddScoped<BirthDeclarationCaseGuard>();
+builder.Services.AddScoped<OpenBirthDeclarationCaseHandler>();
+builder.Services.AddScoped<ListBirthDeclarationCasesHandler>();
+builder.Services.AddScoped<GetBirthDeclarationCaseHandler>();
+builder.Services.AddScoped<ClaimBirthDeclarationCaseHandler>();
+builder.Services.AddScoped<SchaerbeekMunicipality.Web.Features.BirthDeclaration.ReleaseCaseLock.ReleaseCaseLockHandler>();
+builder.Services.AddScoped<RecordChildDetailsHandler>();
+builder.Services.AddScoped<LinkParentHandler>();
+builder.Services.AddScoped<UnlinkParentHandler>();
+builder.Services.AddScoped<SchaerbeekMunicipality.Web.Features.BirthDeclaration.AttachDocument.AttachDocumentHandler>();
+builder.Services.AddScoped<SchaerbeekMunicipality.Web.Features.BirthDeclaration.RemoveDocument.RemoveDocumentHandler>();
+builder.Services.AddScoped<SchaerbeekMunicipality.Web.Features.BirthDeclaration.DownloadDocument.DownloadDocumentHandler>();
+builder.Services.AddScoped<SetDeclarationHouseholdHandler>();
+builder.Services.AddScoped<GetBirthDeclarationChecklistHandler>();
+builder.Services.AddScoped<ConfirmBirthDeclarationHandler>();
+builder.Services.AddScoped<RejectBirthDeclarationHandler>();
+builder.Services.AddScoped<SuspendBirthDeclarationHandler>();
+builder.Services.AddScoped<ResumeBirthDeclarationHandler>();
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -123,6 +157,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.MapRegistrationEndpoints();
+app.MapBirthDeclarationEndpoints();
 
 app.MapOpenApi();
 

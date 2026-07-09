@@ -584,8 +584,18 @@ ok so let's consider phase 11 as completed but I want to document the next phase
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+Phase 11 is marked complete. Next steps include documenting Birth declaration as a new feature and outlining additional proposed phases. Localization for French and Dutch is excluded.</details></think>
+
+_**Agent (default)**_
+
+Updating the roadmap: marking Phase 11 complete and adding new phases with Birth declaration first. Reviewing existing phase documentation structure.
+
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details>
 </tool-use>
@@ -599,9 +609,29 @@ _**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **16** results in **1** directory</summary>
 
-No results found
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (16 files)
+
+| File |
+|------|
+| `docs/phases/phase-0.1-tooling-hygiene.md` |
+| `docs/phases/phase-2.1-intake-corrections.md` |
+| `docs/phases/phase-6-police-verification-loop.md` |
+| `docs/phases/phase-9-exception-scenarios.md` |
+| `docs/phases/phase-6.1-collapsible-intake-sections.md` |
+| `docs/phases/phase-8.1-role-boundaries-case-locking.md` |
+| `docs/phases/phase-3-design-system.md` |
+| `docs/phases/phase-0-foundation.md` |
+| `docs/phases/phase-1-case-intake-identity.md` |
+| `docs/phases/phase-10-azure-deployment.md` |
+| `docs/phases/phase-5-national-register-search-bis.md` |
+| `docs/phases/phase-4-address-household.md` |
+| `docs/phases/phase-2-residence-category-permits.md` |
+| `docs/phases/phase-4.1-document-preview-case-ux.md` |
+| `docs/phases/phase-7-decision-registration.md` |
+| `docs/phases/README.md` |
+
 </details>
 </tool-use>
 
@@ -613,7 +643,7 @@ No results found
 _**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-9-exception-scenarios.md</summary>
 
 </details>
 </tool-use>
@@ -626,7 +656,7 @@ _**Agent (default)**_
 _**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
 
 </details>
 </tool-use>
@@ -639,7 +669,7 @@ _**Agent (default)**_
 _**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details>
 </tool-use>
@@ -655,7 +685,88 @@ _**Agent (default)**_
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.{cs,md}",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "BirthDeclaration|BirthInformation|birth declaration"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "BirthDeclaration|BirthInformation|birth declaration",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Identity/BirthInformationDetails.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Identity/Person.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/VisitReasonLabels.cs"
+    },
+    {
+      "matchCount": 5,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/Phase9ExceptionScenarioTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/DOMAIN.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_18-18-58Z-registration-feature-discussion.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationExceptionRulesTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_18-23-47Z-difference-between-officer-roles.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationRequest.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "docs/phases/phase-9-exception-scenarios.md"
+    },
+    {
+      "matchCount": 15,
+      "uri": ".specstory/history/2026-07-05_19-32-21Z-phase-9-implementation-details.md"
+    }
+  ],
+  "totalFiles": 14,
+  "totalMatches": 115
+}
+```
+Status: **completed**
 
 
 </details>
@@ -665,3 +776,502 @@ Status: **loading**
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The system landscape is now clear.
+
+Phase 11 is being marked as completed. Birth declaration is the first new phase. Change of address, passport requests, and reporting dashboard will follow as separate phases. French and Dutch localization are excluded.
+
+Person file read model is proposed as Phase 16. Post-registration amendments and deferred Phase 9 items such as diplomat rules and homeless reference addresses may also become future phases.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-7-decision-registration.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": true,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/IDEA.md",
+  "pattern": "birth|Birth|change of address|passport|person file"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/IDEA.md",
+  "pattern": "birth|Birth|change of address|passport|person file",
+  "topFiles": [
+    {
+      "matchCount": 15,
+      "uri": "IDEA.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 15
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating ROADMAP.md to mark Phase 11 complete and add proposed phases 12 through 16. Birth declaration will be documented as a new feature.
+
+Creating a Phase 11 completion summary document. Planning documents for future phases will be drafted. The progress table will be fixed for accuracy.
+
+Phase 12 Birth declaration is the first priority. Phase 13 covers change of address within municipality. Phase 14 handles passport and ID card requests. Phase 15 is a reporting dashboard. Phase 16 is a person file read model. Phase 17 may cover post-registration amendments.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/IDEA.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I now have a clear picture. I will begin creating the documentation for the remaining phases.
+
+Phase 11 is being documented as closed, with its scope split into phases 12 through 17. Localization is explicitly excluded. Planned features include birth declaration, change of address, passport and ID requests, a reporting dashboard, and person file management. Optional follow-ups cover post-registration amendments and exception scenarios for diplomats and homeless persons.
+
+The birth declaration document is being structured as the first implementation target. It covers Belgian parent declarations with child details, parent identity, hospital linkage, and household registration. A new bounded context, `BirthDeclaration`, would contain a separate aggregate, `BirthDeclarationCase`, distinct from `RegistrationCase`.
+
+The birth declaration flow is being broken down into six key slices: opening a case, recording child details, linking parents to the national register, attaching medical declarations, confirming the birth registration decision, and listing cases. The existing VisitReason.BirthDeclaration on RegistrationCase may need routing from reception into this new bounded context. Documentation will focus on ROADMAP, phase documents, and a phases README rather than updating DOMAIN.md.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.{cs,md}",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "IssueResidenceCertificate|IssueHouseholdComposition|ListOutboundNotifications"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "IssueResidenceCertificate|IssueHouseholdComposition|ListOutboundNotifications",
+  "topFiles": [
+    {
+      "matchCount": 10,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs"
+    },
+    {
+      "matchCount": 6,
+      "uri": "./src/SchaerbeekMunicipality.Web/Program.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "./src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationEndpoints.cs"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 105
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Phase 8 may lack documentation. The progress table will be fixed during ROADMAP updates to properly reflect phases 8 through 11.</details></think>
+
+_**Agent (default)**_
+
+Creating Phase 11 completion notes and planning docs for Phases 12–18, excluding localization.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-11-extended-municipality.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-12-birth-declaration.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-13-change-of-address.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-14-passport-id-request.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-15-reporting-dashboard.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-16-person-file.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-17-post-registration-amendments.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-18-remaining-exception-scenarios.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating ROADMAP.md and phases/README to document the completed Birth declaration feature and upcoming phases.</details></think>
+
+_**Agent (default)**_
+
+Updating `ROADMAP.md` and `phases/README.md`.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/DOMAIN.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating phase-2.1 references to Phase 17 instead of Phase 11 for post-registration amendments. Removing Phase 11 mentions from design-system documentation where localization is concerned.</details></think>
+
+_**Agent (default)**_
+
+Updating cross-references that still point to Phase 11 for deferred work.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-2.1-intake-corrections.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-7-decision-registration.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-10-azure-deployment.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+A BirthDeclaration bounded context stub will be added to DOMAIN.md as part of documenting the next phases.</details></think>
+
+_**Agent (default)**_
+
+**Phase 11** is marked complete as a scope-definition phase, and the follow-on work is split into **Phases 12–18**. FR/NL localization is explicitly excluded.
+
+## What changed
+
+### Roadmap (`docs/ROADMAP.md`)
+- Progress table updated through Phase 18
+- Phase 11 → complete (scope split, not a code delivery)
+- Phases 12–18 added with summaries
+- Phase 8 marked complete (implementation already exists)
+
+### New planning documents
+
+| Phase | Title | Document |
+|-------|-------|----------|
+| **11** | Extended municipality (scope definition) | `docs/phases/phase-11-extended-municipality.md` |
+| **12** | **Birth declaration** (first to implement) | `docs/phases/phase-12-birth-declaration.md` |
+| **13** | Change of address | `docs/phases/phase-13-change-of-address.md` |
+| **14** | Passport / ID card request | `docs/phases/phase-14-passport-id-request.md` |
+| **15** | Reporting dashboard | `docs/phases/phase-15-reporting-dashboard.md` |
+| **16** | Person file (read model) | `docs/phases/phase-16-person-file.md` |
+| **17** | Post-registration amendments | `docs/phases/phase-17-post-registration-amendments.md` |
+| **18** | Remaining exception scenarios (diplomat, homeless) | `docs/phases/phase-18-remaining-exception-scenarios.md` |
+
+### Other updates
+- `docs/phases/README.md` — full index
+- `docs/DOMAIN.md` — person file points to Phase 16
+- Cross-references in phase 2.1, 7, and 10 docs updated
+
+## Phase 12 highlight (Birth declaration)
+
+The most detailed spec is Phase 12. It defines:
+- New **`BirthDeclaration`** bounded context with `BirthDeclarationCase` aggregate
+- Clear separation from Phase 9’s `RecordBirthInformation` (adult applicant birth place during first registration)
+- Slices: open case, child details, parent NR links, medical declaration, household, confirm + stub NR for the child
+- Reception routing via existing `VisitReason.BirthDeclaration`
+
+## Suggested order
+
+12 → 13 → 14 → 15 → 16 → 17 → 18 (15 and 16 can swap if you want the person file earlier)
+
+When you’re ready to implement, say the word and we can start Phase 12.

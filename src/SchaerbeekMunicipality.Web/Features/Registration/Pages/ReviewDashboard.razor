@@ -19,7 +19,7 @@
     <MudGrid Spacing="4" Class="mb-6">
       @foreach (var stat in _dashboard.Statistics)
       {
-        <MudItem xs="12" sm="6" md="3">
+        <MudItem xs="12" sm="6" md="4" lg="3">
           <AppStatisticCard Label="@stat.Label"
                             Value="@stat.Value"
                             Href="@stat.Href"
@@ -44,15 +44,17 @@
                       OnRowClick="NavigateToCase">
           <HeaderContent>
             <MudTh Class="app-table-header">Case</MudTh>
+            <MudTh Class="app-table-header">Type</MudTh>
             <MudTh Class="app-table-header">Status</MudTh>
-            <MudTh Class="app-table-header">Visit reason</MudTh>
+            <MudTh Class="app-table-header">Procedure</MudTh>
             <MudTh Class="app-table-header">Opened</MudTh>
             <MudTh Class="app-table-header">Summary</MudTh>
           </HeaderContent>
           <RowTemplate Context="item">
             <MudTd DataLabel="Case">@item.CaseId.ToString()[..8]…</MudTd>
+            <MudTd DataLabel="Type">@FormatCaseType(item.CaseType)</MudTd>
             <MudTd DataLabel="Status">@item.Status</MudTd>
-            <MudTd DataLabel="Visit reason">@item.VisitReason</MudTd>
+            <MudTd DataLabel="Procedure">@item.Procedure</MudTd>
             <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
             <MudTd DataLabel="Summary">@item.Summary</MudTd>
           </RowTemplate>
@@ -73,7 +75,8 @@
   private IReadOnlyList<AppQuickActions.AppQuickAction> _quickActions =
   [
     new("Open new case", "/registration/cases", Icons.Material.Outlined.Add),
-    new("All cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+    new("All registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+    new("Birth declarations", "/birth-declarations", Icons.Material.Outlined.ChildCare),
     new("Police verifications", "/registration/police-verifications", Icons.Material.Outlined.LocalPolice),
   ];
 
@@ -92,7 +95,18 @@
   }
 
   private void NavigateToCase(ActionableCaseRow row) =>
-    Navigation.NavigateTo($"/registration/cases/{row.CaseId}");
+    Navigation.NavigateTo(row.CaseType switch
+    {
+      ReviewDashboardCaseType.BirthDeclaration => $"/birth-declarations/{row.CaseId}",
+      _ => $"/registration/cases/{row.CaseId}",
+    });
+
+  private static string FormatCaseType(ReviewDashboardCaseType caseType) =>
+    caseType switch
+    {
+      ReviewDashboardCaseType.BirthDeclaration => "Birth declaration",
+      _ => "Registration",
+    };
 
   private static string GetStatisticIcon(string label) =>
     label switch
@@ -102,6 +116,8 @@
       "Awaiting police" => Icons.Material.Outlined.LocalPolice,
       "Ready for decision" => Icons.Material.Outlined.Gavel,
       "Suspended" => Icons.Material.Outlined.PauseCircle,
+      "Birth unassigned" => Icons.Material.Outlined.ChildCare,
+      "Ready for confirmation" => Icons.Material.Outlined.CheckCircle,
       _ => Icons.Material.Outlined.Analytics,
     };
 }

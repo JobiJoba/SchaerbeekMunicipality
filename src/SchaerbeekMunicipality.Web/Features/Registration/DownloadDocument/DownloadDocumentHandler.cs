@@ -24,7 +24,7 @@ public sealed class DownloadDocumentHandler(
         var document = await documentRepository.GetByIdAsync(documentId, cancellationToken)
             ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
 
-        if (document.RegistrationCaseId != caseId)
+        if (!document.BelongsToRegistrationCase(caseId))
         {
             throw new KeyNotFoundException($"Document '{documentId}' was not found on case '{caseId}'.");
         }
