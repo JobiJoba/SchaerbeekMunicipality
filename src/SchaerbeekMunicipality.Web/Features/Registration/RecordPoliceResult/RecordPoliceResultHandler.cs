@@ -1,13 +1,16 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Auth;
+using SchaerbeekMunicipality.Web.Features.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult;
 
 public sealed class RecordPoliceResultHandler(
     IPoliceVerificationRepository policeVerificationRepository,
-    IRegistrationCaseRepository caseRepository,
+    IRegistrationCaseRepository registrationCaseRepository,
+    IChangeOfAddressCaseRepository changeOfAddressCaseRepository,
     RegistrationCaseAuthorization authorization,
     CaseAuditRecorder auditRecorder,
     ICurrentOfficer currentOfficer,
@@ -31,16 +34,42 @@ public sealed class RecordPoliceResultHandler(
                 "This police verification request has already been completed.");
         }
 
-        var registrationCase = await caseRepository.GetByIdAsync(
-                verificationRequest.RegistrationCaseId,
-                cancellationToken)
-            ?? throw new KeyNotFoundException(
-                $"Registration case '{verificationRequest.RegistrationCaseId}' was not found.");
-
         verificationRequest.RecordResult(
             request.Result,
             request.OfficerNotes,
             timeProvider.GetUtcNow());
+
+        if (verificationRequest.RegistrationCaseId is { } registrationCaseId)
+        {
+            return await HandleRegistrationCaseAsync(
+                verificationRequest,
+                registrationCaseId,
+                request,
+                cancellationToken);
+        }
+
+        if (verificationRequest.ChangeOfAddressCaseId is { } changeOfAddressCaseId)
+        {
+            return await HandleChangeOfAddressCaseAsync(
+                verificationRequest,
+                changeOfAddressCaseId,
+                request,
+                cancellationToken);
+        }
+
+        throw new InvalidPoliceVerificationException(
+            "Police verification request is not linked to a case.");
+    }
+
+    private async Task<RecordPoliceResultResponse> HandleRegistrationCaseAsync(
+        PoliceVerificationRequest verificationRequest,
+        RegistrationCaseId registrationCaseId,
+        RecordPoliceResultRequest request,
+        CancellationToken cancellationToken)
+    {
+        var registrationCase = await registrationCaseRepository.GetByIdAsync(registrationCaseId, cancellationToken)
+            ?? throw new KeyNotFoundException(
+                $"Registration case '{registrationCaseId}' was not found.");
 
         registrationCase.ApplyPoliceVerificationResult(request.Result);
 
@@ -57,6 +86,32 @@ public sealed class RecordPoliceResultHandler(
             registrationCase.Id.Value,
             request.Result,
             registrationCase.Checklist.AddressConfirmed,
-            registrationCase.Status.ToString());
+            registrationCase.Status.ToString(),
+            "Registration");
+    }
+
+    private async Task<RecordPoliceResultResponse> HandleChangeOfAddressCaseAsync(
+        PoliceVerificationRequest verificationRequest,
+        ChangeOfAddressCaseId changeOfAddressCaseId,
+        RecordPoliceResultRequest request,
+        CancellationToken cancellationToken)
+    {
+        var changeOfAddressCase = await changeOfAddressCaseRepository.GetByIdAsync(
+                changeOfAddressCaseId,
+                cancellationToken)
+            ?? throw new KeyNotFoundException(
+                $"Change of address case '{changeOfAddressCaseId}' was not found.");
+
+        changeOfAddressCase.ApplyPoliceVerificationResult(request.Result);
+
+        await policeVerificationRepository.SaveChangesAsync(cancellationToken);
+
+        return new RecordPoliceResultResponse(
+            verificationRequest.Id.Value,
+            changeOfAddressCase.Id.Value,
+            request.Result,
+            changeOfAddressCase.Checklist.PoliceVerificationPositive,
+            changeOfAddressCase.Status.ToString(),
+            "ChangeOfAddress");
     }
 }

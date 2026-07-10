@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Documents;
@@ -14,6 +15,8 @@ public sealed class AdministrativeDocument
     public RegistrationCaseId? RegistrationCaseId { get; private set; }
 
     public BirthDeclarationCaseId? BirthDeclarationCaseId { get; private set; }
+
+    public ChangeOfAddressCaseId? ChangeOfAddressCaseId { get; private set; }
 
     public DocumentType DocumentType { get; private set; }
 
@@ -85,9 +88,44 @@ public sealed class AdministrativeDocument
         };
     }
 
+    public static AdministrativeDocument CreateForChangeOfAddressCase(
+        ChangeOfAddressCaseId changeOfAddressCaseId,
+        DocumentType documentType,
+        string fileName,
+        string storagePath,
+        string contentHash,
+        OfficerId uploadedByOfficerId,
+        DateTimeOffset uploadedAt)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(fileName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(storagePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(contentHash);
+
+        if (documentType is not (DocumentType.RentalContract or DocumentType.Other))
+        {
+            throw new ArgumentException(
+                "Change of address cases only accept rental contracts or other housing documents.");
+        }
+
+        return new AdministrativeDocument
+        {
+            Id = AdministrativeDocumentId.New(),
+            ChangeOfAddressCaseId = changeOfAddressCaseId,
+            DocumentType = documentType,
+            FileName = fileName.Trim(),
+            StoragePath = storagePath,
+            ContentHash = contentHash,
+            UploadedByOfficerId = uploadedByOfficerId,
+            UploadedAt = uploadedAt,
+        };
+    }
+
     public bool BelongsToRegistrationCase(RegistrationCaseId caseId) =>
         RegistrationCaseId == caseId;
 
     public bool BelongsToBirthDeclarationCase(BirthDeclarationCaseId caseId) =>
         BirthDeclarationCaseId == caseId;
+
+    public bool BelongsToChangeOfAddressCase(ChangeOfAddressCaseId caseId) =>
+        ChangeOfAddressCaseId == caseId;
 }

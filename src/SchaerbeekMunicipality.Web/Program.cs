@@ -19,6 +19,17 @@ using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ConfirmBirthDeclarati
 using SchaerbeekMunicipality.Web.Features.BirthDeclaration.RejectBirthDeclaration;
 using SchaerbeekMunicipality.Web.Features.BirthDeclaration.SuspendBirthDeclaration;
 using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ResumeBirthDeclaration;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.OpenChangeOfAddressCase;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ListChangeOfAddressCases;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.GetChangeOfAddressCase;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ClaimChangeOfAddressCase;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.DeclareNewAddress;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.UpdateHouseholdForMove;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.GetChangeOfAddressChecklist;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ConfirmAddressChange;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.RejectChangeOfAddress;
+using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ResolveRegisteredPerson;
 using SchaerbeekMunicipality.Web.Features.Registration.ClaimRegistrationCase;
 using SchaerbeekMunicipality.Web.Features.Registration.ReleaseCaseLock;
 using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
@@ -138,6 +149,25 @@ builder.Services.AddScoped<RejectBirthDeclarationHandler>();
 builder.Services.AddScoped<SuspendBirthDeclarationHandler>();
 builder.Services.AddScoped<ResumeBirthDeclarationHandler>();
 
+builder.Services.AddScoped<ChangeOfAddressCaseAuthorization>();
+builder.Services.AddScoped<ChangeOfAddressCaseGuard>();
+builder.Services.AddScoped<OpenChangeOfAddressCaseHandler>();
+builder.Services.AddScoped<ListChangeOfAddressCasesHandler>();
+builder.Services.AddScoped<GetChangeOfAddressCaseHandler>();
+builder.Services.AddScoped<ClaimChangeOfAddressCaseHandler>();
+builder.Services.AddScoped<SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ReleaseCaseLock.ReleaseCaseLockHandler>();
+builder.Services.AddScoped<DeclareNewAddressHandler>();
+builder.Services.AddScoped<UpdateHouseholdForMoveHandler>();
+builder.Services.AddScoped<UnlinkHouseholdMemberHandler>();
+builder.Services.AddScoped<SchaerbeekMunicipality.Web.Features.ChangeOfAddress.RequestPoliceVerification.RequestPoliceVerificationHandler>();
+builder.Services.AddScoped<SchaerbeekMunicipality.Web.Features.ChangeOfAddress.AttachDocument.AttachDocumentHandler>();
+builder.Services.AddScoped<SchaerbeekMunicipality.Web.Features.ChangeOfAddress.RemoveDocument.RemoveDocumentHandler>();
+builder.Services.AddScoped<SchaerbeekMunicipality.Web.Features.ChangeOfAddress.DownloadDocument.DownloadDocumentHandler>();
+builder.Services.AddScoped<GetChangeOfAddressChecklistHandler>();
+builder.Services.AddScoped<ConfirmAddressChangeHandler>();
+builder.Services.AddScoped<RejectChangeOfAddressHandler>();
+builder.Services.AddScoped<ResolveRegisteredPersonHandler>();
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -158,6 +188,7 @@ app.MapRazorComponents<App>()
 
 app.MapRegistrationEndpoints();
 app.MapBirthDeclarationEndpoints();
+app.MapChangeOfAddressEndpoints();
 
 app.MapOpenApi();
 

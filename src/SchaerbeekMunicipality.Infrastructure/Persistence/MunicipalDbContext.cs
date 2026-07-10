@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
@@ -18,6 +19,8 @@ public sealed class MunicipalDbContext(DbContextOptions<MunicipalDbContext> opti
     public DbSet<RegistrationCase> RegistrationCases => Set<RegistrationCase>();
 
     public DbSet<BirthDeclarationCase> BirthDeclarationCases => Set<BirthDeclarationCase>();
+
+    public DbSet<ChangeOfAddressCase> ChangeOfAddressCases => Set<ChangeOfAddressCase>();
 
     public DbSet<Person> Persons => Set<Person>();
 

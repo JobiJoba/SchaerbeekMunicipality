@@ -254,6 +254,12 @@
 
         if (result is { Canceled: false, Data: NewCaseDialogResult dialogResult })
         {
+            if (dialogResult.IsChangeOfAddress)
+            {
+                Navigation.NavigateTo("/change-of-address?open=new");
+                return;
+            }
+
             Snackbar.Add(dialogResult.IsBirthDeclaration
                 ? "Birth declaration case opened."
                 : "Registration case opened.", Severity.Success);

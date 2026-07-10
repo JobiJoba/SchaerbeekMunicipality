@@ -1,0 +1,126 @@
+@using SchaerbeekMunicipality.Domain.ChangeOfAddress
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ConfirmAddressChange
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.GetChangeOfAddressCase
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.GetChangeOfAddressChecklist
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.RejectChangeOfAddress
+@using SchaerbeekMunicipality.Web.Auth
+@inject ConfirmAddressChangeHandler ConfirmHandler
+@inject RejectChangeOfAddressHandler RejectHandler
+@inject ISnackbar Snackbar
+
+<AppCard Title="Officer decision" Outlined="true">
+    @if (_checklist is not null)
+    {
+        <MudList T="string" Dense="true" Class="mb-4">
+            @foreach (var question in _checklist.Questions)
+            {
+                <MudListItem Icon="@(question.IsSatisfied ? Icons.Material.Outlined.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)">
+                    <MudText Typo="Typo.body2">@question.Question</MudText>
+                    @if (!question.IsSatisfied && !string.IsNullOrWhiteSpace(question.BlockingReason))
+                    {
+                        <MudText Typo="Typo.caption" Color="Color.Secondary">@question.BlockingReason</MudText>
+                    }
+                </MudListItem>
+            }
+        </MudList>
+    }
+
+    @if (Case.Status == ChangeOfAddressCaseStatus.Confirmed)
+    {
+        <AppAlert Severity="Severity.Success" Title="Address change confirmed">
+            Domicile updated for @Case.PersonGivenName @Case.PersonFamilyName
+        </AppAlert>
+    }
+    else if (Case.Status == ChangeOfAddressCaseStatus.Rejected)
+    {
+        <AppAlert Severity="Severity.Error" Title="Case rejected">@Case.RejectionReason — @Case.DecisionNotes</AppAlert>
+    }
+    else if (Case.Status == ChangeOfAddressCaseStatus.AwaitingPoliceVerification)
+    {
+        <AppAlert Severity="Severity.Warning" Title="Awaiting police verification">
+            Police verification is pending for the new address.
+        </AppAlert>
+    }
+
+    @if (CanDecide)
+    {
+        <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mt-4">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Outlined.CheckCircle"
+                       Disabled="_busy || !Case.ReadyForConfirmation || Case.Status == ChangeOfAddressCaseStatus.AwaitingPoliceVerification"
+                       OnClick="Confirm">
+                Confirm address change
+            </MudButton>
+            <MudButton Variant="Variant.Outlined"
+                       Color="Color.Error"
+                       Disabled="_busy"
+                       OnClick="Reject">
+                Reject
+            </MudButton>
+        </MudStack>
+    }
+</AppCard>
+
+@code {
+    [Parameter] public ChangeOfAddressCaseDetailDto Case { get; set; } = null!;
+    [Parameter] public EventCallback OnChanged { get; set; }
+
+    private ChangeOfAddressChecklistResponse? _checklist;
+    private bool _busy;
+
+    private bool CanDecide =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
+        Case.Status is ChangeOfAddressCaseStatus.Intake
+            or ChangeOfAddressCaseStatus.UnderReview
+            or ChangeOfAddressCaseStatus.AwaitingPoliceVerification;
+
+    [Inject] private ICurrentOfficer CurrentOfficer { get; set; } = null!;
+
+    protected override void OnParametersSet()
+    {
+        _checklist = ChangeOfAddressChecklistMapper.FromCaseDetail(Case);
+    }
+
+    private async Task Confirm()
+    {
+        _busy = true;
+        try
+        {
+            await ConfirmHandler.Handle(new ChangeOfAddressCaseId(Case.Id), CancellationToken.None);
+            Snackbar.Add("Address change confirmed.", Severity.Success);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task Reject()
+    {
+        _busy = true;
+        try
+        {
+            await RejectHandler.Handle(
+                new ChangeOfAddressCaseId(Case.Id),
+                new RejectChangeOfAddressRequest(ChangeOfAddressRejectionReason.InvalidAddress, null),
+                CancellationToken.None);
+            Snackbar.Add("Case rejected.", Severity.Warning);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+}

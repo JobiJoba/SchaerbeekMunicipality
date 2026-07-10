@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -15,6 +16,8 @@ public sealed class OutboundNotification
     public RegistrationCaseId? RegistrationCaseId { get; private set; }
 
     public BirthDeclarationCaseId? BirthDeclarationCaseId { get; private set; }
+
+    public ChangeOfAddressCaseId? ChangeOfAddressCaseId { get; private set; }
 
     public PersonId PersonId { get; private set; }
 
@@ -57,6 +60,26 @@ public sealed class OutboundNotification
         {
             Id = OutboundNotificationId.New(),
             BirthDeclarationCaseId = birthDeclarationCaseId,
+            PersonId = personId,
+            Recipient = recipient,
+            Message = message.Trim(),
+            CreatedAt = createdAt,
+        };
+    }
+
+    public static OutboundNotification CreateForChangeOfAddress(
+        ChangeOfAddressCaseId changeOfAddressCaseId,
+        PersonId personId,
+        OutboundNotificationRecipient recipient,
+        string message,
+        DateTimeOffset createdAt)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(message);
+
+        return new OutboundNotification
+        {
+            Id = OutboundNotificationId.New(),
+            ChangeOfAddressCaseId = changeOfAddressCaseId,
             PersonId = personId,
             Recipient = recipient,
             Message = message.Trim(),

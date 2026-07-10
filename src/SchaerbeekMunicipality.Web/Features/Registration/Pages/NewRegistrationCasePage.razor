@@ -161,6 +161,11 @@
                 _createdCaseId = birthResult.CaseId;
                 Snackbar.Add("Birth declaration case created.", Severity.Success);
             }
+            else if (_visitReason == VisitReason.ChangeOfAddress)
+            {
+                Navigation.NavigateTo("/change-of-address?open=new");
+                return;
+            }
             else
             {
                 var result = await OpenHandler.Handle(

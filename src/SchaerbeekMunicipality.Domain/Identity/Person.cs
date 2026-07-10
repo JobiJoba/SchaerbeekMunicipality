@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 
 namespace SchaerbeekMunicipality.Domain.Identity;
@@ -29,6 +30,8 @@ public sealed class Person
     public string? BirthPlace { get; private set; }
 
     public string? BirthCountry { get; private set; }
+
+    public BelgianAddress? DomicileAddress { get; private set; }
 
     public static Person Create(IdentityDetails details)
     {
@@ -113,5 +116,11 @@ public sealed class Person
         BirthCountry = string.IsNullOrWhiteSpace(details.BirthCountry)
             ? null
             : details.BirthCountry.Trim();
+    }
+
+    public void UpdateDomicile(BelgianAddress address)
+    {
+        ArgumentNullException.ThrowIfNull(address);
+        DomicileAddress = address;
     }
 }

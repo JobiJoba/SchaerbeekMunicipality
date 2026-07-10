@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -21,9 +22,15 @@ internal sealed class PoliceVerificationRequestConfiguration : IEntityTypeConfig
 
         builder.Property(r => r.RegistrationCaseId)
             .HasConversion(
-                id => id.Value,
-                value => new RegistrationCaseId(value))
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? new RegistrationCaseId(value.Value) : null)
             .HasColumnName("registration_case_id");
+
+        builder.Property(r => r.ChangeOfAddressCaseId)
+            .HasConversion(
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? new ChangeOfAddressCaseId(value.Value) : null)
+            .HasColumnName("change_of_address_case_id");
 
         builder.Property(r => r.RequestedAt)
             .HasColumnName("requested_at");
@@ -44,6 +51,7 @@ internal sealed class PoliceVerificationRequestConfiguration : IEntityTypeConfig
             .HasColumnName("attempt_number");
 
         builder.HasIndex(r => r.RegistrationCaseId);
+        builder.HasIndex(r => r.ChangeOfAddressCaseId);
 
         builder.HasIndex(r => r.CompletedAt);
     }

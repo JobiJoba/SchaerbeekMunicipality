@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Police;
@@ -12,6 +13,10 @@ public interface IPoliceVerificationRepository
         RegistrationCaseId caseId,
         CancellationToken cancellationToken);
 
+    Task<PoliceVerificationRequest?> GetPendingByChangeOfAddressCaseIdAsync(
+        ChangeOfAddressCaseId caseId,
+        CancellationToken cancellationToken);
+
     Task<IReadOnlyList<PoliceVerificationRequest>> ListPendingAsync(
         CancellationToken cancellationToken);
 
@@ -23,6 +28,10 @@ public interface IPoliceVerificationRepository
 
     Task<int> GetMaxAttemptNumberAsync(
         RegistrationCaseId caseId,
+        CancellationToken cancellationToken);
+
+    Task<int> GetMaxAttemptNumberForChangeOfAddressAsync(
+        ChangeOfAddressCaseId caseId,
         CancellationToken cancellationToken);
 
     Task AddAsync(PoliceVerificationRequest request, CancellationToken cancellationToken);

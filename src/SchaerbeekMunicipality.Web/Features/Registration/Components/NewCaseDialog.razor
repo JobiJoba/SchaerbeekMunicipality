@@ -69,6 +69,10 @@
                 var birthResult = await BirthHandler.Handle(CancellationToken.None);
                 MudDialog.Close(DialogResult.Ok(new NewCaseDialogResult(birthResult.CaseId, true)));
             }
+            else if (_visitReason == VisitReason.ChangeOfAddress)
+            {
+                MudDialog.Close(DialogResult.Ok(new NewCaseDialogResult(Guid.Empty, false, true)));
+            }
             else
             {
                 var result = await Handler.Handle(

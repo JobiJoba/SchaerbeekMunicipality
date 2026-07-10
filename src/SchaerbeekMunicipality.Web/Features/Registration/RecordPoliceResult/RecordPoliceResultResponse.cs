@@ -7,4 +7,5 @@ public sealed record RecordPoliceResultResponse(
     Guid CaseId,
     PoliceVerificationResult Result,
     bool AddressConfirmed,
-    string Status);
+    string Status,
+    string CaseType = "Registration");

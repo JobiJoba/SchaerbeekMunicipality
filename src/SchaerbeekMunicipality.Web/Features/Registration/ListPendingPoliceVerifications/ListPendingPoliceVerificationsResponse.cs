@@ -5,6 +5,7 @@ namespace SchaerbeekMunicipality.Web.Features.Registration.ListPendingPoliceVeri
 public sealed record PendingPoliceVerificationDto(
     Guid RequestId,
     Guid CaseId,
+    string CaseType,
     string PersonName,
     string Address,
     DateTimeOffset RequestedAt,

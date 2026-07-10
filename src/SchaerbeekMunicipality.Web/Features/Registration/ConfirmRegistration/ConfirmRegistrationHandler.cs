@@ -38,6 +38,11 @@ public sealed class ConfirmRegistrationHandler(
         var person = await personRepository.GetForUpdateAsync(eventDetails.PersonId, cancellationToken)
             ?? throw new KeyNotFoundException($"Person '{eventDetails.PersonId}' was not found.");
 
+        if (registrationCase.DeclaredAddress is { } declaredAddress)
+        {
+            person.UpdateDomicile(declaredAddress);
+        }
+
         string? assignedNr = person.NationalRegisterNumber?.Value;
 
         if (person.NationalRegisterNumber is null)
