@@ -1,0 +1,270 @@
+@page "/change-of-address"
+@using SchaerbeekMunicipality.Domain.ChangeOfAddress
+@using SchaerbeekMunicipality.Web.Auth
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.Components
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ListChangeOfAddressCases
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.OpenChangeOfAddressCase
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ResolveRegisteredPerson
+@using SchaerbeekMunicipality.Web.Features.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister
+@inject ListChangeOfAddressCasesHandler Handler
+@inject OpenChangeOfAddressCaseHandler OpenHandler
+@inject ResolveRegisteredPersonHandler ResolveHandler
+@inject SearchNationalRegisterHandler SearchHandler
+@inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
+    <AppPage Title="Change of address">
+        <AppPageHeader Title="Change of address"
+                       Subtitle="Domicile updates for registered residents within Schaerbeek.">
+            <Actions>
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.Add"
+                           OnClick="OpenNewCase">
+                    New change of address
+                </MudButton>
+            </Actions>
+        </AppPageHeader>
+
+        <AppSection>
+            @if (_loading)
+            {
+                <AppLoading Kind="AppLoadingKind.Skeleton" />
+            }
+            else if (_cases.Count == 0)
+            {
+                <AppEmptyState Title="No change of address cases yet"
+                               Description="Open a new case to record a domicile change for a registered resident."
+                               Icon="@Icons.Material.Outlined.Home">
+                    <Action>
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   StartIcon="@Icons.Material.Outlined.Add"
+                                   OnClick="OpenNewCase">
+                            New change of address
+                        </MudButton>
+                    </Action>
+                </AppEmptyState>
+            }
+            else
+            {
+                <AppSearchBar @bind-Value="_searchText"
+                              Placeholder="Search cases…"
+                              Class="mb-3"
+                              OnSearch="OnSearch" />
+
+                <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center" Class="mb-4">
+                    @foreach (var option in _filterOptions)
+                    {
+                        <MudButton Variant="@GetFilterVariant(option.Filter)"
+                                   Color="@GetFilterColor(option.Filter)"
+                                   StartIcon="@option.Icon"
+                                   OnClick="@(() => SetQuickFilter(option.Filter))">
+                            @option.Label
+                        </MudButton>
+                    }
+                </MudStack>
+
+                @if (_filteredCases.Count == 0)
+                {
+                    <AppEmptyState Title="No matching cases"
+                                   Description="@GetEmptyFilterDescription()"
+                                   Icon="@Icons.Material.Outlined.FilterList" />
+                }
+                else
+                {
+                    <AppDataTable T="ChangeOfAddressCaseListItem"
+                                  Items="_filteredCases"
+                                  Caption="Change of address cases"
+                                  OnRowClick="NavigateToCase">
+                        <HeaderContent>
+                            <MudTh Class="app-table-header">Case ID</MudTh>
+                            <MudTh Class="app-table-header">Resident</MudTh>
+                            <MudTh Class="app-table-header">Status</MudTh>
+                            <MudTh Class="app-table-header">Officer</MudTh>
+                            <MudTh Class="app-table-header">Opened</MudTh>
+                        </HeaderContent>
+                        <RowTemplate Context="item">
+                            <MudTd DataLabel="Case ID">
+                                <MudLink Href="@($"/change-of-address/{item.Id}")">
+                                    @item.Id.ToString()[..8]…
+                                </MudLink>
+                            </MudTd>
+                            <MudTd DataLabel="Resident">@(item.PersonDisplayName ?? "—")</MudTd>
+                            <MudTd DataLabel="Status">
+                                <AppStatusChip Label="@item.Status.ToString()" Severity="@GetSeverity(item.Status)" />
+                            </MudTd>
+                            <MudTd DataLabel="Officer">
+                                @OfficerDisplayNames.LockStatus(item.AssignedOfficerId, item.LockedByOfficerId)
+                            </MudTd>
+                            <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+                        </RowTemplate>
+                    </AppDataTable>
+                }
+            }
+        </AppSection>
+    </AppPage>
+</RegistrationRoleGate>
+
+@code {
+    private enum CaseListFilter
+    {
+        All,
+        MyCases,
+        Unassigned,
+        Ready,
+    }
+
+    private sealed record FilterOption(CaseListFilter Filter, string Label, string Icon);
+
+    private static readonly FilterOption[] _filterOptions =
+    [
+        new(CaseListFilter.All, "All cases", Icons.Material.Outlined.FolderOpen),
+        new(CaseListFilter.MyCases, "My cases", Icons.Material.Outlined.Person),
+        new(CaseListFilter.Unassigned, "Unassigned", Icons.Material.Outlined.Inbox),
+        new(CaseListFilter.Ready, "Ready for confirmation", Icons.Material.Outlined.CheckCircle),
+    ];
+
+    [SupplyParameterFromQuery(Name = "filter")]
+    public string? Filter { get; set; }
+
+    [SupplyParameterFromQuery(Name = "open")]
+    public string? Open { get; set; }
+
+    private IReadOnlyList<ChangeOfAddressCaseListItem> _cases = [];
+    private IReadOnlyList<ChangeOfAddressCaseListItem> _filteredCases = [];
+    private bool _loading = true;
+    private string _searchText = string.Empty;
+    private CaseListFilter _quickFilter = CaseListFilter.All;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _quickFilter = ParseFilter(Filter);
+        await ReloadAsync();
+
+        if (string.Equals(Open, "new", StringComparison.OrdinalIgnoreCase))
+        {
+            await OpenNewCase();
+        }
+    }
+
+    private async Task ReloadAsync()
+    {
+        _loading = true;
+        _cases = await Handler.Handle(CancellationToken.None);
+        ApplyFilter();
+        _loading = false;
+    }
+
+    private static CaseListFilter ParseFilter(string? filter) =>
+        filter?.Trim().ToLowerInvariant() switch
+        {
+            "mine" or "my" or "my-cases" => CaseListFilter.MyCases,
+            "unassigned" => CaseListFilter.Unassigned,
+            "ready" or "ready-for-confirmation" => CaseListFilter.Ready,
+            _ => CaseListFilter.All,
+        };
+
+    private void OnSearch(string _) => ApplyFilter();
+
+    private void SetQuickFilter(CaseListFilter filter)
+    {
+        _quickFilter = filter;
+        ApplyFilter();
+    }
+
+    private void ApplyFilter()
+    {
+        IEnumerable<ChangeOfAddressCaseListItem> query = _cases;
+
+        query = _quickFilter switch
+        {
+            CaseListFilter.MyCases => query.Where(IsMyCase),
+            CaseListFilter.Unassigned => query.Where(IsUnassigned),
+            CaseListFilter.Ready => query.Where(c => c.IsReadyForConfirmation),
+            _ => query,
+        };
+
+        if (!string.IsNullOrWhiteSpace(_searchText))
+        {
+            var term = _searchText.Trim();
+            query = query.Where(c =>
+                c.Id.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.Status.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                (c.PersonDisplayName?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                OfficerDisplayNames.LockStatus(c.AssignedOfficerId, c.LockedByOfficerId)
+                    .Contains(term, StringComparison.OrdinalIgnoreCase));
+        }
+
+        _filteredCases = query.ToList();
+    }
+
+    private bool IsMyCase(ChangeOfAddressCaseListItem item) =>
+        item.LockedByOfficerId == CurrentOfficer.OfficerId ||
+        item.AssignedOfficerId == CurrentOfficer.OfficerId;
+
+    private static bool IsUnassigned(ChangeOfAddressCaseListItem item) =>
+        item.AssignedOfficerId is null &&
+        item.LockedByOfficerId is null &&
+        item.Status == ChangeOfAddressCaseStatus.Intake;
+
+    private Variant GetFilterVariant(CaseListFilter filter) =>
+        _quickFilter == filter ? Variant.Filled : Variant.Outlined;
+
+    private Color GetFilterColor(CaseListFilter filter) =>
+        _quickFilter == filter ? Color.Primary : Color.Default;
+
+    private string GetEmptyFilterDescription() =>
+        _quickFilter switch
+        {
+            CaseListFilter.MyCases when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No cases assigned to you match your search.",
+            CaseListFilter.MyCases => "You have no assigned or locked change of address cases right now.",
+            CaseListFilter.Unassigned when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No unassigned cases match your search.",
+            CaseListFilter.Unassigned => "There are no unassigned change of address cases waiting for intake.",
+            CaseListFilter.Ready when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No cases ready for confirmation match your search.",
+            CaseListFilter.Ready => "No change of address cases are ready for confirmation right now.",
+            _ when !string.IsNullOrWhiteSpace(_searchText) => "Try a different search term.",
+            _ => "No cases match the current filters.",
+        };
+
+    private void NavigateToCase(ChangeOfAddressCaseListItem item) =>
+        Navigation.NavigateTo($"/change-of-address/{item.Id}");
+
+    private async Task OpenNewCase()
+    {
+        var parameters = new DialogParameters<OpenChangeOfAddressDialog>
+        {
+            { x => x.SearchHandler, SearchHandler },
+            { x => x.ResolveHandler, ResolveHandler },
+            { x => x.OpenHandler, OpenHandler },
+        };
+
+        var dialog = await DialogService.ShowAsync<OpenChangeOfAddressDialog>(
+            "New change of address",
+            parameters,
+            new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false, Data: Guid caseId })
+        {
+            Navigation.NavigateTo($"/change-of-address/{caseId}");
+        }
+    }
+
+    private static AppSeverity GetSeverity(ChangeOfAddressCaseStatus status) =>
+        status switch
+        {
+            ChangeOfAddressCaseStatus.Confirmed => AppSeverity.Success,
+            ChangeOfAddressCaseStatus.Rejected => AppSeverity.Error,
+            ChangeOfAddressCaseStatus.AwaitingPoliceVerification => AppSeverity.Warning,
+            ChangeOfAddressCaseStatus.UnderReview => AppSeverity.Info,
+            _ => AppSeverity.Neutral,
+        };
+}

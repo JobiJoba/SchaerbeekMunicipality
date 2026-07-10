@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -29,6 +30,20 @@ internal sealed class AdministrativeDocumentRepository(MunicipalDbContext dbCont
         var documents = await dbContext.AdministrativeDocuments
             .AsNoTracking()
             .Where(d => d.BirthDeclarationCaseId == birthDeclarationCaseId)
+            .ToListAsync(cancellationToken);
+
+        return documents
+            .OrderByDescending(d => d.UploadedAt)
+            .ToList();
+    }
+
+    public async Task<IReadOnlyList<AdministrativeDocument>> ListByChangeOfAddressCaseIdAsync(
+        ChangeOfAddressCaseId changeOfAddressCaseId,
+        CancellationToken cancellationToken)
+    {
+        var documents = await dbContext.AdministrativeDocuments
+            .AsNoTracking()
+            .Where(d => d.ChangeOfAddressCaseId == changeOfAddressCaseId)
             .ToListAsync(cancellationToken);
 
         return documents

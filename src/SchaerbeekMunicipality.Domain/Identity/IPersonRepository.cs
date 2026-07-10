@@ -10,6 +10,10 @@ public interface IPersonRepository
         NationalRegisterPersonId registerPersonId,
         CancellationToken cancellationToken);
 
+    Task<Person?> GetByNationalRegisterNumberAsync(
+        NationalRegisterNumber nationalRegisterNumber,
+        CancellationToken cancellationToken);
+
     Task<Person?> GetForUpdateAsync(PersonId id, CancellationToken cancellationToken);
 
     Task AddAsync(Person person, CancellationToken cancellationToken);

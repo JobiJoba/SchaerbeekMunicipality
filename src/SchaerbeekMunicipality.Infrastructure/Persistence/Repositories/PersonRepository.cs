@@ -22,6 +22,15 @@ internal sealed class PersonRepository(MunicipalDbContext dbContext) : IPersonRe
             .FirstOrDefaultAsync(p => p.LinkedRegisterRecordId == registerPersonId, cancellationToken);
     }
 
+    public Task<Person?> GetByNationalRegisterNumberAsync(
+        NationalRegisterNumber nationalRegisterNumber,
+        CancellationToken cancellationToken)
+    {
+        return dbContext.Persons
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.NationalRegisterNumber == nationalRegisterNumber, cancellationToken);
+    }
+
     public Task<Person?> GetForUpdateAsync(PersonId id, CancellationToken cancellationToken)
     {
         return dbContext.Persons

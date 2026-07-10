@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 
@@ -67,6 +68,15 @@ internal sealed class PersonConfiguration : IEntityTypeConfiguration<Person>
 
         builder.HasIndex(p => p.LinkedRegisterRecordId);
         builder.HasIndex(p => p.NationalRegisterNumber).IsUnique();
+
+        builder.OwnsOne(p => p.DomicileAddress, address =>
+        {
+            address.Property(a => a.Street).HasColumnName("domicile_street").HasMaxLength(256);
+            address.Property(a => a.HouseNumber).HasColumnName("domicile_house_number").HasMaxLength(16);
+            address.Property(a => a.Box).HasColumnName("domicile_box").HasMaxLength(16);
+            address.Property(a => a.PostalCode).HasColumnName("domicile_postal_code").HasMaxLength(4);
+            address.Property(a => a.Municipality).HasColumnName("domicile_municipality").HasMaxLength(128);
+        });
 
         builder.OwnsOne(p => p.CivilStatus, civilStatus =>
         {

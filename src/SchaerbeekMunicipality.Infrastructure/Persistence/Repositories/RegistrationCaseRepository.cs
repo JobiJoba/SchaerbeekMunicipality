@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
@@ -20,6 +21,20 @@ internal sealed class RegistrationCaseRepository(MunicipalDbContext dbContext) :
     {
         return dbContext.RegistrationCases
             .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
+    }
+
+    public async Task<RegistrationCase?> GetLatestRegisteredByPersonIdAsync(
+        PersonId personId,
+        CancellationToken cancellationToken)
+    {
+        var cases = await dbContext.RegistrationCases
+            .AsNoTracking()
+            .Where(c => c.PersonId == personId && c.Status == RegistrationCaseStatus.Registered)
+            .ToListAsync(cancellationToken);
+
+        return cases
+            .OrderByDescending(c => c.ClosedAt ?? c.OpenedAt)
+            .FirstOrDefault();
     }
 
     public async Task AddAsync(RegistrationCase registrationCase, CancellationToken cancellationToken)

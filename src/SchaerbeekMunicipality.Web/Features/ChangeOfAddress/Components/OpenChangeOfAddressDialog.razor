@@ -1,0 +1,134 @@
+@using SchaerbeekMunicipality.Domain.ChangeOfAddress
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.OpenChangeOfAddressCase
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ResolveRegisteredPerson
+@using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h4">New change of address</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
+            Search the National Register to identify a registered resident.
+        </MudText>
+
+        <MudTextField @bind-Value="_givenName" Label="Given name" Class="mb-2" />
+        <MudTextField @bind-Value="_familyName" Label="Family name" Class="mb-2" />
+        <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" MaxDate="DateTime.Today" Clearable="true" Class="mb-3" />
+
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Material.Outlined.Search"
+                   OnClick="Search"
+                   Disabled="_searching"
+                   Class="mb-3">
+            Search
+        </MudButton>
+
+        @if (_searched && _matches.Count == 0)
+        {
+            <AppInfoBox>No matching records found in the National Register.</AppInfoBox>
+        }
+        else if (_matches.Count > 0)
+        {
+            <MudTable Items="_matches" Dense="true" Hover="true">
+                <HeaderContent>
+                    <MudTh>Name</MudTh>
+                    <MudTh>NR number</MudTh>
+                    <MudTh></MudTh>
+                </HeaderContent>
+                <RowTemplate Context="match">
+                    <MudTd>@match.GivenName @match.FamilyName</MudTd>
+                    <MudTd>@(match.NationalRegisterNumber ?? "—")</MudTd>
+                    <MudTd>
+                        <MudButton Variant="Variant.Outlined"
+                                   Size="Size.Small"
+                                   Disabled="_opening || string.IsNullOrWhiteSpace(match.NationalRegisterNumber)"
+                                   OnClick="@(() => OpenCase(match))">
+                            Open case
+                        </MudButton>
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(_error))
+        {
+            <AppAlert Severity="Severity.Error" Title="Error" Class="mt-4">@_error</AppAlert>
+        }
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Outlined" OnClick="Cancel">Cancel</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter] public SearchNationalRegisterHandler SearchHandler { get; set; } = null!;
+    [Parameter] public ResolveRegisteredPersonHandler ResolveHandler { get; set; } = null!;
+    [Parameter] public OpenChangeOfAddressCaseHandler OpenHandler { get; set; } = null!;
+
+    private bool _searching;
+    private bool _opening;
+    private bool _searched;
+    private string? _error;
+    private string _givenName = string.Empty;
+    private string _familyName = string.Empty;
+    private DateTime? _birthDate;
+    private IReadOnlyList<NationalRegisterMatchDto> _matches = [];
+
+    private async Task Search()
+    {
+        _searching = true;
+        _error = null;
+        try
+        {
+            var response = await SearchHandler.Handle(
+                new SearchNationalRegisterRequest(
+                    string.IsNullOrWhiteSpace(_givenName) ? null : _givenName.Trim(),
+                    string.IsNullOrWhiteSpace(_familyName) ? null : _familyName.Trim(),
+                    _birthDate.HasValue ? DateOnly.FromDateTime(_birthDate.Value) : null),
+                CancellationToken.None);
+            _matches = response.Matches;
+            _searched = true;
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            _error = string.Join(" ", ex.Errors.Select(e => e.ErrorMessage));
+        }
+        finally
+        {
+            _searching = false;
+        }
+    }
+
+    private async Task OpenCase(NationalRegisterMatchDto match)
+    {
+        _opening = true;
+        _error = null;
+        try
+        {
+            var resolved = await ResolveHandler.Handle(
+                new ResolveRegisteredPersonRequest(match.RegisterPersonId),
+                CancellationToken.None);
+
+            var opened = await OpenHandler.Handle(
+                new OpenChangeOfAddressCaseRequest(resolved.PersonId),
+                CancellationToken.None);
+
+            MudDialog.Close(DialogResult.Ok(opened.CaseId));
+        }
+        catch (Exception ex) when (ex is InvalidChangeOfAddressTransitionException or KeyNotFoundException or FluentValidation.ValidationException)
+        {
+            _error = ex.Message;
+        }
+        finally
+        {
+            _opening = false;
+        }
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+}

@@ -101,6 +101,7 @@
                 new AppNavItem("Review dashboard", "/registration/review-dashboard", Icons.Material.Outlined.Dashboard),
                 new AppNavItem("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
                 new AppNavItem("Birth declarations", "/birth-declarations", Icons.Material.Outlined.ChildCare),
+                new AppNavItem("Change of address", "/change-of-address", Icons.Material.Outlined.Home),
                 new AppNavItem(
                     "Outbound notifications",
                     "/administration/outbound-notifications",
@@ -161,9 +162,10 @@
     }
 
     private static bool IsPopulationOnlyPath(string path) =>
-        path is "registration/cases" or "registration/review-dashboard" or "birth-declarations" ||
+        path is "registration/cases" or "registration/review-dashboard" or "birth-declarations" or "change-of-address" ||
         path.StartsWith("registration/cases/", StringComparison.OrdinalIgnoreCase) ||
         path.StartsWith("birth-declarations/", StringComparison.OrdinalIgnoreCase) ||
+        path.StartsWith("change-of-address/", StringComparison.OrdinalIgnoreCase) ||
         path.StartsWith("administration/outbound-notifications", StringComparison.OrdinalIgnoreCase);
 
     private void ToggleDrawer() => _drawerOpen = !_drawerOpen;

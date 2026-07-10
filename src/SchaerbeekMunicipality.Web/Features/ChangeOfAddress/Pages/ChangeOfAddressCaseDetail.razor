@@ -1,0 +1,414 @@
+@page "/change-of-address/{CaseId:guid}"
+@using Microsoft.AspNetCore.Components.Forms
+@using SchaerbeekMunicipality.Domain.Address
+@using SchaerbeekMunicipality.Domain.ChangeOfAddress
+@using SchaerbeekMunicipality.Domain.Documents
+@using SchaerbeekMunicipality.Domain.Identity
+@using SchaerbeekMunicipality.Domain.ReferenceData
+@using SchaerbeekMunicipality.Web.Auth
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.AttachDocument
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ClaimChangeOfAddressCase
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.Components
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.DeclareNewAddress
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.GetChangeOfAddressCase
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ReleaseCaseLock
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.RemoveDocument
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.RequestPoliceVerification
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.UpdateHouseholdForMove
+@using SchaerbeekMunicipality.Web.Features.Registration
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
+@using SchaerbeekMunicipality.Web.Features.Registration.SearchReferenceData
+@inject GetChangeOfAddressCaseHandler GetHandler
+@inject ClaimChangeOfAddressCaseHandler ClaimHandler
+@inject ReleaseCaseLockHandler ReleaseLockHandler
+@inject DeclareNewAddressHandler DeclareAddressHandler
+@inject AttachDocumentHandler AttachDocumentHandler
+@inject RemoveDocumentHandler RemoveDocumentHandler
+@inject RequestPoliceVerificationHandler RequestPoliceHandler
+@inject UnlinkHouseholdMemberHandler UnlinkHouseholdHandler
+@inject SearchStreetsHandler SearchStreetsHandler
+@inject ICurrentOfficer CurrentOfficer
+@inject ISnackbar Snackbar
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
+    @if (_loading)
+    {
+        <AppLoading Kind="AppLoadingKind.Skeleton" />
+    }
+    else if (_case is null)
+    {
+        <AppAlert Severity="Severity.Error" Title="Case not found" />
+    }
+    else
+    {
+        <AppPage Title="Change of address">
+            <AppPageHeader Title="Change of address"
+                           Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.PersonGivenName} {_case.PersonFamilyName}")">
+                <Actions>
+                    <AppStatusChip Label="@_case.Status.ToString()" Severity="@GetSeverity(_case.Status)" />
+                    @if (_case.IsReadOnlyDueToLock)
+                    {
+                        <MudButton Variant="Variant.Outlined" OnClick="TakeCase">Take case</MudButton>
+                    }
+                    else if (_case.CanEdit)
+                    {
+                        <MudButton Variant="Variant.Outlined" OnClick="ReleaseLock">Release lock</MudButton>
+                    }
+                    <MudButton Variant="Variant.Text"
+                               StartIcon="@Icons.Material.Outlined.ArrowBack"
+                               OnClick="@(() => Navigation.NavigateTo("/change-of-address"))">
+                        Back to list
+                    </MudButton>
+                </Actions>
+            </AppPageHeader>
+
+            @if (_case.IsReadOnlyDueToLock)
+            {
+                <AppAlert Severity="Severity.Warning" Title="Read-only" Class="mb-4">
+                    This case is locked to another officer. Take the case to edit.
+                </AppAlert>
+            }
+
+            <MudGrid Spacing="4">
+                <MudItem xs="12" lg="7">
+                    <MudStack Spacing="4">
+                        <AppCard Title="Resident" Outlined="true">
+                            <MudText Typo="Typo.body1">
+                                <strong>@_case.PersonGivenName @_case.PersonFamilyName</strong>
+                            </MudText>
+                            @if (!string.IsNullOrWhiteSpace(_case.PersonNationalRegisterNumber))
+                            {
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                    NR @_case.PersonNationalRegisterNumber
+                                </MudText>
+                            }
+                        </AppCard>
+
+                        <AppCard Title="Address comparison" Outlined="true">
+                            <MudGrid>
+                                <MudItem xs="12" md="6">
+                                    <MudText Typo="Typo.subtitle2" Class="mb-2">Previous address</MudText>
+                                    <MudText Typo="Typo.body2">
+                                        @(FormatAddress(_case.PreviousAddress) ?? "No prior domicile on file")
+                                    </MudText>
+                                </MudItem>
+                                <MudItem xs="12" md="6">
+                                    <MudText Typo="Typo.subtitle2" Class="mb-2">New address</MudText>
+                                    <MudText Typo="Typo.body2">
+                                        @(FormatAddress(_case.NewAddress) ?? "Not declared yet")
+                                    </MudText>
+                                </MudItem>
+                            </MudGrid>
+                        </AppCard>
+
+                        <AppCollapsibleSection Title="New address"
+                                               Summary="@(FormatAddress(_case.NewAddress) ?? "Pending")"
+                                               StatusLabel="@(_case.NewAddressDeclared ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.NewAddressDeclared ? AppSeverity.Success : AppSeverity.Neutral)"
+                                               IsExpanded="@(!_case.NewAddressDeclared)">
+                            <MudForm @ref="_addressForm" Disabled="!_case.CanEdit">
+                                <MudGrid>
+                                    <MudItem xs="12" md="4">
+                                        <MudTextField Value="@($"{SchaerbeekCommune.PostalCode} {SchaerbeekCommune.Name}")"
+                                                      Label="Municipality"
+                                                      ReadOnly="true" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <MudAutocomplete T="StreetDto"
+                                                         @bind-Value="_selectedStreet"
+                                                         Label="Street"
+                                                         SearchFunc="SearchStreets"
+                                                         ToStringFunc="@(s => s?.Name ?? string.Empty)"
+                                                         Required="true"
+                                                         ResetValueOnEmptyText="true"
+                                                         CoerceText="false" />
+                                    </MudItem>
+                                    <MudItem xs="6" md="2">
+                                        <MudTextField @bind-Value="_houseNumber" Label="Number" Required="true" />
+                                    </MudItem>
+                                    <MudItem xs="6" md="2">
+                                        <MudTextField @bind-Value="_box" Label="Box" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="6">
+                                        <MudSelect T="HousingSituation" @bind-Value="_housingSituation" Label="Housing situation" Required="true">
+                                            @foreach (var situation in Enum.GetValues<HousingSituation>())
+                                            {
+                                                <MudSelectItem Value="situation">@situation</MudSelectItem>
+                                            }
+                                        </MudSelect>
+                                    </MudItem>
+                                    <MudItem xs="12" md="6">
+                                        <MudDatePicker @bind-Date="_effectiveDate" Label="Effective date" Required="true" />
+                                    </MudItem>
+                                </MudGrid>
+                                @if (_case.CanEdit)
+                                {
+                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-3" OnClick="SaveAddress" Disabled="_busy">
+                                        Save new address
+                                    </MudButton>
+                                }
+                            </MudForm>
+                        </AppCollapsibleSection>
+
+                        @if (_case.HousingDocumentRequired || _case.Documents.Count > 0)
+                        {
+                            <AppCollapsibleSection Title="Housing document"
+                                                   Summary="@($"{_case.Documents.Count} document(s)")"
+                                                   StatusLabel="@(_case.HousingDocumentAttached || !_case.HousingDocumentRequired ? "Complete" : "Pending")"
+                                                   StatusSeverity="@(_case.HousingDocumentAttached || !_case.HousingDocumentRequired ? AppSeverity.Success : AppSeverity.Neutral)"
+                                                   IsExpanded="@(_case.HousingDocumentRequired && !_case.HousingDocumentAttached)">
+                                @foreach (var doc in _case.Documents)
+                                {
+                                    <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="mb-2">
+                                        <MudText Typo="Typo.body2">@doc.FileName</MudText>
+                                        @if (_case.CanEdit)
+                                        {
+                                            <MudIconButton Icon="@Icons.Material.Outlined.Delete"
+                                                           Size="Size.Small"
+                                                           OnClick="@(() => RemoveDocument(doc.Id))" />
+                                        }
+                                    </MudStack>
+                                }
+                                @if (_case.CanEdit)
+                                {
+                                    <MudFileUpload T="IBrowserFile" Accept=".pdf,.jpg,.jpeg,.png" FilesChanged="UploadDocument">
+                                        <ActivatorContent>
+                                            <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.Upload">
+                                                Attach rental contract
+                                            </MudButton>
+                                        </ActivatorContent>
+                                    </MudFileUpload>
+                                }
+                            </AppCollapsibleSection>
+                        }
+
+                        <AppCollapsibleSection Title="Household members at new address"
+                                               Summary="@($"{_case.HouseholdMembers.Count} additional member(s)")"
+                                               StatusLabel="Optional"
+                                               StatusSeverity="AppSeverity.Neutral">
+                            @foreach (var member in _case.HouseholdMembers)
+                            {
+                                <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="mb-2">
+                                    <MudText Typo="Typo.body2">
+                                        @member.GivenName @member.FamilyName
+                                        @if (!string.IsNullOrWhiteSpace(member.NationalRegisterNumber))
+                                        {
+                                            <span> (NR @member.NationalRegisterNumber)</span>
+                                        }
+                                    </MudText>
+                                    @if (_case.CanEdit)
+                                    {
+                                        <MudIconButton Icon="@Icons.Material.Outlined.PersonRemove"
+                                                       Size="Size.Small"
+                                                       OnClick="@(() => UnlinkMember(member.PersonId))" />
+                                    }
+                                </MudStack>
+                            }
+                            @if (_case.CanEdit && _case.HouseholdMembers.Count > 0)
+                            {
+                                <AppInfoBox>Additional household members can be managed via the API in this phase.</AppInfoBox>
+                            }
+                        </AppCollapsibleSection>
+
+                        @if (_case.NewAddressDeclared && _case.CanEdit && _case.Status != ChangeOfAddressCaseStatus.AwaitingPoliceVerification)
+                        {
+                            <MudButton Variant="Variant.Outlined"
+                                       StartIcon="@Icons.Material.Outlined.LocalPolice"
+                                       OnClick="RequestPolice"
+                                       Disabled="_busy">
+                                Request police verification
+                            </MudButton>
+                        }
+                    </MudStack>
+                </MudItem>
+
+                <MudItem xs="12" lg="5">
+                    <ChangeOfAddressDecisionSection Case="_case" OnChanged="ReloadCase" />
+                </MudItem>
+            </MudGrid>
+        </AppPage>
+    }
+</RegistrationRoleGate>
+
+@code {
+    [Parameter] public Guid CaseId { get; set; }
+
+    private ChangeOfAddressCaseDetailDto? _case;
+    private bool _loading = true;
+    private bool _busy;
+    private MudForm _addressForm = null!;
+    private StreetDto? _selectedStreet;
+    private string _houseNumber = string.Empty;
+    private string? _box;
+    private HousingSituation _housingSituation = HousingSituation.Tenant;
+    private DateTime? _effectiveDate = DateTime.Today;
+
+    protected override async Task OnInitializedAsync() => await ReloadCase();
+
+    private async Task ReloadCase()
+    {
+        _loading = _case is null;
+        await ClaimHandler.TryAutoClaimAsync(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
+        _case = await GetHandler.Handle(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
+        if (_case?.NewAddress is { } address)
+        {
+            _houseNumber = address.HouseNumber;
+            _box = address.Box;
+            _housingSituation = _case.HousingSituation ?? HousingSituation.Tenant;
+            _effectiveDate = _case.EffectiveDate?.ToDateTime(TimeOnly.MinValue) ?? DateTime.Today;
+            _selectedStreet = new StreetDto(0, SchaerbeekCommune.PostalCode, address.Street);
+        }
+
+        _loading = false;
+    }
+
+    private async Task TakeCase()
+    {
+        await ClaimHandler.Handle(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private async Task ReleaseLock()
+    {
+        await ReleaseLockHandler.Handle(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private async Task<IEnumerable<StreetDto>> SearchStreets(string value, CancellationToken cancellationToken) =>
+        await SearchStreetsHandler.Handle(SchaerbeekCommune.PostalCode, value, cancellationToken);
+
+    private async Task SaveAddress()
+    {
+        if (_selectedStreet is null || _effectiveDate is null)
+        {
+            Snackbar.Add("Complete all required address fields.", Severity.Warning);
+            return;
+        }
+
+        _busy = true;
+        try
+        {
+            await DeclareAddressHandler.Handle(
+                new ChangeOfAddressCaseId(CaseId),
+                new DeclareNewAddressRequest(
+                    _selectedStreet.Name,
+                    _houseNumber,
+                    _box,
+                    SchaerbeekCommune.PostalCode,
+                    SchaerbeekCommune.Name,
+                    _housingSituation,
+                    DateOnly.FromDateTime(_effectiveDate.Value)),
+                CancellationToken.None);
+            Snackbar.Add("New address saved.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task UploadDocument(IBrowserFile file)
+    {
+        _busy = true;
+        try
+        {
+            await using var stream = file.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
+            await AttachDocumentHandler.Handle(
+                new ChangeOfAddressCaseId(CaseId),
+                file.Name,
+                stream,
+                CancellationToken.None);
+            Snackbar.Add("Document attached.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task RemoveDocument(Guid documentId)
+    {
+        _busy = true;
+        try
+        {
+            await RemoveDocumentHandler.Handle(
+                new ChangeOfAddressCaseId(CaseId),
+                new AdministrativeDocumentId(documentId),
+                CancellationToken.None);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task RequestPolice()
+    {
+        _busy = true;
+        try
+        {
+            await RequestPoliceHandler.Handle(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
+            Snackbar.Add("Police verification requested.", Severity.Info);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task UnlinkMember(Guid personId)
+    {
+        _busy = true;
+        try
+        {
+            await UnlinkHouseholdHandler.Handle(
+                new ChangeOfAddressCaseId(CaseId),
+                new PersonId(personId),
+                CancellationToken.None);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private static string? FormatAddress(BelgianAddressDto? address) =>
+        address is null ? null : $"{address.Street} {address.HouseNumber}{(address.Box is not null ? $" bus {address.Box}" : "")}, {address.PostalCode} {address.Municipality}";
+
+    private static AppSeverity GetSeverity(ChangeOfAddressCaseStatus status) =>
+        status switch
+        {
+            ChangeOfAddressCaseStatus.Confirmed => AppSeverity.Success,
+            ChangeOfAddressCaseStatus.Rejected => AppSeverity.Error,
+            ChangeOfAddressCaseStatus.AwaitingPoliceVerification => AppSeverity.Warning,
+            ChangeOfAddressCaseStatus.UnderReview => AppSeverity.Info,
+            _ => AppSeverity.Neutral,
+        };
+}

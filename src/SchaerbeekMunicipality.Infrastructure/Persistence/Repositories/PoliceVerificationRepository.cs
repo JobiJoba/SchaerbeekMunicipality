@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -20,6 +21,16 @@ internal sealed class PoliceVerificationRepository(MunicipalDbContext dbContext)
     {
         return dbContext.PoliceVerificationRequests
             .Where(r => r.RegistrationCaseId == caseId && r.CompletedAt == null)
+            .OrderByDescending(r => r.AttemptNumber)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+
+    public Task<PoliceVerificationRequest?> GetPendingByChangeOfAddressCaseIdAsync(
+        ChangeOfAddressCaseId caseId,
+        CancellationToken cancellationToken)
+    {
+        return dbContext.PoliceVerificationRequests
+            .Where(r => r.ChangeOfAddressCaseId == caseId && r.CompletedAt == null)
             .OrderByDescending(r => r.AttemptNumber)
             .FirstOrDefaultAsync(cancellationToken);
     }
@@ -71,6 +82,23 @@ internal sealed class PoliceVerificationRepository(MunicipalDbContext dbContext)
 
         return await dbContext.PoliceVerificationRequests
             .Where(r => r.RegistrationCaseId == caseId)
+            .MaxAsync(r => r.AttemptNumber, cancellationToken);
+    }
+
+    public async Task<int> GetMaxAttemptNumberForChangeOfAddressAsync(
+        ChangeOfAddressCaseId caseId,
+        CancellationToken cancellationToken)
+    {
+        var hasRequests = await dbContext.PoliceVerificationRequests
+            .AnyAsync(r => r.ChangeOfAddressCaseId == caseId, cancellationToken);
+
+        if (!hasRequests)
+        {
+            return 0;
+        }
+
+        return await dbContext.PoliceVerificationRequests
+            .Where(r => r.ChangeOfAddressCaseId == caseId)
             .MaxAsync(r => r.AttemptNumber, cancellationToken);
     }
 
