@@ -39,6 +39,7 @@
                        Color="Color.Primary"
                        StartIcon="@Icons.Material.Outlined.CheckCircle"
                        Disabled="_busy || Case.Status != BirthDeclarationCaseStatus.UnderReview || !Case.ReadyForConfirmation"
+                       data-testid="confirm-birth-declaration"
                        OnClick="Confirm">
                 Confirm birth declaration
             </MudButton>

@@ -15,6 +15,7 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj" />
+    <Project Path="tests/SchaerbeekMunicipality.E2E.Tests/SchaerbeekMunicipality.E2E.Tests.csproj" />
     <Project Path="tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" />
   </Folder>
 </Solution>

@@ -16,7 +16,8 @@
     {
         if (AllowedRoles.Length > 0 && !AllowedRoles.Contains(CurrentOfficer.Role))
         {
-            Navigation.NavigateTo(RedirectTo);
+            var target = DemoOfficerPersistence.AppendToUri(RedirectTo, CurrentOfficer.OfficerId);
+            Navigation.NavigateTo(target);
         }
     }
 }

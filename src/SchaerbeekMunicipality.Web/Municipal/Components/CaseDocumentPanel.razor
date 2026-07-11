@@ -34,13 +34,11 @@
                                 </div>
                                 @if (CanEdit)
                                 {
-                                    <span @onclick:stopPropagation="true">
-                                        <MudIconButton Icon="@Icons.Material.Outlined.Delete"
-                                                       Color="Color.Error"
-                                                       Size="Size.Small"
-                                                       aria-label="@($"Remove {doc.FileName}")"
-                                                       OnClick="@(() => OnRemoveDocument.InvokeAsync(doc.Id))" />
-                                    </span>
+                                    <MudIconButton Icon="@Icons.Material.Outlined.Delete"
+                                                   Color="Color.Error"
+                                                   Size="Size.Small"
+                                                   aria-label="@($"Remove {doc.FileName}")"
+                                                   OnClick="@(() => OnRemoveDocument.InvokeAsync(doc.Id))" />
                                 }
                             </MudStack>
                         </MudListItem>

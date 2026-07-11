@@ -11,20 +11,28 @@ public static class DependencyInjection
         this IServiceCollection services,
         IHostEnvironment environment)
     {
-        // Prefer plain HTTP in development: Aspire's dev HTTPS cert is often untrusted by HttpClient.
-        var apiBaseAddress = environment.IsDevelopment()
-            ? "http://api"
-            : "https+http://api";
-
-        services.AddHttpClient<IRegistrationApi, RegistrationApiClient>(client =>
-            client.BaseAddress = new Uri(apiBaseAddress));
-
-        services.AddHttpClient<IBirthDeclarationApi, BirthDeclarationApiClient>(client =>
-            client.BaseAddress = new Uri(apiBaseAddress));
-
-        services.AddHttpClient<IChangeOfAddressApi, ChangeOfAddressApiClient>(client =>
-            client.BaseAddress = new Uri(apiBaseAddress));
-
+        RegisterClient<IRegistrationApi, RegistrationApiClient>(services, environment);
+        RegisterClient<IBirthDeclarationApi, BirthDeclarationApiClient>(services, environment);
+        RegisterClient<IChangeOfAddressApi, ChangeOfAddressApiClient>(services, environment);
         return services;
+    }
+
+    private static void RegisterClient<TClient, TImplementation>(
+        IServiceCollection services,
+        IHostEnvironment environment)
+        where TClient : class
+        where TImplementation : class, TClient
+    {
+        services.AddHttpClient<TClient, TImplementation>((serviceProvider, client) =>
+            {
+                var bridge = serviceProvider.GetService<IMunicipalApiBridge>();
+                client.BaseAddress = bridge?.BaseAddress
+                    ?? new Uri(environment.IsDevelopment() ? "http://api" : "https+http://api");
+            })
+            .ConfigurePrimaryHttpMessageHandler(serviceProvider =>
+            {
+                var bridge = serviceProvider.GetService<IMunicipalApiBridge>();
+                return bridge?.CreateHandler() ?? new HttpClientHandler();
+            });
     }
 }

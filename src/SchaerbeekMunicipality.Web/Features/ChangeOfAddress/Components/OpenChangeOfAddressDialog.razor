@@ -21,6 +21,7 @@
                 <MudButton Variant="Variant.Outlined"
                            Size="Size.Small"
                            Disabled="_opening || string.IsNullOrWhiteSpace(match.NationalRegisterNumber)"
+                           data-testid="open-change-of-address-case"
                            OnClick="@(() => OpenCase(match))">
                     Open case
                 </MudButton>
