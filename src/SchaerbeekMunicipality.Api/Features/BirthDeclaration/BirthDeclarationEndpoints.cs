@@ -40,6 +40,10 @@ public static class BirthDeclarationEndpoints
             .WithName("ClaimBirthDeclarationCase")
             .WithTags("BirthDeclaration");
 
+        group.MapPost("/cases/{id:guid}/auto-claim", AutoClaimBirthDeclarationCaseEndpoint.Handle)
+            .WithName("AutoClaimBirthDeclarationCase")
+            .WithTags("BirthDeclaration");
+
         group.MapPost("/cases/{id:guid}/release-lock", ReleaseCaseLockEndpoint.Handle)
             .WithName("ReleaseBirthDeclarationCaseLock")
             .WithTags("BirthDeclaration");

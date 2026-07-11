@@ -34,6 +34,9 @@ public sealed class BirthDeclarationApiClient(HttpClient httpClient)
     public Task<ClaimBirthDeclarationCaseResponse> ClaimCaseAsync(Guid id, CancellationToken cancellationToken = default) =>
         PostJsonAsync<ClaimBirthDeclarationCaseResponse>($"{BasePath}/cases/{id}/claim", cancellationToken);
 
+    public Task<ClaimBirthDeclarationCaseResponse?> TryAutoClaimCaseAsync(Guid id, CancellationToken cancellationToken = default) =>
+        PostJsonOptionalAsync<ClaimBirthDeclarationCaseResponse>($"{BasePath}/cases/{id}/auto-claim", cancellationToken);
+
     public Task<ReleaseCaseLockResponse> ReleaseCaseLockAsync(Guid id, CancellationToken cancellationToken = default) =>
         PostJsonAsync<ReleaseCaseLockResponse>($"{BasePath}/cases/{id}/release-lock", cancellationToken);
 

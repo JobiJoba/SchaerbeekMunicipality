@@ -1,5 +1,6 @@
 @using SchaerbeekMunicipality.Domain.Police
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult
+@using SchaerbeekMunicipality.Web.Api.Registration
 
 <MudDialog>
     <TitleContent>
@@ -57,8 +58,8 @@
     [Parameter, EditorRequired]
     public string Address { get; set; } = string.Empty;
 
-    [Parameter, EditorRequired]
-    public RecordPoliceResultHandler Handler { get; set; } = null!;
+    [Inject]
+    private IRegistrationApi RegistrationApi { get; set; } = null!;
 
     private MudForm _form = null!;
     private PoliceVerificationResult _result = PoliceVerificationResult.Confirmed;
@@ -72,8 +73,8 @@
         _submitting = true;
         try
         {
-            await Handler.Handle(
-                PoliceVerificationRequestId.From(RequestId),
+            await RegistrationApi.RecordPoliceResultAsync(
+                RequestId,
                 new RecordPoliceResultRequest(_result, _officerNotes),
                 CancellationToken.None);
 

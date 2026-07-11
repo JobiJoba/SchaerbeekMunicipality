@@ -48,6 +48,8 @@ public interface IRegistrationApi
 
     Task<ClaimRegistrationCaseResponse> ClaimCaseAsync(Guid id, CancellationToken cancellationToken = default);
 
+    Task<ClaimRegistrationCaseResponse?> TryAutoClaimCaseAsync(Guid id, CancellationToken cancellationToken = default);
+
     Task<ReleaseCaseLockResponse> ReleaseCaseLockAsync(Guid id, CancellationToken cancellationToken = default);
 
     Task<RecordIdentityResponse> RecordIdentityAsync(

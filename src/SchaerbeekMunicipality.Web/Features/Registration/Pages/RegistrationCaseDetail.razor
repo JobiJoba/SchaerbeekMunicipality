@@ -20,19 +20,8 @@
 @using SchaerbeekMunicipality.Domain.NationalRegister
 @using SchaerbeekMunicipality.Domain.Police
 @using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
-@inject GetRegistrationCaseHandler GetHandler
-@inject RecordIdentityHandler RecordIdentityHandler
-@inject CorrectIdentityHandler CorrectIdentityHandler
-@inject ResolveDuplicateInvestigationHandler ResolveDuplicateInvestigationHandler
-@inject SearchNationalRegisterHandler SearchNationalRegisterHandler
-@inject LinkExistingPersonHandler LinkExistingPersonHandler
-@inject ConvertBisNumberHandler ConvertBisNumberHandler
-@inject RequestPoliceVerificationHandler RequestPoliceVerificationHandler
-@inject AttachDocumentHandler AttachDocumentHandler
-@inject RemoveDocumentHandler RemoveDocumentHandler
-@inject ListCaseAuditHandler ListCaseAuditHandler
-@inject ClaimRegistrationCaseHandler ClaimHandler
-@inject ReleaseCaseLockHandler ReleaseLockHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject FluentValidation.IValidator<RecordIdentityRequest> IdentityValidator
 @inject ICurrentOfficer CurrentOfficer
 @inject IAppDialogService DialogService
@@ -400,7 +389,6 @@
 
                     <RegistrationCaseDocumentPanel CaseId="CaseId"
                                                    Documents="_case.Documents"
-                                                   AttachHandler="AttachDocumentHandler"
                                                    CanEdit="CanEditIntakeData"
                                                    OnRemoveDocument="RemoveDocument"
                                                    OnUploaded="ReloadCase" />
@@ -493,13 +481,13 @@
         _loading = true;
         _editingIdentity = false;
 
-        var caseId = new RegistrationCaseId(CaseId);
+        var caseId = CaseId;
 
         try
         {
             if (CurrentOfficer.Role == OfficerRole.PopulationOfficer)
             {
-                await ClaimHandler.TryAutoClaimAsync(caseId, CancellationToken.None);
+                await RegistrationApi.TryAutoClaimCaseAsync(caseId, CancellationToken.None);
             }
         }
         catch (InvalidRegistrationTransitionException ex)
@@ -510,7 +498,7 @@
         RegistrationCaseDetailDto? caseDetail;
         try
         {
-            caseDetail = await GetHandler.Handle(caseId, CancellationToken.None);
+            caseDetail = await RegistrationApi.GetCaseAsync(caseId, CancellationToken.None);
         }
         catch (UnauthorizedAccessException)
         {
@@ -520,7 +508,7 @@
 
         var audit = caseDetail is null
             ? null
-            : await ListCaseAuditHandler.Handle(caseId, CancellationToken.None);
+            : await RegistrationApi.ListCaseAuditAsync(caseId, CancellationToken.None);
 
         _case = caseDetail;
         _auditEntries = audit?.Entries ?? [];
@@ -533,7 +521,7 @@
         _releasingLock = true;
         try
         {
-            await ReleaseLockHandler.Handle(new RegistrationCaseId(CaseId), CancellationToken.None);
+            await RegistrationApi.ReleaseCaseLockAsync(CaseId, CancellationToken.None);
             Snackbar.Add("Case lock released.", Severity.Success);
             await ReloadCase();
         }
@@ -552,7 +540,7 @@
         _claimingCase = true;
         try
         {
-            await ClaimHandler.Handle(new RegistrationCaseId(CaseId), CancellationToken.None);
+            await RegistrationApi.ClaimCaseAsync(CaseId, CancellationToken.None);
             Snackbar.Add("Case assigned to you.", Severity.Success);
             await ReloadCase();
         }
@@ -658,8 +646,8 @@
         {
             var request = MapIdentityRequest(_identityModel);
 
-            await RecordIdentityHandler.Handle(
-                new RegistrationCaseId(CaseId),
+            await RegistrationApi.RecordIdentityAsync(
+                CaseId,
                 request,
                 CancellationToken.None);
 
@@ -693,8 +681,8 @@
         {
             var request = MapIdentityRequest(_identityModel);
 
-            var response = await CorrectIdentityHandler.Handle(
-                new RegistrationCaseId(CaseId),
+            var response = await RegistrationApi.CorrectIdentityAsync(
+                CaseId,
                 request,
                 CancellationToken.None);
 
@@ -725,8 +713,6 @@
         var parameters = new DialogParameters<NationalRegisterSearchDialog>
         {
             { x => x.CaseId, CaseId },
-            { x => x.SearchHandler, SearchNationalRegisterHandler },
-            { x => x.LinkHandler, LinkExistingPersonHandler },
             { x => x.InitialGivenName, string.IsNullOrWhiteSpace(_identityModel.GivenName) ? null : _identityModel.GivenName },
             { x => x.InitialFamilyName, string.IsNullOrWhiteSpace(_identityModel.FamilyName) ? null : _identityModel.FamilyName },
             { x => x.InitialBirthDate, _identityModel.BirthDate },
@@ -762,8 +748,8 @@
         _resolvingDuplicate = true;
         try
         {
-            await ResolveDuplicateInvestigationHandler.Handle(
-                new RegistrationCaseId(CaseId),
+            await RegistrationApi.ResolveDuplicateInvestigationAsync(
+                CaseId,
                 new ResolveDuplicateInvestigationRequest("Officer confirmed distinct person after investigation."),
                 CancellationToken.None);
 
@@ -785,8 +771,8 @@
         _convertingBis = true;
         try
         {
-            var response = await ConvertBisNumberHandler.Handle(
-                new RegistrationCaseId(CaseId),
+            var response = await RegistrationApi.ConvertBisNumberAsync(
+                CaseId,
                 CancellationToken.None);
 
             Snackbar.Add($"BIS converted to NR {FormatRegisterNumber(response.NationalRegisterNumber)}.", Severity.Success);
@@ -822,8 +808,8 @@
         _sendingToPolice = true;
         try
         {
-            await RequestPoliceVerificationHandler.Handle(
-                new RegistrationCaseId(CaseId),
+            await RegistrationApi.RequestPoliceVerificationAsync(
+                CaseId,
                 CancellationToken.None);
 
             Snackbar.Add("Case sent to police for residence verification.", Severity.Success);
@@ -864,9 +850,9 @@
 
         try
         {
-            await RemoveDocumentHandler.Handle(
-                new RegistrationCaseId(CaseId),
-                new AdministrativeDocumentId(documentId),
+            await RegistrationApi.RemoveDocumentAsync(
+                CaseId,
+                documentId,
                 CancellationToken.None);
 
             Snackbar.Add("Document removed.", Severity.Success);

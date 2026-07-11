@@ -3,9 +3,8 @@
 @using SchaerbeekMunicipality.Application.Auth
 @using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Application.Features.Registration.ListPendingPoliceVerifications
-@using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult
-@inject ListPendingPoliceVerificationsHandler ListHandler
-@inject RecordPoliceResultHandler RecordHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject ICurrentOfficer CurrentOfficer
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
@@ -85,7 +84,7 @@
     private async Task Reload()
     {
         _loading = true;
-        var response = await ListHandler.Handle(CancellationToken.None);
+        var response = await RegistrationApi.ListPendingPoliceVerificationsAsync(CancellationToken.None);
         _items = response.Items;
         _loading = false;
     }
@@ -97,7 +96,6 @@
             { x => x.RequestId, item.RequestId },
             { x => x.PersonName, item.PersonName },
             { x => x.Address, item.Address },
-            { x => x.Handler, RecordHandler },
         };
 
         var dialog = await DialogService.ShowAsync<RecordPoliceResultDialog>(

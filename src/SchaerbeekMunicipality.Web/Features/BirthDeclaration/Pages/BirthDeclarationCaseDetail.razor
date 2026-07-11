@@ -13,17 +13,8 @@
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.UnlinkParent
 @using SchaerbeekMunicipality.Application.Features.Registration
 @using SchaerbeekMunicipality.Web.Features.Registration.Components
-@using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
-@inject GetBirthDeclarationCaseHandler GetHandler
-@inject ClaimBirthDeclarationCaseHandler ClaimHandler
-@inject ReleaseCaseLockHandler ReleaseLockHandler
-@inject RecordChildDetailsHandler RecordChildHandler
-@inject SetDeclarationHouseholdHandler SetHouseholdHandler
-@inject AttachDocumentHandler AttachDocumentHandler
-@inject RemoveDocumentHandler RemoveDocumentHandler
-@inject SearchNationalRegisterHandler SearchNationalRegisterHandler
-@inject LinkParentHandler LinkParentHandler
-@inject UnlinkParentHandler UnlinkParentHandler
+@using SchaerbeekMunicipality.Web.Api.BirthDeclaration
+@inject IBirthDeclarationApi BirthDeclarationApi
 @inject FluentValidation.IValidator<RecordChildDetailsRequest> ChildDetailsValidator
 @inject FluentValidation.IValidator<SetDeclarationHouseholdRequest> HouseholdValidator
 @inject ICurrentOfficer CurrentOfficer
@@ -149,7 +140,6 @@
                                                IsExpanded="@(!_case.MedicalDeclarationAttached)">
                             <BirthDeclarationDocumentPanel CaseId="CaseId"
                                                            Documents="_case.Documents"
-                                                           AttachHandler="AttachDocumentHandler"
                                                            CanEdit="_case.CanEdit"
                                                            OnRemoveDocument="RemoveDocument"
                                                            OnUploaded="ReloadCase"/>
@@ -220,8 +210,8 @@
         _loading = true;
         try
         {
-            await ClaimHandler.TryAutoClaimAsync(new BirthDeclarationCaseId(CaseId), CancellationToken.None);
-            var detail = await GetHandler.Handle(new BirthDeclarationCaseId(CaseId), CancellationToken.None);
+            await BirthDeclarationApi.TryAutoClaimCaseAsync(CaseId, CancellationToken.None);
+            var detail = await BirthDeclarationApi.GetCaseAsync(CaseId, CancellationToken.None);
             _case = detail;
             if (detail is not null)
             {
@@ -245,8 +235,8 @@
         _busy = true;
         try
         {
-            await RecordChildHandler.Handle(
-                new BirthDeclarationCaseId(CaseId),
+            await BirthDeclarationApi.RecordChildDetailsAsync(
+                CaseId,
                 MapChildDetailsRequest(_childModel),
                 CancellationToken.None);
             Snackbar.Add("Child details saved.", Severity.Success);
@@ -273,8 +263,8 @@
         _busy = true;
         try
         {
-            await SetHouseholdHandler.Handle(
-                new BirthDeclarationCaseId(CaseId),
+            await BirthDeclarationApi.SetDeclarationHouseholdAsync(
+                CaseId,
                 MapHouseholdRequest(_householdModel),
                 CancellationToken.None);
             Snackbar.Add("Domicile saved.", Severity.Success);
@@ -292,19 +282,13 @@
 
     private async Task RemoveDocument(Guid documentId)
     {
-        await RemoveDocumentHandler.Handle(
-            new BirthDeclarationCaseId(CaseId),
-            new Domain.Documents.AdministrativeDocumentId(documentId),
-            CancellationToken.None);
+        await BirthDeclarationApi.RemoveDocumentAsync(CaseId, documentId, CancellationToken.None);
         await ReloadCase();
     }
 
     private async Task UnlinkParent(Guid personId)
     {
-        await UnlinkParentHandler.Handle(
-            new BirthDeclarationCaseId(CaseId),
-            new Domain.Identity.PersonId(personId),
-            CancellationToken.None);
+        await BirthDeclarationApi.UnlinkParentAsync(CaseId, personId, CancellationToken.None);
         await ReloadCase();
     }
 
@@ -313,8 +297,6 @@
         var parameters = new DialogParameters<ParentLinkDialog>
         {
             { x => x.CaseId, CaseId },
-            { x => x.SearchHandler, SearchNationalRegisterHandler },
-            { x => x.LinkHandler, LinkParentHandler },
         };
         var dialog = await DialogService.ShowAsync<ParentLinkDialog>("Link parent", parameters);
         var result = await dialog.Result;
@@ -326,13 +308,13 @@
 
     private async Task TakeCase()
     {
-        await ClaimHandler.Handle(new BirthDeclarationCaseId(CaseId), CancellationToken.None);
+        await BirthDeclarationApi.ClaimCaseAsync(CaseId, CancellationToken.None);
         await ReloadCase();
     }
 
     private async Task ReleaseLock()
     {
-        await ReleaseLockHandler.Handle(new BirthDeclarationCaseId(CaseId), CancellationToken.None);
+        await BirthDeclarationApi.ReleaseCaseLockAsync(CaseId, CancellationToken.None);
         await ReloadCase();
     }
 

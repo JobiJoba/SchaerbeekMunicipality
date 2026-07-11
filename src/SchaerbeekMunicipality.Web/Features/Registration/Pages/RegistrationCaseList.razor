@@ -3,10 +3,10 @@
 @using SchaerbeekMunicipality.Application.Features.Registration
 @using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.OpenBirthDeclarationCase
-@inject ListRegistrationCasesHandler Handler
-@inject OpenRegistrationCaseHandler OpenHandler
-@inject OpenBirthDeclarationCaseHandler OpenBirthHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@using SchaerbeekMunicipality.Web.Api.BirthDeclaration
+@inject IRegistrationApi RegistrationApi
+@inject IBirthDeclarationApi BirthDeclarationApi
 @inject ICurrentOfficer CurrentOfficer
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
@@ -169,7 +169,7 @@
     private async Task LoadCases()
     {
         _loading = true;
-        _cases = await Handler.Handle(CancellationToken.None);
+        _cases = await RegistrationApi.ListCasesAsync(CancellationToken.None);
         ApplyFilter();
         _loading = false;
     }
@@ -241,8 +241,6 @@
         var parameters = new DialogParameters<NewCaseDialog>
         {
             { x => x.OfficerName, CurrentOfficer.DisplayName },
-            { x => x.Handler, OpenHandler },
-            { x => x.BirthHandler, OpenBirthHandler },
         };
 
         var dialog = await DialogService.ShowAsync<NewCaseDialog>(

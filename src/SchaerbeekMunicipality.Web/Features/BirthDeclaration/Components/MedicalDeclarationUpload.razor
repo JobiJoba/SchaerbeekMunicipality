@@ -1,6 +1,6 @@
 @using Microsoft.AspNetCore.Components.Forms
 @using SchaerbeekMunicipality.Domain.BirthDeclaration
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument
+@using SchaerbeekMunicipality.Web.Api.BirthDeclaration
 
 <AppCard Title="Attach medical declaration" Outlined="true">
     <MudFileUpload T="IBrowserFile" Accept=".pdf,.jpg,.jpeg,.png" FilesChanged="OnFileSelected">
@@ -29,11 +29,11 @@
     [Parameter, EditorRequired]
     public Guid CaseId { get; set; }
 
-    [Parameter, EditorRequired]
-    public AttachDocumentHandler Handler { get; set; } = null!;
-
     [Parameter]
     public EventCallback OnUploaded { get; set; }
+
+    [Inject]
+    private IBirthDeclarationApi BirthDeclarationApi { get; set; } = null!;
 
     [Inject]
     private ISnackbar Snackbar { get; set; } = null!;
@@ -54,10 +54,10 @@
         try
         {
             await using var stream = _selectedFile.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
-            await Handler.Handle(
-                new BirthDeclarationCaseId(CaseId),
-                _selectedFile.Name,
+            await BirthDeclarationApi.AttachDocumentAsync(
+                CaseId,
                 stream,
+                _selectedFile.Name,
                 CancellationToken.None);
 
             Snackbar.Add("Medical declaration uploaded.", Severity.Success);

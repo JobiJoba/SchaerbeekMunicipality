@@ -10,6 +10,7 @@ using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RejectChangeOf
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ReleaseCaseLock;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RemoveDocument;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RequestPoliceVerification;
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ResolveRegisteredPerson;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.UpdateHouseholdForMove;
 
 namespace SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
@@ -22,9 +23,15 @@ public interface IChangeOfAddressApi
         OpenChangeOfAddressCaseRequest request,
         CancellationToken cancellationToken = default);
 
+    Task<ResolveRegisteredPersonResponse> ResolveRegisteredPersonAsync(
+        ResolveRegisteredPersonRequest request,
+        CancellationToken cancellationToken = default);
+
     Task<ChangeOfAddressCaseDetailDto> GetCaseAsync(Guid id, CancellationToken cancellationToken = default);
 
     Task<ClaimChangeOfAddressCaseResponse> ClaimCaseAsync(Guid id, CancellationToken cancellationToken = default);
+
+    Task<ClaimChangeOfAddressCaseResponse?> TryAutoClaimCaseAsync(Guid id, CancellationToken cancellationToken = default);
 
     Task<ReleaseCaseLockResponse> ReleaseCaseLockAsync(Guid id, CancellationToken cancellationToken = default);
 

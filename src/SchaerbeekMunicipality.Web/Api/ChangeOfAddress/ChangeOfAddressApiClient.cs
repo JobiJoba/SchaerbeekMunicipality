@@ -10,6 +10,7 @@ using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RejectChangeOf
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ReleaseCaseLock;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RemoveDocument;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RequestPoliceVerification;
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ResolveRegisteredPerson;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.UpdateHouseholdForMove;
 
 namespace SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
@@ -30,11 +31,22 @@ public sealed class ChangeOfAddressApiClient(HttpClient httpClient)
             request,
             cancellationToken);
 
+    public Task<ResolveRegisteredPersonResponse> ResolveRegisteredPersonAsync(
+        ResolveRegisteredPersonRequest request,
+        CancellationToken cancellationToken = default) =>
+        PostJsonAsync<ResolveRegisteredPersonRequest, ResolveRegisteredPersonResponse>(
+            $"{BasePath}/resolve-person",
+            request,
+            cancellationToken);
+
     public Task<ChangeOfAddressCaseDetailDto> GetCaseAsync(Guid id, CancellationToken cancellationToken = default) =>
         GetJsonAsync<ChangeOfAddressCaseDetailDto>($"{BasePath}/cases/{id}", cancellationToken);
 
     public Task<ClaimChangeOfAddressCaseResponse> ClaimCaseAsync(Guid id, CancellationToken cancellationToken = default) =>
         PostJsonAsync<ClaimChangeOfAddressCaseResponse>($"{BasePath}/cases/{id}/claim", cancellationToken);
+
+    public Task<ClaimChangeOfAddressCaseResponse?> TryAutoClaimCaseAsync(Guid id, CancellationToken cancellationToken = default) =>
+        PostJsonOptionalAsync<ClaimChangeOfAddressCaseResponse>($"{BasePath}/cases/{id}/auto-claim", cancellationToken);
 
     public Task<ReleaseCaseLockResponse> ReleaseCaseLockAsync(Guid id, CancellationToken cancellationToken = default) =>
         PostJsonAsync<ReleaseCaseLockResponse>($"{BasePath}/cases/{id}/release-lock", cancellationToken);

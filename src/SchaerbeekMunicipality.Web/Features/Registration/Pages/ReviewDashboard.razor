@@ -2,7 +2,8 @@
 @using SchaerbeekMunicipality.Web.DesignSystem.Components.Navigation
 @using SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard
 @using SchaerbeekMunicipality.Application.Auth
-@inject GetReviewDashboardHandler Handler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject ICurrentOfficer CurrentOfficer
 @inject NavigationManager Navigation
 
@@ -90,7 +91,7 @@
       return;
     }
 
-    _dashboard = await Handler.Handle(CancellationToken.None);
+    _dashboard = await RegistrationApi.GetReviewDashboardAsync(CancellationToken.None);
     _loading = false;
   }
 

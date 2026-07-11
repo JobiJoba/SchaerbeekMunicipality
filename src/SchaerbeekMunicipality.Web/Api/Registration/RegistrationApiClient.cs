@@ -58,6 +58,9 @@ public sealed class RegistrationApiClient(HttpClient httpClient)
     public Task<ClaimRegistrationCaseResponse> ClaimCaseAsync(Guid id, CancellationToken cancellationToken = default) =>
         PostJsonAsync<ClaimRegistrationCaseResponse>($"{BasePath}/cases/{id}/claim", cancellationToken);
 
+    public Task<ClaimRegistrationCaseResponse?> TryAutoClaimCaseAsync(Guid id, CancellationToken cancellationToken = default) =>
+        PostJsonOptionalAsync<ClaimRegistrationCaseResponse>($"{BasePath}/cases/{id}/auto-claim", cancellationToken);
+
     public Task<ReleaseCaseLockResponse> ReleaseCaseLockAsync(Guid id, CancellationToken cancellationToken = default) =>
         PostJsonAsync<ReleaseCaseLockResponse>($"{BasePath}/cases/{id}/release-lock", cancellationToken);
 

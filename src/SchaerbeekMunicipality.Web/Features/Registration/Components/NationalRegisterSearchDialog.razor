@@ -2,6 +2,7 @@
 @using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
+@using SchaerbeekMunicipality.Web.Api.Registration
 
 <MudDialog>
     <TitleContent>
@@ -49,12 +50,6 @@
     public Guid CaseId { get; set; }
 
     [Parameter]
-    public SearchNationalRegisterHandler SearchHandler { get; set; } = null!;
-
-    [Parameter]
-    public LinkExistingPersonHandler LinkHandler { get; set; } = null!;
-
-    [Parameter]
     public string? InitialGivenName { get; set; }
 
     [Parameter]
@@ -63,12 +58,15 @@
     [Parameter]
     public DateOnly? InitialBirthDate { get; set; }
 
+    [Inject]
+    private IRegistrationApi RegistrationApi { get; set; } = null!;
+
     private bool _linking;
     private string? _linkError;
 
     private async Task<IReadOnlyList<NationalRegisterSearchMatch>> SearchAsync(NrSearchFormCriteria criteria)
     {
-        var response = await SearchHandler.Handle(
+        var response = await RegistrationApi.SearchNationalRegisterAsync(
             new SearchNationalRegisterRequest(criteria.GivenName, criteria.FamilyName, criteria.BirthDate),
             CancellationToken.None);
 
@@ -82,8 +80,8 @@
 
         try
         {
-            await LinkHandler.Handle(
-                new RegistrationCaseId(CaseId),
+            await RegistrationApi.LinkExistingPersonAsync(
+                CaseId,
                 new LinkExistingPersonRequest(match.RegisterPersonId),
                 CancellationToken.None);
 

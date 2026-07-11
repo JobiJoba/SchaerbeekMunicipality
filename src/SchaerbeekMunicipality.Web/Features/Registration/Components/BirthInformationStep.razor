@@ -4,9 +4,9 @@
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordBirthInformation
 @using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase
-@inject RecordBirthInformationHandler RecordBirthInformationHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject FluentValidation.IValidator<RecordBirthInformationRequest> BirthInformationValidator
-@inject SuspendCaseHandler SuspendCaseHandler
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
@@ -146,8 +146,8 @@ else
         _saving = true;
         try
         {
-            await RecordBirthInformationHandler.Handle(
-                new RegistrationCaseId(CaseId),
+            await RegistrationApi.RecordBirthInformationAsync(
+                CaseId,
                 MapBirthInformationRequest(_model),
                 CancellationToken.None);
 
@@ -184,8 +184,8 @@ else
 
         try
         {
-            await SuspendCaseHandler.Handle(
-                new RegistrationCaseId(CaseId),
+            await RegistrationApi.SuspendCaseAsync(
+                CaseId,
                 new SuspendCaseRequest(
                     SuspensionReason.MissingDocuments,
                     "Birth certificate missing or awaiting translation/legalisation."),

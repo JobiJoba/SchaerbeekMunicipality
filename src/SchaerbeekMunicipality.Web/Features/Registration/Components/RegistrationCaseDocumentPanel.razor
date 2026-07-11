@@ -1,5 +1,4 @@
 @using SchaerbeekMunicipality.Domain.Documents
-@using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @inject NavigationManager Navigation
 
@@ -11,7 +10,6 @@
                    EmptyDescription="Upload a passport, permit, or other supporting document.">
     <UploadContent>
         <DocumentUpload CaseId="CaseId"
-                        Handler="AttachHandler"
                         OnUploaded="OnUploaded" />
     </UploadContent>
 </CaseDocumentPanel>
@@ -22,9 +20,6 @@
 
     [Parameter, EditorRequired]
     public IReadOnlyList<DocumentDto> Documents { get; set; } = [];
-
-    [Parameter, EditorRequired]
-    public AttachDocumentHandler AttachHandler { get; set; } = null!;
 
     [Parameter]
     public bool CanEdit { get; set; }

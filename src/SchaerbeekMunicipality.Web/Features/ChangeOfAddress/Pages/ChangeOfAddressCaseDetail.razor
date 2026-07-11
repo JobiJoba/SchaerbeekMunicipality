@@ -19,15 +19,10 @@
 @using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData
-@inject GetChangeOfAddressCaseHandler GetHandler
-@inject ClaimChangeOfAddressCaseHandler ClaimHandler
-@inject ReleaseCaseLockHandler ReleaseLockHandler
-@inject DeclareNewAddressHandler DeclareAddressHandler
-@inject AttachDocumentHandler AttachDocumentHandler
-@inject RemoveDocumentHandler RemoveDocumentHandler
-@inject RequestPoliceVerificationHandler RequestPoliceHandler
-@inject UnlinkHouseholdMemberHandler UnlinkHouseholdHandler
-@inject SearchStreetsHandler SearchStreetsHandler
+@using SchaerbeekMunicipality.Web.Api.ChangeOfAddress
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IChangeOfAddressApi ChangeOfAddressApi
+@inject IRegistrationApi RegistrationApi
 @inject FluentValidation.IValidator<DeclareNewAddressRequest> DeclareNewAddressValidator
 @inject ICurrentOfficer CurrentOfficer
 @inject ISnackbar Snackbar
@@ -232,8 +227,8 @@
     private async Task ReloadCase()
     {
         _loading = _case is null;
-        await ClaimHandler.TryAutoClaimAsync(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
-        _case = await GetHandler.Handle(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
+        await ChangeOfAddressApi.TryAutoClaimCaseAsync(CaseId, CancellationToken.None);
+        _case = await ChangeOfAddressApi.GetCaseAsync(CaseId, CancellationToken.None);
         if (_case?.NewAddress is { } address)
         {
             _houseNumber = address.HouseNumber;
@@ -248,18 +243,18 @@
 
     private async Task TakeCase()
     {
-        await ClaimHandler.Handle(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
+        await ChangeOfAddressApi.ClaimCaseAsync(CaseId, CancellationToken.None);
         await ReloadCase();
     }
 
     private async Task ReleaseLock()
     {
-        await ReleaseLockHandler.Handle(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
+        await ChangeOfAddressApi.ReleaseCaseLockAsync(CaseId, CancellationToken.None);
         await ReloadCase();
     }
 
     private async Task<IEnumerable<StreetDto>> SearchStreets(string value, CancellationToken cancellationToken) =>
-        await SearchStreetsHandler.Handle(SchaerbeekCommune.PostalCode, value, cancellationToken);
+        await RegistrationApi.SearchStreetsAsync(SchaerbeekCommune.PostalCode, value, cancellationToken);
 
     private async Task SaveAddress()
     {
@@ -272,8 +267,8 @@
         _busy = true;
         try
         {
-            await DeclareAddressHandler.Handle(
-                new ChangeOfAddressCaseId(CaseId),
+            await ChangeOfAddressApi.DeclareNewAddressAsync(
+                CaseId,
                 MapAddressRequest(_addressModel),
                 CancellationToken.None);
             Snackbar.Add("New address saved.", Severity.Success);
@@ -295,10 +290,10 @@
         try
         {
             await using var stream = file.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
-            await AttachDocumentHandler.Handle(
-                new ChangeOfAddressCaseId(CaseId),
-                file.Name,
+            await ChangeOfAddressApi.AttachDocumentAsync(
+                CaseId,
                 stream,
+                file.Name,
                 CancellationToken.None);
             Snackbar.Add("Document attached.", Severity.Success);
             await ReloadCase();
@@ -318,9 +313,9 @@
         _busy = true;
         try
         {
-            await RemoveDocumentHandler.Handle(
-                new ChangeOfAddressCaseId(CaseId),
-                new AdministrativeDocumentId(documentId),
+            await ChangeOfAddressApi.RemoveDocumentAsync(
+                CaseId,
+                documentId,
                 CancellationToken.None);
             await ReloadCase();
         }
@@ -339,7 +334,7 @@
         _busy = true;
         try
         {
-            await RequestPoliceHandler.Handle(new ChangeOfAddressCaseId(CaseId), CancellationToken.None);
+            await ChangeOfAddressApi.RequestPoliceVerificationAsync(CaseId, CancellationToken.None);
             Snackbar.Add("Police verification requested.", Severity.Info);
             await ReloadCase();
         }
@@ -358,9 +353,9 @@
         _busy = true;
         try
         {
-            await UnlinkHouseholdHandler.Handle(
-                new ChangeOfAddressCaseId(CaseId),
-                new PersonId(personId),
+            await ChangeOfAddressApi.UnlinkHouseholdMemberAsync(
+                CaseId,
+                personId,
                 CancellationToken.None);
             await ReloadCase();
         }

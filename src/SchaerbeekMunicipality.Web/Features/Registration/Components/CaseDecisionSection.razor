@@ -9,11 +9,8 @@
 @using SchaerbeekMunicipality.Application.Features.Registration.ResumeCase
 @using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase
 @using SchaerbeekMunicipality.Application.Auth
-@inject ApproveCaseHandler ApproveHandler
-@inject RejectCaseHandler RejectHandler
-@inject SuspendCaseHandler SuspendHandler
-@inject ResumeCaseHandler ResumeHandler
-@inject ConfirmRegistrationHandler ConfirmHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject ICurrentOfficer CurrentOfficer
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
@@ -151,8 +148,8 @@
         var result = await dialog.Result;
         if (result is { Canceled: false } && result.Data is RegisterTarget registerTarget)
         {
-            await ExecuteAsync(() => ApproveHandler.Handle(
-                new RegistrationCaseId(Case.Id),
+            await ExecuteAsync(() => RegistrationApi.ApproveCaseAsync(
+                Case.Id,
                 new ApproveCaseRequest(registerTarget),
                 CancellationToken.None),
                 "Case approved.");
@@ -178,8 +175,8 @@
         var result = await dialog.Result;
         if (result is { Canceled: false } && result.Data is RejectCaseRequest request)
         {
-            await ExecuteAsync(() => RejectHandler.Handle(
-                new RegistrationCaseId(Case.Id),
+            await ExecuteAsync(() => RegistrationApi.RejectCaseAsync(
+                Case.Id,
                 request,
                 CancellationToken.None),
                 "Case rejected.");
@@ -195,8 +192,8 @@
         var result = await dialog.Result;
         if (result is { Canceled: false } && result.Data is SuspendCaseRequest request)
         {
-            await ExecuteAsync(() => SuspendHandler.Handle(
-                new RegistrationCaseId(Case.Id),
+            await ExecuteAsync(() => RegistrationApi.SuspendCaseAsync(
+                Case.Id,
                 request,
                 CancellationToken.None),
                 "Case suspended.");
@@ -205,12 +202,12 @@
 
     private Task ConfirmRegistration() =>
         ExecuteAsync(
-            () => ConfirmHandler.Handle(new RegistrationCaseId(Case.Id), CancellationToken.None),
+            () => RegistrationApi.ConfirmRegistrationAsync(Case.Id, CancellationToken.None),
             "Registration confirmed.");
 
     private Task ResumeCase() =>
         ExecuteAsync(
-            () => ResumeHandler.Handle(new RegistrationCaseId(Case.Id), CancellationToken.None),
+            () => RegistrationApi.ResumeCaseAsync(Case.Id, CancellationToken.None),
             "Case resumed.");
 
     private async Task ExecuteAsync<T>(Func<Task<T>> action, string successMessage)

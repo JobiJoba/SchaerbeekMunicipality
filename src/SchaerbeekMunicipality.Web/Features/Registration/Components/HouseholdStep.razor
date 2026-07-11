@@ -2,7 +2,8 @@
 @using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordHouseholdComposition
-@inject RecordHouseholdCompositionHandler RecordHouseholdCompositionHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject FluentValidation.IValidator<HouseholdMemberRequest> HouseholdMemberValidator
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
@@ -209,8 +210,8 @@
         _saving = true;
         try
         {
-            await RecordHouseholdCompositionHandler.Handle(
-                new Domain.Registration.RegistrationCaseId(CaseId),
+            await RegistrationApi.RecordHouseholdCompositionAsync(
+                CaseId,
                 new RecordHouseholdCompositionRequest(
                     _members.Select(m => new HouseholdMemberRequest(
                         m.GivenName,

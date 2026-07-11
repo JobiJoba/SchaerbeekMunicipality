@@ -5,11 +5,10 @@
 @using SchaerbeekMunicipality.Web.DesignSystem.Tokens
 @using SchaerbeekMunicipality.Web.DesignSystem.Theme
 @using SchaerbeekMunicipality.Web.Auth.Components
-@using Microsoft.Extensions.DependencyInjection
-@using SchaerbeekMunicipality.Application.Features.Registration.ListPendingPoliceVerifications
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject ICurrentOfficer CurrentOfficer
 @inject IWebHostEnvironment HostEnvironment
-@inject IServiceScopeFactory ScopeFactory
 @inject NavigationManager Navigation
 
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -73,9 +72,7 @@
         var pendingCount = 0;
         try
         {
-            await using var scope = ScopeFactory.CreateAsyncScope();
-            var handler = scope.ServiceProvider.GetRequiredService<ListPendingPoliceVerificationsHandler>();
-            var pending = await handler.Handle(CancellationToken.None);
+            var pending = await RegistrationApi.ListPendingPoliceVerificationsAsync(CancellationToken.None);
             pendingCount = pending.TotalCount;
         }
         catch

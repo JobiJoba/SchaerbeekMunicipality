@@ -7,10 +7,8 @@
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ResumeBirthDeclaration
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SuspendBirthDeclaration
 @using SchaerbeekMunicipality.Application.Auth
-@inject ConfirmBirthDeclarationHandler ConfirmHandler
-@inject RejectBirthDeclarationHandler RejectHandler
-@inject SuspendBirthDeclarationHandler SuspendHandler
-@inject ResumeBirthDeclarationHandler ResumeHandler
+@using SchaerbeekMunicipality.Web.Api.BirthDeclaration
+@inject IBirthDeclarationApi BirthDeclarationApi
 @inject ISnackbar Snackbar
 
 <AppCard Title="Officer decision" Outlined="true">
@@ -90,7 +88,7 @@
         _busy = true;
         try
         {
-            var result = await ConfirmHandler.Handle(new BirthDeclarationCaseId(Case.Id), CancellationToken.None);
+            var result = await BirthDeclarationApi.ConfirmAsync(Case.Id, CancellationToken.None);
             Snackbar.Add($"Birth confirmed — NR {result.NationalRegisterNumber}", Severity.Success);
             await OnChanged.InvokeAsync();
         }
@@ -109,8 +107,8 @@
         _busy = true;
         try
         {
-            await RejectHandler.Handle(
-                new BirthDeclarationCaseId(Case.Id),
+            await BirthDeclarationApi.RejectAsync(
+                Case.Id,
                 new RejectBirthDeclarationRequest(BirthDeclarationRejectionReason.Other, "Rejected by officer"),
                 CancellationToken.None);
             Snackbar.Add("Case rejected.", Severity.Info);
@@ -131,8 +129,8 @@
         _busy = true;
         try
         {
-            await SuspendHandler.Handle(
-                new BirthDeclarationCaseId(Case.Id),
+            await BirthDeclarationApi.SuspendAsync(
+                Case.Id,
                 new SuspendBirthDeclarationRequest(SuspensionReason.MissingDocuments, "Suspended by officer"),
                 CancellationToken.None);
             Snackbar.Add("Case suspended.", Severity.Info);
@@ -153,7 +151,7 @@
         _busy = true;
         try
         {
-            await ResumeHandler.Handle(new BirthDeclarationCaseId(Case.Id), CancellationToken.None);
+            await BirthDeclarationApi.ResumeAsync(Case.Id, CancellationToken.None);
             Snackbar.Add("Case resumed.", Severity.Success);
             await OnChanged.InvokeAsync();
         }

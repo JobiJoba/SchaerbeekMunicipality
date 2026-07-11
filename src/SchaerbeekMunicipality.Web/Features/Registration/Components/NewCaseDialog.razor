@@ -1,7 +1,8 @@
 @using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Application.Features.Registration
 @using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.OpenBirthDeclarationCase
+@using SchaerbeekMunicipality.Web.Api.Registration
+@using SchaerbeekMunicipality.Web.Api.BirthDeclaration
 
 <MudDialog>
     <TitleContent>
@@ -40,11 +41,11 @@
     [Parameter]
     public string OfficerName { get; set; } = string.Empty;
 
-    [Parameter]
-    public OpenRegistrationCaseHandler Handler { get; set; } = null!;
+    [Inject]
+    private IRegistrationApi RegistrationApi { get; set; } = null!;
 
-    [Parameter]
-    public OpenBirthDeclarationCaseHandler BirthHandler { get; set; } = null!;
+    [Inject]
+    private IBirthDeclarationApi BirthDeclarationApi { get; set; } = null!;
 
     private MudForm _form = null!;
     private bool _formValid;
@@ -66,7 +67,7 @@
         {
             if (_visitReason == VisitReason.BirthDeclaration)
             {
-                var birthResult = await BirthHandler.Handle(CancellationToken.None);
+                var birthResult = await BirthDeclarationApi.OpenCaseAsync(CancellationToken.None);
                 MudDialog.Close(DialogResult.Ok(new NewCaseDialogResult(birthResult.CaseId, true)));
             }
             else if (_visitReason == VisitReason.ChangeOfAddress)
@@ -75,7 +76,7 @@
             }
             else
             {
-                var result = await Handler.Handle(
+                var result = await RegistrationApi.OpenCaseAsync(
                     new OpenRegistrationCaseRequest(_visitReason, null),
                     CancellationToken.None);
 

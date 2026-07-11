@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
-builder.Services.AddMunicipalApiClients();
+builder.Services.AddMunicipalApiClients(builder.Environment);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();

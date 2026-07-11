@@ -4,9 +4,8 @@
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordImmigrationDecision
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordResidencePermit
 @using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory
-@inject SetResidenceCategoryHandler SetResidenceCategoryHandler
-@inject RecordResidencePermitHandler RecordResidencePermitHandler
-@inject RecordImmigrationDecisionHandler RecordImmigrationDecisionHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject FluentValidation.IValidator<RecordResidencePermitRequest> ResidencePermitValidator
 @inject FluentValidation.IValidator<RecordImmigrationDecisionRequest> ImmigrationDecisionValidator
 @inject FluentValidation.IValidator<SetResidenceCategoryRequest> ResidenceCategoryValidator
@@ -402,8 +401,8 @@
         _savingCategory = true;
         try
         {
-            var response = await SetResidenceCategoryHandler.Handle(
-                new Domain.Registration.RegistrationCaseId(CaseId),
+            var response = await RegistrationApi.SetResidenceCategoryAsync(
+                CaseId,
                 MapCategoryRequest(_categoryModel),
                 CancellationToken.None);
 
@@ -496,8 +495,8 @@
         _savingPermit = true;
         try
         {
-            var response = await RecordResidencePermitHandler.Handle(
-                new Domain.Registration.RegistrationCaseId(CaseId),
+            var response = await RegistrationApi.RecordResidencePermitAsync(
+                CaseId,
                 MapPermitRequest(_permitModel),
                 CancellationToken.None);
 
@@ -584,8 +583,8 @@
         _savingDecision = true;
         try
         {
-            var response = await RecordImmigrationDecisionHandler.Handle(
-                new Domain.Registration.RegistrationCaseId(CaseId),
+            var response = await RegistrationApi.RecordImmigrationDecisionAsync(
+                CaseId,
                 MapDecisionRequest(_decisionModel),
                 CancellationToken.None);
 

@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Json;
 
 namespace SchaerbeekMunicipality.Web.Api;
@@ -60,6 +61,11 @@ public abstract class MunicipalApiClientBase(HttpClient httpClient)
         return (await response.Content.ReadFromJsonAsync<TResponse>(cancellationToken))!;
     }
 
+    protected Task<TResponse?> PostJsonOptionalAsync<TResponse>(
+        string uri,
+        CancellationToken cancellationToken) =>
+        SendJsonOptionalAsync<TResponse>(ct => httpClient.PostAsync(uri, content: null, ct), cancellationToken);
+
     protected static string BuildQuery(params (string Key, string? Value)[] parameters)
     {
         var pairs = parameters
@@ -69,6 +75,21 @@ public abstract class MunicipalApiClientBase(HttpClient httpClient)
             .ToArray();
 
         return pairs.Length == 0 ? string.Empty : "?" + string.Join("&", pairs);
+    }
+
+    private async Task<T?> SendJsonOptionalAsync<T>(
+        Func<CancellationToken, Task<HttpResponseMessage>> send,
+        CancellationToken cancellationToken)
+    {
+        var response = await send(cancellationToken);
+        await ApiException.ThrowIfErrorAsync(response, cancellationToken);
+
+        if (response.StatusCode == HttpStatusCode.NoContent)
+        {
+            return default;
+        }
+
+        return await response.Content.ReadFromJsonAsync<T>(cancellationToken);
     }
 
     private async Task<T> SendJsonAsync<T>(

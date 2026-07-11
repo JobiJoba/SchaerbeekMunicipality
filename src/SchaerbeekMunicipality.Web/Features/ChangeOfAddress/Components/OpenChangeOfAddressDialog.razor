@@ -2,6 +2,8 @@
 @using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.OpenChangeOfAddressCase
 @using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ResolveRegisteredPerson
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
+@using SchaerbeekMunicipality.Web.Api.ChangeOfAddress
+@using SchaerbeekMunicipality.Web.Api.Registration
 
 <MudDialog>
     <TitleContent>
@@ -39,16 +41,15 @@
     [CascadingParameter]
     private IMudDialogInstance MudDialog { get; set; } = null!;
 
-    [Parameter] public SearchNationalRegisterHandler SearchHandler { get; set; } = null!;
-    [Parameter] public ResolveRegisteredPersonHandler ResolveHandler { get; set; } = null!;
-    [Parameter] public OpenChangeOfAddressCaseHandler OpenHandler { get; set; } = null!;
+    [Inject] private IRegistrationApi RegistrationApi { get; set; } = null!;
+    [Inject] private IChangeOfAddressApi ChangeOfAddressApi { get; set; } = null!;
 
     private bool _opening;
     private string? _actionError;
 
     private async Task<IReadOnlyList<NationalRegisterSearchMatch>> SearchAsync(NrSearchFormCriteria criteria)
     {
-        var response = await SearchHandler.Handle(
+        var response = await RegistrationApi.SearchNationalRegisterAsync(
             new SearchNationalRegisterRequest(criteria.GivenName, criteria.FamilyName, criteria.BirthDate),
             CancellationToken.None);
 
@@ -61,11 +62,11 @@
         _actionError = null;
         try
         {
-            var resolved = await ResolveHandler.Handle(
+            var resolved = await ChangeOfAddressApi.ResolveRegisteredPersonAsync(
                 new ResolveRegisteredPersonRequest(match.RegisterPersonId),
                 CancellationToken.None);
 
-            var opened = await OpenHandler.Handle(
+            var opened = await ChangeOfAddressApi.OpenCaseAsync(
                 new OpenChangeOfAddressCaseRequest(resolved.PersonId),
                 CancellationToken.None);
 

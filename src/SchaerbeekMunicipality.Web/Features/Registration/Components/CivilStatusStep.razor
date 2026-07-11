@@ -2,7 +2,8 @@
 @using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordCivilStatus
-@inject RecordCivilStatusHandler RecordCivilStatusHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject FluentValidation.IValidator<RecordCivilStatusRequest> CivilStatusValidator
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
@@ -260,8 +261,8 @@
         _saving = true;
         try
         {
-            await RecordCivilStatusHandler.Handle(
-                new Domain.Registration.RegistrationCaseId(CaseId),
+            await RegistrationApi.RecordCivilStatusAsync(
+                CaseId,
                 MapCivilStatusRequest(_model) with
                 {
                     MarriageRecognitionStatus = RequiresMarriageRecognition(_model.MarriagePlace)

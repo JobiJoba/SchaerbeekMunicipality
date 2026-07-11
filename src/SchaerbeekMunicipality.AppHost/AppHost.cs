@@ -11,6 +11,7 @@ var api = builder.AddProject<Projects.SchaerbeekMunicipality_Api>("api")
 builder.AddProject<Projects.SchaerbeekMunicipality_Web>("web")
     .WithReference(postgres)
     .WithReference(api)
+    .WithDeveloperCertificateTrust(true)
     .WaitFor(api);
 
 builder.Build().Run();

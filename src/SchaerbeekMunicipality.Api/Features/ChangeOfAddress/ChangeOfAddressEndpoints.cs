@@ -11,6 +11,7 @@ using SchaerbeekMunicipality.Api.Features.ChangeOfAddress.RejectChangeOfAddress;
 using SchaerbeekMunicipality.Api.Features.ChangeOfAddress.ReleaseCaseLock;
 using SchaerbeekMunicipality.Api.Features.ChangeOfAddress.RemoveDocument;
 using SchaerbeekMunicipality.Api.Features.ChangeOfAddress.RequestPoliceVerification;
+using SchaerbeekMunicipality.Api.Features.ChangeOfAddress.ResolveRegisteredPerson;
 using SchaerbeekMunicipality.Api.Features.ChangeOfAddress.UpdateHouseholdForMove;
 
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress;
@@ -29,12 +30,20 @@ public static class ChangeOfAddressEndpoints
             .WithName("OpenChangeOfAddressCase")
             .WithTags("ChangeOfAddress");
 
+        group.MapPost("/resolve-person", ResolveRegisteredPersonEndpoint.Handle)
+            .WithName("ResolveRegisteredPerson")
+            .WithTags("ChangeOfAddress");
+
         group.MapGet("/cases/{id:guid}", GetChangeOfAddressCaseEndpoint.Handle)
             .WithName("GetChangeOfAddressCase")
             .WithTags("ChangeOfAddress");
 
         group.MapPost("/cases/{id:guid}/claim", ClaimChangeOfAddressCaseEndpoint.Handle)
             .WithName("ClaimChangeOfAddressCase")
+            .WithTags("ChangeOfAddress");
+
+        group.MapPost("/cases/{id:guid}/auto-claim", AutoClaimChangeOfAddressCaseEndpoint.Handle)
+            .WithName("AutoClaimChangeOfAddressCase")
             .WithTags("ChangeOfAddress");
 
         group.MapPost("/cases/{id:guid}/release-lock", ReleaseCaseLockEndpoint.Handle)

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Hosting;
 using SchaerbeekMunicipality.Web.Api.BirthDeclaration;
 using SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
 using SchaerbeekMunicipality.Web.Api.Registration;
@@ -6,22 +7,27 @@ namespace SchaerbeekMunicipality.Web.Api;
 
 public static class DependencyInjection
 {
-    private const string ApiBaseAddress = "https+http://api";
-
-    public static IServiceCollection AddMunicipalApiClients(this IServiceCollection services)
+    public static IServiceCollection AddMunicipalApiClients(
+        this IServiceCollection services,
+        IHostEnvironment environment)
     {
+        // Prefer plain HTTP in development: Aspire's dev HTTPS cert is often untrusted by HttpClient.
+        var apiBaseAddress = environment.IsDevelopment()
+            ? "http://api"
+            : "https+http://api";
+
         services.AddTransient<OfficerForwardingHandler>();
 
         services.AddHttpClient<IRegistrationApi, RegistrationApiClient>(client =>
-            client.BaseAddress = new Uri(ApiBaseAddress))
+            client.BaseAddress = new Uri(apiBaseAddress))
             .AddHttpMessageHandler<OfficerForwardingHandler>();
 
         services.AddHttpClient<IBirthDeclarationApi, BirthDeclarationApiClient>(client =>
-            client.BaseAddress = new Uri(ApiBaseAddress))
+            client.BaseAddress = new Uri(apiBaseAddress))
             .AddHttpMessageHandler<OfficerForwardingHandler>();
 
         services.AddHttpClient<IChangeOfAddressApi, ChangeOfAddressApiClient>(client =>
-            client.BaseAddress = new Uri(ApiBaseAddress))
+            client.BaseAddress = new Uri(apiBaseAddress))
             .AddHttpMessageHandler<OfficerForwardingHandler>();
 
         return services;

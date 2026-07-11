@@ -2,9 +2,10 @@
 @using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Application.Auth
 @using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.OpenBirthDeclarationCase
-@inject OpenRegistrationCaseHandler OpenHandler
-@inject OpenBirthDeclarationCaseHandler OpenBirthHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@using SchaerbeekMunicipality.Web.Api.BirthDeclaration
+@inject IRegistrationApi RegistrationApi
+@inject IBirthDeclarationApi BirthDeclarationApi
 @inject ICurrentOfficer CurrentOfficer
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
@@ -157,7 +158,7 @@
         {
             if (_visitReason == VisitReason.BirthDeclaration)
             {
-                var birthResult = await OpenBirthHandler.Handle(CancellationToken.None);
+                var birthResult = await BirthDeclarationApi.OpenCaseAsync(CancellationToken.None);
                 _createdCaseId = birthResult.CaseId;
                 Snackbar.Add("Birth declaration case created.", Severity.Success);
             }
@@ -168,7 +169,7 @@
             }
             else
             {
-                var result = await OpenHandler.Handle(
+                var result = await RegistrationApi.OpenCaseAsync(
                     new OpenRegistrationCaseRequest(_visitReason, null),
                     CancellationToken.None);
 

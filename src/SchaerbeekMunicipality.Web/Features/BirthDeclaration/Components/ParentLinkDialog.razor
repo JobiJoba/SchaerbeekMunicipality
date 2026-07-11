@@ -1,8 +1,9 @@
 @using SchaerbeekMunicipality.Domain.BirthDeclaration
 @using SchaerbeekMunicipality.Domain.NationalRegister
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationCase
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
+@using SchaerbeekMunicipality.Web.Api.BirthDeclaration
+@using SchaerbeekMunicipality.Web.Api.Registration
 
 <MudDialog>
     <TitleContent>
@@ -43,8 +44,9 @@
     private IMudDialogInstance MudDialog { get; set; } = null!;
 
     [Parameter] public Guid CaseId { get; set; }
-    [Parameter] public SearchNationalRegisterHandler SearchHandler { get; set; } = null!;
-    [Parameter] public LinkParentHandler LinkHandler { get; set; } = null!;
+
+    [Inject] private IRegistrationApi RegistrationApi { get; set; } = null!;
+    [Inject] private IBirthDeclarationApi BirthDeclarationApi { get; set; } = null!;
 
     private ParentRole _role = ParentRole.Mother;
     private bool _linking;
@@ -52,7 +54,7 @@
 
     private async Task<IReadOnlyList<NationalRegisterSearchMatch>> SearchAsync(NrSearchFormCriteria criteria)
     {
-        var response = await SearchHandler.Handle(
+        var response = await RegistrationApi.SearchNationalRegisterAsync(
             new SearchNationalRegisterRequest(criteria.GivenName, criteria.FamilyName, criteria.BirthDate),
             CancellationToken.None);
 
@@ -65,8 +67,8 @@
         _linkError = null;
         try
         {
-            await LinkHandler.Handle(
-                new BirthDeclarationCaseId(CaseId),
+            await BirthDeclarationApi.LinkParentAsync(
+                CaseId,
                 new LinkParentRequest(match.RegisterPersonId, _role),
                 CancellationToken.None);
             MudDialog.Close(DialogResult.Ok(true));

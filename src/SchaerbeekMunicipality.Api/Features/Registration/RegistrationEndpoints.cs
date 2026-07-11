@@ -60,6 +60,10 @@ public static class RegistrationEndpoints
             .WithName("ClaimRegistrationCase")
             .WithTags("Registration");
 
+        group.MapPost("/cases/{id:guid}/auto-claim", AutoClaimRegistrationCaseEndpoint.Handle)
+            .WithName("AutoClaimRegistrationCase")
+            .WithTags("Registration");
+
         group.MapPost("/cases/{id:guid}/release-lock", ReleaseCaseLockEndpoint.Handle)
             .WithName("ReleaseCaseLock")
             .WithTags("Registration");

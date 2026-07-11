@@ -1,6 +1,7 @@
 @page "/administration/outbound-notifications"
 @using SchaerbeekMunicipality.Application.Features.Registration.ListOutboundNotifications
-@inject ListOutboundNotificationsHandler Handler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject NavigationManager Navigation
 
 <AppPage Title="Outbound notifications" MaxWidth="MaxWidth.Large">
@@ -58,7 +59,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var response = await Handler.Handle(null, CancellationToken.None);
+        var response = await RegistrationApi.ListOutboundNotificationsAsync(cancellationToken: CancellationToken.None);
         _notifications = response.Items;
         _loading = false;
     }

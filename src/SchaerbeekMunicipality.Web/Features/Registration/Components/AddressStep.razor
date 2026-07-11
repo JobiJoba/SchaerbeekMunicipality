@@ -5,9 +5,8 @@
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordHousingSituation
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData
-@inject DeclareAddressHandler DeclareAddressHandler
-@inject RecordHousingSituationHandler RecordHousingSituationHandler
-@inject SearchStreetsHandler SearchStreetsHandler
+@using SchaerbeekMunicipality.Web.Api.Registration
+@inject IRegistrationApi RegistrationApi
 @inject FluentValidation.IValidator<DeclareAddressRequest> DeclareAddressValidator
 @inject FluentValidation.IValidator<RecordHousingSituationRequest> HousingSituationValidator
 @inject IAppDialogService DialogService
@@ -175,7 +174,7 @@
         };
 
     private async Task<IEnumerable<StreetDto>> SearchStreets(string value, CancellationToken token) =>
-        await SearchStreetsHandler.Handle(SchaerbeekCommune.PostalCode, value, token);
+        await RegistrationApi.SearchStreetsAsync(SchaerbeekCommune.PostalCode, value, token);
 
     private void StartEditingAddress()
     {
@@ -241,8 +240,8 @@
         _savingAddress = true;
         try
         {
-            await DeclareAddressHandler.Handle(
-                new Domain.Registration.RegistrationCaseId(CaseId),
+            await RegistrationApi.DeclareAddressAsync(
+                CaseId,
                 MapAddressRequest(_addressModel),
                 CancellationToken.None);
 
@@ -317,8 +316,8 @@
         _savingHousing = true;
         try
         {
-            await RecordHousingSituationHandler.Handle(
-                new Domain.Registration.RegistrationCaseId(CaseId),
+            await RegistrationApi.RecordHousingSituationAsync(
+                CaseId,
                 MapHousingRequest(_housingModel),
                 CancellationToken.None);
 

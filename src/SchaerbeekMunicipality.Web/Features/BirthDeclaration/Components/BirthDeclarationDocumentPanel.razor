@@ -1,4 +1,3 @@
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationCase
 @inject NavigationManager Navigation
 
@@ -13,8 +12,7 @@
         @if (CanEdit)
         {
             <MedicalDeclarationUpload CaseId="CaseId"
-                                        Handler="AttachHandler"
-                                        OnUploaded="OnUploaded" />
+                                      OnUploaded="OnUploaded" />
         }
     </UploadContent>
 </CaseDocumentPanel>
@@ -25,9 +23,6 @@
 
     [Parameter, EditorRequired]
     public IReadOnlyList<BirthDeclarationDocumentDto> Documents { get; set; } = [];
-
-    [Parameter, EditorRequired]
-    public AttachDocumentHandler AttachHandler { get; set; } = null!;
 
     [Parameter]
     public bool CanEdit { get; set; }
