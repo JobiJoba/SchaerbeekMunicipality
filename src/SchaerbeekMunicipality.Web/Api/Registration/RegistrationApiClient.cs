@@ -32,12 +32,13 @@ using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalReg
 using SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
 using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase;
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.Documents;
 
 namespace SchaerbeekMunicipality.Web.Api.Registration;
 
-public sealed class RegistrationApiClient(HttpClient httpClient)
-    : MunicipalApiClientBase(httpClient), IRegistrationApi
+public sealed class RegistrationApiClient(HttpClient httpClient, ICurrentOfficer currentOfficer)
+    : MunicipalApiClientBase(httpClient, currentOfficer), IRegistrationApi
 {
     private const string BasePath = "/api/registration";
 

@@ -1,9 +1,10 @@
 using System.Net;
 using System.Net.Http.Json;
+using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Web.Api;
 
-public abstract class MunicipalApiClientBase(HttpClient httpClient)
+public abstract class MunicipalApiClientBase(HttpClient httpClient, ICurrentOfficer currentOfficer)
 {
     protected Task<T> GetJsonAsync<T>(string uri, CancellationToken cancellationToken) =>
         SendJsonAsync<T>(ct => httpClient.GetAsync(uri, ct), cancellationToken);
@@ -35,6 +36,7 @@ public abstract class MunicipalApiClientBase(HttpClient httpClient)
 
     protected async Task<Stream> DownloadStreamAsync(string uri, CancellationToken cancellationToken)
     {
+        ApplyOfficerHeaders();
         var response = await httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
         await ApiException.ThrowIfErrorAsync(response, cancellationToken);
 
@@ -55,10 +57,22 @@ public abstract class MunicipalApiClientBase(HttpClient httpClient)
         var fileContent = new StreamContent(fileStream);
         content.Add(fileContent, "file", fileName);
 
+        ApplyOfficerHeaders();
         var response = await httpClient.PostAsync(uri, content, cancellationToken);
         await ApiException.ThrowIfErrorAsync(response, cancellationToken);
 
         return (await response.Content.ReadFromJsonAsync<TResponse>(cancellationToken))!;
+    }
+
+    private void ApplyOfficerHeaders()
+    {
+        httpClient.DefaultRequestHeaders.Remove(DemoOfficerHeaders.OfficerId);
+        httpClient.DefaultRequestHeaders.Remove(DemoOfficerHeaders.OfficerRole);
+        httpClient.DefaultRequestHeaders.Remove(DemoOfficerHeaders.OfficerName);
+
+        httpClient.DefaultRequestHeaders.Add(DemoOfficerHeaders.OfficerId, currentOfficer.OfficerId.ToString());
+        httpClient.DefaultRequestHeaders.Add(DemoOfficerHeaders.OfficerRole, currentOfficer.Role.ToString());
+        httpClient.DefaultRequestHeaders.Add(DemoOfficerHeaders.OfficerName, currentOfficer.DisplayName);
     }
 
     protected Task<TResponse?> PostJsonOptionalAsync<TResponse>(
@@ -81,6 +95,7 @@ public abstract class MunicipalApiClientBase(HttpClient httpClient)
         Func<CancellationToken, Task<HttpResponseMessage>> send,
         CancellationToken cancellationToken)
     {
+        ApplyOfficerHeaders();
         var response = await send(cancellationToken);
         await ApiException.ThrowIfErrorAsync(response, cancellationToken);
 
@@ -96,6 +111,7 @@ public abstract class MunicipalApiClientBase(HttpClient httpClient)
         Func<CancellationToken, Task<HttpResponseMessage>> send,
         CancellationToken cancellationToken)
     {
+        ApplyOfficerHeaders();
         var response = await send(cancellationToken);
         await ApiException.ThrowIfErrorAsync(response, cancellationToken);
         return (await response.Content.ReadFromJsonAsync<T>(cancellationToken))!;
@@ -105,6 +121,7 @@ public abstract class MunicipalApiClientBase(HttpClient httpClient)
         Func<CancellationToken, Task<HttpResponseMessage>> send,
         CancellationToken cancellationToken)
     {
+        ApplyOfficerHeaders();
         var response = await send(cancellationToken);
         await ApiException.ThrowIfErrorAsync(response, cancellationToken);
         return await response.Content.ReadAsStringAsync(cancellationToken);

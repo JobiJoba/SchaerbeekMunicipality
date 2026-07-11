@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ClaimChangeOfAddressCase;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ConfirmAddressChange;
@@ -15,8 +16,8 @@ using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.UpdateHousehol
 
 namespace SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
 
-public sealed class ChangeOfAddressApiClient(HttpClient httpClient)
-    : MunicipalApiClientBase(httpClient), IChangeOfAddressApi
+public sealed class ChangeOfAddressApiClient(HttpClient httpClient, ICurrentOfficer currentOfficer)
+    : MunicipalApiClientBase(httpClient, currentOfficer), IChangeOfAddressApi
 {
     private const string BasePath = "/api/change-of-address";
 

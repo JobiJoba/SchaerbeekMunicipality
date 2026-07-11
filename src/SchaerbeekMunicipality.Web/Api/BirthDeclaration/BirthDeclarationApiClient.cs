@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ClaimBirthDeclarationCase;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ConfirmBirthDeclaration;
@@ -17,8 +18,8 @@ using SchaerbeekMunicipality.Application.Features.BirthDeclaration.UnlinkParent;
 
 namespace SchaerbeekMunicipality.Web.Api.BirthDeclaration;
 
-public sealed class BirthDeclarationApiClient(HttpClient httpClient)
-    : MunicipalApiClientBase(httpClient), IBirthDeclarationApi
+public sealed class BirthDeclarationApiClient(HttpClient httpClient, ICurrentOfficer currentOfficer)
+    : MunicipalApiClientBase(httpClient, currentOfficer), IBirthDeclarationApi
 {
     private const string BasePath = "/api/birth-declarations";
 

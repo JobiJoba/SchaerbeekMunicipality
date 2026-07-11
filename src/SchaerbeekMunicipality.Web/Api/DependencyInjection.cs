@@ -16,19 +16,14 @@ public static class DependencyInjection
             ? "http://api"
             : "https+http://api";
 
-        services.AddTransient<OfficerForwardingHandler>();
-
         services.AddHttpClient<IRegistrationApi, RegistrationApiClient>(client =>
-            client.BaseAddress = new Uri(apiBaseAddress))
-            .AddHttpMessageHandler<OfficerForwardingHandler>();
+            client.BaseAddress = new Uri(apiBaseAddress));
 
         services.AddHttpClient<IBirthDeclarationApi, BirthDeclarationApiClient>(client =>
-            client.BaseAddress = new Uri(apiBaseAddress))
-            .AddHttpMessageHandler<OfficerForwardingHandler>();
+            client.BaseAddress = new Uri(apiBaseAddress));
 
         services.AddHttpClient<IChangeOfAddressApi, ChangeOfAddressApiClient>(client =>
-            client.BaseAddress = new Uri(apiBaseAddress))
-            .AddHttpMessageHandler<OfficerForwardingHandler>();
+            client.BaseAddress = new Uri(apiBaseAddress));
 
         return services;
     }

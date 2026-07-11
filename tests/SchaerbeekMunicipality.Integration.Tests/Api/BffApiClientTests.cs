@@ -106,12 +106,10 @@ public sealed class BffApiClientTests
     {
         var services = new ServiceCollection();
         services.AddScoped<ICurrentOfficer, CurrentOfficer>();
-        services.AddTransient<OfficerForwardingHandler>();
 
         void ConfigureClient(IHttpClientBuilder builder) =>
             builder.ConfigureHttpClient(client => client.BaseAddress = factory.Server.BaseAddress)
-                .ConfigurePrimaryHttpMessageHandler(() => factory.Server.CreateHandler())
-                .AddHttpMessageHandler<OfficerForwardingHandler>();
+                .ConfigurePrimaryHttpMessageHandler(() => factory.Server.CreateHandler());
 
         ConfigureClient(services.AddHttpClient<IRegistrationApi, RegistrationApiClient>());
         ConfigureClient(services.AddHttpClient<IBirthDeclarationApi, BirthDeclarationApiClient>());
