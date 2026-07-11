@@ -7,6 +7,9 @@
 @inject SetResidenceCategoryHandler SetResidenceCategoryHandler
 @inject RecordResidencePermitHandler RecordResidencePermitHandler
 @inject RecordImmigrationDecisionHandler RecordImmigrationDecisionHandler
+@inject FluentValidation.IValidator<RecordResidencePermitRequest> ResidencePermitValidator
+@inject FluentValidation.IValidator<RecordImmigrationDecisionRequest> ImmigrationDecisionValidator
+@inject FluentValidation.IValidator<SetResidenceCategoryRequest> ResidenceCategoryValidator
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
@@ -19,11 +22,14 @@
     else if (_case.ResidenceCategory is null || _editingCategory)
     {
         <AppCard Title="Residence category" Outlined="true">
-            <MudForm @ref="_categoryForm" @bind-IsValid="_categoryFormValid">
+            <MudForm @ref="_categoryForm"
+                     @bind-IsValid="_categoryFormValid"
+                     Model="_categoryModel"
+                     Validation="@(ResidenceCategoryValidator.ToMudValidateValue<SetResidenceCategoryRequest, CategoryFormModel>(MapCategoryRequest))">
                 <AppFormSection Title="Why is the person in Belgium?">
                     <MudItem xs="12" md="8">
                         <MudSelect T="ResidenceCategory?"
-                                   @bind-Value="_selectedCategory"
+                                   @bind-Value="_categoryModel.Category"
                                    Label="Residence category"
                                    Required="true"
                                    ToStringFunc="@FormatCategory">
@@ -98,11 +104,14 @@
             @if (_case.ResidencePermit is null || _editingPermit)
             {
                 <AppCard Title="Residence permit" Outlined="true" Class="mt-4">
-                    <MudForm @ref="_permitForm" @bind-IsValid="_permitFormValid">
+                    <MudForm @ref="_permitForm"
+                             @bind-IsValid="_permitFormValid"
+                             Model="_permitModel"
+                             Validation="@(ResidencePermitValidator.ToMudValidateValue<RecordResidencePermitRequest, PermitFormModel>(MapPermitRequest))">
                         <AppFormSection Title="Permit details">
                             <MudItem xs="12" md="6">
                                 <MudSelect T="ResidencePermitType?"
-                                           @bind-Value="_permitType"
+                                           @bind-Value="_permitModel.PermitType"
                                            Label="Permit type"
                                            Required="true"
                                            ToStringFunc="@FormatPermitType">
@@ -113,16 +122,22 @@
                                 </MudSelect>
                             </MudItem>
                             <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_cardNumber" Label="Card number" />
+                                <MudTextField @bind-Value="_permitModel.CardNumber" Label="Card number" />
                             </MudItem>
                             <MudItem xs="12" md="6">
-                                <MudDatePicker @bind-Date="_validFrom" Label="Valid from" Required="true" />
+                                <AppDateField @bind-Value="_permitModel.ValidFrom"
+                                              For="@(() => _permitModel.ValidFrom)"
+                                              Label="Valid from"
+                                              Required="true" />
                             </MudItem>
                             <MudItem xs="12" md="6">
-                                <MudDatePicker @bind-Date="_validUntil" Label="Valid until" Required="true" />
+                                <AppDateField @bind-Value="_permitModel.ValidUntil"
+                                              For="@(() => _permitModel.ValidUntil)"
+                                              Label="Valid until"
+                                              Required="true" />
                             </MudItem>
                             <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_issuingAuthority" Label="Issuing authority" />
+                                <MudTextField @bind-Value="_permitModel.IssuingAuthority" Label="Issuing authority" />
                             </MudItem>
                         </AppFormSection>
 
@@ -173,13 +188,18 @@
         {
             <AppCard Title="@(_case.ResidenceCategory == ResidenceCategory.Refugee ? "Immigration decision (required)" : "Immigration decision (optional)")" Outlined="true" Class="mt-4">
                 <ChildContent>
-                    <MudForm @ref="_decisionForm" @bind-IsValid="_decisionFormValid">
+                    <MudForm @ref="_decisionForm"
+                             @bind-IsValid="_decisionFormValid"
+                             Model="_decisionModel"
+                             Validation="@(ImmigrationDecisionValidator.ToMudValidateValue<RecordImmigrationDecisionRequest, DecisionFormModel>(MapDecisionRequest))">
                         <AppFormSection Title="External decision reference">
                             <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_decisionReference" Label="Reference number" />
+                                <MudTextField @bind-Value="_decisionModel.ReferenceNumber" Label="Reference number" />
                             </MudItem>
                             <MudItem xs="12" md="6">
-                                <MudDatePicker @bind-Date="_decisionDate" Label="Decision date" />
+                                <AppDateField @bind-Value="_decisionModel.DecisionDate"
+                                              For="@(() => _decisionModel.DecisionDate)"
+                                              Label="Decision date" />
                             </MudItem>
                         </AppFormSection>
 
@@ -241,24 +261,19 @@
     private MudForm _categoryForm = null!;
     private bool _categoryFormValid;
     private bool _savingCategory;
-    private ResidenceCategory? _selectedCategory;
+    private readonly CategoryFormModel _categoryModel = new();
 
+    private readonly PermitFormModel _permitModel = new();
     private bool _editingPermit;
     private MudForm _permitForm = null!;
     private bool _permitFormValid;
     private bool _savingPermit;
-    private ResidencePermitType? _permitType;
-    private string? _cardNumber;
-    private DateTime? _validFrom;
-    private DateTime? _validUntil;
-    private string? _issuingAuthority;
 
+    private readonly DecisionFormModel _decisionModel = new();
     private bool _editingDecision;
     private MudForm _decisionForm = null!;
     private bool _decisionFormValid;
     private bool _savingDecision;
-    private string? _decisionReference;
-    private DateTime? _decisionDate;
 
     protected override void OnParametersSet()
     {
@@ -269,20 +284,33 @@
     }
 
     private bool CategoryFormDirty =>
-        _selectedCategory != _case.ResidenceCategory;
+        _categoryModel.Category != _case.ResidenceCategory;
 
     private bool PermitFormDirty =>
         _case.ResidencePermit is not null &&
-        (_permitType != _case.ResidencePermit.PermitType ||
-         _cardNumber != _case.ResidencePermit.CardNumber ||
-         _validFrom?.Date != _case.ResidencePermit.ValidFrom.ToDateTime(TimeOnly.MinValue).Date ||
-         _validUntil?.Date != _case.ResidencePermit.ValidUntil.ToDateTime(TimeOnly.MinValue).Date ||
-         _issuingAuthority != _case.ResidencePermit.IssuingAuthority);
+        (_permitModel.PermitType != _case.ResidencePermit.PermitType ||
+         _permitModel.CardNumber != _case.ResidencePermit.CardNumber ||
+         _permitModel.ValidFrom != _case.ResidencePermit.ValidFrom ||
+         _permitModel.ValidUntil != _case.ResidencePermit.ValidUntil ||
+         _permitModel.IssuingAuthority != _case.ResidencePermit.IssuingAuthority);
 
     private bool DecisionFormDirty =>
         _case.ImmigrationDecision is not null &&
-        (_decisionReference != _case.ImmigrationDecision.ReferenceNumber ||
-         _decisionDate?.Date != _case.ImmigrationDecision.DecisionDate.ToDateTime(TimeOnly.MinValue).Date);
+        (_decisionModel.ReferenceNumber != _case.ImmigrationDecision.ReferenceNumber ||
+         _decisionModel.DecisionDate != _case.ImmigrationDecision.DecisionDate);
+
+    private static RecordResidencePermitRequest MapPermitRequest(PermitFormModel model) =>
+        new(
+            model.PermitType ?? default,
+            model.ValidFrom ?? default,
+            model.ValidUntil ?? default,
+            model.CardNumber,
+            model.IssuingAuthority);
+
+    private static RecordImmigrationDecisionRequest MapDecisionRequest(DecisionFormModel model) =>
+        new(
+            model.ReferenceNumber ?? string.Empty,
+            model.DecisionDate ?? default);
 
     private static bool RequiresPermit(ResidenceCategory category) =>
         category is ResidenceCategory.NonEuWorker or ResidenceCategory.Student;
@@ -326,7 +354,7 @@
 
     private void StartEditingCategory()
     {
-        _selectedCategory = _case.ResidenceCategory;
+        _categoryModel.Category = _case.ResidenceCategory;
         _editingCategory = true;
     }
 
@@ -346,10 +374,10 @@
         }
 
         _editingCategory = false;
-        _selectedCategory = null;
+        _categoryModel.Category = null;
     }
 
-    private void ClearCategoryForm() => _selectedCategory = null;
+    private void ClearCategoryForm() => _categoryModel.Category = null;
 
     private async Task HandleCategoryCancel()
     {
@@ -366,7 +394,7 @@
     private async Task SaveCategory()
     {
         await _categoryForm.Validate();
-        if (!_categoryFormValid || _selectedCategory is null)
+        if (!_categoryFormValid || _categoryModel.Category is null)
         {
             return;
         }
@@ -376,7 +404,7 @@
         {
             var response = await SetResidenceCategoryHandler.Handle(
                 new Domain.Registration.RegistrationCaseId(CaseId),
-                new SetResidenceCategoryRequest(_selectedCategory.Value),
+                MapCategoryRequest(_categoryModel),
                 CancellationToken.None);
 
             _policyMessage = response.PolicyMessage;
@@ -410,11 +438,11 @@
             return;
         }
 
-        _permitType = _case.ResidencePermit.PermitType;
-        _cardNumber = _case.ResidencePermit.CardNumber;
-        _validFrom = _case.ResidencePermit.ValidFrom.ToDateTime(TimeOnly.MinValue);
-        _validUntil = _case.ResidencePermit.ValidUntil.ToDateTime(TimeOnly.MinValue);
-        _issuingAuthority = _case.ResidencePermit.IssuingAuthority;
+        _permitModel.PermitType = _case.ResidencePermit.PermitType;
+        _permitModel.CardNumber = _case.ResidencePermit.CardNumber;
+        _permitModel.ValidFrom = _case.ResidencePermit.ValidFrom;
+        _permitModel.ValidUntil = _case.ResidencePermit.ValidUntil;
+        _permitModel.IssuingAuthority = _case.ResidencePermit.IssuingAuthority;
         _editingPermit = true;
     }
 
@@ -438,11 +466,11 @@
 
     private void ClearPermitForm()
     {
-        _permitType = null;
-        _cardNumber = null;
-        _validFrom = null;
-        _validUntil = null;
-        _issuingAuthority = null;
+        _permitModel.PermitType = null;
+        _permitModel.CardNumber = null;
+        _permitModel.ValidFrom = null;
+        _permitModel.ValidUntil = null;
+        _permitModel.IssuingAuthority = null;
     }
 
     private async Task HandlePermitCancel()
@@ -460,7 +488,7 @@
     private async Task SavePermit()
     {
         await _permitForm.Validate();
-        if (!_permitFormValid || _permitType is null || _validFrom is null || _validUntil is null)
+        if (!_permitFormValid || _permitModel.PermitType is null || _permitModel.ValidFrom is null || _permitModel.ValidUntil is null)
         {
             return;
         }
@@ -470,12 +498,7 @@
         {
             var response = await RecordResidencePermitHandler.Handle(
                 new Domain.Registration.RegistrationCaseId(CaseId),
-                new RecordResidencePermitRequest(
-                    _permitType.Value,
-                    DateOnly.FromDateTime(_validFrom.Value),
-                    DateOnly.FromDateTime(_validUntil.Value),
-                    _cardNumber,
-                    _issuingAuthority),
+                MapPermitRequest(_permitModel),
                 CancellationToken.None);
 
             _policyMessage = response.PolicyMessage;
@@ -509,8 +532,8 @@
             return;
         }
 
-        _decisionReference = _case.ImmigrationDecision.ReferenceNumber;
-        _decisionDate = _case.ImmigrationDecision.DecisionDate.ToDateTime(TimeOnly.MinValue);
+        _decisionModel.ReferenceNumber = _case.ImmigrationDecision.ReferenceNumber;
+        _decisionModel.DecisionDate = _case.ImmigrationDecision.DecisionDate;
         _editingDecision = true;
     }
 
@@ -534,8 +557,8 @@
 
     private void ClearDecisionForm()
     {
-        _decisionReference = null;
-        _decisionDate = null;
+        _decisionModel.ReferenceNumber = null;
+        _decisionModel.DecisionDate = null;
     }
 
     private async Task HandleDecisionCancel()
@@ -553,7 +576,7 @@
     private async Task SaveDecision()
     {
         await _decisionForm.Validate();
-        if (!_decisionFormValid || string.IsNullOrWhiteSpace(_decisionReference) || _decisionDate is null)
+        if (!_decisionFormValid || string.IsNullOrWhiteSpace(_decisionModel.ReferenceNumber) || _decisionModel.DecisionDate is null)
         {
             return;
         }
@@ -563,9 +586,7 @@
         {
             var response = await RecordImmigrationDecisionHandler.Handle(
                 new Domain.Registration.RegistrationCaseId(CaseId),
-                new RecordImmigrationDecisionRequest(
-                    _decisionReference,
-                    DateOnly.FromDateTime(_decisionDate.Value)),
+                MapDecisionRequest(_decisionModel),
                 CancellationToken.None);
 
             _policyMessage = response.PolicyMessage;
@@ -585,5 +606,28 @@
         {
             _savingDecision = false;
         }
+    }
+
+    private SetResidenceCategoryRequest MapCategoryRequest(CategoryFormModel model) =>
+        new(model.Category!.Value);
+
+    private sealed class CategoryFormModel
+    {
+        public ResidenceCategory? Category { get; set; }
+    }
+
+    private sealed class PermitFormModel
+    {
+        public ResidencePermitType? PermitType { get; set; }
+        public string? CardNumber { get; set; }
+        public DateOnly? ValidFrom { get; set; }
+        public DateOnly? ValidUntil { get; set; }
+        public string? IssuingAuthority { get; set; }
+    }
+
+    private sealed class DecisionFormModel
+    {
+        public string? ReferenceNumber { get; set; }
+        public DateOnly? DecisionDate { get; set; }
     }
 }

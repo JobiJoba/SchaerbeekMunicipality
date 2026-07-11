@@ -6,7 +6,9 @@ Application pages compose `App*` wrappers instead of raw MudBlazor. The wrapper 
 2. **Give components domain-flavored APIs** — `<AppStatusChip Status="CaseStatus.Intake" />` instead of five MudChip parameters.
 3. **Make upgrades cheap** — a MudBlazor breaking change touches `DesignSystem/`, not hundreds of pages.
 
-**When raw MudBlazor is fine:** layout primitives (`MudGrid`, `MudItem`, `MudStack`, `MudSpacer`, `MudText`, `MudDivider`, `MudTooltip`, `MudIcon`) and standard form inputs (`MudTextField`, `MudSelect`, `MudDatePicker`, …) — their theme defaults already carry the design system, and wrapping every input adds indirection without value. Everything with *policy* (elevation, structure, semantics, confirmation flows) goes through a wrapper.
+**When raw MudBlazor is fine:** layout primitives (`MudGrid`, `MudItem`, `MudStack`, `MudSpacer`, `MudText`, `MudDivider`, `MudTooltip`, `MudIcon`) and standard form inputs (`MudTextField`, `MudSelect`, …) — their theme defaults already carry the design system. **Exception:** use `AppDateField` instead of raw `MudDatePicker` for `DateOnly` fields with FluentValidation integration.
+
+Cross-feature municipal patterns (Belgian address block, NR search form, case document panel) live in `Web/Municipal/` — see [MUNICIPAL-UI.md](../MUNICIPAL-UI.md), not here.
 
 Naming: `App` prefix, PascalCase, in `DesignSystem/Components/` organized by category. All wrappers forward `Class`/`Style` and use `RenderFragment` or `string` parameters for user-facing text (localization-ready, see [02-accessibility.md](./02-accessibility.md)).
 
@@ -52,6 +54,19 @@ Right-hand 320px `MudDrawer Anchor.End Variant.Temporary` for previews/filters. 
 
 Blue band (`Primary` background, white caption text) with environment/version info; landmark `<footer>`. Not a page component — rendered by `MainLayout` only.
 
+### `<AppCollapsibleSection>`
+
+- **Purpose:** intake wizard sections on case detail pages — collapsible panel with title, optional summary line, and status chip in the header.
+- **API:** `Title`, `Summary`, `StatusLabel`, `StatusSeverity`, `Collapsible (bool = true)`, `IsExpanded` (two-way), `HeaderContent`, `ChildContent`.
+- **Composition:** `MudExpansionPanels Elevation=0` when collapsible; fixed `<section>` when not. Header shows title + `AppStatusChip` + summary caption.
+- **Use:** `RegistrationCaseDetail.razor`, `BirthDeclarationCaseDetail.razor` intake steps. **Don't:** nest collapsible sections.
+
+### `<AppEditableSection>`
+
+- **Purpose:** read/edit toggle for saved intake data — shows read-only summary with Edit button, or edit form inside an outlined card.
+- **API:** `Title`, `PrerequisiteMet`, `HasData`, `IsEditing`, `CanEdit`, `OnStartEdit`, `PrerequisiteContent`, `EditContent`, `ReadContent`.
+- **Use:** intake steps that support correction after save (`CivilStatusStep`, `AddressStep`, …). Parent owns edit state and save handlers.
+
 ## Navigation (Wave 1)
 
 ### `<AppSideNavigation>`
@@ -96,11 +111,23 @@ Definition list for record facts. API: `Items (IEnumerable<(string Label, string
 
 KPI tile: `Label`, `Value`, `Icon`, `Accent (bool)` (yellow top bar), `Href`. Composition: `AppCard` + `h2` number + caption. For Phase 7 review dashboard.
 
-### `<AppDocumentPreview>` *(Wave 2)*
+### `<AppChecklist>`
 
-Document row/tile: type icon, name, size, upload date, download & delete actions. Wraps the Phase 1 document list; delete goes through `AppConfirmDialog`.
+- **Purpose:** officer review checklist — satisfied/unsatisfied items with optional blocking reason.
+- **API:** `Items (IReadOnlyList<AppChecklistItem>)` where `AppChecklistItem` has `Question`, `IsSatisfied`, `BlockingReason`.
+- **Composition:** dense `MudList` with check-circle / radio-unchecked icons; blocking reason in caption when unsatisfied.
+- **Use:** via `OfficerDecisionChecklist` in `Municipal/` for the four core questions; generic checklists can use `AppChecklist` directly.
 
-**Interim (Phase 4.1):** case detail uses feature-local `RegistrationCaseDocumentPanel` + `DocumentPreviewContent` until this wrapper ships.
+### `<AppFilePreview>`
+
+- **Purpose:** inline document preview for PDFs and images.
+- **API:** `Url (string, required)`, `FileName (string, required)`, `Class`, `Style`.
+- **Composition:** PDF → `<iframe>`; image → `<img>`; other types → `AppEmptyState` with download hint.
+- **Use:** inside `CaseDocumentPanel` (Municipal layer). Min height 480px, bordered surface.
+
+### `<AppDocumentPreview>` *(superseded)*
+
+Replaced by `AppFilePreview` + `CaseDocumentPanel` in the Municipal layer. Feature panels (`RegistrationCaseDocumentPanel`, `BirthDeclarationDocumentPanel`) are thin mappers.
 
 ## Search & filtering (Wave 1: SearchBar; Wave 2: FilterPanel)
 
@@ -134,6 +161,13 @@ Standalone label for composite widgets (address block, upload zone) that lack a 
 - **API:** `SaveText (string = "Save")`, `CancelText (string = "Cancel")`, `OnSave`, `OnCancel`, `Saving (bool)` (spinner-in-button + disables), `Disabled (bool)`, `Sticky (bool = false)` (uses `AppActionBar` for long forms).
 - **Composition:** right-aligned `MudStack Row gap-2`: outlined cancel then filled primary save (48px).
 - **Accessibility:** save button keeps its label while loading (`aria-busy="true"`), spinner is `aria-hidden`.
+
+### `<AppDateField>`
+
+- **Purpose:** `DateOnly` date picker with Belgian format and FluentValidation field integration.
+- **API:** `Value (DateOnly?, two-way)`, `For (Expression<Func<DateOnly?>>?)`, `Label`, `Required`, `MinDate`/`MaxDate` (`DateTime` or `DateOnly`), `Clearable`, `HelperText`, `Disabled`, `ReadOnly`.
+- **Composition:** `MudDatePicker` outlined dense, `DateFormat="dd/MM/yyyy"`, `Editable="true"`. Subscribes to cascading `EditContext` for inline validation errors when `For` is set.
+- **Use:** all birth dates, permit dates, marriage dates. Prefer over raw `MudDatePicker` — domain and forms use `DateOnly`, not `DateTime`.
 
 ### `<AppForm>` *(explicitly not built)*
 
@@ -187,11 +221,11 @@ Feature dialogs (e.g. `NewCaseDialog`) keep using `IDialogService` with standard
 
 ## Deferred (build when a phase needs them)
 
-| Wrapper | Trigger phase |
-|---------|---------------|
-| `AppWizard` (stepper form shell) | Phase 4 (address & household wizard) |
-| `AppTimeline` (case audit trail) | Phase 7 |
-| `AppQuickActions` (dashboard shortcut grid) | Phase 7 |
-| `AppPersonCard` / citizen summary header | Phase 11 (citizen profile) — Phase 5 NR search uses `MudTable` in `NationalRegisterSearchDialog` |
-| `AppAppointmentCard` | Phase 11 |
-| `AppPageTitle`, `AppContentContainer` | Not planned — covered by `AppPage`/`AppPageHeader` |
+| Wrapper | Trigger phase | Status |
+|---------|---------------|--------|
+| `AppWizard` (stepper form shell) | Phase 4 | Not built — `AppCollapsibleSection` covers case detail |
+| `AppTimeline` (case audit trail) | Phase 7 | **Built** — used in case history sections |
+| `AppQuickActions` (dashboard shortcut grid) | Phase 7 | **Built** — review dashboard |
+| `AppPersonCard` / citizen summary header | Phase 11 | Not built |
+| `AppAppointmentCard` | Phase 11 | Not built |
+| `AppPageTitle`, `AppContentContainer` | — | Not planned — covered by `AppPage`/`AppPageHeader` |

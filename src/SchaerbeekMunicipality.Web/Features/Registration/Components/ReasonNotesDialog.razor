@@ -1,0 +1,77 @@
+@typeparam TReason where TReason : struct, Enum
+@typeparam TRequest
+
+<MudDialog>
+    <DialogContent>
+        <MudSelect T="TReason"
+                   @bind-Value="_reason"
+                   Label="@ReasonLabel"
+                   Required="true"
+                   Class="mb-4">
+            @foreach (var reason in Enum.GetValues<TReason>())
+            {
+                <MudSelectItem T="TReason" Value="reason">@FormatReason(reason)</MudSelectItem>
+            }
+        </MudSelect>
+        <MudTextField @bind-Value="_notes"
+                      Label="Notes"
+                      Lines="3"
+                      MaxLength="2000" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="@ConfirmColor" Variant="Variant.Filled" OnClick="Confirm">@ConfirmText</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public Func<TReason, string> FormatReason { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public Func<TReason, string?, TRequest> CreateRequest { get; set; } = null!;
+
+    [Parameter]
+    public string ReasonLabel { get; set; } = "Reason";
+
+    [Parameter]
+    public string ConfirmText { get; set; } = "Confirm";
+
+    [Parameter]
+    public Color ConfirmColor { get; set; } = Color.Primary;
+
+    [Parameter]
+    public TReason? InitialReason { get; set; }
+
+    [Parameter]
+    public string? InitialNotes { get; set; }
+
+    private TReason _reason = default!;
+    private string? _notes;
+
+    protected override void OnInitialized()
+    {
+        _reason = InitialReason ?? Enum.GetValues<TReason>().First();
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (InitialReason is { } reason)
+        {
+            _reason = reason;
+        }
+
+        if (!string.IsNullOrWhiteSpace(InitialNotes))
+        {
+            _notes = InitialNotes;
+        }
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+
+    private void Confirm() =>
+        MudDialog.Close(DialogResult.Ok(CreateRequest(_reason, _notes)));
+}

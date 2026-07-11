@@ -1,0 +1,135 @@
+@implements IDisposable
+
+<MudDatePicker Date="PickerDate"
+               DateChanged="OnPickerDateChanged"
+               Label="@Label"
+               Required="@Required"
+               Disabled="@Disabled"
+               ReadOnly="@ReadOnly"
+               Clearable="@Clearable"
+               HelperText="@HelperText"
+               Variant="Variant.Outlined"
+               Margin="Margin.Dense"
+               Editable="true"
+               DateFormat="dd/MM/yyyy"
+               MinDate="@ResolveBound(MinDate)"
+               MaxDate="@ResolveBound(MaxDate)"
+               Error="@_hasError"
+               ErrorText="@_errorText"
+               Class="@Class"
+               Style="@Style" />
+
+@code {
+    [CascadingParameter]
+    private EditContext? EditContext { get; set; }
+
+    [Parameter]
+    public DateOnly? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<DateOnly?> ValueChanged { get; set; }
+
+    [Parameter]
+    public Expression<Func<DateOnly?>>? For { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public bool Required { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    [Parameter]
+    public bool ReadOnly { get; set; }
+
+    [Parameter]
+    public bool Clearable { get; set; }
+
+    [Parameter]
+    public string? HelperText { get; set; }
+
+    [Parameter]
+    public object? MinDate { get; set; }
+
+    [Parameter]
+    public object? MaxDate { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+
+    private bool _hasError;
+    private string? _errorText;
+
+    private DateTime? PickerDate =>
+        Value is { } date ? date.ToDateTime(TimeOnly.MinValue) : null;
+
+    private static DateTime? ResolveBound(object? value) =>
+        value switch
+        {
+            null => null,
+            DateTime dateTime => dateTime,
+            DateOnly dateOnly => dateOnly.ToDateTime(TimeOnly.MinValue),
+            _ => throw new InvalidOperationException("MinDate and MaxDate must be DateTime or DateOnly.")
+        };
+
+    protected override void OnInitialized()
+    {
+        if (EditContext is not null)
+        {
+            EditContext.OnValidationStateChanged += OnValidationStateChanged;
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        UpdateValidationState();
+    }
+
+    private void OnValidationStateChanged(object? sender, ValidationStateChangedEventArgs e)
+    {
+        UpdateValidationState();
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void UpdateValidationState()
+    {
+        if (For is null || EditContext is null)
+        {
+            _hasError = false;
+            _errorText = null;
+            return;
+        }
+
+        var messages = EditContext.GetValidationMessages(FieldIdentifier.Create(For)).ToArray();
+        _hasError = messages.Length > 0;
+        _errorText = messages.FirstOrDefault();
+    }
+
+    private async Task OnPickerDateChanged(DateTime? date)
+    {
+        Value = date is { } picked ? DateOnly.FromDateTime(picked) : null;
+
+        if (ValueChanged.HasDelegate)
+        {
+            await ValueChanged.InvokeAsync(Value);
+        }
+
+        if (For is not null)
+        {
+            EditContext?.NotifyFieldChanged(FieldIdentifier.Create(For));
+        }
+    }
+
+    public void Dispose()
+    {
+        if (EditContext is not null)
+        {
+            EditContext.OnValidationStateChanged -= OnValidationStateChanged;
+        }
+    }
+}

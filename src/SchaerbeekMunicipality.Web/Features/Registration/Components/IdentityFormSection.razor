@@ -1,0 +1,34 @@
+<AppFormSection Title="Personal details">
+    <MudItem xs="12" md="6">
+        <MudTextField @bind-Value="Model.GivenName" Label="Given name" Required="true" />
+    </MudItem>
+    <MudItem xs="12" md="6">
+        <MudTextField @bind-Value="Model.FamilyName" Label="Family name" Required="true" />
+    </MudItem>
+    <MudItem xs="12" md="6">
+        <AppDateField @bind-Value="Model.BirthDate"
+                      For="@(() => Model.BirthDate)"
+                      Label="Date of birth"
+                      Required="true"
+                      MaxDate="@DateTime.Today" />
+    </MudItem>
+    <MudItem xs="12" md="6">
+        <MudTextField @bind-Value="Model.Nationality" Label="Nationality" Required="true" />
+    </MudItem>
+</AppFormSection>
+
+@if (ShowSearchInfo)
+{
+    <AppInfoBox Class="mb-4">
+        Search the National Register first when the person may already have a BIS or NR record.
+        Record identity only when you have verified the supporting documents on file.
+    </AppInfoBox>
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public IdentityFormModel Model { get; set; } = null!;
+
+    [Parameter]
+    public bool ShowSearchInfo { get; set; }
+}

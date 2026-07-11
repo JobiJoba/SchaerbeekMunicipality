@@ -1,0 +1,82 @@
+@using SchaerbeekMunicipality.Domain.ReferenceData
+@using SchaerbeekMunicipality.Web.Features.Registration.SearchReferenceData
+
+<AppFormSection Title="@Title">
+    <MudItem xs="12" md="4">
+        <MudTextField Value="@($"{PostalCode} {MunicipalityName}")"
+                      Label="Municipality"
+                      ReadOnly="true"
+                      Variant="Variant.Outlined" />
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <MudAutocomplete T="StreetDto"
+                         Value="SelectedStreet"
+                         ValueChanged="SelectedStreetChanged"
+                         Label="Street"
+                         SearchFunc="SearchStreets"
+                         ToStringFunc="@(s => s?.Name ?? string.Empty)"
+                         Required="true"
+                         ResetValueOnEmptyText="true"
+                         CoerceText="false" />
+    </MudItem>
+    <MudItem xs="6" md="2">
+        <MudTextField Value="HouseNumber"
+                      ValueChanged="HouseNumberChanged"
+                      Label="Number"
+                      Required="true" />
+    </MudItem>
+    <MudItem xs="6" md="2">
+        <MudTextField Value="Box"
+                      ValueChanged="BoxChanged"
+                      Label="Box" />
+    </MudItem>
+    @if (TrailingContent is not null)
+    {
+        @TrailingContent
+    }
+</AppFormSection>
+
+@if (ShowHelpText)
+{
+    <AppInfoBox Class="mb-4">
+        Domicile must be within the municipality of Schaerbeek (1030). Street names are suggested from the local register.
+    </AppInfoBox>
+}
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "Domicile";
+
+    [Parameter]
+    public string PostalCode { get; set; } = SchaerbeekCommune.PostalCode;
+
+    [Parameter]
+    public string MunicipalityName { get; set; } = SchaerbeekCommune.Name;
+
+    [Parameter]
+    public StreetDto? SelectedStreet { get; set; }
+
+    [Parameter]
+    public EventCallback<StreetDto?> SelectedStreetChanged { get; set; }
+
+    [Parameter]
+    public string? HouseNumber { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> HouseNumberChanged { get; set; }
+
+    [Parameter]
+    public string? Box { get; set; }
+
+    [Parameter]
+    public EventCallback<string?> BoxChanged { get; set; }
+
+    [Parameter, EditorRequired]
+    public Func<string, CancellationToken, Task<IEnumerable<StreetDto>>> SearchStreets { get; set; } = null!;
+
+    [Parameter]
+    public bool ShowHelpText { get; set; }
+
+    [Parameter]
+    public RenderFragment? TrailingContent { get; set; }
+}

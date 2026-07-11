@@ -3,9 +3,17 @@ using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.ListOutboundNotifications;
 
+public enum OutboundNotificationCaseType
+{
+    Registration,
+    BirthDeclaration,
+    ChangeOfAddress,
+}
+
 public sealed record OutboundNotificationDto(
     Guid Id,
     Guid CaseId,
+    OutboundNotificationCaseType CaseType,
     Guid PersonId,
     string Recipient,
     string Message,
@@ -26,20 +34,41 @@ public sealed class ListOutboundNotificationsHandler(IOutboundNotificationReposi
             : await notificationRepository.ListAsync(cancellationToken);
 
         var items = notifications
-            .Select(n => new OutboundNotificationDto(
-                n.Id.Value,
-                GetSourceCaseId(n),
-                n.PersonId.Value,
-                n.Recipient.ToString(),
-                n.Message,
-                n.CreatedAt))
+            .Select(n =>
+            {
+                var (caseId, caseType) = MapSourceCase(n);
+                return new OutboundNotificationDto(
+                    n.Id.Value,
+                    caseId,
+                    caseType,
+                    n.PersonId.Value,
+                    n.Recipient.ToString(),
+                    n.Message,
+                    n.CreatedAt);
+            })
             .ToList();
 
         return new ListOutboundNotificationsResponse(items.Count, items);
     }
 
-    private static Guid GetSourceCaseId(OutboundNotification notification) =>
-        notification.RegistrationCaseId?.Value
-        ?? notification.BirthDeclarationCaseId?.Value
-        ?? throw new InvalidOperationException("Notification must reference a case.");
+    private static (Guid CaseId, OutboundNotificationCaseType CaseType) MapSourceCase(
+        OutboundNotification notification)
+    {
+        if (notification.RegistrationCaseId is { } registrationCaseId)
+        {
+            return (registrationCaseId.Value, OutboundNotificationCaseType.Registration);
+        }
+
+        if (notification.BirthDeclarationCaseId is { } birthDeclarationCaseId)
+        {
+            return (birthDeclarationCaseId.Value, OutboundNotificationCaseType.BirthDeclaration);
+        }
+
+        if (notification.ChangeOfAddressCaseId is { } changeOfAddressCaseId)
+        {
+            return (changeOfAddressCaseId.Value, OutboundNotificationCaseType.ChangeOfAddress);
+        }
+
+        throw new InvalidOperationException("Notification must reference a case.");
+    }
 }

@@ -23,7 +23,7 @@
     {
         <AppEmptyState Icon="@Icons.Material.Outlined.NotificationsNone"
                        Title="No outbound notifications yet"
-                       Description="Notifications are created automatically when a registration case is confirmed." />
+                       Description="Notifications are created automatically when registration, birth declaration, or change of address cases are completed." />
     }
     else
     {
@@ -42,8 +42,8 @@
                     </MudTd>
                     <MudTd DataLabel="Message">@context.Message</MudTd>
                     <MudTd DataLabel="Case">
-                        <MudLink Href="@($"/registration/cases/{context.CaseId}")">
-                            @context.CaseId.ToString()[..8]…
+                        <MudLink Href="@GetCaseHref(context)">
+                            @FormatCaseType(context.CaseType) — @context.CaseId.ToString()[..8]…
                         </MudLink>
                     </MudTd>
                 </RowTemplate>
@@ -70,4 +70,20 @@
         "HealthInsurance" => "Health insurance",
         _ => recipient,
     };
+
+    private static string GetCaseHref(OutboundNotificationDto notification) =>
+        notification.CaseType switch
+        {
+            OutboundNotificationCaseType.BirthDeclaration => $"/birth-declarations/{notification.CaseId}",
+            OutboundNotificationCaseType.ChangeOfAddress => $"/change-of-address/{notification.CaseId}",
+            _ => $"/registration/cases/{notification.CaseId}",
+        };
+
+    private static string FormatCaseType(OutboundNotificationCaseType caseType) =>
+        caseType switch
+        {
+            OutboundNotificationCaseType.BirthDeclaration => "Birth declaration",
+            OutboundNotificationCaseType.ChangeOfAddress => "Change of address",
+            _ => "Registration",
+        };
 }

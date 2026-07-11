@@ -1,0 +1,185 @@
+@if (LeadContent is not null)
+{
+    @LeadContent
+}
+
+<AppFormSection Title="Search criteria">
+    <MudItem xs="12" md="6">
+        <MudTextField @bind-Value="_givenName" Label="Given name" />
+    </MudItem>
+    <MudItem xs="12" md="6">
+        <MudTextField @bind-Value="_familyName" Label="Family name" />
+    </MudItem>
+    <MudItem xs="12" md="6">
+        <AppDateField @bind-Value="_birthDate"
+                      Label="Date of birth"
+                      MaxDate="@DateTime.Today"
+                      Clearable="true" />
+    </MudItem>
+</AppFormSection>
+
+<MudStack Row="true" Spacing="2" Class="mb-4">
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Primary"
+               StartIcon="@Icons.Material.Outlined.Search"
+               OnClick="Search"
+               Disabled="_searching">
+        Search
+    </MudButton>
+</MudStack>
+
+@if (_searched && _matches.Count == 0)
+{
+    <AppInfoBox>@NoMatchesMessage</AppInfoBox>
+}
+else if (_matches.Count > 0)
+{
+    <MudText Typo="Typo.subtitle2" Class="mb-2">Possible matches</MudText>
+    <MudTable Items="_matches" Dense="true" Hover="true">
+        <HeaderContent>
+            <MudTh>Name</MudTh>
+            @if (ShowBirthDateColumn)
+            {
+                <MudTh>Birth date</MudTh>
+            }
+            <MudTh>@NumberColumnTitle</MudTh>
+            @if (ShowMatchScore)
+            {
+                <MudTh>Score</MudTh>
+            }
+            <MudTh></MudTh>
+        </HeaderContent>
+        <RowTemplate Context="match">
+            <MudTd DataLabel="Name">@match.GivenName @match.FamilyName</MudTd>
+            @if (ShowBirthDateColumn)
+            {
+                <MudTd DataLabel="Birth date">@match.BirthDate.ToString("d")</MudTd>
+            }
+            <MudTd DataLabel="@NumberColumnTitle">
+                @if (ShowFormattedNumbers)
+                {
+                    @if (!string.IsNullOrWhiteSpace(match.NationalRegisterNumber))
+                    {
+                        <MudText Typo="Typo.body2">NR @NationalRegisterFormatting.FormatNumber(match.NationalRegisterNumber)</MudText>
+                    }
+                    else if (!string.IsNullOrWhiteSpace(match.BisNumber))
+                    {
+                        <MudText Typo="Typo.body2">BIS @NationalRegisterFormatting.FormatNumber(match.BisNumber)</MudText>
+                    }
+                }
+                else
+                {
+                    @(match.NationalRegisterNumber ?? match.BisNumber ?? "—")
+                }
+            </MudTd>
+            @if (ShowMatchScore)
+            {
+                <MudTd DataLabel="Score">
+                    <AppStatusChip Label="@($"{match.MatchScore}%")"
+                                   Severity="@(match.MatchScore >= 100 ? AppSeverity.Success : AppSeverity.Warning)" />
+                    <MudText Typo="Typo.caption" Color="Color.Secondary">@match.MatchReason</MudText>
+                </MudTd>
+            }
+            <MudTd>
+                @if (RowActions is not null)
+                {
+                    @RowActions(match)
+                }
+            </MudTd>
+        </RowTemplate>
+    </MudTable>
+}
+
+@if (!string.IsNullOrWhiteSpace(_error))
+{
+    <AppAlert Severity="Severity.Error" Title="Error" Class="mt-4">@_error</AppAlert>
+}
+
+@code {
+    [Parameter]
+    public string? InitialGivenName { get; set; }
+
+    [Parameter]
+    public string? InitialFamilyName { get; set; }
+
+    [Parameter]
+    public DateOnly? InitialBirthDate { get; set; }
+
+    [Parameter]
+    public bool RequireSearchCriterion { get; set; }
+
+    [Parameter]
+    public string NoMatchesMessage { get; set; } = "No matching records found in the National Register.";
+
+    [Parameter]
+    public bool ShowBirthDateColumn { get; set; } = true;
+
+    [Parameter]
+    public bool ShowMatchScore { get; set; }
+
+    [Parameter]
+    public bool ShowFormattedNumbers { get; set; }
+
+    [Parameter]
+    public string NumberColumnTitle { get; set; } = "Number";
+
+    [Parameter, EditorRequired]
+    public Func<NrSearchFormCriteria, Task<IReadOnlyList<NationalRegisterSearchMatch>>> SearchAsync { get; set; } = null!;
+
+    [Parameter]
+    public RenderFragment? LeadContent { get; set; }
+
+    [Parameter]
+    public RenderFragment<NationalRegisterSearchMatch>? RowActions { get; set; }
+
+    private bool _searching;
+    private bool _searched;
+    private string? _error;
+    private string _givenName = string.Empty;
+    private string _familyName = string.Empty;
+    private DateOnly? _birthDate;
+    private IReadOnlyList<NationalRegisterSearchMatch> _matches = [];
+
+    private bool HasSearchCriterion =>
+        !string.IsNullOrWhiteSpace(_givenName) ||
+        !string.IsNullOrWhiteSpace(_familyName) ||
+        _birthDate.HasValue;
+
+    protected override void OnParametersSet()
+    {
+        _givenName = InitialGivenName ?? string.Empty;
+        _familyName = InitialFamilyName ?? string.Empty;
+        _birthDate = InitialBirthDate;
+    }
+
+    private async Task Search()
+    {
+        if (RequireSearchCriterion && !HasSearchCriterion)
+        {
+            _error = "Enter at least one search criterion.";
+            return;
+        }
+
+        _searching = true;
+        _error = null;
+
+        try
+        {
+            var criteria = new NrSearchFormCriteria(
+                string.IsNullOrWhiteSpace(_givenName) ? null : _givenName.Trim(),
+                string.IsNullOrWhiteSpace(_familyName) ? null : _familyName.Trim(),
+                _birthDate);
+
+            _matches = await SearchAsync(criteria);
+            _searched = true;
+        }
+        catch (FluentValidation.ValidationException ex)
+        {
+            _error = string.Join(" ", ex.Errors.Select(e => e.ErrorMessage));
+        }
+        finally
+        {
+            _searching = false;
+        }
+    }
+}

@@ -16,18 +16,7 @@
 <AppCard Title="Officer decision" Outlined="true">
     @if (_checklist is not null)
     {
-        <MudList T="string" Dense="true" Class="mb-4">
-            @foreach (var question in _checklist.Questions)
-            {
-                <MudListItem Icon="@(question.IsSatisfied ? Icons.Material.Outlined.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)">
-                    <MudText Typo="Typo.body2">@question.Question</MudText>
-                    @if (!question.IsSatisfied && !string.IsNullOrWhiteSpace(question.BlockingReason))
-                    {
-                        <MudText Typo="Typo.caption" Color="Color.Secondary">@question.BlockingReason</MudText>
-                    }
-                </MudListItem>
-            }
-        </MudList>
+        <OfficerDecisionChecklist Items="@MapChecklist(_checklist)" />
     }
 
     @if (Case.Status == BirthDeclarationCaseStatus.Confirmed)
@@ -177,4 +166,9 @@
             _busy = false;
         }
     }
+
+    private static IReadOnlyList<AppChecklistItem> MapChecklist(BirthDeclarationChecklistResponse checklist) =>
+        checklist.Questions
+            .Select(q => new AppChecklistItem(q.Question, q.IsSatisfied, q.BlockingReason))
+            .ToList();
 }

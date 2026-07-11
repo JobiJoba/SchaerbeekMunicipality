@@ -8,6 +8,8 @@
 @inject DeclareAddressHandler DeclareAddressHandler
 @inject RecordHousingSituationHandler RecordHousingSituationHandler
 @inject SearchStreetsHandler SearchStreetsHandler
+@inject FluentValidation.IValidator<DeclareAddressRequest> DeclareAddressValidator
+@inject FluentValidation.IValidator<RecordHousingSituationRequest> HousingSituationValidator
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
@@ -20,35 +22,15 @@
     else if (_case.DeclaredAddress is null || _editingAddress)
     {
         <AppCard Title="Declared address" Outlined="true">
-            <MudForm @ref="_addressForm" @bind-IsValid="_addressFormValid">
-                <AppFormSection Title="Domicile">
-                    <MudItem xs="12" md="4">
-                        <MudTextField Value="@($"{SchaerbeekCommune.PostalCode} {SchaerbeekCommune.Name}")"
-                                      Label="Municipality"
-                                      ReadOnly="true"
-                                      Variant="Variant.Outlined" />
-                    </MudItem>
-                    <MudItem xs="12" md="4">
-                        <MudAutocomplete T="StreetDto"
-                                         @bind-Value="_selectedStreet"
-                                         Label="Street"
-                                         SearchFunc="SearchStreets"
-                                         ToStringFunc="@(s => s?.Name ?? string.Empty)"
-                                         Required="true"
-                                         ResetValueOnEmptyText="true"
-                                         CoerceText="false" />
-                    </MudItem>
-                    <MudItem xs="6" md="2">
-                        <MudTextField @bind-Value="_houseNumber" Label="Number" Required="true" />
-                    </MudItem>
-                    <MudItem xs="6" md="2">
-                        <MudTextField @bind-Value="_box" Label="Box" />
-                    </MudItem>
-                </AppFormSection>
-
-                <AppInfoBox Class="mb-4">
-                    Domicile must be within the municipality of Schaerbeek (1030). Street names are suggested from the local register.
-                </AppInfoBox>
+            <MudForm @ref="_addressForm"
+                     @bind-IsValid="_addressFormValid"
+                     Model="_addressModel"
+                     Validation="@(DeclareAddressValidator.ToMudValidateValue<DeclareAddressRequest, AddressFormModel>(MapAddressRequest))">
+                <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
+                                      @bind-HouseNumber="_addressModel.HouseNumber"
+                                      @bind-Box="_addressModel.Box"
+                                      SearchStreets="SearchStreets"
+                                      ShowHelpText="true" />
 
                 <AppSaveCancelBar SaveText="@(_editingAddress ? "Save changes" : "Declare address")"
                                   CancelText="@(_editingAddress ? "Cancel" : "Clear")"
@@ -74,7 +56,7 @@
                 }
             </HeaderActions>
             <ChildContent>
-                <MudText Typo="Typo.body1">@FormatAddress(_case.DeclaredAddress)</MudText>
+                <MudText Typo="Typo.body1">@AddressFormatting.FormatBelgianAddress(_case.DeclaredAddress)</MudText>
             </ChildContent>
         </AppCard>
     }
@@ -84,11 +66,14 @@
         @if (_case.HousingSituation is null || _editingHousing)
         {
             <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
-                <MudForm @ref="_housingForm" @bind-IsValid="_housingFormValid">
+                <MudForm @ref="_housingForm"
+                         @bind-IsValid="_housingFormValid"
+                         Model="_housingModel"
+                         Validation="@(HousingSituationValidator.ToMudValidateValue<RecordHousingSituationRequest, HousingFormModel>(MapHousingRequest))">
                     <AppFormSection Title="How does the person occupy this address?">
                         <MudItem xs="12" md="6">
                             <MudSelect T="HousingSituation?"
-                                       @bind-Value="_selectedHousing"
+                                       @bind-Value="_housingModel.Situation"
                                        Label="Housing situation"
                                        Required="true"
                                        ToStringFunc="@FormatHousingSituation">
@@ -154,10 +139,10 @@
     private bool _housingFormValid;
     private bool _savingHousing;
 
+    private readonly AddressFormModel _addressModel = new();
+    private readonly HousingFormModel _housingModel = new();
+
     private StreetDto? _selectedStreet;
-    private string? _houseNumber;
-    private string? _box;
-    private HousingSituation? _selectedHousing;
 
     private static readonly MunicipalityDto Schaerbeek = new(
         SchaerbeekCommune.PostalCode,
@@ -173,13 +158,10 @@
     private bool AddressFormDirty =>
         _case.DeclaredAddress is not null &&
         (_selectedStreet?.Name != _case.DeclaredAddress.Street ||
-         _houseNumber != _case.DeclaredAddress.HouseNumber ||
-         _box != _case.DeclaredAddress.Box);
+         _addressModel.HouseNumber != _case.DeclaredAddress.HouseNumber ||
+         _addressModel.Box != _case.DeclaredAddress.Box);
 
-    private bool HousingFormDirty => _selectedHousing != _case.HousingSituation;
-
-    private static string FormatAddress(BelgianAddressDto address) =>
-        $"{address.Street} {address.HouseNumber}{(string.IsNullOrWhiteSpace(address.Box) ? "" : $" bus {address.Box}")}, {address.PostalCode} {address.Municipality}";
+    private bool HousingFormDirty => _housingModel.Situation != _case.HousingSituation;
 
     private static string FormatHousingSituation(HousingSituation? situation) =>
         situation switch
@@ -203,8 +185,9 @@
         }
 
         _selectedStreet = new StreetDto(0, _case.DeclaredAddress.PostalCode, _case.DeclaredAddress.Street);
-        _houseNumber = _case.DeclaredAddress.HouseNumber;
-        _box = _case.DeclaredAddress.Box;
+        _addressModel.HouseNumber = _case.DeclaredAddress.HouseNumber;
+        _addressModel.Box = _case.DeclaredAddress.Box;
+        _addressModel.Street = _case.DeclaredAddress.Street;
         _editingAddress = true;
     }
 
@@ -229,8 +212,9 @@
     private void ClearAddressForm()
     {
         _selectedStreet = null;
-        _houseNumber = null;
-        _box = null;
+        _addressModel.Street = string.Empty;
+        _addressModel.HouseNumber = string.Empty;
+        _addressModel.Box = null;
     }
 
     private async Task HandleAddressCancel()
@@ -247,8 +231,9 @@
 
     private async Task SaveAddress()
     {
+        SyncAddressModel();
         await _addressForm.Validate();
-        if (!_addressFormValid || _selectedStreet is null || string.IsNullOrWhiteSpace(_houseNumber))
+        if (!_addressFormValid || _selectedStreet is null)
         {
             return;
         }
@@ -258,12 +243,7 @@
         {
             await DeclareAddressHandler.Handle(
                 new Domain.Registration.RegistrationCaseId(CaseId),
-                new DeclareAddressRequest(
-                    _selectedStreet.Name,
-                    _houseNumber,
-                    _box,
-                    Schaerbeek.PostalCode,
-                    Schaerbeek.Name),
+                MapAddressRequest(_addressModel),
                 CancellationToken.None);
 
             _editingAddress = false;
@@ -290,7 +270,7 @@
 
     private void StartEditingHousing()
     {
-        _selectedHousing = _case.HousingSituation;
+        _housingModel.Situation = _case.HousingSituation;
         _editingHousing = true;
     }
 
@@ -312,7 +292,7 @@
         _editingHousing = false;
     }
 
-    private void ClearHousingForm() => _selectedHousing = null;
+    private void ClearHousingForm() => _housingModel.Situation = null;
 
     private async Task HandleHousingCancel()
     {
@@ -329,7 +309,7 @@
     private async Task SaveHousing()
     {
         await _housingForm.Validate();
-        if (!_housingFormValid || _selectedHousing is null)
+        if (!_housingFormValid || _housingModel.Situation is null)
         {
             return;
         }
@@ -339,7 +319,7 @@
         {
             await RecordHousingSituationHandler.Handle(
                 new Domain.Registration.RegistrationCaseId(CaseId),
-                new RecordHousingSituationRequest(_selectedHousing.Value),
+                MapHousingRequest(_housingModel),
                 CancellationToken.None);
 
             _editingHousing = false;
@@ -358,5 +338,31 @@
         {
             _savingHousing = false;
         }
+    }
+
+    private void SyncAddressModel() =>
+        _addressModel.Street = _selectedStreet?.Name ?? string.Empty;
+
+    private DeclareAddressRequest MapAddressRequest(AddressFormModel model) =>
+        new(
+            model.Street,
+            model.HouseNumber,
+            model.Box,
+            Schaerbeek.PostalCode,
+            Schaerbeek.Name);
+
+    private RecordHousingSituationRequest MapHousingRequest(HousingFormModel model) =>
+        new(model.Situation!.Value);
+
+    private sealed class AddressFormModel
+    {
+        public string Street { get; set; } = string.Empty;
+        public string HouseNumber { get; set; } = string.Empty;
+        public string? Box { get; set; }
+    }
+
+    private sealed class HousingFormModel
+    {
+        public HousingSituation? Situation { get; set; }
     }
 }

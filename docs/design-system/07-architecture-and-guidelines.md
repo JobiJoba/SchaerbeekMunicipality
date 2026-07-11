@@ -4,7 +4,7 @@ How the design system lives in the codebase, how developers use it, and how it e
 
 ## Folder structure
 
-The design system is UI infrastructure, not a feature — it lives beside `Features/`, never inside a slice:
+The design system is UI infrastructure, not a feature — it lives beside `Features/` and `Municipal/`, never inside a slice:
 
 ```
 src/SchaerbeekMunicipality.Web/
@@ -14,24 +14,27 @@ src/SchaerbeekMunicipality.Web/
 │   ├── Tokens/
 │   │   └── SchaerbeekTokens.cs           # SchaerbeekColors, -Spacing, -Layout, -Motion, -Elevation, -Typography
 │   ├── Components/
-│   │   ├── Layout/                       # AppPage, AppPageHeader, AppSection, AppCard, AppToolbar, AppActionBar
+│   │   ├── Layout/                       # AppPage, AppPageHeader, AppSection, AppCard, AppCollapsibleSection, AppEditableSection
 │   │   ├── Navigation/                   # AppSideNavigation, AppBreadcrumb, AppTopNavigation, AppFooter
-│   │   ├── Data/                         # AppDataTable, AppStatusChip, AppPropertyGrid, AppStatisticCard
-│   │   ├── Forms/                        # AppFormSection, AppFieldLabel, AppSaveCancelBar, AppSearchBar
+│   │   ├── Data/                         # AppDataTable, AppStatusChip, AppChecklist, AppFilePreview, AppTimeline
+│   │   ├── Forms/                        # AppFormSection, AppFieldLabel, AppSaveCancelBar, AppSearchBar, AppDateField
 │   │   ├── Feedback/                     # AppAlert, AppEmptyState, AppLoading, AppError, AppInfoBox
 │   │   └── Dialogs/                      # AppConfirmDialog, AppDialogOptions, IAppDialogService
 │   └── _Imports.razor                    # @using MudBlazor, tokens
+├── Municipal/                            # Cross-feature Belgian municipal UI — see docs/MUNICIPAL-UI.md
+├── Validation/                           # BelgianAddressRules, FluentMudValidation
 ├── Components/
 │   ├── Layout/                           # MainLayout (composes AppTopNavigation/AppSideNavigation/AppFooter)
 │   └── Pages/                            # Home, Error, NotFound, DesignSystemShowcase (dev-only)
-└── Features/                             # vertical slices — pages compose DesignSystem wrappers
+└── Features/                             # vertical slices — pages compose DesignSystem + Municipal wrappers
 ```
 
 Rules:
 
 - `DesignSystem/` has **no references to `Features/` or the domain**, with one pragmatic exception: `AppStatusChip` mappings may reference domain enums (it's the presentation dictionary for them). If that ever feels wrong, split mappings into a `DesignSystem.Domain/` adapter folder.
-- Slices reference the design system, never each other's components.
-- If a component is used by two or more slices, it moves *up* into `DesignSystem/Components/` (and gains the `App` prefix) — same promotion rule as handlers in ARCHITECTURE.md.
+- Slices reference the design system and the municipal layer, never each other's components.
+- If a component is used by two or more slices **and carries municipal domain meaning** (NR search, Belgian address, officer checklist), it moves to `Municipal/` — not `DesignSystem/`. See [MUNICIPAL-UI.md](../MUNICIPAL-UI.md).
+- If a component is used by two or more slices **and is generic** (no domain vocabulary), it moves *up* into `DesignSystem/Components/` (and gains the `App` prefix).
 
 ## Naming conventions
 

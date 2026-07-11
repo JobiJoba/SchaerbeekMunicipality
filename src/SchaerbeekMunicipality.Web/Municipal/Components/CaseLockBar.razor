@@ -1,0 +1,26 @@
+@if (IsReadOnlyDueToLock)
+{
+    <AppAlert Severity="Severity.Warning" Title="Read-only" Class="@AlertClass">
+        @ReadOnlyMessage
+    </AppAlert>
+}
+
+@code {
+    [Parameter]
+    public bool IsReadOnlyDueToLock { get; set; }
+
+    [Parameter]
+    public bool CanEdit { get; set; }
+
+    [Parameter]
+    public EventCallback OnTakeCase { get; set; }
+
+    [Parameter]
+    public EventCallback OnReleaseLock { get; set; }
+
+    [Parameter]
+    public string ReadOnlyMessage { get; set; } = "This case is locked to another officer. Take the case to edit.";
+
+    [Parameter]
+    public string? AlertClass { get; set; } = "mb-4";
+}

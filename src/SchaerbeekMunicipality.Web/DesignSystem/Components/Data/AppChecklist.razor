@@ -1,0 +1,25 @@
+@if (Items.Count > 0)
+{
+    <MudList T="string" Dense="true" Class="@Class">
+        @foreach (var question in Items)
+        {
+            <MudListItem Icon="@(question.IsSatisfied ? Icons.Material.Outlined.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)">
+                <MudText Typo="Typo.body2">@question.Question</MudText>
+                @if (!question.IsSatisfied && !string.IsNullOrWhiteSpace(question.BlockingReason))
+                {
+                    <MudText Typo="Typo.caption" Color="Color.Secondary" Class="d-block">
+                        @question.BlockingReason
+                    </MudText>
+                }
+            </MudListItem>
+        }
+    </MudList>
+}
+
+@code {
+    [Parameter]
+    public IReadOnlyList<AppChecklistItem> Items { get; set; } = [];
+
+    [Parameter]
+    public string? Class { get; set; } = "mb-4";
+}

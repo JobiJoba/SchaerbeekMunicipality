@@ -1,4 +1,5 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Web.Validation;
 
 namespace SchaerbeekMunicipality.Web.Features.ChangeOfAddress.DeclareNewAddress;
 
@@ -6,10 +7,10 @@ public sealed class DeclareNewAddressValidator : AbstractValidator<DeclareNewAdd
 {
     public DeclareNewAddressValidator()
     {
-        RuleFor(x => x.Street).NotEmpty().MaximumLength(256);
-        RuleFor(x => x.HouseNumber).NotEmpty().MaximumLength(16);
-        RuleFor(x => x.PostalCode).NotEmpty().Length(4);
-        RuleFor(x => x.Municipality).NotEmpty().MaximumLength(128);
+        RuleFor(x => x.Street).BelgianStreet();
+        RuleFor(x => x.HouseNumber).BelgianHouseNumber();
+        RuleFor(x => x.PostalCode).BelgianPostalCode();
+        RuleFor(x => x.Municipality).BelgianMunicipality();
         RuleFor(x => x.HousingSituation).IsInEnum();
         RuleFor(x => x.EffectiveDate).NotEmpty();
     }

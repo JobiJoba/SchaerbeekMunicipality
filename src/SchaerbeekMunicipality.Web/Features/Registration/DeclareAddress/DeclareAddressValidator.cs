@@ -1,5 +1,5 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.ReferenceData;
+using SchaerbeekMunicipality.Web.Validation;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.DeclareAddress;
 
@@ -8,19 +8,14 @@ public sealed class DeclareAddressValidator : AbstractValidator<DeclareAddressRe
     public DeclareAddressValidator()
     {
         RuleFor(x => x.Street)
-            .NotEmpty()
+            .BelgianStreet()
             .WithMessage("Street is required.");
 
         RuleFor(x => x.HouseNumber)
-            .NotEmpty()
+            .BelgianHouseNumber()
             .WithMessage("House number is required.");
 
-        RuleFor(x => x.PostalCode)
-            .Equal(SchaerbeekCommune.PostalCode)
-            .WithMessage($"Postal code must be {SchaerbeekCommune.PostalCode} for registration at Schaerbeek.");
-
-        RuleFor(x => x.Municipality)
-            .Must(m => m.Trim().Equals(SchaerbeekCommune.Name, StringComparison.OrdinalIgnoreCase))
-            .WithMessage($"Municipality must be {SchaerbeekCommune.Name} for registration at this desk.");
+        RuleFor(x => x.PostalCode).SchaerbeekPostalCode();
+        RuleFor(x => x.Municipality).SchaerbeekMunicipality();
     }
 }

@@ -3,6 +3,7 @@
 @using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Web.Features.Registration.RecordHouseholdComposition
 @inject RecordHouseholdCompositionHandler RecordHouseholdCompositionHandler
+@inject FluentValidation.IValidator<HouseholdMemberRequest> HouseholdMemberValidator
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
@@ -56,20 +57,27 @@
 
             @if (CanEdit)
             {
-                <MudForm @ref="_memberForm" @bind-IsValid="_memberFormValid">
+                <MudForm @ref="_memberForm"
+                         @bind-IsValid="_memberFormValid"
+                         Model="_memberModel"
+                         Validation="@(HouseholdMemberValidator.ToMudValidateValue<HouseholdMemberRequest, HouseholdMemberFormModel>(MapMemberRequest))">
                     <AppFormSection Title="Add member">
                         <MudItem xs="12" md="4">
-                            <MudTextField @bind-Value="_newGivenName" Label="Given name" Required="true" />
+                            <MudTextField @bind-Value="_memberModel.GivenName" Label="Given name" Required="true" />
                         </MudItem>
                         <MudItem xs="12" md="4">
-                            <MudTextField @bind-Value="_newFamilyName" Label="Family name" Required="true" />
+                            <MudTextField @bind-Value="_memberModel.FamilyName" Label="Family name" Required="true" />
                         </MudItem>
                         <MudItem xs="12" md="4">
-                            <MudDatePicker @bind-Date="_newBirthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
+                            <AppDateField @bind-Value="_memberModel.BirthDate"
+                                          For="@(() => _memberModel.BirthDate)"
+                                          Label="Date of birth"
+                                          Required="true"
+                                          MaxDate="@DateTime.Today" />
                         </MudItem>
                         <MudItem xs="12" md="6">
                             <MudSelect T="HouseholdMemberRole?"
-                                       @bind-Value="_newRole"
+                                       @bind-Value="_memberModel.Role"
                                        Label="Role"
                                        Required="true"
                                        ToStringFunc="@FormatRole">
@@ -117,14 +125,10 @@
 
     private RegistrationCaseDetailDto _case = null!;
     private readonly List<MemberDraft> _members = [];
+    private readonly HouseholdMemberFormModel _memberModel = new();
     private MudForm _memberForm = null!;
     private bool _memberFormValid;
     private bool _saving;
-
-    private string? _newGivenName;
-    private string? _newFamilyName;
-    private DateTime? _newBirthDate;
-    private HouseholdMemberRole? _newRole;
 
     protected override void OnParametersSet()
     {
@@ -146,10 +150,17 @@
             pair.First.Role != pair.Second.Role);
 
     private bool CanAddMember =>
-        !string.IsNullOrWhiteSpace(_newGivenName) &&
-        !string.IsNullOrWhiteSpace(_newFamilyName) &&
-        _newBirthDate is not null &&
-        _newRole is not null;
+        !string.IsNullOrWhiteSpace(_memberModel.GivenName) &&
+        !string.IsNullOrWhiteSpace(_memberModel.FamilyName) &&
+        _memberModel.BirthDate is not null &&
+        _memberModel.Role is not null;
+
+    private static HouseholdMemberRequest MapMemberRequest(HouseholdMemberFormModel model) =>
+        new(
+            model.GivenName ?? string.Empty,
+            model.FamilyName ?? string.Empty,
+            model.BirthDate ?? default,
+            model.Role ?? default);
 
     private static string FormatRole(HouseholdMemberRole? role) =>
         role switch
@@ -164,21 +175,21 @@
     private async Task AddMember()
     {
         await _memberForm.Validate();
-        if (!_memberFormValid || _newBirthDate is null || _newRole is null)
+        if (!_memberFormValid || _memberModel.BirthDate is null || _memberModel.Role is null)
         {
             return;
         }
 
         _members.Add(new MemberDraft(
-            _newGivenName!,
-            _newFamilyName!,
-            DateOnly.FromDateTime(_newBirthDate.Value),
-            _newRole.Value));
+            _memberModel.GivenName!,
+            _memberModel.FamilyName!,
+            _memberModel.BirthDate.Value,
+            _memberModel.Role.Value));
 
-        _newGivenName = null;
-        _newFamilyName = null;
-        _newBirthDate = null;
-        _newRole = null;
+        _memberModel.GivenName = null;
+        _memberModel.FamilyName = null;
+        _memberModel.BirthDate = null;
+        _memberModel.Role = null;
     }
 
     private void RemoveMember(MemberDraft member) => _members.Remove(member);
@@ -223,6 +234,14 @@
         {
             _saving = false;
         }
+    }
+
+    private sealed class HouseholdMemberFormModel
+    {
+        public string? GivenName { get; set; }
+        public string? FamilyName { get; set; }
+        public DateOnly? BirthDate { get; set; }
+        public HouseholdMemberRole? Role { get; set; }
     }
 
     private sealed record MemberDraft(

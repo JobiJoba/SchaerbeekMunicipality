@@ -33,6 +33,7 @@
 @inject ListCaseAuditHandler ListCaseAuditHandler
 @inject ClaimRegistrationCaseHandler ClaimHandler
 @inject ReleaseCaseLockHandler ReleaseLockHandler
+@inject FluentValidation.IValidator<RecordIdentityRequest> IdentityValidator
 @inject ICurrentOfficer CurrentOfficer
 @inject IAppDialogService DialogService
 @inject IDialogService MudDialogService
@@ -189,26 +190,11 @@
                                 </MudButton>
                             </HeaderActions>
                             <ChildContent>
-                                <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
-                                    <AppFormSection Title="Personal details">
-                                        <MudItem xs="12" md="6">
-                                            <MudTextField @bind-Value="_givenName" Label="Given name" Required="true" />
-                                        </MudItem>
-                                        <MudItem xs="12" md="6">
-                                            <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
-                                        </MudItem>
-                                        <MudItem xs="12" md="6">
-                                            <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
-                                        </MudItem>
-                                        <MudItem xs="12" md="6">
-                                            <MudTextField @bind-Value="_nationality" Label="Nationality" Required="true" />
-                                        </MudItem>
-                                    </AppFormSection>
-
-                                    <AppInfoBox Class="mb-4">
-                                        Search the National Register first when the person may already have a BIS or NR record.
-                                        Record identity only when you have verified the supporting documents on file.
-                                    </AppInfoBox>
+                                <MudForm @ref="_identityForm"
+                                         @bind-IsValid="_identityFormValid"
+                                         Model="_identityModel"
+                                         Validation="@(IdentityValidator.ToMudValidateValue<RecordIdentityRequest, IdentityFormModel>(MapIdentityRequest))">
+                                    <IdentityFormSection Model="_identityModel" ShowSearchInfo="true" />
 
                                     <AppSaveCancelBar SaveText="Record identity"
                                                       CancelText="Clear"
@@ -222,21 +208,11 @@
                     else if (_editingIdentity)
                     {
                         <AppCard Title="Identity" Outlined="true">
-                            <MudForm @ref="_identityForm" @bind-IsValid="_identityFormValid">
-                                <AppFormSection Title="Personal details">
-                                    <MudItem xs="12" md="6">
-                                        <MudTextField @bind-Value="_givenName" Label="Given name" Required="true" />
-                                    </MudItem>
-                                    <MudItem xs="12" md="6">
-                                        <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
-                                    </MudItem>
-                                    <MudItem xs="12" md="6">
-                                        <MudDatePicker @bind-Date="_birthDate" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
-                                    </MudItem>
-                                    <MudItem xs="12" md="6">
-                                        <MudTextField @bind-Value="_nationality" Label="Nationality" Required="true" />
-                                    </MudItem>
-                                </AppFormSection>
+                            <MudForm @ref="_identityForm"
+                                     @bind-IsValid="_identityFormValid"
+                                     Model="_identityModel"
+                                     Validation="@(IdentityValidator.ToMudValidateValue<RecordIdentityRequest, IdentityFormModel>(MapIdentityRequest))">
+                                <IdentityFormSection Model="_identityModel" />
 
                                 <AppSaveCancelBar SaveText="Save changes"
                                                   CancelText="Cancel"
@@ -262,9 +238,11 @@
                                 }
                             </HeaderActions>
                             <ChildContent>
+                                <AppFieldLabel Text="Name" />
                                 <MudText Typo="Typo.body1">@_case.Person.GivenName @_case.Person.FamilyName</MudText>
+                                <AppFieldLabel Text="Birth" Class="mt-2" />
                                 <MudText Typo="Typo.body2" Color="Color.Secondary">
-                                    Born @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
+                                    @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
                                 </MudText>
                                 @if (_case.Person.LinkedFromRegister)
                                 {
@@ -451,10 +429,7 @@
     private IReadOnlyList<CaseAuditEntryDto> _auditEntries = [];
     private bool _caseHistoryExpanded;
 
-    private string _givenName = string.Empty;
-    private string _familyName = string.Empty;
-    private DateTime? _birthDate;
-    private string _nationality = string.Empty;
+    private readonly IdentityFormModel _identityModel = new();
 
     private bool CanEditIntakeData =>
         _case is not null &&
@@ -480,10 +455,17 @@
 
     private bool IdentityFormDirty =>
         _case?.Person is not null &&
-        (_givenName != _case.Person.GivenName ||
-         _familyName != _case.Person.FamilyName ||
-         _birthDate?.Date != _case.Person.BirthDate.ToDateTime(TimeOnly.MinValue).Date ||
-         _nationality != _case.Person.Nationality);
+        (_identityModel.GivenName != _case.Person.GivenName ||
+         _identityModel.FamilyName != _case.Person.FamilyName ||
+         _identityModel.BirthDate != _case.Person.BirthDate ||
+         _identityModel.Nationality != _case.Person.Nationality);
+
+    private static RecordIdentityRequest MapIdentityRequest(IdentityFormModel model) =>
+        new(
+            model.GivenName,
+            model.FamilyName,
+            model.BirthDate ?? default,
+            model.Nationality);
 
     private bool CanConvertBis =>
         CanEditIntakeData &&
@@ -625,10 +607,10 @@
 
     private void ClearIdentityForm()
     {
-        _givenName = string.Empty;
-        _familyName = string.Empty;
-        _birthDate = null;
-        _nationality = string.Empty;
+        _identityModel.GivenName = string.Empty;
+        _identityModel.FamilyName = string.Empty;
+        _identityModel.BirthDate = null;
+        _identityModel.Nationality = string.Empty;
     }
 
     private void StartEditingIdentity()
@@ -638,10 +620,10 @@
             return;
         }
 
-        _givenName = _case.Person.GivenName;
-        _familyName = _case.Person.FamilyName;
-        _birthDate = _case.Person.BirthDate.ToDateTime(TimeOnly.MinValue);
-        _nationality = _case.Person.Nationality;
+        _identityModel.GivenName = _case.Person.GivenName;
+        _identityModel.FamilyName = _case.Person.FamilyName;
+        _identityModel.BirthDate = _case.Person.BirthDate;
+        _identityModel.Nationality = _case.Person.Nationality;
         _editingIdentity = true;
     }
 
@@ -666,7 +648,7 @@
     private async Task SaveIdentity()
     {
         await _identityForm.Validate();
-        if (!_identityFormValid || _birthDate is null)
+        if (!_identityFormValid || _identityModel.BirthDate is null)
         {
             return;
         }
@@ -674,11 +656,7 @@
         _savingIdentity = true;
         try
         {
-            var request = new RecordIdentityRequest(
-                _givenName,
-                _familyName,
-                DateOnly.FromDateTime(_birthDate.Value),
-                _nationality);
+            var request = MapIdentityRequest(_identityModel);
 
             await RecordIdentityHandler.Handle(
                 new RegistrationCaseId(CaseId),
@@ -705,7 +683,7 @@
     private async Task SaveIdentityCorrection()
     {
         await _identityForm.Validate();
-        if (!_identityFormValid || _birthDate is null)
+        if (!_identityFormValid || _identityModel.BirthDate is null)
         {
             return;
         }
@@ -713,11 +691,7 @@
         _savingIdentity = true;
         try
         {
-            var request = new RecordIdentityRequest(
-                _givenName,
-                _familyName,
-                DateOnly.FromDateTime(_birthDate.Value),
-                _nationality);
+            var request = MapIdentityRequest(_identityModel);
 
             var response = await CorrectIdentityHandler.Handle(
                 new RegistrationCaseId(CaseId),
@@ -753,9 +727,9 @@
             { x => x.CaseId, CaseId },
             { x => x.SearchHandler, SearchNationalRegisterHandler },
             { x => x.LinkHandler, LinkExistingPersonHandler },
-            { x => x.InitialGivenName, string.IsNullOrWhiteSpace(_givenName) ? null : _givenName },
-            { x => x.InitialFamilyName, string.IsNullOrWhiteSpace(_familyName) ? null : _familyName },
-            { x => x.InitialBirthDate, _birthDate.HasValue ? DateOnly.FromDateTime(_birthDate.Value) : null },
+            { x => x.InitialGivenName, string.IsNullOrWhiteSpace(_identityModel.GivenName) ? null : _identityModel.GivenName },
+            { x => x.InitialFamilyName, string.IsNullOrWhiteSpace(_identityModel.FamilyName) ? null : _identityModel.FamilyName },
+            { x => x.InitialBirthDate, _identityModel.BirthDate },
         };
 
         var dialog = await MudDialogService.ShowAsync<NationalRegisterSearchDialog>(

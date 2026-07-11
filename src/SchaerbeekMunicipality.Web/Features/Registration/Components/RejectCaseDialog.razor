@@ -1,59 +1,23 @@
 @using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Web.Features.Registration.RejectCase
 
-<MudDialog>
-    <DialogContent>
-        <MudSelect T="RejectionReason"
-                   @bind-Value="_reason"
-                   Label="Rejection reason"
-                   Required="true"
-                   Class="mb-4">
-            @foreach (var reason in Enum.GetValues<RejectionReason>())
-            {
-                <MudSelectItem T="RejectionReason" Value="reason">@FormatReason(reason)</MudSelectItem>
-            }
-        </MudSelect>
-        <MudTextField @bind-Value="_notes"
-                      Label="Notes"
-                      Lines="3"
-                      MaxLength="2000" />
-    </DialogContent>
-    <DialogActions>
-        <MudButton OnClick="Cancel">Cancel</MudButton>
-        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="Confirm">Reject case</MudButton>
-    </DialogActions>
-</MudDialog>
+<ReasonNotesDialog TReason="RejectionReason"
+                   TRequest="RejectCaseRequest"
+                   ReasonLabel="Rejection reason"
+                   ConfirmText="Reject case"
+                   ConfirmColor="Color.Error"
+                   FormatReason="FormatReason"
+                   CreateRequest="CreateRequest"
+                   InitialReason="InitialReason"
+                   InitialNotes="InitialNotes"/>
 
 @code {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [Parameter] public RejectionReason? InitialReason { get; set; }
 
-    [Parameter]
-    public RejectionReason? InitialReason { get; set; }
+    [Parameter] public string? InitialNotes { get; set; }
 
-    [Parameter]
-    public string? InitialNotes { get; set; }
-
-    private RejectionReason _reason = RejectionReason.Other;
-    private string? _notes;
-
-    protected override void OnParametersSet()
-    {
-        if (InitialReason is { } reason)
-        {
-            _reason = reason;
-        }
-
-        if (!string.IsNullOrWhiteSpace(InitialNotes))
-        {
-            _notes = InitialNotes;
-        }
-    }
-
-    private void Cancel() => MudDialog.Cancel();
-
-    private void Confirm() =>
-        MudDialog.Close(DialogResult.Ok(new RejectCaseRequest(_reason, _notes)));
+    private static RejectCaseRequest CreateRequest(RejectionReason reason, string? notes) =>
+        new(reason, notes);
 
     private static string FormatReason(RejectionReason reason) =>
         reason switch
@@ -65,4 +29,5 @@
             RejectionReason.IllegalStay => "Illegal stay",
             _ => "Other",
         };
+
 }

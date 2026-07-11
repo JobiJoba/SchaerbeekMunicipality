@@ -19,6 +19,8 @@ Implementation is planned as [Roadmap Phase 3](../ROADMAP.md); delivery plan in 
 | 6 | [06-page-templates.md](./06-page-templates.md) | Page templates: list, details, form, wizard, dashboard, error, … |
 | 7 | [07-architecture-and-guidelines.md](./07-architecture-and-guidelines.md) | Folder structure, naming conventions, developer guidelines, do's & don'ts, future recommendations |
 
+Cross-feature municipal UI (`BelgianAddressFields`, `NationalRegisterSearchForm`, …) is documented separately in [MUNICIPAL-UI.md](../MUNICIPAL-UI.md).
+
 ---
 
 ## 1. Executive summary

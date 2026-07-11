@@ -1,0 +1,64 @@
+@if (!PrerequisiteMet)
+{
+    @PrerequisiteContent
+}
+else if (!HasData || IsEditing)
+{
+    <AppCard Title="@Title" Outlined="true" Class="@Class">
+        @EditContent
+    </AppCard>
+}
+else
+{
+    <AppCard Title="@Title" Outlined="true" Class="@Class">
+        <HeaderActions>
+            @if (CanEdit)
+            {
+                <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                           Variant="Variant.Text"
+                           OnClick="OnStartEdit"
+                           aria-label="@EditAriaLabel">
+                    Edit
+                </MudButton>
+            }
+        </HeaderActions>
+        <ChildContent>
+            @ReadContent
+        </ChildContent>
+    </AppCard>
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool PrerequisiteMet { get; set; }
+
+    [Parameter]
+    public bool HasData { get; set; }
+
+    [Parameter]
+    public bool IsEditing { get; set; }
+
+    [Parameter]
+    public bool CanEdit { get; set; }
+
+    [Parameter]
+    public string EditAriaLabel { get; set; } = "Edit";
+
+    [Parameter]
+    public EventCallback OnStartEdit { get; set; }
+
+    [Parameter]
+    public RenderFragment? PrerequisiteContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? EditContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? ReadContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+}

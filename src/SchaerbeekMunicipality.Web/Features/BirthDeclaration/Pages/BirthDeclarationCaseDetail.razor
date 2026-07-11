@@ -24,6 +24,8 @@
 @inject SearchNationalRegisterHandler SearchNationalRegisterHandler
 @inject LinkParentHandler LinkParentHandler
 @inject UnlinkParentHandler UnlinkParentHandler
+@inject FluentValidation.IValidator<RecordChildDetailsRequest> ChildDetailsValidator
+@inject FluentValidation.IValidator<SetDeclarationHouseholdRequest> HouseholdValidator
 @inject ICurrentOfficer CurrentOfficer
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
@@ -32,11 +34,11 @@
 <RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
     @if (_loading)
     {
-        <AppLoading Kind="AppLoadingKind.Skeleton" />
+        <AppLoading Kind="AppLoadingKind.Skeleton"/>
     }
     else if (_case is null)
     {
-        <AppAlert Severity="Severity.Error" Title="Case not found" />
+        <AppAlert Severity="Severity.Error" Title="Case not found"/>
     }
     else
     {
@@ -44,15 +46,11 @@
             <AppPageHeader Title="Birth declaration"
                            Subtitle="@($"{CaseId.ToString()[..8]}… · opened {_case.OpenedAt.LocalDateTime:g}")">
                 <Actions>
-                    <AppStatusChip Label="@_case.Status.ToString()" Severity="@GetSeverity(_case.Status)" />
-                    @if (_case.IsReadOnlyDueToLock)
-                    {
-                        <MudButton Variant="Variant.Outlined" OnClick="TakeCase">Take case</MudButton>
-                    }
-                    else if (_case.CanEdit)
-                    {
-                        <MudButton Variant="Variant.Outlined" OnClick="ReleaseLock">Release lock</MudButton>
-                    }
+                    <AppStatusChip Label="@_case.Status.ToString()" Severity="@GetSeverity(_case.Status)"/>
+                    <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
+                                     CanEdit="_case.CanEdit"
+                                     OnTakeCase="TakeCase"
+                                     OnReleaseLock="ReleaseLock" />
                     <MudButton Variant="Variant.Text"
                                StartIcon="@Icons.Material.Outlined.ArrowBack"
                                OnClick="@(() => Navigation.NavigateTo("/birth-declarations"))">
@@ -61,128 +59,133 @@
                 </Actions>
             </AppPageHeader>
 
-            @if (_case.IsReadOnlyDueToLock)
-            {
-                <AppAlert Severity="Severity.Warning" Title="Read-only" Class="mb-4">
-                    This case is locked to another officer. Take the case to edit.
-                </AppAlert>
-            }
+            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock" />
 
             <MudGrid Spacing="4">
                 <MudItem xs="12" lg="7">
                     <MudStack Spacing="4">
-                <AppCollapsibleSection Title="Child details"
-                                       Summary="@GetChildSummary()"
-                                       StatusLabel="@(_case.ChildDetailsRecorded ? "Complete" : "Pending")"
-                                       StatusSeverity="@(_case.ChildDetailsRecorded ? AppSeverity.Success : AppSeverity.Neutral)"
-                                       IsExpanded="@(!_case.ChildDetailsRecorded)">
-                    <MudForm @ref="_childForm" Disabled="!_case.CanEdit">
-                        <MudGrid>
-                            <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_givenNames" Label="Given names" Required="true" />
-                            </MudItem>
-                            <MudItem xs="12" md="6">
-                                <MudTextField @bind-Value="_familyName" Label="Family name" Required="true" />
-                            </MudItem>
-                            <MudItem xs="12" md="4">
-                                <MudSelect T="NewbornSex" @bind-Value="_sex" Label="Sex" Required="true">
-                                    @foreach (var sex in Enum.GetValues<NewbornSex>())
-                                    {
-                                        <MudSelectItem Value="sex">@sex</MudSelectItem>
-                                    }
-                                </MudSelect>
-                            </MudItem>
-                            <MudItem xs="12" md="4">
-                                <MudDatePicker @bind-Date="_dateOfBirth" Label="Date of birth" Required="true" MaxDate="DateTime.Today" />
-                            </MudItem>
-                            <MudItem xs="12" md="4">
-                                <MudTimePicker @bind-Time="_timeOfBirth" Label="Time of birth" />
-                            </MudItem>
-                            <MudItem xs="12">
-                                <MudTextField @bind-Value="_placeOfBirth" Label="Place of birth" Required="true" />
-                            </MudItem>
-                        </MudGrid>
-                        @if (_case.CanEdit)
-                        {
-                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-3" OnClick="SaveChildDetails" Disabled="_busy">
-                                Save child details
-                            </MudButton>
-                        }
-                    </MudForm>
-                </AppCollapsibleSection>
-
-                <AppCollapsibleSection Title="Parents"
-                                       Summary="@($"{_case.Parents.Count} linked")"
-                                       StatusLabel="@(_case.AtLeastOneParentLinked ? "Complete" : "Pending")"
-                                       StatusSeverity="@(_case.AtLeastOneParentLinked ? AppSeverity.Success : AppSeverity.Neutral)"
-                                       IsExpanded="@(!_case.AtLeastOneParentLinked)">
-                    @foreach (var parent in _case.Parents)
-                    {
-                        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="mb-2">
-                            <MudText Typo="Typo.body2">
-                                <strong>@parent.Role</strong> — @parent.GivenName @parent.FamilyName
-                                @if (!string.IsNullOrWhiteSpace(parent.NationalRegisterNumber))
+                        <AppCollapsibleSection Title="Child details"
+                                               Summary="@GetChildSummary()"
+                                               StatusLabel="@(_case.ChildDetailsRecorded ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.ChildDetailsRecorded ? AppSeverity.Success : AppSeverity.Neutral)"
+                                               IsExpanded="@(!_case.ChildDetailsRecorded)">
+                            <MudForm @ref="_childForm"
+                                     Disabled="!_case.CanEdit"
+                                     Model="_childModel"
+                                     Validation="@(ChildDetailsValidator.ToMudValidateValue<RecordChildDetailsRequest, ChildDetailsFormModel>(MapChildDetailsRequest))">
+                                <MudGrid>
+                                    <MudItem xs="12" md="6">
+                                        <MudTextField @bind-Value="_childModel.GivenNames" Label="Given names" Required="true"/>
+                                    </MudItem>
+                                    <MudItem xs="12" md="6">
+                                        <MudTextField @bind-Value="_childModel.FamilyName" Label="Family name" Required="true"/>
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <MudSelect T="NewbornSex" @bind-Value="_childModel.Sex" Label="Sex" Required="true">
+                                            @foreach (var sex in Enum.GetValues<NewbornSex>())
+                                            {
+                                                <MudSelectItem Value="sex">@sex</MudSelectItem>
+                                            }
+                                        </MudSelect>
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <AppDateField @bind-Value="_childModel.DateOfBirth"
+                                                      For="@(() => _childModel.DateOfBirth)"
+                                                      Label="Date of birth"
+                                                      Required="true"
+                                                      MaxDate="@DateTime.Today"/>
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <MudTimePicker @bind-Time="_childModel.TimeOfBirth" Label="Time of birth"/>
+                                    </MudItem>
+                                    <MudItem xs="12">
+                                        <MudTextField @bind-Value="_childModel.PlaceOfBirth" Label="Place of birth" Required="true"/>
+                                    </MudItem>
+                                </MudGrid>
+                                @if (_case.CanEdit)
                                 {
-                                    <span> (NR @parent.NationalRegisterNumber)</span>
+                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-3" OnClick="SaveChildDetails" Disabled="_busy">
+                                        Save child details
+                                    </MudButton>
                                 }
-                            </MudText>
+                            </MudForm>
+                        </AppCollapsibleSection>
+
+                        <AppCollapsibleSection Title="Parents"
+                                               Summary="@($"{_case.Parents.Count} linked")"
+                                               StatusLabel="@(_case.AtLeastOneParentLinked ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.AtLeastOneParentLinked ? AppSeverity.Success : AppSeverity.Neutral)"
+                                               IsExpanded="@(!_case.AtLeastOneParentLinked)">
+                            @foreach (var parent in _case.Parents)
+                            {
+                                <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="mb-2">
+                                    <MudText Typo="Typo.body2">
+                                        <strong>@parent.Role</strong> — @parent.GivenName @parent.FamilyName
+                                        @if (!string.IsNullOrWhiteSpace(parent.NationalRegisterNumber))
+                                        {
+                                            <span> (NR @parent.NationalRegisterNumber)</span>
+                                        }
+                                    </MudText>
+                                    @if (_case.CanEdit)
+                                    {
+                                        <MudIconButton Icon="@Icons.Material.Outlined.LinkOff"
+                                                       Size="Size.Small"
+                                                       OnClick="@(() => UnlinkParent(parent.PersonId))"/>
+                                    }
+                                </MudStack>
+                            }
                             @if (_case.CanEdit)
                             {
-                                <MudIconButton Icon="@Icons.Material.Outlined.LinkOff"
-                                               Size="Size.Small"
-                                               OnClick="@(() => UnlinkParent(parent.PersonId))" />
+                                <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.PersonSearch" OnClick="OpenParentSearch">
+                                    Link parent via NR search
+                                </MudButton>
                             }
-                        </MudStack>
-                    }
-                    @if (_case.CanEdit)
-                    {
-                        <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.PersonSearch" OnClick="OpenParentSearch">
-                            Link parent via NR search
-                        </MudButton>
-                    }
-                </AppCollapsibleSection>
+                        </AppCollapsibleSection>
 
-                <AppCollapsibleSection Title="Medical declaration"
-                                       Summary="@($"{_case.Documents.Count} document(s)")"
-                                       StatusLabel="@(_case.MedicalDeclarationAttached ? "Complete" : "Pending")"
-                                       StatusSeverity="@(_case.MedicalDeclarationAttached ? AppSeverity.Success : AppSeverity.Neutral)"
-                                       IsExpanded="@(!_case.MedicalDeclarationAttached)">
-                    <BirthDeclarationDocumentPanel CaseId="CaseId"
-                                                   Documents="_case.Documents"
-                                                   AttachHandler="AttachDocumentHandler"
-                                                   CanEdit="_case.CanEdit"
-                                                   OnRemoveDocument="RemoveDocument"
-                                                   OnUploaded="ReloadCase" />
-                </AppCollapsibleSection>
+                        <AppCollapsibleSection Title="Medical declaration"
+                                               Summary="@($"{_case.Documents.Count} document(s)")"
+                                               StatusLabel="@(_case.MedicalDeclarationAttached ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.MedicalDeclarationAttached ? AppSeverity.Success : AppSeverity.Neutral)"
+                                               IsExpanded="@(!_case.MedicalDeclarationAttached)">
+                            <BirthDeclarationDocumentPanel CaseId="CaseId"
+                                                           Documents="_case.Documents"
+                                                           AttachHandler="AttachDocumentHandler"
+                                                           CanEdit="_case.CanEdit"
+                                                           OnRemoveDocument="RemoveDocument"
+                                                           OnUploaded="ReloadCase"/>
+                        </AppCollapsibleSection>
 
-                <AppCollapsibleSection Title="Household domicile"
-                                       Summary="@(_case.HouseholdAddress ?? "Not set")"
-                                       StatusLabel="@(_case.HouseholdEstablished ? "Complete" : "Pending")"
-                                       StatusSeverity="@(_case.HouseholdEstablished ? AppSeverity.Success : AppSeverity.Neutral)"
-                                       IsExpanded="@(!_case.HouseholdEstablished)">
-                    <MudForm Disabled="!_case.CanEdit">
-                        <MudTextField @bind-Value="_street" Label="Street" Class="mb-2" />
-                        <MudTextField @bind-Value="_houseNumber" Label="House number" Class="mb-2" />
-                        <MudTextField @bind-Value="_box" Label="Box" Class="mb-2" />
-                        <MudTextField @bind-Value="_postalCode" Label="Postal code" Class="mb-2" />
-                        <MudTextField @bind-Value="_municipality" Label="Municipality" Class="mb-2" />
-                        @if (_case.CanEdit)
-                        {
-                            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveHousehold" Disabled="_busy">
-                                Save domicile
-                            </MudButton>
-                        }
-                    </MudForm>
-                    @if (!string.IsNullOrWhiteSpace(_case.HouseholdAddress))
-                    {
-                        <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">@_case.HouseholdAddress</MudText>
-                    }
-                </AppCollapsibleSection>
+                        <AppCollapsibleSection Title="Household domicile"
+                                               Summary="@(_case.HouseholdAddress ?? "Not set")"
+                                               StatusLabel="@(_case.HouseholdEstablished ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.HouseholdEstablished ? AppSeverity.Success : AppSeverity.Neutral)"
+                                               IsExpanded="@(!_case.HouseholdEstablished)">
+                            <MudForm @ref="_householdForm"
+                                     Disabled="!_case.CanEdit"
+                                     Model="_householdModel"
+                                     Validation="@(HouseholdValidator.ToMudValidateValue<SetDeclarationHouseholdRequest, HouseholdFormModel>(MapHouseholdRequest))">
+                                <MudTextField @bind-Value="_householdModel.Street" Label="Street" Class="mb-2"/>
+                                <MudTextField @bind-Value="_householdModel.HouseNumber" Label="House number" Class="mb-2"/>
+                                <MudTextField @bind-Value="_householdModel.Box" Label="Box" Class="mb-2"/>
+                                <MudTextField @bind-Value="_householdModel.PostalCode" Label="Postal code" Class="mb-2"/>
+                                <MudTextField @bind-Value="_householdModel.Municipality" Label="Municipality" Class="mb-2"/>
+                                @if (_case.CanEdit)
+                                {
+                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveHousehold" Disabled="_busy">
+                                        Save domicile
+                                    </MudButton>
+                                }
+                            </MudForm>
+                            @if (!string.IsNullOrWhiteSpace(_case.HouseholdAddress))
+                            {
+                                <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mt-2">@_case.HouseholdAddress</MudText>
+                            }
+                        </AppCollapsibleSection>
                     </MudStack>
                 </MudItem>
 
                 <MudItem xs="12" lg="5">
-                    <BirthDeclarationDecisionSection Case="_case" OnChanged="ReloadCase" />
+                    <BirthDeclarationDecisionSection Case="_case" OnChanged="ReloadCase"/>
                 </MudItem>
             </MudGrid>
         </AppPage>
@@ -195,19 +198,17 @@
     private bool _loading = true;
     private bool _busy;
     private BirthDeclarationCaseDetailDto? _case;
+    private readonly ChildDetailsFormModel _childModel = new();
     private MudForm _childForm = null!;
+    private MudForm _householdForm = null!;
 
-    private string _givenNames = string.Empty;
-    private string _familyName = string.Empty;
-    private NewbornSex _sex = NewbornSex.Female;
-    private DateTime? _dateOfBirth;
-    private TimeSpan? _timeOfBirth;
-    private string _placeOfBirth = string.Empty;
-    private string _street = "Chaussée de Louvain";
-    private string _houseNumber = "10";
-    private string? _box;
-    private string _postalCode = "1030";
-    private string _municipality = "Schaerbeek";
+    private readonly HouseholdFormModel _householdModel = new()
+    {
+        Street = "Chaussée de Louvain",
+        HouseNumber = "10",
+        PostalCode = "1030",
+        Municipality = "Schaerbeek"
+    };
 
     protected override async Task OnParametersSetAsync()
     {
@@ -224,12 +225,12 @@
             _case = detail;
             if (detail is not null)
             {
-                _givenNames = detail.ChildGivenNames ?? string.Empty;
-                _familyName = detail.ChildFamilyName ?? string.Empty;
-                _sex = detail.ChildSex ?? NewbornSex.Female;
-                _dateOfBirth = detail.ChildDateOfBirth?.ToDateTime(TimeOnly.MinValue);
-                _timeOfBirth = detail.ChildTimeOfBirth?.ToTimeSpan();
-                _placeOfBirth = detail.ChildPlaceOfBirth ?? string.Empty;
+                _childModel.GivenNames = detail.ChildGivenNames ?? string.Empty;
+                _childModel.FamilyName = detail.ChildFamilyName ?? string.Empty;
+                _childModel.Sex = detail.ChildSex ?? NewbornSex.Female;
+                _childModel.DateOfBirth = detail.ChildDateOfBirth;
+                _childModel.TimeOfBirth = detail.ChildTimeOfBirth?.ToTimeSpan();
+                _childModel.PlaceOfBirth = detail.ChildPlaceOfBirth ?? string.Empty;
             }
         }
         finally
@@ -240,19 +241,13 @@
 
     private async Task SaveChildDetails()
     {
-        if (_dateOfBirth is null) return;
+        if (_childModel.DateOfBirth is null) return;
         _busy = true;
         try
         {
             await RecordChildHandler.Handle(
                 new BirthDeclarationCaseId(CaseId),
-                new RecordChildDetailsRequest(
-                    _givenNames,
-                    _familyName,
-                    _sex,
-                    DateOnly.FromDateTime(_dateOfBirth.Value),
-                    _timeOfBirth.HasValue ? TimeOnly.FromTimeSpan(_timeOfBirth.Value) : null,
-                    _placeOfBirth),
+                MapChildDetailsRequest(_childModel),
                 CancellationToken.None);
             Snackbar.Add("Child details saved.", Severity.Success);
             await ReloadCase();
@@ -269,12 +264,18 @@
 
     private async Task SaveHousehold()
     {
+        await _householdForm.Validate();
+        if (!_householdForm.IsValid)
+        {
+            return;
+        }
+
         _busy = true;
         try
         {
             await SetHouseholdHandler.Handle(
                 new BirthDeclarationCaseId(CaseId),
-                new SetDeclarationHouseholdRequest(_street, _houseNumber, _box, _postalCode, _municipality),
+                MapHouseholdRequest(_householdModel),
                 CancellationToken.None);
             Snackbar.Add("Domicile saved.", Severity.Success);
             await ReloadCase();
@@ -345,6 +346,37 @@
         return $"{_case.ChildGivenNames} {_case.ChildFamilyName}";
     }
 
+    private static SetDeclarationHouseholdRequest MapHouseholdRequest(HouseholdFormModel model) =>
+        new(model.Street, model.HouseNumber, model.Box, model.PostalCode, model.Municipality);
+
+    private static RecordChildDetailsRequest MapChildDetailsRequest(ChildDetailsFormModel model) =>
+        new(
+            model.GivenNames,
+            model.FamilyName,
+            model.Sex,
+            model.DateOfBirth ?? default,
+            model.TimeOfBirth.HasValue ? TimeOnly.FromTimeSpan(model.TimeOfBirth.Value) : null,
+            model.PlaceOfBirth);
+
+    private sealed class HouseholdFormModel
+    {
+        public string Street { get; set; } = string.Empty;
+        public string HouseNumber { get; set; } = string.Empty;
+        public string? Box { get; set; }
+        public string PostalCode { get; set; } = string.Empty;
+        public string Municipality { get; set; } = string.Empty;
+    }
+
+    private sealed class ChildDetailsFormModel
+    {
+        public string GivenNames { get; set; } = string.Empty;
+        public string FamilyName { get; set; } = string.Empty;
+        public NewbornSex Sex { get; set; } = NewbornSex.Female;
+        public DateOnly? DateOfBirth { get; set; }
+        public TimeSpan? TimeOfBirth { get; set; }
+        public string PlaceOfBirth { get; set; } = string.Empty;
+    }
+
     private static AppSeverity GetSeverity(BirthDeclarationCaseStatus status) =>
         status switch
         {
@@ -354,4 +386,5 @@
             BirthDeclarationCaseStatus.UnderReview => AppSeverity.Info,
             _ => AppSeverity.Neutral,
         };
+
 }

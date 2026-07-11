@@ -28,6 +28,7 @@
 @inject RequestPoliceVerificationHandler RequestPoliceHandler
 @inject UnlinkHouseholdMemberHandler UnlinkHouseholdHandler
 @inject SearchStreetsHandler SearchStreetsHandler
+@inject FluentValidation.IValidator<DeclareNewAddressRequest> DeclareNewAddressValidator
 @inject ICurrentOfficer CurrentOfficer
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
@@ -48,14 +49,10 @@
                            Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.PersonGivenName} {_case.PersonFamilyName}")">
                 <Actions>
                     <AppStatusChip Label="@_case.Status.ToString()" Severity="@GetSeverity(_case.Status)" />
-                    @if (_case.IsReadOnlyDueToLock)
-                    {
-                        <MudButton Variant="Variant.Outlined" OnClick="TakeCase">Take case</MudButton>
-                    }
-                    else if (_case.CanEdit)
-                    {
-                        <MudButton Variant="Variant.Outlined" OnClick="ReleaseLock">Release lock</MudButton>
-                    }
+                    <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
+                                     CanEdit="_case.CanEdit"
+                                     OnTakeCase="TakeCase"
+                                     OnReleaseLock="ReleaseLock" />
                     <MudButton Variant="Variant.Text"
                                StartIcon="@Icons.Material.Outlined.ArrowBack"
                                OnClick="@(() => Navigation.NavigateTo("/change-of-address"))">
@@ -64,12 +61,7 @@
                 </Actions>
             </AppPageHeader>
 
-            @if (_case.IsReadOnlyDueToLock)
-            {
-                <AppAlert Severity="Severity.Warning" Title="Read-only" Class="mb-4">
-                    This case is locked to another officer. Take the case to edit.
-                </AppAlert>
-            }
+            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock" />
 
             <MudGrid Spacing="4">
                 <MudItem xs="12" lg="7">
@@ -91,58 +83,48 @@
                                 <MudItem xs="12" md="6">
                                     <MudText Typo="Typo.subtitle2" Class="mb-2">Previous address</MudText>
                                     <MudText Typo="Typo.body2">
-                                        @(FormatAddress(_case.PreviousAddress) ?? "No prior domicile on file")
+                                        @(AddressFormatting.FormatBelgianAddress(_case.PreviousAddress) ?? "No prior domicile on file")
                                     </MudText>
                                 </MudItem>
                                 <MudItem xs="12" md="6">
                                     <MudText Typo="Typo.subtitle2" Class="mb-2">New address</MudText>
                                     <MudText Typo="Typo.body2">
-                                        @(FormatAddress(_case.NewAddress) ?? "Not declared yet")
+                                        @(AddressFormatting.FormatBelgianAddress(_case.NewAddress) ?? "Not declared yet")
                                     </MudText>
                                 </MudItem>
                             </MudGrid>
                         </AppCard>
 
                         <AppCollapsibleSection Title="New address"
-                                               Summary="@(FormatAddress(_case.NewAddress) ?? "Pending")"
+                                               Summary="@(AddressFormatting.FormatBelgianAddress(_case.NewAddress) ?? "Pending")"
                                                StatusLabel="@(_case.NewAddressDeclared ? "Complete" : "Pending")"
                                                StatusSeverity="@(_case.NewAddressDeclared ? AppSeverity.Success : AppSeverity.Neutral)"
                                                IsExpanded="@(!_case.NewAddressDeclared)">
-                            <MudForm @ref="_addressForm" Disabled="!_case.CanEdit">
-                                <MudGrid>
-                                    <MudItem xs="12" md="4">
-                                        <MudTextField Value="@($"{SchaerbeekCommune.PostalCode} {SchaerbeekCommune.Name}")"
-                                                      Label="Municipality"
-                                                      ReadOnly="true" />
-                                    </MudItem>
-                                    <MudItem xs="12" md="4">
-                                        <MudAutocomplete T="StreetDto"
-                                                         @bind-Value="_selectedStreet"
-                                                         Label="Street"
-                                                         SearchFunc="SearchStreets"
-                                                         ToStringFunc="@(s => s?.Name ?? string.Empty)"
-                                                         Required="true"
-                                                         ResetValueOnEmptyText="true"
-                                                         CoerceText="false" />
-                                    </MudItem>
-                                    <MudItem xs="6" md="2">
-                                        <MudTextField @bind-Value="_houseNumber" Label="Number" Required="true" />
-                                    </MudItem>
-                                    <MudItem xs="6" md="2">
-                                        <MudTextField @bind-Value="_box" Label="Box" />
-                                    </MudItem>
-                                    <MudItem xs="12" md="6">
-                                        <MudSelect T="HousingSituation" @bind-Value="_housingSituation" Label="Housing situation" Required="true">
-                                            @foreach (var situation in Enum.GetValues<HousingSituation>())
-                                            {
-                                                <MudSelectItem Value="situation">@situation</MudSelectItem>
-                                            }
-                                        </MudSelect>
-                                    </MudItem>
-                                    <MudItem xs="12" md="6">
-                                        <MudDatePicker @bind-Date="_effectiveDate" Label="Effective date" Required="true" />
-                                    </MudItem>
-                                </MudGrid>
+                            <MudForm @ref="_addressForm"
+                                     Disabled="!_case.CanEdit"
+                                     Model="_addressModel"
+                                     Validation="@(DeclareNewAddressValidator.ToMudValidateValue<DeclareNewAddressRequest, AddressFormModel>(MapAddressRequest))">
+                                <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
+                                                      @bind-HouseNumber="_houseNumber"
+                                                      @bind-Box="_box"
+                                                      SearchStreets="SearchStreets">
+                                    <TrailingContent>
+                                        <MudItem xs="12" md="6">
+                                            <MudSelect T="HousingSituation" @bind-Value="_housingSituation" Label="Housing situation" Required="true">
+                                                @foreach (var situation in Enum.GetValues<HousingSituation>())
+                                                {
+                                                    <MudSelectItem Value="situation">@situation</MudSelectItem>
+                                                }
+                                            </MudSelect>
+                                        </MudItem>
+                                        <MudItem xs="12" md="6">
+                                            <AppDateField @bind-Value="_addressModel.EffectiveDate"
+                                                          For="@(() => _addressModel.EffectiveDate)"
+                                                          Label="Effective date"
+                                                          Required="true" />
+                                        </MudItem>
+                                    </TrailingContent>
+                                </BelgianAddressFields>
                                 @if (_case.CanEdit)
                                 {
                                     <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-3" OnClick="SaveAddress" Disabled="_busy">
@@ -239,11 +221,11 @@
     private bool _loading = true;
     private bool _busy;
     private MudForm _addressForm = null!;
+    private readonly AddressFormModel _addressModel = new();
     private StreetDto? _selectedStreet;
     private string _houseNumber = string.Empty;
     private string? _box;
     private HousingSituation _housingSituation = HousingSituation.Tenant;
-    private DateTime? _effectiveDate = DateTime.Today;
 
     protected override async Task OnInitializedAsync() => await ReloadCase();
 
@@ -257,7 +239,7 @@
             _houseNumber = address.HouseNumber;
             _box = address.Box;
             _housingSituation = _case.HousingSituation ?? HousingSituation.Tenant;
-            _effectiveDate = _case.EffectiveDate?.ToDateTime(TimeOnly.MinValue) ?? DateTime.Today;
+            _addressModel.EffectiveDate = _case.EffectiveDate ?? DateOnly.FromDateTime(DateTime.Today);
             _selectedStreet = new StreetDto(0, SchaerbeekCommune.PostalCode, address.Street);
         }
 
@@ -281,7 +263,7 @@
 
     private async Task SaveAddress()
     {
-        if (_selectedStreet is null || _effectiveDate is null)
+        if (_selectedStreet is null || _addressModel.EffectiveDate is null)
         {
             Snackbar.Add("Complete all required address fields.", Severity.Warning);
             return;
@@ -292,14 +274,7 @@
         {
             await DeclareAddressHandler.Handle(
                 new ChangeOfAddressCaseId(CaseId),
-                new DeclareNewAddressRequest(
-                    _selectedStreet.Name,
-                    _houseNumber,
-                    _box,
-                    SchaerbeekCommune.PostalCode,
-                    SchaerbeekCommune.Name,
-                    _housingSituation,
-                    DateOnly.FromDateTime(_effectiveDate.Value)),
+                MapAddressRequest(_addressModel),
                 CancellationToken.None);
             Snackbar.Add("New address saved.", Severity.Success);
             await ReloadCase();
@@ -399,8 +374,20 @@
         }
     }
 
-    private static string? FormatAddress(BelgianAddressDto? address) =>
-        address is null ? null : $"{address.Street} {address.HouseNumber}{(address.Box is not null ? $" bus {address.Box}" : "")}, {address.PostalCode} {address.Municipality}";
+    private DeclareNewAddressRequest MapAddressRequest(AddressFormModel model) =>
+        new(
+            _selectedStreet?.Name ?? string.Empty,
+            _houseNumber,
+            _box,
+            SchaerbeekCommune.PostalCode,
+            SchaerbeekCommune.Name,
+            _housingSituation,
+            model.EffectiveDate ?? default);
+
+    private sealed class AddressFormModel
+    {
+        public DateOnly? EffectiveDate { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+    }
 
     private static AppSeverity GetSeverity(ChangeOfAddressCaseStatus status) =>
         status switch

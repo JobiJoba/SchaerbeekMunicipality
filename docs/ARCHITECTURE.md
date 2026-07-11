@@ -88,10 +88,20 @@ Shared UI for a bounded context lives alongside features:
 
 ```
 Web/Features/Registration/
-├── Components/           # MudBlazor components used by multiple registration pages
+├── Components/           # Registration-only components (not shared across contexts)
 ├── RegistrationRoutes.cs
 └── OpenRegistrationCase/
     └── ...
+```
+
+Cross-context municipal UI lives in a separate layer (see [MUNICIPAL-UI.md](./MUNICIPAL-UI.md)):
+
+```
+Web/
+├── DesignSystem/         # Generic App* wrappers — no domain vocabulary
+├── Municipal/            # Shared Belgian municipal UI (address, NR search, documents, …)
+├── Validation/           # FluentValidation extensions + MudForm bridge
+└── Features/             # Vertical slices — thin wrappers over Municipal where needed
 ```
 
 ### Handler responsibilities
@@ -148,6 +158,18 @@ public static class RegistrationEndpoints
 - One routable page per major workflow step; wizard-style multi-step flows use shared state in a scoped service or URL-driven steps.
 - Pages call the **same handlers** the API uses (inject handler directly in Server mode) OR call internal API — prefer **direct handler injection** in Blazor Server to avoid HTTP overhead during development.
 - MudBlazor for layout, forms, dialogs, data grids, and snackbar notifications.
+
+#### Municipal UI layer (three-tier model)
+
+| Layer | Folder | When to use |
+|-------|--------|-------------|
+| Design system | `DesignSystem/` | Generic layout, tables, dialogs, status chips — no Belgian/NR/officer vocabulary |
+| Municipal UI | `Municipal/` | Reusable municipal desk patterns needed by **two or more** bounded contexts |
+| Feature slice | `Features/{Context}/Components/` | Context-specific pages, thin dialog shells, form models |
+
+**Promotion rule:** duplicate UI in one slice first; when a second context needs the same pattern, extract to `Municipal/` if it has domain meaning, or `DesignSystem/` if it does not. Feature components must not reference other features' components — use `Municipal/` as the shared meeting point.
+
+Municipal components are **parameter-driven** (callbacks, DTOs) and do not inject feature handlers. See [MUNICIPAL-UI.md](./MUNICIPAL-UI.md) for the component catalogue.
 
 #### DbContext concurrency (Blazor Server)
 
@@ -290,7 +312,7 @@ Avoid a shared “God entity” table for Person that every module writes to.
 
 | Concern | Approach |
 |---------|----------|
-| Validation | FluentValidation in Web slice; domain validates invariants in aggregates |
+| Validation | FluentValidation in Web slice; shared field rules in `Web/Validation/` (`BelgianAddressRules`, `FluentMudValidation`); domain validates invariants in aggregates |
 | Mapping | Manual mapping for small DTOs; no AutoMapper unless mapping explodes |
 | Logging | `ILogger<T>` in handlers |
 | Time | `TimeProvider` (or `ISystemClock`) injected for testability |
@@ -371,6 +393,7 @@ If added, one handler per slice implements `IRequestHandler<TRequest, TResponse>
 ## Related documents
 
 - [DOMAIN.md](./DOMAIN.md) — bounded contexts and aggregate details
+- [MUNICIPAL-UI.md](./MUNICIPAL-UI.md) — cross-feature municipal Blazor components
 - [TECH-STACK.md](./TECH-STACK.md) — libraries and tooling
 - [TESTING.md](./TESTING.md) — how slices are tested
 - [ROADMAP.md](./ROADMAP.md) — build order

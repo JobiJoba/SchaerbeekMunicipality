@@ -1,6 +1,6 @@
 # Application overview
 
-Visual tour of the Schaerbeek Population Department back-office as of **Phase 4.1** (document preview & case UX), building on **Phase 4** (address, household, civil status), the Schaerbeek design system from **Phase 3**, and intake correction UI from **Phase 2.1**.
+Visual tour of the Schaerbeek Population Department back-office as of **Phase 12** (birth declaration), including the shared **Municipal UI** layer and design-system additions (`AppDateField`, `AppCollapsibleSection`, `AppEditableSection`, `AppChecklist`, `AppFilePreview`).
 
 Run the app locally:
 
@@ -108,7 +108,9 @@ A fully progressed case shows declared domicile, housing situation, household me
 
 ## Document panel — upload, preview & download
 
-The case detail page uses a **two-column layout**: collapsible intake steps on the left (Identity always open; next step auto-expanded; header summaries), and a **sticky document panel** on the right (on wide screens). Officers upload files, click a row to preview PDFs and images inline, expand to fullscreen, or download.
+The case detail page uses a **two-column layout**: collapsible intake sections on the left (`AppCollapsibleSection`), and a **sticky document panel** on the right (on wide screens). The panel is implemented once in `Municipal/Components/CaseDocumentPanel.razor` and reused by registration and birth declaration via thin feature wrappers.
+
+Officers upload files, click a row to preview PDFs and images inline (`AppFilePreview`), or download.
 
 ![Document upload, immigration decision, and attached files](./screenshots/07-document-upload-and-attached-files.png)
 
@@ -116,10 +118,48 @@ The case detail page uses a **two-column layout**: collapsible intake steps on t
 
 | Area | Use cases |
 |------|-----------|
-| Upload | `AttachDocument` — same upload form as before, now in the side panel |
-| Preview | `DownloadDocument` — stream via `GET …/documents/{id}`; PDF iframe or image |
+| Upload | `AttachDocument` — upload form passed as `UploadContent` slot |
+| Preview | `DownloadDocument` — stream via `GET …/documents/{id}`; `AppFilePreview` for PDF/image |
 | Remove | `RemoveDocument` — per-row delete with confirmation |
-| Layout | `RegistrationCaseDocumentPanel`, `DocumentPreviewContent`, `DocumentPreviewDialog` |
+| Shared UI | `CaseDocumentPanel`, `CaseDocumentItem` — see [MUNICIPAL-UI.md](./MUNICIPAL-UI.md) |
+
+---
+
+## Officer decision & case locking
+
+Population officers review cases against the **four core questions** checklist (`OfficerDecisionChecklist` → `AppChecklist`). Approve, reject, suspend, and confirm registration from the decision section.
+
+Case locking (Phase 8.1) prevents two officers editing the same case: `CaseLockBar` shows a read-only warning; `CaseLockActions` provides Take case / Release lock in the page header.
+
+**Capabilities:** `GetCaseReviewChecklist`, `ApproveCase`, `RejectCase`, `SuspendCase`, `ConfirmRegistration`, `TakeCaseLock`, `ReleaseCaseLock`.
+
+---
+
+## Birth declaration
+
+Separate workflow for newborn registration — child details, parent NR link (`NationalRegisterSearchForm`), medical document, household domicile, officer decision, confirm.
+
+Route: `/birth-declarations` → `/birth-declarations/{id}`.
+
+**Capabilities:** `BirthDeclarationCase` aggregate, `RecordChildDetails`, `LinkParent`, `AttachBirthDocument`, `SetDeclarationHousehold`, `ConfirmBirthDeclaration`. See [phase-12-birth-declaration.md](./phases/phase-12-birth-declaration.md).
+
+---
+
+## Shared Municipal UI layer
+
+Cross-feature components extracted from Registration, Birth declaration, and Change of address live in `Web/Municipal/`. Feature slices pass handlers and DTOs via parameters — no slice-to-slice Razor dependencies.
+
+| Component | Used for |
+|-----------|----------|
+| `BelgianAddressFields` | Domicile input (street autocomplete, number, box) |
+| `NationalRegisterSearchForm` | NR/BIS person search in dialogs |
+| `CaseDocumentPanel` | Document list + inline preview |
+| `OfficerDecisionChecklist` | Four core questions display |
+| `CaseLockBar` / `CaseLockActions` | Officer case locking UX |
+
+Full catalogue: [MUNICIPAL-UI.md](./MUNICIPAL-UI.md).
+
+Form validation uses shared `BelgianAddressRules` and `FluentMudValidation.ToMudValidateValue` to wire slice validators into MudForm inline errors. Date fields use `AppDateField` (`DateOnly` + FluentValidation).
 
 ---
 
@@ -127,11 +167,13 @@ The case detail page uses a **two-column layout**: collapsible intake steps on t
 
 | Item | Route | Purpose |
 |------|-------|---------|
-| Review dashboard | `/registration/review-dashboard` | Population officer landing page and actionable queue (Phase 7 + 12) |
+| Review dashboard | `/registration/review-dashboard` | Population officer landing page and actionable queue |
 | Registration cases | `/registration/cases` | First-registration case list and detail |
 | Birth declarations | `/birth-declarations` | Newborn registration cases (Phase 12) |
+| Change of address | `/change-of-address` | Intra-municipal moves (Phase 13 — in progress) |
 | Police verifications | `/registration/police-verifications` | Police clerk pending queue (Phase 6) |
-| Design system | `/design-system` | Schaerbeek UI kit showcase (Phase 3) |
+| Outbound notifications | `/administration/outbound-notifications` | Stub notification log (Phase 8) |
+| Design system | `/design-system` | Schaerbeek UI kit showcase (Development only) |
 
 Reception officers see **Home** (`/`) and **New case**. Population officers are redirected from `/` to the review dashboard.
 
@@ -141,4 +183,4 @@ The app bar shows a fake officer identity (**Marie Dupont**) and a role switcher
 
 ## What is not built yet
 
-See [ROADMAP.md](./ROADMAP.md) for upcoming phases **13–18** (change of address, passport/ID request, reporting, person file, amendments, optional exception depth).
+See [ROADMAP.md](./ROADMAP.md) for upcoming phases **14–18** (passport/ID request, reporting, person file, amendments, optional exception depth). Phase 13 (change of address) is underway.

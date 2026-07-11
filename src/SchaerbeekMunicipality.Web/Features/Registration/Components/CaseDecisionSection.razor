@@ -25,22 +25,7 @@
     }
     else
     {
-        <MudList T="string" Dense="true" Class="mb-4">
-            @foreach (var question in _checklist.Questions)
-            {
-                <MudListItem Icon="@(question.IsSatisfied ? Icons.Material.Outlined.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)">
-                    <MudText Typo="Typo.body2">
-                        @question.Question
-                        @if (!question.IsSatisfied && !string.IsNullOrWhiteSpace(question.BlockingReason))
-                        {
-                            <MudText Typo="Typo.caption" Color="Color.Secondary" Class="d-block">
-                                @question.BlockingReason
-                            </MudText>
-                        }
-                    </MudText>
-                </MudListItem>
-            }
-        </MudList>
+        <OfficerDecisionChecklist Items="@MapChecklist(_checklist)" />
 
         @if (Case.IllegalStayDetected && Case.Status == RegistrationCaseStatus.UnderReview)
         {
@@ -254,4 +239,9 @@
             _busy = false;
         }
     }
+
+    private static IReadOnlyList<AppChecklistItem> MapChecklist(GetCaseReviewChecklistResponse? checklist) =>
+        checklist?.Questions
+            .Select(q => new AppChecklistItem(q.Question, q.IsSatisfied, q.BlockingReason))
+            .ToList() ?? [];
 }

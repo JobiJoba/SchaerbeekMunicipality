@@ -1,0 +1,70 @@
+<div class="app-file-preview @Class" style="@Style">
+    @if (IsImage(FileName))
+    {
+        <img src="@Url"
+             alt="@FileName"
+             class="app-file-preview__image" />
+    }
+    else if (IsPdf(FileName))
+    {
+        <iframe src="@Url"
+                title="@FileName"
+                class="app-file-preview__frame" />
+    }
+    else
+    {
+        <AppEmptyState Icon="@Icons.Material.Outlined.VisibilityOff"
+                       Title="Preview unavailable"
+                       Description="Download the file to view this document type." />
+    }
+</div>
+
+<style>
+    .app-file-preview {
+        border: 1px solid var(--mud-palette-lines-default);
+        border-radius: 4px;
+        background: var(--mud-palette-background-gray);
+        min-height: 480px;
+        overflow: hidden;
+    }
+
+    .app-file-preview__frame {
+        width: 100%;
+        height: 480px;
+        border: 0;
+        display: block;
+    }
+
+    .app-file-preview__image {
+        width: 100%;
+        height: auto;
+        display: block;
+        max-height: 480px;
+        object-fit: contain;
+    }
+</style>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Url { get; set; } = string.Empty;
+
+    [Parameter, EditorRequired]
+    public string FileName { get; set; } = string.Empty;
+
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+
+    private static bool IsPdf(string fileName) =>
+        fileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase);
+
+    private static bool IsImage(string fileName)
+    {
+        var extension = Path.GetExtension(fileName);
+        return extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase)
+            || extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)
+            || extension.Equals(".png", StringComparison.OrdinalIgnoreCase);
+    }
+}

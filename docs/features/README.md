@@ -52,6 +52,7 @@ flowchart TB
 - **Minimal API** endpoints validate input, map HTTP status codes, then delegate to the same handlers.
 - **Handlers** are thin orchestrators: load aggregate → call domain method → persist → return DTO.
 - **Domain** aggregates enforce state transitions and invariants; handlers never bypass them.
+- **Shared UI** — generic patterns in `DesignSystem/`, municipal domain patterns in `Municipal/` ([MUNICIPAL-UI.md](../MUNICIPAL-UI.md)). Feature slices must not reference each other's components.
 
 ## Registration feature index
 

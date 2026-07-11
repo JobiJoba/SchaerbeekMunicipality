@@ -41,8 +41,9 @@ Birth declaration is a **separate bounded context** — child-centric, not the s
 
 | Document | Purpose |
 |----------|---------|
-| [Application overview](./docs/APP-OVERVIEW.md) | Screenshots and UI tour (partially dated — see roadmap for latest) |
+| [Application overview](./docs/APP-OVERVIEW.md) | Screenshots and UI tour (through Phase 12) |
 | [Architecture](./docs/ARCHITECTURE.md) | Solution layout, vertical slices, DDD boundaries, API and UI conventions |
+| [Municipal UI layer](./docs/MUNICIPAL-UI.md) | Cross-feature Belgian municipal Blazor components (`Web/Municipal/`) |
 | [Domain model](./docs/DOMAIN.md) | Bounded contexts, aggregates, workflows, state machines |
 | [Feature flows](./docs/features/README.md) | Per-slice documentation (registration + birth declaration index) |
 | [Technology stack](./docs/TECH-STACK.md) | Stack choices, libraries, and what we deliberately avoid |
@@ -76,9 +77,13 @@ SchaerbeekMunicipality/
 │   │   └── BirthDeclaration/
 │   ├── SchaerbeekMunicipality.Infrastructure/  # EF Core, file storage, external stubs
 │   └── SchaerbeekMunicipality.Web/             # Blazor UI + Minimal API + feature slices
+│       ├── DesignSystem/                       # Generic App* UI wrappers (Phase 3)
+│       ├── Municipal/                          # Cross-feature Belgian municipal UI
+│       ├── Validation/                         # Shared FluentValidation + MudForm bridge
 │       └── Features/
 │           ├── Registration/                   # First-registration procedures
-│           └── BirthDeclaration/               # Newborn registration (Phase 12)
+│           ├── BirthDeclaration/               # Newborn registration (Phase 12)
+│           └── ChangeOfAddress/                # Intra-municipal moves (Phase 13)
 ├── tests/
 │   ├── SchaerbeekMunicipality.Domain.Tests/
 │   └── SchaerbeekMunicipality.Integration.Tests/
