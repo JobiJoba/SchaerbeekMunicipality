@@ -58,9 +58,30 @@ internal sealed class OutboundNotificationConfiguration : IEntityTypeConfigurati
         builder.Property(n => n.CreatedAt)
             .HasColumnName("created_at");
 
+        builder.Property(n => n.DeliveryStatus)
+            .HasColumnName("delivery_status")
+            .HasConversion(
+                status => status.ToString(),
+                value => Enum.Parse<OutboundNotificationDeliveryStatus>(value))
+            .HasMaxLength(32);
+
+        builder.Property(n => n.AttemptCount)
+            .HasColumnName("attempt_count");
+
+        builder.Property(n => n.NextAttemptAt)
+            .HasColumnName("next_attempt_at");
+
+        builder.Property(n => n.SentAt)
+            .HasColumnName("sent_at");
+
+        builder.Property(n => n.LastError)
+            .HasColumnName("last_error")
+            .HasMaxLength(1000);
+
         builder.HasIndex(n => n.RegistrationCaseId);
         builder.HasIndex(n => n.BirthDeclarationCaseId);
         builder.HasIndex(n => n.ChangeOfAddressCaseId);
         builder.HasIndex(n => n.CreatedAt);
+        builder.HasIndex(n => new { n.DeliveryStatus, n.NextAttemptAt });
     }
 }

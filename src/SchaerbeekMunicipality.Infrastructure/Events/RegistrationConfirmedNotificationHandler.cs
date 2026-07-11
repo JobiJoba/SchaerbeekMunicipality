@@ -37,7 +37,5 @@ public sealed class RegistrationConfirmedNotificationHandler(
         {
             await notificationRepository.AddAsync(notification, cancellationToken);
         }
-
-        await notificationRepository.SaveChangesAsync(cancellationToken);
     }
 }

@@ -36,7 +36,5 @@ public sealed class AddressChangedNotificationHandler(
         {
             await notificationRepository.AddAsync(notification, cancellationToken);
         }
-
-        await notificationRepository.SaveChangesAsync(cancellationToken);
     }
 }

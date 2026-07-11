@@ -12,5 +12,10 @@ public interface IOutboundNotificationRepository
         RegistrationCaseId caseId,
         CancellationToken cancellationToken);
 
+    Task<IReadOnlyList<OutboundNotification>> ClaimPendingBatchAsync(
+        int batchSize,
+        DateTimeOffset now,
+        CancellationToken cancellationToken);
+
     Task SaveChangesAsync(CancellationToken cancellationToken);
 }

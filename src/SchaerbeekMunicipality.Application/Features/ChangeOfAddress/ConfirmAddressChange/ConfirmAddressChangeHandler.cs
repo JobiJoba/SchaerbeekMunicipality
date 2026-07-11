@@ -42,14 +42,14 @@ public sealed class ConfirmAddressChangeHandler(
         var confirmedAt = timeProvider.GetUtcNow();
         var eventDetails = changeOfAddressCase.ConfirmAddressChange(confirmedAt);
 
-        await caseRepository.SaveChangesAsync(cancellationToken);
-
         await domainEventDispatcher.DispatchAsync(
             new AddressChanged(
                 eventDetails.CaseId,
                 eventDetails.PersonId,
                 eventDetails.ConfirmedAt),
             cancellationToken);
+
+        await caseRepository.SaveChangesAsync(cancellationToken);
 
         return new ConfirmAddressChangeResponse(
             changeOfAddressCase.Id.Value,

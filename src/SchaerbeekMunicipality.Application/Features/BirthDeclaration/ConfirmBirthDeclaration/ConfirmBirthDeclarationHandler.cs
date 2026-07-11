@@ -70,8 +70,6 @@ public sealed class ConfirmBirthDeclarationHandler(
             nationalRegisterNumber.Value,
             confirmedAt);
 
-        await caseRepository.SaveChangesAsync(cancellationToken);
-
         await domainEventDispatcher.DispatchAsync(
             new BirthRegistered(
                 eventDetails.CaseId,
@@ -79,6 +77,8 @@ public sealed class ConfirmBirthDeclarationHandler(
                 eventDetails.ChildNationalRegisterNumber,
                 eventDetails.ConfirmedAt),
             cancellationToken);
+
+        await caseRepository.SaveChangesAsync(cancellationToken);
 
         return new ConfirmBirthDeclarationResponse(
             birthDeclarationCase.Id.Value,

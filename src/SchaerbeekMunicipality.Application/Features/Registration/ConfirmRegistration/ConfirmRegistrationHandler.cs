@@ -76,9 +76,6 @@ public sealed class ConfirmRegistrationHandler(
             $"Register: {eventDetails.RegisterTarget}, NR: {assignedNr}",
             cancellationToken);
 
-        await caseRepository.SaveChangesAsync(cancellationToken);
-        await nationalRegisterRepository.SaveChangesAsync(cancellationToken);
-
         await domainEventDispatcher.DispatchAsync(
             new RegistrationConfirmed(
                 eventDetails.CaseId,
@@ -86,6 +83,9 @@ public sealed class ConfirmRegistrationHandler(
                 eventDetails.RegisterTarget,
                 eventDetails.ConfirmedAt),
             cancellationToken);
+
+        await caseRepository.SaveChangesAsync(cancellationToken);
+        await nationalRegisterRepository.SaveChangesAsync(cancellationToken);
 
         return new ConfirmRegistrationResponse(
             registrationCase.Id.Value,

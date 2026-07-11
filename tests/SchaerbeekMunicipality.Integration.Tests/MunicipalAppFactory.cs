@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SchaerbeekMunicipality.Infrastructure.Integrations;
 using SchaerbeekMunicipality.Api.Middleware;
 using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
@@ -34,6 +35,12 @@ public sealed class MunicipalAppFactory : WebApplicationFactory<SchaerbeekMunici
 
             services.AddDbContext<MunicipalDbContext>(options =>
                 options.UseSqlite(_connection));
+
+            services.Configure<IntegrationOutboxOptions>(options =>
+            {
+                options.Enabled = false;
+                options.SimulatedDeliveryDelayMilliseconds = 0;
+            });
         });
     }
 

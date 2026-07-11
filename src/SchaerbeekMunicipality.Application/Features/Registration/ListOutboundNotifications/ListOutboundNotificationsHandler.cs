@@ -17,7 +17,11 @@ public sealed record OutboundNotificationDto(
     Guid PersonId,
     string Recipient,
     string Message,
-    DateTimeOffset CreatedAt);
+    DateTimeOffset CreatedAt,
+    string DeliveryStatus,
+    int AttemptCount,
+    DateTimeOffset? SentAt,
+    string? LastError);
 
 public sealed record ListOutboundNotificationsResponse(
     int TotalCount,
@@ -44,7 +48,11 @@ public sealed class ListOutboundNotificationsHandler(IOutboundNotificationReposi
                     n.PersonId.Value,
                     n.Recipient.ToString(),
                     n.Message,
-                    n.CreatedAt);
+                    n.CreatedAt,
+                    n.DeliveryStatus.ToString(),
+                    n.AttemptCount,
+                    n.SentAt,
+                    n.LastError);
             })
             .ToList();
 

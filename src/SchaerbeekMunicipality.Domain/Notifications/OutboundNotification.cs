@@ -27,6 +27,16 @@ public sealed class OutboundNotification
 
     public DateTimeOffset CreatedAt { get; private set; }
 
+    public OutboundNotificationDeliveryStatus DeliveryStatus { get; private set; }
+
+    public int AttemptCount { get; private set; }
+
+    public DateTimeOffset NextAttemptAt { get; private set; }
+
+    public DateTimeOffset? SentAt { get; private set; }
+
+    public string? LastError { get; private set; }
+
     public static OutboundNotification CreateForRegistration(
         RegistrationCaseId registrationCaseId,
         PersonId personId,
@@ -36,15 +46,14 @@ public sealed class OutboundNotification
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(message);
 
-        return new OutboundNotification
-        {
-            Id = OutboundNotificationId.New(),
-            RegistrationCaseId = registrationCaseId,
-            PersonId = personId,
-            Recipient = recipient,
-            Message = message.Trim(),
-            CreatedAt = createdAt,
-        };
+        return CreatePending(
+            registrationCaseId: registrationCaseId,
+            birthDeclarationCaseId: null,
+            changeOfAddressCaseId: null,
+            personId,
+            recipient,
+            message,
+            createdAt);
     }
 
     public static OutboundNotification CreateForBirthDeclaration(
@@ -56,15 +65,14 @@ public sealed class OutboundNotification
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(message);
 
-        return new OutboundNotification
-        {
-            Id = OutboundNotificationId.New(),
-            BirthDeclarationCaseId = birthDeclarationCaseId,
-            PersonId = personId,
-            Recipient = recipient,
-            Message = message.Trim(),
-            CreatedAt = createdAt,
-        };
+        return CreatePending(
+            registrationCaseId: null,
+            birthDeclarationCaseId,
+            changeOfAddressCaseId: null,
+            personId,
+            recipient,
+            message,
+            createdAt);
     }
 
     public static OutboundNotification CreateForChangeOfAddress(
@@ -76,15 +84,14 @@ public sealed class OutboundNotification
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(message);
 
-        return new OutboundNotification
-        {
-            Id = OutboundNotificationId.New(),
-            ChangeOfAddressCaseId = changeOfAddressCaseId,
-            PersonId = personId,
-            Recipient = recipient,
-            Message = message.Trim(),
-            CreatedAt = createdAt,
-        };
+        return CreatePending(
+            registrationCaseId: null,
+            birthDeclarationCaseId: null,
+            changeOfAddressCaseId,
+            personId,
+            recipient,
+            message,
+            createdAt);
     }
 
     public static OutboundNotification Create(
@@ -99,4 +106,69 @@ public sealed class OutboundNotification
             recipient,
             message,
             createdAt);
+
+    public void MarkProcessing()
+    {
+        if (DeliveryStatus is not OutboundNotificationDeliveryStatus.Pending)
+        {
+            throw new InvalidOperationException(
+                $"Cannot mark notification '{Id}' as processing from status '{DeliveryStatus}'.");
+        }
+
+        DeliveryStatus = OutboundNotificationDeliveryStatus.Processing;
+    }
+
+    public void MarkSent(DateTimeOffset sentAt)
+    {
+        DeliveryStatus = OutboundNotificationDeliveryStatus.Sent;
+        SentAt = sentAt;
+        LastError = null;
+    }
+
+    public void RecordDeliveryFailure(string error, DateTimeOffset now, int maxAttempts)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(error);
+
+        AttemptCount++;
+        LastError = error.Trim();
+
+        if (AttemptCount >= maxAttempts)
+        {
+            DeliveryStatus = OutboundNotificationDeliveryStatus.Failed;
+            return;
+        }
+
+        DeliveryStatus = OutboundNotificationDeliveryStatus.Pending;
+        NextAttemptAt = now + CalculateRetryDelay(AttemptCount);
+    }
+
+    private static OutboundNotification CreatePending(
+        RegistrationCaseId? registrationCaseId,
+        BirthDeclarationCaseId? birthDeclarationCaseId,
+        ChangeOfAddressCaseId? changeOfAddressCaseId,
+        PersonId personId,
+        OutboundNotificationRecipient recipient,
+        string message,
+        DateTimeOffset createdAt)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(message);
+
+        return new OutboundNotification
+        {
+            Id = OutboundNotificationId.New(),
+            RegistrationCaseId = registrationCaseId,
+            BirthDeclarationCaseId = birthDeclarationCaseId,
+            ChangeOfAddressCaseId = changeOfAddressCaseId,
+            PersonId = personId,
+            Recipient = recipient,
+            Message = message.Trim(),
+            CreatedAt = createdAt,
+            DeliveryStatus = OutboundNotificationDeliveryStatus.Pending,
+            AttemptCount = 0,
+            NextAttemptAt = createdAt,
+        };
+    }
+
+    private static TimeSpan CalculateRetryDelay(int attemptCount) =>
+        TimeSpan.FromSeconds(30 * Math.Pow(2, Math.Max(0, attemptCount - 1)));
 }

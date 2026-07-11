@@ -19,6 +19,7 @@ using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
 using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
+using SchaerbeekMunicipality.Infrastructure.Integrations;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -96,6 +97,28 @@ public sealed class CertificatesAndNotificationsTests
             n.Recipient == nameof(OutboundNotificationRecipient.TaxAdministration)
             && n.Message.Contains("tax administration", StringComparison.OrdinalIgnoreCase));
         notifications.Items.Should().OnlyContain(n => n.CaseId == caseId.Value);
+        notifications.Items.Should().OnlyContain(n => n.DeliveryStatus == nameof(OutboundNotificationDeliveryStatus.Pending));
+    }
+
+    [Fact]
+    public async Task ConfirmRegistration_EnqueuedNotifications_AreDeliveredByOutboxProcessor()
+    {
+        await using var factory = new MunicipalAppFactory();
+        await using var scope = factory.Services.CreateAsyncScope();
+        var caseId = await CreateRegisteredCaseAsync(scope.ServiceProvider);
+
+        var listHandler = scope.ServiceProvider.GetRequiredService<ListOutboundNotificationsHandler>();
+        var processor = scope.ServiceProvider.GetRequiredService<IIntegrationOutboxProcessor>();
+
+        var pending = await listHandler.Handle(caseId, CancellationToken.None);
+        pending.Items.Should().OnlyContain(n => n.DeliveryStatus == nameof(OutboundNotificationDeliveryStatus.Pending));
+
+        var processedCount = await processor.ProcessPendingAsync(CancellationToken.None);
+        processedCount.Should().Be(3);
+
+        var delivered = await listHandler.Handle(caseId, CancellationToken.None);
+        delivered.Items.Should().OnlyContain(n => n.DeliveryStatus == nameof(OutboundNotificationDeliveryStatus.Sent));
+        delivered.Items.Should().OnlyContain(n => n.SentAt.HasValue);
     }
 
     [Fact]

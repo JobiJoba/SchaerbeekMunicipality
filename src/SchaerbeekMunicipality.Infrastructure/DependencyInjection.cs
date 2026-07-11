@@ -16,6 +16,7 @@ using SchaerbeekMunicipality.Domain.ReferenceData;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Infrastructure.Certificates;
 using SchaerbeekMunicipality.Infrastructure.Events;
+using SchaerbeekMunicipality.Infrastructure.Integrations;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
 using SchaerbeekMunicipality.Infrastructure.Storage;
@@ -62,6 +63,7 @@ public static class DependencyInjection
         services.AddScoped<IRegistrationConfirmedHandler, RegistrationConfirmedNotificationHandler>();
         services.AddScoped<IBirthRegisteredHandler, BirthRegisteredNotificationHandler>();
         services.AddScoped<IAddressChangedHandler, AddressChangedNotificationHandler>();
+        services.AddIntegrationOutbox();
         services.AddSingleton<ICertificateRenderer, HtmlCertificateRenderer>();
         services.AddSingleton<IDocumentStorage, LocalFileDocumentStorage>();
 

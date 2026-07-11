@@ -31,7 +31,5 @@ public sealed class BirthRegisteredNotificationHandler(
         {
             await notificationRepository.AddAsync(notification, cancellationToken);
         }
-
-        await notificationRepository.SaveChangesAsync(cancellationToken);
     }
 }
