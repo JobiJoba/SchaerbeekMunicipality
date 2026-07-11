@@ -1,19 +1,19 @@
 @page "/birth-declarations/{CaseId:guid}"
 @using SchaerbeekMunicipality.Domain.BirthDeclaration
-@using SchaerbeekMunicipality.Web.Auth
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.AttachDocument
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ClaimBirthDeclarationCase
+@using SchaerbeekMunicipality.Application.Auth
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ClaimBirthDeclarationCase
 @using SchaerbeekMunicipality.Web.Features.BirthDeclaration.Components
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.GetBirthDeclarationCase
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.LinkParent
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.RecordChildDetails
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ReleaseCaseLock
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.RemoveDocument
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.SetDeclarationHousehold
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.UnlinkParent
-@using SchaerbeekMunicipality.Web.Features.Registration
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationCase
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RecordChildDetails
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ReleaseCaseLock
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RemoveDocument
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SetDeclarationHousehold
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.UnlinkParent
+@using SchaerbeekMunicipality.Application.Features.Registration
 @using SchaerbeekMunicipality.Web.Features.Registration.Components
-@using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister
+@using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
 @inject GetBirthDeclarationCaseHandler GetHandler
 @inject ClaimBirthDeclarationCaseHandler ClaimHandler
 @inject ReleaseCaseLockHandler ReleaseLockHandler

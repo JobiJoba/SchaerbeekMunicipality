@@ -3,10 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
-using SchaerbeekMunicipality.Web.Features.Registration.LinkExistingPerson;
-using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
-using SchaerbeekMunicipality.Web.Features.Registration.SearchNationalRegister;
+using SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson;
+using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 

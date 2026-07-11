@@ -6,11 +6,11 @@ using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Integration.Tests.Features.Registration;
-using SchaerbeekMunicipality.Web.Auth;
-using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ClaimChangeOfAddressCase;
-using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.ConfirmAddressChange;
-using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.DeclareNewAddress;
-using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.OpenChangeOfAddressCase;
+using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ClaimChangeOfAddressCase;
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ConfirmAddressChange;
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.DeclareNewAddress;
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.OpenChangeOfAddressCase;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.ChangeOfAddress;
 

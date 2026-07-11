@@ -22,15 +22,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\SchaerbeekMunicipality.Api\SchaerbeekMunicipality.Api.csproj" />
+    <ProjectReference Include="..\..\src\SchaerbeekMunicipality.Application\SchaerbeekMunicipality.Application.csproj" />
     <ProjectReference Include="..\..\src\SchaerbeekMunicipality.Infrastructure\SchaerbeekMunicipality.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\SchaerbeekMunicipality.Web\SchaerbeekMunicipality.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\SchaerbeekMunicipality.Web\SchaerbeekMunicipality.Web.csproj" />
   </ItemGroup>
 
 </Project>

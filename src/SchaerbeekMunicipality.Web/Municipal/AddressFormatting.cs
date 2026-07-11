@@ -1,4 +1,4 @@
-using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 
 namespace SchaerbeekMunicipality.Web.Municipal;
 

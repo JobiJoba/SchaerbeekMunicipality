@@ -4,7 +4,7 @@ using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.DesignSystem.Components.Data;
-using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 
 namespace SchaerbeekMunicipality.Web.Features.Registration.Components;
 

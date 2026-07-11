@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace SchaerbeekMunicipality.Web.Auth;
+namespace SchaerbeekMunicipality.Application.Auth;
 
 internal static class DemoOfficerPersistence
 {

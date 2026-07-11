@@ -5,7 +5,9 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/src/">
+    <Project Path="src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj" />
     <Project Path="src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj" />
+    <Project Path="src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj" />
     <Project Path="src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj" />
     <Project Path="src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj" />
     <Project Path="src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj" />

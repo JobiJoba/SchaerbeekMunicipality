@@ -3,13 +3,13 @@ using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Web.Features.Registration.DeclareAddress;
-using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.ListPendingPoliceVerifications;
-using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult;
-using SchaerbeekMunicipality.Web.Features.Registration.RequestPoliceVerification;
+using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress;
+using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.ListPendingPoliceVerifications;
+using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
+using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 

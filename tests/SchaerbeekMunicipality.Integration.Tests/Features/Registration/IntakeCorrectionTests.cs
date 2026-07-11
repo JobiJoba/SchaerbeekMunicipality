@@ -5,13 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
-using SchaerbeekMunicipality.Web.Features.Registration.CorrectIdentity;
-using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordResidencePermit;
-using SchaerbeekMunicipality.Web.Features.Registration.SetResidenceCategory;
+using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
+using SchaerbeekMunicipality.Application.Features.Registration.CorrectIdentity;
+using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordResidencePermit;
+using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 

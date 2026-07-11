@@ -1,17 +1,17 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Web.Auth;
-using SchaerbeekMunicipality.Web.Features.BirthDeclaration.OpenBirthDeclarationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.ClaimRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.GetRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.ListCaseAudit;
-using SchaerbeekMunicipality.Web.Features.Registration.ListRegistrationCases;
-using SchaerbeekMunicipality.Web.Features.Registration.GetReviewDashboard;
-using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
-using SchaerbeekMunicipality.Web.Features.Registration.ReleaseCaseLock;
-using SchaerbeekMunicipality.Web.Features.Registration;
+using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.OpenBirthDeclarationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.ClaimRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.ListCaseAudit;
+using SchaerbeekMunicipality.Application.Features.Registration.ListRegistrationCases;
+using SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard;
+using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Application.Features.Registration.ReleaseCaseLock;
+using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 

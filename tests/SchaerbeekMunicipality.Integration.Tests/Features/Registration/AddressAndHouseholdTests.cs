@@ -4,12 +4,12 @@ using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Web.Features.Registration.DeclareAddress;
-using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordCivilStatus;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordHouseholdComposition;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordHousingSituation;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress;
+using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordCivilStatus;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordHouseholdComposition;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordHousingSituation;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 

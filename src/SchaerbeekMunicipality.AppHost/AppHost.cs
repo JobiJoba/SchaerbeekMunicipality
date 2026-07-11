@@ -4,8 +4,13 @@ var postgres = builder.AddPostgres("postgres")
     .WithDataVolume()
     .AddDatabase("schaerbeek");
 
-builder.AddProject<Projects.SchaerbeekMunicipality_Web>("web")
+var api = builder.AddProject<Projects.SchaerbeekMunicipality_Api>("api")
     .WithReference(postgres)
     .WaitFor(postgres);
+
+builder.AddProject<Projects.SchaerbeekMunicipality_Web>("web")
+    .WithReference(postgres)
+    .WithReference(api)
+    .WaitFor(api);
 
 builder.Build().Run();

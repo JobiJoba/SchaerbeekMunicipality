@@ -4,15 +4,15 @@ using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Web.Auth;
-using SchaerbeekMunicipality.Web.Features.BirthDeclaration.ConfirmBirthDeclaration;
-using SchaerbeekMunicipality.Web.Features.BirthDeclaration.LinkParent;
-using SchaerbeekMunicipality.Web.Features.BirthDeclaration.OpenBirthDeclarationCase;
-using SchaerbeekMunicipality.Web.Features.BirthDeclaration.RecordChildDetails;
-using SchaerbeekMunicipality.Web.Features.BirthDeclaration.SetDeclarationHousehold;
-using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ConfirmBirthDeclaration;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.OpenBirthDeclarationCase;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RecordChildDetails;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SetDeclarationHousehold;
+using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Integration.Tests.Features.Registration;
-using SchaerbeekMunicipality.Web.Features.BirthDeclaration.AttachDocument;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.BirthDeclaration;
 

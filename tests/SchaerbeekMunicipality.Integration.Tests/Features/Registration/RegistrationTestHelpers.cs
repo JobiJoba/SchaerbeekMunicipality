@@ -3,12 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Web.Auth;
-using SchaerbeekMunicipality.Web.Features.Registration.AttachDocument;
-using SchaerbeekMunicipality.Web.Features.Registration.ClaimRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.OpenRegistrationCase;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordBirthInformation;
-using SchaerbeekMunicipality.Web.Features.Registration.RecordPoliceResult;
+using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
+using SchaerbeekMunicipality.Application.Features.Registration.ClaimRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordBirthInformation;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 

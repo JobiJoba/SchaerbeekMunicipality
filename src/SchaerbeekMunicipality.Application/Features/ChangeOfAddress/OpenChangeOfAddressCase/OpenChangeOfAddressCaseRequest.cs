@@ -1,0 +1,3 @@
+namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.OpenChangeOfAddressCase;
+
+public sealed record OpenChangeOfAddressCaseRequest(Guid PersonId);
