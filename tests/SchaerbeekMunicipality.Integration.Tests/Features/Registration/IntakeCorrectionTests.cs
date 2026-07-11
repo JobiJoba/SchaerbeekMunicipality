@@ -21,7 +21,7 @@ public sealed class IntakeCorrectionTests
     public async Task PutIdentity_CorrectsNameAndKeepsChecklist()
     {
         await using var factory = new MunicipalAppFactory();
-        using var client = factory.CreateClient();
+        using var client = DemoOfficerTestClient.Create(factory);
 
         var caseId = await CreateCaseWithIdentityAsync(client);
 
@@ -63,7 +63,7 @@ public sealed class IntakeCorrectionTests
             stream,
             CancellationToken.None);
 
-        using var client = factory.CreateClient();
+        using var client = DemoOfficerTestClient.Create(factory);
         var deleteResponse = await client.DeleteAsync(
             $"/api/registration/cases/{caseId.Value}/documents/{attached.DocumentId}");
 
@@ -135,7 +135,7 @@ public sealed class IntakeCorrectionTests
             .SetValue(registrationCase, RegistrationCaseStatus.Approved);
         await caseRepo.SaveChangesAsync(CancellationToken.None);
 
-        using var client = factory.CreateClient();
+        using var client = DemoOfficerTestClient.Create(factory);
         var response = await client.PutAsJsonAsync(
             $"/api/registration/cases/{caseId.Value}/identity",
             new RecordIdentityRequest("Jean", "Vermeulen", new DateOnly(1988, 11, 5), "Belgian"));

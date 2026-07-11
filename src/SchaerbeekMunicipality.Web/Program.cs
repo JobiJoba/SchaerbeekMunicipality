@@ -1,6 +1,5 @@
 using MudBlazor.Services;
-using SchaerbeekMunicipality.Application;
-using SchaerbeekMunicipality.Infrastructure;
+using SchaerbeekMunicipality.Web;
 using SchaerbeekMunicipality.Web.Api;
 using SchaerbeekMunicipality.Web.Components;
 using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs;
@@ -8,8 +7,7 @@ using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
-builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddApplication();
+builder.Services.AddWebPresentation();
 builder.Services.AddMunicipalApiClients(builder.Environment);
 
 builder.Services.AddRazorComponents()

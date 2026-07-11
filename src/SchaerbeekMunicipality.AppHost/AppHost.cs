@@ -9,7 +9,6 @@ var api = builder.AddProject<Projects.SchaerbeekMunicipality_Api>("api")
     .WaitFor(postgres);
 
 builder.AddProject<Projects.SchaerbeekMunicipality_Web>("web")
-    .WithReference(postgres)
     .WithReference(api)
     .WithDeveloperCertificateTrust(true)
     .WaitFor(api);

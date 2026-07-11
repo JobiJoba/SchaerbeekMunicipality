@@ -16,7 +16,7 @@ public sealed class RegistrationApiTests
     public async Task PostCases_ValidRequest_ReturnsCreated()
     {
         await using var factory = new MunicipalAppFactory();
-        using var client = factory.CreateClient();
+        using var client = DemoOfficerTestClient.Create(factory);
 
         var response = await client.PostAsJsonAsync(
             "/api/registration/cases",
@@ -29,7 +29,7 @@ public sealed class RegistrationApiTests
     public async Task PostCasesIdentity_ValidRequest_ReturnsOk()
     {
         await using var factory = new MunicipalAppFactory();
-        using var client = factory.CreateClient();
+        using var client = DemoOfficerTestClient.Create(factory);
 
         var createResponse = await client.PostAsJsonAsync(
             "/api/registration/cases",
@@ -51,7 +51,7 @@ public sealed class RegistrationApiTests
     public async Task PostResidenceCategory_EuCitizen_ReturnsOkWithLegalResidenceEstablished()
     {
         await using var factory = new MunicipalAppFactory();
-        using var client = factory.CreateClient();
+        using var client = DemoOfficerTestClient.Create(factory);
 
         var caseId = await CreateCaseWithIdentityAsync(client);
 
@@ -70,7 +70,7 @@ public sealed class RegistrationApiTests
     public async Task PostResidencePermit_NonEuWorker_ReturnsOk()
     {
         await using var factory = new MunicipalAppFactory();
-        using var client = factory.CreateClient();
+        using var client = DemoOfficerTestClient.Create(factory);
 
         var caseId = await CreateCaseWithIdentityAsync(client);
 

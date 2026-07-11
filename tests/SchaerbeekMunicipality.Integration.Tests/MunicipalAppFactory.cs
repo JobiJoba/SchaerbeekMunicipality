@@ -37,6 +37,8 @@ public sealed class MunicipalAppFactory : WebApplicationFactory<SchaerbeekMunici
         });
     }
 
+    public HttpClient CreateApiClient() => DemoOfficerTestClient.Create(this);
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -50,11 +52,28 @@ public sealed class MunicipalAppFactory : WebApplicationFactory<SchaerbeekMunici
 
 public static class DemoOfficerTestClient
 {
-    public static HttpClient Create(MunicipalAppFactory factory) =>
-        factory.CreateClient(new WebApplicationFactoryClientOptions
+    public static HttpClient Create(MunicipalAppFactory factory)
+    {
+        var client = factory.CreateClient(new WebApplicationFactoryClientOptions
         {
             AllowAutoRedirect = false,
         });
+        ApplyDefaultOfficerHeaders(client);
+        return client;
+    }
+
+    public static void ApplyDefaultOfficerHeaders(HttpClient client)
+    {
+        client.DefaultRequestHeaders.Add(
+            DemoOfficerHeaders.OfficerId,
+            CurrentOfficer.PopulationOfficerId.ToString());
+        client.DefaultRequestHeaders.Add(
+            DemoOfficerHeaders.OfficerRole,
+            OfficerRole.PopulationOfficer.ToString());
+        client.DefaultRequestHeaders.Add(
+            DemoOfficerHeaders.OfficerName,
+            DemoOfficers.Marie.DisplayName);
+    }
 
     public static void ApplyDefaultOfficerHeaders(HttpRequestMessage request)
     {
