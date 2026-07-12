@@ -4,7 +4,7 @@ An educational .NET project that simulates the **Population Department** of a Be
 
 This is **not** a production system. It simplifies Belgian law and inter-administration integrations while preserving the *shape* of real municipal work: identity verification, legal residence, address confirmation, register assignment, audit trails, and role-based officer UX.
 
-**Progress:** Phases **0–12** are complete (see [ROADMAP](./docs/ROADMAP.md)). Next up: change of address, passport/ID requests, reporting, person file.
+**Progress:** Phases **0–13** are complete (see [ROADMAP](./docs/ROADMAP.md)). Next up: passport/ID requests, reporting, person file.
 
 <!-- Uncomment after publishing to GitHub (replace YOUR_GITHUB_USER):
 [![CI](https://github.com/YOUR_GITHUB_USER/SchaerbeekMunicipality/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USER/SchaerbeekMunicipality/actions/workflows/ci.yml)
@@ -20,7 +20,8 @@ This is **not** a production system. It simplifies Belgian law and inter-adminis
 | **Role boundaries** | Reception, population officer, and police clerk roles with claim/lock on cases |
 | **Review dashboard** | KPI tiles and unified **Needs my attention** queue (registration + birth declaration) |
 | **Birth declaration** | Separate `BirthDeclarationCase` workflow — child details, parent NR link, medical document, household, confirm |
-| **Certificates & stubs** | Residence certificate, household composition, outbound notification log |
+| **Change of address** | `ChangeOfAddressCase` for registered residents — NR lookup, new address, household delta, police verification, confirm domicile |
+| **Certificates & stubs** | Residence certificate, household composition, outbound notification log with transactional outbox delivery |
 | **Exception scenarios** | Duplicate investigation, immigration decision, birth information on applicant, etc. |
 | **Azure deploy** | Container Apps + SQLite (default) or PostgreSQL profile |
 
@@ -47,9 +48,10 @@ Birth declaration is a **separate bounded context** — child-centric, not the s
 | [Domain model](./docs/DOMAIN.md) | Bounded contexts, aggregates, workflows, state machines |
 | [Feature flows](./docs/features/README.md) | Per-slice documentation (registration + birth declaration index) |
 | [Technology stack](./docs/TECH-STACK.md) | Stack choices, libraries, and what we deliberately avoid |
-| [Roadmap](./docs/ROADMAP.md) | Phased delivery plan — phases 0–12 complete, 13–18 planned |
+| [Roadmap](./docs/ROADMAP.md) | Phased delivery plan — phases 0–13 complete, 14–18 planned |
 | [Phase delivery notes](./docs/phases/) | What was built in each completed phase |
-| [Testing strategy](./docs/TESTING.md) | Unit, integration, and UI test approach |
+| [Testing strategy](./docs/TESTING.md) | Unit, integration, E2E, and UI test approach |
+| [E2E tests](./tests/SchaerbeekMunicipality.E2E.Tests/README.md) | Playwright setup, journeys, and CI |
 | [Continuous integration](./docs/CI.md) | GitHub Actions (build, test, container publish) |
 | [Decision records](./docs/adr/) | Architecture Decision Records for key choices |
 | [Glossary](./docs/GLOSSARY.md) | Belgian administrative terminology used in the codebase |
@@ -58,11 +60,12 @@ Birth declaration is a **separate bounded context** — child-centric, not the s
 ## Technology (summary)
 
 - .NET 10, C#, Blazor Web App (Interactive Server), MudBlazor
-- **.NET Aspire** — local orchestration, dashboard, and service wiring (AppHost + ServiceDefaults)
-- Minimal API endpoints co-hosted with the Blazor app
+- **.NET Aspire** — local orchestration of **Web (BFF) + Api + PostgreSQL** (AppHost + ServiceDefaults)
+- **Backend split:** `Application` (handlers, validators, auth guards) + `Api` (Minimal API HTTP adapter) + `Web` (Blazor UI with typed HttpClients)
 - Vertical Slice Architecture with lightweight DDD
 - EF Core — **PostgreSQL** locally via Aspire; **SQLite** in tests and default Azure production deploy
 - FluentValidation
+- Playwright E2E tests for critical officer journeys (see [E2E README](./tests/SchaerbeekMunicipality.E2E.Tests/README.md))
 - MediatR **only when** cross-cutting pipelines justify it (see [TECH-STACK.md](./docs/TECH-STACK.md))
 
 ## Solution layout
@@ -70,48 +73,50 @@ Birth declaration is a **separate bounded context** — child-centric, not the s
 ```
 SchaerbeekMunicipality/
 ├── src/
-│   ├── SchaerbeekMunicipality.AppHost/         # .NET Aspire orchestrator (start here)
+│   ├── SchaerbeekMunicipality.AppHost/         # .NET Aspire orchestrator (Web + Api + PostgreSQL)
 │   ├── SchaerbeekMunicipality.ServiceDefaults/ # Shared observability, health, resilience
 │   ├── SchaerbeekMunicipality.Domain/          # Aggregates, value objects, domain events
-│   │   ├── Registration/
-│   │   └── BirthDeclaration/
-│   ├── SchaerbeekMunicipality.Infrastructure/  # EF Core, file storage, external stubs
-│   └── SchaerbeekMunicipality.Web/             # Blazor UI + Minimal API + feature slices
+│   ├── SchaerbeekMunicipality.Application/     # Handlers, validators, auth guards (vertical slices)
+│   ├── SchaerbeekMunicipality.Infrastructure/  # EF Core, repositories, outbox, file storage
+│   ├── SchaerbeekMunicipality.Api/             # Minimal API HTTP adapter → Application handlers
+│   └── SchaerbeekMunicipality.Web/             # Blazor BFF — pages + typed HttpClients → Api
+│       ├── Api/                                # IRegistrationApi, IBirthDeclarationApi, …
 │       ├── DesignSystem/                       # Generic App* UI wrappers (Phase 3)
 │       ├── Municipal/                          # Cross-feature Belgian municipal UI
 │       ├── Validation/                         # Shared FluentValidation + MudForm bridge
 │       └── Features/
-│           ├── Registration/                   # First-registration procedures
-│           ├── BirthDeclaration/               # Newborn registration (Phase 12)
-│           └── ChangeOfAddress/                # Intra-municipal moves (Phase 13)
+│           ├── Registration/                   # First-registration UI
+│           ├── BirthDeclaration/               # Newborn registration UI (Phase 12)
+│           └── ChangeOfAddress/                # Intra-municipal moves UI (Phase 13)
 ├── tests/
 │   ├── SchaerbeekMunicipality.Domain.Tests/
-│   └── SchaerbeekMunicipality.Integration.Tests/
+│   ├── SchaerbeekMunicipality.Integration.Tests/  # Handlers + Api via WebApplicationFactory
+│   └── SchaerbeekMunicipality.E2E.Tests/       # Playwright browser journeys
 └── docs/
     └── phases/                                 # Delivery notes per roadmap phase
 ```
 
-Feature code lives in **vertical slices** inside `Web/Features/{Context}/{UseCase}/`, not in horizontal “Services” or “Repositories” folders.
+Use cases live in **vertical slices** under `Application/Features/{Context}/{UseCase}/`. The **Api** project maps HTTP routes to those handlers; **Web** calls the Api through typed clients — no direct Infrastructure reference in Web.
 
 ## Getting started
 
 ```bash
 dotnet restore
 dotnet build
-dotnet test                    # 159 tests (domain + integration, SQLite)
+dotnet test --filter "Category!=E2E"   # 171 tests (domain + integration, SQLite)
 dotnet run --project src/SchaerbeekMunicipality.AppHost
 ```
 
 **Prerequisites:** .NET 10 SDK and Docker (for the PostgreSQL container started by AppHost).
 
 1. Open the **Aspire dashboard** (URL printed in the terminal, typically `https://localhost:17148`).
-2. Confirm **Web** and **PostgreSQL** are healthy.
+2. Confirm **web**, **api**, and **postgres** are healthy.
 3. Open the Web app (typically `http://localhost:5155`).
 4. Use the **role switcher** in the app bar: Marie Dupont (population), Jean Martin (reception), Luc Bernard (police).
 
-**Stop the app with Ctrl+C** — not Ctrl+Z. Suspending AppHost leaves child processes (Web, Aspire dashboard) running in the background.
+**Stop the app with Ctrl+C** — not Ctrl+Z. Suspending AppHost leaves child processes (Web, Api, Aspire dashboard) running in the background.
 
-Integration tests run against `Web` directly (SQLite, no AppHost). Day-to-day development uses AppHost.
+Integration tests run against **Api** directly (SQLite, no AppHost). E2E tests spin up Api + Web in-process with Playwright — see [E2E README](./tests/SchaerbeekMunicipality.E2E.Tests/README.md). Day-to-day development uses AppHost.
 
 ### Quick demo paths
 
@@ -120,6 +125,7 @@ Integration tests run against `Web` directly (SQLite, no AppHost). Day-to-day de
 | Reception | New case | Open first registration or birth declaration → hand off to population |
 | Population | Review dashboard | Claim unassigned case → complete intake → approve → confirm registration |
 | Population | Birth declarations | Record child → link parent via NR search → attach medical PDF → confirm |
+| Population | Change of address | NR search for registered person → open case → declare new address → confirm |
 | Police | Police verifications | Complete a pending residence check |
 
 ## Deploy to Azure (optional)

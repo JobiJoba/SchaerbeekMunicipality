@@ -6,9 +6,11 @@ Testing supports learning and safe refactoring as the municipality project grows
 
 ```
         ┌─────────────┐
+        │ E2E (Playwright) │  few, critical officer journeys
+        ├─────────────┤
         │  UI (bUnit) │  few, high-value components
         ├─────────────┤
-        │ Integration │  handlers + EF + API
+        │ Integration │  handlers + EF + Api
         ├─────────────┤
         │   Domain    │  many, fast, no I/O
         └─────────────┘
@@ -17,15 +19,16 @@ Testing supports learning and safe refactoring as the municipality project grows
 | Layer | Project | Speed | I/O |
 |-------|---------|-------|-----|
 | Domain unit | `Domain.Tests` | ms | None |
-| Integration (handlers, API, EF) | `Integration.Tests` | seconds | SQLite via WebApplicationFactory |
+| Integration (handlers, Api, EF) | `Integration.Tests` | seconds | SQLite via WebApplicationFactory on **Api** |
 | Migration validation | `Integration.Tests` (`Category=PostgreSQL`) | tens of seconds | Testcontainers PostgreSQL |
 | Blazor component (selective) | `Integration.Tests` | seconds | bUnit |
+| End-to-end (browser) | `E2E.Tests` | seconds | Playwright against in-process Api + Web |
 
-Two test projects only — API tests and handler tests overlap heavily (both use `WebApplicationFactory`), so they live together in `Integration.Tests` rather than a separate `Web.Tests` project.
+Three test projects for application code — API tests and handler tests overlap heavily (both use `WebApplicationFactory` on **Api**), so they live together in `Integration.Tests` rather than a separate `Web.Tests` project.
 
-**Target:** Domain tests for every invariant; at least one integration test per vertical slice; API test for each Minimal API route.
+**Target:** Domain tests for every invariant; at least one integration test per vertical slice; API test for each Minimal API route; E2E smoke for each major officer journey.
 
-**Fast suite (Phase 5):** `dotnet test --filter "Category!=PostgreSQL"` — **90 tests** (38 domain + 52 integration).
+**Fast suite:** `dotnet test --filter "Category!=E2E"` — **171 tests** (76 domain + 95 integration). E2E adds **7** Playwright journeys.
 
 ---
 
@@ -80,7 +83,7 @@ Place in `Domain.Tests/Builders/` — keep construction DRY without polluting pr
 
 **Setup:**
 
-- `WebApplicationFactory` hosts `Web` directly — **not** via AppHost (keeps the default suite fast and Docker-free).
+- `WebApplicationFactory` hosts **Api** directly — **not** via AppHost (keeps the default suite fast and Docker-free).
 - SQLite `:memory:` with `EnsureCreated()` — schema created from the EF model, **not** from migrations.
 - Replace `IDocumentStorage` with temp folder implementation.
 - Fixed `TimeProvider` for deterministic timestamps.
@@ -175,6 +178,31 @@ public async Task Post_Cases_Returns201()
 
 ---
 
+## E2E tests (`SchaerbeekMunicipality.E2E.Tests`)
+
+**Purpose:** Prove critical officer journeys through a real browser against the Blazor Server BFF and Api.
+
+**Setup:**
+
+- In-process **Api** + **Web** test hosts (no Docker, no AppHost).
+- Playwright drives Chromium; demo officer identity via `?demoOfficer={guid}`.
+- API seeding helpers prepare cases before browser navigation where the UI path is too long.
+
+**What to test:**
+
+- Happy-path journeys per bounded context (registration intake/confirm, birth declaration, change of address)
+- Role boundary checks (e.g. reception blocked from case list)
+
+**Run locally:**
+
+```bash
+dotnet test tests/SchaerbeekMunicipality.E2E.Tests --filter "Category=E2E"
+```
+
+See [tests/SchaerbeekMunicipality.E2E.Tests/README.md](../tests/SchaerbeekMunicipality.E2E.Tests/README.md) for Playwright browser install and CI notes.
+
+---
+
 ## Naming conventions
 
 ```
@@ -229,11 +257,14 @@ Use coverage tools optionally to find untested domain branches.
 ## Running tests
 
 ```bash
-# All tests
-dotnet test
+# Fast suite (domain + integration, no E2E)
+dotnet test --filter "Category!=E2E"
 
 # Domain only (fast feedback)
 dotnet test tests/SchaerbeekMunicipality.Domain.Tests
+
+# E2E (requires Playwright browsers — see E2E README)
+dotnet test tests/SchaerbeekMunicipality.E2E.Tests --filter "Category=E2E"
 
 # Watch mode during development
 dotnet watch test --project tests/SchaerbeekMunicipality.Domain.Tests
@@ -243,12 +274,12 @@ dotnet watch test --project tests/SchaerbeekMunicipality.Domain.Tests
 
 ## CI pipeline
 
-GitHub Actions runs on every push and PR to `main`. See [CI.md](./CI.md) for the build/test workflow, container publish to GHCR, and PostgreSQL migration job.
+GitHub Actions runs on every push and PR to `main`. See [CI.md](./CI.md) for the build/test workflow, Playwright E2E job, container publish to GHCR, and PostgreSQL migration job.
 
 ```bash
 dotnet restore
 dotnet build --configuration Release
-dotnet test --configuration Release --verbosity normal
+dotnet test --configuration Release --verbosity normal --filter "Category!=E2E"
 ```
 
 ---

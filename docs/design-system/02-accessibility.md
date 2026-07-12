@@ -79,4 +79,4 @@ Token pairs asserted ≥ 4.5:1 in unit tests (see Phase 3 plan): `TextPrimary`/`
 | Static | bUnit assertions on wrapper markup (labels, roles, aria attributes present) |
 | Tokens | xUnit contrast-ratio tests on the palette |
 | Manual per phase | Keyboard-only demo walkthrough; browser dev-tools accessibility tree spot check |
-| Future | Playwright + axe-core scan on the style-guide page (`/design-system`) — recommended when E2E tests arrive |
+| Future | Playwright + axe-core scan on the style-guide page (`/design-system`) — E2E tests exist; add axe-core when prioritizing accessibility automation |

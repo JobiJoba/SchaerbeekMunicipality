@@ -111,7 +111,7 @@ Rules:
 ## Future recommendations
 
 1. **CSS isolation audit** — as pages migrate, delete leftover per-page styles (`RegistrationCaseList` header CSS, etc.); target: `app.css` + theme covers everything global.
-2. **Playwright + axe-core** on `/design-system` and the two main workflows once E2E testing lands (Phase 10 CI hardening is a natural slot).
+2. **Playwright + axe-core** on `/design-system` and the two main workflows — E2E infrastructure is in place; accessibility scans are the next increment.
 3. **FR/NL localization** (Phase 11) — the kit is string-free by design; introduce `IStringLocalizer` at the page level and localized `DisplayName` mappings for status chips.
 4. **Dark-mode toggle** — `PaletteDark` ships with the theme; expose a `MudThemeProvider @bind-IsDarkMode` toggle in the app bar when officers ask.
 5. **Density switch** — if certificate/citizen-facing screens appear (Phase 8), consider a `Comfortable` density context for those pages instead of new components.

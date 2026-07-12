@@ -1,6 +1,6 @@
 # Phase 13 — Change of address
 
-- **Status:** Planned
+- **Status:** Complete
 - **Goal:** Handle a **registered resident** moving to a new address **within the municipality** (or reporting arrival from another Belgian municipality in simplified form).
 - **Maps to IDEA:** Reception visit reason “Change of address”; domicile update without repeating full first registration.
 
@@ -10,7 +10,7 @@
 
 A resident who already has a National Register number requests a domicile change. Officers verify identity, record the **new Belgian address**, update **household composition** if needed, optionally trigger a **police verification** for the new address (reuse Phase 6 loop in a lighter form), and confirm the register update.
 
-`VisitReason.ChangeOfAddress` exists today but only as a reception label — Phase 13 delivers the workflow.
+Delivered as a separate bounded context with `ChangeOfAddressCase`, Api endpoints, Blazor UI, and Playwright E2E coverage for the NR-search → open-case journey.
 
 ---
 

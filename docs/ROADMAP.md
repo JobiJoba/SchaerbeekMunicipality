@@ -26,7 +26,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 10 | Azure deployment | ✅ Complete |
 | 11 | Extended municipality (scope definition) | ✅ Complete |
 | 12 | Birth declaration | ✅ Complete |
-| 13 | Change of address | Planned |
+| 13 | Change of address | ✅ Complete |
 | 14 | Passport / ID card request | Planned |
 | 15 | Reporting dashboard | Planned |
 | 16 | Person file (read model) | Planned |
@@ -511,13 +511,15 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 
 ---
 
-## Phase 13 — Change of address
+## Phase 13 — Change of address ✅
 
-**Status:** Planned — see [phases/phase-13-change-of-address.md](./phases/phase-13-change-of-address.md).
+**Status:** Complete — see [phases/phase-13-change-of-address.md](./phases/phase-13-change-of-address.md).
 
 **Goal:** Registered resident moves within the municipality — `ChangeOfAddressCase` aggregate, new address, optional police verification, domicile update.
 
 **Demo:** NR lookup → new Schaerbeek address → police confirms → person domicile updated.
+
+**Tests:** Domain and integration tests cover the full workflow; E2E covers NR search → open case.
 
 ---
 

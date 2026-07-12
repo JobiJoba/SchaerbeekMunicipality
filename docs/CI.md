@@ -14,7 +14,8 @@ File: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
 | Setup .NET 10 | Install SDK via `actions/setup-dotnet` |
 | Restore | `dotnet restore` |
 | Build | `dotnet build --configuration Release` |
-| Test | `dotnet test --configuration Release` |
+| Test | `dotnet test --configuration Release --filter "Category!=E2E"` |
+| E2E (separate job) | Playwright browser install + `Category=E2E` tests |
 
 No Aspire workload step: since Aspire 9, hosting and integration libraries ship as regular NuGet packages, so `dotnet restore` is sufficient to build `AppHost`.
 
@@ -25,6 +26,8 @@ Triggers:
 
 Concurrent runs on the same branch are cancelled when a newer commit is pushed.
 
+The **E2E (Playwright)** job runs after the fast suite passes. It installs Chromium with system dependencies and executes the seven browser journeys in `SchaerbeekMunicipality.E2E.Tests`.
+
 ## What CI does not run
 
 By design, CI stays fast and Docker-free:
@@ -32,8 +35,8 @@ By design, CI stays fast and Docker-free:
 | Not in CI | Reason |
 |-----------|--------|
 | .NET Aspire AppHost | Local dev orchestration only |
-| PostgreSQL container | Integration tests use SQLite via `WebApplicationFactory` |
-| `dotnet run` | No smoke test against a live server in Phase 0 (add later if needed) |
+| PostgreSQL container | Integration tests use SQLite via `WebApplicationFactory` on **Api** |
+| `dotnet run` smoke test | Covered by Playwright E2E job instead |
 
 See [TESTING.md](./TESTING.md) for the test strategy.
 
@@ -44,8 +47,16 @@ Run the same commands locally before pushing:
 ```bash
 dotnet restore
 dotnet build --configuration Release
-dotnet test --configuration Release --verbosity normal
+dotnet test --configuration Release --verbosity normal --filter "Category!=E2E"
 ```
+
+E2E tests (Playwright, slower):
+
+```bash
+dotnet test tests/SchaerbeekMunicipality.E2E.Tests --configuration Release --filter "Category=E2E"
+```
+
+See [tests/SchaerbeekMunicipality.E2E.Tests/README.md](../tests/SchaerbeekMunicipality.E2E.Tests/README.md) for browser install.
 
 ## Status badge
 
