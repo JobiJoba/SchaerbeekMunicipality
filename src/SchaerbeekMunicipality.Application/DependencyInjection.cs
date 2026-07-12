@@ -81,6 +81,10 @@ using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCateg
 using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase;
 using SchaerbeekMunicipality.Application.Features.Reporting;
 using SchaerbeekMunicipality.Application.Features.Reporting.GetMunicipalityReport;
+using SchaerbeekMunicipality.Application.Features.PersonFile;
+using SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile;
+using SchaerbeekMunicipality.Application.Features.PersonFile.ListPersonCases;
+using SchaerbeekMunicipality.Application.Features.PersonFile.SearchPersonFile;
 
 namespace SchaerbeekMunicipality.Application;
 
@@ -179,6 +183,10 @@ public static class DependencyInjection
         services.AddScoped<DocumentRequestCaseGuard>();
         services.AddScoped<ReportingAuthorization>();
         services.AddScoped<GetMunicipalityReportHandler>();
+        services.AddScoped<PersonFileAuthorization>();
+        services.AddScoped<GetPersonFileHandler>();
+        services.AddScoped<SearchPersonFileHandler>();
+        services.AddScoped<ListPersonCasesHandler>();
         services.AddScoped<OpenDocumentRequestCaseHandler>();
         services.AddScoped<ListDocumentRequestCasesHandler>();
         services.AddScoped<GetDocumentRequestCaseHandler>();

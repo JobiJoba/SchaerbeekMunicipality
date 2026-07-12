@@ -123,6 +123,11 @@
                                                        Size="Size.Small"
                                                        OnClick="@(() => UnlinkParent(parent.PersonId))"/>
                                     }
+                                    <MudButton Variant="Variant.Text"
+                                               Size="Size.Small"
+                                               Href="@($"/persons/{parent.PersonId}")">
+                                        View person file
+                                    </MudButton>
                                 </MudStack>
                             }
                             @if (_case.CanEdit)

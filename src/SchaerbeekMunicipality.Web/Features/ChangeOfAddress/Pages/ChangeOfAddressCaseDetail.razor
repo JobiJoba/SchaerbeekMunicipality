@@ -48,6 +48,12 @@
                                      CanEdit="_case.CanEdit"
                                      OnTakeCase="TakeCase"
                                      OnReleaseLock="ReleaseLock" />
+                    <MudButton Variant="Variant.Outlined"
+                               Color="Color.Primary"
+                               StartIcon="@Icons.Material.Outlined.Person"
+                               Href="@($"/persons/{_case.PersonId}")">
+                        View person file
+                    </MudButton>
                     <MudButton Variant="Variant.Text"
                                StartIcon="@Icons.Material.Outlined.ArrowBack"
                                OnClick="@(() => Navigation.NavigateTo("/change-of-address"))">

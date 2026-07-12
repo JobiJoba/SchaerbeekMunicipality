@@ -1,0 +1,23 @@
+@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
+
+<MudGrid Spacing="3">
+    @foreach (var item in Items)
+    {
+        <MudItem xs="12" sm="6">
+            <MudStack Spacing="0">
+                <MudText Typo="Typo.subtitle2" Color="Color.Secondary">@item.Label</MudText>
+                <MudText Typo="Typo.body1">@FormatValue(item.Value)</MudText>
+            </MudStack>
+        </MudItem>
+    }
+</MudGrid>
+
+@code {
+    [Parameter, EditorRequired]
+    public IReadOnlyList<AppPropertyGridItem> Items { get; set; } = [];
+
+    public sealed record AppPropertyGridItem(string Label, string? Value);
+
+    private static string FormatValue(string? value) =>
+        string.IsNullOrWhiteSpace(value) ? "—" : value;
+}

@@ -1,0 +1,75 @@
+@page "/persons/search"
+@using SchaerbeekMunicipality.Application.Features.PersonFile.SearchPersonFile
+@using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
+@using SchaerbeekMunicipality.Web.Api.PersonFile
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@inject IPersonFileApi PersonFileApi
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]"
+                      RedirectTo="/registration/cases">
+    <AppPage Title="Person lookup">
+        <AppPageHeader Title="Person lookup"
+                       Subtitle="Search the National Register and open a consolidated person file for registered citizens." />
+
+        <AppSection>
+            <NationalRegisterSearchForm RequireSearchCriterion="true"
+                                        ShowMatchScore="true"
+                                        ShowFormattedNumbers="true"
+                                        NoMatchesMessage="No matching records found in the National Register."
+                                        SearchAsync="SearchAsync">
+                <RowActions Context="match">
+                    @if (match.CanOpenPersonFile)
+                    {
+                        <MudButton Variant="Variant.Outlined"
+                                   Size="Size.Small"
+                                   Color="Color.Primary"
+                                   OnClick="@(() => OpenPersonFile(match))">
+                            Open person file
+                        </MudButton>
+                    }
+                    else if (match.IsRegisteredInPopulation)
+                    {
+                        <MudText Typo="Typo.caption" Color="Color.Secondary">Not linked</MudText>
+                    }
+                    else
+                    {
+                        <MudText Typo="Typo.caption" Color="Color.Secondary">Not in population register</MudText>
+                    }
+                </RowActions>
+            </NationalRegisterSearchForm>
+        </AppSection>
+    </AppPage>
+</RegistrationRoleGate>
+
+@code {
+    private async Task<IReadOnlyList<NationalRegisterSearchMatch>> SearchAsync(NrSearchFormCriteria criteria)
+    {
+        var response = await PersonFileApi.SearchPersonFileAsync(
+            new SearchNationalRegisterRequest(criteria.GivenName, criteria.FamilyName, criteria.BirthDate),
+            CancellationToken.None);
+
+        return response.Matches.Select(Map).ToList();
+    }
+
+    private void OpenPersonFile(NationalRegisterSearchMatch match)
+    {
+        if (match.PersonId is { } personId)
+        {
+            Navigation.NavigateTo($"/persons/{personId}");
+        }
+    }
+
+    private static NationalRegisterSearchMatch Map(PersonFileSearchMatchDto match) =>
+        new(
+            match.RegisterPersonId,
+            match.GivenName,
+            match.FamilyName,
+            match.BirthDate,
+            match.BisNumber,
+            match.NationalRegisterNumber,
+            match.MatchScore,
+            match.MatchReason,
+            match.IsRegisteredInPopulation,
+            match.PersonId);
+}

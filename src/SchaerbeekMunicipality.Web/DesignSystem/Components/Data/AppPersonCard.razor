@@ -1,0 +1,50 @@
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Municipal
+
+<MudStack Row="true" AlignItems="AlignItems.Center" Spacing="3" Class="@Class">
+    <MudAvatar Color="Color.Primary" Size="Size.Large">@Initials</MudAvatar>
+    <MudStack Spacing="1">
+        <MudText Typo="Typo.h5">@GivenName @FamilyName</MudText>
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
+            @if (!string.IsNullOrWhiteSpace(NationalRegisterNumber))
+            {
+                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                    NR @NationalRegisterFormatting.FormatNumber(NationalRegisterNumber)
+                </MudText>
+            }
+            else if (!string.IsNullOrWhiteSpace(BisNumber))
+            {
+                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                    BIS @NationalRegisterFormatting.FormatNumber(BisNumber)
+                </MudText>
+            }
+            @if (RegisterTarget is { } target)
+            {
+                <AppStatusChip Label="@target.ToString()" Severity="AppSeverity.Info" />
+            }
+        </MudStack>
+    </MudStack>
+</MudStack>
+
+@code {
+    [Parameter, EditorRequired]
+    public string GivenName { get; set; } = string.Empty;
+
+    [Parameter, EditorRequired]
+    public string FamilyName { get; set; } = string.Empty;
+
+    [Parameter, EditorRequired]
+    public string Initials { get; set; } = string.Empty;
+
+    [Parameter]
+    public string? NationalRegisterNumber { get; set; }
+
+    [Parameter]
+    public string? BisNumber { get; set; }
+
+    [Parameter]
+    public RegisterTarget? RegisterTarget { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; }
+}

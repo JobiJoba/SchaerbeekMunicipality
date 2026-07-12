@@ -29,7 +29,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 13 | Change of address | ✅ Complete |
 | 14 | Passport / ID card request | Planned |
 | 15 | Reporting dashboard | Planned |
-| 16 | Person file (read model) | Planned |
+| 16 | Person file (read model) | ✅ Complete |
 | 17 | Post-registration amendments | Planned |
 | 18 | Remaining exception scenarios | Planned (optional) |
 
@@ -555,11 +555,11 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 
 ## Phase 16 — Person file (read model)
 
-**Status:** Planned — see [phases/phase-16-person-file.md](./phases/phase-16-person-file.md).
+**Status:** Complete — see [phases/phase-16-person-file.md](./phases/phase-16-person-file.md).
 
 **Goal:** Consolidated citizen profile — identity, household, addresses, cases, certificates in one read-only view.
 
-**Demo:** NR search → person file with tabs; deep link from registration case detail.
+**Demo:** Person lookup → search Sofia Nguyen → open person file with tabs; or use **View person file** from any linked case detail page.
 
 ---
 

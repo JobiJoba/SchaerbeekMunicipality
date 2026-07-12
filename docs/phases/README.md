@@ -25,7 +25,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 13 | Change of address | Planned | [phase-13-change-of-address.md](./phase-13-change-of-address.md) |
 | 14 | Passport / ID card request | Planned | [phase-14-passport-id-request.md](./phase-14-passport-id-request.md) |
 | 15 | Reporting dashboard | Complete | [phase-15-reporting-dashboard.md](./phase-15-reporting-dashboard.md) |
-| 16 | Person file (read model) | Planned | [phase-16-person-file.md](./phase-16-person-file.md) |
+| 16 | Person file (read model) | Complete | [phase-16-person-file.md](./phase-16-person-file.md) |
 | 17 | Post-registration amendments | Planned | [phase-17-post-registration-amendments.md](./phase-17-post-registration-amendments.md) |
 | 18 | Remaining exception scenarios | Planned (optional) | [phase-18-remaining-exception-scenarios.md](./phase-18-remaining-exception-scenarios.md) |
 

@@ -78,6 +78,15 @@
                         Send to police
                     </MudButton>
                 }
+                @if (_case.Person is { } linkedPerson)
+                {
+                    <MudButton Variant="Variant.Outlined"
+                               Color="Color.Primary"
+                               StartIcon="@Icons.Material.Outlined.Person"
+                               Href="@($"/persons/{linkedPerson.Id}")">
+                        View person file
+                    </MudButton>
+                }
                 <MudButton StartIcon="@Icons.Material.Outlined.ArrowBack"
                            Variant="Variant.Text"
                            OnClick="@(() => Navigation.NavigateTo("/registration/cases"))">

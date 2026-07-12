@@ -1,0 +1,308 @@
+@page "/persons/{PersonId:guid}"
+@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
+@using SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile
+@using SchaerbeekMunicipality.Web.Api.PersonFile
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@inject IPersonFileApi PersonFileApi
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]"
+                      RedirectTo="/registration/cases">
+    <AppPage Title="@PageTitle">
+        @if (_loading)
+        {
+            <AppLoading />
+        }
+        else if (_error is not null)
+        {
+            <AppAlert Severity="Severity.Error" Title="Unable to load person file">@_error</AppAlert>
+        }
+        else if (_personFile is not null)
+        {
+            <AppSection>
+                <AppPersonCard GivenName="@_personFile.Header.GivenName"
+                               FamilyName="@_personFile.Header.FamilyName"
+                               Initials="@_personFile.Header.Initials"
+                               NationalRegisterNumber="@_personFile.Header.NationalRegisterNumber"
+                               BisNumber="@_personFile.Header.BisNumber"
+                               RegisterTarget="@_personFile.Header.RegisterTarget"
+                               Class="mb-6" />
+            </AppSection>
+
+            <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true">
+                <MudTabPanel Text="Overview">
+                    <MudGrid Spacing="4">
+                        <MudItem xs="12" md="6">
+                            <AppCard Title="Identity" Outlined="true">
+                                <AppPropertyGrid Items="@_identityItems" />
+                            </AppCard>
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <AppCard Title="Current domicile" Outlined="true">
+                                <AppPropertyGrid Items="@_domicileItems" />
+                            </AppCard>
+                        </MudItem>
+                        <MudItem xs="12">
+                            <AppCard Title="Recent history" Outlined="true">
+                                @if (_personFile.History.Count == 0)
+                                {
+                                    <AppEmptyState Title="No history"
+                                                   Description="No audit or milestone events recorded for this person yet." />
+                                }
+                                else
+                                {
+                                    <AppTimeline Items="@_timelineItems" />
+                                }
+                            </AppCard>
+                        </MudItem>
+                    </MudGrid>
+                </MudTabPanel>
+
+                <MudTabPanel Text="Household">
+                    @if (_personFile.HouseholdMembers.Count == 0)
+                    {
+                        <AppEmptyState Title="No household members"
+                                       Description="Household composition will appear after registration, birth declaration, or change-of-address cases." />
+                    }
+                    else
+                    {
+                        <AppDataTable Items="_personFile.HouseholdMembers"
+                                      T="PersonFileHouseholdMemberDto"
+                                      Caption="Household members">
+                            <HeaderContent>
+                                <MudTh>Name</MudTh>
+                                <MudTh>Birth date</MudTh>
+                                <MudTh>Role</MudTh>
+                                <MudTh>Source</MudTh>
+                                <MudTh></MudTh>
+                            </HeaderContent>
+                            <RowTemplate Context="member">
+                                <MudTd DataLabel="Name">@member.GivenName @member.FamilyName</MudTd>
+                                <MudTd DataLabel="Birth date">@(member.BirthDate?.ToString("d") ?? "—")</MudTd>
+                                <MudTd DataLabel="Role">@member.Role</MudTd>
+                                <MudTd DataLabel="Source">@member.Source</MudTd>
+                                <MudTd>
+                                    @if (member.PersonId is { } linkedPersonId)
+                                    {
+                                        <MudButton Variant="Variant.Text"
+                                                   Size="Size.Small"
+                                                   Href="@($"/persons/{linkedPersonId}")">
+                                            View file
+                                        </MudButton>
+                                    }
+                                </MudTd>
+                            </RowTemplate>
+                        </AppDataTable>
+                    }
+                </MudTabPanel>
+
+                <MudTabPanel Text="Addresses">
+                    @if (_personFile.Addresses.Count == 0)
+                    {
+                        <AppEmptyState Title="No addresses"
+                                       Description="Address history will appear after registration or change-of-address cases." />
+                    }
+                    else
+                    {
+                        <AppDataTable Items="_personFile.Addresses"
+                                      T="PersonFileAddressDto"
+                                      Caption="Address history">
+                            <HeaderContent>
+                                <MudTh>Address</MudTh>
+                                <MudTh>Housing</MudTh>
+                                <MudTh>Effective</MudTh>
+                                <MudTh>Source</MudTh>
+                            </HeaderContent>
+                            <RowTemplate Context="address">
+                                <MudTd DataLabel="Address">
+                                    @FormatAddress(address)
+                                    @if (address.IsCurrent)
+                                    {
+                                        <AppStatusChip Label="Current" Severity="AppSeverity.Success" Class="ml-2" />
+                                    }
+                                </MudTd>
+                                <MudTd DataLabel="Housing">@(address.HousingSituation ?? "—")</MudTd>
+                                <MudTd DataLabel="Effective">@(address.EffectiveFrom?.LocalDateTime.ToString("d") ?? "—")</MudTd>
+                                <MudTd DataLabel="Source">@address.Source</MudTd>
+                            </RowTemplate>
+                        </AppDataTable>
+                    }
+                </MudTabPanel>
+
+                <MudTabPanel Text="Cases">
+                    @if (_personFile.Cases.Count == 0)
+                    {
+                        <AppEmptyState Title="No cases"
+                                       Description="This person has no linked workflow cases yet." />
+                    }
+                    else
+                    {
+                        <AppDataTable Items="_personFile.Cases"
+                                      T="PersonFileCaseDto"
+                                      Caption="Linked cases">
+                            <HeaderContent>
+                                <MudTh>Workflow</MudTh>
+                                <MudTh>Status</MudTh>
+                                <MudTh>Opened</MudTh>
+                                <MudTh>Closed</MudTh>
+                                <MudTh></MudTh>
+                            </HeaderContent>
+                            <RowTemplate Context="caseItem">
+                                <MudTd DataLabel="Workflow">@caseItem.Workflow</MudTd>
+                                <MudTd DataLabel="Status">
+                                    <AppStatusChip Label="@caseItem.Status" Severity="AppSeverity.Info" />
+                                </MudTd>
+                                <MudTd DataLabel="Opened">@caseItem.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+                                <MudTd DataLabel="Closed">@(caseItem.ClosedAt?.LocalDateTime.ToString("g") ?? "—")</MudTd>
+                                <MudTd>
+                                    <MudButton Variant="Variant.Text"
+                                               Size="Size.Small"
+                                               Href="@caseItem.DetailPath">
+                                        Open case
+                                    </MudButton>
+                                </MudTd>
+                            </RowTemplate>
+                        </AppDataTable>
+                    }
+                </MudTabPanel>
+
+                <MudTabPanel Text="Certificates">
+                    @if (_personFile.Certificates.Count == 0)
+                    {
+                        <AppEmptyState Title="No certificates"
+                                       Description="Issued residence or household certificates will appear here." />
+                    }
+                    else
+                    {
+                        <AppDataTable Items="_personFile.Certificates"
+                                      T="PersonFileCertificateDto"
+                                      Caption="Issued certificates">
+                            <HeaderContent>
+                                <MudTh>Type</MudTh>
+                                <MudTh>Reference</MudTh>
+                                <MudTh>Issued</MudTh>
+                            </HeaderContent>
+                            <RowTemplate Context="certificate">
+                                <MudTd DataLabel="Type">@certificate.CertificateType</MudTd>
+                                <MudTd DataLabel="Reference">@certificate.ReferenceNumber</MudTd>
+                                <MudTd DataLabel="Issued">@certificate.IssuedAt.LocalDateTime.ToString("g")</MudTd>
+                            </RowTemplate>
+                        </AppDataTable>
+                    }
+                </MudTabPanel>
+            </MudTabs>
+        }
+    </AppPage>
+</RegistrationRoleGate>
+
+@code {
+    [Parameter]
+    public Guid PersonId { get; set; }
+
+    private bool _loading = true;
+    private string? _error;
+    private GetPersonFileResponse? _personFile;
+    private IReadOnlyList<AppPropertyGrid.AppPropertyGridItem> _identityItems = [];
+    private IReadOnlyList<AppPropertyGrid.AppPropertyGridItem> _domicileItems = [];
+    private IReadOnlyList<AppTimeline.AppTimelineItem> _timelineItems = [];
+
+    private string PageTitle =>
+        _personFile is null
+            ? "Person file"
+            : $"{_personFile.Header.GivenName} {_personFile.Header.FamilyName}";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _loading = true;
+        _error = null;
+
+        try
+        {
+            var personFile = await PersonFileApi.GetPersonFileAsync(PersonId, CancellationToken.None);
+            var identityItems = BuildIdentityItems(personFile);
+            var domicileItems = BuildDomicileItems(personFile);
+            var timelineItems = personFile.History
+                .Take(10)
+                .Select(h => new AppTimeline.AppTimelineItem(
+                    h.Title,
+                    h.Timestamp,
+                    h.Description,
+                    AppSeverity.Info))
+                .ToList();
+
+            _personFile = personFile;
+            _identityItems = identityItems;
+            _domicileItems = domicileItems;
+            _timelineItems = timelineItems;
+        }
+        catch (HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+        {
+            _personFile = null;
+            _error = "Person not found.";
+        }
+        catch (Exception ex)
+        {
+            _personFile = null;
+            _error = ex.Message;
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    private static IReadOnlyList<AppPropertyGrid.AppPropertyGridItem> BuildIdentityItems(GetPersonFileResponse personFile)
+    {
+        var items = new List<AppPropertyGrid.AppPropertyGridItem>
+        {
+            new("Given name", personFile.Identity.GivenName),
+            new("Family name", personFile.Identity.FamilyName),
+            new("Birth date", personFile.Identity.BirthDate.ToString("d")),
+            new("Nationality", personFile.Identity.Nationality),
+        };
+
+        if (personFile.Identity.BirthInformation is { } birthInfo)
+        {
+            items.Add(new("Birth place", birthInfo.BirthPlace));
+            items.Add(new("Birth country", birthInfo.BirthCountry));
+        }
+
+        if (personFile.CivilStatus is { } civilStatus)
+        {
+            items.Add(new("Civil status", civilStatus.Status.ToString()));
+            if (!string.IsNullOrWhiteSpace(civilStatus.SpouseGivenName) ||
+                !string.IsNullOrWhiteSpace(civilStatus.SpouseFamilyName))
+            {
+                items.Add(new(
+                    "Spouse",
+                    $"{civilStatus.SpouseGivenName} {civilStatus.SpouseFamilyName}".Trim()));
+            }
+        }
+
+        return items;
+    }
+
+    private static IReadOnlyList<AppPropertyGrid.AppPropertyGridItem> BuildDomicileItems(GetPersonFileResponse personFile)
+    {
+        if (personFile.Domicile.CurrentAddress is null)
+        {
+            return [new AppPropertyGrid.AppPropertyGridItem("Address", null)];
+        }
+
+        var address = personFile.Domicile.CurrentAddress;
+        return
+        [
+            new("Street", $"{address.Street} {address.HouseNumber}"),
+            new("Box", address.Box),
+            new("Postal code", address.PostalCode),
+            new("Municipality", address.Municipality),
+            new("Housing situation", personFile.Domicile.HousingSituation),
+        ];
+    }
+
+    private static string FormatAddress(PersonFileAddressDto address)
+    {
+        var box = string.IsNullOrWhiteSpace(address.Box) ? string.Empty : $" bus {address.Box}";
+        return $"{address.Street} {address.HouseNumber}{box}, {address.PostalCode} {address.Municipality}";
+    }
+}

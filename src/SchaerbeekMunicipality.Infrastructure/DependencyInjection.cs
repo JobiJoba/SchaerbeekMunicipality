@@ -19,6 +19,8 @@ using SchaerbeekMunicipality.Infrastructure.Certificates;
 using SchaerbeekMunicipality.Infrastructure.Events;
 using SchaerbeekMunicipality.Infrastructure.Integrations;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
+using SchaerbeekMunicipality.Domain.PersonFile;
+using SchaerbeekMunicipality.Infrastructure.Persistence.Queries;
 using SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
 using SchaerbeekMunicipality.Infrastructure.Storage;
 
@@ -59,6 +61,7 @@ public static class DependencyInjection
         services.AddScoped<IPoliceVerificationRepository, PoliceVerificationRepository>();
         services.AddScoped<ICaseAuditRepository, CaseAuditRepository>();
         services.AddScoped<ICertificateRequestRepository, CertificateRequestRepository>();
+        services.AddScoped<IPersonFileQuery, PersonFileQuery>();
         services.AddScoped<IOutboundNotificationRepository, OutboundNotificationRepository>();
         services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         services.AddScoped<IRegistrationConfirmedHandler, RegistrationConfirmedLoggingHandler>();

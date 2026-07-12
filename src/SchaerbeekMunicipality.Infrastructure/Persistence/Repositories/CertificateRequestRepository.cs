@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SchaerbeekMunicipality.Domain.Certificates;
+using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
@@ -18,6 +19,20 @@ internal sealed class CertificateRequestRepository(MunicipalDbContext dbContext)
         var certificates = await dbContext.CertificateRequests
             .AsNoTracking()
             .Where(c => c.RegistrationCaseId == caseId)
+            .ToListAsync(cancellationToken);
+
+        return certificates
+            .OrderByDescending(c => c.IssuedAt)
+            .ToList();
+    }
+
+    public async Task<IReadOnlyList<CertificateRequest>> ListByPersonIdAsync(
+        PersonId personId,
+        CancellationToken cancellationToken)
+    {
+        var certificates = await dbContext.CertificateRequests
+            .AsNoTracking()
+            .Where(c => c.PersonId == personId)
             .ToListAsync(cancellationToken);
 
         return certificates

@@ -14,8 +14,11 @@ public sealed record NationalRegisterSearchMatch(
     string? NationalRegisterNumber,
     int MatchScore,
     string MatchReason,
-    bool IsRegisteredInPopulation)
+    bool IsRegisteredInPopulation,
+    Guid? PersonId = null)
 {
     public bool CanOpenServiceCase =>
         IsRegisteredInPopulation && !string.IsNullOrWhiteSpace(NationalRegisterNumber);
+
+    public bool CanOpenPersonFile => PersonId is not null;
 }

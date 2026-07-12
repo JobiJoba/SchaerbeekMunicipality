@@ -108,6 +108,10 @@ Belgian municipal and immigration terms used in this project. English is primary
 
 ## Case statuses (project-specific)
 
+| Term | Description |
+|------|-------------|
+| **Person file** | Read-only consolidated citizen profile (identity, domicile, household, cases, certificates, history) composed from multiple workflows — see Phase 16 |
+
 Data completeness (identity, residence, address, documents) is tracked by a **checklist** on the case, not by statuses — see ARCHITECTURE.md.
 
 | Status | Meaning |
