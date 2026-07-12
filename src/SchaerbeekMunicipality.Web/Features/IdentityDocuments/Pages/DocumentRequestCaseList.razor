@@ -98,6 +98,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+        if (CurrentOfficer.Role != OfficerRole.PopulationOfficer)
+        {
+            _loading = false;
+            return;
+        }
+
         await ReloadAsync();
 
         if (string.Equals(Open, "new", StringComparison.OrdinalIgnoreCase))

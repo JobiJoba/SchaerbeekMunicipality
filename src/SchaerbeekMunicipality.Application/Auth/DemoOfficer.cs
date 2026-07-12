@@ -24,7 +24,12 @@ public static class DemoOfficers
         OfficerRole.PoliceClerk,
         "Luc Vermeulen (Police)");
 
-    public static IReadOnlyList<DemoOfficer> All { get; } = [Jean, Marie, Anne, Luc];
+    public static readonly DemoOfficer Sophie = new(
+        CurrentOfficer.BackOfficeOfficerId,
+        OfficerRole.BackOfficeOfficer,
+        "Sophie Lambert (Back office)");
+
+    public static IReadOnlyList<DemoOfficer> All { get; } = [Jean, Marie, Anne, Luc, Sophie];
 
     public static DemoOfficer Find(Guid officerId) =>
         All.FirstOrDefault(o => o.Id == officerId) ?? Marie;

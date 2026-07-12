@@ -142,6 +142,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+        if (CurrentOfficer.Role != OfficerRole.PopulationOfficer)
+        {
+            _loading = false;
+            return;
+        }
+
         _quickFilter = ParseFilter(Filter);
         await ReloadAsync();
 

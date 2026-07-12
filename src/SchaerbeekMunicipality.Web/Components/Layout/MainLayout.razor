@@ -82,7 +82,7 @@
 
         var items = new List<AppNavItem>();
 
-        if (CurrentOfficer.Role != OfficerRole.PopulationOfficer)
+        if (CurrentOfficer.Role is not (OfficerRole.PopulationOfficer or OfficerRole.BackOfficeOfficer))
         {
             items.Add(new AppNavItem("Home", "/", Icons.Material.Outlined.Home));
         }
@@ -100,11 +100,16 @@
                 new AppNavItem("Birth declarations", "/birth-declarations", Icons.Material.Outlined.ChildCare),
                 new AppNavItem("Change of address", "/change-of-address", Icons.Material.Outlined.Home),
                 new AppNavItem("Identity documents", "/identity-documents/requests", Icons.Material.Outlined.Badge),
+                new AppNavItem("Reports", "/administration/reports", Icons.Material.Outlined.Analytics),
                 new AppNavItem(
                     "Outbound notifications",
                     "/administration/outbound-notifications",
                     Icons.Material.Outlined.Send),
             ]);
+        }
+        else if (CurrentOfficer.Role == OfficerRole.BackOfficeOfficer)
+        {
+            items.Add(new AppNavItem("Reports", "/administration/reports", Icons.Material.Outlined.Analytics));
         }
         else if (CurrentOfficer.Role == OfficerRole.PoliceClerk)
         {
@@ -114,15 +119,6 @@
                 Icons.Material.Outlined.LocalPolice,
                 OfficerRole.PoliceClerk.ToString(),
                 pendingCount > 0 ? pendingCount : null));
-        }
-        else
-        {
-            items.AddRange(
-            [
-                new AppNavItem("Review dashboard", "/registration/review-dashboard", Icons.Material.Outlined.Dashboard),
-                new AppNavItem("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
-                new AppNavItem("Birth declarations", "/birth-declarations", Icons.Material.Outlined.ChildCare),
-            ]);
         }
 
         if (HostEnvironment.IsDevelopment())
@@ -155,6 +151,8 @@
                 "/registration/police-verifications",
             OfficerRole.PopulationOfficer when path is "" or "home" or "registration/new-case" or "registration/police-verifications" =>
                 "/registration/review-dashboard",
+            OfficerRole.BackOfficeOfficer when path is "" or "home" or "registration/new-case" or "registration/police-verifications" || IsPopulationOnlyPath(path) =>
+                "/administration/reports",
             _ => Navigation.Uri,
         };
     }
@@ -165,7 +163,8 @@
         path.StartsWith("birth-declarations/", StringComparison.OrdinalIgnoreCase) ||
         path.StartsWith("change-of-address/", StringComparison.OrdinalIgnoreCase) ||
         path.StartsWith("identity-documents/requests/", StringComparison.OrdinalIgnoreCase) ||
-        path.StartsWith("administration/outbound-notifications", StringComparison.OrdinalIgnoreCase);
+        path.StartsWith("administration/outbound-notifications", StringComparison.OrdinalIgnoreCase) ||
+        path is "administration/reports";
 
     private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
 

@@ -14,6 +14,9 @@ public sealed class CurrentOfficer : ICurrentOfficer
     public static readonly Guid PoliceClerkId =
         Guid.Parse("33333333-3333-3333-3333-333333333333");
 
+    public static readonly Guid BackOfficeOfficerId =
+        Guid.Parse("55555555-5555-5555-5555-555555555555");
+
     public Guid OfficerId { get; private set; } = PopulationOfficerId;
 
     public string DisplayName { get; private set; } = DemoOfficers.Marie.DisplayName;
@@ -41,6 +44,7 @@ public sealed class CurrentOfficer : ICurrentOfficer
             OfficerRole.ReceptionOfficer => DemoOfficers.Jean,
             OfficerRole.PopulationOfficer => DemoOfficers.Marie,
             OfficerRole.PoliceClerk => DemoOfficers.Luc,
+            OfficerRole.BackOfficeOfficer => DemoOfficers.Sophie,
             _ => DemoOfficers.Marie,
         };
 

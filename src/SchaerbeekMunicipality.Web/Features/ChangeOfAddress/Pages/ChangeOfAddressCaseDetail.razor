@@ -223,7 +223,16 @@
     private string? _box;
     private HousingSituation _housingSituation = HousingSituation.Tenant;
 
-    protected override async Task OnInitializedAsync() => await ReloadCase();
+    protected override async Task OnInitializedAsync()
+    {
+        if (CurrentOfficer.Role != OfficerRole.PopulationOfficer)
+        {
+            _loading = false;
+            return;
+        }
+
+        await ReloadCase();
+    }
 
     private async Task ReloadCase()
     {

@@ -53,5 +53,10 @@ else
             _redirecting = true;
             Navigation.NavigateTo("/registration/review-dashboard", replace: true);
         }
+        else if (CurrentOfficer.Role == OfficerRole.BackOfficeOfficer)
+        {
+            _redirecting = true;
+            Navigation.NavigateTo("/administration/reports", replace: true);
+        }
     }
 }

@@ -545,11 +545,11 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 
 ## Phase 15 — Reporting dashboard
 
-**Status:** Planned — see [phases/phase-15-reporting-dashboard.md](./phases/phase-15-reporting-dashboard.md).
+**Status:** Complete — see [phases/phase-15-reporting-dashboard.md](./phases/phase-15-reporting-dashboard.md).
 
 **Goal:** Operational analytics — registrations per month, birth declarations, average police wait time, outcome breakdown.
 
-**Demo:** Reports page with KPI tiles and monthly volume chart.
+**Demo:** Switch to Sophie Lambert (Back office) → Reports page with KPI tiles and monthly volume chart. Population officers see the same page alongside their operational nav.
 
 ---
 

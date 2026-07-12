@@ -97,15 +97,16 @@ No new domain aggregates. Changes are domain rules (claim/lock), application gua
 
 ## Role matrix
 
-| Action | Reception | Population | Police |
-|--------|-----------|------------|--------|
-| Create case | Yes | Yes | No |
-| List / view cases | No | Yes | No |
-| Edit intake & decisions | No | Lock holder only | No |
-| Claim / release lock | No | Yes | No |
-| Police queue / record result | No | No | Yes |
-| Review dashboard | No | Yes | No |
-| Audit timeline on case detail | No | Yes | No |
+| Action | Reception | Population | Back office | Police |
+|--------|-----------|------------|-------------|--------|
+| Create case | Yes | Yes | No | No |
+| List / view cases | No | Yes | No | No |
+| Edit intake & decisions | No | Lock holder only | No | No |
+| Claim / release lock | No | Yes | No | No |
+| Police queue / record result | No | No | No | Yes |
+| Review dashboard | No | Yes | No | No |
+| Reports (analytics) | No | Yes | Yes | No |
+| Audit timeline on case detail | No | Yes | No | No |
 
 ---
 

@@ -1,0 +1,203 @@
+@page "/administration/reports"
+@using MudBlazor.Charts
+@using SchaerbeekMunicipality.Application.Auth
+@using SchaerbeekMunicipality.Application.Features.Reporting.GetMunicipalityReport
+@using SchaerbeekMunicipality.Web.Api.Reporting
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@inject IReportingApi ReportingApi
+@inject ICurrentOfficer CurrentOfficer
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer, OfficerRole.BackOfficeOfficer]"
+                      RedirectTo="@GetRedirectTarget()">
+    <AppPage Title="Reports" MaxWidth="MaxWidth.Large">
+        <AppPageHeader Title="Operational reports"
+                       Subtitle="Read-only analytics across registration, birth declaration, and change-of-address workflows.">
+            <Actions>
+                <MudSelect T="int"
+                           Value="_months"
+                           ValueChanged="OnPeriodChangedAsync"
+                           Label="Period"
+                           Variant="Variant.Outlined"
+                           Margin="Margin.Dense"
+                           Style="min-width: 160px;">
+                    <MudSelectItem Value="3">Last 3 months</MudSelectItem>
+                    <MudSelectItem Value="6">Last 6 months</MudSelectItem>
+                    <MudSelectItem Value="12">Last 12 months</MudSelectItem>
+                </MudSelect>
+            </Actions>
+        </AppPageHeader>
+
+        @if (_loading)
+        {
+            <AppLoading />
+        }
+        else if (_report is not null)
+        {
+            <MudGrid Spacing="4" Class="mb-6">
+                <MudItem xs="12" sm="6" md="4" lg="2">
+                    <AppStatisticCard Label="Registrations completed"
+                                      Value="@_report.Summary.RegistrationsCompleted"
+                                      Icon="@Icons.Material.Outlined.HowToReg" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4" lg="2">
+                    <AppStatisticCard Label="Birth declarations"
+                                      Value="@_report.Summary.BirthDeclarationsConfirmed"
+                                      Icon="@Icons.Material.Outlined.ChildCare" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4" lg="2">
+                    <AppStatisticCard Label="Address changes"
+                                      Value="@_report.Summary.AddressChangesConfirmed"
+                                      Icon="@Icons.Material.Outlined.Home" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4" lg="2">
+                    <AppStatisticCard Label="Avg police wait (days)"
+                                      Value="0"
+                                      FormattedValue="@FormatDays(_report.Summary.AveragePoliceWaitDays)"
+                                      Icon="@Icons.Material.Outlined.LocalPolice" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4" lg="2">
+                    <AppStatisticCard Label="Avg intake → registered (days)"
+                                      Value="0"
+                                      FormattedValue="@FormatDays(_report.Summary.AverageIntakeToRegisteredDays)"
+                                      Icon="@Icons.Material.Outlined.Schedule" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4" lg="2">
+                    <AppStatisticCard Label="Rejection rate"
+                                      Value="0"
+                                      FormattedValue="@($"{_report.Summary.RejectionRatePercent:0.#}%")"
+                                      Icon="@Icons.Material.Outlined.Cancel" />
+                </MudItem>
+            </MudGrid>
+
+            <AppSection Title="Monthly volume" Class="mb-6">
+                @if (_chartSeries.Count == 0 || _chartLabels.Length == 0)
+                {
+                    <AppEmptyState Title="No completed cases in this period"
+                                   Description="KPI tiles above reflect zero activity for the selected range."
+                                   Icon="@Icons.Material.Outlined.ShowChart" />
+                }
+                else
+                {
+                    <MudChart T="double"
+                              ChartType="ChartType.Line"
+                              ChartSeries="_chartSeries"
+                              ChartLabels="_chartLabels"
+                              Width="100%"
+                              Height="320px" />
+                }
+            </AppSection>
+
+            <MudGrid Spacing="4">
+                <MudItem xs="12" lg="6">
+                    <AppSection Title="Outcomes in period">
+                        <MudGrid Spacing="3">
+                            <MudItem xs="12" sm="4">
+                                <AppStatisticCard Label="Registered / confirmed"
+                                                  Value="@_report.Outcomes.Registered"
+                                                  Icon="@Icons.Material.Outlined.CheckCircle" />
+                            </MudItem>
+                            <MudItem xs="12" sm="4">
+                                <AppStatisticCard Label="Rejected"
+                                                  Value="@_report.Outcomes.Rejected"
+                                                  Icon="@Icons.Material.Outlined.Block" />
+                            </MudItem>
+                            <MudItem xs="12" sm="4">
+                                <AppStatisticCard Label="Suspended"
+                                                  Value="@_report.Outcomes.Suspended"
+                                                  Icon="@Icons.Material.Outlined.PauseCircle" />
+                            </MudItem>
+                        </MudGrid>
+                    </AppSection>
+                </MudItem>
+                <MudItem xs="12" lg="6">
+                    <AppSection Title="Current backlog by status">
+                        @if (_report.Backlog.Count == 0)
+                        {
+                            <AppEmptyState Title="No open cases"
+                                           Description="All workflows are empty."
+                                           Icon="@Icons.Material.Outlined.Inbox" />
+                        }
+                        else
+                        {
+                            <AppDataTable T="BacklogStatusRow"
+                                          Items="_report.Backlog"
+                                          Caption="Cases grouped by workflow and status">
+                                <HeaderContent>
+                                    <MudTh Class="app-table-header">Workflow</MudTh>
+                                    <MudTh Class="app-table-header">Status</MudTh>
+                                    <MudTh Class="app-table-header">Count</MudTh>
+                                </HeaderContent>
+                                <RowTemplate Context="item">
+                                    <MudTd DataLabel="Workflow">@item.Workflow</MudTd>
+                                    <MudTd DataLabel="Status">@item.Status</MudTd>
+                                    <MudTd DataLabel="Count">@item.Count</MudTd>
+                                </RowTemplate>
+                            </AppDataTable>
+                        }
+                    </AppSection>
+                </MudItem>
+            </MudGrid>
+        }
+    </AppPage>
+</RegistrationRoleGate>
+
+@code {
+    private GetMunicipalityReportResponse? _report;
+    private bool _loading = true;
+    private int _months = 12;
+    private string[] _chartLabels = [];
+    private List<ChartSeries<double>> _chartSeries = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadReportAsync();
+    }
+
+    private async Task OnPeriodChangedAsync(int months)
+    {
+        _months = months;
+        await LoadReportAsync();
+    }
+
+    private async Task LoadReportAsync()
+    {
+        _loading = true;
+        _report = await ReportingApi.GetMunicipalityReportAsync(_months, CancellationToken.None);
+        BuildChartData(_report);
+        _loading = false;
+    }
+
+    private void BuildChartData(GetMunicipalityReportResponse report)
+    {
+        _chartLabels = report.VolumeSeries.Select(p => p.MonthLabel).ToArray();
+        _chartSeries =
+        [
+            new ChartSeries<double>
+            {
+                Name = "Registrations",
+                Data = report.VolumeSeries.Select(p => (double)p.Registrations).ToArray(),
+            },
+            new ChartSeries<double>
+            {
+                Name = "Birth declarations",
+                Data = report.VolumeSeries.Select(p => (double)p.BirthDeclarations).ToArray(),
+            },
+            new ChartSeries<double>
+            {
+                Name = "Address changes",
+                Data = report.VolumeSeries.Select(p => (double)p.AddressChanges).ToArray(),
+            },
+        ];
+    }
+
+    private static string FormatDays(double? days) =>
+        days is null ? "—" : $"{days:0.#}";
+
+    private string GetRedirectTarget() =>
+        CurrentOfficer.Role switch
+        {
+            OfficerRole.ReceptionOfficer => "/registration/new-case",
+            OfficerRole.PoliceClerk => "/registration/police-verifications",
+            _ => "/administration/reports",
+        };
+}

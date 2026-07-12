@@ -4,9 +4,12 @@
 @using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase
 @using SchaerbeekMunicipality.Web.Api.Registration
 @using SchaerbeekMunicipality.Web.Api.BirthDeclaration
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.Components
+@using SchaerbeekMunicipality.Web.Features.IdentityDocuments.Components
 @inject IRegistrationApi RegistrationApi
 @inject IBirthDeclarationApi BirthDeclarationApi
 @inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
 
@@ -146,6 +149,34 @@
         _visitReason = VisitReason.FirstRegistration;
     }
 
+    private async Task OpenChangeOfAddressCaseAsync()
+    {
+        var dialog = await DialogService.ShowAsync<OpenChangeOfAddressDialog>(
+            "New change of address",
+            new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false, Data: Guid caseId })
+        {
+            _createdCaseId = caseId;
+            Snackbar.Add("Change of address case created.", Severity.Success);
+        }
+    }
+
+    private async Task OpenDocumentRequestCaseAsync()
+    {
+        var dialog = await DialogService.ShowAsync<OpenDocumentRequestDialog>(
+            "New document request",
+            new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false, Data: Guid caseId })
+        {
+            _createdCaseId = caseId;
+            Snackbar.Add("Document request case created.", Severity.Success);
+        }
+    }
+
     private async Task Submit()
     {
         await _form.ValidateAsync();
@@ -165,12 +196,12 @@
             }
             else if (_visitReason == VisitReason.ChangeOfAddress)
             {
-                Navigation.NavigateTo("/change-of-address?open=new");
+                await OpenChangeOfAddressCaseAsync();
                 return;
             }
             else if (_visitReason == VisitReason.PassportRenewal)
             {
-                Navigation.NavigateTo("/identity-documents/requests?open=new");
+                await OpenDocumentRequestCaseAsync();
                 return;
             }
             else

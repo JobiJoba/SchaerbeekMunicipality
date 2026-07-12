@@ -105,6 +105,7 @@ public static class DemoOfficerTestClient
         {
             OfficerRole.ReceptionOfficer => DemoOfficers.Jean,
             OfficerRole.PoliceClerk => DemoOfficers.Luc,
+            OfficerRole.BackOfficeOfficer => DemoOfficers.Sophie,
             _ => DemoOfficers.Marie,
         };
 

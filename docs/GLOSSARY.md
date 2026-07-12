@@ -26,6 +26,7 @@ Belgian municipal and immigration terms used in this project. English is primary
 |------|-----------|-------------|
 | **Reception officer** | `ReceptionOfficer` | Front desk; determines visit reason and routing |
 | **Population officer** | `PopulationOfficer` | Handles registration, identity, address, decision |
+| **Back office officer** | `BackOfficeOfficer` | Read-only operational reports and KPIs (no case editing) |
 | **Police clerk** | `PoliceClerk` | Records residence verification outcomes |
 | **Citizen** | — | Person requesting registration (not a system user in early phases) |
 

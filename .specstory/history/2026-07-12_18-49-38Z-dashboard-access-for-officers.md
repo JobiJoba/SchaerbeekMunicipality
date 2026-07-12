@@ -12,11 +12,103 @@ ok let's do phase 15 - but can this dashboard be seen by another type of officer
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+Checking if the Phase 15 dashboard should be accessible to backoffice officers.
+
+Reviewing the roadmap and role permissions to determine dashboard access.</details></think>
+
+_**Agent (default)**_
+
+Reviewing Phase 15 in the roadmap and how roles and officer access are modeled in the codebase.
+
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": true,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "phase.?15|Phase 15"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "phase.?15|Phase 15",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/README.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-07_18-58-10Z-phase-11-implementation-summary.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-09_19-13-47Z-phase-13-summary.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_17-31-49Z-phase-8-overview.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_18-23-47Z-difference-between-officer-roles.md"
+    },
+    {
+      "matchCount": 11,
+      "uri": ".specstory/history/2026-07-07_19-14-02Z-phase-12-implementation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_11-03-08Z-documentation-update-steps.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_11-54-25Z-phase-14-implementation.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-11-extended-municipality.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-15-reporting-dashboard.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-12-birth-declaration.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/ROADMAP.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "IDEA.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/DOMAIN.md"
+    }
+  ],
+  "totalFiles": 14,
+  "totalMatches": 31
+}
+```
+Status: **completed**
 
 
 </details>
@@ -33,7 +125,612 @@ _**Agent (default)**_
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": true,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "backoffice|BackOffice|Backoffice"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "backoffice|BackOffice|Backoffice",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing the phase 15 documentation and role boundaries to determine how roles are defined in the codebase.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-15-reporting-dashboard.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-8.1-role-boundaries-case-locking.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MunicipalRole|OfficerRole|PopulationOfficer|ReceptionOfficer"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MunicipalRole|OfficerRole|PopulationOfficer|ReceptionOfficer",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-0-foundation.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/RoleBoundaryE2ETests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Pages/Home.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor"
+    },
+    {
+      "matchCount": 13,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ChangeOfAddressCaseAuthorization.cs"
+    },
+    {
+      "matchCount": 8,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs"
+    },
+    {
+      "matchCount": 5,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/BirthDeclarationE2ETests.cs"
+    },
+    {
+      "matchCount": 23,
+      "uri": ".specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md"
+    }
+  ],
+  "totalFiles": 11,
+  "totalMatches": 376
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I need to check the existing role enum and demo officers to see if backoffice or management roles exist.
+
+I'll examine OfficerRole.cs, demo seed data, MainLayout navigation, GetReviewDashboard, and RegistrationRoleGate to determine if backoffice or management roles can access the dashboard.</details></think>
+
+_**Agent (default)**_
+
+File not found
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "DemoOfficer|OfficerRole\\."
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "DemoOfficer|OfficerRole\\.",
+  "topFiles": [
+    {
+      "matchCount": 8,
+      "uri": "src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs"
+    },
+    {
+      "matchCount": 6,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/MunicipalApiClientBase.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerHeaders.cs"
+    },
+    {
+      "matchCount": 7,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ChangeOfAddressCaseAuthorization.cs"
+    },
+    {
+      "matchCount": 12,
+      "uri": "src/SchaerbeekMunicipality.Application/Auth/DemoOfficer.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/OfficerDisplayNames.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/DemoOfficerHeaders.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Pages/Home.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor"
+    },
+    {
+      "matchCount": 7,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/BirthDeclarationCaseAuthorization.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor"
+    },
+    {
+      "matchCount": 10,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Auth/Components/RoleSwitcher.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs"
+    },
+    {
+      "matchCount": 7,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/DocumentRequestCaseAuthorization.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor"
+    }
+  ],
+  "totalFiles": 22,
+  "totalMatches": 108
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **3** results in **1** directory</summary>
+
+Directory: **** (3 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Api/Features/Registration/GetReviewDashboard/GetReviewDashboardEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardResponse.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+MainLayout includes an else branch for unknown roles that displays population officer navigation items, including the Review dashboard.
+
+Checking the OfficerRole enum and phase documentation for existing role support.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **** (1 file)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Application/Auth/OfficerRole.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Auth/DemoOfficer.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "admin demo|BackOffice|Management|Supervisor|Back.?office"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "admin demo|BackOffice|Management|Supervisor|Back.?office",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-05_17-31-49Z-phase-8-overview.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/03-component-catalogue.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-0.1-tooling-hygiene.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-15-reporting-dashboard.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-10_09-35-33Z-mudblazor-date-validation-component.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-17-post-registration-amendments.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": ".specstory/history/2026-07-06_19-47-38Z-document-upload-error.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-11_17-28-07Z-appdatepicker-code-improvements.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/02-accessibility.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-06_18-43-21Z-phase-10-overview.md"
+    }
+  ],
+  "totalFiles": 10,
+  "totalMatches": 20
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-7-decision-registration.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing OfficerRole.cs, RegistrationRoleGate, and RegistrationCaseAuthorization to determine if backoffice officers can access the dashboard. Outbound-notifications may be an admin-only feature.
+
+Checking IDEA.md for management role definitions.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Auth/OfficerRole.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "RegistrationRoleGate"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "RegistrationRoleGate",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-10_09-35-33Z-mudblazor-date-validation-component.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_17-28-07Z-appdatepicker-code-improvements.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-8.1-role-boundaries-case-locking.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_18-57-28Z-case-history-and-decision-box.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_18-27-04Z-case-access-and-locking-rules.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_18-33-16Z-phase-4-monolith-retirement.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_11-54-25Z-phase-14-implementation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_11-09-34Z-azure-deployment-socket-exception.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-10_09-35-33Z-datepicker-component-creation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-07_19-14-02Z-phase-12-implementation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_18-08-15Z-phase-1-backend-foundation.md"
+    }
+  ],
+  "totalFiles": 19,
+  "totalMatches": 19
+}
+```
+Status: **completed**
 
 
 </details>
@@ -50,7 +747,79 @@ _**Agent (default)**_
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": true,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs",
+  "pattern": "management|supervisor|back.?office|BackOfficeOfficer"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs",
+  "pattern": "management|supervisor|back.?office|BackOfficeOfficer",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-15-reporting-dashboard.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-17-post-registration-amendments.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/01-design-tokens.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/design-system/03-component-catalogue.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": "docs/design-system/README.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/ROADMAP.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/APP-OVERVIEW.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/06-page-templates.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/02-accessibility.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-3-design-system.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "docs/phases/phase-0.1-tooling-hygiene.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/05-ui-kit.md"
+    }
+  ],
+  "totalFiles": 12,
+  "totalMatches": 20
+}
+```
+Status: **completed**
 
 
 </details>
@@ -58,6 +827,1433 @@ Status: **loading**
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **** (0 files)
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Only three roles exist: ReceptionOfficer, PopulationOfficer, and PoliceClerk. Backoffice access would require adding a new role.
+
+Phase 15 references admin demo roles that do not yet exist in the enum. Existing authorization patterns and dashboard templates will be reviewed to design a new BackOfficeOfficer or ManagementOfficer role.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "outbound-notifications|OutboundNotification"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "outbound-notifications|OutboundNotification",
+  "topFiles": [
+    {
+      "matchCount": 5,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Events/BirthRegisteredNotificationHandler.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Domain/Notifications/OutboundNotificationId.cs"
+    },
+    {
+      "matchCount": 5,
+      "uri": "src/SchaerbeekMunicipality.Domain/Notifications/IOutboundNotificationRepository.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260705174146_CertificatesAndNotifications.Designer.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/MunicipalDbContextModelSnapshot.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260712120219_Phase14PassportIdRequest.Designer.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Integrations/IIntegrationAdapter.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Registration/RegistrationApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Integrations/IntegrationAdapterRegistry.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260707192416_Phase12BirthDeclaration.Designer.cs"
+    }
+  ],
+  "totalFiles": 13,
+  "totalMatches": 127
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **** (1 file)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationRoleGate.razor` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking registration authorization and role gates to determine if backoffice officers can access the review dashboard. Also reviewing navigation components and page templates.
+
+Also reviewing the specstory on officer role differences.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/RegistrationCaseAuthorization.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationRoleGate.razor</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs",
+  "pattern": "OfficerRole|ReceptionOfficer|PopulationOfficer"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs",
+  "pattern": "OfficerRole|ReceptionOfficer|PopulationOfficer",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "docs/APP-OVERVIEW.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/ARCHITECTURE.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-0-foundation.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/GLOSSARY.md"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 6
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Phase 15 implementation needs to include backoffice-type officer access to the reporting dashboard. This differs from population officers who handle case work.
+
+The Phase 15 document references admin demo roles, but no admin role exists yet. A backoffice role would align with the management workload view goal. Clarification is needed on whether this role should access only reports, or also outbound notifications and read-only case browsing. A naming preference is also required.
+
+A new BackOfficeOfficer role should be created with reports-only dashboard access. Existing templates and phase 14 patterns will guide the implementation structure.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **** (1 file)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Auth/CurrentOfficer.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "AppStatisticCard"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "AppStatisticCard",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing ReviewDashboard.razor for UI patterns. Checking ChangeOfAddressCase and DocumentRequest for repository patterns. Looking at integration test patterns.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "MudChart"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "MudChart",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **2** results in **1** directory</summary>
+
+Directory: **** (2 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/GLOSSARY.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Phase 15 will include a backoffice officer type with access to the reporting dashboard.
+
+The reporting dashboard will serve as a read-only analytics layer for management, separate from the operational review dashboard. Backoffice officers would see reports and possibly outbound notifications, but not case lists or editing tools. I need to clarify whether their access should remain strictly limited to reports or expand further.
+
+Reports-only access is the proposed default for backoffice officers, matching the management view in the Phase 15 document. I am now identifying the required timestamp fields across RegistrationCase, PoliceVerificationRequest, ChangeOfAddressCase, and DocumentRequestCase.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "RegisteredAt|OpenedAt|CompletedAt|RejectedAt"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "RegisteredAt|OpenedAt|CompletedAt|RejectedAt",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCase.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Domain/BirthDeclaration/BirthDeclarationCase.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Domain/Police/PoliceVerificationRequest.cs"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 9
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **3** results in **1** directory</summary>
+
+Directory: **** (3 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Domain/Police/PoliceVerificationRequest.cs` |
+| `src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/PoliceVerificationRequestConfiguration.cs` |
+| `src/SchaerbeekMunicipality.Domain/Police/PoliceVerificationRequestId.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking RegistrationCase timestamps and PoliceVerificationRequest CreatedAt to determine access permissions for backoffice officers.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Police/PoliceVerificationRequest.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "IRegistrationCaseRepository|IBirthDeclarationCaseRepository|IChangeOfAddressCaseRepository"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "IRegistrationCaseRepository|IBirthDeclarationCaseRepository|IChangeOfAddressCaseRepository",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/ChangeOfAddress/IChangeOfAddressCaseRepository.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/RejectChangeOfAddress/RejectChangeOfAddressHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/UpdateHouseholdForMove/UnlinkHouseholdMemberHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ConfirmAddressChange/ConfirmAddressChangeHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/OpenDocumentRequestCase/OpenDocumentRequestCaseHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/CorrectIdentity/CorrectIdentityHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ListChangeOfAddressCases/ListChangeOfAddressCasesHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/IRegistrationCaseRepository.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/OpenBirthDeclarationCase/OpenBirthDeclarationCaseHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ChangeOfAddressCaseGuard.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/ChangeOfAddressCaseRepository.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/SuspendBirthDeclaration/SuspendBirthDeclarationHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/UnlinkParent/UnlinkParentHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/AttachDocument/AttachDocumentHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/ResumeCase/ResumeCaseHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/BirthDeclarationCaseGuard.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/RequestPoliceVerification/RequestPoliceVerificationHandler.cs"
+    }
+  ],
+  "totalFiles": 20,
+  "totalMatches": 69
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether RegistrationCase.ClosedAt might be set during registration to determine the registration timestamp.
+
+Now examining ConfirmRegistration.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "ClosedAt"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "ClosedAt",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCase.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Domain/BirthDeclaration/BirthDeclarationCase.cs"
+    },
+    {
+      "matchCount": 5,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 12
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/IRegistrationCaseRepository.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **** (1 file)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Domain/Police/IPoliceVerificationRepository.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Planning a monthly registration report grouped by ClosedAt month.
+
+Adding more metrics: birth declarations, COA, police wait times, case counts, average intake-to-registration duration, and rejection rates. Evaluating a BackOfficeOfficer role for dashboard access.
+
+Settled on `BackOfficeOfficer` as the role name. This role gets read-only access to the reports page and report APIs. It cannot view case lists, the review dashboard, case details, or create new cases. Population officers will also receive report access. The home page will redirect this role directly to the reports page.
+
+Need to clarify whether the backoffice role should remain strictly reports-only, or also gain access to the operational review dashboard.
+
+Confirmed the backoffice role stays reports-only. Now checking AppSideNavigation to filter navigation items by role.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "CurrentRole|AppNavItem"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "CurrentRole|AppNavItem",
+  "topFiles": [
+    {
+      "matchCount": 16,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/DesignSystem/Components/Navigation/AppNavItem.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Web/DesignSystem/Components/Navigation/AppSideNavigation.razor"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 21
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Ready to draft a comprehensive plan for phase 15. The dashboard access for backoffice officers will be included.
+
+Two clarifying questions remain. Should backoffice officers see only reports, or also outbound notifications? Should population officers also access these reports?
+
+The phase 15 document already covers population officer report access. Only backoffice scope remains to be clarified.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ask_question">
+<details>
+<summary>Tool use: **ask_question**</summary>
+
+
+Parameters:
+
+```json
+{
+  "questions": [
+    {
+      "id": "backoffice_scope",
+      "options": [
+        {
+          "id": "reports_only",
+          "label": "Reports only — analytics/KPIs, no case lists or operational queues (recommended; matches Phase 15 “management view”)"
+        },
+        {
+          "id": "reports_plus_admin",
+          "label": "Reports + administration pages (e.g. outbound notifications log)"
+        },
+        {
+          "id": "reports_plus_readonly_cases",
+          "label": "Reports + read-only case browsing (lists/detail, no edit/claim/decide)"
+        }
+      ],
+      "prompt": "For the new backoffice officer role, what should they be able to access besides the reporting dashboard?"
+    }
+  ],
+  "title": "Backoffice officer scope"
+}
+```
+Additional data:
+
+```json
+{
+  "currentSelections": {
+    "backoffice_scope": [
+      "reports_only"
+    ]
+  },
+  "freeformTexts": {
+    "backoffice_scope": ""
+  },
+  "status": "submitted"
+}
+```
+Result:
+
+```json
+{
+  "answers": [
+    {
+      "freeformText": "",
+      "questionId": "backoffice_scope",
+      "selectedOptionIds": [
+        "reports_only"
+      ]
+    }
+  ]
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ask_question"><details>
+<summary>Tool use: **ask_question**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Phase 15 fits a dedicated backoffice role well — the reporting dashboard is analytics, separate from the population officer's operational review queue. One scope question before I draft the plan:
+
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reports_only was selected.
+
+Phase 15 will add a BackOfficeOfficer role with reports-only access. This includes a new demo officer, updated navigation and role switching, a reporting authorization, and application handlers for municipality report summaries and registration volume series.
+
+A single combined handler is preferable to separate endpoints. A unified `GetMunicipalityReport` with a period parameter would match the ReviewDashboard pattern and simplify the page load.
+
+The phase document specifies four vertical slices. I am weighing whether to expose four separate API endpoints or aggregate them into a single handler with internal queries. The page would then load sequentially, following the Blazor-Entity Framework pattern.
+
+The MVP endpoint will be `/api/reports/municipality?months=12` returning a full report DTO. The four vertical slices from the phase document will live inside one feature folder.
+
+Existing repositories only support `ListAsync`, which loads all entities into memory. For the demo scale, the handler can either inject a dedicated `MunicipalDbContext` or use existing repositories and compute results in memory. The latter is preferred to keep the scope minimal.
+
+The reporting feature will reside under `Applicati/Features/Reporting/`. Metrics will filter registrations by status and closed date within the selected month range. Birth declarations and COA counts will follow the same pattern.
+
+Scope stays limited to the phase 15 requirements. Police wait time will come from `IPoliceVerificationRepository` using completed verifications. Case counts will reflect current snapshots rather than historical trends. Average intake-to-registration duration will be calculated from closed-to-opened case intervals. Rejection rate will divide rejected cases by total active cases in the selected period. The birth declaration status enum still needs verification.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "enum.*CaseStatus"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "enum.*CaseStatus",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseStatus.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/IdentityDocuments/DocumentRequestCaseStatus.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCaseStatus.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/BirthDeclaration/BirthDeclarationCaseStatus.cs"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Police/IPoliceVerificationRepository.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **** (1 file)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The police verification repository lacks a ListAll method. I may need to add ListCompletedAsync or use DbContext for a new reporting query.
+
+Checking existing API patterns like change-of-address to determine if reporting endpoints should live under `/api/reports`.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api** (5 files)
+
+| File |
+|------|
+| `Features/Registration/SearchReferenceData/SearchReferenceDataEndpoints.cs` |
+| `Features/BirthDeclaration/BirthDeclarationEndpoints.cs` |
+| `Features/IdentityDocuments/IdentityDocumentsEndpoints.cs` |
+| `Features/Registration/RegistrationEndpoints.cs` |
+| `Features/ChangeOfAddress/ChangeOfAddressEndpoints.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/Home.razor</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing Home.razor redirect logic and Program.cs endpoint mappings to determine how backoffice officers access the dashboard.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/Home.razor</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api",
+  "pattern": "Map.*Endpoints"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api",
+  "pattern": "Map.*Endpoints",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/IdentityDocumentsEndpoints.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/BirthDeclarationEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ChangeOfAddressEndpoints.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Program.cs"
+    }
+  ],
+  "totalFiles": 6,
+  "totalMatches": 11
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **** (1 file)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatisticCard.razor` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+MudChart is not yet implemented. Phase 15 includes it for line and bar charts.
+
+The reporting feature will be placed under `/administration/reports` to match existing admin routes. It will include a Razor page, application logic, and API endpoints. A new `ReportingAuthorization` class will grant both `PopulationOfficer` and `BackOfficeOfficer` access to view reports.
+
+Test coverage will verify role-based access. BackOfficeOfficer can view reports but not the review dashboard or case list. PopulationOfficer can access both. Reception and Police roles will be blocked entirely. Integration tests will validate KPI counts against seeded dates.
+
+A demo BackOfficeOfficer with GUID 55555555-5555-5555-5555-555555555555 will be added.
+
+MainLayout navigation will change. BackOfficeOfficer will see only the Reports link and will be redirected to /administration/reports. PopulationOfficer will gain a Reports item in its navigation menu.
+
+After a role switch, BackOfficeOfficer will land on the reports page. The `IsPopulationOnlyPath` check must exclude `administrationOfficer` from population paths so those users are redirected to reports instead. The MainLayout fallback branch for unknown roles needs removal or correction. MudBlazor's `MudChart` will be used for charts rather than a simpler HTML/CSS MVP version.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MudBlazor"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MudBlazor",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": ".specstory/history/2026-07-11_18-50-24Z-unauthorized-access-error.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_18-33-16Z-phase-4-monolith-retirement.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-11_17-28-07Z-appdatepicker-code-improvements.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-05_18-23-47Z-difference-between-officer-roles.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_17-20-48Z-resetting-all-cases.md"
+    }
+  ],
+  "totalFiles": 5,
+  "totalMatches": 296
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking MudBlazor chart library locations.
+
+MudBlazor 7+ chart components are available for phase 15. A new `ListCompletedAsync` method will be added to the police repository to support reporting. Document request metrics are excluded from the initial phase 15 scope. Now creating the implementation plan.</details></think>
+
+_**Agent (default)**_
+
+Confirming: reports-only for the backoffice role, separate from the population officer's operational queue. Drafting the implementation plan.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="create_plan">
+<details>
+<summary>Tool use: **create_plan**</summary>
+
+
+Parameters:
+
+```json
+{
+  "name": "Phase 15 Reporting Dashboard",
+  "overview": "Implement Phase 15 as a read-only reporting area with KPI tiles and volume charts, and introduce a new &#96;BackOfficeOfficer&#96; role that can access reports only (no case queues or editing). Population officers retain full operational access plus the same reports page.",
+  "plan": "# Phase 15 — Reporting dashboard with BackOfficeOfficer role\n\n## Answer to your question\n\n**Yes** — the reporting dashboard is a good fit for a dedicated backoffice officer type. It is intentionally **not** the same as the Phase 7 review dashboard:\n\n| Surface | Audience | Purpose |\n|---------|----------|---------|\n| &#96;/registration/review-dashboard&#96; | Population officers only | Actionable queue (claim, decide, confirm) |\n| &#96;/administration/reports&#96; (new) | **BackOfficeOfficer** + **PopulationOfficer** | Historical KPIs and trends (read-only) |\n\nReception and police roles will **not** see reports. Backoffice users land on reports as their home and have no nav links to case lists or operational dashboards.\n\n&#96;&#96;&#96;mermaid\nflowchart LR\n  subgraph roles [Officer roles]\n    Reception[ReceptionOfficer]\n    Population[PopulationOfficer]\n    BackOffice[BackOfficeOfficer]\n    Police[PoliceClerk]\n  end\n\n  subgraph surfaces [UI surfaces]\n    NewCase[\"/registration/new-case\"]\n    ReviewDash[\"/registration/review-dashboard\"]\n    CaseWork[\"Case lists and detail\"]\n    Reports[\"/administration/reports\"]\n    PoliceQueue[\"/registration/police-verifications\"]\n  end\n\n  Reception --\u003e NewCase\n  Population --\u003e ReviewDash\n  Population --\u003e CaseWork\n  Population --\u003e Reports\n  BackOffice --\u003e Reports\n  Police --\u003e PoliceQueue\n&#96;&#96;&#96;\n\n---\n\n## 1. New role: &#96;BackOfficeOfficer&#96;\n\nExtend [&#96;OfficerRole.cs&#96;](src/SchaerbeekMunicipality.Application/Auth/OfficerRole.cs):\n\n&#96;&#96;&#96;csharp\nBackOfficeOfficer,  // after PoliceClerk\n&#96;&#96;&#96;\n\nWire through the existing auth/demo stack:\n\n| File | Change |\n|------|--------|\n| [&#96;CurrentOfficer.cs&#96;](src/SchaerbeekMunicipality.Application/Auth/CurrentOfficer.cs) | Add &#96;BackOfficeOfficerId&#96; constant; map in &#96;SetRole&#96; |\n| [&#96;DemoOfficer.cs&#96;](src/SchaerbeekMunicipality.Application/Auth/DemoOfficer.cs) | Add demo user e.g. **\"Sophie Lambert (Back office)\"** |\n| [&#96;MainLayout.razor&#96;](src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor) | Nav: backoffice sees **Reports** only; population also gets **Reports**; role-switch redirect → &#96;/administration/reports&#96;; block population-only paths for backoffice |\n| [&#96;Home.razor&#96;](src/SchaerbeekMunicipality.Web/Components/Pages/Home.razor) | Redirect backoffice to reports (like population → review dashboard) |\n| [&#96;GLOSSARY.md&#96;](docs/GLOSSARY.md) + [&#96;phase-15-reporting-dashboard.md&#96;](docs/phases/phase-15-reporting-dashboard.md) | Document role and access matrix |\n\nReplace the current &#96;MainLayout&#96; fallback branch (lines 118–126) that accidentally grants population nav to unknown roles — backoffice gets its own explicit branch.\n\n---\n\n## 2. Authorization\n\nAdd [&#96;ReportingAuthorization.cs&#96;](src/SchaerbeekMunicipality.Application/Features/Reporting/ReportingAuthorization.cs):\n\n&#96;&#96;&#96;csharp\npublic bool CanViewReports(OfficerRole role) =\u003e\n    role is OfficerRole.PopulationOfficer or OfficerRole.BackOfficeOfficer;\n&#96;&#96;&#96;\n\nUsed by all report handlers. **Do not** extend &#96;CanViewReviewDashboard&#96; — backoffice must get &#96;UnauthorizedAccessException&#96; on &#96;GetReviewDashboard&#96; and all case list/get handlers (existing guards already deny non-population roles).\n\nRegister in DI alongside existing &#96;RegistrationCaseAuthorization&#96;.\n\n---\n\n## 3. Application layer — read-only report query\n\nNew feature folder: &#96;src/SchaerbeekMunicipality.Application/Features/Reporting/&#96;\n\n**Single page-oriented handler for MVP** (matches how [&#96;GetReviewDashboardHandler&#96;](src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs) bundles data for one screen):\n\n- **&#96;GetMunicipalityReportHandler&#96;** — input: &#96;months&#96; (3 | 6 | 12, default 12)\n- **&#96;GetMunicipalityReportResponse&#96;** containing:\n  - **Summary KPIs**: registrations completed, birth declarations confirmed, address changes confirmed, average police wait (days), average intake→registered (days), rejection rate\n  - **Volume series**: monthly counts per workflow (registration, birth, COA) for charting\n  - **Current backlog**: cases grouped by status (snapshot, not period-filtered)\n  - **Outcome breakdown**: registered / rejected / suspended counts in period\n\n**Data sources** (reuse existing repositories, in-memory aggregation — fine for demo scale):\n\n| Metric | Source | Filter |\n|--------|--------|--------|\n| Completed registrations | &#96;IRegistrationCaseRepository.ListAsync&#96; | &#96;Status == Registered&#96;, &#96;ClosedAt&#96; in period |\n| Birth declarations | &#96;IBirthDeclarationCaseRepository&#96; | &#96;Status == Confirmed&#96;, &#96;ClosedAt&#96; in period |\n| Address changes | &#96;IChangeOfAddressCaseRepository&#96; | &#96;Status == Confirmed&#96;, &#96;ClosedAt&#96; in period |\n| Police wait | &#96;IPoliceVerificationRepository&#96; | &#96;CompletedAt&#96; not null; avg &#96;(CompletedAt - RequestedAt).TotalDays&#96; |\n| Backlog | All case repos | Group current &#96;Status&#96; counts |\n| Rejection rate | Registration + birth + COA | &#96;Rejected&#96; / terminal outcomes in period |\n\n**Small infra addition**: add &#96;ListAllAsync()&#96; (or &#96;ListCompletedAsync()&#96;) to [&#96;IPoliceVerificationRepository&#96;](src/SchaerbeekMunicipality.Domain/Police/IPoliceVerificationRepository) — today only pending/case-scoped queries exist.\n\nEmpty period → zero counts, not errors (per phase doc).\n\n---\n\n## 4. API + Web client\n\n| Layer | Path |\n|-------|------|\n| Endpoint | &#96;GET /api/reports/municipality?months=12&#96; in new [&#96;ReportingEndpoints.cs&#96;](src/SchaerbeekMunicipality.Api/Features/Reporting/ReportingEndpoints.cs) |\n| Host wiring | Register in [&#96;MunicipalApiHostExtensions.cs&#96;](src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs) |\n| Client | &#96;IReportingApi&#96; / &#96;ReportingApiClient&#96; under &#96;Web/Api/Reporting/&#96; |\n| DI | Register handler + client in Application/Web DI |\n\n---\n\n## 5. UI — Reports page\n\nNew page: [&#96;MunicipalityReportsPage.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Reporting/Pages/MunicipalityReportsPage.razor)\n\n- Route: **&#96;/administration/reports&#96;** (consistent with existing &#96;/administration/outbound-notifications&#96;)\n- Gate: &#96;RegistrationRoleGate&#96; with &#96;AllowedRoles=\"[OfficerRole.PopulationOfficer, OfficerRole.BackOfficeOfficer]\"&#96;; backoffice redirect target = same page\n- Layout pattern from [design-system template §8](docs/design-system/06-page-templates.md) + phase doc:\n  - &#96;AppPageHeader&#96; with subtitle explaining read-only analytics\n  - **Period filter**: MudSelect or button group (3 / 6 / 12 months) — reload on change\n  - **KPI grid**: &#96;AppStatisticCard&#96; (no href links for backoffice-only metrics; population may link where sensible)\n  - **Volume chart**: &#96;MudChart&#96; line chart (monthly series) — first chart usage in the project\n  - **Outcome breakdown**: bar chart or secondary &#96;AppStatisticCard&#96; row\n  - **Backlog section**: &#96;AppDataTable&#96; or status chips for current cases-by-status\n\nFollow [&#96;blazor-ef-core&#96; rule](.cursor/rules/blazor-ef-core.mdc): page owns loading; single &#96;await ReportingApi.GetMunicipalityReportAsync(months)&#96; in &#96;OnInitializedAsync&#96; / period change handler.\n\n---\n\n## 6. Tests\n\nNew integration suite: &#96;tests/.../Features/Reporting/MunicipalityReportTests.cs&#96;\n\n| Test | Assert |\n|------|--------|\n| BackOfficeOfficer gets report | 200 / valid KPI shape |\n| BackOfficeOfficer denied review dashboard | &#96;UnauthorizedAccessException&#96; |\n| BackOfficeOfficer denied case list | &#96;UnauthorizedAccessException&#96; |\n| Reception / Police denied reports | &#96;UnauthorizedAccessException&#96; |\n| PopulationOfficer gets report | Allowed |\n| Seeded cases with known &#96;ClosedAt&#96; | Correct monthly counts and averages |\n| Empty period | Zeroes, no exception |\n\nExtend [&#96;RoleBoundariesAndCaseLockingTests&#96;](tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs) or add focused reporting role tests.\n\nOptional E2E: switch to Sophie (backoffice) → lands on reports → no case nav items visible.\n\n---\n\n## 7. Documentation updates\n\n- [&#96;phase-15-reporting-dashboard.md&#96;](docs/phases/phase-15-reporting-dashboard.md): status → Complete; role gate → &#96;PopulationOfficer&#96; + &#96;BackOfficeOfficer&#96;; route → &#96;/administration/reports&#96;\n- [&#96;ROADMAP.md&#96;](docs/ROADMAP.md): Phase 15 status + demo script line for backoffice role\n- [&#96;phase-8.1-role-boundaries-case-locking.md&#96;](docs/phases/phase-8.1-role-boundaries-case-locking.md): add row to role matrix for Reports\n\n---\n\n## Out of scope (unchanged from phase doc)\n\n- Excel/PDF export, real-time streaming, FR/NL labels\n- Document-request metrics (can add later)\n- &#96;report_snapshots&#96; table / nightly rollups\n- Backoffice access to outbound notifications or case browsing (per your choice)\n\n---\n\n## Demo script\n\n1. Switch to **Sophie Lambert (Back office)** → lands on **Reports** → KPI tiles + chart load.\n2. Sidebar shows **Reports** only (no review dashboard, no case lists).\n3. Switch to **Marie Dupont (Population)** → **Reports** appears alongside operational nav; review dashboard still works.\n4. Switch to **Jean Martin (Reception)** → cannot reach &#96;/administration/reports&#96; (redirected to new case).\n",
+  "todos": [
+    {
+      "content": "Add BackOfficeOfficer enum value, demo officer Sophie Lambert, and wire CurrentOfficer/RoleSwitcher/MainLayout/Home redirects",
+      "id": "add-backoffice-role",
+      "status": "pending"
+    },
+    {
+      "content": "Create ReportingAuthorization + GetMunicipalityReportHandler with repository queries and police ListAllAsync",
+      "id": "reporting-auth-handler",
+      "status": "pending"
+    },
+    {
+      "content": "Add GET /api/reports/municipality endpoint, ReportingEndpoints registration, and IReportingApi client",
+      "id": "api-client",
+      "status": "pending"
+    },
+    {
+      "content": "Build MunicipalityReportsPage.razor with period filter, AppStatisticCard KPIs, MudChart volume series, backlog/outcome sections",
+      "id": "reports-ui",
+      "status": "pending"
+    },
+    {
+      "content": "Integration tests for role boundaries and KPI accuracy; update phase-15, ROADMAP, GLOSSARY, role matrix docs",
+      "id": "tests-docs",
+      "status": "pending"
+    }
+  ]
+}
+```
+Additional data:
+
+```json
+{
+  "hasOpenedEditor": true,
+  "planId": "phase_15_reporting_dashboard_962cef4a",
+  "planUri": "file:///Users/joba/.cursor/plans/phase_15_reporting_dashboard_962cef4a.plan.md",
+  "reviewData": {
+    "isShowingInput": false,
+    "selectedOption": "none",
+    "status": "Requested"
+  }
+}
+```
+Result:
+
+```json
+{
+  "rejected": {}
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
+<summary>Tool use: **create_plan**</summary>
+
+</details></tool-use>
+
+---
+
+_**User**_
+
+Implement the plan as specified, it is attached for your reference. Do NOT edit the plan file itself.
+
+To-do's from the plan have already been created. Do not create them again. Mark them as in_progress as you work, starting with the first one. Don't stop until you have completed all the to-dos.
+
+---
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Status: **loading**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
 
 </details></tool-use>
 
@@ -127,23 +2323,6 @@ _**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
 <summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
 
 </details></tool-use>
 
@@ -177,6 +2356,19 @@ No results found
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
@@ -205,83 +2397,6 @@ _**Agent (default)**_
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
@@ -292,5 +2407,100 @@ No results found
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Status: **loading**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
 
 </details></tool-use>

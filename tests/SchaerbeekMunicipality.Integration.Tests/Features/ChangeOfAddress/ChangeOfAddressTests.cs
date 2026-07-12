@@ -10,12 +10,32 @@ using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ClaimChangeOfAddressCase;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ConfirmAddressChange;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.DeclareNewAddress;
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ListChangeOfAddressCases;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.OpenChangeOfAddressCase;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.ChangeOfAddress;
 
 public sealed class ChangeOfAddressTests
 {
+    [Fact]
+    public async Task ReceptionOfficer_CanOpenCase_ButCannotList()
+    {
+        await using var factory = new MunicipalAppFactory();
+        await using var scope = factory.Services.CreateAsyncScope();
+        var services = scope.ServiceProvider;
+        RegistrationTestHelpers.SetRole(services, OfficerRole.ReceptionOfficer);
+
+        var personId = await CreateRegisteredPersonAsync(services);
+        var openHandler = services.GetRequiredService<OpenChangeOfAddressCaseHandler>();
+        var listHandler = services.GetRequiredService<ListChangeOfAddressCasesHandler>();
+
+        var opened = await openHandler.Handle(new OpenChangeOfAddressCaseRequest(personId), CancellationToken.None);
+        opened.CaseId.Should().NotBeEmpty();
+
+        var listAct = () => listHandler.Handle(CancellationToken.None);
+        await listAct.Should().ThrowAsync<UnauthorizedAccessException>();
+    }
+
     [Fact]
     public async Task Open_WithoutNationalRegisterNumber_Throws()
     {

@@ -20,6 +20,9 @@ public interface IPoliceVerificationRepository
     Task<IReadOnlyList<PoliceVerificationRequest>> ListPendingAsync(
         CancellationToken cancellationToken);
 
+    Task<IReadOnlyList<PoliceVerificationRequest>> ListAllAsync(
+        CancellationToken cancellationToken);
+
     Task<IReadOnlyList<PoliceVerificationRequest>> ListByCaseIdAsync(
         RegistrationCaseId caseId,
         CancellationToken cancellationToken);

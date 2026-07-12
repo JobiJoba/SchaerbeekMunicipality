@@ -7,6 +7,7 @@ using SchaerbeekMunicipality.Api.Features.BirthDeclaration;
 using SchaerbeekMunicipality.Api.Features.ChangeOfAddress;
 using SchaerbeekMunicipality.Api.Features.IdentityDocuments;
 using SchaerbeekMunicipality.Api.Features.Registration;
+using SchaerbeekMunicipality.Api.Features.Reporting;
 using SchaerbeekMunicipality.Api.Middleware;
 using SchaerbeekMunicipality.Application;
 using SchaerbeekMunicipality.Application.DemoData;
@@ -50,6 +51,7 @@ public static class MunicipalApiHostExtensions
         app.MapBirthDeclarationEndpoints();
         app.MapChangeOfAddressEndpoints();
         app.MapIdentityDocumentsEndpoints();
+        app.MapReportingEndpoints();
         app.MapOpenApi();
 
         return app;

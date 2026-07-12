@@ -48,6 +48,14 @@ internal sealed class PoliceVerificationRepository(MunicipalDbContext dbContext)
             .ToList();
     }
 
+    public async Task<IReadOnlyList<PoliceVerificationRequest>> ListAllAsync(
+        CancellationToken cancellationToken)
+    {
+        return await dbContext.PoliceVerificationRequests
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
+    }
+
     public async Task<IReadOnlyList<PoliceVerificationRequest>> ListByCaseIdAsync(
         RegistrationCaseId caseId,
         CancellationToken cancellationToken)

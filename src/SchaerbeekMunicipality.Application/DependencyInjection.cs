@@ -79,6 +79,8 @@ using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalReg
 using SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
 using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase;
+using SchaerbeekMunicipality.Application.Features.Reporting;
+using SchaerbeekMunicipality.Application.Features.Reporting.GetMunicipalityReport;
 
 namespace SchaerbeekMunicipality.Application;
 
@@ -175,6 +177,8 @@ public static class DependencyInjection
 
         services.AddScoped<DocumentRequestCaseAuthorization>();
         services.AddScoped<DocumentRequestCaseGuard>();
+        services.AddScoped<ReportingAuthorization>();
+        services.AddScoped<GetMunicipalityReportHandler>();
         services.AddScoped<OpenDocumentRequestCaseHandler>();
         services.AddScoped<ListDocumentRequestCasesHandler>();
         services.AddScoped<GetDocumentRequestCaseHandler>();
