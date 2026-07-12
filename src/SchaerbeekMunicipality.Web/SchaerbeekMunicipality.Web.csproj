@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
+    <ProjectReference Include="..\SchaerbeekMunicipality.Api\SchaerbeekMunicipality.Api.csproj" />
     <ProjectReference Include="..\SchaerbeekMunicipality.Application\SchaerbeekMunicipality.Application.csproj" />
     <ProjectReference Include="..\SchaerbeekMunicipality.ServiceDefaults\SchaerbeekMunicipality.ServiceDefaults.csproj" />
     <ProjectReference Include="..\SchaerbeekMunicipality.Domain\SchaerbeekMunicipality.Domain.csproj" />

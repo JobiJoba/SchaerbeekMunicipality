@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using SchaerbeekMunicipality.Web.Api.BirthDeclaration;
 using SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
@@ -25,14 +26,32 @@ public static class DependencyInjection
     {
         services.AddHttpClient<TClient, TImplementation>((serviceProvider, client) =>
             {
-                var bridge = serviceProvider.GetService<IMunicipalApiBridge>();
-                client.BaseAddress = bridge?.BaseAddress
-                    ?? new Uri(environment.IsDevelopment() ? "http://api" : "https+http://api");
+                client.BaseAddress = ResolveApiBaseAddress(serviceProvider, environment);
             })
             .ConfigurePrimaryHttpMessageHandler(serviceProvider =>
             {
                 var bridge = serviceProvider.GetService<IMunicipalApiBridge>();
                 return bridge?.CreateHandler() ?? new HttpClientHandler();
             });
+    }
+
+    private static Uri ResolveApiBaseAddress(IServiceProvider serviceProvider, IHostEnvironment environment)
+    {
+        var bridge = serviceProvider.GetService<IMunicipalApiBridge>();
+        if (bridge is not null)
+        {
+            return bridge.BaseAddress;
+        }
+
+        if (environment.IsDevelopment())
+        {
+            return new Uri("http://api");
+        }
+
+        var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+        var configuredBaseAddress = configuration["MunicipalApi:BaseAddress"];
+        return configuredBaseAddress is not null
+            ? new Uri(configuredBaseAddress)
+            : new Uri("http://127.0.0.1:8080");
     }
 }
