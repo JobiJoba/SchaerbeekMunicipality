@@ -97,7 +97,6 @@ public static class DependencyInjection
 
         await ReferenceDataSeeder.SeedAsync(dbContext, CancellationToken.None);
         await NationalRegisterSeeder.SeedAsync(dbContext, CancellationToken.None);
-        await PopulationRegisterSeeder.SeedAsync(dbContext, CancellationToken.None);
     }
 
     private static bool IsSqlite(string connectionString) =>

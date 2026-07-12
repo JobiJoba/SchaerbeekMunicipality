@@ -11,6 +11,7 @@ using SchaerbeekMunicipality.Api.Middleware;
 using SchaerbeekMunicipality.Application;
 using SchaerbeekMunicipality.Application.DemoData;
 using SchaerbeekMunicipality.Infrastructure;
+using SchaerbeekMunicipality.Infrastructure.Persistence;
 
 namespace SchaerbeekMunicipality.Api;
 
@@ -33,6 +34,9 @@ public static class MunicipalApiHostExtensions
 
         if (app.Configuration.GetValue($"{DemoDataOptions.SectionName}:{nameof(DemoDataOptions.SeedWorkflowCases)}", false))
         {
+            await using var scope = app.Services.CreateAsyncScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<MunicipalDbContext>();
+            await PopulationRegisterSeeder.SeedAsync(dbContext, CancellationToken.None);
             await DemoWorkflowCaseSeeder.SeedAsync(app.Services);
         }
     }
