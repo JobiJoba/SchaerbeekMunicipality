@@ -392,7 +392,7 @@
 
     private async Task SaveCategory()
     {
-        await _categoryForm.Validate();
+        await _categoryForm.ValidateAsync();
         if (!_categoryFormValid || _categoryModel.Category is null)
         {
             return;
@@ -486,7 +486,7 @@
 
     private async Task SavePermit()
     {
-        await _permitForm.Validate();
+        await _permitForm.ValidateAsync();
         if (!_permitFormValid || _permitModel.PermitType is null || _permitModel.ValidFrom is null || _permitModel.ValidUntil is null)
         {
             return;
@@ -574,7 +574,7 @@
 
     private async Task SaveDecision()
     {
-        await _decisionForm.Validate();
+        await _decisionForm.ValidateAsync();
         if (!_decisionFormValid || string.IsNullOrWhiteSpace(_decisionModel.ReferenceNumber) || _decisionModel.DecisionDate is null)
         {
             return;

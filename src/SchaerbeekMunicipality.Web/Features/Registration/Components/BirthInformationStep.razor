@@ -137,7 +137,7 @@ else
 
     private async Task Save()
     {
-        await _form.Validate();
+        await _form.ValidateAsync();
         if (!_formValid || string.IsNullOrWhiteSpace(_model.BirthPlace))
         {
             return;

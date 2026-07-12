@@ -247,7 +247,7 @@
 
     private async Task Save()
     {
-        await _form.Validate();
+        await _form.ValidateAsync();
         if (!_formValid || _model.Status is null)
         {
             return;

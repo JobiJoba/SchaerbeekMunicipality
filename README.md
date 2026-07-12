@@ -4,6 +4,14 @@ An educational .NET project that simulates the **Population Department** of a Be
 
 This is **not** a production system. It simplifies Belgian law and inter-administration integrations while preserving the *shape* of real municipal work: identity verification, legal residence, address confirmation, register assignment, audit trails, and role-based officer UX.
 
+## Try it live
+
+The app is hosted on Azure Container Apps — open it in your browser and walk through the municipal workflows:
+
+**[https://schaerbeek-web.gentledesert-b97640b1.westeurope.azurecontainerapps.io/](https://schaerbeek-web.gentledesert-b97640b1.westeurope.azurecontainerapps.io/)**
+
+Use the **role switcher** in the app bar to act as reception, a population officer, or a police clerk. The first request after idle may take a moment (cold start); data is ephemeral and resets when the container restarts.
+
 **Progress:** Phases **0–13** are complete (see [ROADMAP](./docs/ROADMAP.md)). Next up: passport/ID requests, reporting, person file.
 
 <!-- Uncomment after publishing to GitHub (replace YOUR_GITHUB_USER):

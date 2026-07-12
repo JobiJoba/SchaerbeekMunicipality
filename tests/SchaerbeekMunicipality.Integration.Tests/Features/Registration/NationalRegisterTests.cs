@@ -39,7 +39,7 @@ public sealed class SearchNationalRegisterTests
             CancellationToken.None);
 
         response.Matches.Should().NotBeEmpty();
-        response.Matches[0].MatchScore.Should().BeGreaterOrEqualTo(80);
+        response.Matches[0].MatchScore.Should().BeGreaterThanOrEqualTo(80);
         response.Matches[0].BisNumber.Should().NotBeNullOrWhiteSpace();
     }
 }

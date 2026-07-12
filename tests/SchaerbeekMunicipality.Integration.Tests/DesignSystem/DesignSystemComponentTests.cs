@@ -10,18 +10,22 @@ using SchaerbeekMunicipality.Web.DesignSystem.Components.Layout;
 
 namespace SchaerbeekMunicipality.Integration.Tests.DesignSystem;
 
-public sealed class DesignSystemComponentTests : TestContext
+public sealed class DesignSystemComponentTests
 {
-    public DesignSystemComponentTests()
+    private static BunitContext CreateContext()
     {
-        Services.AddMudServices();
-        JSInterop.Mode = JSRuntimeMode.Loose;
+        var context = new BunitContext();
+        context.Services.AddMudServices();
+        context.JSInterop.Mode = JSRuntimeMode.Loose;
+        return context;
     }
 
     [Fact]
-    public void AppPage_renders_main_landmark_and_title()
+    public async Task AppPage_renders_main_landmark_and_title()
     {
-        var cut = RenderComponent<AppPage>(parameters => parameters
+        await using var context = CreateContext();
+
+        var cut = context.Render<AppPage>(parameters => parameters
             .Add(p => p.Title, "Cases")
             .Add(p => p.ChildContent, "content"));
 
@@ -30,9 +34,11 @@ public sealed class DesignSystemComponentTests : TestContext
     }
 
     [Fact]
-    public void AppPageHeader_renders_single_h1()
+    public async Task AppPageHeader_renders_single_h1()
     {
-        var cut = RenderComponent<AppPageHeader>(parameters => parameters
+        await using var context = CreateContext();
+
+        var cut = context.Render<AppPageHeader>(parameters => parameters
             .Add(p => p.Title, "Registration cases")
             .Add(p => p.Subtitle, "Work queue"));
 
@@ -42,9 +48,11 @@ public sealed class DesignSystemComponentTests : TestContext
     }
 
     [Fact]
-    public void AppEmptyState_renders_title_and_description()
+    public async Task AppEmptyState_renders_title_and_description()
     {
-        var cut = RenderComponent<AppEmptyState>(parameters => parameters
+        await using var context = CreateContext();
+
+        var cut = context.Render<AppEmptyState>(parameters => parameters
             .Add(p => p.Title, "No cases")
             .Add(p => p.Description, "Open a case to begin."));
 
@@ -53,18 +61,22 @@ public sealed class DesignSystemComponentTests : TestContext
     }
 
     [Fact]
-    public void AppStatusChip_maps_registration_status_with_text()
+    public async Task AppStatusChip_maps_registration_status_with_text()
     {
-        var cut = RenderComponent<AppStatusChip>(parameters => parameters
+        await using var context = CreateContext();
+
+        var cut = context.Render<AppStatusChip>(parameters => parameters
             .Add(p => p.Status, RegistrationCaseStatus.Intake));
 
         cut.Markup.Should().Contain("Intake");
     }
 
     [Fact]
-    public void AppAlert_applies_role_alert()
+    public async Task AppAlert_applies_role_alert()
     {
-        var cut = RenderComponent<AppAlert>(parameters => parameters
+        await using var context = CreateContext();
+
+        var cut = context.Render<AppAlert>(parameters => parameters
             .Add(p => p.Severity, Severity.Error)
             .Add(p => p.Title, "Validation failed")
             .AddChildContent("Check required fields."));

@@ -9,8 +9,7 @@ namespace SchaerbeekMunicipality.Integration.Tests.Persistence;
 [Trait("Category", "PostgreSQL")]
 public sealed class PostgreSqlMigrationTests : IAsyncLifetime
 {
-    private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder()
-        .WithImage("postgres:16-alpine")
+    private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder("postgres:16-alpine")
         .Build();
 
     public async Task InitializeAsync() => await _postgres.StartAsync();

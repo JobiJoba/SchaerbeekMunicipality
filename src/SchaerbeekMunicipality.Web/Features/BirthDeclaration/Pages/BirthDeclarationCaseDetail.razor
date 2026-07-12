@@ -254,7 +254,7 @@
 
     private async Task SaveHousehold()
     {
-        await _householdForm.Validate();
+        await _householdForm.ValidateAsync();
         if (!_householdForm.IsValid)
         {
             return;

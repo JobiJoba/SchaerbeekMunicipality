@@ -231,7 +231,7 @@
     private async Task SaveAddress()
     {
         SyncAddressModel();
-        await _addressForm.Validate();
+        await _addressForm.ValidateAsync();
         if (!_addressFormValid || _selectedStreet is null)
         {
             return;
@@ -307,7 +307,7 @@
 
     private async Task SaveHousing()
     {
-        await _housingForm.Validate();
+        await _housingForm.ValidateAsync();
         if (!_housingFormValid || _housingModel.Situation is null)
         {
             return;

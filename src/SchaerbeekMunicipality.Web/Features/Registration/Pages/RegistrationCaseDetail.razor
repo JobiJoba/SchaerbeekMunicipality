@@ -635,7 +635,7 @@
 
     private async Task SaveIdentity()
     {
-        await _identityForm.Validate();
+        await _identityForm.ValidateAsync();
         if (!_identityFormValid || _identityModel.BirthDate is null)
         {
             return;
@@ -670,7 +670,7 @@
 
     private async Task SaveIdentityCorrection()
     {
-        await _identityForm.Validate();
+        await _identityForm.ValidateAsync();
         if (!_identityFormValid || _identityModel.BirthDate is null)
         {
             return;

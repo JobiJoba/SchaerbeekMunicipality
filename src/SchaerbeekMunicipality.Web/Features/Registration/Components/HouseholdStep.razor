@@ -175,7 +175,7 @@
 
     private async Task AddMember()
     {
-        await _memberForm.Validate();
+        await _memberForm.ValidateAsync();
         if (!_memberFormValid || _memberModel.BirthDate is null || _memberModel.Role is null)
         {
             return;

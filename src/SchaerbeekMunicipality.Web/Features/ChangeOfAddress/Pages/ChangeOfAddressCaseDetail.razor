@@ -151,11 +151,12 @@
                                 @if (_case.CanEdit)
                                 {
                                     <MudFileUpload T="IBrowserFile" Accept=".pdf,.jpg,.jpeg,.png" FilesChanged="UploadDocument">
-                                        <ActivatorContent>
-                                            <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.Upload">
+                                        <CustomContent Context="fileUpload">
+                                            <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.Upload"
+                                                       OnClick="@fileUpload.OpenFilePickerAsync">
                                                 Attach rental contract
                                             </MudButton>
-                                        </ActivatorContent>
+                                        </CustomContent>
                                     </MudFileUpload>
                                 }
                             </AppCollapsibleSection>

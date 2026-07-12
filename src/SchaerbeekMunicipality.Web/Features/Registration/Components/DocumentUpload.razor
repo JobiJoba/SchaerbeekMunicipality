@@ -13,11 +13,12 @@
     </MudSelect>
 
     <MudFileUpload T="IBrowserFile" Accept=".pdf,.jpg,.jpeg,.png" FilesChanged="OnFileSelected">
-        <ActivatorContent>
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Outlined.Upload">
+        <CustomContent Context="fileUpload">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Outlined.Upload"
+                       OnClick="@fileUpload.OpenFilePickerAsync">
                 Choose file
             </MudButton>
-        </ActivatorContent>
+        </CustomContent>
     </MudFileUpload>
 
     @if (_selectedFile is not null)
