@@ -56,8 +56,9 @@ No new domain aggregates. Changes are domain rules (claim/lock), application gua
 |-------------|--------|-------|
 | Reception: **New case** page only | Done | `/registration/new-case` |
 | Population: case list + detail | Done | Auto-claim on detail open |
-| Read-only banner when locked to colleague | Done | Shows lock holder name |
-| **Take case** / **Release lock** actions | Done | Case detail header |
+| Read-only banner when locked to colleague | Done | Shows lock holder name; no misleading “take case” hint |
+| **Take case** / **Release lock** actions | Done | Header actions — visibility gated on `CanEdit` / `CanTakeCase` |
+| Read-only intake: no edit forms or action buttons | Done | Registration + shared `AppEditableSection` / `CaseDocumentPanel` |
 | Police: verifications queue only | Done | Redirected away from case list/detail |
 | `RegistrationRoleGate` component | Done | Reusable route guard |
 | Demo officer switcher with `?demoOfficer=` | Done | Persisted in URL |
@@ -155,6 +156,33 @@ Existing list/get handlers call `RegistrationCaseAuthorization` and `Registratio
 - Sidebar: Officer decision panel top-aligned with the Identity **card** (not the section title).
 - Case history at the bottom of the main column: collapsible, closed by default, datagrid instead of timeline.
 
+### Read-only case detail (lock held by colleague)
+
+When `IsReadOnlyDueToLock` is true (`CanEdit` false, case locked to another officer), the UI is **review-only** — no action that would mutate the case is shown or clickable.
+
+| UI area | Lock holder (`CanEdit`) | Read-only (`IsReadOnlyDueToLock`) |
+|---------|-------------------------|-------------------------------------|
+| Header **Take case** | Hidden | Hidden — cannot claim while another officer holds the lock |
+| Header **Release lock** | Shown | Hidden |
+| Header **Send to police** (registration) | When checklist allows | Hidden |
+| Intake forms (identity, residence, address, …) | Shown for incomplete or editable steps | Read-only summary or “Not recorded yet.” — no save/upload/NR-search buttons |
+| Officer decision (approve / reject / …) | Shown when status allows | Hidden (`Case.CanEdit` gate) |
+| Document upload | Shown | Hidden (`CaseDocumentPanel` respects `CanEdit`) |
+
+**Take case** visibility (shared `CaseLockActions` on birth declaration, change of address, identity document requests; inline on registration case detail):
+
+```text
+CanTakeCase = !CanEdit && !IsReadOnlyDueToLock
+```
+
+So **Take case** appears only when the case is available to claim (unassigned, or lock released) — not while a colleague holds the lock.
+
+**Release lock** appears only when `CanEdit` is true (current officer holds the lock).
+
+`CaseLockBar` warns that the file is read-only until the lock holder releases; it does not suggest taking the case from a locked colleague.
+
+Incomplete intake steps use `AppEditableSection` and step components (`ResidenceStep`, `AddressStep`, …) to render static placeholders instead of empty edit forms when `CanEdit` is false.
+
 ### Demo role switching
 
 - `?demoOfficer={guid}` persists the selected demo officer across navigation.
@@ -174,6 +202,9 @@ Existing list/get handlers call `RegistrationCaseAuthorization` and `Registratio
 | New case page | `src/.../Web/Features/Registration/Pages/NewRegistrationCasePage.razor` |
 | Visit reason labels | `src/.../Web/Features/Registration/VisitReasonLabels.cs` |
 | Case detail layout | `src/.../Web/Features/Registration/Pages/RegistrationCaseDetail.razor` |
+| Shared lock chrome | `src/.../Web/Municipal/Components/CaseLockActions.razor`, `CaseLockBar.razor` |
+| Shared read-only intake | `src/.../Web/DesignSystem/Components/Layout/AppEditableSection.razor` |
+| Document upload gate | `src/.../Web/Municipal/Components/CaseDocumentPanel.razor` |
 | Demo officer URL | `src/.../Web/Auth/DemoOfficerPersistence.cs` |
 | Layout / role switch | `src/.../Web/Components/Layout/MainLayout.razor` |
 | Sidebar alignment CSS | `src/.../Web/wwwroot/app.css` |
@@ -186,7 +217,7 @@ Existing list/get handlers call `RegistrationCaseAuthorization` and `Registratio
 2. **Unassigned visibility** — Switch to Marie Dupont → **Review dashboard** → unassigned registration case appears in tile and **Needs my attention** → click **Unassigned** tile → case list filtered.
 3. **Birth declaration handoff** — Reception opens birth declaration → population officer sees it under **Birth unassigned** and in **Needs my attention** (type Birth declaration) → row opens `/birth-declarations/{id}`.
 4. **Claim & lock** — Open the case → auto-assigned and locked → timeline shows opened + assigned.
-5. **Colleague read-only** — Switch to Anne Leroy → case detail is read-only → **Take case** after Marie releases lock.
+5. **Colleague read-only** — Switch to Anne Leroy → case detail is read-only → no **Take case**, **Release lock**, or intake edit buttons → Marie releases lock → Anne can **Take case** and edit.
 6. **Case list filters** — **My cases** shows only yours; **Unassigned** shows reception handoffs; search still works within the active filter.
 7. **Case detail layout** — Officer decision aligns with Identity card; expand **Case history** at bottom for datagrid audit log.
 8. **Role switch URL** — From `/registration/cases` switch to reception → lands on `/registration/new-case?demoOfficer=…` with port intact.

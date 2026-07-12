@@ -90,9 +90,9 @@ Sticky side-panel pattern for case documents: optional upload slot, dense docume
 |-----------|---------|
 | `Documents` | `IReadOnlyList<CaseDocumentItem>` |
 | `GetDocumentUrl` | Maps document id → download/preview URL |
-| `UploadContent` | Render fragment for the upload form |
+| `UploadContent` | Render fragment for the upload form (shown only when `CanEdit`) |
 | `OnRemoveDocument` | Delete callback |
-| `CanEdit` | Shows delete buttons |
+| `CanEdit` | Shows delete buttons and upload slot |
 
 **Used by:** `RegistrationCaseDocumentPanel.razor`, `BirthDeclarationDocumentPanel.razor` — each maps its context-specific DTOs to `CaseDocumentItem` and wires upload/remove handlers.
 
@@ -104,12 +104,18 @@ Renders the four core registration questions (or equivalent) via `AppChecklist`.
 
 ### `CaseLockBar` / `CaseLockActions`
 
-Officer case-lock UX from Phase 8.1:
+Officer case-lock UX from Phase 8.1 (registration, birth declaration, change of address, identity document requests):
 
-- **`CaseLockBar`** — warning alert when the case is read-only because another officer holds the lock.
-- **`CaseLockActions`** — "Take case" / "Release lock" buttons for the page header action cluster.
+- **`CaseLockBar`** — warning alert when `IsReadOnlyDueToLock` is true. Message: review the file but cannot edit until the lock holder releases (no misleading “take case” call-to-action).
+- **`CaseLockActions`** — page header buttons:
+  - **Take case** when `CanTakeCase` (`!CanEdit && !IsReadOnlyDueToLock`) — unassigned or lock released, not while a colleague holds the lock.
+  - **Release lock** when `CanEdit` — lock holder only.
 
-**Used by:** `RegistrationCaseDetail.razor`, `BirthDeclarationCaseDetail.razor`, `ChangeOfAddressCaseDetail.razor`.
+Registration case detail applies the same visibility rules inline (it does not use `CaseLockActions`).
+
+When read-only, intake must not expose clickable mutations: step components and `AppEditableSection` show read-only content or “Not recorded yet.” instead of empty forms; `CaseDocumentPanel` hides the upload slot when `CanEdit` is false.
+
+**Used by:** `RegistrationCaseDetail.razor`, `BirthDeclarationCaseDetail.razor`, `ChangeOfAddressCaseDetail.razor`, `DocumentRequestCaseDetail.razor`.
 
 ## Formatting helpers
 

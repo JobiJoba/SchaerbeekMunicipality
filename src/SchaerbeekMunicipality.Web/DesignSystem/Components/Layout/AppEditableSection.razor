@@ -2,10 +2,23 @@
 {
     @PrerequisiteContent
 }
-else if (!HasData || IsEditing)
+else if (IsEditing && CanEdit)
 {
     <AppCard Title="@Title" Outlined="true" Class="@Class">
         @EditContent
+    </AppCard>
+}
+else if (!HasData)
+{
+    <AppCard Title="@Title" Outlined="true" Class="@Class">
+        @if (CanEdit)
+        {
+            @EditContent
+        }
+        else
+        {
+            <MudText Typo="Typo.body2" Color="Color.Secondary">Not recorded yet.</MudText>
+        }
     </AppCard>
 }
 else

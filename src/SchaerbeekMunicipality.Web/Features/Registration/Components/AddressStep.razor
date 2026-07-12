@@ -18,7 +18,37 @@
             Record identity before declaring an address.
         </AppInfoBox>
     }
-    else if (_case.DeclaredAddress is null || _editingAddress)
+    else if (_case.DeclaredAddress is null)
+    {
+        @if (CanEdit)
+        {
+            <AppCard Title="Declared address" Outlined="true">
+                <MudForm @ref="_addressForm"
+                         @bind-IsValid="_addressFormValid"
+                         Model="_addressModel"
+                         Validation="@(DeclareAddressValidator.ToMudValidateValue<DeclareAddressRequest, AddressFormModel>(MapAddressRequest))">
+                    <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
+                                          @bind-HouseNumber="_addressModel.HouseNumber"
+                                          @bind-Box="_addressModel.Box"
+                                          SearchStreets="SearchStreets"
+                                          ShowHelpText="true" />
+
+                    <AppSaveCancelBar SaveText="Declare address"
+                                      CancelText="Clear"
+                                      Saving="_savingAddress"
+                                      OnSave="SaveAddress"
+                                      OnCancel="HandleAddressCancel" />
+                </MudForm>
+            </AppCard>
+        }
+        else
+        {
+            <AppCard Title="Declared address" Outlined="true">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Address not declared yet.</MudText>
+            </AppCard>
+        }
+    }
+    else if (_editingAddress && CanEdit)
     {
         <AppCard Title="Declared address" Outlined="true">
             <MudForm @ref="_addressForm"
@@ -31,10 +61,10 @@
                                       SearchStreets="SearchStreets"
                                       ShowHelpText="true" />
 
-                <AppSaveCancelBar SaveText="@(_editingAddress ? "Save changes" : "Declare address")"
-                                  CancelText="@(_editingAddress ? "Cancel" : "Clear")"
+                <AppSaveCancelBar SaveText="Save changes"
+                                  CancelText="Cancel"
                                   Saving="_savingAddress"
-                                  Disabled="@(_editingAddress && !AddressFormDirty)"
+                                  Disabled="!AddressFormDirty"
                                   OnSave="SaveAddress"
                                   OnCancel="HandleAddressCancel" />
             </MudForm>
@@ -62,7 +92,47 @@
 
     @if (_case.DeclaredAddress is not null)
     {
-        @if (_case.HousingSituation is null || _editingHousing)
+        @if (_case.HousingSituation is null)
+        {
+            @if (CanEdit)
+            {
+                <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
+                    <MudForm @ref="_housingForm"
+                             @bind-IsValid="_housingFormValid"
+                             Model="_housingModel"
+                             Validation="@(HousingSituationValidator.ToMudValidateValue<RecordHousingSituationRequest, HousingFormModel>(MapHousingRequest))">
+                        <AppFormSection Title="How does the person occupy this address?">
+                            <MudItem xs="12" md="6">
+                                <MudSelect T="HousingSituation?"
+                                           @bind-Value="_housingModel.Situation"
+                                           Label="Housing situation"
+                                           Required="true"
+                                           ToStringFunc="@FormatHousingSituation">
+                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.Owner">Owner</MudSelectItem>
+                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.Tenant">Tenant</MudSelectItem>
+                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.Lodging">Lodging</MudSelectItem>
+                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.StudentHousing">Student housing</MudSelectItem>
+                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.Shelter">Shelter</MudSelectItem>
+                                </MudSelect>
+                            </MudItem>
+                        </AppFormSection>
+
+                        <AppSaveCancelBar SaveText="Record situation"
+                                          CancelText="Clear"
+                                          Saving="_savingHousing"
+                                          OnSave="SaveHousing"
+                                          OnCancel="HandleHousingCancel" />
+                    </MudForm>
+                </AppCard>
+            }
+            else
+            {
+                <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">Housing situation not recorded yet.</MudText>
+                </AppCard>
+            }
+        }
+        else if (_editingHousing && CanEdit)
         {
             <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
                 <MudForm @ref="_housingForm"
@@ -85,10 +155,10 @@
                         </MudItem>
                     </AppFormSection>
 
-                    <AppSaveCancelBar SaveText="@(_editingHousing ? "Save changes" : "Record situation")"
-                                      CancelText="@(_editingHousing ? "Cancel" : "Clear")"
+                    <AppSaveCancelBar SaveText="Save changes"
+                                      CancelText="Cancel"
                                       Saving="_savingHousing"
-                                      Disabled="@(_editingHousing && !HousingFormDirty)"
+                                      Disabled="!HousingFormDirty"
                                       OnSave="SaveHousing"
                                       OnCancel="HandleHousingCancel" />
                 </MudForm>

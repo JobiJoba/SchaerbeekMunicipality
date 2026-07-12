@@ -58,7 +58,7 @@
                         Take case
                     </MudButton>
                 }
-                @if (CanReleaseLock)
+                @if (_case.CanEdit)
                 {
                     <MudButton Variant="Variant.Outlined"
                                Color="Color.Secondary"
@@ -131,12 +131,15 @@
                                   Class="mb-4">
                             Possible National Register match requires investigation before registration can proceed.
                             <MudStack Row="true" Spacing="2" Class="mt-2" Wrap="Wrap.Wrap">
-                                <MudButton Variant="Variant.Text"
-                                           Color="Color.Warning"
-                                           StartIcon="@Icons.Material.Outlined.Search"
-                                           OnClick="OpenNationalRegisterSearch">
-                                    Link existing record
-                                </MudButton>
+                                @if (CanEditIntakeData)
+                                {
+                                    <MudButton Variant="Variant.Text"
+                                               Color="Color.Warning"
+                                               StartIcon="@Icons.Material.Outlined.Search"
+                                               OnClick="OpenNationalRegisterSearch">
+                                        Link existing record
+                                    </MudButton>
+                                }
                                 @if (CanEditIntakeData)
                                 {
                                     <MudButton Variant="Variant.Text"
@@ -157,44 +160,56 @@
                                   Class="mb-4">
                             @_case.PossibleDuplicateMatches.Count possible match(es) found in the National Register for this identity.
                             Review before proceeding — linking an existing record avoids duplicate person files.
-                            <MudButton Variant="Variant.Text"
-                                       Color="Color.Warning"
-                                       Class="mt-2"
-                                       StartIcon="@Icons.Material.Outlined.Search"
-                                       OnClick="OpenNationalRegisterSearch">
-                                Review matches
-                            </MudButton>
+                            @if (CanEditIntakeData)
+                            {
+                                <MudButton Variant="Variant.Text"
+                                           Color="Color.Warning"
+                                           Class="mt-2"
+                                           StartIcon="@Icons.Material.Outlined.Search"
+                                           OnClick="OpenNationalRegisterSearch">
+                                    Review matches
+                                </MudButton>
+                            }
                         </AppAlert>
                     }
 
                     @if (_case.Person is null)
                     {
-                        <AppCard Title="Identity" Outlined="true">
-                            <HeaderActions>
-                                <MudButton StartIcon="@Icons.Material.Outlined.Search"
-                                           Variant="Variant.Outlined"
-                                           Color="Color.Primary"
-                                           OnClick="OpenNationalRegisterSearch">
-                                    Search National Register
-                                </MudButton>
-                            </HeaderActions>
-                            <ChildContent>
-                                <MudForm @ref="_identityForm"
-                                         @bind-IsValid="_identityFormValid"
-                                         Model="_identityModel"
-                                         Validation="@(IdentityValidator.ToMudValidateValue<RecordIdentityRequest, IdentityFormModel>(MapIdentityRequest))">
-                                    <IdentityFormSection Model="_identityModel" ShowSearchInfo="true" />
+                        @if (CanEditIntakeData)
+                        {
+                            <AppCard Title="Identity" Outlined="true">
+                                <HeaderActions>
+                                    <MudButton StartIcon="@Icons.Material.Outlined.Search"
+                                               Variant="Variant.Outlined"
+                                               Color="Color.Primary"
+                                               OnClick="OpenNationalRegisterSearch">
+                                        Search National Register
+                                    </MudButton>
+                                </HeaderActions>
+                                <ChildContent>
+                                    <MudForm @ref="_identityForm"
+                                             @bind-IsValid="_identityFormValid"
+                                             Model="_identityModel"
+                                             Validation="@(IdentityValidator.ToMudValidateValue<RecordIdentityRequest, IdentityFormModel>(MapIdentityRequest))">
+                                        <IdentityFormSection Model="_identityModel" ShowSearchInfo="true" />
 
-                                    <AppSaveCancelBar SaveText="Record identity"
-                                                      CancelText="Clear"
-                                                      Saving="_savingIdentity"
-                                                      OnSave="SaveIdentity"
-                                                      OnCancel="ClearIdentityForm" />
-                                </MudForm>
-                            </ChildContent>
-                        </AppCard>
+                                        <AppSaveCancelBar SaveText="Record identity"
+                                                          CancelText="Clear"
+                                                          Saving="_savingIdentity"
+                                                          OnSave="SaveIdentity"
+                                                          OnCancel="ClearIdentityForm" />
+                                    </MudForm>
+                                </ChildContent>
+                            </AppCard>
+                        }
+                        else
+                        {
+                            <AppCard Title="Identity" Outlined="true">
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">Identity not recorded yet.</MudText>
+                            </AppCard>
+                        }
                     }
-                    else if (_editingIdentity)
+                    else if (_editingIdentity && CanEditIntakeData)
                     {
                         <AppCard Title="Identity" Outlined="true">
                             <MudForm @ref="_identityForm"
@@ -423,10 +438,6 @@
         _case is not null &&
         _case.CanEdit &&
         _case.Status is RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview;
-
-    private bool CanReleaseLock =>
-        _case is not null &&
-        _case.LockedByOfficerId == CurrentOfficer.OfficerId;
 
     private bool CanTakeCase =>
         _case is not null &&

@@ -1,4 +1,4 @@
-@if (IsReadOnlyDueToLock)
+@if (CanTakeCase)
 {
     <MudButton Variant="Variant.Outlined" OnClick="OnTakeCase">Take case</MudButton>
 }
@@ -19,4 +19,6 @@ else if (CanEdit)
 
     [Parameter]
     public EventCallback OnReleaseLock { get; set; }
+
+    private bool CanTakeCase => !CanEdit && !IsReadOnlyDueToLock;
 }

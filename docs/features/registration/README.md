@@ -189,14 +189,14 @@ Officer roles are enforced beyond the nav switcher. Phase notes: [phase-8.1-role
 | Population | Yes | Lock holder only | Yes (dialog from list) |
 | Police | No | No (police queue only) | No |
 
-When a population officer opens case detail, the case is **claimed** (assigned + locked) if unassigned. Another population officer sees a read-only view until the lock is released. Reception-created cases start **unassigned** and surface on the review dashboard and case list **Unassigned** filter (registration and birth declaration cases each have their own list filters).
+When a population officer opens case detail, the case is **claimed** (assigned + locked) if unassigned. Another population officer sees a **read-only** view until the lock is released: no **Take case** while the colleague holds the lock, no intake edit forms, uploads, or decision buttons. **Take case** appears only after the lock is released (or for unassigned cases). Reception-created cases start **unassigned** and surface on the review dashboard and case list **Unassigned** filter (registration and birth declaration cases each have their own list filters).
 
 **Officer UX highlights:**
 
 - **New case page** (`/registration/new-case`) — two-column intake with visit-reason guidance; success keeps handoff instructions visible.
 - **Review dashboard** — population officer landing page (`/` redirects here); unassigned intakes in **Needs my attention** (registration + birth declaration); tiles deep-link to filtered case lists.
 - **Case list** — one-click **My cases** / **Unassigned** filters (`?filter=mine`, `?filter=unassigned`); birth declarations also support `?filter=ready`.
-- **Case detail** — case history as collapsed datagrid at bottom; officer decision aligned with Identity card.
+- **Case detail** — case history as collapsed datagrid at bottom; officer decision aligned with Identity card; read-only intake when locked to a colleague (see [phase 8.1](../../phases/phase-8.1-role-boundaries-case-locking.md#read-only-case-detail-lock-held-by-colleague)).
 - **Demo roles** — `?demoOfficer={guid}` in URL; role switch preserves host port.
 
 The case timeline records `CaseOpened`, `CaseAssigned`, `CaseLockReleased`, police actions, and decision events.

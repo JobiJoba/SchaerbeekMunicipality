@@ -65,7 +65,8 @@ Blue band (`Primary` background, white caption text) with environment/version in
 
 - **Purpose:** read/edit toggle for saved intake data — shows read-only summary with Edit button, or edit form inside an outlined card.
 - **API:** `Title`, `PrerequisiteMet`, `HasData`, `IsEditing`, `CanEdit`, `OnStartEdit`, `PrerequisiteContent`, `EditContent`, `ReadContent`.
-- **Use:** intake steps that support correction after save (`CivilStatusStep`, `AddressStep`, …). Parent owns edit state and save handlers.
+- **Behaviour:** when `!HasData && !CanEdit`, shows a read-only “Not recorded yet.” placeholder instead of an edit form (case locked to another officer).
+- **Use:** intake steps that support correction after save (`CivilStatusStep`, `BirthInformationStep`, …). Parent owns edit state and save handlers.
 
 ## Navigation (Wave 1)
 

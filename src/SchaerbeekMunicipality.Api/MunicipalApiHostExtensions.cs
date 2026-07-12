@@ -9,6 +9,7 @@ using SchaerbeekMunicipality.Api.Features.IdentityDocuments;
 using SchaerbeekMunicipality.Api.Features.Registration;
 using SchaerbeekMunicipality.Api.Middleware;
 using SchaerbeekMunicipality.Application;
+using SchaerbeekMunicipality.Application.DemoData;
 using SchaerbeekMunicipality.Infrastructure;
 
 namespace SchaerbeekMunicipality.Api;
@@ -29,6 +30,11 @@ public static class MunicipalApiHostExtensions
     public static async Task InitializeMunicipalApiDatabaseAsync(this WebApplication app)
     {
         await app.Services.InitializeDatabaseAsync();
+
+        if (app.Configuration.GetValue($"{DemoDataOptions.SectionName}:{nameof(DemoDataOptions.SeedWorkflowCases)}", false))
+        {
+            await DemoWorkflowCaseSeeder.SeedAsync(app.Services);
+        }
     }
 
     public static WebApplication UseMunicipalApiHost(this WebApplication app)

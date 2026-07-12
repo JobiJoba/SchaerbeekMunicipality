@@ -19,7 +19,7 @@
     public EventCallback OnReleaseLock { get; set; }
 
     [Parameter]
-    public string ReadOnlyMessage { get; set; } = "This case is locked to another officer. Take the case to edit.";
+    public string ReadOnlyMessage { get; set; } = "This case is locked to another officer. You can review the file but cannot make changes until they release the lock.";
 
     [Parameter]
     public string? AlertClass { get; set; } = "mb-4";

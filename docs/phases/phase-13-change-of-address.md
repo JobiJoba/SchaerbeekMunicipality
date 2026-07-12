@@ -67,7 +67,7 @@ Delivered as a separate bounded context with `ChangeOfAddressCase`, Api endpoint
 | `RequestPoliceVerification` | Delegate to existing police slice |
 | `ConfirmAddressChange` | Persist new domicile on `Person` / household |
 | `RejectChangeOfAddress` | Invalid address or negative police |
-| Claim / release lock | Same as Phase 8.1 |
+| Claim / release lock | Same as Phase 8.1 — `CaseLockActions` / `CaseLockBar`; read-only when locked to colleague |
 
 ---
 

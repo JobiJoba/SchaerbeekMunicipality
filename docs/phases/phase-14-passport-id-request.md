@@ -64,6 +64,7 @@ This is a **service case**, not a population register entry procedure.
 
 - `/identity-documents/requests` — queue with status chips (`Submitted`, `In production`, …).
 - Case detail: applicant summary (from person read), photo upload, fee checkbox, status actions.
+- Case locking: same `CaseLockActions` / `CaseLockBar` pattern as Phase 8.1 — read-only when locked to a colleague; **Take case** only when the case is available to claim.
 - Optional: citizen-facing “track my request” read-only page (low priority).
 
 ---

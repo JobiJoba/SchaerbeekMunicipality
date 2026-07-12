@@ -127,11 +127,18 @@ Officers upload files, click a row to preview PDFs and images inline (`AppFilePr
 
 ## Officer decision & case locking
 
-Population officers review cases against the **four core questions** checklist (`OfficerDecisionChecklist` → `AppChecklist`). Approve, reject, suspend, and confirm registration from the decision section.
+Population officers review cases against the **four core questions** checklist (`OfficerDecisionChecklist` → `AppChecklist`). Approve, reject, suspend, and confirm registration from the decision section — only when `CanEdit` is true (lock holder).
 
-Case locking (Phase 8.1) prevents two officers editing the same case: `CaseLockBar` shows a read-only warning; `CaseLockActions` provides Take case / Release lock in the page header.
+Case locking (Phase 8.1) prevents two officers editing the same case:
 
-**Capabilities:** `GetCaseReviewChecklist`, `ApproveCase`, `RejectCase`, `SuspendCase`, `ConfirmRegistration`, `TakeCaseLock`, `ReleaseCaseLock`.
+- **`CaseLockBar`** — read-only warning when another officer holds the lock (review only; no “take case” hint).
+- **`CaseLockActions`** — header buttons on birth declaration, change of address, and identity document requests:
+  - **Take case** when `!CanEdit && !IsReadOnlyDueToLock` (available to claim — not while locked to a colleague).
+  - **Release lock** when `CanEdit` (lock holder only).
+
+Registration case detail uses the same rules inline. When read-only, intake steps show summaries or “Not recorded yet.” placeholders — no forms, uploads, or NR-search actions. See [phase-8.1](./phases/phase-8.1-role-boundaries-case-locking.md#read-only-case-detail-lock-held-by-colleague).
+
+**Capabilities:** `GetCaseReviewChecklist`, `ApproveCase`, `RejectCase`, `SuspendCase`, `ConfirmRegistration`, `ClaimRegistrationCase`, `ReleaseCaseLock` (and equivalent claim/release slices per workflow).
 
 ---
 

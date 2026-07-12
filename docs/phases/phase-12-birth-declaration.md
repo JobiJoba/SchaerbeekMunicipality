@@ -37,7 +37,7 @@ This is **not** the same as Phase 9’s `RecordBirthInformation` slice, which ca
 | EF migration `Phase12BirthDeclaration` | Done | `birth_declaration_cases` + document FK |
 | `IBirthDeclarationCaseRepository` | Done | List, get, add, save |
 | API group `/api/birth-declarations/*` | Done | All intake + decision slices |
-| Claim / release lock | Done | Reuses Phase 8.1 pattern |
+| Claim / release lock | Done | Reuses Phase 8.1 pattern; `CaseLockActions` / `CaseLockBar` on case detail |
 | `BirthDeclarationCaseAuthorization` | Done | Reception create; population list/view/edit |
 | Case list `/birth-declarations` | Done | Filters: All, My cases, Unassigned, Ready for confirmation |
 | Case detail `/birth-declarations/{id}` | Done | Two-column layout; officer decision panel |

@@ -429,7 +429,7 @@ Delivery notes for completed phases: [phases/](./phases/).
 - Case history datagrid (collapsible); officer decision aligned with Identity card
 - Demo officer URL persistence (`?demoOfficer=`) with port-safe role switching
 
-**Demo:** Reception opens case → population sees it as unassigned on dashboard → claims and edits → colleague read-only until release.
+**Demo:** Reception opens case → population sees it as unassigned on dashboard → claims and edits → colleague read-only (no take/edit actions) until lock released → then colleague can take case.
 
 **Tests:** `RegistrationCaseLockingTests`, `RoleBoundariesAndCaseLockingTests`.
 

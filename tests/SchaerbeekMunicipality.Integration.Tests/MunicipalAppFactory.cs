@@ -19,6 +19,7 @@ public sealed class MunicipalAppFactory : WebApplicationFactory<SchaerbeekMunici
         builder.UseEnvironment("Development");
 
         builder.UseSetting("ConnectionStrings:schaerbeek", "Data Source=:memory:");
+        builder.UseSetting("DemoData:SeedWorkflowCases", "false");
 
         builder.ConfigureServices(services =>
         {

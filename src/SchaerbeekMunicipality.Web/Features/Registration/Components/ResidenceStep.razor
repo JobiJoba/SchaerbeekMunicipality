@@ -18,7 +18,50 @@
             Record identity before classifying legal residence.
         </AppInfoBox>
     }
-    else if (_case.ResidenceCategory is null || _editingCategory)
+    else if (_case.ResidenceCategory is null)
+    {
+        @if (CanEdit)
+        {
+            <AppCard Title="Residence category" Outlined="true">
+                <MudForm @ref="_categoryForm"
+                         @bind-IsValid="_categoryFormValid"
+                         Model="_categoryModel"
+                         Validation="@(ResidenceCategoryValidator.ToMudValidateValue<SetResidenceCategoryRequest, CategoryFormModel>(MapCategoryRequest))">
+                    <AppFormSection Title="Why is the person in Belgium?">
+                        <MudItem xs="12" md="8">
+                            <MudSelect T="ResidenceCategory?"
+                                       @bind-Value="_categoryModel.Category"
+                                       Label="Residence category"
+                                       Required="true"
+                                       ToStringFunc="@FormatCategory">
+                                <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.EuCitizen">EU citizen</MudSelectItem>
+                                <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.NonEuWorker">Non-EU worker</MudSelectItem>
+                                <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Student">Student</MudSelectItem>
+                                <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Refugee">Refugee / temporary protection</MudSelectItem>
+                            </MudSelect>
+                        </MudItem>
+                    </AppFormSection>
+
+                    <AppInfoBox Class="mb-4">
+                        EU citizens need a passport or national ID on file. Non-EU workers and students must record a valid permit plus identity document. Refugees require a federal protection decision.
+                    </AppInfoBox>
+
+                    <AppSaveCancelBar SaveText="Set category"
+                                      CancelText="Clear"
+                                      Saving="_savingCategory"
+                                      OnSave="SaveCategory"
+                                      OnCancel="HandleCategoryCancel" />
+                </MudForm>
+            </AppCard>
+        }
+        else
+        {
+            <AppCard Title="Residence category" Outlined="true">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Residence category not set yet.</MudText>
+            </AppCard>
+        }
+    }
+    else if (_editingCategory && CanEdit)
     {
         <AppCard Title="Residence category" Outlined="true">
             <MudForm @ref="_categoryForm"
@@ -44,10 +87,10 @@
                     EU citizens need a passport or national ID on file. Non-EU workers and students must record a valid permit plus identity document. Refugees require a federal protection decision.
                 </AppInfoBox>
 
-                <AppSaveCancelBar SaveText="@(_editingCategory ? "Save changes" : "Set category")"
-                                  CancelText="@(_editingCategory ? "Cancel" : "Clear")"
+                <AppSaveCancelBar SaveText="Save changes"
+                                  CancelText="Cancel"
                                   Saving="_savingCategory"
-                                  Disabled="@(_editingCategory && !CategoryFormDirty)"
+                                  Disabled="!CategoryFormDirty"
                                   OnSave="SaveCategory"
                                   OnCancel="HandleCategoryCancel" />
             </MudForm>
@@ -100,7 +143,64 @@
 
         @if (RequiresPermit(_case.ResidenceCategory.Value))
         {
-            @if (_case.ResidencePermit is null || _editingPermit)
+            @if (_case.ResidencePermit is null)
+            {
+                @if (CanEdit)
+                {
+                    <AppCard Title="Residence permit" Outlined="true" Class="mt-4">
+                        <MudForm @ref="_permitForm"
+                                 @bind-IsValid="_permitFormValid"
+                                 Model="_permitModel"
+                                 Validation="@(ResidencePermitValidator.ToMudValidateValue<RecordResidencePermitRequest, PermitFormModel>(MapPermitRequest))">
+                            <AppFormSection Title="Permit details">
+                                <MudItem xs="12" md="6">
+                                    <MudSelect T="ResidencePermitType?"
+                                               @bind-Value="_permitModel.PermitType"
+                                               Label="Permit type"
+                                               Required="true"
+                                               ToStringFunc="@FormatPermitType">
+                                        @foreach (var permitType in PermitTypesFor(_case.ResidenceCategory.Value))
+                                        {
+                                            <MudSelectItem T="ResidencePermitType?" Value="@permitType">@FormatPermitType(permitType)</MudSelectItem>
+                                        }
+                                    </MudSelect>
+                                </MudItem>
+                                <MudItem xs="12" md="6">
+                                    <MudTextField @bind-Value="_permitModel.CardNumber" Label="Card number" />
+                                </MudItem>
+                                <MudItem xs="12" md="6">
+                                    <AppDateField @bind-Value="_permitModel.ValidFrom"
+                                                  For="@(() => _permitModel.ValidFrom)"
+                                                  Label="Valid from"
+                                                  Required="true" />
+                                </MudItem>
+                                <MudItem xs="12" md="6">
+                                    <AppDateField @bind-Value="_permitModel.ValidUntil"
+                                                  For="@(() => _permitModel.ValidUntil)"
+                                                  Label="Valid until"
+                                                  Required="true" />
+                                </MudItem>
+                                <MudItem xs="12" md="6">
+                                    <MudTextField @bind-Value="_permitModel.IssuingAuthority" Label="Issuing authority" />
+                                </MudItem>
+                            </AppFormSection>
+
+                            <AppSaveCancelBar SaveText="Record permit"
+                                              CancelText="Clear"
+                                              Saving="_savingPermit"
+                                              OnSave="SavePermit"
+                                              OnCancel="HandlePermitCancel" />
+                        </MudForm>
+                    </AppCard>
+                }
+                else
+                {
+                    <AppCard Title="Residence permit" Outlined="true" Class="mt-4">
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">Residence permit not recorded yet.</MudText>
+                    </AppCard>
+                }
+            }
+            else if (_editingPermit && CanEdit)
             {
                 <AppCard Title="Residence permit" Outlined="true" Class="mt-4">
                     <MudForm @ref="_permitForm"
@@ -140,10 +240,10 @@
                             </MudItem>
                         </AppFormSection>
 
-                        <AppSaveCancelBar SaveText="@(_editingPermit ? "Save changes" : "Record permit")"
-                                          CancelText="@(_editingPermit ? "Cancel" : "Clear")"
+                        <AppSaveCancelBar SaveText="Save changes"
+                                          CancelText="Cancel"
                                           Saving="_savingPermit"
-                                          Disabled="@(_editingPermit && !PermitFormDirty)"
+                                          Disabled="!PermitFormDirty"
                                           OnSave="SavePermit"
                                           OnCancel="HandlePermitCancel" />
                     </MudForm>
@@ -183,7 +283,48 @@
             }
         }
 
-        @if (_case.ImmigrationDecision is null || _editingDecision)
+        @if (_case.ImmigrationDecision is null)
+        {
+            @if (CanEdit)
+            {
+                <AppCard Title="@(_case.ResidenceCategory == ResidenceCategory.Refugee ? "Immigration decision (required)" : "Immigration decision (optional)")" Outlined="true" Class="mt-4">
+                    <ChildContent>
+                        <MudForm @ref="_decisionForm"
+                                 @bind-IsValid="_decisionFormValid"
+                                 Model="_decisionModel"
+                                 Validation="@(ImmigrationDecisionValidator.ToMudValidateValue<RecordImmigrationDecisionRequest, DecisionFormModel>(MapDecisionRequest))">
+                            <AppFormSection Title="External decision reference">
+                                <MudItem xs="12" md="6">
+                                    <MudTextField @bind-Value="_decisionModel.ReferenceNumber" Label="Reference number" />
+                                </MudItem>
+                                <MudItem xs="12" md="6">
+                                    <AppDateField @bind-Value="_decisionModel.DecisionDate"
+                                                  For="@(() => _decisionModel.DecisionDate)"
+                                                  Label="Decision date" />
+                                </MudItem>
+                            </AppFormSection>
+
+                            <AppInfoBox Class="mb-4">
+                                Stub for federal immigration office decisions — optional for most categories.
+                            </AppInfoBox>
+
+                            <AppSaveCancelBar SaveText="Record decision"
+                                              CancelText="Clear"
+                                              Saving="_savingDecision"
+                                              OnSave="SaveDecision"
+                                              OnCancel="HandleDecisionCancel" />
+                        </MudForm>
+                    </ChildContent>
+                </AppCard>
+            }
+            else if (_case.ResidenceCategory == ResidenceCategory.Refugee)
+            {
+                <AppCard Title="Immigration decision (required)" Outlined="true" Class="mt-4">
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">Immigration decision not recorded yet.</MudText>
+                </AppCard>
+            }
+        }
+        else if (_editingDecision && CanEdit)
         {
             <AppCard Title="@(_case.ResidenceCategory == ResidenceCategory.Refugee ? "Immigration decision (required)" : "Immigration decision (optional)")" Outlined="true" Class="mt-4">
                 <ChildContent>
@@ -206,10 +347,10 @@
                             Stub for federal immigration office decisions — optional for most categories.
                         </AppInfoBox>
 
-                        <AppSaveCancelBar SaveText="@(_editingDecision ? "Save changes" : "Record decision")"
-                                          CancelText="@(_editingDecision ? "Cancel" : "Clear")"
+                        <AppSaveCancelBar SaveText="Save changes"
+                                          CancelText="Cancel"
                                           Saving="_savingDecision"
-                                          Disabled="@(_editingDecision && !DecisionFormDirty)"
+                                          Disabled="!DecisionFormDirty"
                                           OnSave="SaveDecision"
                                           OnCancel="HandleDecisionCancel" />
                     </MudForm>

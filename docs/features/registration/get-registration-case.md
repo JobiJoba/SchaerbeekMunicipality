@@ -151,11 +151,13 @@ See [record-police-result.md](./record-police-result.md) and [phase-6-police-ver
 - Render checklist status chips (including **Address confirmed**)
 - Collapse completed intake sections; auto-expand the next actionable step (Phase 6.1)
 - Show **Police verification** section when a visit was sent or recorded
-- Show **Send to police** when identity + address declared and no pending request
+- Show **Send to police** when identity + address declared and no pending request — lock holder only (`CanEdit`)
 - Show **duplicate warning** when `possibleDuplicateMatches` is non-empty and person not linked
-- Show identity form **or** read-only person card with BIS/NR and convert button
-- Open `NationalRegisterSearchDialog` from search button or warning
-- Embed intake steps and `RegistrationCaseDocumentPanel`
+- Show identity form **or** read-only person card with BIS/NR and convert button — forms and NR actions only when `CanEdit` and status allows intake
+- Open `NationalRegisterSearchDialog` from search button or warning — lock holder only
+- Embed intake steps and `RegistrationCaseDocumentPanel` — steps respect `CanEdit`; upload hidden when read-only
+
+**Case locking (Phase 8.1):** `canEdit` and `isReadOnlyDueToLock` on the DTO drive header actions and intake visibility. When locked to another officer, the page is review-only (no **Take case**, **Release lock**, edit forms, uploads, or decision buttons). See [phase 8.1](../../phases/phase-8.1-role-boundaries-case-locking.md#read-only-case-detail-lock-held-by-colleague).
 
 ## Error responses (HTTP)
 
