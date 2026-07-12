@@ -11,6 +11,7 @@ public static class VisitReasonLabels
             VisitReason.ChangeOfAddress => "Change of address",
             VisitReason.EuCitizenRegistration => "EU citizen registration",
             VisitReason.BirthDeclaration => "Birth declaration",
+            VisitReason.PassportRenewal => "Passport renewal",
             _ => reason.ToString(),
         };
 
@@ -25,6 +26,8 @@ public static class VisitReasonLabels
                 "An EU citizen establishing legal residence in Belgium.",
             VisitReason.BirthDeclaration =>
                 "Declaring a newborn for registration in the population register.",
+            VisitReason.PassportRenewal =>
+                "Applying for a Belgian passport or national ID card for a registered resident.",
             _ => string.Empty,
         };
 }

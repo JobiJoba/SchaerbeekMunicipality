@@ -523,13 +523,23 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 
 ---
 
-## Phase 14 — Passport / ID card request
+## Phase 14 — Passport / ID card request ✅
 
-**Status:** Planned — see [phases/phase-14-passport-id-request.md](./phases/phase-14-passport-id-request.md).
+**Status:** Complete — see [phases/phase-14-passport-id-request.md](./phases/phase-14-passport-id-request.md).
 
 **Goal:** Simplified passport / eID request workflow for registered persons — photo, fee stub, production status, issue.
 
-**Demo:** Registered citizen requests eID renewal → photo attached → issued with stub document number.
+**Delivered:**
+
+- `DocumentRequestCase` aggregate with linear status workflow (`Submitted` → `InProduction` → `ReadyForCollection` → `Issued` / `Cancelled`)
+- EF migration `Phase14PassportIdRequest`; API `/api/identity-documents/*`
+- Blazor pages `/identity-documents/requests` (list + detail) with photo upload, fee stub, status actions, case locking
+- Reception routing: `VisitReason.PassportRenewal` → identity documents flow
+- `DocumentType.ApplicantPhoto` + `AdministrativeDocument` extension for document requests
+
+**Demo:** Registered citizen requests eID renewal → photo attached → fee paid → advanced through production → issued with stub document number `BE-YYYY-XXXX`.
+
+**Tests:** `DocumentRequestCaseTests`, `DocumentRequestTests` (open guards, issue without photo, happy path); E2E `DocumentRequestE2ETests` (NR search → open case).
 
 ---
 

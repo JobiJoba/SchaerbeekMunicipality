@@ -9,6 +9,7 @@ using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Api;
 using SchaerbeekMunicipality.Web.Api.BirthDeclaration;
 using SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
+using SchaerbeekMunicipality.Web.Api.IdentityDocuments;
 using SchaerbeekMunicipality.Web.Api.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Api;
@@ -114,6 +115,7 @@ public sealed class BffApiClientTests
         ConfigureClient(services.AddHttpClient<IRegistrationApi, RegistrationApiClient>());
         ConfigureClient(services.AddHttpClient<IBirthDeclarationApi, BirthDeclarationApiClient>());
         ConfigureClient(services.AddHttpClient<IChangeOfAddressApi, ChangeOfAddressApiClient>());
+        ConfigureClient(services.AddHttpClient<IIdentityDocumentsApi, IdentityDocumentsApiClient>());
 
         return services.BuildServiceProvider().CreateScope();
     }

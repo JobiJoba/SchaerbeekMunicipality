@@ -1,0 +1,117 @@
+@using SchaerbeekMunicipality.Domain.IdentityDocuments
+@using SchaerbeekMunicipality.Application.Features.IdentityDocuments.GetDocumentRequestCase
+
+<AppCard Title="Workflow" Outlined="true">
+    <MudStack Spacing="3">
+        <MudCheckBox T="bool"
+                     Value="Case.FeePaid"
+                     ValueChanged="OnFeePaidChanged"
+                     Disabled="!Case.CanEdit || Case.Status is DocumentRequestCaseStatus.Issued or DocumentRequestCaseStatus.Cancelled"
+                     Label="Fee paid (stub)" />
+
+        @if (!string.IsNullOrWhiteSpace(Case.FeePaymentReference))
+        {
+            <MudText Typo="Typo.body2" Color="Color.Secondary">
+                Reference: @Case.FeePaymentReference
+            </MudText>
+        }
+
+        @if (Case.Status == DocumentRequestCaseStatus.Issued && !string.IsNullOrWhiteSpace(Case.IssuedDocumentNumber))
+        {
+            <AppAlert Severity="Severity.Success" Title="Document issued">
+                @Case.IssuedDocumentNumber
+            </AppAlert>
+        }
+
+        @if (Case.Status == DocumentRequestCaseStatus.Cancelled)
+        {
+            <AppAlert Severity="Severity.Warning" Title="Request cancelled">
+                @(Case.CancellationReason ?? "No reason recorded.")
+            </AppAlert>
+        }
+
+        @if (Case.CanEdit && Case.Status is not (DocumentRequestCaseStatus.Issued or DocumentRequestCaseStatus.Cancelled))
+        {
+            <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap">
+                @if (Case.Status is DocumentRequestCaseStatus.Submitted or DocumentRequestCaseStatus.InProduction)
+                {
+                    <MudButton Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               Disabled="Busy || !CanAdvance"
+                               OnClick="AdvanceStatus">
+                        @GetAdvanceLabel()
+                    </MudButton>
+                }
+
+                @if (Case.Status == DocumentRequestCaseStatus.ReadyForCollection)
+                {
+                    <MudButton Variant="Variant.Filled"
+                               Color="Color.Success"
+                               Disabled="Busy || !Case.PhotoAttached || !Case.FeePaid"
+                               OnClick="IssueDocument">
+                        Issue document
+                    </MudButton>
+                }
+
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Error"
+                           Disabled="Busy"
+                           OnClick="CancelRequest">
+                    Cancel request
+                </MudButton>
+            </MudStack>
+
+            @if (Case.Status == DocumentRequestCaseStatus.Submitted && Case.CanEdit && !CanAdvance)
+            {
+                <MudText Typo="Typo.caption" Color="Color.Secondary">
+                    Attach an applicant photo and record fee payment before starting production.
+                </MudText>
+            }
+
+            @if (Case.Status == DocumentRequestCaseStatus.ReadyForCollection && (!Case.PhotoAttached || !Case.FeePaid))
+            {
+                <MudText Typo="Typo.caption" Color="Color.Secondary">
+                    Attach an applicant photo and confirm fee payment before issuing the document.
+                </MudText>
+            }
+        }
+    </MudStack>
+</AppCard>
+
+@code {
+    [Parameter, EditorRequired]
+    public DocumentRequestCaseDetailDto Case { get; set; } = null!;
+
+    [Parameter]
+    public bool Busy { get; set; }
+
+    [Parameter]
+    public EventCallback OnFeePaidChangedRequested { get; set; }
+
+    [Parameter]
+    public EventCallback OnAdvanceStatus { get; set; }
+
+    [Parameter]
+    public EventCallback OnIssueDocument { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancelRequest { get; set; }
+
+    private bool CanAdvance => Case.PhotoAttached && Case.FeePaid;
+
+    private Task OnFeePaidChanged(bool value) => OnFeePaidChangedRequested.InvokeAsync();
+
+    private Task AdvanceStatus() => OnAdvanceStatus.InvokeAsync();
+
+    private Task IssueDocument() => OnIssueDocument.InvokeAsync();
+
+    private Task CancelRequest() => OnCancelRequest.InvokeAsync();
+
+    private string GetAdvanceLabel() =>
+        Case.Status switch
+        {
+            DocumentRequestCaseStatus.Submitted => "Start production",
+            DocumentRequestCaseStatus.InProduction => "Mark ready for collection",
+            _ => "Advance status",
+        };
+}

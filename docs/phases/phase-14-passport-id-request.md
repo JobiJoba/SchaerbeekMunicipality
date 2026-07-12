@@ -1,6 +1,6 @@
 # Phase 14 — Passport / ID card request
 
-- **Status:** Planned
+- **Status:** Complete
 - **Goal:** Simplified **citizen document request** workflow — apply for a Belgian passport or national ID card after the person is registered.
 - **Maps to IDEA:** Reception visit reason “Passport renewal”; municipal role in identity document applications (demo-grade).
 

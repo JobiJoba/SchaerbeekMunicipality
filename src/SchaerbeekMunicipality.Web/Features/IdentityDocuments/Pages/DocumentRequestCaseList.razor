@@ -1,0 +1,163 @@
+@page "/identity-documents/requests"
+@using SchaerbeekMunicipality.Domain.IdentityDocuments
+@using SchaerbeekMunicipality.Application.Auth
+@using SchaerbeekMunicipality.Web.Features.IdentityDocuments.Components
+@using SchaerbeekMunicipality.Application.Features.IdentityDocuments.ListDocumentRequestCases
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Web.Api.IdentityDocuments
+@inject IIdentityDocumentsApi IdentityDocumentsApi
+@inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
+    <AppPage Title="Identity documents">
+        <AppPageHeader Title="Identity documents"
+                       Subtitle="Passport and national ID card requests for registered residents.">
+            <Actions>
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.Add"
+                           Style="min-height: 48px;"
+                           data-testid="new-document-request"
+                           OnClick="OpenNewCase">
+                    New document request
+                </MudButton>
+            </Actions>
+        </AppPageHeader>
+
+        <AppSection>
+            @if (_loading)
+            {
+                <AppLoading Kind="AppLoadingKind.Skeleton" />
+            }
+            else if (_cases.Count == 0)
+            {
+                <AppEmptyState Title="No document requests yet"
+                               Description="Open a new request for a registered resident."
+                               Icon="@Icons.Material.Outlined.Badge">
+                    <Action>
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   StartIcon="@Icons.Material.Outlined.Add"
+                                   OnClick="OpenNewCase">
+                            New document request
+                        </MudButton>
+                    </Action>
+                </AppEmptyState>
+            }
+            else
+            {
+                <AppSearchBar @bind-Value="_searchText"
+                              Placeholder="Search requests…"
+                              Class="mb-3"
+                              OnSearch="OnSearch" />
+
+                <AppDataTable T="DocumentRequestCaseListItem"
+                              Items="_filteredCases"
+                              Caption="Document requests"
+                              OnRowClick="NavigateToCase">
+                    <HeaderContent>
+                        <MudTh Class="app-table-header">Case ID</MudTh>
+                        <MudTh Class="app-table-header">Applicant</MudTh>
+                        <MudTh Class="app-table-header">Type</MudTh>
+                        <MudTh Class="app-table-header">Status</MudTh>
+                        <MudTh Class="app-table-header">Officer</MudTh>
+                        <MudTh Class="app-table-header">Requested</MudTh>
+                    </HeaderContent>
+                    <RowTemplate Context="item">
+                        <MudTd DataLabel="Case ID">
+                            <MudLink Href="@($"/identity-documents/requests/{item.Id}")">
+                                @item.Id.ToString()[..8]…
+                            </MudLink>
+                        </MudTd>
+                        <MudTd DataLabel="Applicant">@(item.PersonDisplayName ?? "—")</MudTd>
+                        <MudTd DataLabel="Type">@item.RequestType</MudTd>
+                        <MudTd DataLabel="Status">
+                            <AppStatusChip Label="@item.Status.ToString()" Severity="@GetSeverity(item.Status)" />
+                        </MudTd>
+                        <MudTd DataLabel="Officer">
+                            @OfficerDisplayNames.LockStatus(item.AssignedOfficerId, item.LockedByOfficerId)
+                        </MudTd>
+                        <MudTd DataLabel="Requested">@item.RequestedAt.LocalDateTime.ToString("g")</MudTd>
+                    </RowTemplate>
+                </AppDataTable>
+            }
+        </AppSection>
+    </AppPage>
+</RegistrationRoleGate>
+
+@code {
+    [SupplyParameterFromQuery(Name = "open")]
+    public string? Open { get; set; }
+
+    private IReadOnlyList<DocumentRequestCaseListItem> _cases = [];
+    private IReadOnlyList<DocumentRequestCaseListItem> _filteredCases = [];
+    private bool _loading = true;
+    private string _searchText = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ReloadAsync();
+
+        if (string.Equals(Open, "new", StringComparison.OrdinalIgnoreCase))
+        {
+            await OpenNewCase();
+        }
+    }
+
+    private async Task ReloadAsync()
+    {
+        _loading = true;
+        _cases = await IdentityDocumentsApi.ListRequestsAsync(CancellationToken.None);
+        ApplyFilter();
+        _loading = false;
+    }
+
+    private void OnSearch(string _) => ApplyFilter();
+
+    private void ApplyFilter()
+    {
+        IEnumerable<DocumentRequestCaseListItem> query = _cases;
+
+        if (!string.IsNullOrWhiteSpace(_searchText))
+        {
+            var term = _searchText.Trim();
+            query = query.Where(c =>
+                c.Id.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.Status.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.RequestType.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                (c.PersonDisplayName?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                OfficerDisplayNames.LockStatus(c.AssignedOfficerId, c.LockedByOfficerId)
+                    .Contains(term, StringComparison.OrdinalIgnoreCase));
+        }
+
+        _filteredCases = query.ToList();
+    }
+
+    private void NavigateToCase(DocumentRequestCaseListItem item) =>
+        Navigation.NavigateTo($"/identity-documents/requests/{item.Id}");
+
+    private async Task OpenNewCase()
+    {
+        var dialog = await DialogService.ShowAsync<OpenDocumentRequestDialog>(
+            "New document request",
+            new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false, Data: Guid caseId })
+        {
+            Navigation.NavigateTo($"/identity-documents/requests/{caseId}");
+        }
+    }
+
+    private static AppSeverity GetSeverity(DocumentRequestCaseStatus status) =>
+        status switch
+        {
+            DocumentRequestCaseStatus.Issued => AppSeverity.Success,
+            DocumentRequestCaseStatus.Cancelled => AppSeverity.Error,
+            DocumentRequestCaseStatus.ReadyForCollection => AppSeverity.Info,
+            DocumentRequestCaseStatus.InProduction => AppSeverity.Warning,
+            _ => AppSeverity.Neutral,
+        };
+}

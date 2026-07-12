@@ -13,4 +13,9 @@ public sealed record NationalRegisterSearchMatch(
     string? BisNumber,
     string? NationalRegisterNumber,
     int MatchScore,
-    string MatchReason);
+    string MatchReason,
+    bool IsRegisteredInPopulation)
+{
+    public bool CanOpenServiceCase =>
+        IsRegisteredInPopulation && !string.IsNullOrWhiteSpace(NationalRegisterNumber);
+}

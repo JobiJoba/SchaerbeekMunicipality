@@ -17,7 +17,7 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.4")
+                .HasAnnotation("ProductVersion", "10.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -273,6 +273,10 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("character varying(128)")
                         .HasColumnName("content_hash");
 
+                    b.Property<Guid?>("DocumentRequestCaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("document_request_case_id");
+
                     b.Property<string>("DocumentType")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -311,6 +315,9 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
 
                     b.HasIndex("ChangeOfAddressCaseId")
                         .HasDatabaseName("ix_administrative_documents_change_of_address_case_id");
+
+                    b.HasIndex("DocumentRequestCaseId")
+                        .HasDatabaseName("ix_administrative_documents_document_request_case_id");
 
                     b.HasIndex("RegistrationCaseId")
                         .HasDatabaseName("ix_administrative_documents_registration_case_id");
@@ -442,6 +449,85 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasDatabaseName("ix_persons_national_register_number");
 
                     b.ToTable("persons", (string)null);
+                });
+
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.IdentityDocuments.DocumentRequestCase", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("AssignedOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("assigned_officer_id");
+
+                    b.Property<string>("CancellationReason")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)")
+                        .HasColumnName("cancellation_reason");
+
+                    b.Property<DateTimeOffset?>("CancelledAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("cancelled_at");
+
+                    b.Property<bool>("FeePaid")
+                        .HasColumnType("boolean")
+                        .HasColumnName("fee_paid");
+
+                    b.Property<string>("FeePaymentReference")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("fee_payment_reference");
+
+                    b.Property<DateTimeOffset?>("IssuedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("issued_at");
+
+                    b.Property<string>("IssuedDocumentNumber")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("issued_document_number");
+
+                    b.Property<DateTimeOffset?>("LockedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("locked_at");
+
+                    b.Property<Guid?>("LockedByOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("locked_by_officer_id");
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("person_id");
+
+                    b.Property<bool>("PhotoAttached")
+                        .HasColumnType("boolean")
+                        .HasColumnName("photo_attached");
+
+                    b.Property<Guid?>("PhotoDocumentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("photo_document_id");
+
+                    b.Property<string>("RequestType")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("request_type");
+
+                    b.Property<DateTimeOffset>("RequestedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("requested_at");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("status");
+
+                    b.HasKey("Id")
+                        .HasName("pk_document_request_cases");
+
+                    b.ToTable("document_request_cases", (string)null);
                 });
 
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Immigration.ResidencePermit", b =>

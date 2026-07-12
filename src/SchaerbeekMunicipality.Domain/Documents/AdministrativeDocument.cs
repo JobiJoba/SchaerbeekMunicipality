@@ -1,5 +1,6 @@
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Documents;
@@ -17,6 +18,8 @@ public sealed class AdministrativeDocument
     public BirthDeclarationCaseId? BirthDeclarationCaseId { get; private set; }
 
     public ChangeOfAddressCaseId? ChangeOfAddressCaseId { get; private set; }
+
+    public DocumentRequestCaseId? DocumentRequestCaseId { get; private set; }
 
     public DocumentType DocumentType { get; private set; }
 
@@ -126,6 +129,41 @@ public sealed class AdministrativeDocument
     public bool BelongsToBirthDeclarationCase(BirthDeclarationCaseId caseId) =>
         BirthDeclarationCaseId == caseId;
 
+    public static AdministrativeDocument CreateForDocumentRequestCase(
+        DocumentRequestCaseId documentRequestCaseId,
+        DocumentType documentType,
+        string fileName,
+        string storagePath,
+        string contentHash,
+        OfficerId uploadedByOfficerId,
+        DateTimeOffset uploadedAt)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(fileName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(storagePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(contentHash);
+
+        if (documentType != DocumentType.ApplicantPhoto)
+        {
+            throw new ArgumentException(
+                "Document request cases only accept applicant photo documents.");
+        }
+
+        return new AdministrativeDocument
+        {
+            Id = AdministrativeDocumentId.New(),
+            DocumentRequestCaseId = documentRequestCaseId,
+            DocumentType = documentType,
+            FileName = fileName.Trim(),
+            StoragePath = storagePath,
+            ContentHash = contentHash,
+            UploadedByOfficerId = uploadedByOfficerId,
+            UploadedAt = uploadedAt,
+        };
+    }
+
     public bool BelongsToChangeOfAddressCase(ChangeOfAddressCaseId caseId) =>
         ChangeOfAddressCaseId == caseId;
+
+    public bool BelongsToDocumentRequestCase(DocumentRequestCaseId caseId) =>
+        DocumentRequestCaseId == caseId;
 }

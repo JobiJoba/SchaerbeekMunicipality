@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SchaerbeekMunicipality.Api.Features.BirthDeclaration;
 using SchaerbeekMunicipality.Api.Features.ChangeOfAddress;
+using SchaerbeekMunicipality.Api.Features.IdentityDocuments;
 using SchaerbeekMunicipality.Api.Features.Registration;
 using SchaerbeekMunicipality.Api.Middleware;
 using SchaerbeekMunicipality.Application;
@@ -38,6 +39,7 @@ public static class MunicipalApiHostExtensions
         app.MapRegistrationEndpoints();
         app.MapBirthDeclarationEndpoints();
         app.MapChangeOfAddressEndpoints();
+        app.MapIdentityDocumentsEndpoints();
         app.MapOpenApi();
 
         return app;

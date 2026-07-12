@@ -5,6 +5,7 @@ using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Notifications;
@@ -21,6 +22,8 @@ public sealed class MunicipalDbContext(DbContextOptions<MunicipalDbContext> opti
     public DbSet<BirthDeclarationCase> BirthDeclarationCases => Set<BirthDeclarationCase>();
 
     public DbSet<ChangeOfAddressCase> ChangeOfAddressCases => Set<ChangeOfAddressCase>();
+
+    public DbSet<DocumentRequestCase> DocumentRequestCases => Set<DocumentRequestCase>();
 
     public DbSet<Person> Persons => Set<Person>();
 

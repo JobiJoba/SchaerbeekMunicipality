@@ -258,6 +258,12 @@
                 return;
             }
 
+            if (dialogResult.IsDocumentRequest)
+            {
+                Navigation.NavigateTo("/identity-documents/requests?open=new");
+                return;
+            }
+
             Snackbar.Add(dialogResult.IsBirthDeclaration
                 ? "Birth declaration case opened."
                 : "Registration case opened.", Severity.Success);

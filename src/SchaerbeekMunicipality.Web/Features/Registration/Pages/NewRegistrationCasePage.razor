@@ -168,6 +168,11 @@
                 Navigation.NavigateTo("/change-of-address?open=new");
                 return;
             }
+            else if (_visitReason == VisitReason.PassportRenewal)
+            {
+                Navigation.NavigateTo("/identity-documents/requests?open=new");
+                return;
+            }
             else
             {
                 var result = await RegistrationApi.OpenCaseAsync(

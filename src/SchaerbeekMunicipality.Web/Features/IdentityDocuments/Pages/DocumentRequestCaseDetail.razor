@@ -1,0 +1,291 @@
+@page "/identity-documents/requests/{CaseId:guid}"
+@using SchaerbeekMunicipality.Domain.IdentityDocuments
+@using SchaerbeekMunicipality.Application.Auth
+@using SchaerbeekMunicipality.Application.Features.IdentityDocuments.CancelDocumentRequest
+@using SchaerbeekMunicipality.Application.Features.IdentityDocuments.GetDocumentRequestCase
+@using SchaerbeekMunicipality.Application.Features.IdentityDocuments.RecordFeePayment
+@using SchaerbeekMunicipality.Web.Features.IdentityDocuments.Components
+@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Web.Api.IdentityDocuments
+@inject IIdentityDocumentsApi IdentityDocumentsApi
+@inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
+    @if (_loading)
+    {
+        <AppLoading Kind="AppLoadingKind.Skeleton" />
+    }
+    else if (_case is null)
+    {
+        <AppAlert Severity="Severity.Error" Title="Case not found" />
+    }
+    else
+    {
+        <AppPage Title="Identity document request">
+            <AppPageHeader Title="Identity document request"
+                           Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.GivenName} {_case.FamilyName}")">
+                <Actions>
+                    <AppStatusChip Label="@_case.Status.ToString()" Severity="@GetSeverity(_case.Status)" />
+                    <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
+                                     CanEdit="_case.CanEdit"
+                                     OnTakeCase="TakeCase"
+                                     OnReleaseLock="ReleaseLock" />
+                    <MudButton Variant="Variant.Text"
+                               StartIcon="@Icons.Material.Outlined.ArrowBack"
+                               OnClick="@(() => Navigation.NavigateTo("/identity-documents/requests"))">
+                        Back to list
+                    </MudButton>
+                </Actions>
+            </AppPageHeader>
+
+            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock" />
+
+            <MudGrid Spacing="4">
+                <MudItem xs="12" lg="7">
+                    <MudStack Spacing="4">
+                        <AppCard Title="Applicant" Outlined="true">
+                            <MudText Typo="Typo.body1">
+                                <strong>@_case.GivenName @_case.FamilyName</strong>
+                            </MudText>
+                            @if (!string.IsNullOrWhiteSpace(_case.NationalRegisterNumber))
+                            {
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                    NR @_case.NationalRegisterNumber
+                                </MudText>
+                            }
+                            <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                Born @_case.BirthDate.ToString("d")
+                            </MudText>
+                            <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                Request: @_case.RequestType
+                            </MudText>
+                        </AppCard>
+
+                        @if (_case.Documents.Count > 0)
+                        {
+                            <AppCard Title="Attached documents" Outlined="true">
+                                @foreach (var doc in _case.Documents)
+                                {
+                                    <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="mb-2">
+                                        <MudText Typo="Typo.body2">@doc.FileName</MudText>
+                                        @if (_case.CanEdit)
+                                        {
+                                            <MudIconButton Icon="@Icons.Material.Outlined.Delete"
+                                                           Size="Size.Small"
+                                                           OnClick="@(() => RemoveDocument(doc.Id))" />
+                                        }
+                                    </MudStack>
+                                }
+                            </AppCard>
+                        }
+
+                        @if (_case.CanEdit && _case.Status is not (DocumentRequestCaseStatus.Issued or DocumentRequestCaseStatus.Cancelled))
+                        {
+                            <ApplicantPhotoUpload CaseId="CaseId"
+                                                  CanEdit="_case.CanEdit"
+                                                  OnUploaded="ReloadAsync" />
+                        }
+                    </MudStack>
+                </MudItem>
+
+                <MudItem xs="12" lg="5">
+                    <DocumentRequestStatusSection Case="_case"
+                                                  Busy="_busy"
+                                                  OnFeePaidChangedRequested="RecordFeePayment"
+                                                  OnAdvanceStatus="AdvanceStatus"
+                                                  OnIssueDocument="IssueDocument"
+                                                  OnCancelRequest="CancelRequest" />
+                </MudItem>
+            </MudGrid>
+        </AppPage>
+    }
+</RegistrationRoleGate>
+
+@code {
+    [Parameter]
+    public Guid CaseId { get; set; }
+
+    private DocumentRequestCaseDetailDto? _case;
+    private bool _loading = true;
+    private bool _busy;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ReloadAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (_case?.Id != CaseId)
+        {
+            await ReloadAsync();
+        }
+    }
+
+    private async Task ReloadAsync()
+    {
+        _loading = true;
+        try
+        {
+            await IdentityDocumentsApi.TryAutoClaimRequestAsync(CaseId, CancellationToken.None);
+            _case = await IdentityDocumentsApi.GetRequestAsync(CaseId, CancellationToken.None);
+        }
+        catch (KeyNotFoundException)
+        {
+            _case = null;
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    private async Task TakeCase()
+    {
+        _busy = true;
+        try
+        {
+            await IdentityDocumentsApi.ClaimRequestAsync(CaseId, CancellationToken.None);
+            await ReloadAsync();
+            Snackbar.Add("Case claimed.", Severity.Success);
+        }
+        catch (InvalidDocumentRequestTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task ReleaseLock()
+    {
+        _busy = true;
+        try
+        {
+            await IdentityDocumentsApi.ReleaseCaseLockAsync(CaseId, CancellationToken.None);
+            await ReloadAsync();
+            Snackbar.Add("Lock released.", Severity.Info);
+        }
+        catch (InvalidDocumentRequestTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task RecordFeePayment()
+    {
+        if (_case is null || _case.FeePaid)
+        {
+            return;
+        }
+
+        _busy = true;
+        try
+        {
+            await IdentityDocumentsApi.RecordFeePaymentAsync(
+                CaseId,
+                new RecordFeePaymentRequest("STUB-FEE"),
+                CancellationToken.None);
+            await ReloadAsync();
+            Snackbar.Add("Fee payment recorded.", Severity.Success);
+        }
+        catch (InvalidDocumentRequestTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task AdvanceStatus()
+    {
+        _busy = true;
+        try
+        {
+            await IdentityDocumentsApi.AdvanceStatusAsync(CaseId, CancellationToken.None);
+            await ReloadAsync();
+            Snackbar.Add("Status advanced.", Severity.Success);
+        }
+        catch (InvalidDocumentRequestTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task IssueDocument()
+    {
+        _busy = true;
+        try
+        {
+            var result = await IdentityDocumentsApi.IssueDocumentAsync(CaseId, CancellationToken.None);
+            await ReloadAsync();
+            Snackbar.Add($"Document issued: {result.IssuedDocumentNumber}", Severity.Success);
+        }
+        catch (InvalidDocumentRequestTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task CancelRequest()
+    {
+        var parameters = new DialogParameters<CancelDocumentRequestDialog>
+        {
+            { x => x.CaseId, CaseId },
+            { x => x.OnCancelled, EventCallback.Factory.Create(this, ReloadAsync) },
+        };
+
+        await DialogService.ShowAsync<CancelDocumentRequestDialog>(
+            "Cancel document request",
+            parameters,
+            new DialogOptions { MaxWidth = MaxWidth.Small, FullWidth = true });
+    }
+
+    private async Task RemoveDocument(Guid documentId)
+    {
+        _busy = true;
+        try
+        {
+            await IdentityDocumentsApi.RemoveDocumentAsync(CaseId, documentId, CancellationToken.None);
+            await ReloadAsync();
+            Snackbar.Add("Document removed.", Severity.Info);
+        }
+        catch (InvalidDocumentRequestTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private static AppSeverity GetSeverity(DocumentRequestCaseStatus status) =>
+        status switch
+        {
+            DocumentRequestCaseStatus.Issued => AppSeverity.Success,
+            DocumentRequestCaseStatus.Cancelled => AppSeverity.Error,
+            DocumentRequestCaseStatus.ReadyForCollection => AppSeverity.Info,
+            DocumentRequestCaseStatus.InProduction => AppSeverity.Warning,
+            _ => AppSeverity.Neutral,
+        };
+}

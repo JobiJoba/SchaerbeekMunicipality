@@ -7,6 +7,7 @@ using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.NationalRegister;
@@ -48,6 +49,7 @@ public static class DependencyInjection
         services.AddScoped<IRegistrationCaseRepository, RegistrationCaseRepository>();
         services.AddScoped<IBirthDeclarationCaseRepository, BirthDeclarationCaseRepository>();
         services.AddScoped<IChangeOfAddressCaseRepository, ChangeOfAddressCaseRepository>();
+        services.AddScoped<IDocumentRequestCaseRepository, DocumentRequestCaseRepository>();
         services.AddScoped<IPersonRepository, PersonRepository>();
         services.AddScoped<IAdministrativeDocumentRepository, AdministrativeDocumentRepository>();
         services.AddScoped<IResidencePermitRepository, ResidencePermitRepository>();
@@ -95,6 +97,7 @@ public static class DependencyInjection
 
         await ReferenceDataSeeder.SeedAsync(dbContext, CancellationToken.None);
         await NationalRegisterSeeder.SeedAsync(dbContext, CancellationToken.None);
+        await PopulationRegisterSeeder.SeedAsync(dbContext, CancellationToken.None);
     }
 
     private static bool IsSqlite(string connectionString) =>

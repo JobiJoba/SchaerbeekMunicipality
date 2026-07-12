@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Api.Middleware;
@@ -36,6 +37,10 @@ public sealed class DomainExceptionMiddleware(RequestDelegate next, ILogger<Doma
                 StatusCodes.Status409Conflict,
                 "Conflict",
                 invalidTransition.Message),
+            InvalidDocumentRequestTransitionException invalidDocumentRequest => (
+                StatusCodes.Status409Conflict,
+                "Conflict",
+                invalidDocumentRequest.Message),
             InvalidOperationException invalidOperation when IsConflict(invalidOperation) => (
                 StatusCodes.Status409Conflict,
                 "Conflict",

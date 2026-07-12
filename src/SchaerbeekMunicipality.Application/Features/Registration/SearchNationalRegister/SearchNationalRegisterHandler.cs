@@ -1,10 +1,12 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister;
 
 public sealed class SearchNationalRegisterHandler(
     INationalRegisterRepository nationalRegisterRepository,
+    IPersonRepository personRepository,
     IValidator<SearchNationalRegisterRequest> validator)
 {
     public async Task<SearchNationalRegisterResponse> Handle(
@@ -20,18 +22,51 @@ public sealed class SearchNationalRegisterHandler(
 
         var matches = await nationalRegisterRepository.SearchAsync(criteria, cancellationToken);
 
-        return new SearchNationalRegisterResponse(
-            matches
-                .Select(m => new NationalRegisterMatchDto(
-                    m.RegisterPersonId.Value,
-                    m.GivenName,
-                    m.FamilyName,
-                    m.BirthDate,
-                    m.Nationality,
-                    m.BisNumber,
-                    m.NationalRegisterNumber,
-                    m.MatchScore,
-                    m.MatchReason))
-                .ToList());
+        var dtos = new List<NationalRegisterMatchDto>(matches.Count);
+        foreach (var match in matches)
+        {
+            var isRegistered = await IsRegisteredInPopulationAsync(match, cancellationToken);
+            dtos.Add(new NationalRegisterMatchDto(
+                match.RegisterPersonId.Value,
+                match.GivenName,
+                match.FamilyName,
+                match.BirthDate,
+                match.Nationality,
+                match.BisNumber,
+                match.NationalRegisterNumber,
+                match.MatchScore,
+                match.MatchReason,
+                isRegistered));
+        }
+
+        return new SearchNationalRegisterResponse(dtos);
+    }
+
+    private async Task<bool> IsRegisteredInPopulationAsync(
+        NationalRegisterMatch match,
+        CancellationToken cancellationToken)
+    {
+        if (match.NationalRegisterNumber is null)
+        {
+            return false;
+        }
+
+        var person = await personRepository.GetByRegisterRecordIdAsync(
+            match.RegisterPersonId,
+            cancellationToken);
+
+        if (person is null)
+        {
+            var registerPerson = await nationalRegisterRepository.GetByIdAsync(
+                match.RegisterPersonId,
+                cancellationToken);
+
+            if (registerPerson?.NationalRegisterNumber is { } nrNumber)
+            {
+                person = await personRepository.GetByNationalRegisterNumberAsync(nrNumber, cancellationToken);
+            }
+        }
+
+        return person?.NationalRegisterNumber is not null;
     }
 }

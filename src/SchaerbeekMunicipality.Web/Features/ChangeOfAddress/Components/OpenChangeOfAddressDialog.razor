@@ -20,7 +20,7 @@
             <RowActions Context="match">
                 <MudButton Variant="Variant.Outlined"
                            Size="Size.Small"
-                           Disabled="_opening || string.IsNullOrWhiteSpace(match.NationalRegisterNumber)"
+                           Disabled="_opening || !match.CanOpenServiceCase"
                            data-testid="open-change-of-address-case"
                            OnClick="@(() => OpenCase(match))">
                     Open case
@@ -73,7 +73,7 @@
 
             MudDialog.Close(DialogResult.Ok(opened.CaseId));
         }
-        catch (Exception ex) when (ex is InvalidChangeOfAddressTransitionException or KeyNotFoundException or FluentValidation.ValidationException)
+        catch (Exception ex) when (ex is InvalidChangeOfAddressTransitionException or InvalidOperationException or KeyNotFoundException or FluentValidation.ValidationException)
         {
             _actionError = ex is FluentValidation.ValidationException validation
                 ? string.Join(" ", validation.Errors.Select(e => e.ErrorMessage))
@@ -96,5 +96,6 @@
             match.BisNumber,
             match.NationalRegisterNumber,
             match.MatchScore,
-            match.MatchReason);
+            match.MatchReason,
+            match.IsRegisteredInPopulation);
 }

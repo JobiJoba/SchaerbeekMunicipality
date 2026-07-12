@@ -42,6 +42,28 @@ public sealed class SearchNationalRegisterTests
         response.Matches[0].MatchScore.Should().BeGreaterThanOrEqualTo(80);
         response.Matches[0].BisNumber.Should().NotBeNullOrWhiteSpace();
     }
+
+    [Fact]
+    public async Task SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus()
+    {
+        await using var factory = new MunicipalAppFactory();
+        await using var scope = factory.Services.CreateAsyncScope();
+        var handler = scope.ServiceProvider.GetRequiredService<SearchNationalRegisterHandler>();
+
+        var response = await handler.Handle(
+            new SearchNationalRegisterRequest(null, "Dupont", null),
+            CancellationToken.None);
+
+        response.Matches.Should().HaveCount(2);
+
+        var jean = response.Matches.Single(m => m.GivenName == "Jean");
+        jean.NationalRegisterNumber.Should().NotBeNullOrWhiteSpace();
+        jean.IsRegisteredInPopulation.Should().BeFalse();
+
+        var jacques = response.Matches.Single(m => m.GivenName == "J.");
+        jacques.NationalRegisterNumber.Should().BeNull();
+        jacques.IsRegisteredInPopulation.Should().BeFalse();
+    }
 }
 
 public sealed class LinkExistingPersonTests

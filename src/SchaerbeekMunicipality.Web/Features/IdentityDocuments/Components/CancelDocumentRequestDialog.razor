@@ -1,0 +1,86 @@
+@using SchaerbeekMunicipality.Domain.IdentityDocuments
+@using SchaerbeekMunicipality.Application.Features.IdentityDocuments.CancelDocumentRequest
+@using SchaerbeekMunicipality.Web.Api.IdentityDocuments
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h4">Cancel request</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudForm @ref="_form" @bind-IsValid="_formValid">
+            <MudTextField @bind-Value="_reason"
+                          Label="Reason"
+                          Required="true"
+                          Lines="3"
+                          MaxLength="2000" />
+        </MudForm>
+
+        @if (!string.IsNullOrWhiteSpace(_error))
+        {
+            <AppAlert Severity="Severity.Error" Title="Error" Class="mt-3">@_error</AppAlert>
+        }
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Outlined" OnClick="Cancel">Close</MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Error"
+                   Disabled="_submitting"
+                   OnClick="Submit">
+            Cancel request
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public Guid CaseId { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancelled { get; set; }
+
+    [Inject]
+    private IIdentityDocumentsApi IdentityDocumentsApi { get; set; } = null!;
+
+    private MudForm _form = null!;
+    private bool _formValid;
+    private bool _submitting;
+    private string _reason = string.Empty;
+    private string? _error;
+
+    private void Cancel() => MudDialog.Cancel();
+
+    private async Task Submit()
+    {
+        await _form.ValidateAsync();
+        if (!_formValid)
+        {
+            return;
+        }
+
+        _submitting = true;
+        _error = null;
+        try
+        {
+            await IdentityDocumentsApi.CancelRequestAsync(
+                CaseId,
+                new CancelDocumentRequestRequest(_reason),
+                CancellationToken.None);
+
+            await OnCancelled.InvokeAsync();
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+        catch (Exception ex) when (ex is InvalidDocumentRequestTransitionException or FluentValidation.ValidationException)
+        {
+            _error = ex is FluentValidation.ValidationException validation
+                ? string.Join(" ", validation.Errors.Select(e => e.ErrorMessage))
+                : ex.Message;
+        }
+        finally
+        {
+            _submitting = false;
+        }
+    }
+}

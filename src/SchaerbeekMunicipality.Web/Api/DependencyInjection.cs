@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using SchaerbeekMunicipality.Web.Api.BirthDeclaration;
 using SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
+using SchaerbeekMunicipality.Web.Api.IdentityDocuments;
 using SchaerbeekMunicipality.Web.Api.Registration;
 
 namespace SchaerbeekMunicipality.Web.Api;
@@ -15,6 +16,7 @@ public static class DependencyInjection
         RegisterClient<IRegistrationApi, RegistrationApiClient>(services, environment);
         RegisterClient<IBirthDeclarationApi, BirthDeclarationApiClient>(services, environment);
         RegisterClient<IChangeOfAddressApi, ChangeOfAddressApiClient>(services, environment);
+        RegisterClient<IIdentityDocumentsApi, IdentityDocumentsApiClient>(services, environment);
         return services;
     }
 

@@ -32,6 +32,16 @@ using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RejectChangeOf
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RequestPoliceVerification;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ResolveRegisteredPerson;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.UpdateHouseholdForMove;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.AdvanceDocumentRequestStatus;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.AttachApplicantPhoto;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.CancelDocumentRequest;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.ClaimDocumentRequestCase;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.GetDocumentRequestCase;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.IssueDocument;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.ListDocumentRequestCases;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.OpenDocumentRequestCase;
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.RecordFeePayment;
 using SchaerbeekMunicipality.Application.Features.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.ApproveCase;
 using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
@@ -161,7 +171,23 @@ public static class DependencyInjection
         services.AddScoped<GetChangeOfAddressChecklistHandler>();
         services.AddScoped<ConfirmAddressChangeHandler>();
         services.AddScoped<RejectChangeOfAddressHandler>();
-        services.AddScoped<ResolveRegisteredPersonHandler>();
+        services.AddScoped<Features.ChangeOfAddress.ResolveRegisteredPerson.ResolveRegisteredPersonHandler>();
+
+        services.AddScoped<DocumentRequestCaseAuthorization>();
+        services.AddScoped<DocumentRequestCaseGuard>();
+        services.AddScoped<OpenDocumentRequestCaseHandler>();
+        services.AddScoped<ListDocumentRequestCasesHandler>();
+        services.AddScoped<GetDocumentRequestCaseHandler>();
+        services.AddScoped<ClaimDocumentRequestCaseHandler>();
+        services.AddScoped<Features.IdentityDocuments.ReleaseCaseLock.ReleaseCaseLockHandler>();
+        services.AddScoped<AttachApplicantPhotoHandler>();
+        services.AddScoped<Features.IdentityDocuments.RemoveDocument.RemoveDocumentHandler>();
+        services.AddScoped<Features.IdentityDocuments.DownloadDocument.DownloadDocumentHandler>();
+        services.AddScoped<RecordFeePaymentHandler>();
+        services.AddScoped<AdvanceDocumentRequestStatusHandler>();
+        services.AddScoped<IssueDocumentHandler>();
+        services.AddScoped<CancelDocumentRequestHandler>();
+        services.AddScoped<Features.IdentityDocuments.ResolveRegisteredPerson.ResolveRegisteredPersonHandler>();
 
         return services;
     }

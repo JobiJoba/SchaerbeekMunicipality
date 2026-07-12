@@ -1,5 +1,6 @@
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Documents;
@@ -16,6 +17,10 @@ public interface IAdministrativeDocumentRepository
 
     Task<IReadOnlyList<AdministrativeDocument>> ListByChangeOfAddressCaseIdAsync(
         ChangeOfAddressCaseId changeOfAddressCaseId,
+        CancellationToken cancellationToken);
+
+    Task<IReadOnlyList<AdministrativeDocument>> ListByDocumentRequestCaseIdAsync(
+        DocumentRequestCaseId documentRequestCaseId,
         CancellationToken cancellationToken);
 
     Task<AdministrativeDocument?> GetByIdAsync(

@@ -93,7 +93,8 @@ public sealed class GetRegistrationCaseHandler(
                 m.BisNumber,
                 m.NationalRegisterNumber,
                 m.MatchScore,
-                m.MatchReason))
+                m.MatchReason,
+                IsRegisteredInPopulation: false))
             .ToList();
     }
 
