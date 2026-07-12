@@ -6,6 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <!-- Co-hosted in Web for Production publish; Web owns appsettings in the container image. -->
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
+    <Content Update="appsettings.Development.json">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\SchaerbeekMunicipality.Application\SchaerbeekMunicipality.Application.csproj" />
     <ProjectReference Include="..\SchaerbeekMunicipality.Infrastructure\SchaerbeekMunicipality.Infrastructure.csproj" />

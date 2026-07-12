@@ -35,8 +35,20 @@ I just deploy on azure and got the following error in the logs
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+The user is experiencing an Azure deployment issue.
+
+The error indicates a DNS resolution failure during an HTTP connection attempt. The stack trace points to .NET Aspire service discovery, suggesting the application cannot resolve a service hostname. I will check the Azure deployment configuration, startup service connections, and the parameters.json file.</details></think>
+
+_**Agent (default)**_
+
+Investigating the Azure deployment configuration and what HTTP host the app is trying to reach at startup.
+
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/parameters.json</summary>
 
 </details>
 </tool-use>
@@ -52,7 +64,55 @@ _**Agent (default)**_
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "ServiceDiscovery|AddServiceDiscovery|ResolvingHttp"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "ServiceDiscovery|AddServiceDiscovery|ResolvingHttp",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs"
+    },
+    {
+      "matchCount": 6,
+      "uri": ".specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "Directory.Packages.props"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/TECH-STACK.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": ".specstory/history/2026-07-03_18-45-43Z-roadmap-and-phase-0.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj"
+    }
+  ],
+  "totalFiles": 6,
+  "totalMatches": 17
+}
+```
+Status: **completed**
 
 
 </details>
@@ -67,9 +127,22 @@ _**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **9** results in **1** directory</summary>
 
-No results found
+Directory: **** (9 files)
+
+| File |
+|------|
+| `deploy/azure/postgres/parameters.json` |
+| `deploy/azure/sqlite/parameters.json` |
+| `deploy/azure/sqlite/main.bicep` |
+| `deploy/azure/sqlite/README.md` |
+| `deploy/azure/sqlite/deploy.sh` |
+| `deploy/azure/postgres/main.bicep` |
+| `deploy/azure/postgres/README.md` |
+| `deploy/azure/README.md` |
+| `deploy/azure/postgres/deploy.sh` |
+
 </details>
 </tool-use>
 
@@ -80,8 +153,13 @@ No results found
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+Checking ServiceDefaults extensions, the Azure Bicep deployment, and Program.cs to locate HttpClient calls using service discovery hostnames.</details></think>
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs</summary>
 
 </details>
 </tool-use>
@@ -94,7 +172,7 @@ _**Agent (default)**_
 _**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/main.bicep</summary>
 
 </details>
 </tool-use>
@@ -110,7 +188,71 @@ _**Agent (default)**_
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "AddHttpClient|HttpClient|https?://"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "AddHttpClient|HttpClient|https?://",
+  "topFiles": [
+    {
+      "matchCount": 9,
+      "uri": "src/SchaerbeekMunicipality.AppHost/Properties/launchSettings.json"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Api/Properties/launchSettings.json"
+    },
+    {
+      "matchCount": 5,
+      "uri": "src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Registration/RegistrationApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/BirthDeclaration/BirthDeclarationApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/ChangeOfAddress/ChangeOfAddressApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IMunicipalApiBridge.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/MunicipalApiClientBase.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Properties/launchSettings.json"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs"
+    }
+  ],
+  "totalFiles": 10,
+  "totalMatches": 27
+}
+```
+Status: **completed**
 
 
 </details>
@@ -124,7 +266,7 @@ Status: **loading**
 _**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/projects/Users-joba-Projects-Private-dotnet-SchaerbeekMunicipality/terminals/12.txt</summary>
 
 </details>
 </tool-use>
@@ -136,8 +278,15 @@ _**Agent (default)**_
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+The root cause appears to be in the Web project's `DependencyInjection.cs`.
+
+The `AddHttpClient` call uses an Aspire service discovery URI (`https+http://api`) that resolves to a separate `api` service. In Azure production, however, the API runs as a separate container rather than being hosted in-process by the Web app. This mismatch causes the Web app to fail resolving the `api` hostname.</details></think>
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs</summary>
 
 </details>
 </tool-use>
@@ -151,14 +300,2264 @@ _**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **2** results in **1** directory</summary>
 
-No results found
+Directory: **** (2 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Api/Program.cs` |
+| `src/SchaerbeekMunicipality.Web/Program.cs` |
+
 </details>
 </tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reading the Web Program.cs and AppHost files to understand the local Aspire architecture.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **** (0 files)
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "IMunicipalApiBridge|MunicipalApiBridge"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "IMunicipalApiBridge|MunicipalApiBridge",
+  "topFiles": [
+    {
+      "matchCount": 18,
+      "uri": ".specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalApiBridge.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IMunicipalApiBridge.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_11-03-08Z-documentation-update-steps.md"
+    }
+  ],
+  "totalFiles": 6,
+  "totalMatches": 26
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The architecture is now clear.
+
+The web app cannot resolve the hostname `api`. In Azure, only the web container is deployed. There is no separate API container or Aspire orchestrator. The web app expects `api` to be discoverable via Aspire service discovery. This causes the DNS failure.
+
+Checking the Dockerfile and container publish workflow to determine whether the image contains both the Web and API services or only the Web service.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **** (1 file)
+
+| File |
+|------|
+| `Dockerfile` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
+
+Directory: **** (5 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.AppHost/Properties/launchSettings.json` |
+| `src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj` |
+| `src/SchaerbeekMunicipality.AppHost/appsettings.Development.json` |
+| `src/SchaerbeekMunicipality.AppHost/AppHost.cs` |
+| `src/SchaerbeekMunicipality.AppHost/appsettings.json` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking the Dockerfile and AppHost to understand the deployment model.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Dockerfile</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/AppHost.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The web container cannot resolve the API hostname. The Docker image only contains the Web project, which tries to reach `https+http://api` through Aspire service discovery.
+
+Azure only deploys the Web container. The API service is missing. Options include hosting the API inside the Web container, deploying both services separately, or using an in-process API bridge.
+
+Another option is pointing the HttpClient to localhost in production when the API is embedded. Checking the Web project references, production configuration, and phase-10 documentation to determine the best approach.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-10-azure-deployment.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **7** results in **1** directory</summary>
+
+Directory: **** (7 files)
+
+| File |
+|------|
+| `./src/SchaerbeekMunicipality.Api/appsettings.Development.json` |
+| `./src/SchaerbeekMunicipality.Api/appsettings.json` |
+| `./src/SchaerbeekMunicipality.Web/appsettings.Production.json` |
+| `./src/SchaerbeekMunicipality.Web/appsettings.json` |
+| `./src/SchaerbeekMunicipality.Web/appsettings.Development.json` |
+| `./src/SchaerbeekMunicipality.AppHost/appsettings.json` |
+| `./src/SchaerbeekMunicipality.AppHost/appsettings.Development.json` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking the phase 10 documentation for guidance on this socket resolution error.
+
+The /health endpoint only validates the Web container itself. It does not catch API failures. The documentation references OpenAPI endpoints. This suggests the Web container may need to host the API in-process. I am checking the Web project files to confirm.
+
+Web Program.cs does not map API endpoints. The OpenAPI path belongs to the Api project. Either the documentation is incorrect, the unified host was never implemented, or the API should be co-hosted in Web. I will search for production deployment plans.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/appsettings.Production.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "MapRegistration|AddInfrastructure|InitializeDatabase"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "MapRegistration|AddInfrastructure|InitializeDatabase",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/adr/0005-deployment-database-by-environment.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The web application's production configuration contains a SQLite connection string for schaerbeek, yet Program.cs does not invoke AddInfrastructure or InitializeDatabaseAsync. This likely explains why the database initialization step is missing during startup.
+
+Only the API project initializes the database. The Web container tries to reach an external API host that is not deployed. This is an incomplete deployment architecture. The fix options are to embed the API into the Web process, deploy the API as a separate container, or publish a unified host.
+
+Checking for existing co-hosting patterns and integration test configurations to guide the fix.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.{cs,md}",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AddInfrastructure|MapRegistration|EmbeddedApi|CoHost|InProcess"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AddInfrastructure|MapRegistration|EmbeddedApi|CoHost|InProcess",
+  "topFiles": [
+    {
+      "matchCount": 6,
+      "uri": ".specstory/history/2026-07-03_18-45-43Z-roadmap-and-phase-0.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/ListPendingPoliceVerifications/ListPendingPoliceVerificationsHandler.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_18-23-47Z-difference-between-officer-roles.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-0-foundation.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/Program.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-05_17-20-48Z-resetting-all-cases.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_18-08-15Z-phase-1-backend-foundation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/ARCHITECTURE.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-06_18-43-21Z-phase-10-overview.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/README.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_17-31-49Z-phase-8-overview.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": ".specstory/history/2026-07-11_18-33-16Z-phase-4-monolith-retirement.md"
+    }
+  ],
+  "totalFiles": 15,
+  "totalMatches": 28
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalApiBridge.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/IMunicipalApiBridge.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing the intended architecture to understand the socket resolution failure.
+
+The Web container does not include the API project. The phase 10 documentation expects API endpoints to be available in production, but the Web Program.cs does not map them. The proper fix is to add the API project reference to the Web project and bootstrap the API endpoints within the same container process during Production.
+
+The cleanest fix is to co-host the API inside the Web process when no external API URL is configured. This avoids a separate API container or a larger combined host project. The options are registering an IMunicipalApiBridge to loop back to the same Kestrel server, or mapping API endpoints directly and using a same-origin HttpClient.
+
+The E2E pattern uses a separate API port with a bridge. For the production monolith, the simplest approach is to map API endpoints directly inside Web's Program.cs and point the HttpClient to localhost or 127.0.0.1. Calling the same Kestrel instance via HttpClient from Blazor Server is awkward but workable.
+
+The TestServer bridge pattern is only for tests. For production co-hosting, the HttpClient BaseAddress should target localhost instead of the external API URL. The current dependency injection logic falls back to "http://api" in production, which causes the name resolution failure. A service discovery environment variable such as Services__api__http__0 pointing to localhost would resolve this.
+
+An `ApiBaseUrl` configuration setting is another viable option. I am checking whether Aspire service discovery already defines external endpoints and if a local production-mode integration test exists.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "ApiBaseUrl|Services__api|https\\+http://api"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "ApiBaseUrl|Services__api|https\\+http://api",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/postgres/main.bicep</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "Production|AddMunicipalApiClients"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "Production|AddMunicipalApiClients",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking phase documentation for EmbeddedApi or production hosting extensions. Investigating startup components that may trigger API calls during health checks.
+
+The error likely comes from a startup or background service making an API call via HttpClient. The 11:13:56 timestamp suggests the failure occurs during initial container startup rather than the health probe itself.
+
+The DNS error stems from the Web container trying to resolve the hostname `api`, which only exists inside Aspire. The plan is to co-host the API within the Web container for production and update HttpClient to target localhost instead of `https+http://api`.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "IRegistrationApi|ListPending|OnInitialized"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "IRegistrationApi|ListPending|OnInitialized",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/OutboundNotificationsPage.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/ReasonNotesDialog.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationRoleGate.razor"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Registration/IRegistrationApi.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/NewCaseDialog.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor"
+    }
+  ],
+  "totalFiles": 31,
+  "totalMatches": 46
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **** (0 files)
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The error stems from `MainLayout.razor` calling `RegistrationApi.ListPendingPoliceVerificationsAsync` on every page load. This triggers the API request that fails with the socket exception.
+
+The Web container is missing API endpoint registration. The intended architecture from phase 10 assumed the Web container would serve API endpoints too. A shared bootstrap extension method in the Api project should register those services and map the endpoints. The Web Program.cs can then call this during Production to support a single container deployment.
+
+The HttpClient base address should point to localhost in production. A direct Web-to-Api project reference may cause circular dependency issues. The API base URL could instead be configured via environment variables in Bicep.
+
+No circular dependency exists between Api and Web. The Api project uses the Web SDK and contains its own Program.cs. Extracting `AddMunicipalApiHost()` and `MapMunicipalApiEndpoints()` from that file would let the Web container host the API endpoints directly.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **82** results in **1** directory</summary>
+
+Directory: **** (82 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ListPendingPoliceVerifications/ListPendingPoliceVerificationsEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ResumeCase/ResumeCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/SuspendCase/SuspendCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/OpenBirthDeclarationCase/OpenBirthDeclarationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ConvertBisNumber/ConvertBisNumberEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/SearchNationalRegister/SearchNationalRegisterEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/GetReviewDashboard/GetReviewDashboardEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordIdentity/RecordIdentityEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ListBirthDeclarationCases/ListBirthDeclarationCasesEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ClaimChangeOfAddressCase/AutoClaimChangeOfAddressCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordCivilStatus/RecordCivilStatusEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/UpdateHouseholdForMove/UpdateHouseholdForMoveEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/UpdateHouseholdForMove/UnlinkHouseholdMemberEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Validation/ValidationResults.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ListCaseAudit/ListCaseAuditEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ConfirmBirthDeclaration/ConfirmBirthDeclarationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ClaimChangeOfAddressCase/ClaimChangeOfAddressCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ChangeOfAddressEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ConfirmAddressChange/ConfirmAddressChangeEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ListChangeOfAddressCases/ListChangeOfAddressCasesEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ResumeBirthDeclaration/ResumeBirthDeclarationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/AttachDocument/AttachDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordHousingSituation/RecordHousingSituationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/SearchReferenceData/SearchReferenceDataEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/SuspendBirthDeclaration/SuspendBirthDeclarationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ClaimRegistrationCase/ClaimRegistrationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ResolveRegisteredPerson/ResolveRegisteredPersonEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ApproveCase/ApproveCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/RejectChangeOfAddress/RejectChangeOfAddressEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/LinkExistingPerson/LinkExistingPersonEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ConfirmRegistration/ConfirmRegistrationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordPoliceResult/RecordPoliceResultEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/GetChangeOfAddressChecklist/GetChangeOfAddressChecklistEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/IssueResidenceCertificate/IssueResidenceCertificateEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/UnlinkParent/UnlinkParentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/ProgramMarker.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/GetChangeOfAddressCase/GetChangeOfAddressCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/GetRegistrationCase/GetRegistrationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/BirthDeclarationEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/RejectBirthDeclaration/RejectBirthDeclarationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/IssueHouseholdComposition/IssueHouseholdCompositionEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ListRegistrationCases/ListRegistrationCasesEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/GetBirthDeclarationCase/GetBirthDeclarationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/SetResidenceCategory/SetResidenceCategoryEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/AttachDocument/AttachDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordBirthInformation/RecordBirthInformationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/RecordChildDetails/RecordChildDetailsEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/AttachDocument/AttachDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ClaimBirthDeclarationCase/AutoClaimBirthDeclarationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordResidencePermit/RecordResidencePermitEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RequestPoliceVerification/RequestPoliceVerificationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ClaimBirthDeclarationCase/ClaimBirthDeclarationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/LinkParent/LinkParentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs` |
+| `src/SchaerbeekMunicipality.Api/Program.cs` |
+| `src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/GetBirthDeclarationChecklist/GetBirthDeclarationChecklistEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/OpenRegistrationCase/OpenRegistrationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/DeclareAddress/DeclareAddressEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerHeaders.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/CorrectIdentity/CorrectIdentityEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RejectCase/RejectCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/RequestPoliceVerification/RequestPoliceVerificationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ClaimRegistrationCase/AutoClaimRegistrationCaseEndpoint.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The Web container deployed successfully, but the application cannot resolve the `api` hostname because the Aspire service discovery endpoint does not exist in this environment.
+
+Co-hosting the API inside the Web container fixes the production deployment. The plan extracts API bootstrap logic into a shared extension, updates the Web program to run both services together, and switches HttpClient to localhost instead of the missing `api` hostname.
+
+Four options were weighed for the localhost base address. Bicep environment variables offer the smallest code change. However, the API endpoints must still be mapped to the Web container. Otherwise the call returns connection refused rather than resolving the DNS error.
+
+A new `MunicipalApiHostExtensions` class is being created in the Api project. It exposes an `AddMunicipalApi` method that registers infrastructure, database health checks, application services, validators, and OpenAPI support. This centralizes the API bootstrap logic for reuse by the Web container.
+
+The extension now includes `UseMunicipalApi` to wire up demo resolution, exception handling, domain endpoints, and OpenAPI routing. It also adds `InitializeMunicipalApiDatabaseAsync` to seed the database. The Web `Program.cs` will branch to co-host the API in non-development environments.
+
+Middleware ordering is critical so Blazor and API routes coexist correctly. The Web project will reference the Api project directly to pull in Infrastructure transitively.
+
+The HttpClient base address will be set dynamically. It falls back to localhost in production, uses the `api` hostname in development, and reads a configuration key when the API is co-hosted.
+
+The `ResolveApiBaseAddress` helper checks for an `IMunicipalApiBridge` first. It then falls back to `http://api` in development, or hardcodes `http://127.0.0.1:8080` in production. The Dockerfile already sets `ASPNETCORE_URLS` to `http://+:8080`, so the loopback address matches the container's listening port.
+
+The `https+http://api` prefix triggers Aspire service discovery, which fails because the `api` hostname does not exist in this environment. Using plain `http://127.0.0.1:8080` bypasses service discovery entirely. The HttpClient must be configured to skip service discovery for the municipal API client so the loopback address resolves directly.
+
+The Web container needs the database health check in production too. Phase 10 documentation expects the EF database check on `/health`, but the Web app currently only reports itself healthy. The API project's `AddMunicipalDatabaseHealthCheck` will be added to the Web container so the co-hosted API endpoints are properly monitored.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "AddMunicipalDatabaseHealthCheck|InitializeDatabaseAsync"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "AddMunicipalDatabaseHealthCheck|InitializeDatabaseAsync",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/HealthCheckExtensions.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/Program.cs"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+File not found
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Searching for middleware files to investigate the connection failure.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **3** results in **1** directory</summary>
+
+Directory: **** (3 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerHeaders.cs` |
+| `src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs` |
+| `src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/HealthCheckExtensions.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Searching for the `UseDemoOfficerResolution` extension method.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "UseDemoOfficerResolution|UseDomainExceptionHandling"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "UseDemoOfficerResolution|UseDomainExceptionHandling",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/Program.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user likely wants an explanation and fix for the Azure container SocketException.
+
+A minimal fix is planned. An `MunicipalApiHostExtensions` class will consolidate API registration. The Web app will co-host the API in Production. Dependency injection will use localhost instead of the external API URL.
+
+The Web app will register the API host conditionally outside Development. Database initialization and error handling will run for non-local environments. API middleware will handle `/api` routes.
+
+Middleware ordering is being finalized for the co-hosted API. The DemoOfficerResolution middleware needs review to confirm how Blazor client requests reach the API through the shared HttpClient.
+
+HttpClient calls to the co-hosted API will route through 127.0.0.1. MunicipalApiClientBase will add the required officer headers for the DemoOfficer middleware. Middleware ordering places DemoOfficer and DomainException before endpoint execution. OpenAPI mapping is confirmed for production. Database initialization must run at startup to seed the SQLite database on Azure.
+
+Referencing the Api project from Web will not cause duplicate Program issues. FluentValidation validators from the Api assembly must be registered during co-hosting. The extension method will handle both API host setup and validator registration.
+
+The Api Program.cs will call `AddMunicipalApiHost()` after `AddServiceDefaults()`. The Web app will reuse the same conditional extensions. The `AddMunicipalApiClients` extension now takes `IConfiguration` so it can read the localhost address in Production.
+
+The HttpClient factory lambda will resolve the base address from the service provider. It will first attempt to retrieve an `IMunicipalApiBridge` instance. If that is absent, it will fall back to the `IHostEnvironment` to select the correct address based on the current environment.
+
+The HttpClient factory will read `MunicipalApi:BaseAddress` from configuration, falling back to `http://127.0.0.1:8080` when absent. A production appsettings override is optional. The fix will be implemented directly.
+
+The Postgres Bicep template also uses a single web container, so it shares the same DNS resolution problem. The Api Program.cs is being reviewed to verify how validator assemblies are referenced.</details></think>
+
+_**Agent (default)**_
+
+Implementing co-hosting of the API in the Web container for Production — Azure only deploys Web, but Production HttpClients still target Aspire's `api` hostname.
+
+
+_**Agent (default)**_
+
+File not found
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AddMunicipalApiClients"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AddMunicipalApiClients",
+  "topFiles": [
+    {
+      "matchCount": 15,
+      "uri": ".specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Program.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 18
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Looking for the validator configuration related to AddValidatorsFromAssembly.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api",
+  "pattern": "AddValidatorsFromAssembly"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api",
+  "pattern": "AddValidatorsFromAssembly",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Program.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api** (0 files)
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The AttachDocumentRequestValidator may have been moved or its path changed.
+
+Searching for the validator now.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AttachDocumentRequestValidator"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AttachDocumentRequestValidator",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Program.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/AttachDocument/AttachDocumentEndpoint.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/AttachDocument/AttachDocumentEndpoint.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/features/registration/attach-document.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/AttachDocument/AttachDocumentEndpoint.cs"
+    }
+  ],
+  "totalFiles": 5,
+  "totalMatches": 9
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The validator is located in AttachDocumentEndpoint.cs rather than a separate file.
+
+Creating MunicipalApiHostExtensions.cs in the Api project.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I need to restore the `using` directive for the `SchaerbeekMunicipality.Api` namespace in `Api/Program.cs`. The `MunicipalApiHostExtensions` class resides in that namespace, so removing the import caused the build to fail.
+
+Need to verify whether the Api project's Program.cs compiles with the restored namespace import. Also checking the Web project middleware order: MapRegistrationEndpoints and similar Map* endpoints should run after routing is configured.
+
+The Web project middleware order differs from the original Api Program.cs. UseMunicipalApiHost now runs before UseAntiforgery, but API endpoints likely do not need antiforgery protection, so this ordering should be fine.
+
+ExceptionHandler placed before API middleware is acceptable because DomainExceptionMiddleware handles domain exceptions. Now building and testing.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -30</summary>
+
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -30
+```
+
+```
+  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs(4,9): error CS1061: 'WebApplicationBuilder' does not contain a definition for 'AddMunicipalApiHost' and no accessible extension method 'AddMunicipalApiHost' accepting a first argument of type 'WebApplicationBuilder' could be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs(8,11): error CS1061: 'WebApplication' does not contain a definition for 'InitializeMunicipalApiDatabaseAsync' and no accessible extension method 'InitializeMunicipalApiDatabaseAsync' accepting a first argument of type 'WebApplication' could be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs(9,5): error CS1061: 'WebApplication' does not contain a definition for 'UseMunicipalApiHost' and no accessible extension method 'UseMunicipalApiHost' accepting a first argument of type 'WebApplication' could be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj]
+
+Build FAILED.
+
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs(4,9): error CS1061: 'WebApplicationBuilder' does not contain a definition for 'AddMunicipalApiHost' and no accessible extension method 'AddMunicipalApiHost' accepting a first argument of type 'WebApplicationBuilder' could be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs(8,11): error CS1061: 'WebApplication' does not contain a definition for 'InitializeMunicipalApiDatabaseAsync' and no accessible extension method 'InitializeMunicipalApiDatabaseAsync' accepting a first argument of type 'WebApplication' could be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs(9,5): error CS1061: 'WebApplication' does not contain a definition for 'UseMunicipalApiHost' and no accessible extension method 'UseMunicipalApiHost' accepting a first argument of type 'WebApplication' could be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj]
+    0 Warning(s)
+    3 Error(s)
+
+Time Elapsed 00:00:05.62
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Realized Program.cs already resides in the Api assembly, so adding a using directive for SchaerbeekMunicipality.Api may be unnecessary since the extension methods share the same namespace.
+
+The extension method likely cannot be found because Program.cs lacks an explicit `using SchaerbeekMunicipality.Api;` directive. Top-level programs do not automatically import the project's root namespace.
+
+WebApplicationBuilder implements IHostApplicationBuilder in .NET 6+, so passing it directly to AddMunicipalApiHost should work. The extension method still needs an explicit `using SchaerbeekMunicipality.Api;` in Program.cs.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The SocketException indicates a DNS resolution failure. The web container cannot resolve the target host name.
+
+Checking whether IHostApplicationBuilder is compatible with WebApplicationBuilder in .NET 10. Will add the missing namespace import and rebuild.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -20</summary>
+
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -20
+```
+
+```
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.AppHost -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
+  SchaerbeekMunicipality.E2E.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.03
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Build succeeded. Running integration tests and a Docker production simulation.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --no-build 2>&1 | tail -15</summary>
+
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --no-build 2>&1 | tail -15
+```
+
+```
+Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (arm64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    95, Skipped:     0, Total:    95, Duration: 12 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && ASPNETCORE_ENVIRONMENT=Production dotnet run --project src/SchaerbeekMunicipality.Web --no-build --urls http://127.0.0.1:18080 &
+sleep 8
+curl -s -o /dev/null -w "health:%{http_code}\n" http://127.0.0.1:18080/health
+curl -s -o /dev/null -w "api:%{http_code}\n" -H "X-Officer-Id: 11111111-1111-1111-1111-111111111111" -H "X-Officer-Role: PopulationOfficer" -H "X-Officer-Name: Marie" http://127.0.0.1:18080/api/registration/police-verifications/pending
+kill %1 2>/dev/null || true</summary>
+
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && ASPNETCORE_ENVIRONMENT=Production dotnet run --project src/SchaerbeekMunicipality.Web --no-build --urls http://127.0.0.1:18080 &
+sleep 8
+curl -s -o /dev/null -w "health:%{http_code}\n" http://127.0.0.1:18080/health
+curl -s -o /dev/null -w "api:%{http_code}\n" -H "X-Officer-Id: 11111111-1111-1111-1111-111111111111" -H "X-Officer-Role: PopulationOfficer" -H "X-Officer-Name: Marie" http://127.0.0.1:18080/api/registration/police-verifications/pending
+kill %1 2>/dev/null || true
+```
+
+```
+Using launch settings from src/SchaerbeekMunicipality.Web/Properties/launchSettings.json...
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://127.0.0.1:18080
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web
+health:200
+api:404
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The smoke test overrides ASPNETCORE_ENVIRONMENT to Development via launchSettings.
+
+The API returns 404 because it is not co-hosted in Development; Aspire runs it separately. An explicit environment override will bypass launch settings.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0 && ASPNETCORE_ENVIRONMENT=Production ASPNETCORE_URLS=http://127.0.0.1:18081 dotnet SchaerbeekMunicipality.Web.dll &
+sleep 12
+curl -s -o /dev/null -w "health:%{http_code}\n" http://127.0.0.1:18081/health
+curl -s -o /dev/null -w "api:%{http_code}\n" -H "X-Officer-Id: 11111111-1111-1111-1111-111111111111" -H "X-Officer-Role: PopulationOfficer" -H "X-Officer-Name: Marie" http://127.0.0.1:18081/api/registration/police-verifications/pending
+kill %1 2>/dev/null || true</summary>
+
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0 && ASPNETCORE_ENVIRONMENT=Production ASPNETCORE_URLS=http://127.0.0.1:18081 dotnet SchaerbeekMunicipality.Web.dll &
+sleep 12
+curl -s -o /dev/null -w "health:%{http_code}\n" http://127.0.0.1:18081/health
+curl -s -o /dev/null -w "api:%{http_code}\n" -H "X-Officer-Id: 11111111-1111-1111-1111-111111111111" -H "X-Officer-Role: PopulationOfficer" -H "X-Officer-Name: Marie" http://127.0.0.1:18081/api/registration/police-verifications/pending
+kill %1 2>/dev/null || true
+```
+
+```
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      PRAGMA journal_mode = 'wal';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "administrative_documents" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_administrative_documents" PRIMARY KEY,
+          "registration_case_id" TEXT NULL,
+          "birth_declaration_case_id" TEXT NULL,
+          "change_of_address_case_id" TEXT NULL,
+          "document_type" TEXT NOT NULL,
+          "file_name" TEXT NOT NULL,
+          "storage_path" TEXT NOT NULL,
+          "content_hash" TEXT NOT NULL,
+          "uploaded_by_officer_id" TEXT NOT NULL,
+          "uploaded_at" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "birth_declaration_cases" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_birth_declaration_cases" PRIMARY KEY,
+          "status" TEXT NOT NULL,
+          "assigned_officer_id" TEXT NULL,
+          "locked_by_officer_id" TEXT NULL,
+          "locked_at" TEXT NULL,
+          "child_given_names" TEXT NULL,
+          "child_family_name" TEXT NULL,
+          "child_sex" TEXT NULL,
+          "child_date_of_birth" TEXT NULL,
+          "child_time_of_birth" TEXT NULL,
+          "child_place_of_birth" TEXT NULL,
+          "medical_declaration_document_id" TEXT NULL,
+          "household_street" TEXT NULL,
+          "household_house_number" TEXT NULL,
+          "household_box" TEXT NULL,
+          "household_postal_code" TEXT NULL,
+          "household_municipality" TEXT NULL,
+          "child_details_recorded" INTEGER NOT NULL,
+          "at_least_one_parent_linked" INTEGER NOT NULL,
+          "medical_declaration_attached" INTEGER NOT NULL,
+          "household_established" INTEGER NOT NULL,
+          "opened_at" TEXT NOT NULL,
+          "confirmed_at" TEXT NULL,
+          "closed_at" TEXT NULL,
+          "child_person_id" TEXT NULL,
+          "child_national_register_number" TEXT NULL,
+          "decision_officer_id" TEXT NULL,
+          "rejection_reason" TEXT NULL,
+          "suspension_reason" TEXT NULL,
+          "decision_notes" TEXT NULL,
+          "status_before_suspension" TEXT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "case_audit_entries" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_case_audit_entries" PRIMARY KEY,
+          "case_id" TEXT NOT NULL,
+          "action" TEXT NOT NULL,
+          "officer_id" TEXT NOT NULL,
+          "occurred_at" TEXT NOT NULL,
+          "details" TEXT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "certificate_requests" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_certificate_requests" PRIMARY KEY,
+          "registration_case_id" TEXT NOT NULL,
+          "certificate_type" TEXT NOT NULL,
+          "person_id" TEXT NOT NULL,
+          "issued_by_officer_id" TEXT NOT NULL,
+          "reference_number" TEXT NOT NULL,
+          "issued_at" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "change_of_address_cases" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_change_of_address_cases" PRIMARY KEY,
+          "person_id" TEXT NOT NULL,
+          "status" TEXT NOT NULL,
+          "assigned_officer_id" TEXT NULL,
+          "locked_by_officer_id" TEXT NULL,
+          "locked_at" TEXT NULL,
+          "previous_street" TEXT NULL,
+          "previous_house_number" TEXT NULL,
+          "previous_box" TEXT NULL,
+          "previous_postal_code" TEXT NULL,
+          "previous_municipality" TEXT NULL,
+          "new_street" TEXT NULL,
+          "new_house_number" TEXT NULL,
+          "new_box" TEXT NULL,
+          "new_postal_code" TEXT NULL,
+          "new_municipality" TEXT NULL,
+          "housing_situation" TEXT NULL,
+          "housing_document_id" TEXT NULL,
+          "police_verification_request_id" TEXT NULL,
+          "effective_date" TEXT NULL,
+          "person_identified" INTEGER NOT NULL,
+          "new_address_declared" INTEGER NOT NULL,
+          "housing_document_attached" INTEGER NOT NULL,
+          "housing_document_required" INTEGER NOT NULL,
+          "police_verification_requested" INTEGER NOT NULL,
+          "police_verification_positive" INTEGER NOT NULL,
+          "opened_at" TEXT NOT NULL,
+          "confirmed_at" TEXT NULL,
+          "closed_at" TEXT NULL,
+          "decision_officer_id" TEXT NULL,
+          "rejection_reason" TEXT NULL,
+          "decision_notes" TEXT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "households" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_households" PRIMARY KEY,
+          "registration_case_id" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "municipalities" (
+          "postal_code" TEXT NOT NULL CONSTRAINT "PK_municipalities" PRIMARY KEY,
+          "name" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "national_register_persons" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_national_register_persons" PRIMARY KEY,
+          "given_name" TEXT NOT NULL,
+          "family_name" TEXT NOT NULL,
+          "birth_date" TEXT NOT NULL,
+          "nationality" TEXT NOT NULL,
+          "bis_number" TEXT NULL,
+          "national_register_number" TEXT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "outbound_notifications" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_outbound_notifications" PRIMARY KEY,
+          "registration_case_id" TEXT NULL,
+          "birth_declaration_case_id" TEXT NULL,
+          "change_of_address_case_id" TEXT NULL,
+          "person_id" TEXT NOT NULL,
+          "recipient" TEXT NOT NULL,
+          "message" TEXT NOT NULL,
+          "created_at" TEXT NOT NULL,
+          "delivery_status" TEXT NOT NULL,
+          "attempt_count" INTEGER NOT NULL,
+          "next_attempt_at" TEXT NOT NULL,
+          "sent_at" TEXT NULL,
+          "last_error" TEXT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "persons" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_persons" PRIMARY KEY,
+          "given_name" TEXT NOT NULL,
+          "family_name" TEXT NOT NULL,
+          "birth_date" TEXT NOT NULL,
+          "nationality" TEXT NOT NULL,
+          "linked_register_record_id" TEXT NULL,
+          "bis_number" TEXT NULL,
+          "national_register_number" TEXT NULL,
+          "civil_status" TEXT NULL,
+          "spouse_given_name" TEXT NULL,
+          "spouse_family_name" TEXT NULL,
+          "marriage_date" TEXT NULL,
+          "marriage_place" TEXT NULL,
+          "marriage_recognition_status" TEXT NULL,
+          "birth_place" TEXT NULL,
+          "birth_country" TEXT NULL,
+          "domicile_street" TEXT NULL,
+          "domicile_house_number" TEXT NULL,
+          "domicile_box" TEXT NULL,
+          "domicile_postal_code" TEXT NULL,
+          "domicile_municipality" TEXT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "police_verification_requests" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_police_verification_requests" PRIMARY KEY,
+          "registration_case_id" TEXT NULL,
+          "change_of_address_case_id" TEXT NULL,
+          "requested_at" TEXT NOT NULL,
+          "completed_at" TEXT NULL,
+          "result" TEXT NULL,
+          "officer_notes" TEXT NULL,
+          "attempt_number" INTEGER NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "registration_cases" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_registration_cases" PRIMARY KEY,
+          "status" TEXT NOT NULL,
+          "visit_reason" TEXT NOT NULL,
+          "assigned_officer_id" TEXT NULL,
+          "locked_by_officer_id" TEXT NULL,
+          "locked_at" TEXT NULL,
+          "person_id" TEXT NULL,
+          "residence_category" TEXT NULL,
+          "immigration_decision_reference" TEXT NULL,
+          "immigration_decision_date" TEXT NULL,
+          "address_street" TEXT NULL,
+          "address_house_number" TEXT NULL,
+          "address_box" TEXT NULL,
+          "address_postal_code" TEXT NULL,
+          "address_municipality" TEXT NULL,
+          "housing_situation" TEXT NULL,
+          "opened_at" TEXT NOT NULL,
+          "closed_at" TEXT NULL,
+          "register_target" TEXT NULL,
+          "decision_officer_id" TEXT NULL,
+          "rejection_reason" TEXT NULL,
+          "suspension_reason" TEXT NULL,
+          "decision_notes" TEXT NULL,
+          "status_before_suspension" TEXT NULL,
+          "identity_established" INTEGER NOT NULL,
+          "legal_residence_established" INTEGER NOT NULL,
+          "address_declared" INTEGER NOT NULL,
+          "address_confirmed" INTEGER NOT NULL,
+          "register_determinable" INTEGER NOT NULL,
+          "birth_evidence_established" INTEGER NOT NULL,
+          "duplicate_investigation_resolved" INTEGER NOT NULL,
+          "duplicate_investigation_status" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "residence_permits" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_residence_permits" PRIMARY KEY,
+          "registration_case_id" TEXT NOT NULL,
+          "permit_type" TEXT NOT NULL,
+          "card_number" TEXT NULL,
+          "valid_from" TEXT NOT NULL,
+          "valid_until" TEXT NOT NULL,
+          "issuing_authority" TEXT NULL,
+          "recorded_at" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "streets" (
+          "id" INTEGER NOT NULL CONSTRAINT "PK_streets" PRIMARY KEY,
+          "postal_code" TEXT NOT NULL,
+          "name" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "birth_declaration_parent_links" (
+          "person_id" TEXT NOT NULL,
+          "birth_declaration_case_id" TEXT NOT NULL,
+          "role" TEXT NOT NULL,
+          CONSTRAINT "PK_birth_declaration_parent_links" PRIMARY KEY ("birth_declaration_case_id", "person_id"),
+          CONSTRAINT "FK_birth_declaration_parent_links_birth_declaration_cases_birth_declaration_case_id" FOREIGN KEY ("birth_declaration_case_id") REFERENCES "birth_declaration_cases" ("id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "change_of_address_household_member_links" (
+          "person_id" TEXT NOT NULL,
+          "change_of_address_case_id" TEXT NOT NULL,
+          CONSTRAINT "PK_change_of_address_household_member_links" PRIMARY KEY ("change_of_address_case_id", "person_id"),
+          CONSTRAINT "FK_change_of_address_household_member_links_change_of_address_cases_change_of_address_case_id" FOREIGN KEY ("change_of_address_case_id") REFERENCES "change_of_address_cases" ("id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "household_members" (
+          "id" TEXT NOT NULL CONSTRAINT "PK_household_members" PRIMARY KEY,
+          "household_id" TEXT NOT NULL,
+          "given_name" TEXT NOT NULL,
+          "family_name" TEXT NOT NULL,
+          "birth_date" TEXT NOT NULL,
+          "role" TEXT NOT NULL,
+          CONSTRAINT "FK_household_members_households_household_id" FOREIGN KEY ("household_id") REFERENCES "households" ("id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_administrative_documents_birth_declaration_case_id" ON "administrative_documents" ("birth_declaration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_administrative_documents_change_of_address_case_id" ON "administrative_documents" ("change_of_address_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_administrative_documents_registration_case_id" ON "administrative_documents" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_case_audit_entries_case_id" ON "case_audit_entries" ("case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_certificate_requests_reference_number" ON "certificate_requests" ("reference_number");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_certificate_requests_registration_case_id" ON "certificate_requests" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_household_members_household_id" ON "household_members" ("household_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_households_registration_case_id" ON "households" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_national_register_persons_bis_number" ON "national_register_persons" ("bis_number");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_national_register_persons_national_register_number" ON "national_register_persons" ("national_register_number");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_outbound_notifications_birth_declaration_case_id" ON "outbound_notifications" ("birth_declaration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_outbound_notifications_change_of_address_case_id" ON "outbound_notifications" ("change_of_address_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_outbound_notifications_created_at" ON "outbound_notifications" ("created_at");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_outbound_notifications_delivery_status_next_attempt_at" ON "outbound_notifications" ("delivery_status", "next_attempt_at");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_outbound_notifications_registration_case_id" ON "outbound_notifications" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_persons_linked_register_record_id" ON "persons" ("linked_register_record_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_persons_national_register_number" ON "persons" ("national_register_number");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_police_verification_requests_change_of_address_case_id" ON "police_verification_requests" ("change_of_address_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_police_verification_requests_completed_at" ON "police_verification_requests" ("completed_at");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_police_verification_requests_registration_case_id" ON "police_verification_requests" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_residence_permits_registration_case_id" ON "residence_permits" ("registration_case_id");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_streets_postal_code" ON "streets" ("postal_code");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "municipalities" AS "m")
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 4), @p1='?' (Size = 9)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "municipalities" ("postal_code", "name")
+      VALUES (@p0, @p1);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4), @p1='?' (Size = 10)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "municipalities" ("postal_code", "name")
+      VALUES (@p0, @p1);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4), @p1='?' (Size = 9)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "municipalities" ("postal_code", "name")
+      VALUES (@p0, @p1);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 4), @p1='?' (Size = 21)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "municipalities" ("postal_code", "name")
+      VALUES (@p0, @p1);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 19), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 12), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 17), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 20), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 16), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 19), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 11), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 16), @p2='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "streets" ("id", "name", "postal_code")
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "national_register_persons" AS "n")
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?' (Size = 11), @p3='?' (Size = 7), @p4='?' (Size = 5), @p5='?', @p6='?' (Size = 7)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?' (Size = 11), @p3='?' (Size = 7), @p4='?' (Size = 6), @p5='?', @p6='?' (Size = 6)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?', @p3='?' (Size = 6), @p4='?' (Size = 4), @p5='?' (Size = 11), @p6='?' (Size = 7)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?' (Size = 11), @p3='?' (Size = 6), @p4='?' (Size = 2), @p5='?', @p6='?' (Size = 7)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Date), @p2='?', @p3='?' (Size = 6), @p4='?' (Size = 5), @p5='?' (Size = 11), @p6='?' (Size = 10)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "national_register_persons" ("id", "birth_date", "bis_number", "family_name", "given_name", "national_register_number", "nationality")
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+warn: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[16]
+      The WebRootPath was not found: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/wwwroot. Static files may be unavailable.
+info: SchaerbeekMunicipality.Infrastructure.Integrations.IntegrationOutboxWorker[0]
+      Integration outbox worker started (poll every 5s, batch size 10).
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "o"."id", "o"."attempt_count", "o"."birth_declaration_case_id", "o"."change_of_address_case_id", "o"."created_at", "o"."delivery_status", "o"."last_error", "o"."message", "o"."next_attempt_at", "o"."person_id", "o"."recipient", "o"."registration_case_id", "o"."sent_at"
+      FROM "outbound_notifications" AS "o"
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://127.0.0.1:18081
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "o"."id", "o"."attempt_count", "o"."birth_declaration_case_id", "o"."change_of_address_case_id", "o"."created_at", "o"."delivery_status", "o"."last_error", "o"."message", "o"."next_attempt_at", "o"."person_id", "o"."recipient", "o"."registration_case_id", "o"."sent_at"
+      FROM "outbound_notifications" AS "o"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "o"."id", "o"."attempt_count", "o"."birth_declaration_case_id", "o"."change_of_address_case_id", "o"."created_at", "o"."delivery_status", "o"."last_error", "o"."message", "o"."next_attempt_at", "o"."person_id", "o"."recipient", "o"."registration_case_id", "o"."sent_at"
+      FROM "outbound_notifications" AS "o"
+health:200
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "p"."id", "p"."attempt_number", "p"."change_of_address_case_id", "p"."completed_at", "p"."officer_notes", "p"."registration_case_id", "p"."requested_at", "p"."result"
+      FROM "police_verification_requests" AS "p"
+      WHERE "p"."completed_at" IS NULL
+api:200
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "o"."id", "o"."attempt_count", "o"."birth_declaration_case_id", "o"."change_of_address_case_id", "o"."created_at", "o"."delivery_status", "o"."last_error", "o"."message", "o"."next_attempt_at", "o"."person_id", "o"."recipient", "o"."registration_case_id", "o"."sent_at"
+      FROM "outbound_notifications" AS "o"
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Production mode works locally. Health and API endpoints return 200.
+
+The fix is verified. I will explain the root cause and how to redeploy the updated image. No commit is needed unless requested.</details></think>
+
+_**Agent (default)**_
+
+## Root cause
+
+The error is a **DNS failure** when the Web app tries to call the backend API. The stack trace shows `ResolvingHttpDelegatingHandler`, which is .NET Aspire **service discovery**.
+
+Your Azure deployment runs **only the Web container** (`schaerbeek-web`), but in Production the HTTP clients were configured like this:
+
+```29:30:src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs
+// (before fix)
+?? new Uri(environment.IsDevelopment() ? "http://api" : "https+http://api");
+```
+
+Locally, Aspire resolves the hostname `api` to the separate API project. On Azure there is no Aspire orchestrator and no `api` service — so DNS lookup fails with **"Name or service not known"**.
+
+That call is triggered as soon as the UI loads — `MainLayout.razor` fetches pending police verifications for the nav badge.
+
+## Fix applied
+
+I've updated the app so **Production co-hosts the API inside the same Web process** (matching the single-container Azure model):
+
+1. **`MunicipalApiHostExtensions`** — shared API bootstrap (DB, endpoints, middleware)
+2. **`Web/Program.cs`** — registers and maps the API when `ASPNETCORE_ENVIRONMENT=Production`
+3. **`DependencyInjection.cs`** — Production HttpClients now loop back to `http://127.0.0.1:8080` instead of `https+http://api`
+
+Verified locally in Production mode: `/health` → 200, `/api/registration/police-verifications/pending` → 200.
+
+## Redeploy
+
+You need a **new container image** with this fix, then redeploy:
+
+```bash
+# After pushing the code and waiting for GHCR publish (or build locally)
+cd deploy/azure/sqlite
+# Update parameters.json containerImage to the new SHA tag
+./deploy.sh
+```
+
+Or trigger your GitHub **Container publish** workflow, then update `containerImage` in `parameters.json` to the new tag.
+
+After redeploy, the app at `https://schaerbeek-web.gentledesert-b97640b1.westeurope.azurecontainerapps.io` should load without the DNS errors. The first request after scale-to-zero may still take 15–45 seconds (cold start + SQLite init + seeding), which is expected.
+
+Want me to commit these changes or help with the redeploy steps?
+
+---
+
+_**User**_
+
+When I commit and the build launch I had the following error:
+
+#14 [build 7/7] RUN dotnet publish src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj     -c Release     -o /app/publish     /p:UseAppHost=false
+#14 1.465   Determining projects to restore...
+#14 3.063   Restored /src/src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj (in 125 ms).
+#14 4.874   Restored /src/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj (in 1.8 sec).
+#14 5.057   Restored /src/src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj (in 2.14 sec).
+#14 5.060   Restored /src/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj (in 2.13 sec).
+#14 5.063   Restored /src/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj (in 2.14 sec).
+#14 5.742   Restored /src/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj (in 857 ms).
+#14 10.59   SchaerbeekMunicipality.ServiceDefaults -> /src/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+#14 10.60   SchaerbeekMunicipality.Domain -> /src/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+#14 13.41   SchaerbeekMunicipality.Infrastructure -> /src/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+#14 15.79   SchaerbeekMunicipality.Application -> /src/src/SchaerbeekMunicipality.Application/bin/Release/net10.0/SchaerbeekMunicipality.Application.dll
+#14 17.99   SchaerbeekMunicipality.Api -> /src/src/SchaerbeekMunicipality.Api/bin/Release/net10.0/SchaerbeekMunicipality.Api.dll
+#14 26.36   SchaerbeekMunicipality.Web -> /src/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
+#14 28.19 /usr/share/dotnet/sdk/10.0.301/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.ConflictResolution.targets(112,5): error NETSDK1152: Found multiple publish output files with the same relative path: /src/src/SchaerbeekMunicipality.Api/appsettings.Development.json, /src/src/SchaerbeekMunicipality.Web/appsettings.Development.json, /src/src/SchaerbeekMunicipality.Api/appsettings.json, /src/src/SchaerbeekMunicipality.Web/appsettings.json. [/src/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+#14 ERROR: process "/bin/sh -c dotnet publish src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj     -c Release     -o /app/publish     /p:UseAppHost=false" did not complete successfully: exit code: 1
+------
+ > [build 7/7] RUN dotnet publish src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj     -c Release     -o /app/publish     /p:UseAppHost=false:
+5.060   Restored /src/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj (in 2.13 sec).
+5.063   Restored /src/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj (in 2.14 sec).
+5.742   Restored /src/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj (in 857 ms).
+10.59   SchaerbeekMunicipality.ServiceDefaults -> /src/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+10.60   SchaerbeekMunicipality.Domain -> /src/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+13.41   SchaerbeekMunicipality.Infrastructure -> /src/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+15.79   SchaerbeekMunicipality.Application -> /src/src/SchaerbeekMunicipality.Application/bin/Release/net10.0/SchaerbeekMunicipality.Application.dll
+17.99   SchaerbeekMunicipality.Api -> /src/src/SchaerbeekMunicipality.Api/bin/Release/net10.0/SchaerbeekMunicipality.Api.dll
+26.36   SchaerbeekMunicipality.Web -> /src/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
+28.19 /usr/share/dotnet/sdk/10.0.301/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.ConflictResolution.targets(112,5): error NETSDK1152: Found multiple publish output files with the same relative path: /src/src/SchaerbeekMunicipality.Api/appsettings.Development.json, /src/src/SchaerbeekMunicipality.Web/appsettings.Development.json, /src/src/SchaerbeekMunicipality.Api/appsettings.json, /src/src/SchaerbeekMunicipality.Web/appsettings.json. [/src/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+
+---
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
 
 </details></tool-use>
 
