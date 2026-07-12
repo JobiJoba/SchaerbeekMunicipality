@@ -19,8 +19,10 @@ public sealed class ChangeOfAddressE2ETests(MunicipalE2EFixture fixture) : E2ETe
         await page.GotoAsync(DemoOfficerUrls.Reception(Fixture.BaseUri, "/registration/new-case"));
         await page.WaitForBlazorAsync();
 
-        await page.GetByLabel("Visit reason").ClickAsync();
-        await page.GetByRole(AriaRole.Option, new() { Name = "Change of address" }).ClickAsync();
+        await page.GetByText("First registration").ClickAsync();
+        await page.Locator(".mud-popover-open .mud-list-item")
+            .Filter(new() { HasText = "Change of address" })
+            .ClickAsync();
         await page.GetByTestId("create-registration-case").ClickAsync();
 
         await page.GetByRole(AriaRole.Dialog).WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });

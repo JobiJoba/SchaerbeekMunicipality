@@ -32,6 +32,9 @@ public sealed class DocumentRequestE2ETests(MunicipalE2EFixture fixture) : E2ETe
         await openCaseButton.ClickAsync();
 
         await page.WaitForURLAsync("**/identity-documents/requests/**", new PageWaitForURLOptions { Timeout = 30_000 });
-        (await page.GetByText("Identity document request").First.IsVisibleAsync()).Should().BeTrue();
+        await page.GetByRole(AriaRole.Heading, new() { Name = "Identity document request" })
+            .WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
+        (await page.GetByRole(AriaRole.Heading, new() { Name = "Identity document request" }).IsVisibleAsync())
+            .Should().BeTrue();
     }
 }
