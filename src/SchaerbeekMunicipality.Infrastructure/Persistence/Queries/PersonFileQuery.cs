@@ -3,6 +3,7 @@ using SchaerbeekMunicipality.Domain.PersonFile;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.Common;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -41,7 +42,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         cases.AddRange(registrationCases.Select(c => new PersonCaseSummary(
             c.Id.Value,
             "Registration",
-            c.Status.ToString(),
+            c.Status.ToDisplayString(),
             c.OpenedAt,
             c.ClosedAt,
             $"/registration/cases/{c.Id.Value}")));
@@ -64,7 +65,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             cases.Add(new PersonCaseSummary(
                 birthCase.Id.Value,
                 "Birth declaration",
-                birthCase.Status.ToString(),
+                birthCase.Status.ToDisplayString(),
                 birthCase.OpenedAt,
                 birthCase.ClosedAt,
                 $"/birth-declarations/{birthCase.Id.Value}"));
@@ -88,7 +89,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             cases.Add(new PersonCaseSummary(
                 coaCase.Id.Value,
                 "Change of address",
-                coaCase.Status.ToString(),
+                coaCase.Status.ToDisplayString(),
                 coaCase.OpenedAt,
                 coaCase.ClosedAt,
                 $"/change-of-address/{coaCase.Id.Value}"));
@@ -102,7 +103,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         cases.AddRange(documentCases.Select(c => new PersonCaseSummary(
             c.Id.Value,
             "Identity document",
-            c.Status.ToString(),
+            c.Status.ToDisplayString(),
             c.RequestedAt,
             c.IssuedAt ?? c.CancelledAt,
             $"/identity-documents/requests/{c.Id.Value}")));
@@ -144,7 +145,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                         member.GivenName,
                         member.FamilyName,
                         member.BirthDate,
-                        member.Role.ToString(),
+                        member.Role.ToDisplayString(),
                         "Registration household");
                 }
             }
@@ -189,7 +190,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                         parent.GivenName,
                         parent.FamilyName,
                         parent.BirthDate,
-                        parentLink.Role.ToString(),
+                        parentLink.Role.ToDisplayString(),
                         "Birth declaration");
                 }
             }
@@ -348,7 +349,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                 .ToListAsync(cancellationToken);
 
             events.AddRange(auditEntries.Select(e => new PersonHistoryEvent(
-                e.Action.ToString(),
+                e.Action.ToDisplayString(),
                 e.OccurredAt,
                 e.Details,
                 "Registration audit")));
@@ -382,7 +383,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                 events.Add(new PersonHistoryEvent(
                     "Birth declaration rejected",
                     closedAt,
-                    birthCase.RejectionReason?.ToString(),
+                    birthCase.RejectionReason is null ? null : birthCase.RejectionReason.Value.ToDisplayString(),
                     "Birth declaration"));
             }
         }
@@ -414,7 +415,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                 events.Add(new PersonHistoryEvent(
                     "Change of address rejected",
                     closedAt,
-                    coaCase.RejectionReason?.ToString(),
+                    coaCase.RejectionReason is null ? null : coaCase.RejectionReason.Value.ToDisplayString(),
                     "Change of address"));
             }
         }
@@ -427,7 +428,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         foreach (var documentCase in documentCases)
         {
             events.Add(new PersonHistoryEvent(
-                $"{documentCase.RequestType} request submitted",
+                $"{documentCase.RequestType.ToDisplayString()} request submitted",
                 documentCase.RequestedAt,
                 null,
                 "Identity document"));
@@ -435,7 +436,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             if (documentCase.IssuedAt is { } issuedAt)
             {
                 events.Add(new PersonHistoryEvent(
-                    $"{documentCase.RequestType} issued",
+                    $"{documentCase.RequestType.ToDisplayString()} issued",
                     issuedAt,
                     documentCase.IssuedDocumentNumber,
                     "Identity document"));
@@ -444,7 +445,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             if (documentCase.CancelledAt is { } cancelledAt)
             {
                 events.Add(new PersonHistoryEvent(
-                    $"{documentCase.RequestType} request cancelled",
+                    $"{documentCase.RequestType.ToDisplayString()} request cancelled",
                     cancelledAt,
                     documentCase.CancellationReason,
                     "Identity document"));
@@ -457,7 +458,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             .ToListAsync(cancellationToken);
 
         events.AddRange(certificates.Select(c => new PersonHistoryEvent(
-            $"{c.CertificateType} issued",
+            $"{c.CertificateType.ToDisplayString()} issued",
             c.IssuedAt,
             c.ReferenceNumber,
             "Certificate")));

@@ -43,7 +43,7 @@
     else
     {
         <AppPageHeader Title="Registration case"
-                       Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.VisitReason} · opened {_case.OpenedAt.LocalDateTime:g}")">
+                       Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.VisitReason.ToDisplayString()} · opened {_case.OpenedAt.LocalDateTime:g}")">
             <StatusChip>
                 <AppStatusChip Status="_case.Status" />
             </StatusChip>

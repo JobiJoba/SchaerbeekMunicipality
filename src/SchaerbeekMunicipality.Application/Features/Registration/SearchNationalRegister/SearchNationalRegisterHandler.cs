@@ -30,7 +30,8 @@ public sealed class SearchNationalRegisterHandler(
         var dtos = new List<NationalRegisterMatchDto>(pageMatches.Count);
         foreach (var match in pageMatches)
         {
-            var isRegistered = await IsRegisteredInPopulationAsync(match, cancellationToken);
+            var linkedPerson = await ResolveLinkedPersonAsync(match, cancellationToken);
+            var isRegistered = linkedPerson?.NationalRegisterNumber is not null;
             dtos.Add(new NationalRegisterMatchDto(
                 match.RegisterPersonId.Value,
                 match.GivenName,
@@ -41,19 +42,20 @@ public sealed class SearchNationalRegisterHandler(
                 match.NationalRegisterNumber,
                 match.MatchScore,
                 match.MatchReason,
-                isRegistered));
+                isRegistered,
+                linkedPerson?.Id.Value));
         }
 
         return new SearchNationalRegisterResponse(dtos, totalCount, request.Page, request.PageSize);
     }
 
-    private async Task<bool> IsRegisteredInPopulationAsync(
+    private async Task<Person?> ResolveLinkedPersonAsync(
         NationalRegisterMatch match,
         CancellationToken cancellationToken)
     {
         if (match.NationalRegisterNumber is null)
         {
-            return false;
+            return await personRepository.GetByRegisterRecordIdAsync(match.RegisterPersonId, cancellationToken);
         }
 
         var person = await personRepository.GetByRegisterRecordIdAsync(
@@ -72,6 +74,6 @@ public sealed class SearchNationalRegisterHandler(
             }
         }
 
-        return person?.NationalRegisterNumber is not null;
+        return person;
     }
 }

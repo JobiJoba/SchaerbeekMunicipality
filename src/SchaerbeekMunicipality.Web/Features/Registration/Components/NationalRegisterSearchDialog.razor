@@ -1,5 +1,4 @@
 @using SchaerbeekMunicipality.Domain.NationalRegister
-@using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
 @using SchaerbeekMunicipality.Web.Api.Registration
@@ -18,13 +17,28 @@
                                     NoMatchesMessage="No matching records found. You can create a new person file on the case."
                                     SearchAsync="SearchAsync">
             <RowActions Context="match">
-                <MudButton Variant="Variant.Outlined"
-                           Color="Color.Primary"
-                           Size="Size.Small"
-                           Disabled="_linking"
-                           OnClick="@(() => LinkMatch(match))">
-                    Link
-                </MudButton>
+                <MudStack Row="true" Spacing="1" AlignItems="AlignItems.Center" Justify="Justify.FlexEnd">
+                    @if (match.CanOpenPersonFile)
+                    {
+                        <MudText Typo="Typo.caption" Color="Color.Secondary">Already linked</MudText>
+                        <MudButton Variant="Variant.Outlined"
+                                   Size="Size.Small"
+                                   Color="Color.Primary"
+                                   Href="@($"/persons/{match.PersonId}")">
+                            View file
+                        </MudButton>
+                    }
+                    else
+                    {
+                        <MudButton Variant="Variant.Outlined"
+                                   Color="Color.Primary"
+                                   Size="Size.Small"
+                                   Disabled="_linking"
+                                   OnClick="@(() => LinkMatch(match))">
+                            Link
+                        </MudButton>
+                    }
+                </MudStack>
             </RowActions>
         </NationalRegisterSearchForm>
 
@@ -117,5 +131,6 @@
             match.NationalRegisterNumber,
             match.MatchScore,
             match.MatchReason,
-            match.IsRegisteredInPopulation);
+            match.IsRegisteredInPopulation,
+            match.PersonId);
 }

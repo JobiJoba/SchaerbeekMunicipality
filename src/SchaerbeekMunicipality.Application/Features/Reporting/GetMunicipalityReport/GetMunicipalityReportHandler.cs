@@ -1,6 +1,7 @@
 using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.Common;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -172,13 +173,13 @@ public sealed class GetMunicipalityReportHandler(
     {
         var rows = registrationCases
             .GroupBy(c => c.Status)
-            .Select(g => new BacklogStatusRow("Registration", g.Key.ToString(), g.Count()))
+            .Select(g => new BacklogStatusRow("Registration", g.Key.ToDisplayString(), g.Count()))
             .Concat(birthCases
                 .GroupBy(c => c.Status)
-                .Select(g => new BacklogStatusRow("Birth declaration", g.Key.ToString(), g.Count())))
+                .Select(g => new BacklogStatusRow("Birth declaration", g.Key.ToDisplayString(), g.Count())))
             .Concat(changeOfAddressCases
                 .GroupBy(c => c.Status)
-                .Select(g => new BacklogStatusRow("Change of address", g.Key.ToString(), g.Count())))
+                .Select(g => new BacklogStatusRow("Change of address", g.Key.ToDisplayString(), g.Count())))
             .OrderBy(r => r.Workflow)
             .ThenBy(r => r.Status)
             .ToList();

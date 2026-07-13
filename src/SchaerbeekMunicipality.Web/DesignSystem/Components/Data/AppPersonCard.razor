@@ -20,7 +20,7 @@
             }
             @if (RegisterTarget is { } target)
             {
-                <AppStatusChip Label="@target.ToString()" Severity="AppSeverity.Info" />
+                <AppStatusChip Label="@target.ToDisplayString()" Severity="AppSeverity.Info" />
             }
         </MudStack>
     </MudStack>

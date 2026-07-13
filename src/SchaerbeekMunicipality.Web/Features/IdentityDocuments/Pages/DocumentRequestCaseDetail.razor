@@ -28,7 +28,7 @@
             <AppPageHeader Title="Identity document request"
                            Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.GivenName} {_case.FamilyName}")">
                 <Actions>
-                    <AppStatusChip Label="@_case.Status.ToString()" Severity="@GetSeverity(_case.Status)" />
+                    <AppStatusChip Label="@_case.Status.ToDisplayString()" Severity="@GetSeverity(_case.Status)" />
                     <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
                                      CanEdit="_case.CanEdit"
                                      OnTakeCase="TakeCase"
@@ -66,7 +66,7 @@
                                 Born @_case.BirthDate.ToString("d")
                             </MudText>
                             <MudText Typo="Typo.body2" Color="Color.Secondary">
-                                Request: @_case.RequestType
+                                Request: @_case.RequestType.ToDisplayString()
                             </MudText>
                         </AppCard>
 

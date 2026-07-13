@@ -93,7 +93,7 @@
                                 @item.Id.ToString()[..8]…
                             </MudLink>
                         </MudTd>
-                        <MudTd DataLabel="Visit reason">@item.VisitReason</MudTd>
+                        <MudTd DataLabel="Visit reason">@item.VisitReason.ToDisplayString()</MudTd>
                         <MudTd DataLabel="Status">
                             <AppStatusChip Status="item.Status" />
                         </MudTd>
@@ -198,8 +198,8 @@
             var term = _searchText.Trim();
             query = query.Where(c =>
                 c.Id.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
-                c.VisitReason.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
-                c.Status.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.VisitReason.ToDisplayString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.Status.ToDisplayString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
                 OfficerDisplayNames.LockStatus(c.AssignedOfficerId, c.LockedByOfficerId)
                     .Contains(term, StringComparison.OrdinalIgnoreCase));
         }

@@ -37,7 +37,7 @@
             <AppPageHeader Title="Birth declaration"
                            Subtitle="@($"{CaseId.ToString()[..8]}… · opened {_case.OpenedAt.LocalDateTime:g}")">
                 <Actions>
-                    <AppStatusChip Label="@_case.Status.ToString()" Severity="@GetSeverity(_case.Status)"/>
+                    <AppStatusChip Label="@_case.Status.ToDisplayString()" Severity="@GetSeverity(_case.Status)"/>
                     <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
                                      CanEdit="_case.CanEdit"
                                      OnTakeCase="TakeCase"
@@ -75,7 +75,7 @@
                                         <MudSelect T="NewbornSex" @bind-Value="_childModel.Sex" Label="Sex" Required="true">
                                             @foreach (var sex in Enum.GetValues<NewbornSex>())
                                             {
-                                                <MudSelectItem Value="sex">@sex</MudSelectItem>
+                                                <MudSelectItem Value="sex">@sex.ToDisplayString()</MudSelectItem>
                                             }
                                         </MudSelect>
                                     </MudItem>
@@ -111,7 +111,7 @@
                             {
                                 <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="mb-2">
                                     <MudText Typo="Typo.body2">
-                                        <strong>@parent.Role</strong> — @parent.GivenName @parent.FamilyName
+                                        <strong>@parent.Role.ToDisplayString()</strong> — @parent.GivenName @parent.FamilyName
                                         @if (!string.IsNullOrWhiteSpace(parent.NationalRegisterNumber))
                                         {
                                             <span> (NR @parent.NationalRegisterNumber)</span>

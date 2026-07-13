@@ -48,13 +48,13 @@
         else if (Case.Status == RegistrationCaseStatus.Approved)
         {
             <AppAlert Severity="Severity.Info" Title="Approved — pending registration">
-                Register target: @Case.SelectedRegisterTarget
+                Register target: @(Case.SelectedRegisterTarget is null ? "—" : Case.SelectedRegisterTarget.Value.ToDisplayString())
             </AppAlert>
         }
         else if (Case.Status == RegistrationCaseStatus.Registered)
         {
             <AppAlert Severity="Severity.Success" Title="Registered">
-                Person entered in @Case.SelectedRegisterTarget.
+                Person entered in @(Case.SelectedRegisterTarget is null ? "—" : Case.SelectedRegisterTarget.Value.ToDisplayString()).
             </AppAlert>
         }
 

@@ -43,7 +43,7 @@
             <AppPageHeader Title="Change of address"
                            Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.PersonGivenName} {_case.PersonFamilyName}")">
                 <Actions>
-                    <AppStatusChip Label="@_case.Status.ToString()" Severity="@GetSeverity(_case.Status)" />
+                    <AppStatusChip Label="@_case.Status.ToDisplayString()" Severity="@GetSeverity(_case.Status)" />
                     <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
                                      CanEdit="_case.CanEdit"
                                      OnTakeCase="TakeCase"
@@ -114,7 +114,7 @@
                                             <MudSelect T="HousingSituation" @bind-Value="_housingSituation" Label="Housing situation" Required="true">
                                                 @foreach (var situation in Enum.GetValues<HousingSituation>())
                                                 {
-                                                    <MudSelectItem Value="situation">@situation</MudSelectItem>
+                                                    <MudSelectItem Value="situation">@situation.ToDisplayString()</MudSelectItem>
                                                 }
                                             </MudSelect>
                                         </MudItem>

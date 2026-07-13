@@ -10,7 +10,8 @@ public sealed record NationalRegisterMatchDto(
     string? NationalRegisterNumber,
     int MatchScore,
     string MatchReason,
-    bool IsRegisteredInPopulation);
+    bool IsRegisteredInPopulation,
+    Guid? PersonId);
 
 public sealed record SearchNationalRegisterResponse(
     IReadOnlyList<NationalRegisterMatchDto> Matches,

@@ -95,6 +95,6 @@
         PoliceVerificationResult.EmptyDwelling => "Empty dwelling",
         PoliceVerificationResult.RefusedAccess => "Refused access — could not verify",
         PoliceVerificationResult.Incomplete => "Incomplete — needs second visit",
-        _ => result.ToString(),
+        _ => result.ToDisplayString(),
     };
 }

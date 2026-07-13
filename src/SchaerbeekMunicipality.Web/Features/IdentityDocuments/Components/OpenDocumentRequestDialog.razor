@@ -13,7 +13,7 @@
         <MudSelect T="DocumentRequestType" @bind-Value="_requestType" Label="Request type" Required="true" Class="mb-4">
             @foreach (var type in Enum.GetValues<DocumentRequestType>())
             {
-                <MudSelectItem Value="type">@type</MudSelectItem>
+                <MudSelectItem Value="type">@type.ToDisplayString()</MudSelectItem>
             }
         </MudSelect>
 
@@ -114,5 +114,6 @@
             match.NationalRegisterNumber,
             match.MatchScore,
             match.MatchReason,
-            match.IsRegisteredInPopulation);
+            match.IsRegisteredInPopulation,
+            match.PersonId);
 }

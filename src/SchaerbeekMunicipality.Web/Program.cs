@@ -1,7 +1,9 @@
 using MudBlazor.Services;
 using SchaerbeekMunicipality.Api;
+using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web;
 using SchaerbeekMunicipality.Web.Api;
+using SchaerbeekMunicipality.Web.Api.Registration;
 using SchaerbeekMunicipality.Web.Components;
 using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs;
 
@@ -37,6 +39,55 @@ app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages:
 if (!app.Environment.IsDevelopment())
 {
     app.UseMunicipalApiHost();
+}
+else
+{
+    // In development the API runs as a separate Aspire service ("http://api") and is
+    // not reachable directly from the browser. Proxy certificate issuance through the
+    // web host so the UI can open printable HTML in a new tab.
+    app.MapGet(
+        "/api/registration/cases/{id:guid}/certificates/residence",
+        async (Guid id, IRegistrationApi registrationApi, CancellationToken cancellationToken) =>
+        {
+            try
+            {
+                var html = await registrationApi.IssueResidenceCertificateAsync(id, cancellationToken);
+                return Results.Content(html, "text/html; charset=utf-8");
+            }
+            catch (KeyNotFoundException)
+            {
+                return Results.NotFound();
+            }
+            catch (InvalidRegistrationTransitionException ex)
+            {
+                return Results.Problem(
+                    detail: ex.Message,
+                    statusCode: StatusCodes.Status409Conflict,
+                    title: "Cannot issue certificate");
+            }
+        });
+
+    app.MapGet(
+        "/api/registration/cases/{id:guid}/certificates/household-composition",
+        async (Guid id, IRegistrationApi registrationApi, CancellationToken cancellationToken) =>
+        {
+            try
+            {
+                var html = await registrationApi.IssueHouseholdCompositionCertificateAsync(id, cancellationToken);
+                return Results.Content(html, "text/html; charset=utf-8");
+            }
+            catch (KeyNotFoundException)
+            {
+                return Results.NotFound();
+            }
+            catch (InvalidRegistrationTransitionException ex)
+            {
+                return Results.Problem(
+                    detail: ex.Message,
+                    statusCode: StatusCodes.Status409Conflict,
+                    title: "Cannot issue certificate");
+            }
+        });
 }
 
 app.UseAntiforgery();

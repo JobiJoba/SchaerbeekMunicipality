@@ -101,7 +101,7 @@ else if (OrderedHistory.Count > 1)
         PoliceVerificationResult.EmptyDwelling => "Empty dwelling",
         PoliceVerificationResult.RefusedAccess => "Refused access",
         PoliceVerificationResult.Incomplete => "Incomplete",
-        _ => result.ToString(),
+        _ => result.ToDisplayString(),
     };
 
     private static AppSeverity ResultSeverity(PoliceVerificationResult result) => result switch

@@ -72,9 +72,9 @@
                             </MudLink>
                         </MudTd>
                         <MudTd DataLabel="Applicant">@(item.PersonDisplayName ?? "—")</MudTd>
-                        <MudTd DataLabel="Type">@item.RequestType</MudTd>
+                        <MudTd DataLabel="Type">@item.RequestType.ToDisplayString()</MudTd>
                         <MudTd DataLabel="Status">
-                            <AppStatusChip Label="@item.Status.ToString()" Severity="@GetSeverity(item.Status)" />
+                            <AppStatusChip Label="@item.Status.ToDisplayString()" Severity="@GetSeverity(item.Status)" />
                         </MudTd>
                         <MudTd DataLabel="Officer">
                             @OfficerDisplayNames.LockStatus(item.AssignedOfficerId, item.LockedByOfficerId)
@@ -131,8 +131,8 @@
             var term = _searchText.Trim();
             query = query.Where(c =>
                 c.Id.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
-                c.Status.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
-                c.RequestType.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.Status.ToDisplayString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.RequestType.ToDisplayString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
                 (c.PersonDisplayName?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false) ||
                 OfficerDisplayNames.LockStatus(c.AssignedOfficerId, c.LockedByOfficerId)
                     .Contains(term, StringComparison.OrdinalIgnoreCase));

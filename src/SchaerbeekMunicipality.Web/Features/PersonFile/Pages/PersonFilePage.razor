@@ -269,7 +269,7 @@
 
         if (personFile.CivilStatus is { } civilStatus)
         {
-            items.Add(new("Civil status", civilStatus.Status.ToString()));
+            items.Add(new("Civil status", civilStatus.Status.ToDisplayString()));
             if (!string.IsNullOrWhiteSpace(civilStatus.SpouseGivenName) ||
                 !string.IsNullOrWhiteSpace(civilStatus.SpouseFamilyName))
             {

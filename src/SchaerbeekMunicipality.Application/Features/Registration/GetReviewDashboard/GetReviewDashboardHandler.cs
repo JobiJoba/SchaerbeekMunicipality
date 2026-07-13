@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
+using SchaerbeekMunicipality.Domain.Common;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Auth;
 
@@ -53,8 +54,8 @@ public sealed class GetReviewDashboardHandler(
                 new ActionableCaseRow(
                     c.Id.Value,
                     ReviewDashboardCaseType.Registration,
-                    c.Status.ToString(),
-                    c.VisitReason.ToString(),
+                    c.Status.ToDisplayString(),
+                    c.VisitReason.ToDisplayString(),
                     c.OpenedAt,
                     BuildRegistrationSummary(c)),
                 c.IsReadyForApproval,
@@ -67,7 +68,7 @@ public sealed class GetReviewDashboardHandler(
                     new ActionableCaseRow(
                         c.Id.Value,
                         ReviewDashboardCaseType.BirthDeclaration,
-                        c.Status.ToString(),
+                        c.Status.ToDisplayString(),
                         "Birth declaration",
                         c.OpenedAt,
                         BuildBirthSummary(c)),
@@ -122,7 +123,7 @@ public sealed class GetReviewDashboardHandler(
             RegistrationCaseStatus.Suspended => $"Suspended — {registrationCase.SuspensionReason}",
             _ when registrationCase.IsReadyForApproval => "Ready for officer decision",
             _ when IsUnassignedRegistration(registrationCase) => "Unassigned — awaiting intake",
-            _ => registrationCase.Status.ToString(),
+            _ => registrationCase.Status.ToDisplayString(),
         };
 
     private static string BuildBirthSummary(BirthDeclarationCase birthDeclarationCase) =>
@@ -131,6 +132,6 @@ public sealed class GetReviewDashboardHandler(
             BirthDeclarationCaseStatus.Suspended => $"Suspended — {birthDeclarationCase.SuspensionReason}",
             _ when birthDeclarationCase.IsReadyForConfirmation => "Ready for confirmation",
             _ when IsUnassignedBirth(birthDeclarationCase) => "Unassigned — awaiting intake",
-            _ => birthDeclarationCase.Status.ToString(),
+            _ => birthDeclarationCase.Status.ToDisplayString(),
         };
 }
