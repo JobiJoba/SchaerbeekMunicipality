@@ -6,12 +6,11 @@ public sealed class SearchNationalRegisterValidator : AbstractValidator<SearchNa
 {
     public SearchNationalRegisterValidator()
     {
-        RuleFor(x => x)
-            .Must(x =>
-                !string.IsNullOrWhiteSpace(x.GivenName) ||
-                !string.IsNullOrWhiteSpace(x.FamilyName) ||
-                x.BirthDate.HasValue)
-            .WithMessage("Enter at least one search criterion (given name, family name, or date of birth).");
+        RuleFor(x => x.Page)
+            .GreaterThanOrEqualTo(1);
+
+        RuleFor(x => x.PageSize)
+            .InclusiveBetween(1, 100);
 
         RuleFor(x => x.BirthDate)
             .LessThan(DateOnly.FromDateTime(DateTime.Today))

@@ -13,11 +13,7 @@
             Search for an existing BIS or National Register record. Enter any combination of name and date of birth — all fields are optional.
         </MudText>
 
-        <NationalRegisterSearchForm InitialGivenName="InitialGivenName"
-                                    InitialFamilyName="InitialFamilyName"
-                                    InitialBirthDate="InitialBirthDate"
-                                    RequireSearchCriterion="true"
-                                    ShowMatchScore="true"
+        <NationalRegisterSearchForm ShowMatchScore="true"
                                     ShowFormattedNumbers="true"
                                     NoMatchesMessage="No matching records found. You can create a new person file on the case."
                                     SearchAsync="SearchAsync">
@@ -49,28 +45,28 @@
     [Parameter]
     public Guid CaseId { get; set; }
 
-    [Parameter]
-    public string? InitialGivenName { get; set; }
-
-    [Parameter]
-    public string? InitialFamilyName { get; set; }
-
-    [Parameter]
-    public DateOnly? InitialBirthDate { get; set; }
-
     [Inject]
     private IRegistrationApi RegistrationApi { get; set; } = null!;
 
     private bool _linking;
     private string? _linkError;
 
-    private async Task<IReadOnlyList<NationalRegisterSearchMatch>> SearchAsync(NrSearchFormCriteria criteria)
+    private async Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria)
     {
         var response = await RegistrationApi.SearchNationalRegisterAsync(
-            new SearchNationalRegisterRequest(criteria.GivenName, criteria.FamilyName, criteria.BirthDate),
+            new SearchNationalRegisterRequest(
+                criteria.GivenName,
+                criteria.FamilyName,
+                criteria.BirthDate,
+                criteria.Page,
+                criteria.PageSize),
             CancellationToken.None);
 
-        return response.Matches.Select(Map).ToList();
+        return new NationalRegisterSearchResult(
+            response.Matches.Select(Map).ToList(),
+            response.TotalCount,
+            response.Page,
+            response.PageSize);
     }
 
     private async Task LinkMatch(NationalRegisterSearchMatch match)

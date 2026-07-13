@@ -733,9 +733,6 @@
         var parameters = new DialogParameters<NationalRegisterSearchDialog>
         {
             { x => x.CaseId, CaseId },
-            { x => x.InitialGivenName, string.IsNullOrWhiteSpace(_identityModel.GivenName) ? null : _identityModel.GivenName },
-            { x => x.InitialFamilyName, string.IsNullOrWhiteSpace(_identityModel.FamilyName) ? null : _identityModel.FamilyName },
-            { x => x.InitialBirthDate, _identityModel.BirthDate },
         };
 
         var dialog = await MudDialogService.ShowAsync<NationalRegisterSearchDialog>(

@@ -137,6 +137,22 @@ public sealed class PersonFileTests
     }
 
     [Fact]
+    public async Task SearchPersonFile_NoCriteria_ReturnsAllRecordsWithPagination()
+    {
+        await using var factory = new MunicipalAppFactory();
+        await using var scope = factory.Services.CreateAsyncScope();
+        RegistrationTestHelpers.SetRole(scope.ServiceProvider, OfficerRole.PopulationOfficer);
+
+        var handler = scope.ServiceProvider.GetRequiredService<SearchPersonFileHandler>();
+        var response = await handler.Handle(
+            new SearchNationalRegisterRequest(null, null, null, Page: 1, PageSize: 25),
+            CancellationToken.None);
+
+        response.TotalCount.Should().Be(5);
+        response.Matches.Should().HaveCount(5);
+    }
+
+    [Fact]
     public async Task PopulationOfficer_CanLoadPersonFileViaHttp()
     {
         await using var factory = new MunicipalAppFactory();

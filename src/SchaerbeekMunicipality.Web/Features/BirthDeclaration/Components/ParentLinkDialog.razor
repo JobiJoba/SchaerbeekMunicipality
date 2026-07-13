@@ -52,13 +52,22 @@
     private bool _linking;
     private string? _linkError;
 
-    private async Task<IReadOnlyList<NationalRegisterSearchMatch>> SearchAsync(NrSearchFormCriteria criteria)
+    private async Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria)
     {
         var response = await RegistrationApi.SearchNationalRegisterAsync(
-            new SearchNationalRegisterRequest(criteria.GivenName, criteria.FamilyName, criteria.BirthDate),
+            new SearchNationalRegisterRequest(
+                criteria.GivenName,
+                criteria.FamilyName,
+                criteria.BirthDate,
+                criteria.Page,
+                criteria.PageSize),
             CancellationToken.None);
 
-        return response.Matches.Select(Map).ToList();
+        return new NationalRegisterSearchResult(
+            response.Matches.Select(Map).ToList(),
+            response.TotalCount,
+            response.Page,
+            response.PageSize);
     }
 
     private async Task LinkMatch(NationalRegisterSearchMatch match)

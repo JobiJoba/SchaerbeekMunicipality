@@ -64,6 +64,23 @@ public sealed class SearchNationalRegisterTests
         jacques.NationalRegisterNumber.Should().BeNull();
         jacques.IsRegisteredInPopulation.Should().BeFalse();
     }
+
+    [Fact]
+    public async Task SearchNationalRegister_NoCriteria_ReturnsAllRecordsWithPagination()
+    {
+        await using var factory = new MunicipalAppFactory();
+        await using var scope = factory.Services.CreateAsyncScope();
+        var handler = scope.ServiceProvider.GetRequiredService<SearchNationalRegisterHandler>();
+
+        var response = await handler.Handle(
+            new SearchNationalRegisterRequest(null, null, null, Page: 1, PageSize: 2),
+            CancellationToken.None);
+
+        response.TotalCount.Should().Be(5);
+        response.Matches.Should().HaveCount(2);
+        response.Page.Should().Be(1);
+        response.PageSize.Should().Be(2);
+    }
 }
 
 public sealed class LinkExistingPersonTests

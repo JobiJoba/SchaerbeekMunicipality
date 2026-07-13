@@ -3,4 +3,6 @@ namespace SchaerbeekMunicipality.Application.Features.Registration.SearchNationa
 public sealed record SearchNationalRegisterRequest(
     string? GivenName,
     string? FamilyName,
-    DateOnly? BirthDate);
+    DateOnly? BirthDate,
+    int Page = 1,
+    int PageSize = 25);

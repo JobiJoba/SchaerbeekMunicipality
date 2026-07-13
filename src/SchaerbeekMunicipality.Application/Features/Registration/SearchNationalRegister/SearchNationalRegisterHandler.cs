@@ -21,9 +21,14 @@ public sealed class SearchNationalRegisterHandler(
             request.BirthDate);
 
         var matches = await nationalRegisterRepository.SearchAsync(criteria, cancellationToken);
+        var totalCount = matches.Count;
+        var pageMatches = matches
+            .Skip((request.Page - 1) * request.PageSize)
+            .Take(request.PageSize)
+            .ToList();
 
-        var dtos = new List<NationalRegisterMatchDto>(matches.Count);
-        foreach (var match in matches)
+        var dtos = new List<NationalRegisterMatchDto>(pageMatches.Count);
+        foreach (var match in pageMatches)
         {
             var isRegistered = await IsRegisteredInPopulationAsync(match, cancellationToken);
             dtos.Add(new NationalRegisterMatchDto(
@@ -39,7 +44,7 @@ public sealed class SearchNationalRegisterHandler(
                 isRegistered));
         }
 
-        return new SearchNationalRegisterResponse(dtos);
+        return new SearchNationalRegisterResponse(dtos, totalCount, request.Page, request.PageSize);
     }
 
     private async Task<bool> IsRegisteredInPopulationAsync(

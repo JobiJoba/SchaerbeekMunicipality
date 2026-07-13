@@ -138,4 +138,38 @@ public sealed class NationalRegisterSearchScorerTests
 
         matches.Should().BeEmpty();
     }
+
+    [Fact]
+    public void ScoreMatches_NoCriteria_ReturnsAllCandidatesOrderedByName()
+    {
+        var criteria = new NationalRegisterSearchCriteria(null, null, null);
+        var candidates = new[]
+        {
+            NationalRegisterPerson.Create(
+                NationalRegisterPersonId.New(),
+                "Sofia",
+                "Nguyen",
+                new DateOnly(2000, 11, 8),
+                "Vietnamese",
+                null,
+                NationalRegisterNumber.GenerateStub(new DateOnly(2000, 11, 8), 1)),
+            NationalRegisterPerson.Create(
+                NationalRegisterPersonId.New(),
+                "Marie",
+                "Leclerc",
+                new DateOnly(1975, 1, 1),
+                "Belgian",
+                BisNumber.Create("75010112345"),
+                null),
+        };
+
+        var matches = NationalRegisterSearchScorer.ScoreMatches(criteria, candidates);
+
+        matches.Should().HaveCount(2);
+        matches[0].FamilyName.Should().Be("Leclerc");
+        matches[1].FamilyName.Should().Be("Nguyen");
+        matches.Should().OnlyContain(m =>
+            m.MatchScore == NationalRegisterSearchScorer.BrowseAllScore &&
+            m.MatchReason == NationalRegisterSearchScorer.BrowseAllReason);
+    }
 }

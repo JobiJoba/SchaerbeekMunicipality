@@ -13,4 +13,7 @@ public sealed record NationalRegisterMatchDto(
     bool IsRegisteredInPopulation);
 
 public sealed record SearchNationalRegisterResponse(
-    IReadOnlyList<NationalRegisterMatchDto> Matches);
+    IReadOnlyList<NationalRegisterMatchDto> Matches,
+    int TotalCount,
+    int Page,
+    int PageSize);

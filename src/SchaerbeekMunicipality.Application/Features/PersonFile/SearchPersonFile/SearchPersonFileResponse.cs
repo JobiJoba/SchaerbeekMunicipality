@@ -15,4 +15,7 @@ public sealed record PersonFileSearchMatchDto(
     bool CanOpenPersonFile);
 
 public sealed record SearchPersonFileResponse(
-    IReadOnlyList<PersonFileSearchMatchDto> Matches);
+    IReadOnlyList<PersonFileSearchMatchDto> Matches,
+    int TotalCount,
+    int Page,
+    int PageSize);

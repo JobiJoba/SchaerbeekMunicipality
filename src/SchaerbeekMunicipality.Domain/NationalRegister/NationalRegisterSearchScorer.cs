@@ -7,6 +7,8 @@ public static class NationalRegisterSearchScorer
     public const int NameOnlyScore = 50;
     public const int PartialNameScore = 40;
     public const int MinimumReportableScore = 40;
+    public const int BrowseAllScore = 0;
+    public const string BrowseAllReason = "All records";
 
     public static IReadOnlyList<NationalRegisterMatch> ScoreMatches(
         NationalRegisterSearchCriteria criteria,
@@ -14,7 +16,20 @@ public static class NationalRegisterSearchScorer
     {
         if (!criteria.HasAnyCriterion)
         {
-            return [];
+            return candidates
+                .OrderBy(c => c.FamilyName, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(c => c.GivenName, StringComparer.OrdinalIgnoreCase)
+                .Select(candidate => new NationalRegisterMatch(
+                    candidate.Id,
+                    candidate.GivenName,
+                    candidate.FamilyName,
+                    candidate.BirthDate,
+                    candidate.Nationality,
+                    candidate.BisNumber?.Value,
+                    candidate.NationalRegisterNumber?.Value,
+                    BrowseAllScore,
+                    BrowseAllReason))
+                .ToList();
         }
 
         var matches = new List<NationalRegisterMatch>();

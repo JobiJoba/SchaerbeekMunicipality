@@ -13,8 +13,7 @@
                        Subtitle="Search the National Register and open a consolidated person file for registered citizens." />
 
         <AppSection>
-            <NationalRegisterSearchForm RequireSearchCriterion="true"
-                                        ShowMatchScore="true"
+            <NationalRegisterSearchForm ShowMatchScore="true"
                                         ShowFormattedNumbers="true"
                                         NoMatchesMessage="No matching records found in the National Register."
                                         SearchAsync="SearchAsync">
@@ -43,13 +42,22 @@
 </RegistrationRoleGate>
 
 @code {
-    private async Task<IReadOnlyList<NationalRegisterSearchMatch>> SearchAsync(NrSearchFormCriteria criteria)
+    private async Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria)
     {
         var response = await PersonFileApi.SearchPersonFileAsync(
-            new SearchNationalRegisterRequest(criteria.GivenName, criteria.FamilyName, criteria.BirthDate),
+            new SearchNationalRegisterRequest(
+                criteria.GivenName,
+                criteria.FamilyName,
+                criteria.BirthDate,
+                criteria.Page,
+                criteria.PageSize),
             CancellationToken.None);
 
-        return response.Matches.Select(Map).ToList();
+        return new NationalRegisterSearchResult(
+            response.Matches.Select(Map).ToList(),
+            response.TotalCount,
+            response.Page,
+            response.PageSize);
     }
 
     private void OpenPersonFile(NationalRegisterSearchMatch match)

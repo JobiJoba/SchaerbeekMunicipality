@@ -38,7 +38,11 @@ public sealed class SearchPersonFileHandler(
                 personId is not null));
         }
 
-        return new SearchPersonFileResponse(matches);
+        return new SearchPersonFileResponse(
+            matches,
+            searchResult.TotalCount,
+            searchResult.Page,
+            searchResult.PageSize);
     }
 
     private async Task<Guid?> ResolvePersonIdAsync(
