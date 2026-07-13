@@ -1273,11 +1273,40 @@ Can we made that after I deploy (via the script) we update the URL in the readme
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+The deployment script should update the README URL automatically after each deploy.
+
+I need to locate the deploy script and the README. I also need to understand how deployment produces the URL.</details></think>
+
+_**Agent (default)**_
+
+I'll find the deploy script and how the README stores the URL so we can wire in an automatic update after deployment.
+
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **13** results in **1** directory</summary>
 
-No results found
+Directory: **** (13 files)
+
+| File |
+|------|
+| `.specstory/history/2026-07-12_11-27-34Z-azure-deployment-url-consistency.md` |
+| `.specstory/history/2026-07-12_11-09-34Z-azure-deployment-socket-exception.md` |
+| `docs/adr/0005-deployment-database-by-environment.md` |
+| `deploy/azure/postgres/README.md` |
+| `deploy/azure/sqlite/main.bicep` |
+| `deploy/azure/postgres/deploy.sh` |
+| `deploy/azure/sqlite/parameters.json` |
+| `docs/phases/phase-10-azure-deployment.md` |
+| `deploy/azure/README.md` |
+| `deploy/azure/postgres/main.bicep` |
+| `deploy/azure/sqlite/deploy.sh` |
+| `deploy/azure/postgres/parameters.json` |
+| `deploy/azure/sqlite/README.md` |
+
 </details>
 </tool-use>
 
@@ -1292,7 +1321,66 @@ _**Agent (default)**_
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "README.md",
+  "pattern": "https?://|URL|url|deploy"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "https?://|URL|url|deploy",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/README.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": "deploy/azure/sqlite/README.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/README.md"
+    },
+    {
+      "matchCount": 7,
+      "uri": "deploy/azure/README.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/adr/README.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "deploy/azure/postgres/README.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/README.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/README.md"
+    },
+    {
+      "matchCount": 9,
+      "uri": "README.md"
+    }
+  ],
+  "totalFiles": 9,
+  "totalMatches": 29
+}
+```
+Status: **completed**
 
 
 </details>
@@ -1307,13 +1395,1255 @@ _**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **2** results in **1** directory</summary>
 
-No results found
+Directory: **** (2 files)
+
+| File |
+|------|
+| `deploy/azure/postgres/deploy.sh` |
+| `deploy/azure/sqlite/deploy.sh` |
+
 </details>
 </tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing the deploy scripts, README, and specstory to understand how URLs are currently handled.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/deploy.sh</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/postgres/deploy.sh</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.specstory/history/2026-07-12_11-27-34Z-azure-deployment-url-consistency.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The container app name is `schaerbeek-web` from deploy.sh.
+
+The URL can be fetched with `az containerapp show`. The README contains a hardcoded markdown link. A shared script could update both deploy.sh files after deployment. The Bicep template should be checked for a parameterized container app name.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/main.bicep</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/parameters.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "pattern": "schaerbeek-web|Try it live|azurecontainerapps"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "schaerbeek-web|Try it live|azurecontainerapps",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/postgres/deploy.sh"
+    },
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/sqlite/README.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-12_11-09-34Z-azure-deployment-socket-exception.md"
+    },
+    {
+      "matchCount": 12,
+      "uri": ".specstory/history/2026-07-06_19-47-38Z-document-upload-error.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "README.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/postgres/main.bicep"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-10-azure-deployment.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/postgres/parameters.json"
+    },
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/README.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/sqlite/deploy.sh"
+    },
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/sqlite/main.bicep"
+    },
+    {
+      "matchCount": 8,
+      "uri": ".specstory/history/2026-07-12_11-27-34Z-azure-deployment-url-consistency.md"
+    },
+    {
+      "matchCount": 17,
+      "uri": ".specstory/history/2026-07-06_18-43-21Z-phase-10-overview.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/sqlite/parameters.json"
+    }
+  ],
+  "totalFiles": 14,
+  "totalMatches": 52
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Planning to create a shared helper script to automate updating the README URL after deployment.
+
+The script will fetch the FQDN from Azure and update README.md. It will be called from both SQLite and Postgres deploy scripts. HTML comment markers around the URL will allow reliable replacement.
+
+The script will match the `**[https://` line pattern instead of relying on HTML markers. It will read the container app name from parameters. The Bicep deployment output is currently in table format, so capturing the live URL may require querying `az containerapp show` afterward.
+
+The helper script will use `az containerapp show` to fetch the live FQDN. It will read the container app name from parameters with a fallback default. The update logic will use Python regex to replace the existing markdown link in README.md.
+
+An optional UPDATE_README_URL flag will let users skip the README update in CI. Documentation in deploy/azure/README.md and sqlite/README.md will also be updated.
+
+Working out the relative paths to locate the shared helper script. Both deploy scripts sit under `deploy/azure/`, so the parent directory resolves to the azure folder. This lets each script source the shared URL-update script without hardcoding absolute paths.
+
+The helper script will be invoked from the deploy scripts with flags for resource group, container app name, and README path. It will be built as a standalone script that can also be run manually. The FQDN will be fetched via `az containerapp show` using a JSONPath query against the ingress configuration.
+
+The helper script will use Python to split README.md at the deploy-live-url markers and swap in the new URL link. It exits if the markers are missing, and only writes the file when the URL actually changes.</details></think>
+
+_**Agent (default)**_
+
+I'll add a shared post-deploy script that fetches the Container App URL and updates a marked section in the README, then wire both deploy scripts to call it.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I'll create the necessary files and update the deployment script to automatically update the README URL after deployment.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/update-readme-url.sh</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/deploy.sh</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/postgres/deploy.sh</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: chmod +x /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/update-readme-url.sh</summary>
+
+```bash
+chmod +x /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/update-readme-url.sh
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The postgres README.md will also be updated for consistency.
+
+A dry run will verify the script logic. The Python portion can be tested without Azure login.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/postgres/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 - <<'PY'
+from pathlib import Path
+content = Path('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md').read_text()
+assert '<!-- deploy-live-url-start -->' in content
+assert '<!-- deploy-live-url-end -->' in content
+print('README markers OK')
+PY</summary>
+
+```bash
+python3 - <<'PY'
+from pathlib import Path
+content = Path('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md').read_text()
+assert '<!-- deploy-live-url-start -->' in content
+assert '<!-- deploy-live-url-end -->' in content
+print('README markers OK')
+PY
+```
+
+```
+README markers OK
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Adding the same note to the Postgres README for consistency.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/postgres/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Verifying bash syntax of the scripts with `bash -n`.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: bash -n /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/update-readme-url.sh && bash -n /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/deploy.sh && bash -n /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/postgres/deploy.sh && echo "bash syntax OK"</summary>
+
+```bash
+bash -n /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/update-readme-url.sh && bash -n /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/deploy.sh && bash -n /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/postgres/deploy.sh && echo "bash syntax OK"
+```
+
+```
+bash syntax OK
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I'll add a step to the deployment script that updates the README URL after deployment.</details></think>
+
+_**Agent (default)**_
+
+Done. After a successful deploy, both `deploy.sh` scripts now refresh the live URL in the README automatically.
+
+### What changed
+
+1. **`deploy/azure/update-readme-url.sh`** — fetches the Container App FQDN from Azure and rewrites the **Try it live** link in `README.md`.
+
+2. **`README.md`** — the URL is wrapped in HTML comment markers so the script can replace it safely:
+   ```html
+   <!-- deploy-live-url-start -->
+   **[https://...](https://.../)**
+   <!-- deploy-live-url-end -->
+   ```
+
+3. **`deploy/azure/sqlite/deploy.sh`** and **`deploy/azure/postgres/deploy.sh`** — call the updater at the end, print the live URL, and read `containerAppName` from `parameters.json`.
+
+### Usage
+
+Normal deploy (README updates by default):
+
+```bash
+./deploy/azure/sqlite/deploy.sh
+```
+
+Skip the README edit (e.g. in CI):
+
+```bash
+UPDATE_README_URL=0 ./deploy/azure/sqlite/deploy.sh
+```
+
+Refresh the link without redeploying:
+
+```bash
+./deploy/azure/update-readme-url.sh
+```
+
+After deploy you’ll see something like:
+
+```
+Deployment complete.
+App URL: https://schaerbeek-web.gentledesert-b97640b1.westeurope.azurecontainerapps.io/
+Updated .../README.md live URL to https://...
+```
+
+If the URL hasn’t changed, it prints `README live URL already up to date` instead. Commit the README change if you want the updated link on GitHub.
+
+---
+
+_**User**_
+
+I've deploy and there are no seeded data - is the seeded data only for dev? 
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user is asking whether seeded data is only for development, since their Azure deployment shows no seeded data.
+
+Searching the codebase for seeding logic to determine whether it runs in production or only in development environments.</details></think>
+
+_**Agent (default)**_
+
+I'll trace how seeding is configured across dev, production, and Azure deploy.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.{cs,json}",
+  "pattern": "Seed|Seeder|EnsureCreated|MigrateAsync"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "Seed|Seeder|EnsureCreated|MigrateAsync",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/RegistrationConfirmE2ETests.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/NationalRegisterSeeder.cs"
+    },
+    {
+      "matchCount": 9,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/PopulationRegisterSeeder.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/IdentityDocuments/DocumentRequestTests.cs"
+    },
+    {
+      "matchCount": 5,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Seeding/E2ECaseSeeder.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTestHelpers.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/appsettings.Development.json"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs"
+    },
+    {
+      "matchCount": 6,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Persistence/PostgreSqlMigrationTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/ChangeOfAddress/ChangeOfAddressTests.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/DemoData/DemoDataOptions.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/ReferenceDataSeeder.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/DocumentRequestE2ETests.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/ChangeOfAddressE2ETests.cs"
+    },
+    {
+      "matchCount": 10,
+      "uri": "src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs"
+    }
+  ],
+  "totalFiles": 20,
+  "totalMatches": 70
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/PopulationRegisterSeeder.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking DependencyInjection.cs and MunicipalApiHostExtensions to understand how seeding is configured across environments.
+
+Comparing appsettings files for Production and Development. Reviewing seeders for reference data and national register.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **7** results in **1** directory</summary>
+
+Directory: **** (7 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Web/appsettings.Development.json` |
+| `src/SchaerbeekMunicipality.AppHost/appsettings.Development.json` |
+| `src/SchaerbeekMunicipality.Api/appsettings.Development.json` |
+| `src/SchaerbeekMunicipality.Web/appsettings.json` |
+| `src/SchaerbeekMunicipality.Api/appsettings.json` |
+| `src/SchaerbeekMunicipality.Web/appsettings.Production.json` |
+| `src/SchaerbeekMunicipality.AppHost/appsettings.json` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/ReferenceDataSeeder.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/NationalRegisterSeeder.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking appsettings files to compare Production and Development configurations. Also examining how the Web host initializes the database.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/appsettings.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/appsettings.Development.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/appsettings.Production.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "pattern": "InitializeMunicipalApiDatabaseAsync|InitializeDatabaseAsync|SeedWorkflowCases|DemoData"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "InitializeMunicipalApiDatabaseAsync|InitializeDatabaseAsync|SeedWorkflowCases|DemoData",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Program.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Application/DemoData/DemoDataOptions.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Program.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md"
+    },
+    {
+      "matchCount": 9,
+      "uri": ".specstory/history/2026-07-12_18-55-29Z-github-build-failure.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-10-azure-deployment.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-12_19-07-27Z-phase-16-implementation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-13_17-49-53Z-document-completion-update.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-06_18-43-21Z-phase-10-overview.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_18-49-38Z-dashboard-access-for-officers.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/appsettings.Development.json"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs"
+    },
+    {
+      "matchCount": 6,
+      "uri": ".specstory/history/2026-07-12_11-09-34Z-azure-deployment-socket-exception.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-12_12-32-23Z-case-lock-button-issues.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-16-person-file.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-05_17-20-48Z-resetting-all-cases.md"
+    }
+  ],
+  "totalFiles": 19,
+  "totalMatches": 46
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking Web Program.cs to see how database initialization works in production. Reviewing DemoWorkflowCaseSeeder to understand what demo data includes.
+
+Also checking phase-10 documentation for expected Azure behavior.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-10-azure-deployment.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The seeding appears to be split into two tiers.
+
+Reference data and national register records are seeded in all environments. The population register and demo workflow cases are only created in development when the seed workflow cases flag is enabled.
+
+The demo workflow cases flag is only enabled in the development configuration file. On Azure Production, only reference data and national register records should be present. An empty case list is expected behavior. A missing national register search result would indicate a bug.
+
+Missing person file lookups for Jean and Sofia are expected in production because the population register seeder only runs in development. An empty street autocomplete would indicate a bug. A cold start could also prevent the database from initializing before requests arrive. There may be a schema mismatch between SQLite EnsureCreated and migrations on Azure. The web application does not include a DemoData section in its production configuration, so seeding logic depends solely on the merged settings.
+
+I am checking the Aspire development setup. The Web project skips the municipal API database initialization in development. The API project handles it instead. I will examine the API Program.cs and the AppHost environment configuration.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **** (0 files)
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/appsettings.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking the AppHost project to see how DemoData is configured for Web versus API in development.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
+
+Directory: **** (5 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.AppHost/appsettings.Development.json` |
+| `src/SchaerbeekMunicipality.AppHost/appsettings.json` |
+| `src/SchaerbeekMunicipality.AppHost/Properties/launchSettings.json` |
+| `src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj` |
+| `src/SchaerbeekMunicipality.AppHost/AppHost.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking the Azure deploy README to verify whether seeded data is limited to development environments.
+
+Reference data restores on each startup, but registration cases are lost when containers restart. Missing seeded data may be expected for demo workflows. Alternatively, EnsureCreatedAsync might be failing to apply migrations on Azure.
+
+Demo workflow cases are disabled in production by default. Only reference and national register seeders run. Empty case lists are therefore expected behavior.
+
+The national register shows "Jean Dupont" because he is seeded there, but he is not a registered person. Change-of-address and passport flows require registered persons. Person file searches for "Sofia" will also fail in production. Need to check if local development enables workflow case seeding.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/AppHost.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/adr/0005-deployment-database-by-environment.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I understand the question about seeded data and am preparing a clear response.
+
+Reference data loads on every production startup. Demo workflow cases and population register seeders run only in development. Production environments may still lack demo data.
+
+The `SeedWorkflowCases` flag is disabled by default in production. If no data appears at all, the cold start may still be finishing, a startup error may have occurred, or the empty case list is expected.
+
+To enable demo data on Azure, set the environment variable `DemoData__SeedWorkflowCases=true` on the Container App.</details></think>
+
+_**Agent (default)**_
+
+Not all seed data is dev-only — it’s split into two layers.
+
+## Always seeded (including Azure Production)
+
+On every startup, `InitializeDatabaseAsync` runs:
+
+```101:102:src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs
+        await ReferenceDataSeeder.SeedAsync(dbContext, CancellationToken.None);
+        await NationalRegisterSeeder.SeedAsync(dbContext, CancellationToken.None);
+```
+
+That gives you:
+
+- **Reference data** — Schaerbeek streets and municipalities (for address autocomplete)
+- **National Register records** — Marie Leclerc, Jean Dupont, Sofia Nguyen, etc. (for NR search during registration)
+
+The Azure SQLite README matches this: reference data and NR seed are restored on each cold start; only **cases** are ephemeral.
+
+## Dev-only demo data
+
+The richer demo content is gated by `DemoData:SeedWorkflowCases`:
+
+```37:43:src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs
+        if (app.Configuration.GetValue($"{DemoDataOptions.SectionName}:{nameof(DemoDataOptions.SeedWorkflowCases)}", false))
+        {
+            await using var scope = app.Services.CreateAsyncScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<MunicipalDbContext>();
+            await PopulationRegisterSeeder.SeedAsync(dbContext, CancellationToken.None);
+            await DemoWorkflowCaseSeeder.SeedAsync(app.Services);
+        }
+```
+
+That flag is **only** `true` in Development:
+
+```8:10:src/SchaerbeekMunicipality.Api/appsettings.Development.json
+  "DemoData": {
+    "SeedWorkflowCases": true
+  }
+```
+
+`appsettings.Production.json` has no `DemoData` section, and Azure sets `ASPNETCORE_ENVIRONMENT=Production`, so this extra seeding is skipped. That means on Azure you won’t get:
+
+- Pre-registered **Person** records (Jean Dupont, Sofia Nguyen with domicile)
+- Pre-built **demo cases** (in-progress registration, birth, change of address, passport, etc.)
+
+Locally with AppHost you see a populated dashboard; on Azure you start with an empty case list and must create workflows yourself.
+
+## What you should still see on Azure
+
+| Feature | Expected on Azure |
+|--------|-------------------|
+| Case list / review dashboard | Empty (unless you create cases) |
+| NR search when registering | Jean Dupont, Sofia Nguyen, etc. |
+| Street autocomplete | Schaerbeek streets |
+| Person file for Jean/Sofia | No — they’re NR records only, not registered persons |
+| Change of address / passport for Jean | No — needs a registered person (dev seeder) |
+
+## If even NR search / streets are empty
+
+That would be unexpected. Common causes:
+
+1. **Cold start** — first request after scale-to-zero can take 15–45s while `EnsureCreated` + seeding run; retry after the app is warm.
+2. **Startup failure** — check Container App logs for errors during DB init.
+
+## Enable demo data on Azure (optional)
+
+Set this on the Container App:
+
+```bash
+DemoData__SeedWorkflowCases=true
+```
+
+That turns on `PopulationRegisterSeeder` and `DemoWorkflowCaseSeeder` in Production too. Fine for a public demo; not something you’d want in a real production system.
+
+---
+
+**Short answer:** Reference + NR search data should exist on Azure. The **demo cases and pre-registered citizens** you see locally are dev-only (`DemoData:SeedWorkflowCases`). An empty case list on deploy is normal. If NR search and streets are also empty, it’s likely cold start or a startup error — check logs after a warm request.
+
+---
+
+_**User**_
+
+so if I set "DemoData": {
+  "SeedWorkflowCases": true
+} in @src/SchaerbeekMunicipality.Web/appsettings.Production.json  it will also seed for prod on the deployment right? 
+
+---
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
 
 </details></tool-use>
