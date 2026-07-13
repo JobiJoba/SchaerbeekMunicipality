@@ -8,7 +8,9 @@ This is **not** a production system. It simplifies Belgian law and inter-adminis
 
 The app is hosted on Azure Container Apps — open it in your browser and walk through the municipal workflows:
 
+<!-- deploy-live-url-start -->
 **[https://schaerbeek-web.gentledesert-b97640b1.westeurope.azurecontainerapps.io/](https://schaerbeek-web.gentledesert-b97640b1.westeurope.azurecontainerapps.io/)**
+<!-- deploy-live-url-end -->
 
 Use the **role switcher** in the app bar to act as reception, a population officer, or a police clerk. The first request after idle may take a moment (cold start); data is ephemeral and resets when the container restarts.
 

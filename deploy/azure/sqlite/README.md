@@ -27,6 +27,8 @@ chmod +x deploy.sh
 ./deploy.sh
 ```
 
+On success, `deploy.sh` prints the app URL and updates the **Try it live** link in the root [README.md](../../README.md). Set `UPDATE_README_URL=0` to skip that step.
+
 ## What gets created
 
 - Log Analytics workspace (Container Apps logs)

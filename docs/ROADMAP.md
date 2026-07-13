@@ -27,8 +27,8 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 11 | Extended municipality (scope definition) | ✅ Complete |
 | 12 | Birth declaration | ✅ Complete |
 | 13 | Change of address | ✅ Complete |
-| 14 | Passport / ID card request | Planned |
-| 15 | Reporting dashboard | Planned |
+| 14 | Passport / ID card request | ✅ Complete |
+| 15 | Reporting dashboard | ✅ Complete |
 | 16 | Person file (read model) | ✅ Complete |
 | 17 | Post-registration amendments | Planned |
 | 18 | Remaining exception scenarios | Planned (optional) |
@@ -435,7 +435,7 @@ Delivery notes for completed phases: [phases/](./phases/).
 
 ---
 
-## Phase 9 — Exception scenarios (IDEA “Major Exceptions”)
+## Phase 9 — Exception scenarios (IDEA “Major Exceptions”) ✅
 
 **Goal:** Teach edge cases as explicit workflows.
 
@@ -543,7 +543,7 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 
 ---
 
-## Phase 15 — Reporting dashboard
+## Phase 15 — Reporting dashboard ✅
 
 **Status:** Complete — see [phases/phase-15-reporting-dashboard.md](./phases/phase-15-reporting-dashboard.md).
 
@@ -553,7 +553,7 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 
 ---
 
-## Phase 16 — Person file (read model)
+## Phase 16 — Person file (read model) ✅
 
 **Status:** Complete — see [phases/phase-16-person-file.md](./phases/phase-16-person-file.md).
 

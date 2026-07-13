@@ -42,6 +42,13 @@ Use a [fine-grained PAT](https://github.com/settings/tokens) with `read:packages
 2. `az login` and pick a subscription.
 3. Run `./deploy.sh` from [sqlite/](./sqlite/) or [postgres/](./postgres/).
 
+After a successful deploy, the script prints the live app URL and updates the **Try it live** link in the repo [README.md](../../README.md). Set `UPDATE_README_URL=0` to skip the README edit (for example in CI). You can also refresh the link manually:
+
+```bash
+chmod +x deploy/azure/update-readme-url.sh
+./deploy/azure/update-readme-url.sh
+```
+
 ## Health checks
 
 Production exposes `/health` (readiness, includes EF database check) and `/alive` (liveness). Optionally set `HEALTH_CHECK_API_KEY` on the Container App and send header `X-Health-Check-Key` to restrict access.

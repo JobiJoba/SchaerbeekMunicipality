@@ -64,9 +64,26 @@ az deployment group create \
     "postgresAdminPassword=${POSTGRES_ADMIN_PASSWORD}" \
   --output table
 
+CONTAINER_APP_NAME="${CONTAINER_APP_NAME:-$(read_parameter containerAppName)}"
+FQDN="$(az containerapp show \
+  --name "${CONTAINER_APP_NAME}" \
+  --resource-group "${RESOURCE_GROUP}" \
+  --query properties.configuration.ingress.fqdn -o tsv)"
+APP_URL="https://${FQDN}/"
+
 echo ""
 echo "PostgreSQL admin password used for this deployment:"
 echo "  ${POSTGRES_ADMIN_PASSWORD}"
 echo ""
-echo "App URL:"
-echo "  az containerapp show --name schaerbeek-web --resource-group ${RESOURCE_GROUP} --query properties.configuration.ingress.fqdn -o tsv"
+echo "Deployment complete."
+echo "App URL: ${APP_URL}"
+
+if [[ "${UPDATE_README_URL:-1}" != "0" ]]; then
+  REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+  "${SCRIPT_DIR}/../update-readme-url.sh" \
+    --readme "${REPO_ROOT}/README.md" \
+    --resource-group "${RESOURCE_GROUP}" \
+    --container-app "${CONTAINER_APP_NAME}"
+else
+  echo "Skipped README update (UPDATE_README_URL=0)."
+fi

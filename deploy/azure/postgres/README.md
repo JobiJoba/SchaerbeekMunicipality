@@ -24,6 +24,8 @@ chmod +x deploy.sh
 ./deploy.sh
 ```
 
+On success, `deploy.sh` prints the app URL and updates the **Try it live** link in the root [README.md](../../README.md). Set `UPDATE_README_URL=0` to skip that step.
+
 The script prints the PostgreSQL admin password when it generates one. Store it securely if you need direct database access.
 
 ## What gets created
