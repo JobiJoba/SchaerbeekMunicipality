@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Domain.Address;
+using SchaerbeekMunicipality.Domain.CaseManagement;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
@@ -72,56 +73,46 @@ public sealed class RegistrationCase
 
     public CaseClaimResult Claim(OfficerId officer, DateTimeOffset at)
     {
-        if (LockedByOfficerId is { } locked && locked != officer)
-        {
-            throw new InvalidRegistrationTransitionException(
-                "This case is locked to another officer.");
-        }
+        var outcome = OfficerCaseLocking.Claim(
+            AssignedOfficerId,
+            LockedByOfficerId,
+            LockedAt,
+            officer,
+            at,
+            message => new InvalidRegistrationTransitionException(message));
 
-        if (LockedByOfficerId == officer)
-        {
-            return CaseClaimResult.AlreadyHeld;
-        }
+        AssignedOfficerId = outcome.AssignedOfficerId;
+        LockedByOfficerId = outcome.LockedByOfficerId;
+        LockedAt = outcome.LockedAt;
 
-        var hadAssignee = AssignedOfficerId is not null;
-        AssignedOfficerId = officer;
-        LockedByOfficerId = officer;
-        LockedAt = at;
-
-        return hadAssignee ? CaseClaimResult.Reclaimed : CaseClaimResult.NewlyClaimed;
+        return outcome.Result;
     }
 
     public void ReleaseLock(OfficerId officer)
     {
-        if (LockedByOfficerId != officer)
-        {
-            throw new InvalidRegistrationTransitionException(
-                "Only the officer holding the lock can release it.");
-        }
+        var outcome = OfficerCaseLocking.ReleaseLock(
+            LockedByOfficerId,
+            officer,
+            message => new InvalidRegistrationTransitionException(message));
 
-        LockedByOfficerId = null;
-        LockedAt = null;
+        LockedByOfficerId = outcome.LockedByOfficerId;
+        LockedAt = outcome.LockedAt;
     }
 
     public void EnsureEditableBy(OfficerId officer, string operation)
     {
-        if (LockedByOfficerId is null)
-        {
-            throw new InvalidRegistrationTransitionException(
-                $"Cannot perform '{operation}' before the case is claimed.");
-        }
-
-        if (LockedByOfficerId != officer)
-        {
-            throw new InvalidRegistrationTransitionException(
-                $"Cannot perform '{operation}' while the case is locked to another officer.");
-        }
+        OfficerCaseLocking.EnsureEditableBy(
+            LockedByOfficerId,
+            officer,
+            operation,
+            message => new InvalidRegistrationTransitionException(message));
     }
 
-    public bool IsLockedTo(OfficerId officer) => LockedByOfficerId == officer;
+    public bool IsLockedTo(OfficerId officer) =>
+        OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
 
     public bool IsLockedToAnother(OfficerId officer) =>
-        LockedByOfficerId is { } locked && locked != officer;
+        OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
 
     public Person RecordIdentity(IdentityDetails identity)
     {

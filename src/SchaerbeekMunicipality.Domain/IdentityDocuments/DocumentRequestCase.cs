@@ -1,5 +1,6 @@
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.CaseManagement;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.IdentityDocuments;
@@ -59,56 +60,46 @@ public sealed class DocumentRequestCase
 
     public CaseClaimResult Claim(OfficerId officer, DateTimeOffset at)
     {
-        if (LockedByOfficerId is { } locked && locked != officer)
-        {
-            throw new InvalidDocumentRequestTransitionException(
-                "This case is locked to another officer.");
-        }
+        var outcome = OfficerCaseLocking.Claim(
+            AssignedOfficerId,
+            LockedByOfficerId,
+            LockedAt,
+            officer,
+            at,
+            message => new InvalidDocumentRequestTransitionException(message));
 
-        if (LockedByOfficerId == officer)
-        {
-            return CaseClaimResult.AlreadyHeld;
-        }
+        AssignedOfficerId = outcome.AssignedOfficerId;
+        LockedByOfficerId = outcome.LockedByOfficerId;
+        LockedAt = outcome.LockedAt;
 
-        var hadAssignee = AssignedOfficerId is not null;
-        AssignedOfficerId = officer;
-        LockedByOfficerId = officer;
-        LockedAt = at;
-
-        return hadAssignee ? CaseClaimResult.Reclaimed : CaseClaimResult.NewlyClaimed;
+        return outcome.Result;
     }
 
     public void ReleaseLock(OfficerId officer)
     {
-        if (LockedByOfficerId != officer)
-        {
-            throw new InvalidDocumentRequestTransitionException(
-                "Only the officer holding the lock can release it.");
-        }
+        var outcome = OfficerCaseLocking.ReleaseLock(
+            LockedByOfficerId,
+            officer,
+            message => new InvalidDocumentRequestTransitionException(message));
 
-        LockedByOfficerId = null;
-        LockedAt = null;
+        LockedByOfficerId = outcome.LockedByOfficerId;
+        LockedAt = outcome.LockedAt;
     }
 
     public void EnsureEditableBy(OfficerId officer, string operation)
     {
-        if (LockedByOfficerId is null)
-        {
-            throw new InvalidDocumentRequestTransitionException(
-                $"Cannot perform '{operation}' before the case is claimed.");
-        }
-
-        if (LockedByOfficerId != officer)
-        {
-            throw new InvalidDocumentRequestTransitionException(
-                $"Cannot perform '{operation}' while the case is locked to another officer.");
-        }
+        OfficerCaseLocking.EnsureEditableBy(
+            LockedByOfficerId,
+            officer,
+            operation,
+            message => new InvalidDocumentRequestTransitionException(message));
     }
 
-    public bool IsLockedTo(OfficerId officer) => LockedByOfficerId == officer;
+    public bool IsLockedTo(OfficerId officer) =>
+        OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
 
     public bool IsLockedToAnother(OfficerId officer) =>
-        LockedByOfficerId is not null && LockedByOfficerId != officer;
+        OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
 
     public void AttachApplicantPhoto(AdministrativeDocumentId documentId)
     {
