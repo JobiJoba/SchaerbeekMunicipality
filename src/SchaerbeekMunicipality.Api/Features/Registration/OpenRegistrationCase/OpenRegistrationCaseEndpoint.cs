@@ -13,10 +13,7 @@ public static class OpenRegistrationCaseEndpoint
         CancellationToken cancellationToken)
     {
         var validation = await validator.ValidateAsync(request, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return ValidationResults.ToProblemDetails(validation);
-        }
+        if (!validation.IsValid) return ValidationResults.ToProblemDetails(validation);
 
         var result = await handler.Handle(request, cancellationToken);
         return Results.Created($"/api/registration/cases/{result.CaseId}", result);

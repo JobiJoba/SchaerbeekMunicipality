@@ -24,12 +24,10 @@ public sealed class BirthRegisteredNotificationHandler(
                 domainEvent.ChildPersonId,
                 OutboundNotificationRecipient.HealthInsurance,
                 "Notify health insurance mutuality of birth.",
-                createdAt),
+                createdAt)
         };
 
         foreach (var notification in notifications)
-        {
             await notificationRepository.AddAsync(notification, cancellationToken);
-        }
     }
 }

@@ -13,44 +13,39 @@
               DebounceInterval="@DebounceMs"
               aria-label="@Placeholder"
               Class="@Class"
-              Style="@Style" />
+              Style="@Style"/>
 
 @code {
-    [Parameter]
-    public string Value { get; set; } = string.Empty;
+    [Parameter] public string Value { get; set; } = string.Empty;
 
-    [Parameter]
-    public EventCallback<string> ValueChanged { get; set; }
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
 
-    [Parameter]
-    public string Placeholder { get; set; } = "Search…";
+    [Parameter] public string Placeholder { get; set; } = "Search…";
 
-    [Parameter]
-    public int DebounceMs { get; set; } = 300;
+    [Parameter] public int DebounceMs { get; set; } = 300;
 
-    [Parameter]
-    public EventCallback<string> OnSearch { get; set; }
+    [Parameter] public EventCallback<string> OnSearch { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
-    private async Task HandleValueChanged(string value)
+    private async Task HandleValueChanged(string? value)
     {
+        var searchValue = value ?? string.Empty;
         if (ValueChanged.HasDelegate)
         {
-            await ValueChanged.InvokeAsync(value);
+            await ValueChanged.InvokeAsync(searchValue);
         }
 
         if (OnSearch.HasDelegate)
         {
-            await OnSearch.InvokeAsync(value);
+            await OnSearch.InvokeAsync(searchValue);
         }
     }
 
     public void Dispose()
     {
     }
+
 }

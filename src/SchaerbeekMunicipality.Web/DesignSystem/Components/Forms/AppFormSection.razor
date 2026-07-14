@@ -10,25 +10,20 @@
 </section>
 
 @code {
-    [Parameter, EditorRequired]
-    public string Title { get; set; } = string.Empty;
+    [Parameter] [EditorRequired] public string Title { get; set; } = string.Empty;
 
-    [Parameter]
-    public string? Description { get; set; }
+    [Parameter] public string? Description { get; set; }
 
-    [Parameter]
-    public int Columns { get; set; } = 2;
+    [Parameter] public int Columns { get; set; } = 2;
 
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private string SectionClass => new CssBuilder("mb-8")
         .AddClass(Class)
         .Build();
+
 }

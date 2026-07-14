@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.IssueHouseholdComposition;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Api.Features.Registration.IssueHouseholdComposition;
 
@@ -22,7 +22,7 @@ public static class IssueHouseholdCompositionEndpoint
         catch (InvalidRegistrationTransitionException ex)
         {
             return Results.Problem(
-                detail: ex.Message,
+                ex.Message,
                 statusCode: StatusCodes.Status409Conflict,
                 title: "Cannot issue certificate");
         }

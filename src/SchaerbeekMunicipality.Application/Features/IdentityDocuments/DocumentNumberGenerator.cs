@@ -11,6 +11,6 @@ internal static class DocumentNumberGenerator
     {
         var count = await repository.CountAsync(cancellationToken);
         var year = timeProvider.GetUtcNow().Year;
-        return $"BE-{year}-{(count + 1):D4}";
+        return $"BE-{year}-{count + 1:D4}";
     }
 }

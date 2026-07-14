@@ -1,7 +1,7 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RejectChangeOfAddress;
 
@@ -18,9 +18,7 @@ public sealed class RejectChangeOfAddressHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can reject change of address cases.");
-        }
 
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 

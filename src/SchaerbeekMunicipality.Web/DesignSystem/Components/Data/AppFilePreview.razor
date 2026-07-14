@@ -3,19 +3,20 @@
     {
         <img src="@Url"
              alt="@FileName"
-             class="app-file-preview__image" />
+             class="app-file-preview__image"/>
     }
     else if (IsPdf(FileName))
     {
         <iframe src="@Url"
                 title="@FileName"
-                class="app-file-preview__frame" />
+                class="app-file-preview__frame">
+        </iframe>
     }
     else
     {
         <AppEmptyState Icon="@Icons.Material.Outlined.VisibilityOff"
                        Title="Preview unavailable"
-                       Description="Download the file to view this document type." />
+                       Description="Download the file to view this document type."/>
     }
 </div>
 
@@ -45,26 +46,25 @@
 </style>
 
 @code {
-    [Parameter, EditorRequired]
-    public string Url { get; set; } = string.Empty;
+    [Parameter] [EditorRequired] public string Url { get; set; } = string.Empty;
 
-    [Parameter, EditorRequired]
-    public string FileName { get; set; } = string.Empty;
+    [Parameter] [EditorRequired] public string FileName { get; set; } = string.Empty;
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
-    private static bool IsPdf(string fileName) =>
-        fileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase);
+    private static bool IsPdf(string fileName)
+    {
+        return fileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase);
+    }
 
     private static bool IsImage(string fileName)
     {
         var extension = Path.GetExtension(fileName);
         return extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase)
-            || extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)
-            || extension.Equals(".png", StringComparison.OrdinalIgnoreCase);
+               || extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)
+               || extension.Equals(".png", StringComparison.OrdinalIgnoreCase);
     }
+
 }

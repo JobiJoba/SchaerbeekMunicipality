@@ -18,14 +18,10 @@ public sealed class ResidencePolicyEvaluator
         IReadOnlyList<DocumentType> attachedDocumentTypes)
     {
         if (registrationCase.ResidenceCategory is not { } category)
-        {
             return ResidencePolicyResult.Invalid("Residence category has not been set.");
-        }
 
         if (!_policies.TryGetValue(category, out var policy))
-        {
             return ResidencePolicyResult.Invalid($"No policy is configured for category '{category}'.");
-        }
 
         var context = new ResidenceValidationContext(
             category,

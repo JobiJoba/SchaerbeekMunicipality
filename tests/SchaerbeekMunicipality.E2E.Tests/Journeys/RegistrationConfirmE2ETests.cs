@@ -24,9 +24,10 @@ public sealed class RegistrationConfirmE2ETests(MunicipalE2EFixture fixture) : E
 
         await page.GetByTestId("confirm-registration").ClickAsync();
 
-        await page.GetByRole(AriaRole.Alert).Filter(new() { HasText = "Person entered in" })
+        await page.GetByRole(AriaRole.Alert).Filter(new LocatorFilterOptions { HasText = "Person entered in" })
             .WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
-        (await page.GetByRole(AriaRole.Alert).Filter(new() { HasText = "Person entered in" }).IsVisibleAsync())
+        (await page.GetByRole(AriaRole.Alert).Filter(new LocatorFilterOptions { HasText = "Person entered in" })
+                .IsVisibleAsync())
             .Should().BeTrue();
     }
 }

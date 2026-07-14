@@ -13,19 +13,20 @@ public sealed record ChangeOfAddressChecklistResponse(
 
 public static class ChangeOfAddressChecklistMapper
 {
-    public static ChangeOfAddressChecklistResponse FromCaseDetail(ChangeOfAddressCaseDetailDto detail) =>
-        new(
+    public static ChangeOfAddressChecklistResponse FromCaseDetail(ChangeOfAddressCaseDetailDto detail)
+    {
+        return new ChangeOfAddressChecklistResponse(
             detail.ReadyForConfirmation,
             [
-                new(
+                new ChangeOfAddressChecklistQuestion(
                     "Person identified in the National Register",
                     detail.PersonIdentified,
                     detail.PersonIdentified ? null : "Open the case for a registered person."),
-                new(
+                new ChangeOfAddressChecklistQuestion(
                     "New Schaerbeek address declared",
                     detail.NewAddressDeclared,
                     detail.NewAddressDeclared ? null : "Declare the new domicile address."),
-                new(
+                new ChangeOfAddressChecklistQuestion(
                     detail.HousingDocumentRequired
                         ? "Housing document attached (rental contract)"
                         : "Housing document (not required for this housing situation)",
@@ -33,13 +34,14 @@ public static class ChangeOfAddressChecklistMapper
                     detail.HousingDocumentRequired && !detail.HousingDocumentAttached
                         ? "Attach the rental contract or other housing proof."
                         : null),
-                new(
+                new ChangeOfAddressChecklistQuestion(
                     detail.PoliceVerificationRequested
                         ? "Police verification completed positively"
                         : "Police verification (optional unless requested)",
                     !detail.PoliceVerificationRequested || detail.PoliceVerificationPositive,
                     detail.PoliceVerificationRequested && !detail.PoliceVerificationPositive
                         ? "Await a positive police verification result."
-                        : null),
+                        : null)
             ]);
+    }
 }

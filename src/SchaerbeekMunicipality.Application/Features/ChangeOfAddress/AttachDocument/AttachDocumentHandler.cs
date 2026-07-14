@@ -1,7 +1,7 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.AttachDocument;
 

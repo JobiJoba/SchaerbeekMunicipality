@@ -2,7 +2,6 @@
 @using SchaerbeekMunicipality.Application.Features.PersonFile.SearchPersonFile
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
 @using SchaerbeekMunicipality.Web.Api.PersonFile
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
 @inject IPersonFileApi PersonFileApi
 @inject NavigationManager Navigation
 
@@ -10,7 +9,7 @@
                       RedirectTo="/registration/cases">
     <AppPage Title="Person lookup">
         <AppPageHeader Title="Person lookup"
-                       Subtitle="Search the National Register and open a consolidated person file for registered citizens." />
+                       Subtitle="Search the National Register and open a consolidated person file for registered citizens."/>
 
         <AppSection>
             <NationalRegisterSearchForm ShowMatchScore="true"
@@ -42,6 +41,7 @@
 </RegistrationRoleGate>
 
 @code {
+
     private async Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria)
     {
         var response = await PersonFileApi.SearchPersonFileAsync(
@@ -68,8 +68,9 @@
         }
     }
 
-    private static NationalRegisterSearchMatch Map(PersonFileSearchMatchDto match) =>
-        new(
+    private static NationalRegisterSearchMatch Map(PersonFileSearchMatchDto match)
+    {
+        return new NationalRegisterSearchMatch(
             match.RegisterPersonId,
             match.GivenName,
             match.FamilyName,
@@ -80,4 +81,6 @@
             match.MatchReason,
             match.IsRegisteredInPopulation,
             match.PersonId);
+    }
+
 }

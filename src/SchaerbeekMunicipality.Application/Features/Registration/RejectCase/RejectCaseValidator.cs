@@ -1,5 +1,4 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.RejectCase;
 

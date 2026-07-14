@@ -1,6 +1,5 @@
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.Registration;
 

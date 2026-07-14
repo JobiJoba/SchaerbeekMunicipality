@@ -1,9 +1,6 @@
-using FluentValidation;
-using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Domain.Immigration;
-using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.Documents;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
 

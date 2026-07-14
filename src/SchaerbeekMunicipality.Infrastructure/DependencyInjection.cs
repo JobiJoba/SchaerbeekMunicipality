@@ -2,8 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
-using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Certificates;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
@@ -12,6 +12,7 @@ using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Notifications;
+using SchaerbeekMunicipality.Domain.PersonFile;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.ReferenceData;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -19,7 +20,6 @@ using SchaerbeekMunicipality.Infrastructure.Certificates;
 using SchaerbeekMunicipality.Infrastructure.Events;
 using SchaerbeekMunicipality.Infrastructure.Integrations;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
-using SchaerbeekMunicipality.Domain.PersonFile;
 using SchaerbeekMunicipality.Infrastructure.Persistence.Queries;
 using SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
 using SchaerbeekMunicipality.Infrastructure.Storage;
@@ -33,19 +33,15 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("schaerbeek")
-            ?? "Data Source=:memory:";
+                               ?? "Data Source=:memory:";
 
         services.AddDbContext<MunicipalDbContext>(options =>
         {
             if (IsSqlite(connectionString))
-            {
                 options.UseSqlite(connectionString);
-            }
             else
-            {
                 options.UseNpgsql(connectionString)
                     .UseSnakeCaseNamingConvention();
-            }
         });
 
         services.AddScoped<IRegistrationCaseRepository, RegistrationCaseRepository>();
@@ -90,19 +86,17 @@ public static class DependencyInjection
             .GetConnectionString("schaerbeek");
 
         if (IsSqlite(connectionString ?? "Data Source=:memory:"))
-        {
             await dbContext.Database.EnsureCreatedAsync();
-        }
         else
-        {
             await dbContext.Database.MigrateAsync();
-        }
 
         await ReferenceDataSeeder.SeedAsync(dbContext, CancellationToken.None);
         await NationalRegisterSeeder.SeedAsync(dbContext, CancellationToken.None);
     }
 
-    private static bool IsSqlite(string connectionString) =>
-        connectionString.Contains("Data Source", StringComparison.OrdinalIgnoreCase)
-        || connectionString.Contains(":memory:", StringComparison.OrdinalIgnoreCase);
+    private static bool IsSqlite(string connectionString)
+    {
+        return connectionString.Contains("Data Source", StringComparison.OrdinalIgnoreCase)
+               || connectionString.Contains(":memory:", StringComparison.OrdinalIgnoreCase);
+    }
 }

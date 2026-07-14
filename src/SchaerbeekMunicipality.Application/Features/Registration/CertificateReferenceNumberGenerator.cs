@@ -13,10 +13,10 @@ internal static class CertificateReferenceNumberGenerator
         {
             CertificateType.ResidenceCertificate => "RC",
             CertificateType.HouseholdComposition => "HC",
-            _ => "CERT",
+            _ => "CERT"
         };
 
         var count = await repository.CountByTypeAsync(certificateType, cancellationToken);
-        return $"{prefix}-{DateTime.UtcNow:yyyyMMdd}-{(count + 1):D4}";
+        return $"{prefix}-{DateTime.UtcNow:yyyyMMdd}-{count + 1:D4}";
     }
 }

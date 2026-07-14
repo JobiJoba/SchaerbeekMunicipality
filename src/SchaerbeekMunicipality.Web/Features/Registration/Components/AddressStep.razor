@@ -1,54 +1,27 @@
-@using SchaerbeekMunicipality.Domain.Address
-@using SchaerbeekMunicipality.Domain.ReferenceData
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordHousingSituation
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData
+@using SchaerbeekMunicipality.Domain.Address
+@using SchaerbeekMunicipality.Domain.ReferenceData
 @using SchaerbeekMunicipality.Web.Api.Registration
+@using Severity = MudBlazor.Severity
 @inject IRegistrationApi RegistrationApi
-@inject FluentValidation.IValidator<DeclareAddressRequest> DeclareAddressValidator
-@inject FluentValidation.IValidator<RecordHousingSituationRequest> HousingSituationValidator
+@inject IValidator<DeclareAddressRequest> DeclareAddressValidator
+@inject IValidator<RecordHousingSituationRequest> HousingSituationValidator
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
 @if (!_case.Checklist.IdentityEstablished)
-    {
-        <AppInfoBox>
-            Record identity before declaring an address.
-        </AppInfoBox>
-    }
-    else if (_case.DeclaredAddress is null)
-    {
-        @if (CanEdit)
-        {
-            <AppCard Title="Declared address" Outlined="true">
-                <MudForm @ref="_addressForm"
-                         @bind-IsValid="_addressFormValid"
-                         Model="_addressModel"
-                         Validation="@(DeclareAddressValidator.ToMudValidateValue<DeclareAddressRequest, AddressFormModel>(MapAddressRequest))">
-                    <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
-                                          @bind-HouseNumber="_addressModel.HouseNumber"
-                                          @bind-Box="_addressModel.Box"
-                                          SearchStreets="SearchStreets"
-                                          ShowHelpText="true" />
-
-                    <AppSaveCancelBar SaveText="Declare address"
-                                      CancelText="Clear"
-                                      Saving="_savingAddress"
-                                      OnSave="SaveAddress"
-                                      OnCancel="HandleAddressCancel" />
-                </MudForm>
-            </AppCard>
-        }
-        else
-        {
-            <AppCard Title="Declared address" Outlined="true">
-                <MudText Typo="Typo.body2" Color="Color.Secondary">Address not declared yet.</MudText>
-            </AppCard>
-        }
-    }
-    else if (_editingAddress && CanEdit)
+{
+    <AppInfoBox>
+        Record identity before declaring an address.
+    </AppInfoBox>
+}
+else if (_case.DeclaredAddress is null)
+{
+    @if (CanEdit)
     {
         <AppCard Title="Declared address" Outlined="true">
             <MudForm @ref="_addressForm"
@@ -59,80 +32,70 @@
                                       @bind-HouseNumber="_addressModel.HouseNumber"
                                       @bind-Box="_addressModel.Box"
                                       SearchStreets="SearchStreets"
-                                      ShowHelpText="true" />
+                                      ShowHelpText="true"/>
 
-                <AppSaveCancelBar SaveText="Save changes"
-                                  CancelText="Cancel"
+                <AppSaveCancelBar SaveText="Declare address"
+                                  CancelText="Clear"
                                   Saving="_savingAddress"
-                                  Disabled="!AddressFormDirty"
                                   OnSave="SaveAddress"
-                                  OnCancel="HandleAddressCancel" />
+                                  OnCancel="HandleAddressCancel"/>
             </MudForm>
         </AppCard>
     }
     else
     {
         <AppCard Title="Declared address" Outlined="true">
-            <HeaderActions>
-                @if (CanEdit)
-                {
-                    <MudButton StartIcon="@Icons.Material.Outlined.Edit"
-                               Variant="Variant.Text"
-                               OnClick="StartEditingAddress"
-                               aria-label="Edit address">
-                        Edit
-                    </MudButton>
-                }
-            </HeaderActions>
-            <ChildContent>
-                <MudText Typo="Typo.body1">@AddressFormatting.FormatBelgianAddress(_case.DeclaredAddress)</MudText>
-            </ChildContent>
+            <MudText Typo="Typo.body2" Color="Color.Secondary">Address not declared yet.</MudText>
         </AppCard>
     }
+}
+else if (_editingAddress && CanEdit)
+{
+    <AppCard Title="Declared address" Outlined="true">
+        <MudForm @ref="_addressForm"
+                 @bind-IsValid="_addressFormValid"
+                 Model="_addressModel"
+                 Validation="@(DeclareAddressValidator.ToMudValidateValue<DeclareAddressRequest, AddressFormModel>(MapAddressRequest))">
+            <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
+                                  @bind-HouseNumber="_addressModel.HouseNumber"
+                                  @bind-Box="_addressModel.Box"
+                                  SearchStreets="SearchStreets"
+                                  ShowHelpText="true"/>
 
-    @if (_case.DeclaredAddress is not null)
-    {
-        @if (_case.HousingSituation is null)
-        {
+            <AppSaveCancelBar SaveText="Save changes"
+                              CancelText="Cancel"
+                              Saving="_savingAddress"
+                              Disabled="!AddressFormDirty"
+                              OnSave="SaveAddress"
+                              OnCancel="HandleAddressCancel"/>
+        </MudForm>
+    </AppCard>
+}
+else
+{
+    <AppCard Title="Declared address" Outlined="true">
+        <HeaderActions>
             @if (CanEdit)
             {
-                <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
-                    <MudForm @ref="_housingForm"
-                             @bind-IsValid="_housingFormValid"
-                             Model="_housingModel"
-                             Validation="@(HousingSituationValidator.ToMudValidateValue<RecordHousingSituationRequest, HousingFormModel>(MapHousingRequest))">
-                        <AppFormSection Title="How does the person occupy this address?">
-                            <MudItem xs="12" md="6">
-                                <MudSelect T="HousingSituation?"
-                                           @bind-Value="_housingModel.Situation"
-                                           Label="Housing situation"
-                                           Required="true"
-                                           ToStringFunc="@FormatHousingSituation">
-                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.Owner">Owner</MudSelectItem>
-                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.Tenant">Tenant</MudSelectItem>
-                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.Lodging">Lodging</MudSelectItem>
-                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.StudentHousing">Student housing</MudSelectItem>
-                                    <MudSelectItem T="HousingSituation?" Value="HousingSituation.Shelter">Shelter</MudSelectItem>
-                                </MudSelect>
-                            </MudItem>
-                        </AppFormSection>
+                <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                           Variant="Variant.Text"
+                           OnClick="StartEditingAddress"
+                           aria-label="Edit address">
+                    Edit
+                </MudButton>
+            }
+        </HeaderActions>
+        <ChildContent>
+            <MudText Typo="Typo.body1">@AddressFormatting.FormatBelgianAddress(_case.DeclaredAddress)</MudText>
+        </ChildContent>
+    </AppCard>
+}
 
-                        <AppSaveCancelBar SaveText="Record situation"
-                                          CancelText="Clear"
-                                          Saving="_savingHousing"
-                                          OnSave="SaveHousing"
-                                          OnCancel="HandleHousingCancel" />
-                    </MudForm>
-                </AppCard>
-            }
-            else
-            {
-                <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
-                    <MudText Typo="Typo.body2" Color="Color.Secondary">Housing situation not recorded yet.</MudText>
-                </AppCard>
-            }
-        }
-        else if (_editingHousing && CanEdit)
+@if (_case.DeclaredAddress is not null)
+{
+    @if (_case.HousingSituation is null)
+    {
+        @if (CanEdit)
         {
             <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
                 <MudForm @ref="_housingForm"
@@ -155,48 +118,82 @@
                         </MudItem>
                     </AppFormSection>
 
-                    <AppSaveCancelBar SaveText="Save changes"
-                                      CancelText="Cancel"
+                    <AppSaveCancelBar SaveText="Record situation"
+                                      CancelText="Clear"
                                       Saving="_savingHousing"
-                                      Disabled="!HousingFormDirty"
                                       OnSave="SaveHousing"
-                                      OnCancel="HandleHousingCancel" />
+                                      OnCancel="HandleHousingCancel"/>
                 </MudForm>
             </AppCard>
         }
         else
         {
             <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
-                <HeaderActions>
-                    @if (CanEdit)
-                    {
-                        <MudButton StartIcon="@Icons.Material.Outlined.Edit"
-                                   Variant="Variant.Text"
-                                   OnClick="StartEditingHousing"
-                                   aria-label="Edit housing situation">
-                            Edit
-                        </MudButton>
-                    }
-                </HeaderActions>
-                <ChildContent>
-                    <MudText Typo="Typo.body1">@FormatHousingSituation(_case.HousingSituation)</MudText>
-                </ChildContent>
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Housing situation not recorded yet.</MudText>
             </AppCard>
         }
     }
+    else if (_editingHousing && CanEdit)
+    {
+        <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
+            <MudForm @ref="_housingForm"
+                     @bind-IsValid="_housingFormValid"
+                     Model="_housingModel"
+                     Validation="@(HousingSituationValidator.ToMudValidateValue<RecordHousingSituationRequest, HousingFormModel>(MapHousingRequest))">
+                <AppFormSection Title="How does the person occupy this address?">
+                    <MudItem xs="12" md="6">
+                        <MudSelect T="HousingSituation?"
+                                   @bind-Value="_housingModel.Situation"
+                                   Label="Housing situation"
+                                   Required="true"
+                                   ToStringFunc="@FormatHousingSituation">
+                            <MudSelectItem T="HousingSituation?" Value="HousingSituation.Owner">Owner</MudSelectItem>
+                            <MudSelectItem T="HousingSituation?" Value="HousingSituation.Tenant">Tenant</MudSelectItem>
+                            <MudSelectItem T="HousingSituation?" Value="HousingSituation.Lodging">Lodging</MudSelectItem>
+                            <MudSelectItem T="HousingSituation?" Value="HousingSituation.StudentHousing">Student housing</MudSelectItem>
+                            <MudSelectItem T="HousingSituation?" Value="HousingSituation.Shelter">Shelter</MudSelectItem>
+                        </MudSelect>
+                    </MudItem>
+                </AppFormSection>
+
+                <AppSaveCancelBar SaveText="Save changes"
+                                  CancelText="Cancel"
+                                  Saving="_savingHousing"
+                                  Disabled="!HousingFormDirty"
+                                  OnSave="SaveHousing"
+                                  OnCancel="HandleHousingCancel"/>
+            </MudForm>
+        </AppCard>
+    }
+    else
+    {
+        <AppCard Title="Housing situation" Outlined="true" Class="mt-4">
+            <HeaderActions>
+                @if (CanEdit)
+                {
+                    <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                               Variant="Variant.Text"
+                               OnClick="StartEditingHousing"
+                               aria-label="Edit housing situation">
+                        Edit
+                    </MudButton>
+                }
+            </HeaderActions>
+            <ChildContent>
+                <MudText Typo="Typo.body1">@FormatHousingSituation(_case.HousingSituation)</MudText>
+            </ChildContent>
+        </AppCard>
+    }
+}
 
 @code {
-    [Parameter, EditorRequired]
-    public RegistrationCaseDetailDto Case { get; set; } = null!;
+    [Parameter] [EditorRequired] public RegistrationCaseDetailDto Case { get; set; } = null!;
 
-    [Parameter, EditorRequired]
-    public Guid CaseId { get; set; }
+    [Parameter] [EditorRequired] public Guid CaseId { get; set; }
 
-    [Parameter]
-    public bool CanEdit { get; set; }
+    [Parameter] public bool CanEdit { get; set; }
 
-    [Parameter]
-    public EventCallback OnUpdated { get; set; }
+    [Parameter] public EventCallback OnUpdated { get; set; }
 
     private RegistrationCaseDetailDto _case = null!;
     private bool _editingAddress;
@@ -232,19 +229,23 @@
 
     private bool HousingFormDirty => _housingModel.Situation != _case.HousingSituation;
 
-    private static string FormatHousingSituation(HousingSituation? situation) =>
-        situation switch
+    private static string FormatHousingSituation(HousingSituation? situation)
+    {
+        return situation switch
         {
             HousingSituation.Owner => "Owner",
             HousingSituation.Tenant => "Tenant",
             HousingSituation.Lodging => "Lodging",
             HousingSituation.StudentHousing => "Student housing",
             HousingSituation.Shelter => "Shelter",
-            _ => "Select situation",
+            _ => "Select situation"
         };
+    }
 
-    private async Task<IEnumerable<StreetDto>> SearchStreets(string value, CancellationToken token) =>
-        await RegistrationApi.SearchStreetsAsync(SchaerbeekCommune.PostalCode, value, token);
+    private async Task<IEnumerable<StreetDto>> SearchStreets(string? value, CancellationToken token)
+    {
+        return await RegistrationApi.SearchStreetsAsync(SchaerbeekCommune.PostalCode, value ?? string.Empty, token);
+    }
 
     private void StartEditingAddress()
     {
@@ -319,7 +320,7 @@
             Snackbar.Add("Address saved.", Severity.Success);
             await OnUpdated.InvokeAsync();
         }
-        catch (FluentValidation.ValidationException ex)
+        catch (ValidationException ex)
         {
             Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
         }
@@ -361,7 +362,10 @@
         _editingHousing = false;
     }
 
-    private void ClearHousingForm() => _housingModel.Situation = null;
+    private void ClearHousingForm()
+    {
+        _housingModel.Situation = null;
+    }
 
     private async Task HandleHousingCancel()
     {
@@ -395,7 +399,7 @@
             Snackbar.Add("Housing situation saved.", Severity.Success);
             await OnUpdated.InvokeAsync();
         }
-        catch (FluentValidation.ValidationException ex)
+        catch (ValidationException ex)
         {
             Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
         }
@@ -409,19 +413,25 @@
         }
     }
 
-    private void SyncAddressModel() =>
+    private void SyncAddressModel()
+    {
         _addressModel.Street = _selectedStreet?.Name ?? string.Empty;
+    }
 
-    private DeclareAddressRequest MapAddressRequest(AddressFormModel model) =>
-        new(
+    private DeclareAddressRequest MapAddressRequest(AddressFormModel model)
+    {
+        return new DeclareAddressRequest(
             model.Street,
             model.HouseNumber,
             model.Box,
             Schaerbeek.PostalCode,
             Schaerbeek.Name);
+    }
 
-    private RecordHousingSituationRequest MapHousingRequest(HousingFormModel model) =>
-        new(model.Situation!.Value);
+    private RecordHousingSituationRequest MapHousingRequest(HousingFormModel model)
+    {
+        return new RecordHousingSituationRequest(model.Situation!.Value);
+    }
 
     private sealed class AddressFormModel
     {
@@ -434,4 +444,5 @@
     {
         public HousingSituation? Situation { get; set; }
     }
+
 }

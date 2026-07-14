@@ -38,7 +38,7 @@
                                                    Color="Color.Error"
                                                    Size="Size.Small"
                                                    aria-label="@($"Remove {doc.FileName}")"
-                                                   OnClick="@(() => OnRemoveDocument.InvokeAsync(doc.Id))" />
+                                                   OnClick="@(() => OnRemoveDocument.InvokeAsync(doc.Id))"/>
                                 }
                             </MudStack>
                         </MudListItem>
@@ -62,7 +62,7 @@
                     </HeaderActions>
                     <ChildContent>
                         <AppFilePreview Url="@GetDocumentUrl(_selectedDocument.Id)"
-                                        FileName="@_selectedDocument.FileName" />
+                                        FileName="@_selectedDocument.FileName"/>
                     </ChildContent>
                 </AppCard>
             </AppSection>
@@ -74,36 +74,28 @@
             <AppCard Outlined="true">
                 <AppEmptyState Icon="@Icons.Material.Outlined.Description"
                                Title="@EmptyTitle"
-                               Description="@EmptyDescription" />
+                               Description="@EmptyDescription"/>
             </AppCard>
         </AppSection>
     }
 </div>
 
 @code {
-    [Parameter, EditorRequired]
-    public IReadOnlyList<CaseDocumentItem> Documents { get; set; } = [];
+    [Parameter] [EditorRequired] public IReadOnlyList<CaseDocumentItem> Documents { get; set; } = [];
 
-    [Parameter, EditorRequired]
-    public Func<Guid, string> GetDocumentUrl { get; set; } = null!;
+    [Parameter] [EditorRequired] public Func<Guid, string> GetDocumentUrl { get; set; } = null!;
 
-    [Parameter]
-    public bool CanEdit { get; set; }
+    [Parameter] public bool CanEdit { get; set; }
 
-    [Parameter]
-    public bool ShowEmptyState { get; set; } = true;
+    [Parameter] public bool ShowEmptyState { get; set; } = true;
 
-    [Parameter]
-    public string EmptyTitle { get; set; } = "No documents attached";
+    [Parameter] public string EmptyTitle { get; set; } = "No documents attached";
 
-    [Parameter]
-    public string EmptyDescription { get; set; } = "Upload a supporting document.";
+    [Parameter] public string EmptyDescription { get; set; } = "Upload a supporting document.";
 
-    [Parameter]
-    public EventCallback<Guid> OnRemoveDocument { get; set; }
+    [Parameter] public EventCallback<Guid> OnRemoveDocument { get; set; }
 
-    [Parameter]
-    public RenderFragment? UploadContent { get; set; }
+    [Parameter] public RenderFragment? UploadContent { get; set; }
 
     private Guid? _selectedDocumentId;
 
@@ -126,9 +118,12 @@
         }
     }
 
-    private void SelectDocument(Guid documentId) => _selectedDocumentId = documentId;
+    private void SelectDocument(Guid documentId)
+    {
+        _selectedDocumentId = documentId;
+    }
 
-    private string? GetListItemClass(Guid documentId)
+    private string GetListItemClass(Guid documentId)
     {
         var classes = new List<string> { "registration-case-document-list-item" };
         if (documentId == _selectedDocumentId)
@@ -139,8 +134,11 @@
         return string.Join(' ', classes);
     }
 
-    private static string FormatListLabel(CaseDocumentItem doc) =>
-        string.IsNullOrWhiteSpace(doc.TypeLabel)
+    private static string FormatListLabel(CaseDocumentItem doc)
+    {
+        return string.IsNullOrWhiteSpace(doc.TypeLabel)
             ? doc.FileName
             : $"{doc.TypeLabel} — {doc.FileName}";
+    }
+
 }

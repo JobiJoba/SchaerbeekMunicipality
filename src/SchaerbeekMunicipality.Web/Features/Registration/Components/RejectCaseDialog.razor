@@ -1,6 +1,4 @@
-@using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Application.Features.Registration.RejectCase
-
 <ReasonNotesDialog TReason="RejectionReason"
                    TRequest="RejectCaseRequest"
                    ReasonLabel="Rejection reason"
@@ -16,18 +14,22 @@
 
     [Parameter] public string? InitialNotes { get; set; }
 
-    private static RejectCaseRequest CreateRequest(RejectionReason reason, string? notes) =>
-        new(reason, notes);
+    private static RejectCaseRequest CreateRequest(RejectionReason reason, string? notes)
+    {
+        return new RejectCaseRequest(reason, notes);
+    }
 
-    private static string FormatReason(RejectionReason reason) =>
-        reason switch
+    private static string FormatReason(RejectionReason reason)
+    {
+        return reason switch
         {
             RejectionReason.InsufficientIdentityEvidence => "Insufficient identity evidence",
             RejectionReason.NoLegalResidenceBasis => "No legal residence basis",
             RejectionReason.AddressNotGenuine => "Address not genuine",
             RejectionReason.DuplicateIdentity => "Duplicate identity",
             RejectionReason.IllegalStay => "Illegal stay",
-            _ => "Other",
+            _ => "Other"
         };
+    }
 
 }

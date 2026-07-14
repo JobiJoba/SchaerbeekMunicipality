@@ -18,7 +18,7 @@ public sealed class MunicipalityReference
         return new MunicipalityReference
         {
             PostalCode = postalCode.Trim(),
-            Name = name.Trim(),
+            Name = name.Trim()
         };
     }
 }

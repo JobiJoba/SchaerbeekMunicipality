@@ -1,38 +1,49 @@
 using System.Net;
-using System.Net.Http.Json;
 using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Web.Api;
 
 public abstract class MunicipalApiClientBase(HttpClient httpClient, ICurrentOfficer currentOfficer)
 {
-    protected Task<T> GetJsonAsync<T>(string uri, CancellationToken cancellationToken) =>
-        SendJsonAsync<T>(ct => httpClient.GetAsync(uri, ct), cancellationToken);
+    protected Task<T> GetJsonAsync<T>(string uri, CancellationToken cancellationToken)
+    {
+        return SendJsonAsync<T>(ct => httpClient.GetAsync(uri, ct), cancellationToken);
+    }
 
-    protected Task<string> GetStringAsync(string uri, CancellationToken cancellationToken) =>
-        SendStringAsync(ct => httpClient.GetAsync(uri, ct), cancellationToken);
+    protected Task<string> GetStringAsync(string uri, CancellationToken cancellationToken)
+    {
+        return SendStringAsync(ct => httpClient.GetAsync(uri, ct), cancellationToken);
+    }
 
-    protected Task<T> PostJsonAsync<T>(string uri, CancellationToken cancellationToken) =>
-        SendJsonAsync<T>(ct => httpClient.PostAsync(uri, content: null, ct), cancellationToken);
+    protected Task<T> PostJsonAsync<T>(string uri, CancellationToken cancellationToken)
+    {
+        return SendJsonAsync<T>(ct => httpClient.PostAsync(uri, null, ct), cancellationToken);
+    }
 
     protected Task<TResponse> PostJsonAsync<TRequest, TResponse>(
         string uri,
         TRequest request,
-        CancellationToken cancellationToken) =>
-        SendJsonAsync<TResponse>(
+        CancellationToken cancellationToken)
+    {
+        return SendJsonAsync<TResponse>(
             ct => httpClient.PostAsJsonAsync(uri, request, ct),
             cancellationToken);
+    }
 
     protected Task<TResponse> PutJsonAsync<TRequest, TResponse>(
         string uri,
         TRequest request,
-        CancellationToken cancellationToken) =>
-        SendJsonAsync<TResponse>(
+        CancellationToken cancellationToken)
+    {
+        return SendJsonAsync<TResponse>(
             ct => httpClient.PutAsJsonAsync(uri, request, ct),
             cancellationToken);
+    }
 
-    protected Task<T> DeleteJsonAsync<T>(string uri, CancellationToken cancellationToken) =>
-        SendJsonAsync<T>(ct => httpClient.DeleteAsync(uri, ct), cancellationToken);
+    protected Task<T> DeleteJsonAsync<T>(string uri, CancellationToken cancellationToken)
+    {
+        return SendJsonAsync<T>(ct => httpClient.DeleteAsync(uri, ct), cancellationToken);
+    }
 
     protected async Task<Stream> DownloadStreamAsync(string uri, CancellationToken cancellationToken)
     {
@@ -77,8 +88,10 @@ public abstract class MunicipalApiClientBase(HttpClient httpClient, ICurrentOffi
 
     protected Task<TResponse?> PostJsonOptionalAsync<TResponse>(
         string uri,
-        CancellationToken cancellationToken) =>
-        SendJsonOptionalAsync<TResponse>(ct => httpClient.PostAsync(uri, content: null, ct), cancellationToken);
+        CancellationToken cancellationToken)
+    {
+        return SendJsonOptionalAsync<TResponse>(ct => httpClient.PostAsync(uri, null, ct), cancellationToken);
+    }
 
     protected static string BuildQuery(params (string Key, string? Value)[] parameters)
     {
@@ -99,10 +112,7 @@ public abstract class MunicipalApiClientBase(HttpClient httpClient, ICurrentOffi
         var response = await send(cancellationToken);
         await ApiException.ThrowIfErrorAsync(response, cancellationToken);
 
-        if (response.StatusCode == HttpStatusCode.NoContent)
-        {
-            return default;
-        }
+        if (response.StatusCode == HttpStatusCode.NoContent) return default;
 
         return await response.Content.ReadFromJsonAsync<T>(cancellationToken);
     }

@@ -6,5 +6,5 @@ public enum HousingSituation
     Tenant = 1,
     Lodging = 2,
     StudentHousing = 3,
-    Shelter = 4,
+    Shelter = 4
 }

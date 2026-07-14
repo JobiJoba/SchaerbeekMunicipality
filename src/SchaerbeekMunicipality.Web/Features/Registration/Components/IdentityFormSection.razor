@@ -1,19 +1,19 @@
 <AppFormSection Title="Personal details">
     <MudItem xs="12" md="6">
-        <MudTextField @bind-Value="Model.GivenName" Label="Given name" Required="true" />
+        <MudTextField @bind-Value="Model.GivenName" Label="Given name" Required="true"/>
     </MudItem>
     <MudItem xs="12" md="6">
-        <MudTextField @bind-Value="Model.FamilyName" Label="Family name" Required="true" />
+        <MudTextField @bind-Value="Model.FamilyName" Label="Family name" Required="true"/>
     </MudItem>
     <MudItem xs="12" md="6">
         <AppDateField @bind-Value="Model.BirthDate"
                       For="@(() => Model.BirthDate)"
                       Label="Date of birth"
                       Required="true"
-                      MaxDate="@DateTime.Today" />
+                      MaxDate="@DateTime.Today"/>
     </MudItem>
     <MudItem xs="12" md="6">
-        <MudTextField @bind-Value="Model.Nationality" Label="Nationality" Required="true" />
+        <MudTextField @bind-Value="Model.Nationality" Label="Nationality" Required="true"/>
     </MudItem>
 </AppFormSection>
 
@@ -26,9 +26,7 @@
 }
 
 @code {
-    [Parameter, EditorRequired]
-    public IdentityFormModel Model { get; set; } = null!;
+    [Parameter] [EditorRequired] public IdentityFormModel Model { get; set; } = null!;
 
-    [Parameter]
-    public bool ShowSearchInfo { get; set; }
+    [Parameter] public bool ShowSearchInfo { get; set; }
 }

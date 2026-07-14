@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RemoveDocument;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RemoveDocument;
 
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress.RemoveDocument;
 

@@ -1,5 +1,3 @@
-@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
-
 <MudGrid Spacing="3">
     @foreach (var item in Items)
     {
@@ -13,11 +11,13 @@
 </MudGrid>
 
 @code {
-    [Parameter, EditorRequired]
-    public IReadOnlyList<AppPropertyGridItem> Items { get; set; } = [];
+    [Parameter] [EditorRequired] public IReadOnlyList<AppPropertyGridItem> Items { get; set; } = [];
 
     public sealed record AppPropertyGridItem(string Label, string? Value);
 
-    private static string FormatValue(string? value) =>
-        string.IsNullOrWhiteSpace(value) ? "—" : value;
+    private static string FormatValue(string? value)
+    {
+        return string.IsNullOrWhiteSpace(value) ? "—" : value;
+    }
+
 }

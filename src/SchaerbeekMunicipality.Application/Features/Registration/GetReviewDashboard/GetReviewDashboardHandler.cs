@@ -1,7 +1,7 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Common;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard;
 
@@ -40,12 +40,14 @@ public sealed class GetReviewDashboardHandler(
         var statistics = new List<ReviewDashboardStatistic>
         {
             new("My open cases", openCases, "/registration/cases?filter=mine", false),
-            new("Unassigned", unassignedRegistration, "/registration/cases?filter=unassigned", unassignedRegistration > 0),
+            new("Unassigned", unassignedRegistration, "/registration/cases?filter=unassigned",
+                unassignedRegistration > 0),
             new("Awaiting police", awaitingPolice, "/registration/police-verifications", false),
             new("Ready for decision", readyForDecision, "/registration/cases", true),
             new("Suspended", suspendedRegistration, "/registration/cases", false),
             new("Birth unassigned", birthUnassigned, "/birth-declarations?filter=unassigned", birthUnassigned > 0),
-            new("Ready for confirmation", readyForConfirmation, "/birth-declarations?filter=ready", readyForConfirmation > 0),
+            new("Ready for confirmation", readyForConfirmation, "/birth-declarations?filter=ready",
+                readyForConfirmation > 0)
         };
 
         var actionable = registrationCases
@@ -88,50 +90,62 @@ public sealed class GetReviewDashboardHandler(
         return new GetReviewDashboardResponse(statistics, actionable);
     }
 
+    private static bool IsUnassignedRegistration(RegistrationCase registrationCase)
+    {
+        return registrationCase.LockedByOfficerId is null &&
+               registrationCase.AssignedOfficerId is null &&
+               registrationCase.Status == RegistrationCaseStatus.Intake;
+    }
+
+    private static bool IsUnassignedBirth(BirthDeclarationCase birthDeclarationCase)
+    {
+        return birthDeclarationCase.LockedByOfficerId is null &&
+               birthDeclarationCase.AssignedOfficerId is null &&
+               birthDeclarationCase.Status == BirthDeclarationCaseStatus.Intake;
+    }
+
+    private static bool IsActionableRegistration(RegistrationCase registrationCase)
+    {
+        return registrationCase.IsReadyForApproval ||
+               registrationCase.Status == RegistrationCaseStatus.AwaitingPoliceVerification ||
+               registrationCase.Status == RegistrationCaseStatus.Suspended ||
+               IsUnassignedRegistration(registrationCase);
+    }
+
+    private static bool IsActionableBirth(BirthDeclarationCase birthDeclarationCase)
+    {
+        return birthDeclarationCase.IsReadyForConfirmation ||
+               birthDeclarationCase.Status == BirthDeclarationCaseStatus.Suspended ||
+               IsUnassignedBirth(birthDeclarationCase);
+    }
+
+    private static string BuildRegistrationSummary(RegistrationCase registrationCase)
+    {
+        return registrationCase.Status switch
+        {
+            RegistrationCaseStatus.AwaitingPoliceVerification => "Awaiting police residence check",
+            RegistrationCaseStatus.Suspended => $"Suspended — {registrationCase.SuspensionReason}",
+            _ when registrationCase.IsReadyForApproval => "Ready for officer decision",
+            _ when IsUnassignedRegistration(registrationCase) => "Unassigned — awaiting intake",
+            _ => registrationCase.Status.ToDisplayString()
+        };
+    }
+
+    private static string BuildBirthSummary(BirthDeclarationCase birthDeclarationCase)
+    {
+        return birthDeclarationCase.Status switch
+        {
+            BirthDeclarationCaseStatus.Suspended => $"Suspended — {birthDeclarationCase.SuspensionReason}",
+            _ when birthDeclarationCase.IsReadyForConfirmation => "Ready for confirmation",
+            _ when IsUnassignedBirth(birthDeclarationCase) => "Unassigned — awaiting intake",
+            _ => birthDeclarationCase.Status.ToDisplayString()
+        };
+    }
+
     private sealed record ActionableCandidate(
         ActionableCaseRow Row,
         bool IsReady,
         bool IsUnassigned,
         bool IsSuspended,
         bool IsAwaitingPolice);
-
-    private static bool IsUnassignedRegistration(RegistrationCase registrationCase) =>
-        registrationCase.LockedByOfficerId is null &&
-        registrationCase.AssignedOfficerId is null &&
-        registrationCase.Status == RegistrationCaseStatus.Intake;
-
-    private static bool IsUnassignedBirth(BirthDeclarationCase birthDeclarationCase) =>
-        birthDeclarationCase.LockedByOfficerId is null &&
-        birthDeclarationCase.AssignedOfficerId is null &&
-        birthDeclarationCase.Status == BirthDeclarationCaseStatus.Intake;
-
-    private static bool IsActionableRegistration(RegistrationCase registrationCase) =>
-        registrationCase.IsReadyForApproval ||
-        registrationCase.Status == RegistrationCaseStatus.AwaitingPoliceVerification ||
-        registrationCase.Status == RegistrationCaseStatus.Suspended ||
-        IsUnassignedRegistration(registrationCase);
-
-    private static bool IsActionableBirth(BirthDeclarationCase birthDeclarationCase) =>
-        birthDeclarationCase.IsReadyForConfirmation ||
-        birthDeclarationCase.Status == BirthDeclarationCaseStatus.Suspended ||
-        IsUnassignedBirth(birthDeclarationCase);
-
-    private static string BuildRegistrationSummary(RegistrationCase registrationCase) =>
-        registrationCase.Status switch
-        {
-            RegistrationCaseStatus.AwaitingPoliceVerification => "Awaiting police residence check",
-            RegistrationCaseStatus.Suspended => $"Suspended — {registrationCase.SuspensionReason}",
-            _ when registrationCase.IsReadyForApproval => "Ready for officer decision",
-            _ when IsUnassignedRegistration(registrationCase) => "Unassigned — awaiting intake",
-            _ => registrationCase.Status.ToDisplayString(),
-        };
-
-    private static string BuildBirthSummary(BirthDeclarationCase birthDeclarationCase) =>
-        birthDeclarationCase.Status switch
-        {
-            BirthDeclarationCaseStatus.Suspended => $"Suspended — {birthDeclarationCase.SuspensionReason}",
-            _ when birthDeclarationCase.IsReadyForConfirmation => "Ready for confirmation",
-            _ when IsUnassignedBirth(birthDeclarationCase) => "Unassigned — awaiting intake",
-            _ => birthDeclarationCase.Status.ToDisplayString(),
-        };
 }

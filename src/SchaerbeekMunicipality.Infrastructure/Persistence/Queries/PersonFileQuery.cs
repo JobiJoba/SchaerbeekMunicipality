@@ -1,11 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using SchaerbeekMunicipality.Domain.PersonFile;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Common;
 using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Domain.IdentityDocuments;
+using SchaerbeekMunicipality.Domain.PersonFile;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence.Queries;
@@ -57,10 +56,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             var isParent = birthCase.ParentLinks.Any(link => link.PersonId == personId);
             var isChild = birthCase.ChildPersonId == personId;
 
-            if (!isParent && !isChild)
-            {
-                continue;
-            }
+            if (!isParent && !isChild) continue;
 
             cases.Add(new PersonCaseSummary(
                 birthCase.Id.Value,
@@ -81,10 +77,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             var isSubject = coaCase.PersonId == personId;
             var isCoMover = coaCase.HouseholdMemberLinks.Any(link => link.PersonId == personId);
 
-            if (!isSubject && !isCoMover)
-            {
-                continue;
-            }
+            if (!isSubject && !isCoMover) continue;
 
             cases.Add(new PersonCaseSummary(
                 coaCase.Id.Value,
@@ -121,9 +114,9 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         var seen = new HashSet<(string Name, string Role, string Source)>();
 
         var latestRegistered = (await dbContext.RegistrationCases
-            .AsNoTracking()
-            .Where(c => c.PersonId == personId && c.Status == RegistrationCaseStatus.Registered)
-            .ToListAsync(cancellationToken))
+                .AsNoTracking()
+                .Where(c => c.PersonId == personId && c.Status == RegistrationCaseStatus.Registered)
+                .ToListAsync(cancellationToken))
             .OrderByDescending(c => c.ClosedAt ?? c.OpenedAt)
             .FirstOrDefault();
 
@@ -135,9 +128,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                 .FirstOrDefaultAsync(h => h.RegistrationCaseId == latestRegistered.Id, cancellationToken);
 
             if (household is not null)
-            {
                 foreach (var member in household.Members)
-                {
                     AddMember(
                         members,
                         seen,
@@ -147,8 +138,6 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                         member.BirthDate,
                         member.Role.ToDisplayString(),
                         "Registration household");
-                }
-            }
         }
 
         var birthCases = await dbContext.BirthDeclarationCases
@@ -160,7 +149,6 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         {
             var childName = $"{birthCase.ChildGivenNames} {birthCase.ChildFamilyName}".Trim();
             if (!string.IsNullOrWhiteSpace(childName))
-            {
                 AddMember(
                     members,
                     seen,
@@ -170,30 +158,25 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                     birthCase.ChildDateOfBirth,
                     "Child",
                     "Birth declaration");
-            }
         }
 
         foreach (var birthCase in birthCases.Where(c => c.ChildPersonId == personId))
+        foreach (var parentLink in birthCase.ParentLinks)
         {
-            foreach (var parentLink in birthCase.ParentLinks)
-            {
-                var parent = await dbContext.Persons
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(p => p.Id == parentLink.PersonId, cancellationToken);
+            var parent = await dbContext.Persons
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == parentLink.PersonId, cancellationToken);
 
-                if (parent is not null)
-                {
-                    AddMember(
-                        members,
-                        seen,
-                        parent.Id.Value,
-                        parent.GivenName,
-                        parent.FamilyName,
-                        parent.BirthDate,
-                        parentLink.Role.ToDisplayString(),
-                        "Birth declaration");
-                }
-            }
+            if (parent is not null)
+                AddMember(
+                    members,
+                    seen,
+                    parent.Id.Value,
+                    parent.GivenName,
+                    parent.FamilyName,
+                    parent.BirthDate,
+                    parentLink.Role.ToDisplayString(),
+                    "Birth declaration");
         }
 
         var coaCases = await dbContext.ChangeOfAddressCases
@@ -211,7 +194,6 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                     .FirstOrDefaultAsync(p => p.Id == coaCase.PersonId, cancellationToken);
 
                 if (subject is not null)
-                {
                     AddMember(
                         members,
                         seen,
@@ -221,7 +203,6 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                         subject.BirthDate,
                         "Primary resident",
                         "Change of address");
-                }
             }
 
             foreach (var link in coaCase.HouseholdMemberLinks.Where(link => link.PersonId != personId))
@@ -231,7 +212,6 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                     .FirstOrDefaultAsync(p => p.Id == link.PersonId, cancellationToken);
 
                 if (coMover is not null)
-                {
                     AddMember(
                         members,
                         seen,
@@ -241,7 +221,6 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                         coMover.BirthDate,
                         "Co-mover",
                         "Change of address");
-                }
             }
         }
 
@@ -259,61 +238,54 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         var entries = new List<PersonAddressHistoryEntry>();
 
         var registrationCases = (await dbContext.RegistrationCases
-            .AsNoTracking()
-            .Where(c => c.PersonId == personId && c.DeclaredAddress != null)
-            .ToListAsync(cancellationToken))
+                .AsNoTracking()
+                .Where(c => c.PersonId == personId && c.DeclaredAddress != null)
+                .ToListAsync(cancellationToken))
             .OrderBy(c => c.OpenedAt)
             .ToList();
 
         foreach (var registrationCase in registrationCases)
-        {
             if (registrationCase.DeclaredAddress is { } address)
-            {
                 entries.Add(ToAddressEntry(
                     address,
                     registrationCase.HousingSituation?.ToString(),
                     registrationCase.ClosedAt ?? registrationCase.OpenedAt,
                     false,
                     "Registration"));
-            }
-        }
 
         var coaCases = (await dbContext.ChangeOfAddressCases
-            .AsNoTracking()
-            .Where(c => c.PersonId == personId)
-            .ToListAsync(cancellationToken))
+                .AsNoTracking()
+                .Where(c => c.PersonId == personId)
+                .ToListAsync(cancellationToken))
             .OrderBy(c => c.OpenedAt)
             .ToList();
 
         foreach (var coaCase in coaCases)
         {
             if (coaCase.PreviousAddress is { } previous)
-            {
                 entries.Add(ToAddressEntry(
                     previous,
                     null,
                     coaCase.OpenedAt,
                     false,
                     "Change of address (previous)"));
-            }
 
             if (coaCase.NewAddress is { } next)
-            {
                 entries.Add(ToAddressEntry(
                     next,
                     coaCase.HousingSituation?.ToString(),
                     coaCase.ConfirmedAt ?? coaCase.OpenedAt,
                     false,
                     "Change of address (new)"));
-            }
         }
 
         if (person?.DomicileAddress is { } domicile)
         {
             var latestCoa = coaCases.LastOrDefault(c => c.Status == ChangeOfAddressCaseStatus.Confirmed);
-            var latestRegistration = registrationCases.LastOrDefault(c => c.Status == RegistrationCaseStatus.Registered);
+            var latestRegistration =
+                registrationCases.LastOrDefault(c => c.Status == RegistrationCaseStatus.Registered);
             var housing = latestCoa?.HousingSituation?.ToString()
-                ?? latestRegistration?.HousingSituation?.ToString();
+                          ?? latestRegistration?.HousingSituation?.ToString();
 
             entries.Add(ToAddressEntry(
                 domicile,
@@ -370,22 +342,18 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                 "Birth declaration"));
 
             if (birthCase.ConfirmedAt is { } confirmedAt)
-            {
                 events.Add(new PersonHistoryEvent(
                     "Birth declaration confirmed",
                     confirmedAt,
                     birthCase.ChildNationalRegisterNumber,
                     "Birth declaration"));
-            }
 
             if (birthCase.ClosedAt is { } closedAt && birthCase.Status == BirthDeclarationCaseStatus.Rejected)
-            {
                 events.Add(new PersonHistoryEvent(
                     "Birth declaration rejected",
                     closedAt,
                     birthCase.RejectionReason is null ? null : birthCase.RejectionReason.Value.ToDisplayString(),
                     "Birth declaration"));
-            }
         }
 
         var coaCases = await dbContext.ChangeOfAddressCases
@@ -402,22 +370,18 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                 "Change of address"));
 
             if (coaCase.ConfirmedAt is { } confirmedAt)
-            {
                 events.Add(new PersonHistoryEvent(
                     "Address change confirmed",
                     confirmedAt,
                     FormatAddress(coaCase.NewAddress),
                     "Change of address"));
-            }
 
             if (coaCase.ClosedAt is { } closedAt && coaCase.Status == ChangeOfAddressCaseStatus.Rejected)
-            {
                 events.Add(new PersonHistoryEvent(
                     "Change of address rejected",
                     closedAt,
                     coaCase.RejectionReason is null ? null : coaCase.RejectionReason.Value.ToDisplayString(),
                     "Change of address"));
-            }
         }
 
         var documentCases = await dbContext.DocumentRequestCases
@@ -434,22 +398,18 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                 "Identity document"));
 
             if (documentCase.IssuedAt is { } issuedAt)
-            {
                 events.Add(new PersonHistoryEvent(
                     $"{documentCase.RequestType.ToDisplayString()} issued",
                     issuedAt,
                     documentCase.IssuedDocumentNumber,
                     "Identity document"));
-            }
 
             if (documentCase.CancelledAt is { } cancelledAt)
-            {
                 events.Add(new PersonHistoryEvent(
                     $"{documentCase.RequestType.ToDisplayString()} request cancelled",
                     cancelledAt,
                     documentCase.CancellationReason,
                     "Identity document"));
-            }
         }
 
         var certificates = await dbContext.CertificateRequests
@@ -479,10 +439,7 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         string source)
     {
         var key = ($"{givenName} {familyName}".Trim(), role, source);
-        if (!seen.Add(key))
-        {
-            return;
-        }
+        if (!seen.Add(key)) return;
 
         members.Add(new PersonHouseholdMemberSummary(
             personId,
@@ -498,8 +455,9 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         string? housingSituation,
         DateTimeOffset? effectiveFrom,
         bool isCurrent,
-        string source) =>
-        new(
+        string source)
+    {
+        return new PersonAddressHistoryEntry(
             address.Street,
             address.HouseNumber,
             address.Box,
@@ -509,9 +467,12 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             effectiveFrom,
             isCurrent,
             source);
+    }
 
-    private static string? FormatAddress(BelgianAddress? address) =>
-        address is null
+    private static string? FormatAddress(BelgianAddress? address)
+    {
+        return address is null
             ? null
             : $"{address.Street} {address.HouseNumber}, {address.PostalCode} {address.Municipality}";
+    }
 }

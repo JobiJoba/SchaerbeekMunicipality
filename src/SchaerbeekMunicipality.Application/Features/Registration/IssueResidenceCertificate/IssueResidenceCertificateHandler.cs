@@ -1,11 +1,9 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 using SchaerbeekMunicipality.Infrastructure.Certificates;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.IssueResidenceCertificate;
 
@@ -32,17 +30,15 @@ public sealed class IssueResidenceCertificateHandler(
         EnsureRegistered(registrationCase);
 
         if (registrationCase.PersonId is not { } personId)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Identity must be recorded before issuing a certificate.");
-        }
 
         var person = await personRepository.GetByIdAsync(personId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Person '{personId}' was not found.");
+                     ?? throw new KeyNotFoundException($"Person '{personId}' was not found.");
 
         var nationalRegisterNumber = person.NationalRegisterNumber
-            ?? throw new InvalidRegistrationTransitionException(
-                "A National Register number is required before issuing a certificate.");
+                                     ?? throw new InvalidRegistrationTransitionException(
+                                         "A National Register number is required before issuing a certificate.");
 
         var addressLine = FormatAddress(registrationCase.DeclaredAddress);
         var issuedAt = timeProvider.GetUtcNow();
@@ -82,18 +78,13 @@ public sealed class IssueResidenceCertificateHandler(
     private static void EnsureRegistered(RegistrationCase registrationCase)
     {
         if (registrationCase.Status != RegistrationCaseStatus.Registered)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Certificates can only be issued for registered cases.");
-        }
     }
 
     private static string FormatAddress(BelgianAddress? address)
     {
-        if (address is null)
-        {
-            return "Address not recorded";
-        }
+        if (address is null) return "Address not recorded";
 
         var box = string.IsNullOrWhiteSpace(address.Box) ? string.Empty : $" bte {address.Box}";
         return $"{address.Street} {address.HouseNumber}{box}, {address.PostalCode} {address.Municipality}";

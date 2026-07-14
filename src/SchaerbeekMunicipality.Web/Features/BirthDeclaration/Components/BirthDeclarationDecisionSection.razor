@@ -1,12 +1,8 @@
-@using SchaerbeekMunicipality.Domain.BirthDeclaration
-@using SchaerbeekMunicipality.Domain.Registration
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ConfirmBirthDeclaration
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationCase
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationChecklist
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RejectBirthDeclaration
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ResumeBirthDeclaration
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SuspendBirthDeclaration
-@using SchaerbeekMunicipality.Application.Auth
+@using SchaerbeekMunicipality.Domain.BirthDeclaration
 @using SchaerbeekMunicipality.Web.Api.BirthDeclaration
 @inject IBirthDeclarationApi BirthDeclarationApi
 @inject ISnackbar Snackbar
@@ -14,7 +10,7 @@
 <AppCard Title="Officer decision" Outlined="true">
     @if (_checklist is not null)
     {
-        <OfficerDecisionChecklist Items="@MapChecklist(_checklist)" />
+        <OfficerDecisionChecklist Items="@MapChecklist(_checklist)"/>
     }
 
     @if (Case.Status == BirthDeclarationCaseStatus.Confirmed)
@@ -166,8 +162,11 @@
         }
     }
 
-    private static IReadOnlyList<AppChecklistItem> MapChecklist(BirthDeclarationChecklistResponse checklist) =>
-        checklist.Questions
+    private static IReadOnlyList<AppChecklistItem> MapChecklist(BirthDeclarationChecklistResponse checklist)
+    {
+        return checklist.Questions
             .Select(q => new AppChecklistItem(q.Question, q.IsSatisfied, q.BlockingReason))
             .ToList();
+    }
+
 }

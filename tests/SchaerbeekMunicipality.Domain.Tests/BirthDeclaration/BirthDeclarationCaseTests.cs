@@ -1,4 +1,5 @@
 using FluentAssertions;
+using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
@@ -14,12 +15,13 @@ public sealed class BirthDeclarationCaseTests
         var personId = PersonId.New();
 
         birthDeclarationCase.RecordChildDetails(
-            new NewbornDetails("Amélie", "Dupont", NewbornSex.Female, BirthDeclarationCaseTestData.Today.AddDays(-1), null, "Brussels"),
+            new NewbornDetails("Amélie", "Dupont", NewbornSex.Female, BirthDeclarationCaseTestData.Today.AddDays(-1),
+                null, "Brussels"),
             BirthDeclarationCaseTestData.Today);
 
         birthDeclarationCase.LinkParent(personId, ParentRole.Mother);
         birthDeclarationCase.SetHousehold(
-            Domain.Address.BelgianAddress.Create("Chaussée de Louvain", "10", null, "1030", "Schaerbeek"));
+            BelgianAddress.Create("Chaussée de Louvain", "10", null, "1030", "Schaerbeek"));
 
         var act = () => birthDeclarationCase.ConfirmDeclaration(
             PersonId.New(),
@@ -36,12 +38,13 @@ public sealed class BirthDeclarationCaseTests
         var birthDeclarationCase = BirthDeclarationCaseTestData.OpenClaimedCase();
 
         birthDeclarationCase.RecordChildDetails(
-            new NewbornDetails("Amélie", "Dupont", NewbornSex.Female, BirthDeclarationCaseTestData.Today.AddDays(-1), null, "Brussels"),
+            new NewbornDetails("Amélie", "Dupont", NewbornSex.Female, BirthDeclarationCaseTestData.Today.AddDays(-1),
+                null, "Brussels"),
             BirthDeclarationCaseTestData.Today);
 
         birthDeclarationCase.AttachMedicalDeclaration(AdministrativeDocumentId.New());
         birthDeclarationCase.SetHousehold(
-            Domain.Address.BelgianAddress.Create("Chaussée de Louvain", "10", null, "1030", "Schaerbeek"));
+            BelgianAddress.Create("Chaussée de Louvain", "10", null, "1030", "Schaerbeek"));
 
         var act = () => birthDeclarationCase.ConfirmDeclaration(
             PersonId.New(),
@@ -58,7 +61,8 @@ public sealed class BirthDeclarationCaseTests
         var birthDeclarationCase = BirthDeclarationCaseTestData.OpenClaimedCase();
 
         var act = () => birthDeclarationCase.RecordChildDetails(
-            new NewbornDetails("Amélie", "Dupont", NewbornSex.Female, BirthDeclarationCaseTestData.Today.AddDays(1), null, "Brussels"),
+            new NewbornDetails("Amélie", "Dupont", NewbornSex.Female, BirthDeclarationCaseTestData.Today.AddDays(1),
+                null, "Brussels"),
             BirthDeclarationCaseTestData.Today);
 
         act.Should().Throw<InvalidBirthDeclarationTransitionException>()

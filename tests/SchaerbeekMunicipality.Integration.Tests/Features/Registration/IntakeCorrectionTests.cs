@@ -2,9 +2,6 @@ using System.Net;
 using System.Net.Http.Json;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Domain.Immigration;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.Registration.CorrectIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
@@ -12,6 +9,9 @@ using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationC
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordResidencePermit;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
+using SchaerbeekMunicipality.Domain.Documents;
+using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -152,10 +152,10 @@ public sealed class IntakeCorrectionTests
         var created = await createResponse.Content.ReadFromJsonAsync<OpenRegistrationCaseResponse>();
         created.Should().NotBeNull();
 
-        await client.PostAsync($"/api/registration/cases/{created!.CaseId}/claim", null);
+        await client.PostAsync($"/api/registration/cases/{created.CaseId}/claim", null);
 
         await client.PostAsJsonAsync(
-            $"/api/registration/cases/{created!.CaseId}/identity",
+            $"/api/registration/cases/{created.CaseId}/identity",
             new RecordIdentityRequest("Jon", "Vermeulen", new DateOnly(1988, 11, 5), "Belgian"));
 
         return created.CaseId;
@@ -163,7 +163,6 @@ public sealed class IntakeCorrectionTests
 
     private static async Task<RegistrationCaseId> OpenAndRecordIdentityAsync(IServiceProvider services)
     {
-        var openHandler = services.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
 
         var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);

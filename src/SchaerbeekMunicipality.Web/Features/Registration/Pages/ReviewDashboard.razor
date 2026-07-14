@@ -1,124 +1,130 @@
 @page "/registration/review-dashboard"
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Navigation
 @using SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard
-@using SchaerbeekMunicipality.Application.Auth
 @using SchaerbeekMunicipality.Web.Api.Registration
+@using SchaerbeekMunicipality.Web.DesignSystem.Components.Navigation
 @inject IRegistrationApi RegistrationApi
 @inject ICurrentOfficer CurrentOfficer
 @inject NavigationManager Navigation
 
 <AppPage Title="Review dashboard">
-  <AppPageHeader Title="Review dashboard"
-                 Subtitle="@($"Good morning, {CurrentOfficer.DisplayName}")" />
+    <AppPageHeader Title="Review dashboard"
+                   Subtitle="@($"Good morning, {CurrentOfficer.DisplayName}")"/>
 
-  @if (_loading)
-  {
-    <AppLoading />
-  }
-  else if (_dashboard is not null)
-  {
-    <MudGrid Spacing="4" Class="mb-6">
-      @foreach (var stat in _dashboard.Statistics)
-      {
-        <MudItem xs="12" sm="6" md="4" lg="3">
-          <AppStatisticCard Label="@stat.Label"
-                            Value="@stat.Value"
-                            Href="@stat.Href"
-                            Accent="@stat.Accent"
-                            Icon="@GetStatisticIcon(stat.Label)" />
-        </MudItem>
-      }
-    </MudGrid>
+    @if (_loading)
+    {
+        <AppLoading/>
+    }
+    else if (_dashboard is not null)
+    {
+        <MudGrid Spacing="4" Class="mb-6">
+            @foreach (var stat in _dashboard.Statistics)
+            {
+                <MudItem xs="12" sm="6" md="4" lg="3">
+                    <AppStatisticCard Label="@stat.Label"
+                                      Value="@stat.Value"
+                                      Href="@stat.Href"
+                                      Accent="@stat.Accent"
+                                      Icon="@GetStatisticIcon(stat.Label)"/>
+                </MudItem>
+            }
+        </MudGrid>
 
-    <AppSection Title="Needs my attention">
-      @if (_dashboard.ActionableCases.Count == 0)
-      {
-        <AppEmptyState Title="All caught up"
-                       Description="No cases need immediate action."
-                       Icon="@Icons.Material.Outlined.CheckCircle" />
-      }
-      else
-      {
-        <AppDataTable T="ActionableCaseRow"
-                      Items="_dashboard.ActionableCases"
-                      Caption="Actionable cases"
-                      OnRowClick="NavigateToCase">
-          <HeaderContent>
-            <MudTh Class="app-table-header">Case</MudTh>
-            <MudTh Class="app-table-header">Type</MudTh>
-            <MudTh Class="app-table-header">Status</MudTh>
-            <MudTh Class="app-table-header">Procedure</MudTh>
-            <MudTh Class="app-table-header">Opened</MudTh>
-            <MudTh Class="app-table-header">Summary</MudTh>
-          </HeaderContent>
-          <RowTemplate Context="item">
-            <MudTd DataLabel="Case">@item.CaseId.ToString()[..8]…</MudTd>
-            <MudTd DataLabel="Type">@FormatCaseType(item.CaseType)</MudTd>
-            <MudTd DataLabel="Status">@item.Status</MudTd>
-            <MudTd DataLabel="Procedure">@item.Procedure</MudTd>
-            <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
-            <MudTd DataLabel="Summary">@item.Summary</MudTd>
-          </RowTemplate>
-        </AppDataTable>
-      }
-    </AppSection>
+        <AppSection Title="Needs my attention">
+            @if (_dashboard.ActionableCases.Count == 0)
+            {
+                <AppEmptyState Title="All caught up"
+                               Description="No cases need immediate action."
+                               Icon="@Icons.Material.Outlined.CheckCircle"/>
+            }
+            else
+            {
+                <AppDataTable T="ActionableCaseRow"
+                              Items="_dashboard.ActionableCases"
+                              Caption="Actionable cases"
+                              OnRowClick="NavigateToCase">
+                    <HeaderContent>
+                        <MudTh Class="app-table-header">Case</MudTh>
+                        <MudTh Class="app-table-header">Type</MudTh>
+                        <MudTh Class="app-table-header">Status</MudTh>
+                        <MudTh Class="app-table-header">Procedure</MudTh>
+                        <MudTh Class="app-table-header">Opened</MudTh>
+                        <MudTh Class="app-table-header">Summary</MudTh>
+                    </HeaderContent>
+                    <RowTemplate Context="item">
+                        <MudTd DataLabel="Case">@item.CaseId.ToString()[..8]…</MudTd>
+                        <MudTd DataLabel="Type">@FormatCaseType(item.CaseType)</MudTd>
+                        <MudTd DataLabel="Status">@item.Status</MudTd>
+                        <MudTd DataLabel="Procedure">@item.Procedure</MudTd>
+                        <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+                        <MudTd DataLabel="Summary">@item.Summary</MudTd>
+                    </RowTemplate>
+                </AppDataTable>
+            }
+        </AppSection>
 
-    <AppSection Title="Quick actions">
-      <AppQuickActions Actions="_quickActions" />
-    </AppSection>
-  }
+        <AppSection Title="Quick actions">
+            <AppQuickActions Actions="_quickActions"/>
+        </AppSection>
+    }
 </AppPage>
 
 @code {
-  private GetReviewDashboardResponse? _dashboard;
-  private bool _loading = true;
+    private GetReviewDashboardResponse? _dashboard;
+    private bool _loading = true;
 
-  private IReadOnlyList<AppQuickActions.AppQuickAction> _quickActions =
-  [
-    new("Open new case", "/registration/cases", Icons.Material.Outlined.Add),
-    new("All registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
-    new("Birth declarations", "/birth-declarations", Icons.Material.Outlined.ChildCare),
-    new("Police verifications", "/registration/police-verifications", Icons.Material.Outlined.LocalPolice),
-  ];
+    private readonly IReadOnlyList<AppQuickActions.AppQuickAction> _quickActions =
+    [
+        new("Open new case", "/registration/cases", Icons.Material.Outlined.Add),
+        new("All registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
+        new("Birth declarations", "/birth-declarations", Icons.Material.Outlined.ChildCare),
+        new("Police verifications", "/registration/police-verifications", Icons.Material.Outlined.LocalPolice)
+    ];
 
-  protected override async Task OnInitializedAsync()
-  {
-    if (CurrentOfficer.Role != OfficerRole.PopulationOfficer)
+    protected override async Task OnInitializedAsync()
     {
-      Navigation.NavigateTo(CurrentOfficer.Role == OfficerRole.ReceptionOfficer
-        ? "/registration/new-case"
-        : "/registration/police-verifications");
-      return;
+        if (CurrentOfficer.Role != OfficerRole.PopulationOfficer)
+        {
+            Navigation.NavigateTo(CurrentOfficer.Role == OfficerRole.ReceptionOfficer
+                ? "/registration/new-case"
+                : "/registration/police-verifications");
+            return;
+        }
+
+        _dashboard = await RegistrationApi.GetReviewDashboardAsync(CancellationToken.None);
+        _loading = false;
     }
 
-    _dashboard = await RegistrationApi.GetReviewDashboardAsync(CancellationToken.None);
-    _loading = false;
-  }
-
-  private void NavigateToCase(ActionableCaseRow row) =>
-    Navigation.NavigateTo(row.CaseType switch
+    private void NavigateToCase(ActionableCaseRow row)
     {
-      ReviewDashboardCaseType.BirthDeclaration => $"/birth-declarations/{row.CaseId}",
-      _ => $"/registration/cases/{row.CaseId}",
-    });
+        Navigation.NavigateTo(row.CaseType switch
+        {
+            ReviewDashboardCaseType.BirthDeclaration => $"/birth-declarations/{row.CaseId}",
+            _ => $"/registration/cases/{row.CaseId}"
+        });
+    }
 
-  private static string FormatCaseType(ReviewDashboardCaseType caseType) =>
-    caseType switch
+    private static string FormatCaseType(ReviewDashboardCaseType caseType)
     {
-      ReviewDashboardCaseType.BirthDeclaration => "Birth declaration",
-      _ => "Registration",
-    };
+        return caseType switch
+        {
+            ReviewDashboardCaseType.BirthDeclaration => "Birth declaration",
+            _ => "Registration"
+        };
+    }
 
-  private static string GetStatisticIcon(string label) =>
-    label switch
+    private static string GetStatisticIcon(string label)
     {
-      "My open cases" => Icons.Material.Outlined.FolderOpen,
-      "Unassigned" => Icons.Material.Outlined.Inbox,
-      "Awaiting police" => Icons.Material.Outlined.LocalPolice,
-      "Ready for decision" => Icons.Material.Outlined.Gavel,
-      "Suspended" => Icons.Material.Outlined.PauseCircle,
-      "Birth unassigned" => Icons.Material.Outlined.ChildCare,
-      "Ready for confirmation" => Icons.Material.Outlined.CheckCircle,
-      _ => Icons.Material.Outlined.Analytics,
-    };
+        return label switch
+        {
+            "My open cases" => Icons.Material.Outlined.FolderOpen,
+            "Unassigned" => Icons.Material.Outlined.Inbox,
+            "Awaiting police" => Icons.Material.Outlined.LocalPolice,
+            "Ready for decision" => Icons.Material.Outlined.Gavel,
+            "Suspended" => Icons.Material.Outlined.PauseCircle,
+            "Birth unassigned" => Icons.Material.Outlined.ChildCare,
+            "Ready for confirmation" => Icons.Material.Outlined.CheckCircle,
+            _ => Icons.Material.Outlined.Analytics
+        };
+    }
+
 }

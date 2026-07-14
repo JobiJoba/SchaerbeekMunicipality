@@ -1,5 +1,4 @@
 using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
-using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile;

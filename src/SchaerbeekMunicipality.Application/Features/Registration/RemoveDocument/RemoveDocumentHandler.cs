@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Logging;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.RemoveDocument;
 
@@ -26,13 +25,11 @@ public sealed class RemoveDocumentHandler(
         registrationCase.EnsureCanAttachDocuments();
 
         var document = await documentRepository.GetByIdAsync(documentId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
+                       ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
 
         if (!document.BelongsToRegistrationCase(caseId))
-        {
             throw new InvalidRegistrationTransitionException(
                 "The document does not belong to this registration case.");
-        }
 
         documentRepository.Remove(document);
         await documentStorage.DeleteAsync(document.StoragePath, cancellationToken);

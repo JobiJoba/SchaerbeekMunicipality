@@ -19,11 +19,9 @@ public sealed class RegistrationExceptionEvaluator(
         ResidencePermit? permitOverride = null,
         IReadOnlyList<DocumentType>? documentTypesOverride = null)
     {
-        Person? person = personOverride;
+        var person = personOverride;
         if (person is null && registrationCase.PersonId is { } personId)
-        {
             person = await personRepository.GetForUpdateAsync(personId, cancellationToken);
-        }
 
         var policyResult = await residenceEvaluator.EvaluateAndApplyAsync(
             registrationCase,
@@ -32,19 +30,16 @@ public sealed class RegistrationExceptionEvaluator(
             documentTypesOverride);
 
         var documentTypes = documentTypesOverride
-            ?? await residenceEvaluator.GetAttachedDocumentTypesAsync(
-                registrationCase.Id,
-                cancellationToken);
+                            ?? await residenceEvaluator.GetAttachedDocumentTypesAsync(
+                                registrationCase.Id,
+                                cancellationToken);
 
         registrationCase.ApplyBirthEvidenceRule(person, documentTypes);
 
         var duplicateMatches = await FindDuplicateMatchesAsync(person, cancellationToken);
         registrationCase.ApplyDuplicateInvestigationRule(person, duplicateMatches);
 
-        if (person is not null)
-        {
-            registrationCase.RefreshRegisterDeterminability(person.Nationality);
-        }
+        if (person is not null) registrationCase.RefreshRegisterDeterminability(person.Nationality);
 
         var illegalStayDetected = registrationCase.IsIllegalStayDetected(policyResult);
         var marriageRecognitionBlocking = registrationCase.IsMarriageRecognitionBlocking(person);
@@ -59,10 +54,7 @@ public sealed class RegistrationExceptionEvaluator(
         Person? person,
         CancellationToken cancellationToken)
     {
-        if (person is null || person.LinkedRegisterRecordId is not null)
-        {
-            return [];
-        }
+        if (person is null || person.LinkedRegisterRecordId is not null) return [];
 
         var criteria = new NationalRegisterSearchCriteria(
             person.GivenName,

@@ -1,14 +1,14 @@
 using System.Net.Http.Headers;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Domain.Police;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.Registration.ClaimRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordBirthInformation;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
+using SchaerbeekMunicipality.Domain.Documents;
+using SchaerbeekMunicipality.Domain.Police;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 

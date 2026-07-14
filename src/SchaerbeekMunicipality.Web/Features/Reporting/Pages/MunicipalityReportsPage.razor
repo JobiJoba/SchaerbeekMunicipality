@@ -1,9 +1,6 @@
 @page "/administration/reports"
-@using MudBlazor.Charts
-@using SchaerbeekMunicipality.Application.Auth
 @using SchaerbeekMunicipality.Application.Features.Reporting.GetMunicipalityReport
 @using SchaerbeekMunicipality.Web.Api.Reporting
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
 @inject IReportingApi ReportingApi
 @inject ICurrentOfficer CurrentOfficer
 
@@ -29,7 +26,7 @@
 
         @if (_loading)
         {
-            <AppLoading />
+            <AppLoading/>
         }
         else if (_report is not null)
         {
@@ -37,35 +34,35 @@
                 <MudItem xs="12" sm="6" md="4" lg="2">
                     <AppStatisticCard Label="Registrations completed"
                                       Value="@_report.Summary.RegistrationsCompleted"
-                                      Icon="@Icons.Material.Outlined.HowToReg" />
+                                      Icon="@Icons.Material.Outlined.HowToReg"/>
                 </MudItem>
                 <MudItem xs="12" sm="6" md="4" lg="2">
                     <AppStatisticCard Label="Birth declarations"
                                       Value="@_report.Summary.BirthDeclarationsConfirmed"
-                                      Icon="@Icons.Material.Outlined.ChildCare" />
+                                      Icon="@Icons.Material.Outlined.ChildCare"/>
                 </MudItem>
                 <MudItem xs="12" sm="6" md="4" lg="2">
                     <AppStatisticCard Label="Address changes"
                                       Value="@_report.Summary.AddressChangesConfirmed"
-                                      Icon="@Icons.Material.Outlined.Home" />
+                                      Icon="@Icons.Material.Outlined.Home"/>
                 </MudItem>
                 <MudItem xs="12" sm="6" md="4" lg="2">
                     <AppStatisticCard Label="Avg police wait (days)"
                                       Value="0"
                                       FormattedValue="@FormatDays(_report.Summary.AveragePoliceWaitDays)"
-                                      Icon="@Icons.Material.Outlined.LocalPolice" />
+                                      Icon="@Icons.Material.Outlined.LocalPolice"/>
                 </MudItem>
                 <MudItem xs="12" sm="6" md="4" lg="2">
                     <AppStatisticCard Label="Avg intake → registered (days)"
                                       Value="0"
                                       FormattedValue="@FormatDays(_report.Summary.AverageIntakeToRegisteredDays)"
-                                      Icon="@Icons.Material.Outlined.Schedule" />
+                                      Icon="@Icons.Material.Outlined.Schedule"/>
                 </MudItem>
                 <MudItem xs="12" sm="6" md="4" lg="2">
                     <AppStatisticCard Label="Rejection rate"
                                       Value="0"
                                       FormattedValue="@($"{_report.Summary.RejectionRatePercent:0.#}%")"
-                                      Icon="@Icons.Material.Outlined.Cancel" />
+                                      Icon="@Icons.Material.Outlined.Cancel"/>
                 </MudItem>
             </MudGrid>
 
@@ -74,7 +71,7 @@
                 {
                     <AppEmptyState Title="No completed cases in this period"
                                    Description="KPI tiles above reflect zero activity for the selected range."
-                                   Icon="@Icons.Material.Outlined.ShowChart" />
+                                   Icon="@Icons.Material.Outlined.ShowChart"/>
                 }
                 else
                 {
@@ -83,7 +80,7 @@
                               ChartSeries="_chartSeries"
                               ChartLabels="_chartLabels"
                               Width="100%"
-                              Height="320px" />
+                              Height="320px"/>
                 }
             </AppSection>
 
@@ -94,17 +91,17 @@
                             <MudItem xs="12" sm="4">
                                 <AppStatisticCard Label="Registered / confirmed"
                                                   Value="@_report.Outcomes.Registered"
-                                                  Icon="@Icons.Material.Outlined.CheckCircle" />
+                                                  Icon="@Icons.Material.Outlined.CheckCircle"/>
                             </MudItem>
                             <MudItem xs="12" sm="4">
                                 <AppStatisticCard Label="Rejected"
                                                   Value="@_report.Outcomes.Rejected"
-                                                  Icon="@Icons.Material.Outlined.Block" />
+                                                  Icon="@Icons.Material.Outlined.Block"/>
                             </MudItem>
                             <MudItem xs="12" sm="4">
                                 <AppStatisticCard Label="Suspended"
                                                   Value="@_report.Outcomes.Suspended"
-                                                  Icon="@Icons.Material.Outlined.PauseCircle" />
+                                                  Icon="@Icons.Material.Outlined.PauseCircle"/>
                             </MudItem>
                         </MudGrid>
                     </AppSection>
@@ -115,7 +112,7 @@
                         {
                             <AppEmptyState Title="No open cases"
                                            Description="All workflows are empty."
-                                           Icon="@Icons.Material.Outlined.Inbox" />
+                                           Icon="@Icons.Material.Outlined.Inbox"/>
                         }
                         else
                         {
@@ -175,29 +172,34 @@
             new ChartSeries<double>
             {
                 Name = "Registrations",
-                Data = report.VolumeSeries.Select(p => (double)p.Registrations).ToArray(),
+                Data = report.VolumeSeries.Select(p => (double)p.Registrations).ToArray()
             },
             new ChartSeries<double>
             {
                 Name = "Birth declarations",
-                Data = report.VolumeSeries.Select(p => (double)p.BirthDeclarations).ToArray(),
+                Data = report.VolumeSeries.Select(p => (double)p.BirthDeclarations).ToArray()
             },
             new ChartSeries<double>
             {
                 Name = "Address changes",
-                Data = report.VolumeSeries.Select(p => (double)p.AddressChanges).ToArray(),
-            },
+                Data = report.VolumeSeries.Select(p => (double)p.AddressChanges).ToArray()
+            }
         ];
     }
 
-    private static string FormatDays(double? days) =>
-        days is null ? "—" : $"{days:0.#}";
+    private static string FormatDays(double? days)
+    {
+        return days is null ? "—" : $"{days:0.#}";
+    }
 
-    private string GetRedirectTarget() =>
-        CurrentOfficer.Role switch
+    private string GetRedirectTarget()
+    {
+        return CurrentOfficer.Role switch
         {
             OfficerRole.ReceptionOfficer => "/registration/new-case",
             OfficerRole.PoliceClerk => "/registration/police-verifications",
-            _ => "/administration/reports",
+            _ => "/administration/reports"
         };
+    }
+
 }

@@ -1,7 +1,7 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Api.Validation;
 using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Api.Features.Registration.SuspendCase;
 
@@ -15,10 +15,7 @@ public static class SuspendCaseEndpoint
         CancellationToken cancellationToken)
     {
         var validation = await validator.ValidateAsync(request, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return ValidationResults.ToProblemDetails(validation);
-        }
+        if (!validation.IsValid) return ValidationResults.ToProblemDetails(validation);
 
         try
         {
@@ -32,14 +29,14 @@ public static class SuspendCaseEndpoint
         catch (UnauthorizedAccessException ex)
         {
             return Results.Problem(
-                detail: ex.Message,
+                ex.Message,
                 statusCode: StatusCodes.Status403Forbidden,
                 title: "Forbidden");
         }
         catch (InvalidRegistrationTransitionException ex)
         {
             return Results.Problem(
-                detail: ex.Message,
+                ex.Message,
                 statusCode: StatusCodes.Status409Conflict,
                 title: "Invalid registration transition");
         }

@@ -42,3 +42,11 @@ uploads/
 *.db
 *.db-shm
 *.db-wal
+resharper-after-fixes.sarif
+resharper-current.sarif
+resharper-warnings-2.sarif
+resharper-warnings-3.sarif
+resharper-warnings-after-cleanup.sarif
+resharper-warnings-final.sarif
+resharper-warnings.sarif
+resharper.sarif

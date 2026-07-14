@@ -1,5 +1,5 @@
 <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Class="@StackClass" Style="@Style">
-    <MudIcon Icon="@Icon" Style="font-size: 64px; color: var(--mud-palette-text-disabled);" aria-hidden="true" />
+    <MudIcon Icon="@Icon" Style="font-size: 64px; color: var(--mud-palette-text-disabled);" aria-hidden="true"/>
     <MudText Typo="Typo.h3" Class="mt-4">@Title</MudText>
     @if (!string.IsNullOrWhiteSpace(Description))
     {
@@ -16,25 +16,20 @@
 </MudStack>
 
 @code {
-    [Parameter]
-    public string Icon { get; set; } = Icons.Material.Outlined.Inbox;
+    [Parameter] public string Icon { get; set; } = Icons.Material.Outlined.Inbox;
 
-    [Parameter, EditorRequired]
-    public string Title { get; set; } = string.Empty;
+    [Parameter] [EditorRequired] public string Title { get; set; } = string.Empty;
 
-    [Parameter]
-    public string? Description { get; set; }
+    [Parameter] public string? Description { get; set; }
 
-    [Parameter]
-    public RenderFragment? Action { get; set; }
+    [Parameter] public RenderFragment? Action { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private string StackClass => new CssBuilder("pa-16")
         .AddClass(Class)
         .Build();
+
 }

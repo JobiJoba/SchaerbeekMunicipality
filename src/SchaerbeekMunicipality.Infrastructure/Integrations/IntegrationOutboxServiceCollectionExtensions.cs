@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SchaerbeekMunicipality.Domain.Notifications;
@@ -12,13 +11,11 @@ internal static class IntegrationOutboxServiceCollectionExtensions
     {
         services.AddOptions<IntegrationOutboxOptions>();
 
-        foreach (var recipient in Enum.GetValues<Domain.Notifications.OutboundNotificationRecipient>())
-        {
+        foreach (var recipient in Enum.GetValues<OutboundNotificationRecipient>())
             services.AddSingleton<IIntegrationAdapter>(sp => new SimulatedIntegrationAdapter(
                 recipient,
                 sp.GetRequiredService<IOptions<IntegrationOutboxOptions>>(),
                 sp.GetRequiredService<ILogger<SimulatedIntegrationAdapter>>()));
-        }
 
         services.AddSingleton<IntegrationAdapterRegistry>();
         services.AddScoped<IIntegrationOutboxProcessor, IntegrationOutboxProcessor>();

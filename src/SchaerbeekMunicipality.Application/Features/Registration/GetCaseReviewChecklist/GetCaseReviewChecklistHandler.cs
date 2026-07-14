@@ -1,10 +1,9 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
-using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.GetCaseReviewChecklist;
 
@@ -27,9 +26,7 @@ public sealed class GetCaseReviewChecklistHandler(
 
         Person? person = null;
         if (registrationCase.PersonId is { } personId)
-        {
             person = await personRepository.GetByIdAsync(personId, cancellationToken);
-        }
 
         var permit = await permitRepository.GetByCaseIdAsync(caseId, cancellationToken);
         var documents = await documentRepository.ListByRegistrationCaseIdAsync(caseId, cancellationToken);

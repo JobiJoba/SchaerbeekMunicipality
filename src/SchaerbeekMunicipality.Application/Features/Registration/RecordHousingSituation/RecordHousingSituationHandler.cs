@@ -1,6 +1,5 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.RecordHousingSituation;
 

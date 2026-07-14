@@ -8,20 +8,15 @@
 </MudText>
 
 @code {
-    [Parameter, EditorRequired]
-    public string Text { get; set; } = string.Empty;
+    [Parameter] [EditorRequired] public string Text { get; set; } = string.Empty;
 
-    [Parameter]
-    public bool Required { get; set; }
+    [Parameter] public bool Required { get; set; }
 
-    [Parameter]
-    public string? For { get; set; }
+    [Parameter] public string? For { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 }
 
 <style>

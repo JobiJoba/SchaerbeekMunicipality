@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.UpdateHouseholdForMove;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.UpdateHouseholdForMove;
 
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress.UpdateHouseholdForMove;
 

@@ -1,7 +1,8 @@
-@using SchaerbeekMunicipality.Domain.IdentityDocuments
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.IdentityDocuments.CancelDocumentRequest
+@using SchaerbeekMunicipality.Domain.IdentityDocuments
 @using SchaerbeekMunicipality.Web.Api.IdentityDocuments
-
+@using Severity = MudBlazor.Severity
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h4">Cancel request</MudText>
@@ -12,7 +13,7 @@
                           Label="Reason"
                           Required="true"
                           Lines="3"
-                          MaxLength="2000" />
+                          MaxLength="2000"/>
         </MudForm>
 
         @if (!string.IsNullOrWhiteSpace(_error))
@@ -32,17 +33,13 @@
 </MudDialog>
 
 @code {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
-    [Parameter, EditorRequired]
-    public Guid CaseId { get; set; }
+    [Parameter] [EditorRequired] public Guid CaseId { get; set; }
 
-    [Parameter]
-    public EventCallback OnCancelled { get; set; }
+    [Parameter] public EventCallback OnCancelled { get; set; }
 
-    [Inject]
-    private IIdentityDocumentsApi IdentityDocumentsApi { get; set; } = null!;
+    [Inject] private IIdentityDocumentsApi IdentityDocumentsApi { get; set; } = null!;
 
     private MudForm _form = null!;
     private bool _formValid;
@@ -50,7 +47,10 @@
     private string _reason = string.Empty;
     private string? _error;
 
-    private void Cancel() => MudDialog.Cancel();
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
 
     private async Task Submit()
     {
@@ -72,9 +72,9 @@
             await OnCancelled.InvokeAsync();
             MudDialog.Close(DialogResult.Ok(true));
         }
-        catch (Exception ex) when (ex is InvalidDocumentRequestTransitionException or FluentValidation.ValidationException)
+        catch (Exception ex) when (ex is InvalidDocumentRequestTransitionException or ValidationException)
         {
-            _error = ex is FluentValidation.ValidationException validation
+            _error = ex is ValidationException validation
                 ? string.Join(" ", validation.Errors.Select(e => e.ErrorMessage))
                 : ex.Message;
         }
@@ -83,4 +83,5 @@
             _submitting = false;
         }
     }
+
 }

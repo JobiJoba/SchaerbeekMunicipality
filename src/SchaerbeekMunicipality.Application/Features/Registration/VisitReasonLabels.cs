@@ -4,19 +4,22 @@ namespace SchaerbeekMunicipality.Application.Features.Registration;
 
 public static class VisitReasonLabels
 {
-    public static string For(VisitReason reason) =>
-        reason switch
+    public static string For(VisitReason reason)
+    {
+        return reason switch
         {
             VisitReason.FirstRegistration => "First registration",
             VisitReason.ChangeOfAddress => "Change of address",
             VisitReason.EuCitizenRegistration => "EU citizen registration",
             VisitReason.BirthDeclaration => "Birth declaration",
             VisitReason.PassportRenewal => "Passport renewal",
-            _ => reason.ToString(),
+            _ => reason.ToString()
         };
+    }
 
-    public static string Description(VisitReason reason) =>
-        reason switch
+    public static string Description(VisitReason reason)
+    {
+        return reason switch
         {
             VisitReason.FirstRegistration =>
                 "A person registering at an address in Schaerbeek for the first time.",
@@ -28,6 +31,7 @@ public static class VisitReasonLabels
                 "Declaring a newborn for registration in the population register.",
             VisitReason.PassportRenewal =>
                 "Applying for a Belgian passport or national ID card for a registered resident.",
-            _ => string.Empty,
+            _ => string.Empty
         };
+    }
 }

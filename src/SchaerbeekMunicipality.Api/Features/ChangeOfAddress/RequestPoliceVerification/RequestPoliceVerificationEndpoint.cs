@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RequestPoliceVerification;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Police;
-using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RequestPoliceVerification;
 
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress.RequestPoliceVerification;
 

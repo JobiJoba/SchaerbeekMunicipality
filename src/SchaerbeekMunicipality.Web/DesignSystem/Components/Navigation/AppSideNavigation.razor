@@ -1,5 +1,5 @@
-@using SchaerbeekMunicipality.Application.Auth
 @using Microsoft.AspNetCore.Components.Routing
+@using SchaerbeekMunicipality.Application.Auth
 @inject NavigationManager Navigation
 
 <nav aria-label="Main navigation">
@@ -38,14 +38,11 @@
 </nav>
 
 @code {
-    [Parameter, EditorRequired]
-    public IReadOnlyList<AppNavItem> Items { get; set; } = [];
+    [Parameter] [EditorRequired] public IReadOnlyList<AppNavItem> Items { get; set; } = [];
 
-    [Parameter]
-    public OfficerRole CurrentRole { get; set; }
+    [Parameter] public OfficerRole CurrentRole { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
     private IEnumerable<AppNavItem> VisibleItems =>
         Items.Where(i => i.RequiredRole is null || CurrentRole.ToString() == i.RequiredRole);
@@ -61,9 +58,14 @@
         return relative.StartsWith(href.TrimStart('/'), StringComparison.OrdinalIgnoreCase);
     }
 
-    private static NavLinkMatch GetMatch(string href) =>
-        href == "/" ? NavLinkMatch.All : NavLinkMatch.Prefix;
+    private static NavLinkMatch GetMatch(string href)
+    {
+        return href == "/" ? NavLinkMatch.All : NavLinkMatch.Prefix;
+    }
 
-    private static string NavClass(bool isActive) =>
-        isActive ? "app-nav-active" : string.Empty;
+    private static string NavClass(bool isActive)
+    {
+        return isActive ? "app-nav-active" : string.Empty;
+    }
+
 }

@@ -1,7 +1,7 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Api.Validation;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.UpdateHouseholdForMove;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress.UpdateHouseholdForMove;
 
@@ -15,10 +15,7 @@ public static class UpdateHouseholdForMoveEndpoint
         CancellationToken cancellationToken)
     {
         var validation = await validator.ValidateAsync(request, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return ValidationResults.ToProblemDetails(validation);
-        }
+        if (!validation.IsValid) return ValidationResults.ToProblemDetails(validation);
 
         try
         {

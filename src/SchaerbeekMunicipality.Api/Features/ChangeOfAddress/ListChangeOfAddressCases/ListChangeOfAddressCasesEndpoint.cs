@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ListChangeOfAddressCases;
+
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress.ListChangeOfAddressCases;
 
 public static class ListChangeOfAddressCasesEndpoint

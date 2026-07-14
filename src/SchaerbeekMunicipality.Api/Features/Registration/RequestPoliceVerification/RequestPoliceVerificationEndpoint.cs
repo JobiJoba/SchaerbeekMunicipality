@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 
 namespace SchaerbeekMunicipality.Api.Features.Registration.RequestPoliceVerification;
 
@@ -23,14 +23,14 @@ public static class RequestPoliceVerificationEndpoint
         catch (InvalidRegistrationTransitionException ex)
         {
             return Results.Problem(
-                detail: ex.Message,
+                ex.Message,
                 statusCode: StatusCodes.Status409Conflict,
                 title: "Invalid registration transition");
         }
         catch (InvalidPoliceVerificationException ex)
         {
             return Results.Problem(
-                detail: ex.Message,
+                ex.Message,
                 statusCode: StatusCodes.Status409Conflict,
                 title: "Police verification conflict");
         }

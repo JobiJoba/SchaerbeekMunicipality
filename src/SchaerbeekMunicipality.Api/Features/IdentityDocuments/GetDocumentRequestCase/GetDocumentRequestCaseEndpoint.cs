@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Application.Features.IdentityDocuments.GetDocumentRequestCase;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 
 namespace SchaerbeekMunicipality.Api.Features.IdentityDocuments.GetDocumentRequestCase;
 

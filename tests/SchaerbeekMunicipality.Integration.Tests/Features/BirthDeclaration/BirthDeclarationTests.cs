@@ -1,18 +1,18 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
-using SchaerbeekMunicipality.Domain.NationalRegister;
-using SchaerbeekMunicipality.Infrastructure.Persistence;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ConfirmBirthDeclaration;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.OpenBirthDeclarationCase;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RecordChildDetails;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SetDeclarationHousehold;
 using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
+using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Domain.Registration;
+using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Integration.Tests.Features.Registration;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.BirthDeclaration;
 
@@ -37,13 +37,15 @@ public sealed class BirthDeclarationTests
         var birthRepo = scope.ServiceProvider.GetRequiredService<IBirthDeclarationCaseRepository>();
         var registrationRepo = scope.ServiceProvider.GetRequiredService<IRegistrationCaseRepository>();
 
-        var birthCase = await birthRepo.GetByIdAsync(new BirthDeclarationCaseId(birthResult.CaseId), CancellationToken.None);
-        var registrationCase = await registrationRepo.GetByIdAsync(new RegistrationCaseId(registrationResult.CaseId), CancellationToken.None);
+        var birthCase =
+            await birthRepo.GetByIdAsync(new BirthDeclarationCaseId(birthResult.CaseId), CancellationToken.None);
+        var registrationCase = await registrationRepo.GetByIdAsync(new RegistrationCaseId(registrationResult.CaseId),
+            CancellationToken.None);
 
         birthCase.Should().NotBeNull();
         registrationCase.Should().NotBeNull();
-        birthCase!.Status.Should().Be(BirthDeclarationCaseStatus.Intake);
-        registrationCase!.VisitReason.Should().Be(VisitReason.FirstRegistration);
+        birthCase.Status.Should().Be(BirthDeclarationCaseStatus.Intake);
+        registrationCase.VisitReason.Should().Be(VisitReason.FirstRegistration);
     }
 
     [Fact]
@@ -67,7 +69,7 @@ public sealed class BirthDeclarationTests
 
         await services.GetRequiredService<LinkParentHandler>().Handle(
             caseId,
-            new LinkParentRequest(jeanDupont!.Id.Value, ParentRole.Father),
+            new LinkParentRequest(jeanDupont.Id.Value, ParentRole.Father),
             CancellationToken.None);
 
         await using var pdf = new MemoryStream("%PDF-1.4 birth"u8.ToArray());

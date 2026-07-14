@@ -1,7 +1,7 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.RejectBirthDeclaration;
 
@@ -32,9 +32,7 @@ public sealed class RejectBirthDeclarationHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can reject birth declaration cases.");
-        }
 
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 

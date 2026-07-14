@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.Registration.RemoveDocument;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration.RemoveDocument;
 
 namespace SchaerbeekMunicipality.Api.Features.Registration.RemoveDocument;
 
@@ -28,7 +28,7 @@ public static class RemoveDocumentEndpoint
         catch (InvalidRegistrationTransitionException ex)
         {
             return Results.Problem(
-                detail: ex.Message,
+                ex.Message,
                 statusCode: StatusCodes.Status409Conflict,
                 title: "Invalid registration transition");
         }

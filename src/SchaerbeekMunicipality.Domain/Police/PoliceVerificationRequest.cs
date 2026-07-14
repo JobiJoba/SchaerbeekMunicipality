@@ -1,4 +1,3 @@
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -34,16 +33,14 @@ public sealed class PoliceVerificationRequest
         DateTimeOffset requestedAt)
     {
         if (attemptNumber < 1)
-        {
             throw new ArgumentOutOfRangeException(nameof(attemptNumber), "Attempt number must be at least 1.");
-        }
 
         return new PoliceVerificationRequest
         {
             Id = PoliceVerificationRequestId.New(),
             RegistrationCaseId = registrationCaseId,
             AttemptNumber = attemptNumber,
-            RequestedAt = requestedAt,
+            RequestedAt = requestedAt
         };
     }
 
@@ -53,24 +50,24 @@ public sealed class PoliceVerificationRequest
         DateTimeOffset requestedAt)
     {
         if (attemptNumber < 1)
-        {
             throw new ArgumentOutOfRangeException(nameof(attemptNumber), "Attempt number must be at least 1.");
-        }
 
         return new PoliceVerificationRequest
         {
             Id = PoliceVerificationRequestId.New(),
             ChangeOfAddressCaseId = changeOfAddressCaseId,
             AttemptNumber = attemptNumber,
-            RequestedAt = requestedAt,
+            RequestedAt = requestedAt
         };
     }
 
     public static PoliceVerificationRequest Create(
         RegistrationCaseId registrationCaseId,
         int attemptNumber,
-        DateTimeOffset requestedAt) =>
-        CreateForRegistrationCase(registrationCaseId, attemptNumber, requestedAt);
+        DateTimeOffset requestedAt)
+    {
+        return CreateForRegistrationCase(registrationCaseId, attemptNumber, requestedAt);
+    }
 
     public void RecordResult(
         PoliceVerificationResult result,
@@ -78,10 +75,8 @@ public sealed class PoliceVerificationRequest
         DateTimeOffset completedAt)
     {
         if (!IsPending)
-        {
             throw new InvalidPoliceVerificationException(
                 "This police verification request has already been completed.");
-        }
 
         Result = result;
         OfficerNotes = string.IsNullOrWhiteSpace(officerNotes) ? null : officerNotes.Trim();

@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
@@ -5,7 +6,6 @@ using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 

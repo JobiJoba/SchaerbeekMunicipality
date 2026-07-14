@@ -15,7 +15,6 @@ public static class NationalRegisterSearchScorer
         IReadOnlyList<NationalRegisterPerson> candidates)
     {
         if (!criteria.HasAnyCriterion)
-        {
             return candidates
                 .OrderBy(c => c.FamilyName, StringComparer.OrdinalIgnoreCase)
                 .ThenBy(c => c.GivenName, StringComparer.OrdinalIgnoreCase)
@@ -30,17 +29,13 @@ public static class NationalRegisterSearchScorer
                     BrowseAllScore,
                     BrowseAllReason))
                 .ToList();
-        }
 
         var matches = new List<NationalRegisterMatch>();
 
         foreach (var candidate in candidates)
         {
             var (score, reason) = ScoreCandidate(criteria, candidate);
-            if (score < MinimumReportableScore)
-            {
-                continue;
-            }
+            if (score < MinimumReportableScore) continue;
 
             matches.Add(new NationalRegisterMatch(
                 candidate.Id,
@@ -69,62 +64,35 @@ public static class NationalRegisterSearchScorer
         var hasFamily = HasValue(criteria.FamilyName);
         var hasBirth = criteria.BirthDate.HasValue;
 
-        if (!MeetsProvidedCriteria(criteria, candidate, hasGiven, hasFamily, hasBirth))
-        {
-            return (0, string.Empty);
-        }
+        if (!MeetsProvidedCriteria(criteria, candidate, hasGiven, hasFamily, hasBirth)) return (0, string.Empty);
 
         var givenExact = !hasGiven || NamesMatch(criteria.GivenName!, candidate.GivenName);
         var familyExact = !hasFamily || NamesMatch(criteria.FamilyName!, candidate.FamilyName);
         var birthMatch = !hasBirth || criteria.BirthDate == candidate.BirthDate;
 
         if (hasGiven && hasFamily && hasBirth && givenExact && familyExact && birthMatch)
-        {
             return (ExactMatchScore, "Exact name and date of birth match.");
-        }
 
         if (hasBirth && birthMatch && hasGiven && hasFamily)
         {
-            if (givenExact && familyExact)
-            {
-                return (BirthDateAndNameScore, "Same date of birth with matching name.");
-            }
+            if (givenExact && familyExact) return (BirthDateAndNameScore, "Same date of birth with matching name.");
 
-            if (familyExact && NamesSimilar(criteria.GivenName!, candidate.GivenName, criteria.FamilyName!, candidate.FamilyName))
-            {
-                return (BirthDateAndNameScore, "Same date of birth with similar name.");
-            }
+            if (familyExact && NamesSimilar(criteria.GivenName!, candidate.GivenName, criteria.FamilyName!,
+                    candidate.FamilyName)) return (BirthDateAndNameScore, "Same date of birth with similar name.");
         }
 
         if (hasBirth && birthMatch && (hasGiven || hasFamily))
-        {
             return (BirthDateAndNameScore, "Same date of birth with similar name.");
-        }
 
-        if (hasGiven && hasFamily && givenExact && familyExact)
-        {
-            return (NameOnlyScore, "Exact name match.");
-        }
+        if (hasGiven && hasFamily && givenExact && familyExact) return (NameOnlyScore, "Exact name match.");
 
-        if (hasGiven && hasFamily)
-        {
-            return (NameOnlyScore, "Similar name match.");
-        }
+        if (hasGiven && hasFamily) return (NameOnlyScore, "Similar name match.");
 
-        if (hasBirth && !hasGiven && !hasFamily && birthMatch)
-        {
-            return (PartialNameScore, "Date of birth matches.");
-        }
+        if (hasBirth && !hasGiven && !hasFamily && birthMatch) return (PartialNameScore, "Date of birth matches.");
 
-        if (hasGiven && !hasFamily && !hasBirth)
-        {
-            return (PartialNameScore, "Given name matches.");
-        }
+        if (hasGiven && !hasFamily && !hasBirth) return (PartialNameScore, "Given name matches.");
 
-        if (!hasGiven && hasFamily && !hasBirth)
-        {
-            return (PartialNameScore, "Family name matches.");
-        }
+        if (!hasGiven && hasFamily && !hasBirth) return (PartialNameScore, "Family name matches.");
 
         return (PartialNameScore, "Partial match.");
     }
@@ -137,30 +105,28 @@ public static class NationalRegisterSearchScorer
         bool hasBirth)
     {
         if (hasGiven && !NamePartialMatch(criteria.GivenName!, candidate.GivenName)
-            && !(hasBirth && criteria.BirthDate == candidate.BirthDate
-                 && hasFamily && NamesMatch(criteria.FamilyName!, candidate.FamilyName)
-                 && NamesSimilar(criteria.GivenName!, candidate.GivenName, criteria.FamilyName!, candidate.FamilyName)))
-        {
+                     && !(hasBirth && criteria.BirthDate == candidate.BirthDate
+                                   && hasFamily && NamesMatch(criteria.FamilyName!, candidate.FamilyName)
+                                   && NamesSimilar(criteria.GivenName!, candidate.GivenName, criteria.FamilyName!,
+                                       candidate.FamilyName)))
             return false;
-        }
 
-        if (hasFamily && !NamePartialMatch(criteria.FamilyName!, candidate.FamilyName))
-        {
-            return false;
-        }
+        if (hasFamily && !NamePartialMatch(criteria.FamilyName!, candidate.FamilyName)) return false;
 
-        if (hasBirth && criteria.BirthDate != candidate.BirthDate)
-        {
-            return false;
-        }
+        if (hasBirth && criteria.BirthDate != candidate.BirthDate) return false;
 
         return true;
     }
 
-    private static bool HasValue(string? value) => !string.IsNullOrWhiteSpace(value);
+    private static bool HasValue(string? value)
+    {
+        return !string.IsNullOrWhiteSpace(value);
+    }
 
-    private static bool NamesMatch(string left, string right) =>
-        string.Equals(NormalizeName(left), NormalizeName(right), StringComparison.Ordinal);
+    private static bool NamesMatch(string left, string right)
+    {
+        return string.Equals(NormalizeName(left), NormalizeName(right), StringComparison.Ordinal);
+    }
 
     private static bool NamePartialMatch(string criteria, string candidateValue)
     {
@@ -179,29 +145,24 @@ public static class NationalRegisterSearchScorer
         string criteriaFamily,
         string candidateFamily)
     {
-        if (NormalizeName(criteriaFamily) != NormalizeName(candidateFamily))
-        {
-            return false;
-        }
+        if (NormalizeName(criteriaFamily) != NormalizeName(candidateFamily)) return false;
 
         var normalizedGivenCriteria = NormalizeName(criteriaGiven);
         var normalizedGivenCandidate = NormalizeName(candidateGiven);
 
         if (normalizedGivenCriteria.StartsWith(normalizedGivenCandidate, StringComparison.Ordinal)
             || normalizedGivenCandidate.StartsWith(normalizedGivenCriteria, StringComparison.Ordinal))
-        {
             return true;
-        }
 
         if (normalizedGivenCandidate.TrimEnd('.').Length <= 2
             && normalizedGivenCriteria.StartsWith(normalizedGivenCandidate.TrimEnd('.'), StringComparison.Ordinal))
-        {
             return true;
-        }
 
         return false;
     }
 
-    private static string NormalizeName(string value) =>
-        value.Trim().ToUpperInvariant();
+    private static string NormalizeName(string value)
+    {
+        return value.Trim().ToUpperInvariant();
+    }
 }

@@ -1,6 +1,4 @@
-@using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase
-
 <ReasonNotesDialog TReason="SuspensionReason"
                    TRequest="SuspendCaseRequest"
                    ReasonLabel="Suspension reason"
@@ -11,17 +9,21 @@
 
 @code {
 
-    private static SuspendCaseRequest CreateRequest(SuspensionReason reason, string? notes) =>
-        new(reason, notes);
+    private static SuspendCaseRequest CreateRequest(SuspensionReason reason, string? notes)
+    {
+        return new SuspendCaseRequest(reason, notes);
+    }
 
-    private static string FormatReason(SuspensionReason reason) =>
-        reason switch
+    private static string FormatReason(SuspensionReason reason)
+    {
+        return reason switch
         {
             SuspensionReason.MissingDocuments => "Missing documents",
             SuspensionReason.AwaitingFederalDecision => "Awaiting federal decision",
             SuspensionReason.MarriageRecognitionPending => "Marriage recognition pending",
             SuspensionReason.InvestigationRequired => "Investigation required",
-            _ => "Other",
+            _ => "Other"
         };
+    }
 
 }

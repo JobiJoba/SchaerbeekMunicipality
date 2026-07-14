@@ -2,10 +2,8 @@ using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ClaimBirthDeclarationCase;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ConfirmBirthDeclaration;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.DownloadDocument;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationCase;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationChecklist;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent;
@@ -13,23 +11,19 @@ using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ListBirthDecl
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.OpenBirthDeclarationCase;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RecordChildDetails;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RejectBirthDeclaration;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RemoveDocument;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ResumeBirthDeclaration;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SetDeclarationHousehold;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SuspendBirthDeclaration;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.UnlinkParent;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress;
-using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ClaimChangeOfAddressCase;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ConfirmAddressChange;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.DeclareNewAddress;
-using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.DownloadDocument;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.GetChangeOfAddressCase;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.GetChangeOfAddressChecklist;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ListChangeOfAddressCases;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.OpenChangeOfAddressCase;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RejectChangeOfAddress;
-using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RequestPoliceVerification;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ResolveRegisteredPerson;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.UpdateHouseholdForMove;
 using SchaerbeekMunicipality.Application.Features.IdentityDocuments;
@@ -42,6 +36,10 @@ using SchaerbeekMunicipality.Application.Features.IdentityDocuments.IssueDocumen
 using SchaerbeekMunicipality.Application.Features.IdentityDocuments.ListDocumentRequestCases;
 using SchaerbeekMunicipality.Application.Features.IdentityDocuments.OpenDocumentRequestCase;
 using SchaerbeekMunicipality.Application.Features.IdentityDocuments.RecordFeePayment;
+using SchaerbeekMunicipality.Application.Features.PersonFile;
+using SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile;
+using SchaerbeekMunicipality.Application.Features.PersonFile.ListPersonCases;
+using SchaerbeekMunicipality.Application.Features.PersonFile.SearchPersonFile;
 using SchaerbeekMunicipality.Application.Features.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.ApproveCase;
 using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
@@ -71,8 +69,9 @@ using SchaerbeekMunicipality.Application.Features.Registration.RecordImmigration
 using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordResidencePermit;
 using SchaerbeekMunicipality.Application.Features.Registration.RejectCase;
-using SchaerbeekMunicipality.Application.Features.Registration.RemoveDocument;
 using SchaerbeekMunicipality.Application.Features.Registration.ReleaseCaseLock;
+using SchaerbeekMunicipality.Application.Features.Registration.RemoveDocument;
+using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 using SchaerbeekMunicipality.Application.Features.Registration.ResolveDuplicateInvestigation;
 using SchaerbeekMunicipality.Application.Features.Registration.ResumeCase;
 using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister;
@@ -81,10 +80,6 @@ using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCateg
 using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase;
 using SchaerbeekMunicipality.Application.Features.Reporting;
 using SchaerbeekMunicipality.Application.Features.Reporting.GetMunicipalityReport;
-using SchaerbeekMunicipality.Application.Features.PersonFile;
-using SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile;
-using SchaerbeekMunicipality.Application.Features.PersonFile.ListPersonCases;
-using SchaerbeekMunicipality.Application.Features.PersonFile.SearchPersonFile;
 
 namespace SchaerbeekMunicipality.Application;
 
@@ -108,9 +103,9 @@ public static class DependencyInjection
         services.AddScoped<ConvertBisNumberHandler>();
         services.AddScoped<SearchNationalRegisterHandler>();
         services.AddScoped<CorrectIdentityHandler>();
-        services.AddScoped<Features.Registration.AttachDocument.AttachDocumentHandler>();
-        services.AddScoped<Features.Registration.DownloadDocument.DownloadDocumentHandler>();
-        services.AddScoped<Features.Registration.RemoveDocument.RemoveDocumentHandler>();
+        services.AddScoped<AttachDocumentHandler>();
+        services.AddScoped<DownloadDocumentHandler>();
+        services.AddScoped<RemoveDocumentHandler>();
         services.AddScoped<RegistrationResidenceEvaluator>();
         services.AddScoped<RegistrationExceptionEvaluator>();
         services.AddScoped<SetResidenceCategoryHandler>();
@@ -122,7 +117,7 @@ public static class DependencyInjection
         services.AddScoped<RecordCivilStatusHandler>();
         services.AddScoped<RecordBirthInformationHandler>();
         services.AddScoped<ResolveDuplicateInvestigationHandler>();
-        services.AddScoped<Features.Registration.RequestPoliceVerification.RequestPoliceVerificationHandler>();
+        services.AddScoped<RequestPoliceVerificationHandler>();
         services.AddScoped<ListPendingPoliceVerificationsHandler>();
         services.AddScoped<RecordPoliceResultHandler>();
         services.AddScoped<GetCaseReviewChecklistHandler>();
@@ -177,7 +172,7 @@ public static class DependencyInjection
         services.AddScoped<GetChangeOfAddressChecklistHandler>();
         services.AddScoped<ConfirmAddressChangeHandler>();
         services.AddScoped<RejectChangeOfAddressHandler>();
-        services.AddScoped<Features.ChangeOfAddress.ResolveRegisteredPerson.ResolveRegisteredPersonHandler>();
+        services.AddScoped<ResolveRegisteredPersonHandler>();
 
         services.AddScoped<DocumentRequestCaseAuthorization>();
         services.AddScoped<DocumentRequestCaseGuard>();

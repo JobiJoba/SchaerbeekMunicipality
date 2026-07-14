@@ -15,23 +15,17 @@ public sealed class DomainEventDispatcher(
         {
             case RegistrationConfirmed confirmed:
                 foreach (var handler in registrationConfirmedHandlers)
-                {
                     await handler.HandleAsync(confirmed, cancellationToken);
-                }
 
                 break;
             case BirthRegistered birthRegistered:
                 foreach (var handler in birthRegisteredHandlers)
-                {
                     await handler.HandleAsync(birthRegistered, cancellationToken);
-                }
 
                 break;
             case AddressChanged addressChanged:
                 foreach (var handler in addressChangedHandlers)
-                {
                     await handler.HandleAsync(addressChanged, cancellationToken);
-                }
 
                 break;
             default:

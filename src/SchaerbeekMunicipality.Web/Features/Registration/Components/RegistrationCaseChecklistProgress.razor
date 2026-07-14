@@ -6,29 +6,27 @@
     <MudIcon Icon="@(IdentityEstablished ? Icons.Material.Outlined.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)"
              Color="@(IdentityEstablished ? Color.Success : Color.Default)"
              Size="Size.Small"
-             aria-label="@($"Identity {(IdentityEstablished ? "complete" : "incomplete")}")" />
+             aria-label="@($"Identity {(IdentityEstablished ? "complete" : "incomplete")}")"/>
     <MudIcon Icon="@(LegalResidenceEstablished ? Icons.Material.Outlined.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)"
              Color="@(LegalResidenceEstablished ? Color.Success : Color.Default)"
              Size="Size.Small"
-             aria-label="@($"Legal residence {(LegalResidenceEstablished ? "complete" : "incomplete")}")" />
+             aria-label="@($"Legal residence {(LegalResidenceEstablished ? "complete" : "incomplete")}")"/>
     <MudIcon Icon="@(AddressDeclared ? Icons.Material.Outlined.CheckCircle : Icons.Material.Outlined.RadioButtonUnchecked)"
              Color="@(AddressDeclared ? Color.Success : Color.Default)"
              Size="Size.Small"
-             aria-label="@($"Address {(AddressDeclared ? "complete" : "incomplete")}")" />
+             aria-label="@($"Address {(AddressDeclared ? "complete" : "incomplete")}")"/>
 </MudStack>
 
 @code {
-    [Parameter, EditorRequired]
-    public bool IdentityEstablished { get; set; }
+    [Parameter] [EditorRequired] public bool IdentityEstablished { get; set; }
 
-    [Parameter, EditorRequired]
-    public bool LegalResidenceEstablished { get; set; }
+    [Parameter] [EditorRequired] public bool LegalResidenceEstablished { get; set; }
 
-    [Parameter, EditorRequired]
-    public bool AddressDeclared { get; set; }
+    [Parameter] [EditorRequired] public bool AddressDeclared { get; set; }
 
     private int CompletedCount =>
         (IdentityEstablished ? 1 : 0) +
         (LegalResidenceEstablished ? 1 : 0) +
         (AddressDeclared ? 1 : 0);
+
 }

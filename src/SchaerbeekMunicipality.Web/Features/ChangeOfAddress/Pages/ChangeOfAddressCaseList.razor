@@ -1,13 +1,8 @@
 @page "/change-of-address"
-@using SchaerbeekMunicipality.Domain.ChangeOfAddress
-@using SchaerbeekMunicipality.Application.Auth
-@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.Components
 @using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ListChangeOfAddressCases
-@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.OpenChangeOfAddressCase
-@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ResolveRegisteredPerson
-@using SchaerbeekMunicipality.Application.Features.Registration
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Domain.ChangeOfAddress
 @using SchaerbeekMunicipality.Web.Api.ChangeOfAddress
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.Components
 @inject IChangeOfAddressApi ChangeOfAddressApi
 @inject ICurrentOfficer CurrentOfficer
 @inject IDialogService DialogService
@@ -32,7 +27,7 @@
         <AppSection>
             @if (_loading)
             {
-                <AppLoading Kind="AppLoadingKind.Skeleton" />
+                <AppLoading Kind="AppLoadingKind.Skeleton"/>
             }
             else if (_cases.Count == 0)
             {
@@ -54,7 +49,7 @@
                 <AppSearchBar @bind-Value="_searchText"
                               Placeholder="Search cases…"
                               Class="mb-3"
-                              OnSearch="OnSearch" />
+                              OnSearch="OnSearch"/>
 
                 <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center" Class="mb-4">
                     @foreach (var option in _filterOptions)
@@ -72,7 +67,7 @@
                 {
                     <AppEmptyState Title="No matching cases"
                                    Description="@GetEmptyFilterDescription()"
-                                   Icon="@Icons.Material.Outlined.FilterList" />
+                                   Icon="@Icons.Material.Outlined.FilterList"/>
                 }
                 else
                 {
@@ -95,7 +90,7 @@
                             </MudTd>
                             <MudTd DataLabel="Resident">@(item.PersonDisplayName ?? "—")</MudTd>
                             <MudTd DataLabel="Status">
-                                <AppStatusChip Label="@item.Status.ToDisplayString()" Severity="@GetSeverity(item.Status)" />
+                                <AppStatusChip Label="@item.Status.ToDisplayString()" Severity="@GetSeverity(item.Status)"/>
                             </MudTd>
                             <MudTd DataLabel="Officer">
                                 @OfficerDisplayNames.LockStatus(item.AssignedOfficerId, item.LockedByOfficerId)
@@ -110,12 +105,13 @@
 </RegistrationRoleGate>
 
 @code {
+
     private enum CaseListFilter
     {
         All,
         MyCases,
         Unassigned,
-        Ready,
+        Ready
     }
 
     private sealed record FilterOption(CaseListFilter Filter, string Label, string Icon);
@@ -125,7 +121,7 @@
         new(CaseListFilter.All, "All cases", Icons.Material.Outlined.FolderOpen),
         new(CaseListFilter.MyCases, "My cases", Icons.Material.Outlined.Person),
         new(CaseListFilter.Unassigned, "Unassigned", Icons.Material.Outlined.Inbox),
-        new(CaseListFilter.Ready, "Ready for confirmation", Icons.Material.Outlined.CheckCircle),
+        new(CaseListFilter.Ready, "Ready for confirmation", Icons.Material.Outlined.CheckCircle)
     ];
 
     [SupplyParameterFromQuery(Name = "filter")]
@@ -165,16 +161,21 @@
         _loading = false;
     }
 
-    private static CaseListFilter ParseFilter(string? filter) =>
-        filter?.Trim().ToLowerInvariant() switch
+    private static CaseListFilter ParseFilter(string? filter)
+    {
+        return filter?.Trim().ToLowerInvariant() switch
         {
             "mine" or "my" or "my-cases" => CaseListFilter.MyCases,
             "unassigned" => CaseListFilter.Unassigned,
             "ready" or "ready-for-confirmation" => CaseListFilter.Ready,
-            _ => CaseListFilter.All,
+            _ => CaseListFilter.All
         };
+    }
 
-    private void OnSearch(string _) => ApplyFilter();
+    private void OnSearch(string _)
+    {
+        ApplyFilter();
+    }
 
     private void SetQuickFilter(CaseListFilter filter)
     {
@@ -191,7 +192,7 @@
             CaseListFilter.MyCases => query.Where(IsMyCase),
             CaseListFilter.Unassigned => query.Where(IsUnassigned),
             CaseListFilter.Ready => query.Where(c => c.IsReadyForConfirmation),
-            _ => query,
+            _ => query
         };
 
         if (!string.IsNullOrWhiteSpace(_searchText))
@@ -208,23 +209,32 @@
         _filteredCases = query.ToList();
     }
 
-    private bool IsMyCase(ChangeOfAddressCaseListItem item) =>
-        item.LockedByOfficerId == CurrentOfficer.OfficerId ||
-        item.AssignedOfficerId == CurrentOfficer.OfficerId;
+    private bool IsMyCase(ChangeOfAddressCaseListItem item)
+    {
+        return item.LockedByOfficerId == CurrentOfficer.OfficerId ||
+               item.AssignedOfficerId == CurrentOfficer.OfficerId;
+    }
 
-    private static bool IsUnassigned(ChangeOfAddressCaseListItem item) =>
-        item.AssignedOfficerId is null &&
-        item.LockedByOfficerId is null &&
-        item.Status == ChangeOfAddressCaseStatus.Intake;
+    private static bool IsUnassigned(ChangeOfAddressCaseListItem item)
+    {
+        return item.AssignedOfficerId is null &&
+               item.LockedByOfficerId is null &&
+               item.Status == ChangeOfAddressCaseStatus.Intake;
+    }
 
-    private Variant GetFilterVariant(CaseListFilter filter) =>
-        _quickFilter == filter ? Variant.Filled : Variant.Outlined;
+    private Variant GetFilterVariant(CaseListFilter filter)
+    {
+        return _quickFilter == filter ? Variant.Filled : Variant.Outlined;
+    }
 
-    private Color GetFilterColor(CaseListFilter filter) =>
-        _quickFilter == filter ? Color.Primary : Color.Default;
+    private Color GetFilterColor(CaseListFilter filter)
+    {
+        return _quickFilter == filter ? Color.Primary : Color.Default;
+    }
 
-    private string GetEmptyFilterDescription() =>
-        _quickFilter switch
+    private string GetEmptyFilterDescription()
+    {
+        return _quickFilter switch
         {
             CaseListFilter.MyCases when !string.IsNullOrWhiteSpace(_searchText) =>
                 "No cases assigned to you match your search.",
@@ -236,11 +246,14 @@
                 "No cases ready for confirmation match your search.",
             CaseListFilter.Ready => "No change of address cases are ready for confirmation right now.",
             _ when !string.IsNullOrWhiteSpace(_searchText) => "Try a different search term.",
-            _ => "No cases match the current filters.",
+            _ => "No cases match the current filters."
         };
+    }
 
-    private void NavigateToCase(ChangeOfAddressCaseListItem item) =>
+    private void NavigateToCase(ChangeOfAddressCaseListItem item)
+    {
         Navigation.NavigateTo($"/change-of-address/{item.Id}");
+    }
 
     private async Task OpenNewCase()
     {
@@ -255,13 +268,16 @@
         }
     }
 
-    private static AppSeverity GetSeverity(ChangeOfAddressCaseStatus status) =>
-        status switch
+    private static AppSeverity GetSeverity(ChangeOfAddressCaseStatus status)
+    {
+        return status switch
         {
             ChangeOfAddressCaseStatus.Confirmed => AppSeverity.Success,
             ChangeOfAddressCaseStatus.Rejected => AppSeverity.Error,
             ChangeOfAddressCaseStatus.AwaitingPoliceVerification => AppSeverity.Warning,
             ChangeOfAddressCaseStatus.UnderReview => AppSeverity.Info,
-            _ => AppSeverity.Neutral,
+            _ => AppSeverity.Neutral
         };
+    }
+
 }

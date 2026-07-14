@@ -1,29 +1,18 @@
 @page "/change-of-address/{CaseId:guid}"
-@using Microsoft.AspNetCore.Components.Forms
-@using SchaerbeekMunicipality.Domain.Address
-@using SchaerbeekMunicipality.Domain.ChangeOfAddress
-@using SchaerbeekMunicipality.Domain.Documents
-@using SchaerbeekMunicipality.Domain.Identity
-@using SchaerbeekMunicipality.Domain.ReferenceData
-@using SchaerbeekMunicipality.Application.Auth
-@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.AttachDocument
-@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ClaimChangeOfAddressCase
-@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.Components
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.DeclareNewAddress
 @using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.GetChangeOfAddressCase
-@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ReleaseCaseLock
-@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RemoveDocument
-@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RequestPoliceVerification
-@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.UpdateHouseholdForMove
-@using SchaerbeekMunicipality.Application.Features.Registration
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
-@using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData
+@using SchaerbeekMunicipality.Domain.Address
+@using SchaerbeekMunicipality.Domain.ChangeOfAddress
+@using SchaerbeekMunicipality.Domain.ReferenceData
 @using SchaerbeekMunicipality.Web.Api.ChangeOfAddress
 @using SchaerbeekMunicipality.Web.Api.Registration
+@using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.Components
+@using Severity = MudBlazor.Severity
 @inject IChangeOfAddressApi ChangeOfAddressApi
 @inject IRegistrationApi RegistrationApi
-@inject FluentValidation.IValidator<DeclareNewAddressRequest> DeclareNewAddressValidator
+@inject IValidator<DeclareNewAddressRequest> DeclareNewAddressValidator
 @inject ICurrentOfficer CurrentOfficer
 @inject ISnackbar Snackbar
 @inject NavigationManager Navigation
@@ -31,11 +20,11 @@
 <RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
     @if (_loading)
     {
-        <AppLoading Kind="AppLoadingKind.Skeleton" />
+        <AppLoading Kind="AppLoadingKind.Skeleton"/>
     }
     else if (_case is null)
     {
-        <AppAlert Severity="Severity.Error" Title="Case not found" />
+        <AppAlert Severity="Severity.Error" Title="Case not found"/>
     }
     else
     {
@@ -43,11 +32,11 @@
             <AppPageHeader Title="Change of address"
                            Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.PersonGivenName} {_case.PersonFamilyName}")">
                 <Actions>
-                    <AppStatusChip Label="@_case.Status.ToDisplayString()" Severity="@GetSeverity(_case.Status)" />
+                    <AppStatusChip Label="@_case.Status.ToDisplayString()" Severity="@GetSeverity(_case.Status)"/>
                     <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
                                      CanEdit="_case.CanEdit"
                                      OnTakeCase="TakeCase"
-                                     OnReleaseLock="ReleaseLock" />
+                                     OnReleaseLock="ReleaseLock"/>
                     <MudButton Variant="Variant.Outlined"
                                Color="Color.Primary"
                                StartIcon="@Icons.Material.Outlined.Person"
@@ -62,7 +51,7 @@
                 </Actions>
             </AppPageHeader>
 
-            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock" />
+            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"/>
 
             <MudGrid Spacing="4">
                 <MudItem xs="12" lg="7">
@@ -101,8 +90,7 @@
                                                StatusLabel="@(_case.NewAddressDeclared ? "Complete" : "Pending")"
                                                StatusSeverity="@(_case.NewAddressDeclared ? AppSeverity.Success : AppSeverity.Neutral)"
                                                IsExpanded="@(!_case.NewAddressDeclared)">
-                            <MudForm @ref="_addressForm"
-                                     Disabled="!_case.CanEdit"
+                            <MudForm Disabled="!_case.CanEdit"
                                      Model="_addressModel"
                                      Validation="@(DeclareNewAddressValidator.ToMudValidateValue<DeclareNewAddressRequest, AddressFormModel>(MapAddressRequest))">
                                 <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
@@ -122,7 +110,7 @@
                                             <AppDateField @bind-Value="_addressModel.EffectiveDate"
                                                           For="@(() => _addressModel.EffectiveDate)"
                                                           Label="Effective date"
-                                                          Required="true" />
+                                                          Required="true"/>
                                         </MudItem>
                                     </TrailingContent>
                                 </BelgianAddressFields>
@@ -150,7 +138,7 @@
                                         {
                                             <MudIconButton Icon="@Icons.Material.Outlined.Delete"
                                                            Size="Size.Small"
-                                                           OnClick="@(() => RemoveDocument(doc.Id))" />
+                                                           OnClick="@(() => RemoveDocument(doc.Id))"/>
                                         }
                                     </MudStack>
                                 }
@@ -186,7 +174,7 @@
                                     {
                                         <MudIconButton Icon="@Icons.Material.Outlined.PersonRemove"
                                                        Size="Size.Small"
-                                                       OnClick="@(() => UnlinkMember(member.PersonId))" />
+                                                       OnClick="@(() => UnlinkMember(member.PersonId))"/>
                                     }
                                 </MudStack>
                             }
@@ -209,7 +197,7 @@
                 </MudItem>
 
                 <MudItem xs="12" lg="5">
-                    <ChangeOfAddressDecisionSection Case="_case" OnChanged="ReloadCase" />
+                    <ChangeOfAddressDecisionSection Case="_case" OnChanged="ReloadCase"/>
                 </MudItem>
             </MudGrid>
         </AppPage>
@@ -222,7 +210,6 @@
     private ChangeOfAddressCaseDetailDto? _case;
     private bool _loading = true;
     private bool _busy;
-    private MudForm _addressForm = null!;
     private readonly AddressFormModel _addressModel = new();
     private StreetDto? _selectedStreet;
     private string _houseNumber = string.Empty;
@@ -269,8 +256,10 @@
         await ReloadCase();
     }
 
-    private async Task<IEnumerable<StreetDto>> SearchStreets(string value, CancellationToken cancellationToken) =>
-        await RegistrationApi.SearchStreetsAsync(SchaerbeekCommune.PostalCode, value, cancellationToken);
+    private async Task<IEnumerable<StreetDto>> SearchStreets(string? value, CancellationToken cancellationToken)
+    {
+        return await RegistrationApi.SearchStreetsAsync(SchaerbeekCommune.PostalCode, value ?? string.Empty, cancellationToken);
+    }
 
     private async Task SaveAddress()
     {
@@ -300,12 +289,17 @@
         }
     }
 
-    private async Task UploadDocument(IBrowserFile file)
+    private async Task UploadDocument(IBrowserFile? file)
     {
+        if (file is null)
+        {
+            return;
+        }
+
         _busy = true;
         try
         {
-            await using var stream = file.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
+            await using var stream = file.OpenReadStream(10 * 1024 * 1024);
             await ChangeOfAddressApi.AttachDocumentAsync(
                 CaseId,
                 stream,
@@ -385,8 +379,9 @@
         }
     }
 
-    private DeclareNewAddressRequest MapAddressRequest(AddressFormModel model) =>
-        new(
+    private DeclareNewAddressRequest MapAddressRequest(AddressFormModel model)
+    {
+        return new DeclareNewAddressRequest(
             _selectedStreet?.Name ?? string.Empty,
             _houseNumber,
             _box,
@@ -394,19 +389,23 @@
             SchaerbeekCommune.Name,
             _housingSituation,
             model.EffectiveDate ?? default);
+    }
 
     private sealed class AddressFormModel
     {
         public DateOnly? EffectiveDate { get; set; } = DateOnly.FromDateTime(DateTime.Today);
     }
 
-    private static AppSeverity GetSeverity(ChangeOfAddressCaseStatus status) =>
-        status switch
+    private static AppSeverity GetSeverity(ChangeOfAddressCaseStatus status)
+    {
+        return status switch
         {
             ChangeOfAddressCaseStatus.Confirmed => AppSeverity.Success,
             ChangeOfAddressCaseStatus.Rejected => AppSeverity.Error,
             ChangeOfAddressCaseStatus.AwaitingPoliceVerification => AppSeverity.Warning,
             ChangeOfAddressCaseStatus.UnderReview => AppSeverity.Info,
-            _ => AppSeverity.Neutral,
+            _ => AppSeverity.Neutral
         };
+    }
+
 }

@@ -22,10 +22,12 @@ using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationC
 using SchaerbeekMunicipality.Application.Features.Registration.RecordBirthInformation;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
+using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Immigration;
@@ -37,8 +39,8 @@ using SchaerbeekMunicipality.Infrastructure.Persistence;
 namespace SchaerbeekMunicipality.Application.DemoData;
 
 /// <summary>
-/// Seeds in-progress and decision-ready cases for each municipal workflow so local demos
-/// start with representative data at multiple stages.
+///     Seeds in-progress and decision-ready cases for each municipal workflow so local demos
+///     start with representative data at multiple stages.
 /// </summary>
 public static class DemoWorkflowCaseSeeder
 {
@@ -50,10 +52,7 @@ public static class DemoWorkflowCaseSeeder
         var provider = scope.ServiceProvider;
         var dbContext = provider.GetRequiredService<MunicipalDbContext>();
 
-        if (await IsAlreadySeededAsync(dbContext, cancellationToken))
-        {
-            return;
-        }
+        if (await IsAlreadySeededAsync(dbContext, cancellationToken)) return;
 
         var officer = provider.GetRequiredService<ICurrentOfficer>();
         officer.SetRole(OfficerRole.PopulationOfficer);
@@ -66,12 +65,14 @@ public static class DemoWorkflowCaseSeeder
 
     private static async Task<bool> IsAlreadySeededAsync(
         MunicipalDbContext dbContext,
-        CancellationToken cancellationToken) =>
-        await dbContext.BirthDeclarationCases
+        CancellationToken cancellationToken)
+    {
+        return await dbContext.BirthDeclarationCases
             .AsNoTracking()
             .AnyAsync(
                 c => c.ChildGivenNames != null && c.ChildGivenNames.StartsWith(MarkerPrefix),
                 cancellationToken);
+    }
 
     private static async Task SeedRegistrationCasesAsync(
         IServiceProvider services,
@@ -82,7 +83,7 @@ public static class DemoWorkflowCaseSeeder
         var recordIdentityHandler = services.GetRequiredService<RecordIdentityHandler>();
         var categoryHandler = services.GetRequiredService<SetResidenceCategoryHandler>();
         var declareHandler = services.GetRequiredService<DeclareAddressHandler>();
-        var requestPoliceHandler = services.GetRequiredService<Features.Registration.RequestPoliceVerification.RequestPoliceVerificationHandler>();
+        var requestPoliceHandler = services.GetRequiredService<RequestPoliceVerificationHandler>();
         var recordPoliceHandler = services.GetRequiredService<RecordPoliceResultHandler>();
         var approveHandler = services.GetRequiredService<ApproveCaseHandler>();
 
@@ -248,7 +249,7 @@ public static class DemoWorkflowCaseSeeder
             cancellationToken);
 
         var jeanDupont = await registerRepo.GetByIdAsync(NationalRegisterSeeder.JeanDupontId, cancellationToken)
-            ?? throw new InvalidOperationException("Seed parent Jean Dupont was not found.");
+                         ?? throw new InvalidOperationException("Seed parent Jean Dupont was not found.");
 
         await linkParentHandler.Handle(
             reviewCaseId,
@@ -275,7 +276,10 @@ public static class DemoWorkflowCaseSeeder
         var openHandler = services.GetRequiredService<OpenChangeOfAddressCaseHandler>();
         var claimHandler = services.GetRequiredService<ClaimChangeOfAddressCaseHandler>();
         var declareHandler = services.GetRequiredService<DeclareNewAddressHandler>();
-        var requestPoliceHandler = services.GetRequiredService<Features.ChangeOfAddress.RequestPoliceVerification.RequestPoliceVerificationHandler>();
+        var requestPoliceHandler =
+            services
+                .GetRequiredService<
+                    Features.ChangeOfAddress.RequestPoliceVerification.RequestPoliceVerificationHandler>();
 
         var jeanDupontId = await EnsureRegisteredPersonAsync(
             services,
@@ -406,7 +410,7 @@ public static class DemoWorkflowCaseSeeder
         await using var passport = new MemoryStream([0x25, 0x50, 0x44, 0x46]);
         await attachHandler.Handle(
             caseId,
-            Domain.Documents.DocumentType.Passport,
+            DocumentType.Passport,
             "passport.pdf",
             passport,
             cancellationToken);
@@ -414,7 +418,7 @@ public static class DemoWorkflowCaseSeeder
         await using var birthCertificate = new MemoryStream([0x25, 0x50, 0x44, 0x46]);
         await attachHandler.Handle(
             caseId,
-            Domain.Documents.DocumentType.BirthCertificate,
+            DocumentType.BirthCertificate,
             "birth-certificate.pdf",
             birthCertificate,
             cancellationToken);
@@ -462,20 +466,16 @@ public static class DemoWorkflowCaseSeeder
     {
         var registerRepo = services.GetRequiredService<INationalRegisterRepository>();
         var registerPerson = await registerRepo.GetByIdAsync(registerPersonId, cancellationToken)
-            ?? throw new InvalidOperationException($"Seed NR person '{registerPersonId}' was not found.");
+                             ?? throw new InvalidOperationException(
+                                 $"Seed NR person '{registerPersonId}' was not found.");
 
         var personRepo = services.GetRequiredService<IPersonRepository>();
         var existing = await personRepo.GetByRegisterRecordIdAsync(registerPersonId, cancellationToken);
-        if (existing is not null)
-        {
-            return existing.Id.Value;
-        }
+        if (existing is not null) return existing.Id.Value;
 
         var person = Person.CreateFromRegisterRecord(registerPerson);
         if (person.NationalRegisterNumber is null && registerPerson.NationalRegisterNumber is { } nr)
-        {
             person.AssignNationalRegisterNumber(nr);
-        }
 
         person.UpdateDomicile(domicile);
         await personRepo.AddAsync(person, cancellationToken);

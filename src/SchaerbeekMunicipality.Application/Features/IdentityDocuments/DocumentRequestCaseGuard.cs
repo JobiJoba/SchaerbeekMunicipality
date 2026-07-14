@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 
 namespace SchaerbeekMunicipality.Application.Features.IdentityDocuments;
 
@@ -29,7 +29,9 @@ public sealed class DocumentRequestCaseGuard(
 
     private async Task<DocumentRequestCase> GetRequiredAsync(
         DocumentRequestCaseId caseId,
-        CancellationToken cancellationToken) =>
-        await repository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Document request case '{caseId}' was not found.");
+        CancellationToken cancellationToken)
+    {
+        return await repository.GetByIdAsync(caseId, cancellationToken)
+               ?? throw new KeyNotFoundException($"Document request case '{caseId}' was not found.");
+    }
 }

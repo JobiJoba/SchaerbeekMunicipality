@@ -12,10 +12,7 @@ public static class OpenDocumentRequestCaseEndpoint
         CancellationToken cancellationToken)
     {
         var validation = await validator.ValidateAsync(request, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return Results.ValidationProblem(validation.ToDictionary());
-        }
+        if (!validation.IsValid) return Results.ValidationProblem(validation.ToDictionary());
 
         var response = await handler.Handle(request, cancellationToken);
         return Results.Created($"/api/identity-documents/requests/{response.CaseId}", response);

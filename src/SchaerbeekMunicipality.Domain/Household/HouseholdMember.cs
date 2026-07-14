@@ -29,7 +29,7 @@ public sealed class HouseholdMember
             GivenName = details.GivenName.Trim(),
             FamilyName = details.FamilyName.Trim(),
             BirthDate = details.BirthDate,
-            Role = details.Role,
+            Role = details.Role
         };
     }
 

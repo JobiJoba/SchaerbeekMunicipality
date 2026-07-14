@@ -1,12 +1,10 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Domain.Immigration;
-using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordResidencePermit;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
+using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -84,7 +82,7 @@ public sealed class ResidenceCategoryTests
         var permitRepo = scope.ServiceProvider.GetRequiredService<IResidencePermitRepository>();
         var permit = await permitRepo.GetByCaseIdAsync(caseId, CancellationToken.None);
         permit.Should().NotBeNull();
-        permit!.PermitType.Should().Be(ResidencePermitType.BCard);
+        permit.PermitType.Should().Be(ResidencePermitType.BCard);
     }
 
     [Fact]
@@ -106,7 +104,6 @@ public sealed class ResidenceCategoryTests
 
     private static async Task<RegistrationCaseId> OpenAndRecordIdentityAsync(IServiceProvider services)
     {
-        var openHandler = services.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
 
         var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);

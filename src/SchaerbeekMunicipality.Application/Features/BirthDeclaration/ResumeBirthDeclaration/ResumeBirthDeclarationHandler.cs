@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.ResumeBirthDeclaration;
 
@@ -15,9 +15,7 @@ public sealed class ResumeBirthDeclarationHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can resume birth declaration cases.");
-        }
 
         var birthDeclarationCase = await caseGuard.GetForEditAsync(
             caseId,

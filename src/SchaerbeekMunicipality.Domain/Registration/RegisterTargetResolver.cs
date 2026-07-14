@@ -9,10 +9,7 @@ public static class RegisterTargetResolver
         string? nationality,
         bool hasImmigrationDecision = false)
     {
-        if (category is null)
-        {
-            return null;
-        }
+        if (category is null) return null;
 
         return category switch
         {
@@ -21,7 +18,7 @@ public static class RegisterTargetResolver
             ResidenceCategory.NonEuWorker => RegisterTarget.ForeignersRegister,
             ResidenceCategory.Student => RegisterTarget.ForeignersRegister,
             ResidenceCategory.Refugee when hasImmigrationDecision => RegisterTarget.WaitingRegister,
-            _ => null,
+            _ => null
         };
     }
 
@@ -35,6 +32,8 @@ public static class RegisterTargetResolver
         return suggested == target;
     }
 
-    private static bool IsBelgian(string? nationality) =>
-        nationality?.Trim().Equals("Belgian", StringComparison.OrdinalIgnoreCase) == true;
+    private static bool IsBelgian(string? nationality)
+    {
+        return nationality?.Trim().Equals("Belgian", StringComparison.OrdinalIgnoreCase) == true;
+    }
 }

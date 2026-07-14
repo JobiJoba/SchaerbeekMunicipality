@@ -22,13 +22,11 @@ public sealed class RemoveDocumentHandler(
             cancellationToken);
 
         var document = await documentRepository.GetByIdAsync(documentId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
+                       ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
 
         if (!document.BelongsToDocumentRequestCase(caseId))
-        {
             throw new InvalidDocumentRequestTransitionException(
                 "The document does not belong to this document request case.");
-        }
 
         documentRepository.Remove(document);
         await documentStorage.DeleteAsync(document.StoragePath, cancellationToken);

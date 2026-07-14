@@ -1,7 +1,6 @@
 @page "/administration/outbound-notifications"
 @using SchaerbeekMunicipality.Application.Features.Registration.ListOutboundNotifications
 @using SchaerbeekMunicipality.Web.Api.Registration
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Data
 @inject IRegistrationApi RegistrationApi
 @inject NavigationManager Navigation
 
@@ -19,13 +18,13 @@
 
     @if (_loading)
     {
-        <AppLoading />
+        <AppLoading/>
     }
     else if (_notifications.Count == 0)
     {
         <AppEmptyState Icon="@Icons.Material.Outlined.NotificationsNone"
                        Title="No outbound notifications yet"
-                       Description="Notifications are created automatically when registration, birth declaration, or change of address cases are completed." />
+                       Description="Notifications are created automatically when registration, birth declaration, or change of address cases are completed."/>
     }
     else
     {
@@ -42,7 +41,7 @@
                     <MudTd DataLabel="Created">@context.CreatedAt.LocalDateTime:g</MudTd>
                     <MudTd DataLabel="Status">
                         <AppStatusChip Label="@FormatDeliveryStatus(context.DeliveryStatus)"
-                                       Severity="@GetDeliverySeverity(context.DeliveryStatus)" />
+                                       Severity="@GetDeliverySeverity(context.DeliveryStatus)"/>
                         @if (context.AttemptCount > 0 && context.DeliveryStatus is not "Sent")
                         {
                             <MudText Typo="Typo.caption" Class="mud-text-secondary">
@@ -55,7 +54,7 @@
                         }
                     </MudTd>
                     <MudTd DataLabel="Recipient">
-                        <AppStatusChip Label="@FormatRecipient(context.Recipient)" Severity="AppSeverity.Info" />
+                        <AppStatusChip Label="@FormatRecipient(context.Recipient)" Severity="AppSeverity.Info"/>
                     </MudTd>
                     <MudTd DataLabel="Message">@context.Message</MudTd>
                     <MudTd DataLabel="Case">
@@ -80,44 +79,58 @@
         _loading = false;
     }
 
-    private static string FormatRecipient(string recipient) => recipient switch
+    private static string FormatRecipient(string recipient)
     {
-        "TaxAdministration" => "Tax administration",
-        "SocialSecurity" => "Social security",
-        "HealthInsurance" => "Health insurance",
-        _ => recipient,
-    };
+        return recipient switch
+        {
+            "TaxAdministration" => "Tax administration",
+            "SocialSecurity" => "Social security",
+            "HealthInsurance" => "Health insurance",
+            _ => recipient
+        };
+    }
 
-    private static string FormatDeliveryStatus(string status) => status switch
+    private static string FormatDeliveryStatus(string status)
     {
-        "Pending" => "Pending",
-        "Processing" => "Processing",
-        "Sent" => "Sent",
-        "Failed" => "Failed",
-        _ => status,
-    };
+        return status switch
+        {
+            "Pending" => "Pending",
+            "Processing" => "Processing",
+            "Sent" => "Sent",
+            "Failed" => "Failed",
+            _ => status
+        };
+    }
 
-    private static AppSeverity GetDeliverySeverity(string status) => status switch
+    private static AppSeverity GetDeliverySeverity(string status)
     {
-        "Sent" => AppSeverity.Success,
-        "Failed" => AppSeverity.Error,
-        "Processing" => AppSeverity.Info,
-        _ => AppSeverity.Warning,
-    };
+        return status switch
+        {
+            "Sent" => AppSeverity.Success,
+            "Failed" => AppSeverity.Error,
+            "Processing" => AppSeverity.Info,
+            _ => AppSeverity.Warning
+        };
+    }
 
-    private static string GetCaseHref(OutboundNotificationDto notification) =>
-        notification.CaseType switch
+    private static string GetCaseHref(OutboundNotificationDto notification)
+    {
+        return notification.CaseType switch
         {
             OutboundNotificationCaseType.BirthDeclaration => $"/birth-declarations/{notification.CaseId}",
             OutboundNotificationCaseType.ChangeOfAddress => $"/change-of-address/{notification.CaseId}",
-            _ => $"/registration/cases/{notification.CaseId}",
+            _ => $"/registration/cases/{notification.CaseId}"
         };
+    }
 
-    private static string FormatCaseType(OutboundNotificationCaseType caseType) =>
-        caseType switch
+    private static string FormatCaseType(OutboundNotificationCaseType caseType)
+    {
+        return caseType switch
         {
             OutboundNotificationCaseType.BirthDeclaration => "Birth declaration",
             OutboundNotificationCaseType.ChangeOfAddress => "Change of address",
-            _ => "Registration",
+            _ => "Registration"
         };
+    }
+
 }

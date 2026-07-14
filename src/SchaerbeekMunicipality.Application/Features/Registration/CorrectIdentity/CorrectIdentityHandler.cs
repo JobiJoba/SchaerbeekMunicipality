@@ -1,9 +1,8 @@
 using FluentValidation;
 using Microsoft.Extensions.Logging;
+using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.CorrectIdentity;
 
@@ -28,14 +27,12 @@ public sealed class CorrectIdentityHandler(
             cancellationToken);
 
         if (registrationCase.PersonId is null)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Identity has not been recorded for this case.");
-        }
 
         var person = await personRepository.GetForUpdateAsync(registrationCase.PersonId.Value, cancellationToken)
-            ?? throw new KeyNotFoundException(
-                $"Person '{registrationCase.PersonId.Value}' was not found.");
+                     ?? throw new KeyNotFoundException(
+                         $"Person '{registrationCase.PersonId.Value}' was not found.");
 
         var identity = new IdentityDetails(
             request.GivenName,

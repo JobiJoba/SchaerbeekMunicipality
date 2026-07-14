@@ -6,5 +6,5 @@ public enum BirthDeclarationCaseStatus
     UnderReview = 1,
     Confirmed = 2,
     Rejected = 3,
-    Suspended = 4,
+    Suspended = 4
 }

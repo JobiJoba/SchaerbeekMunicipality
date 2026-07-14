@@ -4,5 +4,5 @@ public enum OutboundNotificationRecipient
 {
     TaxAdministration = 0,
     SocialSecurity = 1,
-    HealthInsurance = 2,
+    HealthInsurance = 2
 }

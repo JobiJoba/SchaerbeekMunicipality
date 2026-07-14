@@ -14,5 +14,8 @@ internal sealed class MunicipalApiBridge : IMunicipalApiBridge
 
     public Uri BaseAddress { get; }
 
-    public HttpMessageHandler CreateHandler() => _handler;
+    public HttpMessageHandler CreateHandler()
+    {
+        return _handler;
+    }
 }

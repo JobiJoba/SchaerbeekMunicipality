@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.ReleaseCaseLock;
 
@@ -18,7 +18,8 @@ public sealed class ReleaseCaseLockHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var birthDeclarationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Birth declaration case '{caseId}' was not found.");
+                                   ?? throw new KeyNotFoundException(
+                                       $"Birth declaration case '{caseId}' was not found.");
 
         var officerId = OfficerId.From(currentOfficer.OfficerId);
         birthDeclarationCase.ReleaseLock(officerId);

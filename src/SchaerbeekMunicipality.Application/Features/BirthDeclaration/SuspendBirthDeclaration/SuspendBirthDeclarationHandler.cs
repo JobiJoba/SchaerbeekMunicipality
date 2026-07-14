@@ -1,7 +1,7 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.SuspendBirthDeclaration;
 
@@ -30,9 +30,7 @@ public sealed class SuspendBirthDeclarationHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can suspend birth declaration cases.");
-        }
 
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 

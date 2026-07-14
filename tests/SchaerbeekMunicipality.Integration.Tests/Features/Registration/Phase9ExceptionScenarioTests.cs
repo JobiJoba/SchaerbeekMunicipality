@@ -1,14 +1,14 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Domain.Immigration;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordBirthInformation;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.ResolveDuplicateInvestigation;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
+using SchaerbeekMunicipality.Domain.Documents;
+using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 

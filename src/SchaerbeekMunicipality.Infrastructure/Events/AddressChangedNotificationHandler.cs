@@ -29,12 +29,10 @@ public sealed class AddressChangedNotificationHandler(
                 domainEvent.PersonId,
                 OutboundNotificationRecipient.SocialSecurity,
                 "Notify electoral roll of domicile change.",
-                createdAt),
+                createdAt)
         };
 
         foreach (var notification in notifications)
-        {
             await notificationRepository.AddAsync(notification, cancellationToken);
-        }
     }
 }

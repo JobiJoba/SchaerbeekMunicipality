@@ -13,15 +13,19 @@ public sealed class PersonFileApiClient(HttpClient httpClient, ICurrentOfficer c
 
     public Task<GetPersonFileResponse> GetPersonFileAsync(
         Guid personId,
-        CancellationToken cancellationToken = default) =>
-        GetJsonAsync<GetPersonFileResponse>($"{BasePath}/{personId}", cancellationToken);
+        CancellationToken cancellationToken = default)
+    {
+        return GetJsonAsync<GetPersonFileResponse>($"{BasePath}/{personId}", cancellationToken);
+    }
 
     public Task<GetPersonFileResponse> GetPersonFileByNationalRegisterNumberAsync(
         string nationalRegisterNumber,
-        CancellationToken cancellationToken = default) =>
-        GetJsonAsync<GetPersonFileResponse>(
+        CancellationToken cancellationToken = default)
+    {
+        return GetJsonAsync<GetPersonFileResponse>(
             $"{BasePath}/by-nr/{Uri.EscapeDataString(nationalRegisterNumber)}",
             cancellationToken);
+    }
 
     public Task<SearchPersonFileResponse> SearchPersonFileAsync(
         SearchNationalRegisterRequest request,
@@ -39,6 +43,8 @@ public sealed class PersonFileApiClient(HttpClient httpClient, ICurrentOfficer c
 
     public Task<ListPersonCasesResponse> ListPersonCasesAsync(
         Guid personId,
-        CancellationToken cancellationToken = default) =>
-        GetJsonAsync<ListPersonCasesResponse>($"{BasePath}/{personId}/cases", cancellationToken);
+        CancellationToken cancellationToken = default)
+    {
+        return GetJsonAsync<ListPersonCasesResponse>($"{BasePath}/{personId}/cases", cancellationToken);
+    }
 }

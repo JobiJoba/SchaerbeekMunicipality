@@ -1,9 +1,6 @@
 @page "/birth-declarations"
-@using SchaerbeekMunicipality.Domain.BirthDeclaration
-@using SchaerbeekMunicipality.Application.Auth
-@using SchaerbeekMunicipality.Application.Features.Registration
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ListBirthDeclarationCases
+@using SchaerbeekMunicipality.Domain.BirthDeclaration
 @using SchaerbeekMunicipality.Web.Api.BirthDeclaration
 @inject IBirthDeclarationApi BirthDeclarationApi
 @inject ICurrentOfficer CurrentOfficer
@@ -12,25 +9,25 @@
 <RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
     <AppPage Title="Birth declarations">
         <AppPageHeader Title="Birth declarations"
-                       Subtitle="Newborn registration procedures in the population register." />
+                       Subtitle="Newborn registration procedures in the population register."/>
 
         <AppSection>
             @if (_loading)
             {
-                <AppLoading Kind="AppLoadingKind.Skeleton" />
+                <AppLoading Kind="AppLoadingKind.Skeleton"/>
             }
             else if (_cases.Count == 0)
             {
                 <AppEmptyState Title="No birth declaration cases yet"
                                Description="Cases are opened at reception when parents declare a birth."
-                               Icon="@Icons.Material.Outlined.ChildCare" />
+                               Icon="@Icons.Material.Outlined.ChildCare"/>
             }
             else
             {
                 <AppSearchBar @bind-Value="_searchText"
                               Placeholder="Search cases…"
                               Class="mb-3"
-                              OnSearch="OnSearch" />
+                              OnSearch="OnSearch"/>
 
                 <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center" Class="mb-4">
                     @foreach (var option in _filterOptions)
@@ -48,7 +45,7 @@
                 {
                     <AppEmptyState Title="No matching cases"
                                    Description="@GetEmptyFilterDescription()"
-                                   Icon="@Icons.Material.Outlined.FilterList" />
+                                   Icon="@Icons.Material.Outlined.FilterList"/>
                 }
                 else
                 {
@@ -71,7 +68,7 @@
                             </MudTd>
                             <MudTd DataLabel="Child">@(item.ChildDisplayName ?? "—")</MudTd>
                             <MudTd DataLabel="Status">
-                                <AppStatusChip Label="@item.Status.ToDisplayString()" Severity="@GetSeverity(item.Status)" />
+                                <AppStatusChip Label="@item.Status.ToDisplayString()" Severity="@GetSeverity(item.Status)"/>
                             </MudTd>
                             <MudTd DataLabel="Officer">
                                 @OfficerDisplayNames.LockStatus(item.AssignedOfficerId, item.LockedByOfficerId)
@@ -86,12 +83,13 @@
 </RegistrationRoleGate>
 
 @code {
+
     private enum CaseListFilter
     {
         All,
         MyCases,
         Unassigned,
-        Ready,
+        Ready
     }
 
     private sealed record FilterOption(CaseListFilter Filter, string Label, string Icon);
@@ -101,7 +99,7 @@
         new(CaseListFilter.All, "All cases", Icons.Material.Outlined.FolderOpen),
         new(CaseListFilter.MyCases, "My cases", Icons.Material.Outlined.Person),
         new(CaseListFilter.Unassigned, "Unassigned", Icons.Material.Outlined.Inbox),
-        new(CaseListFilter.Ready, "Ready for confirmation", Icons.Material.Outlined.CheckCircle),
+        new(CaseListFilter.Ready, "Ready for confirmation", Icons.Material.Outlined.CheckCircle)
     ];
 
     [SupplyParameterFromQuery(Name = "filter")]
@@ -121,16 +119,21 @@
         _loading = false;
     }
 
-    private static CaseListFilter ParseFilter(string? filter) =>
-        filter?.Trim().ToLowerInvariant() switch
+    private static CaseListFilter ParseFilter(string? filter)
+    {
+        return filter?.Trim().ToLowerInvariant() switch
         {
             "mine" or "my" or "my-cases" => CaseListFilter.MyCases,
             "unassigned" => CaseListFilter.Unassigned,
             "ready" or "ready-for-confirmation" => CaseListFilter.Ready,
-            _ => CaseListFilter.All,
+            _ => CaseListFilter.All
         };
+    }
 
-    private void OnSearch(string _) => ApplyFilter();
+    private void OnSearch(string _)
+    {
+        ApplyFilter();
+    }
 
     private void SetQuickFilter(CaseListFilter filter)
     {
@@ -147,7 +150,7 @@
             CaseListFilter.MyCases => query.Where(IsMyCase),
             CaseListFilter.Unassigned => query.Where(IsUnassigned),
             CaseListFilter.Ready => query.Where(c => c.IsReadyForConfirmation),
-            _ => query,
+            _ => query
         };
 
         if (!string.IsNullOrWhiteSpace(_searchText))
@@ -164,23 +167,32 @@
         _filteredCases = query.ToList();
     }
 
-    private bool IsMyCase(BirthDeclarationCaseListItem item) =>
-        item.LockedByOfficerId == CurrentOfficer.OfficerId ||
-        item.AssignedOfficerId == CurrentOfficer.OfficerId;
+    private bool IsMyCase(BirthDeclarationCaseListItem item)
+    {
+        return item.LockedByOfficerId == CurrentOfficer.OfficerId ||
+               item.AssignedOfficerId == CurrentOfficer.OfficerId;
+    }
 
-    private static bool IsUnassigned(BirthDeclarationCaseListItem item) =>
-        item.AssignedOfficerId is null &&
-        item.LockedByOfficerId is null &&
-        item.Status == BirthDeclarationCaseStatus.Intake;
+    private static bool IsUnassigned(BirthDeclarationCaseListItem item)
+    {
+        return item.AssignedOfficerId is null &&
+               item.LockedByOfficerId is null &&
+               item.Status == BirthDeclarationCaseStatus.Intake;
+    }
 
-    private Variant GetFilterVariant(CaseListFilter filter) =>
-        _quickFilter == filter ? Variant.Filled : Variant.Outlined;
+    private Variant GetFilterVariant(CaseListFilter filter)
+    {
+        return _quickFilter == filter ? Variant.Filled : Variant.Outlined;
+    }
 
-    private Color GetFilterColor(CaseListFilter filter) =>
-        _quickFilter == filter ? Color.Primary : Color.Default;
+    private Color GetFilterColor(CaseListFilter filter)
+    {
+        return _quickFilter == filter ? Color.Primary : Color.Default;
+    }
 
-    private string GetEmptyFilterDescription() =>
-        _quickFilter switch
+    private string GetEmptyFilterDescription()
+    {
+        return _quickFilter switch
         {
             CaseListFilter.MyCases when !string.IsNullOrWhiteSpace(_searchText) =>
                 "No cases assigned to you match your search.",
@@ -192,19 +204,25 @@
                 "No cases ready for confirmation match your search.",
             CaseListFilter.Ready => "No birth declaration cases are ready for confirmation right now.",
             _ when !string.IsNullOrWhiteSpace(_searchText) => "Try a different search term.",
-            _ => "No cases match the current filters.",
+            _ => "No cases match the current filters."
         };
+    }
 
-    private void NavigateToCase(BirthDeclarationCaseListItem item) =>
+    private void NavigateToCase(BirthDeclarationCaseListItem item)
+    {
         Navigation.NavigateTo($"/birth-declarations/{item.Id}");
+    }
 
-    private static AppSeverity GetSeverity(BirthDeclarationCaseStatus status) =>
-        status switch
+    private static AppSeverity GetSeverity(BirthDeclarationCaseStatus status)
+    {
+        return status switch
         {
             BirthDeclarationCaseStatus.Confirmed => AppSeverity.Success,
             BirthDeclarationCaseStatus.Rejected => AppSeverity.Error,
             BirthDeclarationCaseStatus.Suspended => AppSeverity.Warning,
             BirthDeclarationCaseStatus.UnderReview => AppSeverity.Info,
-            _ => AppSeverity.Neutral,
+            _ => AppSeverity.Neutral
         };
+    }
+
 }

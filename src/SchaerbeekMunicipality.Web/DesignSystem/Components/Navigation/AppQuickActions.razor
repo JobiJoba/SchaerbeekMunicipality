@@ -1,5 +1,3 @@
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Data
-
 <MudGrid Spacing="3">
     @foreach (var action in Actions)
     {
@@ -17,8 +15,8 @@
 </MudGrid>
 
 @code {
-    [Parameter, EditorRequired]
-    public IReadOnlyList<AppQuickAction> Actions { get; set; } = [];
+    [Parameter] [EditorRequired] public IReadOnlyList<AppQuickAction> Actions { get; set; } = [];
 
     public sealed record AppQuickAction(string Label, string Href, string Icon);
+
 }

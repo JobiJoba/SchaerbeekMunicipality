@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard;
+
 namespace SchaerbeekMunicipality.Api.Features.Registration.GetReviewDashboard;
 
 public static class GetReviewDashboardEndpoint

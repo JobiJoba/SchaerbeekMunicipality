@@ -1,6 +1,4 @@
-@using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
-
 <AppCard Title="Citizen certificates" Outlined="true">
     <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
         Issue printable certificates for this registered person. Each print creates a new reference number in the audit log.
@@ -33,12 +31,12 @@
 </AppCard>
 
 @code {
-    [Parameter, EditorRequired]
-    public RegistrationCaseDetailDto Case { get; set; } = null!;
+    [Parameter] [EditorRequired] public RegistrationCaseDetailDto Case { get; set; } = null!;
 
     private string ResidenceCertificateUrl =>
         $"/api/registration/cases/{Case.Id}/certificates/residence";
 
     private string HouseholdCertificateUrl =>
         $"/api/registration/cases/{Case.Id}/certificates/household-composition";
+
 }

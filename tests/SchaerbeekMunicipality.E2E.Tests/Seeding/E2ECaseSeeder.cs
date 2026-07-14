@@ -40,20 +40,15 @@ internal static class E2ECaseSeeder
 
         var registerRepo = services.GetRequiredService<INationalRegisterRepository>();
         var jean = await registerRepo.GetByIdAsync(NationalRegisterSeeder.JeanDupontId, CancellationToken.None)
-            ?? throw new InvalidOperationException("Seed NR person not found.");
+                   ?? throw new InvalidOperationException("Seed NR person not found.");
 
         var personRepo = services.GetRequiredService<IPersonRepository>();
         var existing = await personRepo.GetByRegisterRecordIdAsync(jean.Id, CancellationToken.None);
-        if (existing is not null)
-        {
-            return;
-        }
+        if (existing is not null) return;
 
         var person = Person.CreateFromRegisterRecord(jean);
         if (person.NationalRegisterNumber is null && jean.NationalRegisterNumber is { } nr)
-        {
             person.AssignNationalRegisterNumber(nr);
-        }
 
         person.UpdateDomicile(BelgianAddress.Create("Rue de la Paix", "1", null, "1030", "Schaerbeek"));
         await personRepo.AddAsync(person, CancellationToken.None);

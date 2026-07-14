@@ -1,7 +1,7 @@
 @page "/design-system"
+@using SchaerbeekMunicipality.Domain.Registration
 @inject IWebHostEnvironment Environment
 @inject NavigationManager Navigation
-@using SchaerbeekMunicipality.Domain.Registration
 
 <AppPage Title="Design system">
     @if (!Environment.IsDevelopment())
@@ -13,7 +13,7 @@
     else
     {
         <AppPageHeader Title="Design system"
-                       Subtitle="Living reference for Schaerbeek tokens and UI kit wrappers." />
+                       Subtitle="Living reference for Schaerbeek tokens and UI kit wrappers."/>
 
         <AppSection Title="Color tokens">
             <MudGrid Spacing="3">
@@ -40,9 +40,9 @@
 
         <AppSection Title="Status chips">
             <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap">
-                @foreach (RegistrationCaseStatus status in Enum.GetValues<RegistrationCaseStatus>())
+                @foreach (var status in Enum.GetValues<RegistrationCaseStatus>())
                 {
-                    <AppStatusChip Status="status" />
+                    <AppStatusChip Status="status"/>
                 }
             </MudStack>
         </AppSection>
@@ -63,17 +63,17 @@
                     <MudTd DataLabel="Case ID">@row.CaseId</MudTd>
                     <MudTd DataLabel="Visit reason">@row.VisitReason</MudTd>
                     <MudTd DataLabel="Status">
-                        <AppStatusChip Status="row.Status" />
+                        <AppStatusChip Status="row.Status"/>
                     </MudTd>
                     <MudTd DataLabel="Opened">@row.OpenedAt.LocalDateTime.ToString("g")</MudTd>
                     <MudTd DataLabel="Identity">
                         @if (row.IdentityEstablished)
                         {
-                            <MudIcon Icon="@Icons.Material.Outlined.CheckCircle" Color="Color.Success" Size="Size.Small" aria-label="Identity established" />
+                            <MudIcon Icon="@Icons.Material.Outlined.CheckCircle" Color="Color.Success" Size="Size.Small" aria-label="Identity established"/>
                         }
                         else
                         {
-                            <MudIcon Icon="@Icons.Material.Outlined.RadioButtonUnchecked" Color="Color.Default" Size="Size.Small" aria-label="Identity not established" />
+                            <MudIcon Icon="@Icons.Material.Outlined.RadioButtonUnchecked" Color="Color.Default" Size="Size.Small" aria-label="Identity not established"/>
                         }
                     </MudTd>
                 </RowTemplate>
@@ -122,27 +122,28 @@
             <AppCard Title="Sample card" Outlined="true">
                 <AppFormSection Title="Form section">
                     <MudItem xs="12" md="6">
-                        <MudTextField T="string" Label="Sample field" />
+                        <MudTextField T="string" Label="Sample field"/>
                     </MudItem>
                     <MudItem xs="12" md="6">
-                        <MudTextField T="string" Label="Another field" />
+                        <MudTextField T="string" Label="Another field"/>
                     </MudItem>
                 </AppFormSection>
-                <AppSaveCancelBar SaveText="Save" CancelText="Cancel" />
+                <AppSaveCancelBar SaveText="Save" CancelText="Cancel"/>
             </AppCard>
         </AppSection>
 
         <AppSection Title="Search bar">
-            <AppSearchBar @bind-Value="_searchDemo" Placeholder="Search demo…" />
+            <AppSearchBar @bind-Value="_searchDemo" Placeholder="Search demo…"/>
         </AppSection>
 
         <AppSection Title="Loading">
-            <AppLoading Kind="AppLoadingKind.Spinner" Label="Loading demo" />
+            <AppLoading Kind="AppLoadingKind.Spinner" Label="Loading demo"/>
         </AppSection>
     }
 </AppPage>
 
 @code {
+
     private sealed record DemoCaseRow(
         string CaseId,
         VisitReason VisitReason,
@@ -158,7 +159,7 @@
         new("e5f6g7h8…", VisitReason.EuCitizenRegistration, RegistrationCaseStatus.AwaitingPoliceVerification, DateTimeOffset.Now.AddDays(-5), true),
         new("i9j0k1l2…", VisitReason.ChangeOfAddress, RegistrationCaseStatus.UnderReview, DateTimeOffset.Now.AddDays(-1), true),
         new("m3n4o5p6…", VisitReason.BirthDeclaration, RegistrationCaseStatus.Registered, DateTimeOffset.Now.AddDays(-14), true),
-        new("q7r8s9t0…", VisitReason.FirstRegistration, RegistrationCaseStatus.Rejected, DateTimeOffset.Now.AddDays(-7), true),
+        new("q7r8s9t0…", VisitReason.FirstRegistration, RegistrationCaseStatus.Rejected, DateTimeOffset.Now.AddDays(-7), true)
     ];
 
     protected override void OnInitialized()
@@ -182,6 +183,7 @@
         ("Text muted", SchaerbeekColors.TextMuted),
         ("Background", SchaerbeekColors.Background),
         ("Surface", SchaerbeekColors.Surface),
-        ("Focus", SchaerbeekColors.Focus),
+        ("Focus", SchaerbeekColors.Focus)
     ];
+
 }

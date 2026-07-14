@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.ListBirthDeclarationCases;
 
@@ -37,10 +37,7 @@ public sealed class ListBirthDeclarationCasesHandler(
 
     private static string? FormatChildName(BirthDeclarationCase birthDeclarationCase)
     {
-        if (string.IsNullOrWhiteSpace(birthDeclarationCase.ChildGivenNames))
-        {
-            return null;
-        }
+        if (string.IsNullOrWhiteSpace(birthDeclarationCase.ChildGivenNames)) return null;
 
         return $"{birthDeclarationCase.ChildGivenNames} {birthDeclarationCase.ChildFamilyName}".Trim();
     }

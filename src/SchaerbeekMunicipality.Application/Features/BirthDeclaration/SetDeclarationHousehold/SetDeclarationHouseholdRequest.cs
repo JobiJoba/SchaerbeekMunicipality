@@ -1,5 +1,4 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Application.Validation;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.SetDeclarationHousehold;

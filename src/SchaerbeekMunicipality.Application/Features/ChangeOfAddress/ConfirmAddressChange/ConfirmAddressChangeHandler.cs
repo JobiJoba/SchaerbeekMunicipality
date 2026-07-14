@@ -1,8 +1,8 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Events;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Infrastructure.Events;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ConfirmAddressChange;
 
@@ -19,9 +19,7 @@ public sealed class ConfirmAddressChangeHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can confirm address changes.");
-        }
 
         var changeOfAddressCase = await caseGuard.GetForEditAsync(
             caseId,
@@ -29,13 +27,11 @@ public sealed class ConfirmAddressChangeHandler(
             cancellationToken);
 
         if (changeOfAddressCase.NewAddress is null)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "A new address must be declared before confirmation.");
-        }
 
         var person = await personRepository.GetForUpdateAsync(changeOfAddressCase.PersonId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Person '{changeOfAddressCase.PersonId}' was not found.");
+                     ?? throw new KeyNotFoundException($"Person '{changeOfAddressCase.PersonId}' was not found.");
 
         person.UpdateDomicile(changeOfAddressCase.NewAddress);
 

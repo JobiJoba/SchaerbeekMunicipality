@@ -1,7 +1,6 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.RecordResidencePermit;
 
@@ -25,18 +24,14 @@ public sealed class RecordResidencePermitHandler(
             cancellationToken);
 
         if (registrationCase.ResidenceCategory is null)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Residence category must be set before recording a permit.");
-        }
 
         registrationCase.EnsureIntakeDataEditable(nameof(RecordResidencePermit));
 
         if (!registrationCase.Checklist.IdentityEstablished)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Identity must be recorded before residence information can be captured.");
-        }
 
         var details = new ResidencePermitDetails(
             request.PermitType,

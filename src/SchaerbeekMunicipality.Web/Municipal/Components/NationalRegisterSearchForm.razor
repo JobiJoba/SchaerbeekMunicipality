@@ -1,3 +1,5 @@
+@using FluentValidation
+@using Severity = MudBlazor.Severity
 @if (LeadContent is not null)
 {
     @LeadContent
@@ -5,16 +7,16 @@
 
 <AppFormSection Title="Search criteria">
     <MudItem xs="12" md="6">
-        <MudTextField @bind-Value="_givenName" Label="Given name" />
+        <MudTextField @bind-Value="_givenName" Label="Given name"/>
     </MudItem>
     <MudItem xs="12" md="6">
-        <MudTextField @bind-Value="_familyName" Label="Family name" data-testid="nr-search-family-name" />
+        <MudTextField @bind-Value="_familyName" Label="Family name" data-testid="nr-search-family-name"/>
     </MudItem>
     <MudItem xs="12" md="6">
         <AppDateField @bind-Value="_birthDate"
                       Label="Date of birth"
                       MaxDate="@DateTime.Today"
-                      Clearable="true" />
+                      Clearable="true"/>
     </MudItem>
 </AppFormSection>
 
@@ -79,7 +81,7 @@ else if (_searched && _matches.Count > 0)
                     @if (match.MatchScore > 0)
                     {
                         <AppStatusChip Label="@($"{match.MatchScore}%")"
-                                       Severity="@(match.MatchScore >= 100 ? AppSeverity.Success : AppSeverity.Warning)" />
+                                       Severity="@(match.MatchScore >= 100 ? AppSeverity.Success : AppSeverity.Warning)"/>
                         <MudText Typo="Typo.caption" Color="Color.Secondary">@match.MatchReason</MudText>
                     }
                     else
@@ -106,7 +108,7 @@ else if (_searched && _matches.Count > 0)
             <MudPagination Count="@TotalPages"
                            Selected="@_page"
                            SelectedChanged="OnPageChanged"
-                           Disabled="_searching" />
+                           Disabled="_searching"/>
         </MudStack>
     }
 }
@@ -117,41 +119,29 @@ else if (_searched && _matches.Count > 0)
 }
 
 @code {
-    [Parameter]
-    public string? InitialGivenName { get; set; }
+    [Parameter] public string? InitialGivenName { get; set; }
 
-    [Parameter]
-    public string? InitialFamilyName { get; set; }
+    [Parameter] public string? InitialFamilyName { get; set; }
 
-    [Parameter]
-    public DateOnly? InitialBirthDate { get; set; }
+    [Parameter] public DateOnly? InitialBirthDate { get; set; }
 
-    [Parameter]
-    public string NoMatchesMessage { get; set; } = "No matching records found in the National Register.";
+    [Parameter] public string NoMatchesMessage { get; set; } = "No matching records found in the National Register.";
 
-    [Parameter]
-    public bool ShowBirthDateColumn { get; set; } = true;
+    [Parameter] public bool ShowBirthDateColumn { get; set; } = true;
 
-    [Parameter]
-    public bool ShowMatchScore { get; set; }
+    [Parameter] public bool ShowMatchScore { get; set; }
 
-    [Parameter]
-    public bool ShowFormattedNumbers { get; set; }
+    [Parameter] public bool ShowFormattedNumbers { get; set; }
 
-    [Parameter]
-    public string NumberColumnTitle { get; set; } = "Number";
+    [Parameter] public string NumberColumnTitle { get; set; } = "Number";
 
-    [Parameter]
-    public int PageSize { get; set; } = 25;
+    [Parameter] public int PageSize { get; set; } = 25;
 
-    [Parameter, EditorRequired]
-    public Func<NrSearchFormCriteria, Task<NationalRegisterSearchResult>> SearchAsync { get; set; } = null!;
+    [Parameter] [EditorRequired] public Func<NrSearchFormCriteria, Task<NationalRegisterSearchResult>> SearchAsync { get; set; } = null!;
 
-    [Parameter]
-    public RenderFragment? LeadContent { get; set; }
+    [Parameter] public RenderFragment? LeadContent { get; set; }
 
-    [Parameter]
-    public RenderFragment<NationalRegisterSearchMatch>? RowActions { get; set; }
+    [Parameter] public RenderFragment<NationalRegisterSearchMatch>? RowActions { get; set; }
 
     private bool _searching;
     private bool _searched;
@@ -205,7 +195,7 @@ else if (_searched && _matches.Count > 0)
             _pageSize = result.PageSize;
             _searched = true;
         }
-        catch (FluentValidation.ValidationException ex)
+        catch (ValidationException ex)
         {
             _error = string.Join(" ", ex.Errors.Select(e => e.ErrorMessage));
         }
@@ -222,8 +212,9 @@ else if (_searched && _matches.Count > 0)
             return "No results";
         }
 
-        var start = ((_page - 1) * _pageSize) + 1;
+        var start = (_page - 1) * _pageSize + 1;
         var end = Math.Min(_page * _pageSize, _totalCount);
         return $"{start}–{end} of {_totalCount}";
     }
+
 }

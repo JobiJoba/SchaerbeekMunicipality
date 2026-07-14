@@ -20,23 +20,17 @@
 </MudDialog>
 
 @code {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
-    [Parameter]
-    public string Title { get; set; } = string.Empty;
+    [Parameter] public string Title { get; set; } = string.Empty;
 
-    [Parameter]
-    public string Message { get; set; } = string.Empty;
+    [Parameter] public string Message { get; set; } = string.Empty;
 
-    [Parameter]
-    public string ConfirmText { get; set; } = "Confirm";
+    [Parameter] public string ConfirmText { get; set; } = "Confirm";
 
-    [Parameter]
-    public bool Destructive { get; set; }
+    [Parameter] public bool Destructive { get; set; }
 
-    [Parameter]
-    public string? Consequence { get; set; }
+    [Parameter] public string? Consequence { get; set; }
 
     private MudButton _cancelButton = null!;
 
@@ -48,7 +42,14 @@
         }
     }
 
-    private void Cancel() => MudDialog.Cancel();
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
 
-    private void Confirm() => MudDialog.Close(DialogResult.Ok(true));
+    private void Confirm()
+    {
+        MudDialog.Close(DialogResult.Ok(true));
+    }
+
 }

@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Application.Features.IdentityDocuments.ReleaseCaseLock;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 
 namespace SchaerbeekMunicipality.Api.Features.IdentityDocuments.ReleaseCaseLock;
 

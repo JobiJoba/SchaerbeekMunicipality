@@ -18,21 +18,48 @@ public sealed class ChangeOfAddressCaseChecklist
 
     public bool PoliceVerificationPositive { get; private set; }
 
-    public static ChangeOfAddressCaseChecklist Empty() => new();
+    public static ChangeOfAddressCaseChecklist Empty()
+    {
+        return new ChangeOfAddressCaseChecklist();
+    }
 
-    internal void MarkPersonIdentified() => PersonIdentified = true;
+    internal void MarkPersonIdentified()
+    {
+        PersonIdentified = true;
+    }
 
-    internal void MarkNewAddressDeclared() => NewAddressDeclared = true;
+    internal void MarkNewAddressDeclared()
+    {
+        NewAddressDeclared = true;
+    }
 
-    internal void MarkHousingDocumentAttached() => HousingDocumentAttached = true;
+    internal void MarkHousingDocumentAttached()
+    {
+        HousingDocumentAttached = true;
+    }
 
-    internal void ClearHousingDocumentAttached() => HousingDocumentAttached = false;
+    internal void ClearHousingDocumentAttached()
+    {
+        HousingDocumentAttached = false;
+    }
 
-    internal void SetHousingDocumentRequired(bool required) => HousingDocumentRequired = required;
+    internal void SetHousingDocumentRequired(bool required)
+    {
+        HousingDocumentRequired = required;
+    }
 
-    internal void MarkPoliceVerificationRequested() => PoliceVerificationRequested = true;
+    internal void MarkPoliceVerificationRequested()
+    {
+        PoliceVerificationRequested = true;
+    }
 
-    internal void MarkPoliceVerificationPositive() => PoliceVerificationPositive = true;
+    internal void MarkPoliceVerificationPositive()
+    {
+        PoliceVerificationPositive = true;
+    }
 
-    internal void ClearPoliceVerificationPositive() => PoliceVerificationPositive = false;
+    internal void ClearPoliceVerificationPositive()
+    {
+        PoliceVerificationPositive = false;
+    }
 }

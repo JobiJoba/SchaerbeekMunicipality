@@ -1,9 +1,9 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -26,7 +26,7 @@ public sealed class OpenRegistrationCaseTests
             CancellationToken.None);
 
         registrationCase.Should().NotBeNull();
-        registrationCase!.Status.Should().Be(RegistrationCaseStatus.Intake);
+        registrationCase.Status.Should().Be(RegistrationCaseStatus.Intake);
         registrationCase.VisitReason.Should().Be(VisitReason.FirstRegistration);
         registrationCase.AssignedOfficerId.Should().BeNull();
         registrationCase.Checklist.IdentityEstablished.Should().BeFalse();
@@ -40,7 +40,6 @@ public sealed class RecordIdentityTests
     {
         await using var factory = new MunicipalAppFactory();
         await using var scope = factory.Services.CreateAsyncScope();
-        var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = scope.ServiceProvider.GetRequiredService<RecordIdentityHandler>();
 
         var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);

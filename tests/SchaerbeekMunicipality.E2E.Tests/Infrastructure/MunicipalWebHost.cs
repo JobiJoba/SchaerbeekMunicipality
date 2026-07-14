@@ -17,6 +17,15 @@ internal sealed class MunicipalWebHost : IAsyncDisposable
 
     public Uri BaseUri { get; private set; } = null!;
 
+    public async ValueTask DisposeAsync()
+    {
+        if (_app is not null)
+        {
+            await _app.StopAsync();
+            await _app.DisposeAsync();
+        }
+    }
+
     public async Task StartAsync(MunicipalAppFactory apiFactory, CancellationToken cancellationToken = default)
     {
         var port = MunicipalWebAppFactory.GetFreeTcpPort();
@@ -25,7 +34,7 @@ internal sealed class MunicipalWebHost : IAsyncDisposable
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions
         {
             EnvironmentName = Environments.Development,
-            ContentRootPath = webBinRoot,
+            ContentRootPath = webBinRoot
         });
 
         builder.WebHost.UseSetting(WebHostDefaults.ServerUrlsKey, $"http://127.0.0.1:{port}");
@@ -33,7 +42,7 @@ internal sealed class MunicipalWebHost : IAsyncDisposable
 
         builder.Services.AddSingleton<IMunicipalApiBridge>(
             new MunicipalApiBridge(
-                apiFactory.Server.BaseAddress!,
+                apiFactory.Server.BaseAddress,
                 apiFactory.Server.CreateHandler()));
 
         builder.AddServiceDefaults();
@@ -53,14 +62,5 @@ internal sealed class MunicipalWebHost : IAsyncDisposable
 
         await _app.StartAsync(cancellationToken);
         BaseUri = new Uri($"http://127.0.0.1:{port}/");
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        if (_app is not null)
-        {
-            await _app.StopAsync();
-            await _app.DisposeAsync();
-        }
     }
 }

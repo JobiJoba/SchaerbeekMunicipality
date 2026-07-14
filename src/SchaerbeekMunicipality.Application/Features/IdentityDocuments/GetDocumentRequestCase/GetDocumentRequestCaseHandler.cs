@@ -1,8 +1,8 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.IdentityDocuments.GetDocumentRequestCase;
 
@@ -51,7 +51,7 @@ public sealed class GetDocumentRequestCaseHandler(
 
         var documentRequestCase = await caseGuard.GetForViewAsync(caseId, cancellationToken);
         var person = await personRepository.GetByIdAsync(documentRequestCase.PersonId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Person '{documentRequestCase.PersonId}' was not found.");
+                     ?? throw new KeyNotFoundException($"Person '{documentRequestCase.PersonId}' was not found.");
 
         var documents = await documentRepository.ListByDocumentRequestCaseIdAsync(caseId, cancellationToken);
 

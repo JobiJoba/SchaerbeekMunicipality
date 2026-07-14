@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.IdentityDocuments.ListDocumentRequestCases;
 
@@ -48,10 +48,7 @@ public sealed class ListDocumentRequestCasesHandler(
 
     private static string? FormatPersonName(Person? person)
     {
-        if (person is null)
-        {
-            return null;
-        }
+        if (person is null) return null;
 
         return $"{person.GivenName} {person.FamilyName}".Trim();
     }

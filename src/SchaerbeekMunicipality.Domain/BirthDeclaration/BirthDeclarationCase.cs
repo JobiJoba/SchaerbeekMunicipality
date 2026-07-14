@@ -65,6 +65,13 @@ public sealed class BirthDeclarationCase
 
     public BirthDeclarationCaseStatus? StatusBeforeSuspension { get; private set; }
 
+    public bool IsReadyForConfirmation =>
+        Status is BirthDeclarationCaseStatus.Intake or BirthDeclarationCaseStatus.UnderReview &&
+        Checklist.ChildDetailsRecorded &&
+        Checklist.AtLeastOneParentLinked &&
+        Checklist.MedicalDeclarationAttached &&
+        Checklist.HouseholdEstablished;
+
     public static BirthDeclarationCase Open(DateTimeOffset openedAt)
     {
         return new BirthDeclarationCase
@@ -72,7 +79,7 @@ public sealed class BirthDeclarationCase
             Id = BirthDeclarationCaseId.New(),
             Status = BirthDeclarationCaseStatus.Intake,
             OpenedAt = openedAt,
-            Checklist = BirthDeclarationCaseChecklist.Empty(),
+            Checklist = BirthDeclarationCaseChecklist.Empty()
         };
     }
 
@@ -113,27 +120,27 @@ public sealed class BirthDeclarationCase
             message => new InvalidBirthDeclarationTransitionException(message));
     }
 
-    public bool IsLockedTo(OfficerId officer) =>
-        OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
+    public bool IsLockedTo(OfficerId officer)
+    {
+        return OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
+    }
 
-    public bool IsLockedToAnother(OfficerId officer) =>
-        OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
+    public bool IsLockedToAnother(OfficerId officer)
+    {
+        return OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
+    }
 
     public void RecordChildDetails(NewbornDetails details, DateOnly today)
     {
         EnsureIntakeDataEditable(nameof(RecordChildDetails));
 
         if (details.DateOfBirth > today)
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 "Date of birth cannot be in the future.");
-        }
 
         if (today.DayNumber - details.DateOfBirth.DayNumber > BirthDeclarationRules.DeclarationWindowDays)
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 $"Birth must be declared within {BirthDeclarationRules.DeclarationWindowDays} days.");
-        }
 
         ArgumentException.ThrowIfNullOrWhiteSpace(details.GivenNames);
         ArgumentException.ThrowIfNullOrWhiteSpace(details.FamilyName);
@@ -154,16 +161,12 @@ public sealed class BirthDeclarationCase
         EnsureIntakeDataEditable(nameof(LinkParent));
 
         if (_parentLinks.Any(link => link.PersonId == personId))
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 "This parent is already linked to the case.");
-        }
 
         if (_parentLinks.Any(link => link.Role == role))
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 $"A parent with role '{role}' is already linked.");
-        }
 
         _parentLinks.Add(BirthDeclarationParentLink.Create(personId, role));
         Checklist.MarkAtLeastOneParentLinked();
@@ -176,15 +179,10 @@ public sealed class BirthDeclarationCase
 
         var removed = _parentLinks.RemoveAll(link => link.PersonId == personId);
         if (removed == 0)
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 "The parent is not linked to this case.");
-        }
 
-        if (_parentLinks.Count == 0)
-        {
-            Checklist.ClearAtLeastOneParentLinked();
-        }
+        if (_parentLinks.Count == 0) Checklist.ClearAtLeastOneParentLinked();
     }
 
     public void AttachMedicalDeclaration(AdministrativeDocumentId documentId)
@@ -213,41 +211,26 @@ public sealed class BirthDeclarationCase
         MoveToUnderReviewIfReady();
     }
 
-    public bool IsReadyForConfirmation =>
-        Status is BirthDeclarationCaseStatus.Intake or BirthDeclarationCaseStatus.UnderReview &&
-        Checklist.ChildDetailsRecorded &&
-        Checklist.AtLeastOneParentLinked &&
-        Checklist.MedicalDeclarationAttached &&
-        Checklist.HouseholdEstablished;
-
     public BirthRegisteredEventDetails ConfirmDeclaration(
         PersonId childPersonId,
         string childNationalRegisterNumber,
         DateTimeOffset confirmedAt)
     {
         if (Status is not (BirthDeclarationCaseStatus.Intake or BirthDeclarationCaseStatus.UnderReview))
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 $"Cannot perform '{nameof(ConfirmDeclaration)}' while the case is in status '{Status}'.");
-        }
 
         if (!IsReadyForConfirmation)
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 "Cannot confirm the declaration until all checklist items are satisfied.");
-        }
 
         if (MedicalDeclarationDocumentId is null)
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 "A medical birth declaration must be attached before confirmation.");
-        }
 
         if (_parentLinks.Count == 0)
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 "At least one parent must be linked before confirmation.");
-        }
 
         Status = BirthDeclarationCaseStatus.Confirmed;
         ChildPersonId = childPersonId;
@@ -286,10 +269,8 @@ public sealed class BirthDeclarationCase
         DateTimeOffset suspendedAt)
     {
         if (Status is not (BirthDeclarationCaseStatus.Intake or BirthDeclarationCaseStatus.UnderReview))
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 $"Cannot suspend the case while it is in status '{Status}'.");
-        }
 
         _ = suspendedAt;
         StatusBeforeSuspension = Status;
@@ -315,10 +296,8 @@ public sealed class BirthDeclarationCase
     public void EnsureIntakeDataEditable(string operation)
     {
         if (Status is not (BirthDeclarationCaseStatus.Intake or BirthDeclarationCaseStatus.UnderReview))
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 $"Cannot perform '{operation}' while the case is in status '{Status}'.");
-        }
     }
 
     private void MoveToUnderReviewIfReady()
@@ -326,17 +305,13 @@ public sealed class BirthDeclarationCase
         if (Status == BirthDeclarationCaseStatus.Intake &&
             Checklist.ChildDetailsRecorded &&
             Checklist.AtLeastOneParentLinked)
-        {
             Status = BirthDeclarationCaseStatus.UnderReview;
-        }
     }
 
     private void EnsureStatus(BirthDeclarationCaseStatus requiredStatus, string operation)
     {
         if (Status != requiredStatus)
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 $"Cannot perform '{operation}' while the case is in status '{Status}'.");
-        }
     }
 }

@@ -1,4 +1,3 @@
-using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile;
 using SchaerbeekMunicipality.Application.Features.PersonFile.ListPersonCases;
 using SchaerbeekMunicipality.Application.Features.PersonFile.SearchPersonFile;

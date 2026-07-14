@@ -32,7 +32,8 @@ public sealed class LinkParentHandler(
 
         var registerPersonId = NationalRegisterPersonId.From(request.RegisterPersonId);
         var registerPerson = await nationalRegisterRepository.GetByIdAsync(registerPersonId, cancellationToken)
-            ?? throw new KeyNotFoundException($"National Register record '{registerPersonId}' was not found.");
+                             ?? throw new KeyNotFoundException(
+                                 $"National Register record '{registerPersonId}' was not found.");
 
         var person = await FindOrCreatePersonAsync(registerPerson, cancellationToken);
         birthDeclarationCase.LinkParent(person.Id, request.Role);
@@ -51,10 +52,7 @@ public sealed class LinkParentHandler(
         CancellationToken cancellationToken)
     {
         var existing = await personRepository.GetByRegisterRecordIdAsync(registerPerson.Id, cancellationToken);
-        if (existing is not null)
-        {
-            return existing;
-        }
+        if (existing is not null) return existing;
 
         var person = Person.CreateFromRegisterRecord(registerPerson);
         await personRepository.AddAsync(person, cancellationToken);

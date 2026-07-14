@@ -1,19 +1,19 @@
-using FluentAssertions;
 using FluentValidation.TestHelper;
 using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
 public sealed class RegistrationValidatorTests
 {
-    private readonly OpenRegistrationCaseValidator _openValidator = new();
     private readonly RecordIdentityValidator _identityValidator = new();
+    private readonly OpenRegistrationCaseValidator _openValidator = new();
 
     [Fact]
     public void OpenRegistrationCase_MissingVisitReason_FailsValidation()
     {
-        var request = new OpenRegistrationCaseRequest((Domain.Registration.VisitReason)999, null);
+        var request = new OpenRegistrationCaseRequest((VisitReason)999, null);
 
         var result = _openValidator.TestValidate(request);
 

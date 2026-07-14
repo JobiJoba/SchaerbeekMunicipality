@@ -1,7 +1,6 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.RecordImmigrationDecision;
 

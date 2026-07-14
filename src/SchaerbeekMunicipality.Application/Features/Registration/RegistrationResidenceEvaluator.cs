@@ -25,9 +25,9 @@ public sealed class RegistrationResidenceEvaluator(
         IReadOnlyList<DocumentType>? documentTypesOverride = null)
     {
         var permit = permitOverride
-            ?? await permitRepository.GetByCaseIdAsync(registrationCase.Id, cancellationToken);
+                     ?? await permitRepository.GetByCaseIdAsync(registrationCase.Id, cancellationToken);
         var documentTypes = documentTypesOverride
-            ?? await GetAttachedDocumentTypesAsync(registrationCase.Id, cancellationToken);
+                            ?? await GetAttachedDocumentTypesAsync(registrationCase.Id, cancellationToken);
 
         var result = policyEvaluator.Evaluate(registrationCase, permit, documentTypes);
         registrationCase.ApplyResidencePolicyResult(result);

@@ -1,7 +1,6 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.SuspendCase;
 
@@ -19,9 +18,7 @@ public sealed class SuspendCaseHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can suspend registration cases.");
-        }
 
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 

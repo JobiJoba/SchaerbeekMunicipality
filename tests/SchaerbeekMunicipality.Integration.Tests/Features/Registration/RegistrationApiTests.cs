@@ -1,12 +1,12 @@
 using System.Net;
 using System.Net.Http.Json;
 using FluentAssertions;
-using SchaerbeekMunicipality.Domain.Immigration;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordResidencePermit;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
+using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -38,7 +38,7 @@ public sealed class RegistrationApiTests
         var created = await createResponse.Content.ReadFromJsonAsync<OpenRegistrationCaseResponse>();
         created.Should().NotBeNull();
 
-        await client.PostAsync($"/api/registration/cases/{created!.CaseId}/claim", null);
+        await client.PostAsync($"/api/registration/cases/{created.CaseId}/claim", null);
 
         var identityResponse = await client.PostAsJsonAsync(
             $"/api/registration/cases/{created.CaseId}/identity",
@@ -103,7 +103,7 @@ public sealed class RegistrationApiTests
         var created = await createResponse.Content.ReadFromJsonAsync<OpenRegistrationCaseResponse>();
         created.Should().NotBeNull();
 
-        await client.PostAsync($"/api/registration/cases/{created!.CaseId}/claim", null);
+        await client.PostAsync($"/api/registration/cases/{created.CaseId}/claim", null);
 
         await client.PostAsJsonAsync(
             $"/api/registration/cases/{created.CaseId}/identity",

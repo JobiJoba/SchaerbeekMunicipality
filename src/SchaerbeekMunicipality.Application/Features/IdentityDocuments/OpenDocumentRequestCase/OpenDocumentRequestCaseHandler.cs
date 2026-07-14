@@ -1,9 +1,9 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.IdentityDocuments.OpenDocumentRequestCase;
 
@@ -44,13 +44,11 @@ public sealed class OpenDocumentRequestCaseHandler(
 
         var personId = new PersonId(request.PersonId);
         var person = await personRepository.GetByIdAsync(personId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Person '{personId}' was not found.");
+                     ?? throw new KeyNotFoundException($"Person '{personId}' was not found.");
 
         if (person.NationalRegisterNumber is null)
-        {
             throw new InvalidDocumentRequestTransitionException(
                 "Cannot open a document request for a person without a National Register number.");
-        }
 
         await EnsureMinorHasLinkedParentAsync(person, cancellationToken);
 
@@ -73,27 +71,20 @@ public sealed class OpenDocumentRequestCaseHandler(
     private async Task EnsureMinorHasLinkedParentAsync(Person person, CancellationToken cancellationToken)
     {
         var referenceDate = DateOnly.FromDateTime(timeProvider.GetUtcNow().UtcDateTime);
-        if (!DocumentRequestRules.IsMinor(person.BirthDate, referenceDate))
-        {
-            return;
-        }
+        if (!DocumentRequestRules.IsMinor(person.BirthDate, referenceDate)) return;
 
         var registrationCase = await registrationCaseRepository.GetLatestRegisteredByPersonIdAsync(
             person.Id,
             cancellationToken);
 
         if (registrationCase is null)
-        {
             throw new InvalidDocumentRequestTransitionException(
                 "Minor applicants must have a linked parent in the household.");
-        }
 
         var household = await householdRepository.GetByCaseIdAsync(registrationCase.Id, cancellationToken);
         if (household is null ||
             !household.Members.Any(m => m.Role is HouseholdMemberRole.Head or HouseholdMemberRole.Spouse))
-        {
             throw new InvalidDocumentRequestTransitionException(
                 "Minor applicants must have a linked parent in the household.");
-        }
     }
 }

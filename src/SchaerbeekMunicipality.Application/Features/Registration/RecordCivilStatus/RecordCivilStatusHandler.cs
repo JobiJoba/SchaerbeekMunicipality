@@ -26,13 +26,11 @@ public sealed class RecordCivilStatusHandler(
         registrationCase.EnsureIntakeDataEditable(nameof(RecordCivilStatus));
 
         if (!registrationCase.Checklist.IdentityEstablished || registrationCase.PersonId is null)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Identity must be recorded before civil status can be captured.");
-        }
 
         var person = await personRepository.GetForUpdateAsync(registrationCase.PersonId.Value, cancellationToken)
-            ?? throw new KeyNotFoundException($"Person '{registrationCase.PersonId}' was not found.");
+                     ?? throw new KeyNotFoundException($"Person '{registrationCase.PersonId}' was not found.");
 
         person.RecordCivilStatus(new CivilStatusDetails(
             request.Status,

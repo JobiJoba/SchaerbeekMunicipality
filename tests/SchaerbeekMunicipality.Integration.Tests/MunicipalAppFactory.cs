@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Infrastructure.Integrations;
 using SchaerbeekMunicipality.Api.Middleware;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Infrastructure.Integrations;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 
 namespace SchaerbeekMunicipality.Integration.Tests;
@@ -23,13 +23,10 @@ public sealed class MunicipalAppFactory : WebApplicationFactory<SchaerbeekMunici
 
         builder.ConfigureServices(services =>
         {
-            var descriptor = services.SingleOrDefault(
-                d => d.ServiceType == typeof(DbContextOptions<MunicipalDbContext>));
+            var descriptor =
+                services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<MunicipalDbContext>));
 
-            if (descriptor is not null)
-            {
-                services.Remove(descriptor);
-            }
+            if (descriptor is not null) services.Remove(descriptor);
 
             _connection = new SqliteConnection("Data Source=:memory:");
             _connection.Open();
@@ -45,14 +42,14 @@ public sealed class MunicipalAppFactory : WebApplicationFactory<SchaerbeekMunici
         });
     }
 
-    public HttpClient CreateApiClient() => DemoOfficerTestClient.Create(this);
+    public HttpClient CreateApiClient()
+    {
+        return DemoOfficerTestClient.Create(this);
+    }
 
     protected override void Dispose(bool disposing)
     {
-        if (disposing)
-        {
-            _connection?.Dispose();
-        }
+        if (disposing) _connection?.Dispose();
 
         base.Dispose(disposing);
     }
@@ -64,7 +61,7 @@ public static class DemoOfficerTestClient
     {
         var client = factory.CreateClient(new WebApplicationFactoryClientOptions
         {
-            AllowAutoRedirect = false,
+            AllowAutoRedirect = false
         });
         ApplyDefaultOfficerHeaders(client);
         return client;
@@ -106,7 +103,7 @@ public static class DemoOfficerTestClient
             OfficerRole.ReceptionOfficer => DemoOfficers.Jean,
             OfficerRole.PoliceClerk => DemoOfficers.Luc,
             OfficerRole.BackOfficeOfficer => DemoOfficers.Sophie,
-            _ => DemoOfficers.Marie,
+            _ => DemoOfficers.Marie
         };
 
         request.Headers.Add(DemoOfficerHeaders.OfficerId, officer.Id.ToString());

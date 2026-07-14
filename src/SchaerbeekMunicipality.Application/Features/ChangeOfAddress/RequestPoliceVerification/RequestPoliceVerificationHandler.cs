@@ -22,10 +22,8 @@ public sealed class RequestPoliceVerificationHandler(
             caseId,
             cancellationToken);
         if (pending is not null)
-        {
             throw new InvalidPoliceVerificationException(
                 "A police verification request is already pending for this case.");
-        }
 
         changeOfAddressCase.RequestPoliceVerification();
 

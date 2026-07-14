@@ -83,10 +83,7 @@ internal sealed class PoliceVerificationRepository(MunicipalDbContext dbContext)
         var hasRequests = await dbContext.PoliceVerificationRequests
             .AnyAsync(r => r.RegistrationCaseId == caseId, cancellationToken);
 
-        if (!hasRequests)
-        {
-            return 0;
-        }
+        if (!hasRequests) return 0;
 
         return await dbContext.PoliceVerificationRequests
             .Where(r => r.RegistrationCaseId == caseId)
@@ -100,10 +97,7 @@ internal sealed class PoliceVerificationRepository(MunicipalDbContext dbContext)
         var hasRequests = await dbContext.PoliceVerificationRequests
             .AnyAsync(r => r.ChangeOfAddressCaseId == caseId, cancellationToken);
 
-        if (!hasRequests)
-        {
-            return 0;
-        }
+        if (!hasRequests) return 0;
 
         return await dbContext.PoliceVerificationRequests
             .Where(r => r.ChangeOfAddressCaseId == caseId)

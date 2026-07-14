@@ -1,12 +1,11 @@
-@using SchaerbeekMunicipality.Domain.Documents
-@using SchaerbeekMunicipality.Domain.Registration
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordBirthInformation
 @using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase
 @using SchaerbeekMunicipality.Web.Api.Registration
+@using Severity = MudBlazor.Severity
 @inject IRegistrationApi RegistrationApi
-@inject FluentValidation.IValidator<RecordBirthInformationRequest> BirthInformationValidator
+@inject IValidator<RecordBirthInformationRequest> BirthInformationValidator
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
@@ -26,26 +25,26 @@ else
                         EditAriaLabel="Edit birth information"
                         OnStartEdit="StartEditing">
         <EditContent>
-        <MudForm @ref="_form"
-                 @bind-IsValid="_formValid"
-                 Model="_model"
-                 Validation="@(BirthInformationValidator.ToMudValidateValue<RecordBirthInformationRequest, BirthInformationFormModel>(MapBirthInformationRequest))">
-            <AppFormSection Title="Place of birth">
-                <MudItem xs="12" md="6">
-                    <MudTextField @bind-Value="_model.BirthPlace" Label="Birth place" Required="true" />
-                </MudItem>
-                <MudItem xs="12" md="6">
-                    <MudTextField @bind-Value="_model.BirthCountry" Label="Birth country" />
-                </MudItem>
-            </AppFormSection>
+            <MudForm @ref="_form"
+                     @bind-IsValid="_formValid"
+                     Model="_model"
+                     Validation="@(BirthInformationValidator.ToMudValidateValue<RecordBirthInformationRequest, BirthInformationFormModel>(MapBirthInformationRequest))">
+                <AppFormSection Title="Place of birth">
+                    <MudItem xs="12" md="6">
+                        <MudTextField @bind-Value="_model.BirthPlace" Label="Birth place" Required="true"/>
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField @bind-Value="_model.BirthCountry" Label="Birth country"/>
+                    </MudItem>
+                </AppFormSection>
 
-            <AppSaveCancelBar SaveText="@(_editing ? "Save changes" : "Record birth information")"
-                              CancelText="@(_editing ? "Cancel" : "Clear")"
-                              Saving="_saving"
-                              Disabled="@(_editing && !FormDirty)"
-                              OnSave="Save"
-                                  OnCancel="HandleCancel" />
-        </MudForm>
+                <AppSaveCancelBar SaveText="@(_editing ? "Save changes" : "Record birth information")"
+                                  CancelText="@(_editing ? "Cancel" : "Clear")"
+                                  Saving="_saving"
+                                  Disabled="@(_editing && !FormDirty)"
+                                  OnSave="Save"
+                                  OnCancel="HandleCancel"/>
+            </MudForm>
         </EditContent>
         <ReadContent>
             <MudText Typo="Typo.body1">@_case.Person!.BirthInformation!.BirthPlace</MudText>
@@ -79,17 +78,13 @@ else
 }
 
 @code {
-    [Parameter, EditorRequired]
-    public RegistrationCaseDetailDto Case { get; set; } = null!;
+    [Parameter] [EditorRequired] public RegistrationCaseDetailDto Case { get; set; } = null!;
 
-    [Parameter, EditorRequired]
-    public Guid CaseId { get; set; }
+    [Parameter] [EditorRequired] public Guid CaseId { get; set; }
 
-    [Parameter]
-    public bool CanEdit { get; set; }
+    [Parameter] public bool CanEdit { get; set; }
 
-    [Parameter]
-    public EventCallback OnUpdated { get; set; }
+    [Parameter] public EventCallback OnUpdated { get; set; }
 
     private RegistrationCaseDetailDto _case = null!;
     private bool _editing;
@@ -155,7 +150,7 @@ else
             Snackbar.Add("Birth information saved.", Severity.Success);
             await OnUpdated.InvokeAsync();
         }
-        catch (FluentValidation.ValidationException ex)
+        catch (ValidationException ex)
         {
             Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
         }
@@ -204,12 +199,15 @@ else
         }
     }
 
-    private RecordBirthInformationRequest MapBirthInformationRequest(BirthInformationFormModel model) =>
-        new(model.BirthPlace.Trim(), model.BirthCountry);
+    private RecordBirthInformationRequest MapBirthInformationRequest(BirthInformationFormModel model)
+    {
+        return new RecordBirthInformationRequest(model.BirthPlace.Trim(), model.BirthCountry);
+    }
 
     private sealed class BirthInformationFormModel
     {
         public string BirthPlace { get; set; } = string.Empty;
         public string? BirthCountry { get; set; }
     }
+
 }

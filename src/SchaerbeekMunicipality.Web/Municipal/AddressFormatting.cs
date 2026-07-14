@@ -9,11 +9,15 @@ public static class AddressFormatting
         string houseNumber,
         string? box,
         string postalCode,
-        string municipality) =>
-        $"{street} {houseNumber}{(string.IsNullOrWhiteSpace(box) ? "" : $" bus {box}")}, {postalCode} {municipality}";
+        string municipality)
+    {
+        return
+            $"{street} {houseNumber}{(string.IsNullOrWhiteSpace(box) ? "" : $" bus {box}")}, {postalCode} {municipality}";
+    }
 
-    public static string? FormatBelgianAddress(BelgianAddressDto? address) =>
-        address is null
+    public static string? FormatBelgianAddress(BelgianAddressDto? address)
+    {
+        return address is null
             ? null
             : FormatBelgianAddress(
                 address.Street,
@@ -21,4 +25,5 @@ public static class AddressFormatting
                 address.Box,
                 address.PostalCode,
                 address.Municipality);
+    }
 }

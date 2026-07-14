@@ -26,15 +26,16 @@ public sealed class DocumentRequestE2ETests(MunicipalE2EFixture fixture) : E2ETe
         await page.GetByTestId("nr-search-submit").ClickAsync();
 
         var openCaseButton = page.GetByRole(AriaRole.Row)
-            .Filter(new() { HasText = "Jean" })
+            .Filter(new LocatorFilterOptions { HasText = "Jean" })
             .GetByTestId("open-document-request-case");
         await openCaseButton.WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
         await openCaseButton.ClickAsync();
 
         await page.WaitForURLAsync("**/identity-documents/requests/**", new PageWaitForURLOptions { Timeout = 30_000 });
-        await page.GetByRole(AriaRole.Heading, new() { Name = "Identity document request" })
+        await page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = "Identity document request" })
             .WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
-        (await page.GetByRole(AriaRole.Heading, new() { Name = "Identity document request" }).IsVisibleAsync())
+        (await page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = "Identity document request" })
+                .IsVisibleAsync())
             .Should().BeTrue();
     }
 }

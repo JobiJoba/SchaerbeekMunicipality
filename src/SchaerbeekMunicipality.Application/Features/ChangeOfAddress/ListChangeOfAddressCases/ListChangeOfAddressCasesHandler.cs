@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ListChangeOfAddressCases;
 
@@ -44,10 +44,7 @@ public sealed class ListChangeOfAddressCasesHandler(
 
     private static string? FormatPersonName(Person? person)
     {
-        if (person is null)
-        {
-            return null;
-        }
+        if (person is null) return null;
 
         return $"{person.GivenName} {person.FamilyName}".Trim();
     }

@@ -6,11 +6,11 @@ public enum AppSeverity
     Success,
     Warning,
     Error,
-    Neutral,
+    Neutral
 }
 
 public enum AppLoadingKind
 {
     Spinner,
-    Skeleton,
+    Skeleton
 }

@@ -32,7 +32,7 @@ public sealed class CaseAuditEntry
             Action = action,
             OfficerId = officerId,
             OccurredAt = occurredAt,
-            Details = details?.Trim(),
+            Details = details?.Trim()
         };
     }
 }

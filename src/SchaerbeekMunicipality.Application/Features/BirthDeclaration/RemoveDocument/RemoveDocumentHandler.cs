@@ -24,13 +24,11 @@ public sealed class RemoveDocumentHandler(
         birthDeclarationCase.EnsureIntakeDataEditable(nameof(RemoveDocument));
 
         var document = await documentRepository.GetByIdAsync(documentId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
+                       ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
 
         if (!document.BelongsToBirthDeclarationCase(caseId))
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 "The document does not belong to this birth declaration case.");
-        }
 
         documentRepository.Remove(document);
         await documentStorage.DeleteAsync(document.StoragePath, cancellationToken);

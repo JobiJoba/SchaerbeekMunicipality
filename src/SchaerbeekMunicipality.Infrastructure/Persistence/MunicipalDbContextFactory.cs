@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore.Design;
 namespace SchaerbeekMunicipality.Infrastructure.Persistence;
 
 /// <summary>
-/// Ensures <c>dotnet ef</c> generates PostgreSQL migrations (snake_case, Npgsql types)
-/// even when the startup project's default connection string targets SQLite.
+///     Ensures <c>dotnet ef</c> generates PostgreSQL migrations (snake_case, Npgsql types)
+///     even when the startup project's default connection string targets SQLite.
 /// </summary>
 public sealed class MunicipalDbContextFactory : IDesignTimeDbContextFactory<MunicipalDbContext>
 {

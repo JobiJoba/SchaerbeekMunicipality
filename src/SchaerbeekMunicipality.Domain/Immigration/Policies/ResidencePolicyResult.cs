@@ -12,7 +12,13 @@ public sealed class ResidencePolicyResult
 
     public string? FailureReason { get; }
 
-    public static ResidencePolicyResult Valid() => new(true, null);
+    public static ResidencePolicyResult Valid()
+    {
+        return new ResidencePolicyResult(true, null);
+    }
 
-    public static ResidencePolicyResult Invalid(string reason) => new(false, reason);
+    public static ResidencePolicyResult Invalid(string reason)
+    {
+        return new ResidencePolicyResult(false, reason);
+    }
 }

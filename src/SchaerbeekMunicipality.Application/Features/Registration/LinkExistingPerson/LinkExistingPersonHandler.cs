@@ -2,7 +2,6 @@ using FluentValidation;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson;
 
@@ -28,7 +27,8 @@ public sealed class LinkExistingPersonHandler(
 
         var registerPersonId = NationalRegisterPersonId.From(request.RegisterPersonId);
         var registerPerson = await nationalRegisterRepository.GetByIdAsync(registerPersonId, cancellationToken)
-            ?? throw new KeyNotFoundException($"National Register record '{registerPersonId}' was not found.");
+                             ?? throw new KeyNotFoundException(
+                                 $"National Register record '{registerPersonId}' was not found.");
 
         await EnsureCanLinkAsync(registerPerson, cancellationToken);
 
@@ -53,18 +53,14 @@ public sealed class LinkExistingPersonHandler(
         CancellationToken cancellationToken)
     {
         if (await personRepository.IsRegisterRecordLinkedAsync(registerPerson.Id, cancellationToken))
-        {
             throw new NationalRegisterConflictException(
                 "This National Register record is already linked to an active person file.");
-        }
 
         if (registerPerson.NationalRegisterNumber is { } nationalRegisterNumber
             && await personRepository.IsNationalRegisterNumberAssignedAsync(
                 nationalRegisterNumber,
                 cancellationToken))
-        {
             throw new NationalRegisterConflictException(
                 "The National Register number is already assigned to another person.");
-        }
     }
 }

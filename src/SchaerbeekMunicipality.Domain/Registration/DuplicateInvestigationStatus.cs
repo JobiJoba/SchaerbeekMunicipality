@@ -5,5 +5,5 @@ public enum DuplicateInvestigationStatus
     None = 0,
     Open = 1,
     ResolvedLinked = 2,
-    ResolvedDistinct = 3,
+    ResolvedDistinct = 3
 }

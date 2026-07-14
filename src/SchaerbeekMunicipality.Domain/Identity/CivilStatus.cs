@@ -7,5 +7,5 @@ public enum CivilStatus
     Divorced = 2,
     Widowed = 3,
     Separated = 4,
-    RegisteredPartnership = 5,
+    RegisteredPartnership = 5
 }

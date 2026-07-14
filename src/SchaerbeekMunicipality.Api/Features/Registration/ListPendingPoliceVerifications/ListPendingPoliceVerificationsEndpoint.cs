@@ -1,4 +1,5 @@
 using SchaerbeekMunicipality.Application.Features.Registration.ListPendingPoliceVerifications;
+
 namespace SchaerbeekMunicipality.Api.Features.Registration.ListPendingPoliceVerifications;
 
 public static class ListPendingPoliceVerificationsEndpoint

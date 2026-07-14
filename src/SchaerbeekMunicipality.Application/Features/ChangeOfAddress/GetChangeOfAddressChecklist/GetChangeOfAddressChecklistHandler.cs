@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.GetChangeOfAddressCase;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.GetChangeOfAddressChecklist;
 

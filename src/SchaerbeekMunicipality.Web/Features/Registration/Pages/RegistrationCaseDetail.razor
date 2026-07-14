@@ -1,28 +1,15 @@
 @page "/registration/cases/{CaseId:guid}"
-@using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument
-@using SchaerbeekMunicipality.Domain.Registration
-@using SchaerbeekMunicipality.Application.Auth
-@using SchaerbeekMunicipality.Application.Features.Registration
-@using SchaerbeekMunicipality.Application.Features.Registration.ClaimRegistrationCase
-@using SchaerbeekMunicipality.Application.Features.Registration.ReleaseCaseLock
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
-@using SchaerbeekMunicipality.Application.Features.Registration.ConvertBisNumber
-@using SchaerbeekMunicipality.Application.Features.Registration.CorrectIdentity
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
-@using SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson
 @using SchaerbeekMunicipality.Application.Features.Registration.ListCaseAudit
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity
-@using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification
-@using SchaerbeekMunicipality.Application.Features.Registration.RemoveDocument
 @using SchaerbeekMunicipality.Application.Features.Registration.ResolveDuplicateInvestigation
-@using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
-@using SchaerbeekMunicipality.Domain.Documents
 @using SchaerbeekMunicipality.Domain.NationalRegister
 @using SchaerbeekMunicipality.Domain.Police
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
 @using SchaerbeekMunicipality.Web.Api.Registration
+@using Severity = MudBlazor.Severity
 @inject IRegistrationApi RegistrationApi
-@inject FluentValidation.IValidator<RecordIdentityRequest> IdentityValidator
+@inject IValidator<RecordIdentityRequest> IdentityValidator
 @inject ICurrentOfficer CurrentOfficer
 @inject IAppDialogService DialogService
 @inject IDialogService MudDialogService
@@ -30,401 +17,400 @@
 @inject NavigationManager Navigation
 
 <AppPage Title="Registration case" MaxWidth="MaxWidth.False">
-    @if (_loading)
+@if (_loading)
+{
+    <AppLoading/>
+}
+else if (_case is null)
+{
+    <AppAlert Severity="Severity.Error" Title="Not found">
+        Registration case not found.
+    </AppAlert>
+}
+else
+{
+    <AppPageHeader Title="Registration case"
+                   Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.VisitReason.ToDisplayString()} · opened {_case.OpenedAt.LocalDateTime:g}")">
+        <StatusChip>
+            <AppStatusChip Status="_case.Status"/>
+        </StatusChip>
+        <Actions>
+            @if (CanTakeCase)
+            {
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.AssignmentInd"
+                           Disabled="_claimingCase"
+                           OnClick="TakeCase">
+                    Take case
+                </MudButton>
+            }
+            @if (_case.CanEdit)
+            {
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Secondary"
+                           StartIcon="@Icons.Material.Outlined.LockOpen"
+                           Disabled="_releasingLock"
+                           OnClick="ReleaseLock">
+                    Release lock
+                </MudButton>
+            }
+            @if (CanSendToPolice)
+            {
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.LocalPolice"
+                           Disabled="_sendingToPolice"
+                           OnClick="SendToPolice">
+                    Send to police
+                </MudButton>
+            }
+            @if (_case.Person is { } linkedPerson)
+            {
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.Person"
+                           Href="@($"/persons/{linkedPerson.Id}")">
+                    View person file
+                </MudButton>
+            }
+            <MudButton StartIcon="@Icons.Material.Outlined.ArrowBack"
+                       Variant="Variant.Text"
+                       OnClick="@(() => Navigation.NavigateTo("/registration/cases"))">
+                Back to list
+            </MudButton>
+        </Actions>
+    </AppPageHeader>
+
+    @if (_case.IsReadOnlyDueToLock)
     {
-        <AppLoading />
-    }
-    else if (_case is null)
-    {
-        <AppAlert Severity="Severity.Error" Title="Not found">
-            Registration case not found.
+        <AppAlert Severity="Severity.Info"
+                  Title="Read-only"
+                  Class="mb-4">
+            This case is locked to <strong>@OfficerDisplayNames.For(_case.LockedByOfficerId)</strong>.
+            You can review the file but cannot make changes until they release the lock.
         </AppAlert>
     }
-    else
+    else if (CanTakeCase)
     {
-        <AppPageHeader Title="Registration case"
-                       Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.VisitReason.ToDisplayString()} · opened {_case.OpenedAt.LocalDateTime:g}")">
-            <StatusChip>
-                <AppStatusChip Status="_case.Status" />
-            </StatusChip>
-            <Actions>
-                @if (CanTakeCase)
-                {
-                    <MudButton Variant="Variant.Filled"
-                               Color="Color.Primary"
-                               StartIcon="@Icons.Material.Outlined.AssignmentInd"
-                               Disabled="_claimingCase"
-                               OnClick="TakeCase">
-                        Take case
-                    </MudButton>
-                }
-                @if (_case.CanEdit)
-                {
-                    <MudButton Variant="Variant.Outlined"
-                               Color="Color.Secondary"
-                               StartIcon="@Icons.Material.Outlined.LockOpen"
-                               Disabled="_releasingLock"
-                               OnClick="ReleaseLock">
-                        Release lock
-                    </MudButton>
-                }
-                @if (CanSendToPolice)
-                {
-                    <MudButton Variant="Variant.Filled"
-                               Color="Color.Primary"
-                               StartIcon="@Icons.Material.Outlined.LocalPolice"
-                               Disabled="_sendingToPolice"
-                               OnClick="SendToPolice">
-                        Send to police
-                    </MudButton>
-                }
-                @if (_case.Person is { } linkedPerson)
-                {
-                    <MudButton Variant="Variant.Outlined"
-                               Color="Color.Primary"
-                               StartIcon="@Icons.Material.Outlined.Person"
-                               Href="@($"/persons/{linkedPerson.Id}")">
-                        View person file
-                    </MudButton>
-                }
-                <MudButton StartIcon="@Icons.Material.Outlined.ArrowBack"
-                           Variant="Variant.Text"
-                           OnClick="@(() => Navigation.NavigateTo("/registration/cases"))">
-                    Back to list
-                </MudButton>
-            </Actions>
-        </AppPageHeader>
+        <AppAlert Severity="Severity.Info"
+                  Title="Not assigned to you"
+                  Class="mb-4">
+            This case is available. Select <strong>Take case</strong> to assign it to yourself and start editing.
+        </AppAlert>
+    }
 
-        @if (_case.IsReadOnlyDueToLock)
-        {
-            <AppAlert Severity="Severity.Info"
-                      Title="Read-only"
-                      Class="mb-4">
-                This case is locked to <strong>@OfficerDisplayNames.For(_case.LockedByOfficerId)</strong>.
-                You can review the file but cannot make changes until they release the lock.
-            </AppAlert>
-        }
-        else if (CanTakeCase)
-        {
-            <AppAlert Severity="Severity.Info"
-                      Title="Not assigned to you"
-                      Class="mb-4">
-                This case is available. Select <strong>Take case</strong> to assign it to yourself and start editing.
-            </AppAlert>
-        }
+    <AppSection Title="Completeness checklist">
+        <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap">
+            <AppStatusChip Label="@($"Identity {(_case.Checklist.IdentityEstablished ? "✓" : "—")}")"
+                           Severity="@(_case.Checklist.IdentityEstablished ? AppSeverity.Success : AppSeverity.Neutral)"/>
+            <AppStatusChip Label="@($"Legal residence {(_case.Checklist.LegalResidenceEstablished ? "✓" : "—")}")"
+                           Severity="@(_case.Checklist.LegalResidenceEstablished ? AppSeverity.Success : AppSeverity.Neutral)"/>
+            <AppStatusChip Label="@($"Address {(_case.Checklist.AddressDeclared ? "✓" : "—")}")"
+                           Severity="@(_case.Checklist.AddressDeclared ? AppSeverity.Success : AppSeverity.Neutral)"/>
+            <AppStatusChip Label="@($"Address confirmed {(_case.Checklist.AddressConfirmed ? "✓" : "—")}")"
+                           Severity="@(_case.Checklist.AddressConfirmed ? AppSeverity.Success : _case.Status == RegistrationCaseStatus.AwaitingPoliceVerification ? AppSeverity.Warning : AppSeverity.Neutral)"/>
+        </MudStack>
+    </AppSection>
 
-        <AppSection Title="Completeness checklist">
-            <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap">
-                <AppStatusChip Label="@($"Identity {(_case.Checklist.IdentityEstablished ? "✓" : "—")}")"
-                               Severity="@(_case.Checklist.IdentityEstablished ? AppSeverity.Success : AppSeverity.Neutral)" />
-                <AppStatusChip Label="@($"Legal residence {(_case.Checklist.LegalResidenceEstablished ? "✓" : "—")}")"
-                               Severity="@(_case.Checklist.LegalResidenceEstablished ? AppSeverity.Success : AppSeverity.Neutral)" />
-                <AppStatusChip Label="@($"Address {(_case.Checklist.AddressDeclared ? "✓" : "—")}")"
-                               Severity="@(_case.Checklist.AddressDeclared ? AppSeverity.Success : AppSeverity.Neutral)" />
-                <AppStatusChip Label="@($"Address confirmed {(_case.Checklist.AddressConfirmed ? "✓" : "—")}")"
-                               Severity="@(_case.Checklist.AddressConfirmed ? AppSeverity.Success : (_case.Status == RegistrationCaseStatus.AwaitingPoliceVerification ? AppSeverity.Warning : AppSeverity.Neutral))" />
-            </MudStack>
-        </AppSection>
-
-        <MudGrid Spacing="4">
-            <MudItem xs="12" lg="7">
-                <AppCollapsibleSection Title="Identity"
-                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Identity, _case)"
-                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Identity, _case)"
-                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Identity, _case)"
-                                       Collapsible="false">
-                    @if (_case.DuplicateInvestigationStatus == DuplicateInvestigationStatus.Open)
-                    {
-                        <AppAlert Severity="Severity.Warning"
-                                  Title="Duplicate identity investigation open"
-                                  Class="mb-4">
-                            Possible National Register match requires investigation before registration can proceed.
-                            <MudStack Row="true" Spacing="2" Class="mt-2" Wrap="Wrap.Wrap">
-                                @if (CanEditIntakeData)
-                                {
-                                    <MudButton Variant="Variant.Text"
-                                               Color="Color.Warning"
-                                               StartIcon="@Icons.Material.Outlined.Search"
-                                               OnClick="OpenNationalRegisterSearch">
-                                        Link existing record
-                                    </MudButton>
-                                }
-                                @if (CanEditIntakeData)
-                                {
-                                    <MudButton Variant="Variant.Text"
-                                               Color="Color.Warning"
-                                               StartIcon="@Icons.Material.Outlined.PersonSearch"
-                                               Disabled="_resolvingDuplicate"
-                                               OnClick="ConfirmDistinctPerson">
-                                        Confirm distinct person
-                                    </MudButton>
-                                }
-                            </MudStack>
-                        </AppAlert>
-                    }
-                    else if (_case.Person is not null && _case.PossibleDuplicateMatches.Count > 0 && !_case.Person.LinkedFromRegister)
-                    {
-                        <AppAlert Severity="Severity.Warning"
-                                  Title="Possible duplicate detected"
-                                  Class="mb-4">
-                            @_case.PossibleDuplicateMatches.Count possible match(es) found in the National Register for this identity.
-                            Review before proceeding — linking an existing record avoids duplicate person files.
-                            @if (CanEditIntakeData)
-                            {
-                                <MudButton Variant="Variant.Text"
-                                           Color="Color.Warning"
-                                           Class="mt-2"
-                                           StartIcon="@Icons.Material.Outlined.Search"
-                                           OnClick="OpenNationalRegisterSearch">
-                                    Review matches
-                                </MudButton>
-                            }
-                        </AppAlert>
-                    }
-
-                    @if (_case.Person is null)
-                    {
+    <MudGrid Spacing="4">
+    <MudItem xs="12" lg="7">
+        <AppCollapsibleSection Title="Identity"
+                               Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Identity, _case)"
+                               StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Identity, _case)"
+                               StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Identity, _case)"
+                               Collapsible="false">
+            @if (_case.DuplicateInvestigationStatus == DuplicateInvestigationStatus.Open)
+            {
+                <AppAlert Severity="Severity.Warning"
+                          Title="Duplicate identity investigation open"
+                          Class="mb-4">
+                    Possible National Register match requires investigation before registration can proceed.
+                    <MudStack Row="true" Spacing="2" Class="mt-2" Wrap="Wrap.Wrap">
                         @if (CanEditIntakeData)
                         {
-                            <AppCard Title="Identity" Outlined="true">
-                                <HeaderActions>
-                                    <MudButton StartIcon="@Icons.Material.Outlined.Search"
-                                               Variant="Variant.Outlined"
-                                               Color="Color.Primary"
-                                               OnClick="OpenNationalRegisterSearch">
-                                        Search National Register
-                                    </MudButton>
-                                </HeaderActions>
-                                <ChildContent>
-                                    <MudForm @ref="_identityForm"
-                                             @bind-IsValid="_identityFormValid"
-                                             Model="_identityModel"
-                                             Validation="@(IdentityValidator.ToMudValidateValue<RecordIdentityRequest, IdentityFormModel>(MapIdentityRequest))">
-                                        <IdentityFormSection Model="_identityModel" ShowSearchInfo="true" />
-
-                                        <AppSaveCancelBar SaveText="Record identity"
-                                                          CancelText="Clear"
-                                                          Saving="_savingIdentity"
-                                                          OnSave="SaveIdentity"
-                                                          OnCancel="ClearIdentityForm" />
-                                    </MudForm>
-                                </ChildContent>
-                            </AppCard>
+                            <MudButton Variant="Variant.Text"
+                                       Color="Color.Warning"
+                                       StartIcon="@Icons.Material.Outlined.Search"
+                                       OnClick="OpenNationalRegisterSearch">
+                                Link existing record
+                            </MudButton>
                         }
-                        else
+                        @if (CanEditIntakeData)
                         {
-                            <AppCard Title="Identity" Outlined="true">
-                                <MudText Typo="Typo.body2" Color="Color.Secondary">Identity not recorded yet.</MudText>
-                            </AppCard>
+                            <MudButton Variant="Variant.Text"
+                                       Color="Color.Warning"
+                                       StartIcon="@Icons.Material.Outlined.PersonSearch"
+                                       Disabled="_resolvingDuplicate"
+                                       OnClick="ConfirmDistinctPerson">
+                                Confirm distinct person
+                            </MudButton>
                         }
-                    }
-                    else if (_editingIdentity && CanEditIntakeData)
+                    </MudStack>
+                </AppAlert>
+            }
+            else if (_case.Person is not null && _case.PossibleDuplicateMatches.Count > 0 && !_case.Person.LinkedFromRegister)
+            {
+                <AppAlert Severity="Severity.Warning"
+                          Title="Possible duplicate detected"
+                          Class="mb-4">
+                    @_case.PossibleDuplicateMatches.Count possible match(es) found in the National Register for this identity.
+                    Review before proceeding — linking an existing record avoids duplicate person files.
+                    @if (CanEditIntakeData)
                     {
-                        <AppCard Title="Identity" Outlined="true">
+                        <MudButton Variant="Variant.Text"
+                                   Color="Color.Warning"
+                                   Class="mt-2"
+                                   StartIcon="@Icons.Material.Outlined.Search"
+                                   OnClick="OpenNationalRegisterSearch">
+                            Review matches
+                        </MudButton>
+                    }
+                </AppAlert>
+            }
+
+            @if (_case.Person is null)
+            {
+                @if (CanEditIntakeData)
+                {
+                    <AppCard Title="Identity" Outlined="true">
+                        <HeaderActions>
+                            <MudButton StartIcon="@Icons.Material.Outlined.Search"
+                                       Variant="Variant.Outlined"
+                                       Color="Color.Primary"
+                                       OnClick="OpenNationalRegisterSearch">
+                                Search National Register
+                            </MudButton>
+                        </HeaderActions>
+                        <ChildContent>
                             <MudForm @ref="_identityForm"
                                      @bind-IsValid="_identityFormValid"
                                      Model="_identityModel"
                                      Validation="@(IdentityValidator.ToMudValidateValue<RecordIdentityRequest, IdentityFormModel>(MapIdentityRequest))">
-                                <IdentityFormSection Model="_identityModel" />
+                                <IdentityFormSection Model="_identityModel" ShowSearchInfo="true"/>
 
-                                <AppSaveCancelBar SaveText="Save changes"
-                                                  CancelText="Cancel"
+                                <AppSaveCancelBar SaveText="Record identity"
+                                                  CancelText="Clear"
                                                   Saving="_savingIdentity"
-                                                  Disabled="!IdentityFormDirty"
-                                                  OnSave="SaveIdentityCorrection"
-                                                  OnCancel="CancelIdentityEdit" />
+                                                  OnSave="SaveIdentity"
+                                                  OnCancel="ClearIdentityForm"/>
                             </MudForm>
-                        </AppCard>
-                    }
-                    else
-                    {
-                        <AppCard Title="Identity" Outlined="true">
-                            <HeaderActions>
-                                @if (CanEditIntakeData)
-                                {
-                                    <MudButton StartIcon="@Icons.Material.Outlined.Edit"
-                                               Variant="Variant.Text"
-                                               OnClick="StartEditingIdentity"
-                                               aria-label="Edit identity">
-                                        Edit
-                                    </MudButton>
-                                }
-                            </HeaderActions>
-                            <ChildContent>
-                                <AppFieldLabel Text="Name" />
-                                <MudText Typo="Typo.body1">@_case.Person.GivenName @_case.Person.FamilyName</MudText>
-                                <AppFieldLabel Text="Birth" Class="mt-2" />
-                                <MudText Typo="Typo.body2" Color="Color.Secondary">
-                                    @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
-                                </MudText>
-                                @if (_case.Person.LinkedFromRegister)
-                                {
-                                    <AppStatusChip Label="Linked from National Register"
-                                                   Severity="AppSeverity.Info"
-                                                   Class="mt-2" />
-                                }
-                                @if (!string.IsNullOrWhiteSpace(_case.Person.BisNumber))
-                                {
-                                    <MudText Typo="Typo.body2" Class="mt-2">
-                                        BIS @FormatRegisterNumber(_case.Person.BisNumber)
-                                    </MudText>
-                                }
-                                @if (!string.IsNullOrWhiteSpace(_case.Person.NationalRegisterNumber))
-                                {
-                                    <MudText Typo="Typo.body2" Class="mt-1">
-                                        NR @FormatRegisterNumber(_case.Person.NationalRegisterNumber)
-                                    </MudText>
-                                }
-                                @if (CanConvertBis)
-                                {
-                                    <MudButton Variant="Variant.Outlined"
-                                               Color="Color.Primary"
-                                               Class="mt-3"
-                                               StartIcon="@Icons.Material.Outlined.SwapHoriz"
-                                               Disabled="_convertingBis"
-                                               OnClick="ConvertBis">
-                                        Convert BIS to National Register number
-                                    </MudButton>
-                                }
-                            </ChildContent>
-                        </AppCard>
-                    }
-                </AppCollapsibleSection>
-
-                <AppCollapsibleSection Title="Legal residence"
-                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.LegalResidence, _case)"
-                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.LegalResidence, _case)"
-                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.LegalResidence, _case)"
-                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.LegalResidence)"
-                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.LegalResidence, value))">
-                    <ResidenceStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
-                </AppCollapsibleSection>
-
-                <AppCollapsibleSection Title="Address & housing"
-                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Address, _case)"
-                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Address, _case)"
-                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Address, _case)"
-                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.Address)"
-                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.Address, value))">
-                    <AddressStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
-                </AppCollapsibleSection>
-
-                <AppCollapsibleSection Title="Household composition"
-                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Household, _case)"
-                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Household, _case)"
-                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Household, _case)"
-                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.Household)"
-                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.Household, value))">
-                    <HouseholdStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
-                </AppCollapsibleSection>
-
-                <AppCollapsibleSection Title="Civil status"
-                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.CivilStatus, _case)"
-                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.CivilStatus, _case)"
-                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.CivilStatus, _case)"
-                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.CivilStatus)"
-                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.CivilStatus, value))">
-                    <CivilStatusStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
-                </AppCollapsibleSection>
-
-                <AppCollapsibleSection Title="Birth information"
-                                       Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.BirthInformation, _case)"
-                                       StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.BirthInformation, _case)"
-                                       StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.BirthInformation, _case)"
-                                       IsExpanded="IsStepExpanded(RegistrationIntakeStep.BirthInformation)"
-                                       IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.BirthInformation, value))">
-                    <BirthInformationStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase" />
-                </AppCollapsibleSection>
-
-                @if (RegistrationIntakeStepSummaries.IsVisible(RegistrationIntakeStep.PoliceVerification, _case))
-                {
-                    <AppCollapsibleSection Title="Police verification"
-                                           Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.PoliceVerification, _case)"
-                                           StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.PoliceVerification, _case)"
-                                           StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.PoliceVerification, _case)"
-                                           IsExpanded="IsStepExpanded(RegistrationIntakeStep.PoliceVerification)"
-                                           IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.PoliceVerification, value))">
-                        <PoliceVerificationSection ActiveVerification="_case.ActivePoliceVerification"
-                                                   History="_case.PoliceVerificationHistory" />
-                    </AppCollapsibleSection>
+                        </ChildContent>
+                    </AppCard>
                 }
-
-                @if (_auditEntries.Count > 0)
+                else
                 {
-                    <AppCollapsibleSection Title="Case history"
-                                           Summary="@($"{_auditEntries.Count} event{(_auditEntries.Count == 1 ? "" : "s")}")"
-                                           IsExpanded="_caseHistoryExpanded"
-                                           IsExpandedChanged="@(value => _caseHistoryExpanded = value)">
-                        <AppDataTable T="CaseAuditEntryDto"
-                                      Items="_auditEntries"
-                                      Caption="Case history"
-                                      AllowPaging="_auditEntries.Count > 10"
-                                      PageSize="10">
-                            <HeaderContent>
-                                <MudTh Class="app-table-header">When</MudTh>
-                                <MudTh Class="app-table-header">Action</MudTh>
-                                <MudTh Class="app-table-header">Officer</MudTh>
-                                <MudTh Class="app-table-header">Details</MudTh>
-                            </HeaderContent>
-                            <RowTemplate Context="entry">
-                                <MudTd DataLabel="When">@entry.OccurredAt.LocalDateTime</MudTd>
-                                <MudTd DataLabel="Action">@FormatAuditAction(entry.Action)</MudTd>
-                                <MudTd DataLabel="Officer">@OfficerDisplayNames.For(entry.OfficerId)</MudTd>
-                                <MudTd DataLabel="Details">@(entry.Details ?? "—")</MudTd>
-                            </RowTemplate>
-                        </AppDataTable>
-                    </AppCollapsibleSection>
+                    <AppCard Title="Identity" Outlined="true">
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">Identity not recorded yet.</MudText>
+                    </AppCard>
                 }
-            </MudItem>
+            }
+            else if (_editingIdentity && CanEditIntakeData)
+            {
+                <AppCard Title="Identity" Outlined="true">
+                    <MudForm @ref="_identityForm"
+                             @bind-IsValid="_identityFormValid"
+                             Model="_identityModel"
+                             Validation="@(IdentityValidator.ToMudValidateValue<RecordIdentityRequest, IdentityFormModel>(MapIdentityRequest))">
+                        <IdentityFormSection Model="_identityModel"/>
 
-            <MudItem xs="12" lg="5">
-                <div class="registration-case-detail-sidebar">
-                    <div class="registration-case-detail-sidebar__align d-none d-lg-block" aria-hidden="true">
-                        <MudStack Row="true"
-                                  AlignItems="AlignItems.Center"
-                                  Justify="Justify.SpaceBetween"
-                                  Spacing="2"
-                                  Wrap="Wrap.Wrap"
-                                  Class="app-collapsible-header flex-grow-1">
-                            <MudStack Spacing="0" Class="app-collapsible-header-text min-width-0">
-                                <MudText Typo="Typo.h3">Identity</MudText>
-                                <MudText Typo="Typo.body2"
-                                         Color="Color.Secondary"
-                                         Class="app-collapsible-summary">
-                                    @RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Identity, _case)
-                                </MudText>
-                            </MudStack>
-                            <AppStatusChip Label="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Identity, _case)"
-                                           Severity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Identity, _case)" />
-                        </MudStack>
-                    </div>
-                    <div class="registration-case-detail-sidebar__align-gap d-none d-lg-block" aria-hidden="true"></div>
+                        <AppSaveCancelBar SaveText="Save changes"
+                                          CancelText="Cancel"
+                                          Saving="_savingIdentity"
+                                          Disabled="!IdentityFormDirty"
+                                          OnSave="SaveIdentityCorrection"
+                                          OnCancel="CancelIdentityEdit"/>
+                    </MudForm>
+                </AppCard>
+            }
+            else
+            {
+                <AppCard Title="Identity" Outlined="true">
+                    <HeaderActions>
+                        @if (CanEditIntakeData)
+                        {
+                            <MudButton StartIcon="@Icons.Material.Outlined.Edit"
+                                       Variant="Variant.Text"
+                                       OnClick="StartEditingIdentity"
+                                       aria-label="Edit identity">
+                                Edit
+                            </MudButton>
+                        }
+                    </HeaderActions>
+                    <ChildContent>
+                        <AppFieldLabel Text="Name"/>
+                        <MudText Typo="Typo.body1">@_case.Person.GivenName @_case.Person.FamilyName</MudText>
+                        <AppFieldLabel Text="Birth" Class="mt-2"/>
+                        <MudText Typo="Typo.body2" Color="Color.Secondary">
+                            @_case.Person.BirthDate.ToString("d") · @_case.Person.Nationality
+                        </MudText>
+                        @if (_case.Person.LinkedFromRegister)
+                        {
+                            <AppStatusChip Label="Linked from National Register"
+                                           Severity="AppSeverity.Info"
+                                           Class="mt-2"/>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(_case.Person.BisNumber))
+                        {
+                            <MudText Typo="Typo.body2" Class="mt-2">
+                                BIS @FormatRegisterNumber(_case.Person.BisNumber)
+                            </MudText>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(_case.Person.NationalRegisterNumber))
+                        {
+                            <MudText Typo="Typo.body2" Class="mt-1">
+                                NR @FormatRegisterNumber(_case.Person.NationalRegisterNumber)
+                            </MudText>
+                        }
+                        @if (CanConvertBis)
+                        {
+                            <MudButton Variant="Variant.Outlined"
+                                       Color="Color.Primary"
+                                       Class="mt-3"
+                                       StartIcon="@Icons.Material.Outlined.SwapHoriz"
+                                       Disabled="_convertingBis"
+                                       OnClick="ConvertBis">
+                                Convert BIS to National Register number
+                            </MudButton>
+                        }
+                    </ChildContent>
+                </AppCard>
+            }
+        </AppCollapsibleSection>
 
-                    <div class="mb-4">
-                        <CaseDecisionSection Case="_case" OnUpdated="ReloadCase" />
-                    </div>
+        <AppCollapsibleSection Title="Legal residence"
+                               Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.LegalResidence, _case)"
+                               StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.LegalResidence, _case)"
+                               StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.LegalResidence, _case)"
+                               IsExpanded="IsStepExpanded(RegistrationIntakeStep.LegalResidence)"
+                               IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.LegalResidence, value))">
+            <ResidenceStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase"/>
+        </AppCollapsibleSection>
 
-                    @if (_case.Status == RegistrationCaseStatus.Registered)
-                    {
-                        <div class="mb-4">
-                            <CertificatesSection Case="_case" />
-                        </div>
-                    }
+        <AppCollapsibleSection Title="Address & housing"
+                               Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Address, _case)"
+                               StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Address, _case)"
+                               StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Address, _case)"
+                               IsExpanded="IsStepExpanded(RegistrationIntakeStep.Address)"
+                               IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.Address, value))">
+            <AddressStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase"/>
+        </AppCollapsibleSection>
 
-                    <RegistrationCaseDocumentPanel CaseId="CaseId"
-                                                   Documents="_case.Documents"
-                                                   CanEdit="CanEditIntakeData"
-                                                   OnRemoveDocument="RemoveDocument"
-                                                   OnUploaded="ReloadCase" />
+        <AppCollapsibleSection Title="Household composition"
+                               Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Household, _case)"
+                               StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Household, _case)"
+                               StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Household, _case)"
+                               IsExpanded="IsStepExpanded(RegistrationIntakeStep.Household)"
+                               IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.Household, value))">
+            <HouseholdStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase"/>
+        </AppCollapsibleSection>
+
+        <AppCollapsibleSection Title="Civil status"
+                               Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.CivilStatus, _case)"
+                               StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.CivilStatus, _case)"
+                               StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.CivilStatus, _case)"
+                               IsExpanded="IsStepExpanded(RegistrationIntakeStep.CivilStatus)"
+                               IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.CivilStatus, value))">
+            <CivilStatusStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase"/>
+        </AppCollapsibleSection>
+
+        <AppCollapsibleSection Title="Birth information"
+                               Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.BirthInformation, _case)"
+                               StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.BirthInformation, _case)"
+                               StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.BirthInformation, _case)"
+                               IsExpanded="IsStepExpanded(RegistrationIntakeStep.BirthInformation)"
+                               IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.BirthInformation, value))">
+            <BirthInformationStep Case="_case" CaseId="CaseId" CanEdit="CanEditIntakeData" OnUpdated="ReloadCase"/>
+        </AppCollapsibleSection>
+
+        @if (RegistrationIntakeStepSummaries.IsVisible(RegistrationIntakeStep.PoliceVerification, _case))
+        {
+            <AppCollapsibleSection Title="Police verification"
+                                   Summary="@RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.PoliceVerification, _case)"
+                                   StatusLabel="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.PoliceVerification, _case)"
+                                   StatusSeverity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.PoliceVerification, _case)"
+                                   IsExpanded="IsStepExpanded(RegistrationIntakeStep.PoliceVerification)"
+                                   IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.PoliceVerification, value))">
+                <PoliceVerificationSection ActiveVerification="_case.ActivePoliceVerification"
+                                           History="_case.PoliceVerificationHistory"/>
+            </AppCollapsibleSection>
+        }
+
+        @if (_auditEntries.Count > 0)
+        {
+            <AppCollapsibleSection Title="Case history"
+                                   Summary="@($"{_auditEntries.Count} event{(_auditEntries.Count == 1 ? "" : "s")}")"
+                                   IsExpanded="_caseHistoryExpanded"
+                                   IsExpandedChanged="@(value => _caseHistoryExpanded = value)">
+                <AppDataTable T="CaseAuditEntryDto"
+                              Items="_auditEntries"
+                              Caption="Case history"
+                              AllowPaging="_auditEntries.Count > 10"
+                              PageSize="10">
+                    <HeaderContent>
+                        <MudTh Class="app-table-header">When</MudTh>
+                        <MudTh Class="app-table-header">Action</MudTh>
+                        <MudTh Class="app-table-header">Officer</MudTh>
+                        <MudTh Class="app-table-header">Details</MudTh>
+                    </HeaderContent>
+                    <RowTemplate Context="entry">
+                        <MudTd DataLabel="When">@entry.OccurredAt.LocalDateTime</MudTd>
+                        <MudTd DataLabel="Action">@FormatAuditAction(entry.Action)</MudTd>
+                        <MudTd DataLabel="Officer">@OfficerDisplayNames.For(entry.OfficerId)</MudTd>
+                        <MudTd DataLabel="Details">@(entry.Details ?? "—")</MudTd>
+                    </RowTemplate>
+                </AppDataTable>
+            </AppCollapsibleSection>
+        }
+    </MudItem>
+
+    <MudItem xs="12" lg="5">
+        <div class="registration-case-detail-sidebar">
+            <div class="registration-case-detail-sidebar__align d-none d-lg-block" aria-hidden="true">
+                <MudStack Row="true"
+                          AlignItems="AlignItems.Center"
+                          Justify="Justify.SpaceBetween"
+                          Spacing="2"
+                          Wrap="Wrap.Wrap"
+                          Class="app-collapsible-header flex-grow-1">
+                    <MudStack Spacing="0" Class="app-collapsible-header-text min-width-0">
+                        <MudText Typo="Typo.h3">Identity</MudText>
+                        <MudText Typo="Typo.body2"
+                                 Color="Color.Secondary"
+                                 Class="app-collapsible-summary">
+                            @RegistrationIntakeStepSummaries.GetSummary(RegistrationIntakeStep.Identity, _case)
+                        </MudText>
+                    </MudStack>
+                    <AppStatusChip Label="@RegistrationIntakeStepSummaries.GetStatusLabel(RegistrationIntakeStep.Identity, _case)"
+                                   Severity="@RegistrationIntakeStepSummaries.GetStatusSeverity(RegistrationIntakeStep.Identity, _case)"/>
+                </MudStack>
+            </div>
+            <div class="registration-case-detail-sidebar__align-gap d-none d-lg-block" aria-hidden="true"></div>
+
+            <div class="mb-4">
+                <CaseDecisionSection Case="_case" OnUpdated="ReloadCase"/>
+            </div>
+
+            @if (_case.Status == RegistrationCaseStatus.Registered)
+            {
+                <div class="mb-4">
+                    <CertificatesSection Case="_case"/>
                 </div>
-            </MudItem>
-        </MudGrid>
-    }
+            }
+
+            <RegistrationCaseDocumentPanel CaseId="CaseId"
+                                           Documents="_case.Documents"
+                                           CanEdit="CanEditIntakeData"
+                                           OnRemoveDocument="RemoveDocument"
+                                           OnUploaded="ReloadCase"/>
+        </div>
+    </MudItem>
+    </MudGrid>
+}
 </AppPage>
 
 @code {
-    [Parameter]
-    public Guid CaseId { get; set; }
+    [Parameter] public Guid CaseId { get; set; }
 
     private RegistrationCaseDetailDto? _case;
     private bool _loading = true;
@@ -468,12 +454,14 @@
          _identityModel.BirthDate != _case.Person.BirthDate ||
          _identityModel.Nationality != _case.Person.Nationality);
 
-    private static RecordIdentityRequest MapIdentityRequest(IdentityFormModel model) =>
-        new(
+    private static RecordIdentityRequest MapIdentityRequest(IdentityFormModel model)
+    {
+        return new RecordIdentityRequest(
             model.GivenName,
             model.FamilyName,
             model.BirthDate ?? default,
             model.Nationality);
+    }
 
     private bool CanConvertBis =>
         CanEditIntakeData &&
@@ -515,7 +503,7 @@
             Snackbar.Add(ex.Message, Severity.Warning);
         }
 
-        RegistrationCaseDetailDto? caseDetail;
+        RegistrationCaseDetailDto caseDetail;
         try
         {
             caseDetail = await RegistrationApi.GetCaseAsync(caseId, CancellationToken.None);
@@ -526,12 +514,10 @@
             return;
         }
 
-        var audit = caseDetail is null
-            ? null
-            : await RegistrationApi.ListCaseAuditAsync(caseId, CancellationToken.None);
+        var audit = await RegistrationApi.ListCaseAuditAsync(caseId, CancellationToken.None);
 
         _case = caseDetail;
-        _auditEntries = audit?.Entries ?? [];
+        _auditEntries = audit.Entries;
         ApplyDefaultExpansion();
         _loading = false;
     }
@@ -574,8 +560,9 @@
         }
     }
 
-    private static string FormatAuditAction(string action) =>
-        action switch
+    private static string FormatAuditAction(string action)
+    {
+        return action switch
         {
             "CaseOpened" => "Case opened",
             "CaseAssigned" => "Case assigned",
@@ -592,8 +579,9 @@
             "CaseResumed" => "Case resumed",
             "RegistrationConfirmed" => "Registration confirmed",
             "CertificateIssued" => "Certificate issued",
-            _ => action,
+            _ => action
         };
+    }
 
     private void ApplyDefaultExpansion()
     {
@@ -607,11 +595,15 @@
             .ToDictionary(step => step, step => defaults.Contains(step));
     }
 
-    private bool IsStepExpanded(RegistrationIntakeStep step) =>
-        _stepExpanded.GetValueOrDefault(step);
+    private bool IsStepExpanded(RegistrationIntakeStep step)
+    {
+        return _stepExpanded.GetValueOrDefault(step);
+    }
 
-    private void SetStepExpanded(RegistrationIntakeStep step, bool expanded) =>
+    private void SetStepExpanded(RegistrationIntakeStep step, bool expanded)
+    {
         _stepExpanded[step] = expanded;
+    }
 
     private void ClearIdentityForm()
     {
@@ -674,7 +666,7 @@
             Snackbar.Add("Identity recorded.", Severity.Success);
             await ReloadCase();
         }
-        catch (FluentValidation.ValidationException ex)
+        catch (ValidationException ex)
         {
             Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
         }
@@ -714,7 +706,7 @@
 
             await ReloadCase();
         }
-        catch (FluentValidation.ValidationException ex)
+        catch (ValidationException ex)
         {
             Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
         }
@@ -732,7 +724,7 @@
     {
         var parameters = new DialogParameters<NationalRegisterSearchDialog>
         {
-            { x => x.CaseId, CaseId },
+            { x => x.CaseId, CaseId }
         };
 
         var dialog = await MudDialogService.ShowAsync<NationalRegisterSearchDialog>(
@@ -846,10 +838,12 @@
         }
     }
 
-    private static string FormatRegisterNumber(string value) =>
-        value.Length == 11
+    private static string FormatRegisterNumber(string value)
+    {
+        return value.Length == 11
             ? $"{value[..6]}-{value[6..9]}.{value[9..]}"
             : value;
+    }
 
     private async Task RemoveDocument(Guid documentId)
     {
@@ -857,8 +851,8 @@
             "Remove document?",
             "This will permanently delete the attached file.",
             "Remove",
-            destructive: true,
-            consequence: "The document cannot be recovered after removal.");
+            true,
+            "The document cannot be recovered after removal.");
 
         if (!confirmed)
         {
@@ -885,4 +879,5 @@
             await ReloadCase();
         }
     }
+
 }

@@ -21,7 +21,7 @@ public sealed class Household
         return new Household
         {
             Id = HouseholdId.New(),
-            RegistrationCaseId = registrationCaseId,
+            RegistrationCaseId = registrationCaseId
         };
     }
 

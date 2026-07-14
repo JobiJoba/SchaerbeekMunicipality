@@ -1,9 +1,8 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
-using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
 
@@ -26,13 +25,12 @@ public sealed class RecordPoliceResultHandler(
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
         var verificationRequest = await policeVerificationRepository.GetByIdAsync(requestId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Police verification request '{requestId}' was not found.");
+                                  ?? throw new KeyNotFoundException(
+                                      $"Police verification request '{requestId}' was not found.");
 
         if (!verificationRequest.IsPending)
-        {
             throw new InvalidPoliceVerificationException(
                 "This police verification request has already been completed.");
-        }
 
         verificationRequest.RecordResult(
             request.Result,
@@ -40,22 +38,18 @@ public sealed class RecordPoliceResultHandler(
             timeProvider.GetUtcNow());
 
         if (verificationRequest.RegistrationCaseId is { } registrationCaseId)
-        {
             return await HandleRegistrationCaseAsync(
                 verificationRequest,
                 registrationCaseId,
                 request,
                 cancellationToken);
-        }
 
         if (verificationRequest.ChangeOfAddressCaseId is { } changeOfAddressCaseId)
-        {
             return await HandleChangeOfAddressCaseAsync(
                 verificationRequest,
                 changeOfAddressCaseId,
                 request,
                 cancellationToken);
-        }
 
         throw new InvalidPoliceVerificationException(
             "Police verification request is not linked to a case.");
@@ -68,8 +62,8 @@ public sealed class RecordPoliceResultHandler(
         CancellationToken cancellationToken)
     {
         var registrationCase = await registrationCaseRepository.GetByIdAsync(registrationCaseId, cancellationToken)
-            ?? throw new KeyNotFoundException(
-                $"Registration case '{registrationCaseId}' was not found.");
+                               ?? throw new KeyNotFoundException(
+                                   $"Registration case '{registrationCaseId}' was not found.");
 
         registrationCase.ApplyPoliceVerificationResult(request.Result);
 
@@ -86,8 +80,7 @@ public sealed class RecordPoliceResultHandler(
             registrationCase.Id.Value,
             request.Result,
             registrationCase.Checklist.AddressConfirmed,
-            registrationCase.Status.ToString(),
-            "Registration");
+            registrationCase.Status.ToString());
     }
 
     private async Task<RecordPoliceResultResponse> HandleChangeOfAddressCaseAsync(
@@ -97,10 +90,10 @@ public sealed class RecordPoliceResultHandler(
         CancellationToken cancellationToken)
     {
         var changeOfAddressCase = await changeOfAddressCaseRepository.GetByIdAsync(
-                changeOfAddressCaseId,
-                cancellationToken)
-            ?? throw new KeyNotFoundException(
-                $"Change of address case '{changeOfAddressCaseId}' was not found.");
+                                      changeOfAddressCaseId,
+                                      cancellationToken)
+                                  ?? throw new KeyNotFoundException(
+                                      $"Change of address case '{changeOfAddressCaseId}' was not found.");
 
         changeOfAddressCase.ApplyPoliceVerificationResult(request.Result);
 

@@ -17,7 +17,7 @@ public sealed class SchaerbeekColorContrastTests
         [SchaerbeekColors.Info, 4.5],
         [SchaerbeekColors.TextPrimary, 4.5],
         [SchaerbeekColors.TextSecondary, 4.5],
-        [SchaerbeekColors.TextMuted, 4.5],
+        [SchaerbeekColors.TextMuted, 4.5]
     ];
 
     public static IEnumerable<object[]> TextOnBackgroundPairs =>
@@ -27,7 +27,7 @@ public sealed class SchaerbeekColorContrastTests
         [SchaerbeekColors.Warning, SchaerbeekColors.WarningBackground, 4.1],
         [SchaerbeekColors.Info, SchaerbeekColors.InfoBackground, 4.5],
         [SchaerbeekColors.TextPrimary, SchaerbeekColors.Accent, 4.5],
-        [SchaerbeekColors.White, SchaerbeekColors.Primary, 4.5],
+        [SchaerbeekColors.White, SchaerbeekColors.Primary, 4.5]
     ];
 
     [Theory]
@@ -74,10 +74,12 @@ public sealed class SchaerbeekColorContrastTests
 
     private static double RelativeLuminance((double R, double G, double B) rgb)
     {
-        static double Transform(double channel) =>
-            channel <= 0.03928
+        static double Transform(double channel)
+        {
+            return channel <= 0.03928
                 ? channel / 12.92
                 : Math.Pow((channel + 0.055) / 1.055, 2.4);
+        }
 
         var r = Transform(rgb.R);
         var g = Transform(rgb.G);

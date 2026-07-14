@@ -11,19 +11,25 @@ public sealed class DomainExceptionMiddleware(RequestDelegate next, ILogger<Doma
         {
             await next(context);
         }
-        catch (Exception ex) when (MapException(ex) is (int statusCode, string title, string detail))
+        catch (Exception ex)
         {
+            var mapped = MapException(ex);
+            if (mapped is null) throw;
+
+            var (statusCode, title, detail) = mapped.Value;
+
             logger.LogDebug(ex, "Mapped domain exception to HTTP {StatusCode}", statusCode);
 
             await Results.Problem(
-                detail: detail,
+                detail,
                 statusCode: statusCode,
                 title: title).ExecuteAsync(context);
         }
     }
 
-    private static (int StatusCode, string Title, string Detail)? MapException(Exception ex) =>
-        ex switch
+    private static (int StatusCode, string Title, string Detail)? MapException(Exception ex)
+    {
+        return ex switch
         {
             KeyNotFoundException keyNotFound => (
                 StatusCodes.Status404NotFound,
@@ -45,16 +51,21 @@ public sealed class DomainExceptionMiddleware(RequestDelegate next, ILogger<Doma
                 StatusCodes.Status409Conflict,
                 "Conflict",
                 invalidOperation.Message),
-            _ => null,
+            _ => null
         };
+    }
 
-    private static bool IsConflict(InvalidOperationException ex) =>
-        ex.Message.Contains("lock", StringComparison.OrdinalIgnoreCase)
-        || ex.Message.Contains("conflict", StringComparison.OrdinalIgnoreCase);
+    private static bool IsConflict(InvalidOperationException ex)
+    {
+        return ex.Message.Contains("lock", StringComparison.OrdinalIgnoreCase)
+               || ex.Message.Contains("conflict", StringComparison.OrdinalIgnoreCase);
+    }
 }
 
 public static class DomainExceptionMiddlewareExtensions
 {
-    public static IApplicationBuilder UseDomainExceptionHandling(this IApplicationBuilder app) =>
-        app.UseMiddleware<DomainExceptionMiddleware>();
+    public static IApplicationBuilder UseDomainExceptionHandling(this IApplicationBuilder app)
+    {
+        return app.UseMiddleware<DomainExceptionMiddleware>();
+    }
 }

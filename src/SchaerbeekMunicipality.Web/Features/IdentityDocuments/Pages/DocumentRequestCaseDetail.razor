@@ -1,12 +1,9 @@
 @page "/identity-documents/requests/{CaseId:guid}"
-@using SchaerbeekMunicipality.Domain.IdentityDocuments
-@using SchaerbeekMunicipality.Application.Auth
-@using SchaerbeekMunicipality.Application.Features.IdentityDocuments.CancelDocumentRequest
 @using SchaerbeekMunicipality.Application.Features.IdentityDocuments.GetDocumentRequestCase
 @using SchaerbeekMunicipality.Application.Features.IdentityDocuments.RecordFeePayment
-@using SchaerbeekMunicipality.Web.Features.IdentityDocuments.Components
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Domain.IdentityDocuments
 @using SchaerbeekMunicipality.Web.Api.IdentityDocuments
+@using SchaerbeekMunicipality.Web.Features.IdentityDocuments.Components
 @inject IIdentityDocumentsApi IdentityDocumentsApi
 @inject ICurrentOfficer CurrentOfficer
 @inject IDialogService DialogService
@@ -16,11 +13,11 @@
 <RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
     @if (_loading)
     {
-        <AppLoading Kind="AppLoadingKind.Skeleton" />
+        <AppLoading Kind="AppLoadingKind.Skeleton"/>
     }
     else if (_case is null)
     {
-        <AppAlert Severity="Severity.Error" Title="Case not found" />
+        <AppAlert Severity="Severity.Error" Title="Case not found"/>
     }
     else
     {
@@ -28,11 +25,11 @@
             <AppPageHeader Title="Identity document request"
                            Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.GivenName} {_case.FamilyName}")">
                 <Actions>
-                    <AppStatusChip Label="@_case.Status.ToDisplayString()" Severity="@GetSeverity(_case.Status)" />
+                    <AppStatusChip Label="@_case.Status.ToDisplayString()" Severity="@GetSeverity(_case.Status)"/>
                     <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
                                      CanEdit="_case.CanEdit"
                                      OnTakeCase="TakeCase"
-                                     OnReleaseLock="ReleaseLock" />
+                                     OnReleaseLock="ReleaseLock"/>
                     <MudButton Variant="Variant.Outlined"
                                Color="Color.Primary"
                                StartIcon="@Icons.Material.Outlined.Person"
@@ -47,7 +44,7 @@
                 </Actions>
             </AppPageHeader>
 
-            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock" />
+            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"/>
 
             <MudGrid Spacing="4">
                 <MudItem xs="12" lg="7">
@@ -81,7 +78,7 @@
                                         {
                                             <MudIconButton Icon="@Icons.Material.Outlined.Delete"
                                                            Size="Size.Small"
-                                                           OnClick="@(() => RemoveDocument(doc.Id))" />
+                                                           OnClick="@(() => RemoveDocument(doc.Id))"/>
                                         }
                                     </MudStack>
                                 }
@@ -92,7 +89,7 @@
                         {
                             <ApplicantPhotoUpload CaseId="CaseId"
                                                   CanEdit="_case.CanEdit"
-                                                  OnUploaded="ReloadAsync" />
+                                                  OnUploaded="ReloadAsync"/>
                         }
                     </MudStack>
                 </MudItem>
@@ -103,7 +100,7 @@
                                                   OnFeePaidChangedRequested="RecordFeePayment"
                                                   OnAdvanceStatus="AdvanceStatus"
                                                   OnIssueDocument="IssueDocument"
-                                                  OnCancelRequest="CancelRequest" />
+                                                  OnCancelRequest="CancelRequest"/>
                 </MudItem>
             </MudGrid>
         </AppPage>
@@ -111,8 +108,7 @@
 </RegistrationRoleGate>
 
 @code {
-    [Parameter]
-    public Guid CaseId { get; set; }
+    [Parameter] public Guid CaseId { get; set; }
 
     private DocumentRequestCaseDetailDto? _case;
     private bool _loading = true;
@@ -268,7 +264,7 @@
         var parameters = new DialogParameters<CancelDocumentRequestDialog>
         {
             { x => x.CaseId, CaseId },
-            { x => x.OnCancelled, EventCallback.Factory.Create(this, ReloadAsync) },
+            { x => x.OnCancelled, EventCallback.Factory.Create(this, ReloadAsync) }
         };
 
         await DialogService.ShowAsync<CancelDocumentRequestDialog>(
@@ -296,13 +292,16 @@
         }
     }
 
-    private static AppSeverity GetSeverity(DocumentRequestCaseStatus status) =>
-        status switch
+    private static AppSeverity GetSeverity(DocumentRequestCaseStatus status)
+    {
+        return status switch
         {
             DocumentRequestCaseStatus.Issued => AppSeverity.Success,
             DocumentRequestCaseStatus.Cancelled => AppSeverity.Error,
             DocumentRequestCaseStatus.ReadyForCollection => AppSeverity.Info,
             DocumentRequestCaseStatus.InProduction => AppSeverity.Warning,
-            _ => AppSeverity.Neutral,
+            _ => AppSeverity.Neutral
         };
+    }
+
 }

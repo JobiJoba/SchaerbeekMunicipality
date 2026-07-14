@@ -1,5 +1,4 @@
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
 
 namespace SchaerbeekMunicipality.Api.Validation;
 

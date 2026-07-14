@@ -1,11 +1,11 @@
+using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
-using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.GetChangeOfAddressCase;
 
@@ -25,7 +25,7 @@ public sealed class GetChangeOfAddressCaseHandler(
 
         var changeOfAddressCase = await caseGuard.GetForViewAsync(caseId, cancellationToken);
         var person = await personRepository.GetByIdAsync(changeOfAddressCase.PersonId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Person '{changeOfAddressCase.PersonId}' was not found.");
+                     ?? throw new KeyNotFoundException($"Person '{changeOfAddressCase.PersonId}' was not found.");
 
         var documents = await documentRepository.ListByChangeOfAddressCaseIdAsync(caseId, cancellationToken);
 
@@ -33,10 +33,7 @@ public sealed class GetChangeOfAddressCaseHandler(
         foreach (var link in changeOfAddressCase.HouseholdMemberLinks)
         {
             var member = await personRepository.GetByIdAsync(link.PersonId, cancellationToken);
-            if (member is null)
-            {
-                continue;
-            }
+            if (member is null) continue;
 
             householdMembers.Add(new ChangeOfAddressHouseholdMemberDto(
                 member.Id.Value,
@@ -95,8 +92,9 @@ public sealed class GetChangeOfAddressCaseHandler(
             activePoliceVerification is null ? null : MapPoliceVerification(activePoliceVerification));
     }
 
-    private static BelgianAddressDto? MapAddress(BelgianAddress? address) =>
-        address is null
+    private static BelgianAddressDto? MapAddress(BelgianAddress? address)
+    {
+        return address is null
             ? null
             : new BelgianAddressDto(
                 address.Street,
@@ -104,9 +102,11 @@ public sealed class GetChangeOfAddressCaseHandler(
                 address.Box,
                 address.PostalCode,
                 address.Municipality);
+    }
 
-    private static PoliceVerificationDto MapPoliceVerification(PoliceVerificationRequest request) =>
-        new(
+    private static PoliceVerificationDto MapPoliceVerification(PoliceVerificationRequest request)
+    {
+        return new PoliceVerificationDto(
             request.Id.Value,
             request.AttemptNumber,
             request.RequestedAt,
@@ -114,4 +114,5 @@ public sealed class GetChangeOfAddressCaseHandler(
             request.Result,
             request.OfficerNotes,
             request.IsPending);
+    }
 }

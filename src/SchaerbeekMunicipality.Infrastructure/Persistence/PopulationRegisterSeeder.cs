@@ -6,8 +6,8 @@ using SchaerbeekMunicipality.Domain.NationalRegister;
 namespace SchaerbeekMunicipality.Infrastructure.Persistence;
 
 /// <summary>
-/// Seeds population-register persons for local demo flows (change of address, identity documents).
-/// NR records come from <see cref="NationalRegisterSeeder"/>; this links them into the local register.
+///     Seeds population-register persons for local demo flows (change of address, identity documents).
+///     NR records come from <see cref="NationalRegisterSeeder" />; this links them into the local register.
 /// </summary>
 public static class PopulationRegisterSeeder
 {
@@ -36,10 +36,7 @@ public static class PopulationRegisterSeeder
             .AsNoTracking()
             .FirstOrDefaultAsync(p => p.Id == registerPersonId, cancellationToken);
 
-        if (registerPerson is null || registerPerson.NationalRegisterNumber is null)
-        {
-            return;
-        }
+        if (registerPerson is null || registerPerson.NationalRegisterNumber is null) return;
 
         var alreadyLinked = await dbContext.Persons
             .AsNoTracking()
@@ -49,16 +46,11 @@ public static class PopulationRegisterSeeder
                       p.NationalRegisterNumber == registerPerson.NationalRegisterNumber),
                 cancellationToken);
 
-        if (alreadyLinked)
-        {
-            return;
-        }
+        if (alreadyLinked) return;
 
         var person = Person.CreateFromRegisterRecord(registerPerson);
         if (person.NationalRegisterNumber is null && registerPerson.NationalRegisterNumber is { } nr)
-        {
             person.AssignNationalRegisterNumber(nr);
-        }
 
         person.UpdateDomicile(domicile);
         await dbContext.Persons.AddAsync(person, cancellationToken);

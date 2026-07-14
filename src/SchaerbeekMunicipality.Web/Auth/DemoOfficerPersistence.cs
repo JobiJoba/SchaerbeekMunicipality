@@ -15,14 +15,9 @@ internal static class DemoOfficerPersistence
 
         if (!query.TryGetValue(QueryParameterName, out var rawValue) ||
             !Guid.TryParse(rawValue.ToString(), out var parsedId))
-        {
             return false;
-        }
 
-        if (!DemoOfficers.All.Any(o => o.Id == parsedId))
-        {
-            return false;
-        }
+        if (!DemoOfficers.All.Any(o => o.Id == parsedId)) return false;
 
         officerId = parsedId;
         return true;

@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.ReleaseCaseLock;
 
@@ -21,7 +21,7 @@ public sealed class ReleaseCaseLockHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+                               ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
 
         var officerId = OfficerId.From(currentOfficer.OfficerId);
         registrationCase.ReleaseLock(officerId);

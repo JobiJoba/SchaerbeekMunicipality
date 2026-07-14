@@ -1,8 +1,7 @@
 @page "/persons/{PersonId:guid}"
-@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
+@using System.Net
 @using SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile
 @using SchaerbeekMunicipality.Web.Api.PersonFile
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
 @inject IPersonFileApi PersonFileApi
 @inject NavigationManager Navigation
 
@@ -11,7 +10,7 @@
     <AppPage Title="@PageTitle">
         @if (_loading)
         {
-            <AppLoading />
+            <AppLoading/>
         }
         else if (_error is not null)
         {
@@ -26,7 +25,7 @@
                                NationalRegisterNumber="@_personFile.Header.NationalRegisterNumber"
                                BisNumber="@_personFile.Header.BisNumber"
                                RegisterTarget="@_personFile.Header.RegisterTarget"
-                               Class="mb-6" />
+                               Class="mb-6"/>
             </AppSection>
 
             <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true">
@@ -34,12 +33,12 @@
                     <MudGrid Spacing="4">
                         <MudItem xs="12" md="6">
                             <AppCard Title="Identity" Outlined="true">
-                                <AppPropertyGrid Items="@_identityItems" />
+                                <AppPropertyGrid Items="@_identityItems"/>
                             </AppCard>
                         </MudItem>
                         <MudItem xs="12" md="6">
                             <AppCard Title="Current domicile" Outlined="true">
-                                <AppPropertyGrid Items="@_domicileItems" />
+                                <AppPropertyGrid Items="@_domicileItems"/>
                             </AppCard>
                         </MudItem>
                         <MudItem xs="12">
@@ -47,11 +46,11 @@
                                 @if (_personFile.History.Count == 0)
                                 {
                                     <AppEmptyState Title="No history"
-                                                   Description="No audit or milestone events recorded for this person yet." />
+                                                   Description="No audit or milestone events recorded for this person yet."/>
                                 }
                                 else
                                 {
-                                    <AppTimeline Items="@_timelineItems" />
+                                    <AppTimeline Items="@_timelineItems"/>
                                 }
                             </AppCard>
                         </MudItem>
@@ -62,7 +61,7 @@
                     @if (_personFile.HouseholdMembers.Count == 0)
                     {
                         <AppEmptyState Title="No household members"
-                                       Description="Household composition will appear after registration, birth declaration, or change-of-address cases." />
+                                       Description="Household composition will appear after registration, birth declaration, or change-of-address cases."/>
                     }
                     else
                     {
@@ -100,7 +99,7 @@
                     @if (_personFile.Addresses.Count == 0)
                     {
                         <AppEmptyState Title="No addresses"
-                                       Description="Address history will appear after registration or change-of-address cases." />
+                                       Description="Address history will appear after registration or change-of-address cases."/>
                     }
                     else
                     {
@@ -118,7 +117,7 @@
                                     @FormatAddress(address)
                                     @if (address.IsCurrent)
                                     {
-                                        <AppStatusChip Label="Current" Severity="AppSeverity.Success" Class="ml-2" />
+                                        <AppStatusChip Label="Current" Severity="AppSeverity.Success" Class="ml-2"/>
                                     }
                                 </MudTd>
                                 <MudTd DataLabel="Housing">@(address.HousingSituation ?? "—")</MudTd>
@@ -133,7 +132,7 @@
                     @if (_personFile.Cases.Count == 0)
                     {
                         <AppEmptyState Title="No cases"
-                                       Description="This person has no linked workflow cases yet." />
+                                       Description="This person has no linked workflow cases yet."/>
                     }
                     else
                     {
@@ -150,7 +149,7 @@
                             <RowTemplate Context="caseItem">
                                 <MudTd DataLabel="Workflow">@caseItem.Workflow</MudTd>
                                 <MudTd DataLabel="Status">
-                                    <AppStatusChip Label="@caseItem.Status" Severity="AppSeverity.Info" />
+                                    <AppStatusChip Label="@caseItem.Status" Severity="AppSeverity.Info"/>
                                 </MudTd>
                                 <MudTd DataLabel="Opened">@caseItem.OpenedAt.LocalDateTime.ToString("g")</MudTd>
                                 <MudTd DataLabel="Closed">@(caseItem.ClosedAt?.LocalDateTime.ToString("g") ?? "—")</MudTd>
@@ -170,7 +169,7 @@
                     @if (_personFile.Certificates.Count == 0)
                     {
                         <AppEmptyState Title="No certificates"
-                                       Description="Issued residence or household certificates will appear here." />
+                                       Description="Issued residence or household certificates will appear here."/>
                     }
                     else
                     {
@@ -196,8 +195,7 @@
 </RegistrationRoleGate>
 
 @code {
-    [Parameter]
-    public Guid PersonId { get; set; }
+    [Parameter] public Guid PersonId { get; set; }
 
     private bool _loading = true;
     private string? _error;
@@ -226,8 +224,7 @@
                 .Select(h => new AppTimeline.AppTimelineItem(
                     h.Title,
                     h.Timestamp,
-                    h.Description,
-                    AppSeverity.Info))
+                    h.Description))
                 .ToList();
 
             _personFile = personFile;
@@ -235,7 +232,7 @@
             _domicileItems = domicileItems;
             _timelineItems = timelineItems;
         }
-        catch (HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+        catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
         {
             _personFile = null;
             _error = "Person not found.";
@@ -258,22 +255,22 @@
             new("Given name", personFile.Identity.GivenName),
             new("Family name", personFile.Identity.FamilyName),
             new("Birth date", personFile.Identity.BirthDate.ToString("d")),
-            new("Nationality", personFile.Identity.Nationality),
+            new("Nationality", personFile.Identity.Nationality)
         };
 
         if (personFile.Identity.BirthInformation is { } birthInfo)
         {
-            items.Add(new("Birth place", birthInfo.BirthPlace));
-            items.Add(new("Birth country", birthInfo.BirthCountry));
+            items.Add(new AppPropertyGrid.AppPropertyGridItem("Birth place", birthInfo.BirthPlace));
+            items.Add(new AppPropertyGrid.AppPropertyGridItem("Birth country", birthInfo.BirthCountry));
         }
 
         if (personFile.CivilStatus is { } civilStatus)
         {
-            items.Add(new("Civil status", civilStatus.Status.ToDisplayString()));
+            items.Add(new AppPropertyGrid.AppPropertyGridItem("Civil status", civilStatus.Status.ToDisplayString()));
             if (!string.IsNullOrWhiteSpace(civilStatus.SpouseGivenName) ||
                 !string.IsNullOrWhiteSpace(civilStatus.SpouseFamilyName))
             {
-                items.Add(new(
+                items.Add(new AppPropertyGrid.AppPropertyGridItem(
                     "Spouse",
                     $"{civilStatus.SpouseGivenName} {civilStatus.SpouseFamilyName}".Trim()));
             }
@@ -292,11 +289,11 @@
         var address = personFile.Domicile.CurrentAddress;
         return
         [
-            new("Street", $"{address.Street} {address.HouseNumber}"),
-            new("Box", address.Box),
-            new("Postal code", address.PostalCode),
-            new("Municipality", address.Municipality),
-            new("Housing situation", personFile.Domicile.HousingSituation),
+            new AppPropertyGrid.AppPropertyGridItem("Street", $"{address.Street} {address.HouseNumber}"),
+            new AppPropertyGrid.AppPropertyGridItem("Box", address.Box),
+            new AppPropertyGrid.AppPropertyGridItem("Postal code", address.PostalCode),
+            new AppPropertyGrid.AppPropertyGridItem("Municipality", address.Municipality),
+            new AppPropertyGrid.AppPropertyGridItem("Housing situation", personFile.Domicile.HousingSituation)
         ];
     }
 
@@ -305,4 +302,5 @@
         var box = string.IsNullOrWhiteSpace(address.Box) ? string.Empty : $" bus {address.Box}";
         return $"{address.Street} {address.HouseNumber}{box}, {address.PostalCode} {address.Municipality}";
     }
+
 }

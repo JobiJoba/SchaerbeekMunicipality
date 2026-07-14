@@ -7,7 +7,7 @@ public enum OutboundNotificationCaseType
 {
     Registration,
     BirthDeclaration,
-    ChangeOfAddress,
+    ChangeOfAddress
 }
 
 public sealed record OutboundNotificationDto(
@@ -40,10 +40,10 @@ public sealed class ListOutboundNotificationsHandler(IOutboundNotificationReposi
         var items = notifications
             .Select(n =>
             {
-                var (caseId, caseType) = MapSourceCase(n);
+                var (sourceCaseId, caseType) = MapSourceCase(n);
                 return new OutboundNotificationDto(
                     n.Id.Value,
-                    caseId,
+                    sourceCaseId,
                     caseType,
                     n.PersonId.Value,
                     n.Recipient.ToString(),
@@ -63,19 +63,13 @@ public sealed class ListOutboundNotificationsHandler(IOutboundNotificationReposi
         OutboundNotification notification)
     {
         if (notification.RegistrationCaseId is { } registrationCaseId)
-        {
             return (registrationCaseId.Value, OutboundNotificationCaseType.Registration);
-        }
 
         if (notification.BirthDeclarationCaseId is { } birthDeclarationCaseId)
-        {
             return (birthDeclarationCaseId.Value, OutboundNotificationCaseType.BirthDeclaration);
-        }
 
         if (notification.ChangeOfAddressCaseId is { } changeOfAddressCaseId)
-        {
             return (changeOfAddressCaseId.Value, OutboundNotificationCaseType.ChangeOfAddress);
-        }
 
         throw new InvalidOperationException("Notification must reference a case.");
     }

@@ -1,8 +1,8 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument;
 using SchaerbeekMunicipality.Api.Validation;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 
 namespace SchaerbeekMunicipality.Api.Features.BirthDeclaration.AttachDocument;
 
@@ -37,10 +37,7 @@ public static class AttachDocumentEndpoint
     {
         var form = new AttachDocumentForm { File = file };
         var validation = await validator.ValidateAsync(form, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return ValidationResults.ToProblemDetails(validation);
-        }
+        if (!validation.IsValid) return ValidationResults.ToProblemDetails(validation);
 
         try
         {

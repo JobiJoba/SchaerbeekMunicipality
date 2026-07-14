@@ -1,3 +1,4 @@
+using System.Net;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Application.Auth;
@@ -5,11 +6,11 @@ using SchaerbeekMunicipality.Application.Features.Registration.ApproveCase;
 using SchaerbeekMunicipality.Application.Features.Registration.ConfirmRegistration;
 using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress;
 using SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard;
-using SchaerbeekMunicipality.Application.Features.Reporting.GetMunicipalityReport;
 using SchaerbeekMunicipality.Application.Features.Registration.ListRegistrationCases;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
+using SchaerbeekMunicipality.Application.Features.Reporting.GetMunicipalityReport;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -162,7 +163,7 @@ public sealed class MunicipalityReportTests
 
         var response = await client.SendAsync(request);
 
-        response.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden);
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
     }
 
     private static async Task<RegistrationCaseId> CreateCaseReadyForDecisionAsync(IServiceProvider services)

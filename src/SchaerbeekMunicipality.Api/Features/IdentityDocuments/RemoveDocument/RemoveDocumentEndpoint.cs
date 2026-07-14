@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.RemoveDocument;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
-using SchaerbeekMunicipality.Application.Features.IdentityDocuments.RemoveDocument;
 
 namespace SchaerbeekMunicipality.Api.Features.IdentityDocuments.RemoveDocument;
 

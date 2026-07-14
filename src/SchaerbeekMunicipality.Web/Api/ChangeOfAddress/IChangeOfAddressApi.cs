@@ -31,7 +31,8 @@ public interface IChangeOfAddressApi
 
     Task<ClaimChangeOfAddressCaseResponse> ClaimCaseAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<ClaimChangeOfAddressCaseResponse?> TryAutoClaimCaseAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<ClaimChangeOfAddressCaseResponse?> TryAutoClaimCaseAsync(Guid id,
+        CancellationToken cancellationToken = default);
 
     Task<ReleaseCaseLockResponse> ReleaseCaseLockAsync(Guid id, CancellationToken cancellationToken = default);
 

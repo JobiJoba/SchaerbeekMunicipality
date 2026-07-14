@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.ServiceDiscovery;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
@@ -47,7 +45,8 @@ public static class Extensions
         return builder;
     }
 
-    public static TBuilder ConfigureOpenTelemetry<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
+    public static TBuilder ConfigureOpenTelemetry<TBuilder>(this TBuilder builder)
+        where TBuilder : IHostApplicationBuilder
     {
         builder.Logging.AddOpenTelemetry(logging =>
         {
@@ -65,9 +64,9 @@ public static class Extensions
             .WithTracing(tracing =>
             {
                 tracing.AddSource(builder.Environment.ApplicationName)
-                    .AddAspNetCoreInstrumentation(tracing =>
+                    .AddAspNetCoreInstrumentation(aspNetTracing =>
                         // Exclude health check requests from tracing
-                        tracing.Filter = context =>
+                        aspNetTracing.Filter = context =>
                             !context.Request.Path.StartsWithSegments(HealthEndpointPath)
                             && !context.Request.Path.StartsWithSegments(AlivenessEndpointPath)
                     )
@@ -81,14 +80,12 @@ public static class Extensions
         return builder;
     }
 
-    private static TBuilder AddOpenTelemetryExporters<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
+    private static TBuilder AddOpenTelemetryExporters<TBuilder>(this TBuilder builder)
+        where TBuilder : IHostApplicationBuilder
     {
         var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
 
-        if (useOtlpExporter)
-        {
-            builder.Services.AddOpenTelemetry().UseOtlpExporter();
-        }
+        if (useOtlpExporter) builder.Services.AddOpenTelemetry().UseOtlpExporter();
 
         // Uncomment the following lines to enable the Azure Monitor exporter (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
         //if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
@@ -100,7 +97,8 @@ public static class Extensions
         return builder;
     }
 
-    public static TBuilder AddDefaultHealthChecks<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
+    public static TBuilder AddDefaultHealthChecks<TBuilder>(this TBuilder builder)
+        where TBuilder : IHostApplicationBuilder
     {
         builder.Services.AddHealthChecks()
             // Add a default liveness check to ensure app is responsive
@@ -111,28 +109,20 @@ public static class Extensions
 
     public static WebApplication UseHealthCheckApiKeyProtection(this WebApplication app)
     {
-        if (app.Environment.IsDevelopment())
-        {
-            return app;
-        }
+        if (app.Environment.IsDevelopment()) return app;
 
         var apiKey = app.Configuration["HEALTH_CHECK_API_KEY"];
-        if (string.IsNullOrWhiteSpace(apiKey))
-        {
-            return app;
-        }
+        if (string.IsNullOrWhiteSpace(apiKey)) return app;
 
         app.Use(async (context, next) =>
         {
             if (IsHealthEndpoint(context.Request.Path))
-            {
                 if (!context.Request.Headers.TryGetValue(HealthCheckApiKeyHeader, out var provided)
                     || provided != apiKey)
                 {
                     context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                     return;
                 }
-            }
 
             await next();
         });
@@ -160,6 +150,8 @@ public static class Extensions
         return app;
     }
 
-    private static bool IsHealthEndpoint(PathString path) =>
-        path.StartsWithSegments(HealthEndpointPath) || path.StartsWithSegments(AlivenessEndpointPath);
+    private static bool IsHealthEndpoint(PathString path)
+    {
+        return path.StartsWithSegments(HealthEndpointPath) || path.StartsWithSegments(AlivenessEndpointPath);
+    }
 }

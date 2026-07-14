@@ -31,6 +31,8 @@ public static class DemoOfficers
 
     public static IReadOnlyList<DemoOfficer> All { get; } = [Jean, Marie, Anne, Luc, Sophie];
 
-    public static DemoOfficer Find(Guid officerId) =>
-        All.FirstOrDefault(o => o.Id == officerId) ?? Marie;
+    public static DemoOfficer Find(Guid officerId)
+    {
+        return All.FirstOrDefault(o => o.Id == officerId) ?? Marie;
+    }
 }

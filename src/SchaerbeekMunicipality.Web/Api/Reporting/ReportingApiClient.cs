@@ -10,6 +10,9 @@ public sealed class ReportingApiClient(HttpClient httpClient, ICurrentOfficer cu
 
     public Task<GetMunicipalityReportResponse> GetMunicipalityReportAsync(
         int months = 12,
-        CancellationToken cancellationToken = default) =>
-        GetJsonAsync<GetMunicipalityReportResponse>($"{BasePath}/municipality?months={months}", cancellationToken);
+        CancellationToken cancellationToken = default)
+    {
+        return GetJsonAsync<GetMunicipalityReportResponse>($"{BasePath}/municipality?months={months}",
+            cancellationToken);
+    }
 }

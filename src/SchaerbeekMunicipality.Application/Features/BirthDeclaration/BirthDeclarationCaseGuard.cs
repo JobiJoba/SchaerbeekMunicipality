@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration;
 
@@ -29,7 +29,9 @@ public sealed class BirthDeclarationCaseGuard(
 
     private async Task<BirthDeclarationCase> GetRequiredAsync(
         BirthDeclarationCaseId caseId,
-        CancellationToken cancellationToken) =>
-        await repository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Birth declaration case '{caseId}' was not found.");
+        CancellationToken cancellationToken)
+    {
+        return await repository.GetByIdAsync(caseId, cancellationToken)
+               ?? throw new KeyNotFoundException($"Birth declaration case '{caseId}' was not found.");
+    }
 }

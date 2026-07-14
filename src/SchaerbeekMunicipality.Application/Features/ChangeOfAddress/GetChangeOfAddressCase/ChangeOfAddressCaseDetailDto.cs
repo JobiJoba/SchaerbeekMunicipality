@@ -1,7 +1,7 @@
+using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.GetChangeOfAddressCase;
 

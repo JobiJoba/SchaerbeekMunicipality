@@ -34,9 +34,7 @@ public sealed class NationalRegisterPerson
         ArgumentException.ThrowIfNullOrWhiteSpace(nationality);
 
         if (bisNumber is null && nationalRegisterNumber is null)
-        {
             throw new ArgumentException("A register record must have a BIS or National Register number.");
-        }
 
         return new NationalRegisterPerson
         {
@@ -46,16 +44,14 @@ public sealed class NationalRegisterPerson
             BirthDate = birthDate,
             Nationality = nationality.Trim(),
             BisNumber = bisNumber,
-            NationalRegisterNumber = nationalRegisterNumber,
+            NationalRegisterNumber = nationalRegisterNumber
         };
     }
 
     public void AssignNationalRegisterNumber(NationalRegisterNumber number)
     {
         if (NationalRegisterNumber is not null)
-        {
             throw new InvalidOperationException("This register record already has a National Register number.");
-        }
 
         NationalRegisterNumber = number;
     }

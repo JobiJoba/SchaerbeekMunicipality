@@ -64,7 +64,7 @@ public sealed class RegistrationExceptionRulesTests
     [Fact]
     public void RegisterTargetResolver_RefugeeWithDecision_SuggestsWaitingRegister()
     {
-        RegisterTargetResolver.Suggest(ResidenceCategory.Refugee, "Syrian", hasImmigrationDecision: true)
+        RegisterTargetResolver.Suggest(ResidenceCategory.Refugee, "Syrian", true)
             .Should().Be(RegisterTarget.WaitingRegister);
     }
 

@@ -6,7 +6,7 @@
                 <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2">
                     @if (!string.IsNullOrWhiteSpace(Icon))
                     {
-                        <MudIcon Icon="@Icon" Color="Color.Primary" />
+                        <MudIcon Icon="@Icon" Color="Color.Primary"/>
                     }
                     @if (!string.IsNullOrWhiteSpace(Title))
                     {
@@ -30,29 +30,21 @@
 </MudCard>
 
 @code {
-    [Parameter]
-    public string? Title { get; set; }
+    [Parameter] public string? Title { get; set; }
 
-    [Parameter]
-    public string? Icon { get; set; }
+    [Parameter] public string? Icon { get; set; }
 
-    [Parameter]
-    public RenderFragment? HeaderActions { get; set; }
+    [Parameter] public RenderFragment? HeaderActions { get; set; }
 
-    [Parameter]
-    public bool Outlined { get; set; }
+    [Parameter] public bool Outlined { get; set; }
 
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public RenderFragment? Actions { get; set; }
+    [Parameter] public RenderFragment? Actions { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private int Elevation => Outlined ? SchaerbeekElevation.Flat : SchaerbeekElevation.Card;
 
@@ -60,4 +52,5 @@
         !string.IsNullOrWhiteSpace(Title) ||
         !string.IsNullOrWhiteSpace(Icon) ||
         HeaderActions is not null;
+
 }

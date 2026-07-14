@@ -5,5 +5,5 @@ public enum HouseholdMemberRole
     Head = 0,
     Spouse = 1,
     Child = 2,
-    Other = 3,
+    Other = 3
 }

@@ -1,17 +1,17 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Address;
-using SchaerbeekMunicipality.Domain.ChangeOfAddress;
-using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Domain.NationalRegister;
-using SchaerbeekMunicipality.Infrastructure.Persistence;
-using SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ClaimChangeOfAddressCase;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ConfirmAddressChange;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.DeclareNewAddress;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ListChangeOfAddressCases;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.OpenChangeOfAddressCase;
+using SchaerbeekMunicipality.Domain.Address;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Infrastructure.Persistence;
+using SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.ChangeOfAddress;
 
@@ -100,17 +100,12 @@ public sealed class ChangeOfAddressTests
         jean.Should().NotBeNull();
 
         var personRepo = services.GetRequiredService<IPersonRepository>();
-        var existing = await personRepo.GetByRegisterRecordIdAsync(jean!.Id, CancellationToken.None);
-        if (existing is not null)
-        {
-            return existing.Id.Value;
-        }
+        var existing = await personRepo.GetByRegisterRecordIdAsync(jean.Id, CancellationToken.None);
+        if (existing is not null) return existing.Id.Value;
 
         var person = Person.CreateFromRegisterRecord(jean);
         if (person.NationalRegisterNumber is null && jean.NationalRegisterNumber is { } nr)
-        {
             person.AssignNationalRegisterNumber(nr);
-        }
 
         person.UpdateDomicile(BelgianAddress.Create("Rue de la Paix", "1", null, "1030", "Schaerbeek"));
         await personRepo.AddAsync(person, CancellationToken.None);

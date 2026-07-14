@@ -3,19 +3,16 @@
 </MudToolBar>
 
 @code {
-    [Parameter]
-    public bool Dense { get; set; } = true;
+    [Parameter] public bool Dense { get; set; } = true;
 
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private string ToolbarClass => new CssBuilder("gap-2 mb-4")
         .AddClass(Class)
         .Build();
+
 }

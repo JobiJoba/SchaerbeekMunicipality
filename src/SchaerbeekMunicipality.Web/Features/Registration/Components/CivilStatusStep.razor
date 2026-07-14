@@ -1,10 +1,11 @@
-@using SchaerbeekMunicipality.Domain.Identity
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordCivilStatus
+@using SchaerbeekMunicipality.Domain.Identity
 @using SchaerbeekMunicipality.Web.Api.Registration
+@using Severity = MudBlazor.Severity
 @inject IRegistrationApi RegistrationApi
-@inject FluentValidation.IValidator<RecordCivilStatusRequest> CivilStatusValidator
+@inject IValidator<RecordCivilStatusRequest> CivilStatusValidator
 @inject IAppDialogService DialogService
 @inject ISnackbar Snackbar
 
@@ -46,20 +47,20 @@
             {
                 <AppFormSection Title="Marriage / partnership details">
                     <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="_model.SpouseGivenName" Label="Spouse given name" Required="true" />
+                        <MudTextField @bind-Value="_model.SpouseGivenName" Label="Spouse given name" Required="true"/>
                     </MudItem>
                     <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="_model.SpouseFamilyName" Label="Spouse family name" Required="true" />
+                        <MudTextField @bind-Value="_model.SpouseFamilyName" Label="Spouse family name" Required="true"/>
                     </MudItem>
                     <MudItem xs="12" md="6">
                         <AppDateField @bind-Value="_model.MarriageDate"
                                       For="@(() => _model.MarriageDate)"
                                       Label="Marriage date"
                                       Required="true"
-                                      MaxDate="@DateTime.Today" />
+                                      MaxDate="@DateTime.Today"/>
                     </MudItem>
                     <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="_model.MarriagePlace" Label="Marriage place" />
+                        <MudTextField @bind-Value="_model.MarriagePlace" Label="Marriage place"/>
                     </MudItem>
                     @if (RequiresMarriageRecognition(_model.MarriagePlace))
                     {
@@ -82,7 +83,7 @@
                               Saving="_saving"
                               Disabled="@(_editing && !FormDirty)"
                               OnSave="Save"
-                              OnCancel="HandleCancel" />
+                              OnCancel="HandleCancel"/>
         </MudForm>
     </EditContent>
     <ReadContent>
@@ -117,17 +118,13 @@
 </AppEditableSection>
 
 @code {
-    [Parameter, EditorRequired]
-    public RegistrationCaseDetailDto Case { get; set; } = null!;
+    [Parameter] [EditorRequired] public RegistrationCaseDetailDto Case { get; set; } = null!;
 
-    [Parameter, EditorRequired]
-    public Guid CaseId { get; set; }
+    [Parameter] [EditorRequired] public Guid CaseId { get; set; }
 
-    [Parameter]
-    public bool CanEdit { get; set; }
+    [Parameter] public bool CanEdit { get; set; }
 
-    [Parameter]
-    public EventCallback OnUpdated { get; set; }
+    [Parameter] public EventCallback OnUpdated { get; set; }
 
     private RegistrationCaseDetailDto _case = null!;
     private bool _editing;
@@ -151,34 +148,43 @@
          _model.MarriagePlace != _case.CivilStatus.MarriagePlace ||
          _model.MarriageRecognitionStatus != _case.CivilStatus.MarriageRecognitionStatus);
 
-    private static RecordCivilStatusRequest MapCivilStatusRequest(CivilStatusFormModel model) =>
-        new(
+    private static RecordCivilStatusRequest MapCivilStatusRequest(CivilStatusFormModel model)
+    {
+        return new RecordCivilStatusRequest(
             model.Status ?? default,
             model.SpouseGivenName,
             model.SpouseFamilyName,
             model.MarriageDate,
             model.MarriagePlace,
             model.MarriageRecognitionStatus);
+    }
 
-    private static bool RequiresMarriageDetails(CivilStatus? status) =>
-        status is CivilStatus.Married or CivilStatus.RegisteredPartnership;
+    private static bool RequiresMarriageDetails(CivilStatus? status)
+    {
+        return status is CivilStatus.Married or CivilStatus.RegisteredPartnership;
+    }
 
-    private static bool RequiresMarriageRecognition(string? marriagePlace) =>
-        !string.IsNullOrWhiteSpace(marriagePlace)
-        && !marriagePlace.Contains("Belgium", StringComparison.OrdinalIgnoreCase)
-        && !marriagePlace.Contains("België", StringComparison.OrdinalIgnoreCase)
-        && !marriagePlace.Contains("Belgique", StringComparison.OrdinalIgnoreCase);
+    private static bool RequiresMarriageRecognition(string? marriagePlace)
+    {
+        return !string.IsNullOrWhiteSpace(marriagePlace)
+               && !marriagePlace.Contains("Belgium", StringComparison.OrdinalIgnoreCase)
+               && !marriagePlace.Contains("België", StringComparison.OrdinalIgnoreCase)
+               && !marriagePlace.Contains("Belgique", StringComparison.OrdinalIgnoreCase);
+    }
 
-    private static string FormatRecognitionStatus(MarriageRecognitionStatus status) =>
-        status switch
+    private static string FormatRecognitionStatus(MarriageRecognitionStatus status)
+    {
+        return status switch
         {
             MarriageRecognitionStatus.Recognised => "Recognised",
             MarriageRecognitionStatus.PendingRecognition => "Pending recognition",
-            _ => "Not applicable",
+            _ => "Not applicable"
         };
+    }
 
-    private static string FormatStatus(CivilStatus? status) =>
-        status switch
+    private static string FormatStatus(CivilStatus? status)
+    {
+        return status switch
         {
             CivilStatus.Single => "Single",
             CivilStatus.Married => "Married",
@@ -186,8 +192,9 @@
             CivilStatus.Widowed => "Widowed",
             CivilStatus.Separated => "Separated",
             CivilStatus.RegisteredPartnership => "Registered partnership",
-            _ => "Select status",
+            _ => "Select status"
         };
+    }
 
     private void StartEditing()
     {
@@ -275,7 +282,7 @@
             Snackbar.Add("Civil status saved.", Severity.Success);
             await OnUpdated.InvokeAsync();
         }
-        catch (FluentValidation.ValidationException ex)
+        catch (ValidationException ex)
         {
             Snackbar.Add(string.Join(" ", ex.Errors.Select(e => e.ErrorMessage)), Severity.Error);
         }
@@ -302,4 +309,5 @@
         public string? MarriagePlace { get; set; }
         public MarriageRecognitionStatus MarriageRecognitionStatus { get; set; } = MarriageRecognitionStatus.NotApplicable;
     }
+
 }

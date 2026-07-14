@@ -8,7 +8,7 @@ internal static class PlaywrightPageExtensions
     {
         await page.WaitForSelectorAsync("[data-testid='app-shell']", new PageWaitForSelectorOptions
         {
-            Timeout = 30_000,
+            Timeout = 30_000
         });
 
         await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
@@ -23,7 +23,7 @@ internal static class PlaywrightPageExtensions
         await page.GetByTestId(testId).ClickAsync();
         await page.GetByText(expectedText).WaitForAsync(new LocatorWaitForOptions
         {
-            Timeout = timeoutMs,
+            Timeout = timeoutMs
         });
     }
 }

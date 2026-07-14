@@ -1,12 +1,10 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.NationalRegister;
-using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson;
-using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister;
+using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Infrastructure.Persistence;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -73,7 +71,7 @@ public sealed class SearchNationalRegisterTests
         var handler = scope.ServiceProvider.GetRequiredService<SearchNationalRegisterHandler>();
 
         var response = await handler.Handle(
-            new SearchNationalRegisterRequest(null, null, null, Page: 1, PageSize: 2),
+            new SearchNationalRegisterRequest(null, null, null, 1, 2),
             CancellationToken.None);
 
         response.TotalCount.Should().Be(5);
@@ -90,7 +88,6 @@ public sealed class LinkExistingPersonTests
     {
         await using var factory = new MunicipalAppFactory();
         await using var scope = factory.Services.CreateAsyncScope();
-        var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var linkHandler = scope.ServiceProvider.GetRequiredService<LinkExistingPersonHandler>();
 
         var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
@@ -110,7 +107,6 @@ public sealed class LinkExistingPersonTests
     {
         await using var factory = new MunicipalAppFactory();
         await using var scope = factory.Services.CreateAsyncScope();
-        var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var linkHandler = scope.ServiceProvider.GetRequiredService<LinkExistingPersonHandler>();
 
         var firstCaseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
@@ -135,7 +131,6 @@ public sealed class LinkExistingPersonTests
     {
         await using var factory = new MunicipalAppFactory();
         await using var scope = factory.Services.CreateAsyncScope();
-        var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = scope.ServiceProvider.GetRequiredService<RecordIdentityHandler>();
         var searchHandler = scope.ServiceProvider.GetRequiredService<SearchNationalRegisterHandler>();
 

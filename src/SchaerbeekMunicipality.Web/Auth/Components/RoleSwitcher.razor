@@ -1,4 +1,3 @@
-@using SchaerbeekMunicipality.Application.Auth
 @inject ICurrentOfficer CurrentOfficer
 
 <div class="role-switcher">
@@ -17,6 +16,10 @@
 </div>
 
 @code {
-    private void OnOfficerChanged(Guid officerId) =>
+
+    private void OnOfficerChanged(Guid officerId)
+    {
         CurrentOfficer.SelectOfficer(officerId);
+    }
+
 }

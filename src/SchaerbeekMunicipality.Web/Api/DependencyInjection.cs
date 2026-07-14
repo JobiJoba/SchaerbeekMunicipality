@@ -1,10 +1,8 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using SchaerbeekMunicipality.Web.Api.BirthDeclaration;
 using SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
 using SchaerbeekMunicipality.Web.Api.IdentityDocuments;
-using SchaerbeekMunicipality.Web.Api.Registration;
 using SchaerbeekMunicipality.Web.Api.PersonFile;
+using SchaerbeekMunicipality.Web.Api.Registration;
 using SchaerbeekMunicipality.Web.Api.Reporting;
 
 namespace SchaerbeekMunicipality.Web.Api;
@@ -44,15 +42,9 @@ public static class DependencyInjection
     private static Uri ResolveApiBaseAddress(IServiceProvider serviceProvider, IHostEnvironment environment)
     {
         var bridge = serviceProvider.GetService<IMunicipalApiBridge>();
-        if (bridge is not null)
-        {
-            return bridge.BaseAddress;
-        }
+        if (bridge is not null) return bridge.BaseAddress;
 
-        if (environment.IsDevelopment())
-        {
-            return new Uri("http://api");
-        }
+        if (environment.IsDevelopment()) return new Uri("http://api");
 
         var configuration = serviceProvider.GetRequiredService<IConfiguration>();
         var configuredBaseAddress = configuration["MunicipalApi:BaseAddress"];

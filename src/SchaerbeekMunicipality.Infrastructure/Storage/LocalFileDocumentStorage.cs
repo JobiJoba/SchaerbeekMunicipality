@@ -33,10 +33,7 @@ internal sealed class LocalFileDocumentStorage(IHostEnvironment environment) : I
     public Task DeleteAsync(string storagePath, CancellationToken cancellationToken)
     {
         var fullPath = Path.Combine(environment.ContentRootPath, storagePath);
-        if (File.Exists(fullPath))
-        {
-            File.Delete(fullPath);
-        }
+        if (File.Exists(fullPath)) File.Delete(fullPath);
 
         return Task.CompletedTask;
     }
@@ -45,9 +42,7 @@ internal sealed class LocalFileDocumentStorage(IHostEnvironment environment) : I
     {
         var fullPath = Path.Combine(environment.ContentRootPath, storagePath);
         if (!File.Exists(fullPath))
-        {
             throw new FileNotFoundException("The stored document file was not found.", fullPath);
-        }
 
         Stream stream = File.OpenRead(fullPath);
         return Task.FromResult(stream);

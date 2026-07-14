@@ -9,7 +9,7 @@ public static class HealthCheckExtensions
     {
         services.AddHealthChecks()
             .AddDbContextCheck<MunicipalDbContext>(
-                name: "database",
+                "database",
                 tags: ["ready"]);
 
         return services;

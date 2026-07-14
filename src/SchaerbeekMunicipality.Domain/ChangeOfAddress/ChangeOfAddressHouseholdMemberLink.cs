@@ -10,6 +10,8 @@ public sealed class ChangeOfAddressHouseholdMemberLink
 
     public PersonId PersonId { get; private set; }
 
-    public static ChangeOfAddressHouseholdMemberLink Create(PersonId personId) =>
-        new() { PersonId = personId };
+    public static ChangeOfAddressHouseholdMemberLink Create(PersonId personId)
+    {
+        return new ChangeOfAddressHouseholdMemberLink { PersonId = personId };
+    }
 }

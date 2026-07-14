@@ -1,22 +1,15 @@
 @page "/birth-declarations/{CaseId:guid}"
-@using SchaerbeekMunicipality.Domain.BirthDeclaration
-@using SchaerbeekMunicipality.Application.Auth
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ClaimBirthDeclarationCase
-@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.Components
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationCase
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RecordChildDetails
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ReleaseCaseLock
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RemoveDocument
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SetDeclarationHousehold
-@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.UnlinkParent
-@using SchaerbeekMunicipality.Application.Features.Registration
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Domain.BirthDeclaration
 @using SchaerbeekMunicipality.Web.Api.BirthDeclaration
+@using SchaerbeekMunicipality.Web.Features.BirthDeclaration.Components
+@using Severity = MudBlazor.Severity
 @inject IBirthDeclarationApi BirthDeclarationApi
-@inject FluentValidation.IValidator<RecordChildDetailsRequest> ChildDetailsValidator
-@inject FluentValidation.IValidator<SetDeclarationHouseholdRequest> HouseholdValidator
+@inject IValidator<RecordChildDetailsRequest> ChildDetailsValidator
+@inject IValidator<SetDeclarationHouseholdRequest> HouseholdValidator
 @inject ICurrentOfficer CurrentOfficer
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
@@ -41,7 +34,7 @@
                     <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
                                      CanEdit="_case.CanEdit"
                                      OnTakeCase="TakeCase"
-                                     OnReleaseLock="ReleaseLock" />
+                                     OnReleaseLock="ReleaseLock"/>
                     <MudButton Variant="Variant.Text"
                                StartIcon="@Icons.Material.Outlined.ArrowBack"
                                OnClick="@(() => Navigation.NavigateTo("/birth-declarations"))">
@@ -50,7 +43,7 @@
                 </Actions>
             </AppPageHeader>
 
-            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock" />
+            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"/>
 
             <MudGrid Spacing="4">
                 <MudItem xs="12" lg="7">
@@ -60,8 +53,7 @@
                                                StatusLabel="@(_case.ChildDetailsRecorded ? "Complete" : "Pending")"
                                                StatusSeverity="@(_case.ChildDetailsRecorded ? AppSeverity.Success : AppSeverity.Neutral)"
                                                IsExpanded="@(!_case.ChildDetailsRecorded)">
-                            <MudForm @ref="_childForm"
-                                     Disabled="!_case.CanEdit"
+                            <MudForm Disabled="!_case.CanEdit"
                                      Model="_childModel"
                                      Validation="@(ChildDetailsValidator.ToMudValidateValue<RecordChildDetailsRequest, ChildDetailsFormModel>(MapChildDetailsRequest))">
                                 <MudGrid>
@@ -194,7 +186,6 @@
     private bool _busy;
     private BirthDeclarationCaseDetailDto? _case;
     private readonly ChildDetailsFormModel _childModel = new();
-    private MudForm _childForm = null!;
     private MudForm _householdForm = null!;
 
     private readonly HouseholdFormModel _householdModel = new()
@@ -218,15 +209,12 @@
             await BirthDeclarationApi.TryAutoClaimCaseAsync(CaseId, CancellationToken.None);
             var detail = await BirthDeclarationApi.GetCaseAsync(CaseId, CancellationToken.None);
             _case = detail;
-            if (detail is not null)
-            {
-                _childModel.GivenNames = detail.ChildGivenNames ?? string.Empty;
-                _childModel.FamilyName = detail.ChildFamilyName ?? string.Empty;
-                _childModel.Sex = detail.ChildSex ?? NewbornSex.Female;
-                _childModel.DateOfBirth = detail.ChildDateOfBirth;
-                _childModel.TimeOfBirth = detail.ChildTimeOfBirth?.ToTimeSpan();
-                _childModel.PlaceOfBirth = detail.ChildPlaceOfBirth ?? string.Empty;
-            }
+            _childModel.GivenNames = detail.ChildGivenNames ?? string.Empty;
+            _childModel.FamilyName = detail.ChildFamilyName ?? string.Empty;
+            _childModel.Sex = detail.ChildSex ?? NewbornSex.Female;
+            _childModel.DateOfBirth = detail.ChildDateOfBirth;
+            _childModel.TimeOfBirth = detail.ChildTimeOfBirth?.ToTimeSpan();
+            _childModel.PlaceOfBirth = detail.ChildPlaceOfBirth ?? string.Empty;
         }
         finally
         {
@@ -301,7 +289,7 @@
     {
         var parameters = new DialogParameters<ParentLinkDialog>
         {
-            { x => x.CaseId, CaseId },
+            { x => x.CaseId, CaseId }
         };
         var dialog = await DialogService.ShowAsync<ParentLinkDialog>("Link parent", parameters);
         var result = await dialog.Result;
@@ -333,17 +321,21 @@
         return $"{_case.ChildGivenNames} {_case.ChildFamilyName}";
     }
 
-    private static SetDeclarationHouseholdRequest MapHouseholdRequest(HouseholdFormModel model) =>
-        new(model.Street, model.HouseNumber, model.Box, model.PostalCode, model.Municipality);
+    private static SetDeclarationHouseholdRequest MapHouseholdRequest(HouseholdFormModel model)
+    {
+        return new SetDeclarationHouseholdRequest(model.Street, model.HouseNumber, model.Box, model.PostalCode, model.Municipality);
+    }
 
-    private static RecordChildDetailsRequest MapChildDetailsRequest(ChildDetailsFormModel model) =>
-        new(
+    private static RecordChildDetailsRequest MapChildDetailsRequest(ChildDetailsFormModel model)
+    {
+        return new RecordChildDetailsRequest(
             model.GivenNames,
             model.FamilyName,
             model.Sex,
             model.DateOfBirth ?? default,
             model.TimeOfBirth.HasValue ? TimeOnly.FromTimeSpan(model.TimeOfBirth.Value) : null,
             model.PlaceOfBirth);
+    }
 
     private sealed class HouseholdFormModel
     {
@@ -364,14 +356,16 @@
         public string PlaceOfBirth { get; set; } = string.Empty;
     }
 
-    private static AppSeverity GetSeverity(BirthDeclarationCaseStatus status) =>
-        status switch
+    private static AppSeverity GetSeverity(BirthDeclarationCaseStatus status)
+    {
+        return status switch
         {
             BirthDeclarationCaseStatus.Confirmed => AppSeverity.Success,
             BirthDeclarationCaseStatus.Rejected => AppSeverity.Error,
             BirthDeclarationCaseStatus.Suspended => AppSeverity.Warning,
             BirthDeclarationCaseStatus.UnderReview => AppSeverity.Info,
-            _ => AppSeverity.Neutral,
+            _ => AppSeverity.Neutral
         };
+    }
 
 }

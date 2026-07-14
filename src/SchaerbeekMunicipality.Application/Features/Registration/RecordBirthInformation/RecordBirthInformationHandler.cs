@@ -24,7 +24,7 @@ public sealed class RecordBirthInformationHandler(
             cancellationToken);
 
         var person = await personRepository.GetForUpdateAsync(registrationCase.PersonId!.Value, cancellationToken)
-            ?? throw new KeyNotFoundException($"Person '{registrationCase.PersonId}' was not found.");
+                     ?? throw new KeyNotFoundException($"Person '{registrationCase.PersonId}' was not found.");
 
         registrationCase.RecordBirthInformation(
             person,

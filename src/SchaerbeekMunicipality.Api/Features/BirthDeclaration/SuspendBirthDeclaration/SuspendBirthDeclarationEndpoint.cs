@@ -1,7 +1,7 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SuspendBirthDeclaration;
 using SchaerbeekMunicipality.Api.Validation;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SuspendBirthDeclaration;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 
 namespace SchaerbeekMunicipality.Api.Features.BirthDeclaration.SuspendBirthDeclaration;
 
@@ -15,10 +15,7 @@ public static class SuspendBirthDeclarationEndpoint
         CancellationToken cancellationToken)
     {
         var validation = await validator.ValidateAsync(request, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return ValidationResults.ToProblemDetails(validation);
-        }
+        if (!validation.IsValid) return ValidationResults.ToProblemDetails(validation);
 
         try
         {

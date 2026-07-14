@@ -9,7 +9,7 @@ public static class AppDialogOptions
         MaxWidth = MaxWidth.ExtraSmall,
         FullWidth = true,
         CloseButton = true,
-        BackdropClick = false,
+        BackdropClick = false
     };
 
     public static DialogOptions Medium => new()
@@ -17,7 +17,7 @@ public static class AppDialogOptions
         MaxWidth = MaxWidth.Small,
         FullWidth = true,
         CloseButton = true,
-        BackdropClick = false,
+        BackdropClick = false
     };
 
     public static DialogOptions Large => new()
@@ -25,6 +25,6 @@ public static class AppDialogOptions
         MaxWidth = MaxWidth.Medium,
         FullWidth = true,
         CloseButton = true,
-        BackdropClick = false,
+        BackdropClick = false
     };
 }

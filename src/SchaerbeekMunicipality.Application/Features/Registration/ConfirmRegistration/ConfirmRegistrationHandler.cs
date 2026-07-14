@@ -1,10 +1,9 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.Events;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 using SchaerbeekMunicipality.Infrastructure.Events;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.ConfirmRegistration;
 
@@ -23,9 +22,7 @@ public sealed class ConfirmRegistrationHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can confirm registration.");
-        }
 
         var registrationCase = await caseGuard.GetForEditAsync(
             caseId,
@@ -36,14 +33,11 @@ public sealed class ConfirmRegistrationHandler(
         var eventDetails = registrationCase.ConfirmRegistration(confirmedAt);
 
         var person = await personRepository.GetForUpdateAsync(eventDetails.PersonId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Person '{eventDetails.PersonId}' was not found.");
+                     ?? throw new KeyNotFoundException($"Person '{eventDetails.PersonId}' was not found.");
 
-        if (registrationCase.DeclaredAddress is { } declaredAddress)
-        {
-            person.UpdateDomicile(declaredAddress);
-        }
+        if (registrationCase.DeclaredAddress is { } declaredAddress) person.UpdateDomicile(declaredAddress);
 
-        string? assignedNr = person.NationalRegisterNumber?.Value;
+        var assignedNr = person.NationalRegisterNumber?.Value;
 
         if (person.NationalRegisterNumber is null)
         {
@@ -52,10 +46,8 @@ public sealed class ConfirmRegistrationHandler(
             if (await personRepository.IsNationalRegisterNumberAssignedAsync(
                     nationalRegisterNumber,
                     cancellationToken))
-            {
                 throw new NationalRegisterConflictException(
                     "Generated National Register number is already assigned. Retry confirmation.");
-            }
 
             person.AssignNationalRegisterNumber(nationalRegisterNumber);
             assignedNr = nationalRegisterNumber.Value;

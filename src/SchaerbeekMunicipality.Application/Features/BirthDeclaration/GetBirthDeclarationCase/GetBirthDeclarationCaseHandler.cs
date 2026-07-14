@@ -1,8 +1,8 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationCase;
 
@@ -26,10 +26,7 @@ public sealed class GetBirthDeclarationCaseHandler(
         foreach (var link in birthDeclarationCase.ParentLinks)
         {
             var person = await personRepository.GetByIdAsync(link.PersonId, cancellationToken);
-            if (person is null)
-            {
-                continue;
-            }
+            if (person is null) continue;
 
             parents.Add(new BirthDeclarationParentDto(
                 person.Id.Value,

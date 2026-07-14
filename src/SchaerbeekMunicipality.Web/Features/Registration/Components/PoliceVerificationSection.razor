@@ -1,6 +1,5 @@
-@using SchaerbeekMunicipality.Domain.Police
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
-
+@using SchaerbeekMunicipality.Domain.Police
 @if (ActiveVerification is not null)
 {
     <AppAlert Severity="Severity.Info"
@@ -18,7 +17,7 @@
             <MudText Typo="Typo.body2" Color="Color.Secondary">
                 Sent to police on @ActiveVerification.RequestedAt.LocalDateTime.ToString("g")
             </MudText>
-            <AppStatusChip Label="Awaiting result" Severity="AppSeverity.Warning" />
+            <AppStatusChip Label="Awaiting result" Severity="AppSeverity.Warning"/>
         </MudStack>
     </AppCard>
 }
@@ -30,7 +29,7 @@
         <MudStack Spacing="2">
             <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center">
                 <AppStatusChip Label="@FormatResult(visit.Result!.Value)"
-                               Severity="@ResultSeverity(visit.Result!.Value)" />
+                               Severity="@ResultSeverity(visit.Result!.Value)"/>
                 @if (visit.CompletedAt is not null)
                 {
                     <MudText Typo="Typo.body2" Color="Color.Secondary">
@@ -69,7 +68,7 @@ else if (OrderedHistory.Count > 1)
             <MudTd DataLabel="Visit">@visit.AttemptNumber</MudTd>
             <MudTd DataLabel="Outcome">
                 <AppStatusChip Label="@FormatResult(visit.Result!.Value)"
-                               Severity="@ResultSeverity(visit.Result!.Value)" />
+                               Severity="@ResultSeverity(visit.Result!.Value)"/>
             </MudTd>
             <MudTd DataLabel="Requested">@visit.RequestedAt.LocalDateTime.ToString("g")</MudTd>
             <MudTd DataLabel="Recorded">
@@ -83,31 +82,36 @@ else if (OrderedHistory.Count > 1)
 }
 
 @code {
-    [Parameter]
-    public PoliceVerificationDto? ActiveVerification { get; set; }
+    [Parameter] public PoliceVerificationDto? ActiveVerification { get; set; }
 
-    [Parameter]
-    public IReadOnlyList<PoliceVerificationDto> History { get; set; } = [];
+    [Parameter] public IReadOnlyList<PoliceVerificationDto> History { get; set; } = [];
 
     private IReadOnlyList<PoliceVerificationDto> OrderedHistory =>
         History.OrderByDescending(v => v.AttemptNumber).ToList();
 
-    private static string FormatResult(PoliceVerificationResult result) => result switch
+    private static string FormatResult(PoliceVerificationResult result)
     {
-        PoliceVerificationResult.Confirmed => "Confirmed",
-        PoliceVerificationResult.NotFound => "Not found",
-        PoliceVerificationResult.AddressIncorrect => "Address incorrect",
-        PoliceVerificationResult.MailboxOnly => "Mailbox only",
-        PoliceVerificationResult.EmptyDwelling => "Empty dwelling",
-        PoliceVerificationResult.RefusedAccess => "Refused access",
-        PoliceVerificationResult.Incomplete => "Incomplete",
-        _ => result.ToDisplayString(),
-    };
+        return result switch
+        {
+            PoliceVerificationResult.Confirmed => "Confirmed",
+            PoliceVerificationResult.NotFound => "Not found",
+            PoliceVerificationResult.AddressIncorrect => "Address incorrect",
+            PoliceVerificationResult.MailboxOnly => "Mailbox only",
+            PoliceVerificationResult.EmptyDwelling => "Empty dwelling",
+            PoliceVerificationResult.RefusedAccess => "Refused access",
+            PoliceVerificationResult.Incomplete => "Incomplete",
+            _ => result.ToDisplayString()
+        };
+    }
 
-    private static AppSeverity ResultSeverity(PoliceVerificationResult result) => result switch
+    private static AppSeverity ResultSeverity(PoliceVerificationResult result)
     {
-        PoliceVerificationResult.Confirmed => AppSeverity.Success,
-        PoliceVerificationResult.Incomplete => AppSeverity.Warning,
-        _ => AppSeverity.Error,
-    };
+        return result switch
+        {
+            PoliceVerificationResult.Confirmed => AppSeverity.Success,
+            PoliceVerificationResult.Incomplete => AppSeverity.Warning,
+            _ => AppSeverity.Error
+        };
+    }
+
 }

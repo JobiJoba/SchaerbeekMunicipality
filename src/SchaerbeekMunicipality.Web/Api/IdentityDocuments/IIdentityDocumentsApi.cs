@@ -29,7 +29,8 @@ public interface IIdentityDocumentsApi
 
     Task<ClaimDocumentRequestCaseResponse> ClaimRequestAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<ClaimDocumentRequestCaseResponse?> TryAutoClaimRequestAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<ClaimDocumentRequestCaseResponse?> TryAutoClaimRequestAsync(Guid id,
+        CancellationToken cancellationToken = default);
 
     Task<ReleaseCaseLockResponse> ReleaseCaseLockAsync(Guid id, CancellationToken cancellationToken = default);
 
@@ -54,7 +55,8 @@ public interface IIdentityDocumentsApi
         RecordFeePaymentRequest request,
         CancellationToken cancellationToken = default);
 
-    Task<AdvanceDocumentRequestStatusResponse> AdvanceStatusAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<AdvanceDocumentRequestStatusResponse> AdvanceStatusAsync(Guid id,
+        CancellationToken cancellationToken = default);
 
     Task<IssueDocumentResponse> IssueDocumentAsync(Guid id, CancellationToken cancellationToken = default);
 

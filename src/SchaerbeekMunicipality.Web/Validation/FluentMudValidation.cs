@@ -10,10 +10,7 @@ public static class FluentMudValidation
     {
         return async (model, propertyName) =>
         {
-            if (model is not TForm form)
-            {
-                return [];
-            }
+            if (model is not TForm form) return [];
 
             return await ValidatePropertyAsync(validator, map(form), propertyName);
         };

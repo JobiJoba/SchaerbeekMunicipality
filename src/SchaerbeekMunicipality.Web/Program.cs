@@ -11,10 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-if (!builder.Environment.IsDevelopment())
-{
-    builder.AddMunicipalApiHost();
-}
+if (!builder.Environment.IsDevelopment()) builder.AddMunicipalApiHost();
 
 builder.Services.AddWebPresentation();
 builder.Services.AddMunicipalApiClients(builder.Environment);
@@ -31,7 +28,7 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     await app.InitializeMunicipalApiDatabaseAsync();
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
+    app.UseExceptionHandler("/Error", true);
 }
 
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
@@ -61,7 +58,7 @@ else
             catch (InvalidRegistrationTransitionException ex)
             {
                 return Results.Problem(
-                    detail: ex.Message,
+                    ex.Message,
                     statusCode: StatusCodes.Status409Conflict,
                     title: "Cannot issue certificate");
             }
@@ -83,7 +80,7 @@ else
             catch (InvalidRegistrationTransitionException ex)
             {
                 return Results.Problem(
-                    detail: ex.Message,
+                    ex.Message,
                     statusCode: StatusCodes.Status409Conflict,
                     title: "Cannot issue certificate");
             }

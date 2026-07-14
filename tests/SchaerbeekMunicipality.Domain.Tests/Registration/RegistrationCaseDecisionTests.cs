@@ -4,8 +4,8 @@ using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
-using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Tests.Registration;
@@ -191,7 +191,7 @@ public sealed class RegistrationCaseDecisionTests
                     null,
                     null,
                     NationalRegisterSearchScorer.ExactMatchScore,
-                    "Exact match"),
+                    "Exact match")
             ]);
 
         registrationCase.DuplicateInvestigationStatus.Should().Be(DuplicateInvestigationStatus.Open);

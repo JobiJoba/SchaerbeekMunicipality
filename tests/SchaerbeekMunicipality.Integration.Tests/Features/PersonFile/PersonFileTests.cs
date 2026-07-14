@@ -8,13 +8,12 @@ using SchaerbeekMunicipality.Application.Features.Registration.ConfirmRegistrati
 using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
-using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
-using SchaerbeekMunicipality.Domain.Address;
-using SchaerbeekMunicipality.Domain.Immigration;
-using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister;
+using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Integration.Tests.Features.Registration;
@@ -86,13 +85,13 @@ public sealed class PersonFileTests
         var jean = await registerRepo.GetByIdAsync(NationalRegisterSeeder.JeanDupontId, CancellationToken.None);
         jean.Should().NotBeNull();
 
-        jean!.NationalRegisterNumber.Should().NotBeNull();
+        jean.NationalRegisterNumber.Should().NotBeNull();
         var jeanNr = jean.NationalRegisterNumber!.Value;
         var person = await personRepo.GetByNationalRegisterNumberAsync(jeanNr, CancellationToken.None);
         person.Should().NotBeNull();
 
         var handler = scope.ServiceProvider.GetRequiredService<GetPersonFileHandler>();
-        var personFile = await handler.Handle(person!.Id, CancellationToken.None);
+        var personFile = await handler.Handle(person.Id, CancellationToken.None);
 
         personFile.Header.GivenName.Should().Be("Jean");
         personFile.Header.FamilyName.Should().Be("Dupont");
@@ -145,7 +144,7 @@ public sealed class PersonFileTests
 
         var handler = scope.ServiceProvider.GetRequiredService<SearchPersonFileHandler>();
         var response = await handler.Handle(
-            new SearchNationalRegisterRequest(null, null, null, Page: 1, PageSize: 25),
+            new SearchNationalRegisterRequest(null, null, null),
             CancellationToken.None);
 
         response.TotalCount.Should().Be(5);

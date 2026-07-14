@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.ReleaseCaseLock;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Api.Features.Registration.ReleaseCaseLock;
 

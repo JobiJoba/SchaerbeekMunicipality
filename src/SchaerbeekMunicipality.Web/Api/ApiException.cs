@@ -22,10 +22,7 @@ public sealed class ApiException : Exception
         HttpResponseMessage response,
         CancellationToken cancellationToken = default)
     {
-        if (response.IsSuccessStatusCode)
-        {
-            return;
-        }
+        if (response.IsSuccessStatusCode) return;
 
         throw await CreateAsync(response, cancellationToken);
     }
@@ -46,11 +43,12 @@ public sealed class ApiException : Exception
             HttpStatusCode.NotFound =>
                 new KeyNotFoundException(problemDetails?.Detail ?? "The requested resource was not found."),
             HttpStatusCode.Conflict =>
-                new InvalidOperationException(problemDetails?.Detail ?? "The request conflicted with the current state."),
+                new InvalidOperationException(
+                    problemDetails?.Detail ?? "The request conflicted with the current state."),
             _ => new ApiException(
                 statusCode,
                 problemDetails?.Detail ?? $"The API request failed with status code {(int)statusCode}.",
-                problemDetails?.Title),
+                problemDetails?.Title)
         };
     }
 
@@ -67,10 +65,8 @@ public sealed class ApiException : Exception
         HttpResponseMessage response,
         CancellationToken cancellationToken)
     {
-        if (response.Content.Headers.ContentType?.MediaType?.Contains("json", StringComparison.OrdinalIgnoreCase) != true)
-        {
-            return null;
-        }
+        if (response.Content.Headers.ContentType?.MediaType?.Contains("json", StringComparison.OrdinalIgnoreCase) !=
+            true) return null;
 
         try
         {

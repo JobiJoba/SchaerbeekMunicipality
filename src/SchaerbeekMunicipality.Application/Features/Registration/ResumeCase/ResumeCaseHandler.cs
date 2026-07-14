@@ -1,6 +1,5 @@
-using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.ResumeCase;
 
@@ -15,9 +14,7 @@ public sealed class ResumeCaseHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can resume suspended cases.");
-        }
 
         var registrationCase = await caseGuard.GetForEditAsync(
             caseId,

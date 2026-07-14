@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.ClaimRegistrationCase;
 
@@ -25,15 +25,12 @@ public sealed class ClaimRegistrationCaseHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+                               ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
 
         authorization.EnsureCanView(currentOfficer);
 
         var officerId = OfficerId.From(currentOfficer.OfficerId);
-        if (!authorization.ShouldAutoClaim(registrationCase, officerId))
-        {
-            return null;
-        }
+        if (!authorization.ShouldAutoClaim(registrationCase, officerId)) return null;
 
         return await ClaimCoreAsync(registrationCase, officerId, cancellationToken);
     }
@@ -45,7 +42,7 @@ public sealed class ClaimRegistrationCaseHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var registrationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+                               ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
 
         authorization.EnsureCanView(currentOfficer);
 
@@ -61,13 +58,11 @@ public sealed class ClaimRegistrationCaseHandler(
         var claimResult = registrationCase.Claim(officerId, timeProvider.GetUtcNow());
 
         if (claimResult is CaseClaimResult.NewlyClaimed or CaseClaimResult.Reclaimed)
-        {
             await auditRecorder.RecordAsync(
                 registrationCase.Id,
                 CaseAuditAction.CaseAssigned,
                 claimResult == CaseClaimResult.Reclaimed ? "Case reclaimed" : null,
                 cancellationToken);
-        }
 
         await caseRepository.SaveChangesAsync(cancellationToken);
 

@@ -1,6 +1,5 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Infrastructure.Persistence;
 using Testcontainers.PostgreSql;
 
@@ -12,9 +11,15 @@ public sealed class PostgreSqlMigrationTests : IAsyncLifetime
     private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder("postgres:16-alpine")
         .Build();
 
-    public async Task InitializeAsync() => await _postgres.StartAsync();
+    public async Task InitializeAsync()
+    {
+        await _postgres.StartAsync();
+    }
 
-    public async Task DisposeAsync() => await _postgres.DisposeAsync();
+    public async Task DisposeAsync()
+    {
+        await _postgres.DisposeAsync();
+    }
 
     [Fact]
     public async Task Migrations_ApplySuccessfullyOnPostgreSql()
@@ -27,7 +32,7 @@ public sealed class PostgreSqlMigrationTests : IAsyncLifetime
         await using var dbContext = new MunicipalDbContext(options);
         await dbContext.Database.MigrateAsync();
 
-        var applied = await dbContext.Database.GetAppliedMigrationsAsync();
+        var applied = (await dbContext.Database.GetAppliedMigrationsAsync()).ToList();
         applied.Should().NotBeEmpty();
         applied.Should().Contain(m => m.Contains("CaseIntakeAndIdentity", StringComparison.Ordinal));
     }

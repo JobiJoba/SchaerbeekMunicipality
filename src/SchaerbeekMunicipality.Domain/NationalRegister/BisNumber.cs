@@ -8,20 +8,20 @@ public readonly record struct BisNumber(string Value)
 
         var normalized = value.Trim().Replace(".", string.Empty).Replace("-", string.Empty);
         if (normalized.Length != 11 || !normalized.All(char.IsDigit))
-        {
             throw new ArgumentException("BIS number must be an 11-digit identifier.");
-        }
 
-        if (normalized[0] != '7')
-        {
-            throw new ArgumentException("BIS numbers in this simulation start with digit 7.");
-        }
+        if (normalized[0] != '7') throw new ArgumentException("BIS numbers in this simulation start with digit 7.");
 
         return new BisNumber(normalized);
     }
 
-    public string Format() =>
-        $"{Value[..6]}-{Value[6..9]}.{Value[9..]}";
+    public string Format()
+    {
+        return $"{Value[..6]}-{Value[6..9]}.{Value[9..]}";
+    }
 
-    public override string ToString() => Value;
+    public override string ToString()
+    {
+        return Value;
+    }
 }

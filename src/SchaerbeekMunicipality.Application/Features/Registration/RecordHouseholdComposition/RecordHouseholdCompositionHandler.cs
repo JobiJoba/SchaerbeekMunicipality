@@ -1,7 +1,6 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.RecordHouseholdComposition;
 
@@ -25,16 +24,12 @@ public sealed class RecordHouseholdCompositionHandler(
         registrationCase.EnsureIntakeDataEditable(nameof(RecordHouseholdComposition));
 
         if (!registrationCase.Checklist.IdentityEstablished)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Identity must be recorded before household composition can be captured.");
-        }
 
         if (registrationCase.DeclaredAddress is null)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Address must be declared before recording household composition.");
-        }
 
         var memberDetails = request.Members
             .Select(m => new HouseholdMemberDetails(

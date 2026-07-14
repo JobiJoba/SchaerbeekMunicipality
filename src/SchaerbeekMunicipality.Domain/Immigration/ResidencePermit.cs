@@ -30,9 +30,7 @@ public sealed class ResidencePermit
         DateTimeOffset recordedAt)
     {
         if (details.ValidUntil < details.ValidFrom)
-        {
             throw new ArgumentException("Permit valid-until date must be on or after valid-from date.");
-        }
 
         return new ResidencePermit
         {
@@ -45,16 +43,14 @@ public sealed class ResidencePermit
             IssuingAuthority = string.IsNullOrWhiteSpace(details.IssuingAuthority)
                 ? null
                 : details.IssuingAuthority.Trim(),
-            RecordedAt = recordedAt,
+            RecordedAt = recordedAt
         };
     }
 
     public void Update(ResidencePermitDetails details, DateTimeOffset recordedAt)
     {
         if (details.ValidUntil < details.ValidFrom)
-        {
             throw new ArgumentException("Permit valid-until date must be on or after valid-from date.");
-        }
 
         PermitType = details.PermitType;
         CardNumber = string.IsNullOrWhiteSpace(details.CardNumber) ? null : details.CardNumber.Trim();

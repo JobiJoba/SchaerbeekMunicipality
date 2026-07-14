@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.ClaimBirthDeclarationCase;
 
@@ -25,15 +25,13 @@ public sealed class ClaimBirthDeclarationCaseHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var birthDeclarationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Birth declaration case '{caseId}' was not found.");
+                                   ?? throw new KeyNotFoundException(
+                                       $"Birth declaration case '{caseId}' was not found.");
 
         authorization.EnsureCanView(currentOfficer);
 
         var officerId = OfficerId.From(currentOfficer.OfficerId);
-        if (!authorization.ShouldAutoClaim(birthDeclarationCase, officerId))
-        {
-            return null;
-        }
+        if (!authorization.ShouldAutoClaim(birthDeclarationCase, officerId)) return null;
 
         return await ClaimCoreAsync(birthDeclarationCase, officerId, cancellationToken);
     }
@@ -45,7 +43,8 @@ public sealed class ClaimBirthDeclarationCaseHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var birthDeclarationCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Birth declaration case '{caseId}' was not found.");
+                                   ?? throw new KeyNotFoundException(
+                                       $"Birth declaration case '{caseId}' was not found.");
 
         authorization.EnsureCanView(currentOfficer);
 

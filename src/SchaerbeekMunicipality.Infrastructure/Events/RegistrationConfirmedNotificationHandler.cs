@@ -30,12 +30,10 @@ public sealed class RegistrationConfirmedNotificationHandler(
                 domainEvent.PersonId,
                 OutboundNotificationRecipient.HealthInsurance,
                 "Notify health insurance mutuality of registration.",
-                createdAt),
+                createdAt)
         };
 
         foreach (var notification in notifications)
-        {
             await notificationRepository.AddAsync(notification, cancellationToken);
-        }
     }
 }

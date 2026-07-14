@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ConfirmBirthDeclaration;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.NationalRegister;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ConfirmBirthDeclaration;
 
 namespace SchaerbeekMunicipality.Api.Features.BirthDeclaration.ConfirmBirthDeclaration;
 

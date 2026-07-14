@@ -5,5 +5,5 @@ public enum OutboundNotificationDeliveryStatus
     Pending,
     Processing,
     Sent,
-    Failed,
+    Failed
 }

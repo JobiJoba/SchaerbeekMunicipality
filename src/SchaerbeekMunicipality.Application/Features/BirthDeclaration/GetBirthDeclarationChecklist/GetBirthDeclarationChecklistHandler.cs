@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationCase;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationChecklist;
 
@@ -14,27 +14,29 @@ public sealed record BirthDeclarationChecklistResponse(
 
 public static class BirthDeclarationChecklistMapper
 {
-    public static BirthDeclarationChecklistResponse FromCaseDetail(BirthDeclarationCaseDetailDto detail) =>
-        new(
+    public static BirthDeclarationChecklistResponse FromCaseDetail(BirthDeclarationCaseDetailDto detail)
+    {
+        return new BirthDeclarationChecklistResponse(
             detail.ReadyForConfirmation,
             [
-                new(
+                new BirthDeclarationChecklistQuestion(
                     "Child identity recorded (names, sex, date and place of birth)",
                     detail.ChildDetailsRecorded,
                     detail.ChildDetailsRecorded ? null : "Record the newborn details."),
-                new(
+                new BirthDeclarationChecklistQuestion(
                     "At least one parent linked in the National Register",
                     detail.AtLeastOneParentLinked,
                     detail.AtLeastOneParentLinked ? null : "Link a registered parent via NR search."),
-                new(
+                new BirthDeclarationChecklistQuestion(
                     "Medical birth declaration attached",
                     detail.MedicalDeclarationAttached,
                     detail.MedicalDeclarationAttached ? null : "Attach the hospital or midwife document."),
-                new(
+                new BirthDeclarationChecklistQuestion(
                     "Household domicile established",
                     detail.HouseholdEstablished,
-                    detail.HouseholdEstablished ? null : "Declare the parents' domicile address."),
+                    detail.HouseholdEstablished ? null : "Declare the parents' domicile address.")
             ]);
+    }
 }
 
 public sealed class GetBirthDeclarationChecklistHandler(

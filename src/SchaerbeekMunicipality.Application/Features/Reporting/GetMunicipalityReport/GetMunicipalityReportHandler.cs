@@ -25,9 +25,7 @@ public sealed class GetMunicipalityReportHandler(
         authorization.EnsureCanViewReports(currentOfficer);
 
         if (!AllowedPeriods.Contains(months))
-        {
             throw new ArgumentOutOfRangeException(nameof(months), "Months must be 3, 6, or 12.");
-        }
 
         var periodStart = GetPeriodStart(timeProvider.GetUtcNow(), months);
 
@@ -115,19 +113,21 @@ public sealed class GetMunicipalityReportHandler(
         IReadOnlyList<RegistrationCase> registrationCases,
         IReadOnlyList<BirthDeclarationCase> birthCases,
         IReadOnlyList<ChangeOfAddressCase> changeOfAddressCases,
-        DateTimeOffset periodStart) =>
-        registrationCases.Count(c =>
-            c.Status == RegistrationCaseStatus.Rejected &&
-            c.ClosedAt is not null &&
-            c.ClosedAt >= periodStart) +
-        birthCases.Count(c =>
-            c.Status == BirthDeclarationCaseStatus.Rejected &&
-            c.ClosedAt is not null &&
-            c.ClosedAt >= periodStart) +
-        changeOfAddressCases.Count(c =>
-            c.Status == ChangeOfAddressCaseStatus.Rejected &&
-            c.ClosedAt is not null &&
-            c.ClosedAt >= periodStart);
+        DateTimeOffset periodStart)
+    {
+        return registrationCases.Count(c =>
+                   c.Status == RegistrationCaseStatus.Rejected &&
+                   c.ClosedAt is not null &&
+                   c.ClosedAt >= periodStart) +
+               birthCases.Count(c =>
+                   c.Status == BirthDeclarationCaseStatus.Rejected &&
+                   c.ClosedAt is not null &&
+                   c.ClosedAt >= periodStart) +
+               changeOfAddressCases.Count(c =>
+                   c.Status == ChangeOfAddressCaseStatus.Rejected &&
+                   c.ClosedAt is not null &&
+                   c.ClosedAt >= periodStart);
+    }
 
     private static int CountSuspendedInPeriod(
         IReadOnlyList<RegistrationCase> registrationCases,

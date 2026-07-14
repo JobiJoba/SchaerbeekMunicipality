@@ -1,9 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
-using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Domain.NationalRegister;
-using SchaerbeekMunicipality.Infrastructure.Persistence;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.ClaimBirthDeclarationCase;
@@ -11,6 +6,9 @@ using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.OpenBirthDeclarationCase;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RecordChildDetails;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SetDeclarationHousehold;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
+using SchaerbeekMunicipality.Domain.NationalRegister;
+using SchaerbeekMunicipality.Infrastructure.Persistence;
 using SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.BirthDeclaration;
@@ -48,7 +46,7 @@ internal static class BirthDeclarationTestHelpers
 
         var registerRepo = services.GetRequiredService<INationalRegisterRepository>();
         var jeanDupont = await registerRepo.GetByIdAsync(NationalRegisterSeeder.JeanDupontId, CancellationToken.None)
-            ?? throw new InvalidOperationException("Seed parent not found.");
+                         ?? throw new InvalidOperationException("Seed parent not found.");
 
         await services.GetRequiredService<LinkParentHandler>().Handle(
             caseId,

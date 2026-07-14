@@ -14,21 +14,48 @@ public sealed class BirthDeclarationCaseChecklist
 
     public bool HouseholdEstablished { get; private set; }
 
-    public static BirthDeclarationCaseChecklist Empty() => new();
+    public static BirthDeclarationCaseChecklist Empty()
+    {
+        return new BirthDeclarationCaseChecklist();
+    }
 
-    internal void MarkChildDetailsRecorded() => ChildDetailsRecorded = true;
+    internal void MarkChildDetailsRecorded()
+    {
+        ChildDetailsRecorded = true;
+    }
 
-    internal void ClearChildDetailsRecorded() => ChildDetailsRecorded = false;
+    internal void ClearChildDetailsRecorded()
+    {
+        ChildDetailsRecorded = false;
+    }
 
-    internal void MarkAtLeastOneParentLinked() => AtLeastOneParentLinked = true;
+    internal void MarkAtLeastOneParentLinked()
+    {
+        AtLeastOneParentLinked = true;
+    }
 
-    internal void ClearAtLeastOneParentLinked() => AtLeastOneParentLinked = false;
+    internal void ClearAtLeastOneParentLinked()
+    {
+        AtLeastOneParentLinked = false;
+    }
 
-    internal void MarkMedicalDeclarationAttached() => MedicalDeclarationAttached = true;
+    internal void MarkMedicalDeclarationAttached()
+    {
+        MedicalDeclarationAttached = true;
+    }
 
-    internal void ClearMedicalDeclarationAttached() => MedicalDeclarationAttached = false;
+    internal void ClearMedicalDeclarationAttached()
+    {
+        MedicalDeclarationAttached = false;
+    }
 
-    internal void MarkHouseholdEstablished() => HouseholdEstablished = true;
+    internal void MarkHouseholdEstablished()
+    {
+        HouseholdEstablished = true;
+    }
 
-    internal void ClearHouseholdEstablished() => HouseholdEstablished = false;
+    internal void ClearHouseholdEstablished()
+    {
+        HouseholdEstablished = false;
+    }
 }

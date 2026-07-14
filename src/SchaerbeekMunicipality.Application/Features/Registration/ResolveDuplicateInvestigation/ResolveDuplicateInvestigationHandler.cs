@@ -1,8 +1,6 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Auth;
-using SchaerbeekMunicipality.Application.Features.Registration;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.ResolveDuplicateInvestigation;
 

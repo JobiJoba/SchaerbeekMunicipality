@@ -6,5 +6,5 @@ public enum ResidencePermitType
     BCard = 1,
     CCard = 2,
     Annex15 = 3,
-    EuRegistrationCertificate = 4,
+    EuRegistrationCertificate = 4
 }

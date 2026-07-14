@@ -7,8 +7,10 @@ internal sealed class IntegrationAdapterRegistry(IEnumerable<IIntegrationAdapter
     private readonly IReadOnlyDictionary<OutboundNotificationRecipient, IIntegrationAdapter> _adapters =
         adapters.ToDictionary(adapter => adapter.Recipient);
 
-    public IIntegrationAdapter GetRequired(OutboundNotificationRecipient recipient) =>
-        _adapters.TryGetValue(recipient, out var adapter)
+    public IIntegrationAdapter GetRequired(OutboundNotificationRecipient recipient)
+    {
+        return _adapters.TryGetValue(recipient, out var adapter)
             ? adapter
             : throw new InvalidOperationException($"No integration adapter registered for '{recipient}'.");
+    }
 }

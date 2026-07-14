@@ -1,12 +1,5 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Address;
-using SchaerbeekMunicipality.Domain.Certificates;
-using SchaerbeekMunicipality.Domain.Household;
-using SchaerbeekMunicipality.Domain.Immigration;
-using SchaerbeekMunicipality.Domain.Notifications;
-using SchaerbeekMunicipality.Domain.Police;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.ApproveCase;
 using SchaerbeekMunicipality.Application.Features.Registration.ConfirmRegistration;
 using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress;
@@ -16,9 +9,14 @@ using SchaerbeekMunicipality.Application.Features.Registration.ListOutboundNotif
 using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordHouseholdComposition;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
-using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
 using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
+using SchaerbeekMunicipality.Domain.Certificates;
+using SchaerbeekMunicipality.Domain.Household;
+using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Notifications;
+using SchaerbeekMunicipality.Domain.Police;
+using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Infrastructure.Integrations;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
@@ -27,13 +25,11 @@ public sealed class CertificatesAndNotificationsTests
 {
     private static async Task<RegistrationCaseId> CreateRegisteredCaseAsync(IServiceProvider services)
     {
-        var openHandler = services.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
         var categoryHandler = services.GetRequiredService<SetResidenceCategoryHandler>();
         var declareHandler = services.GetRequiredService<DeclareAddressHandler>();
         var householdHandler = services.GetRequiredService<RecordHouseholdCompositionHandler>();
         var requestPoliceHandler = services.GetRequiredService<RequestPoliceVerificationHandler>();
-        var recordPoliceHandler = services.GetRequiredService<RecordPoliceResultHandler>();
         var approveHandler = services.GetRequiredService<ApproveCaseHandler>();
         var confirmHandler = services.GetRequiredService<ConfirmRegistrationHandler>();
 
@@ -60,7 +56,7 @@ public sealed class CertificatesAndNotificationsTests
             caseId,
             new RecordHouseholdCompositionRequest(
             [
-                new HouseholdMemberRequest("Sophie", "Lambert", new DateOnly(1988, 6, 12), HouseholdMemberRole.Head),
+                new HouseholdMemberRequest("Sophie", "Lambert", new DateOnly(1988, 6, 12), HouseholdMemberRole.Head)
             ]),
             CancellationToken.None);
 
@@ -97,7 +93,8 @@ public sealed class CertificatesAndNotificationsTests
             n.Recipient == nameof(OutboundNotificationRecipient.TaxAdministration)
             && n.Message.Contains("tax administration", StringComparison.OrdinalIgnoreCase));
         notifications.Items.Should().OnlyContain(n => n.CaseId == caseId.Value);
-        notifications.Items.Should().OnlyContain(n => n.DeliveryStatus == nameof(OutboundNotificationDeliveryStatus.Pending));
+        notifications.Items.Should()
+            .OnlyContain(n => n.DeliveryStatus == nameof(OutboundNotificationDeliveryStatus.Pending));
     }
 
     [Fact]

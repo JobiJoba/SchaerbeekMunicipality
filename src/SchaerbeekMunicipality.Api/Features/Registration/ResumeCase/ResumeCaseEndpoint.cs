@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.ResumeCase;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Api.Features.Registration.ResumeCase;
 
@@ -22,14 +22,14 @@ public static class ResumeCaseEndpoint
         catch (UnauthorizedAccessException ex)
         {
             return Results.Problem(
-                detail: ex.Message,
+                ex.Message,
                 statusCode: StatusCodes.Status403Forbidden,
                 title: "Forbidden");
         }
         catch (InvalidRegistrationTransitionException ex)
         {
             return Results.Problem(
-                detail: ex.Message,
+                ex.Message,
                 statusCode: StatusCodes.Status409Conflict,
                 title: "Invalid registration transition");
         }

@@ -90,5 +90,8 @@ public sealed class ChangeOfAddressCaseTests
         return changeOfAddressCase;
     }
 
-    private static ChangeOfAddressCase CreateCaseReadyExceptPolice() => CreateCaseWithAddress();
+    private static ChangeOfAddressCase CreateCaseReadyExceptPolice()
+    {
+        return CreateCaseWithAddress();
+    }
 }

@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.GetBirthDeclarationChecklist;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 
 namespace SchaerbeekMunicipality.Api.Features.BirthDeclaration.GetBirthDeclarationChecklist;
 

@@ -4,7 +4,7 @@
 {
     @for (var i = 0; i < SkeletonRows; i++)
     {
-        <MudSkeleton Height="40px" Class="mb-2" />
+        <MudSkeleton Height="40px" Class="mb-2"/>
     }
 }
 else if (Items is null || !Items.Any())
@@ -15,7 +15,7 @@ else if (Items is null || !Items.Any())
     }
     else
     {
-        <AppEmptyState Title="No records" Description="Nothing to display yet." />
+        <AppEmptyState Title="No records" Description="Nothing to display yet."/>
     }
 }
 else
@@ -38,47 +38,35 @@ else
             @RowTemplate(row)
         </RowTemplate>
         <PagerContent>
-            <MudTablePager PageSizeOptions="@(new int[] { 10, 25, 50 })" />
+            <MudTablePager PageSizeOptions="@(new[] { 10, 25, 50 })"/>
         </PagerContent>
     </MudTable>
 }
 
 @code {
-    [Parameter]
-    public IEnumerable<T>? Items { get; set; }
+    [Parameter] public IEnumerable<T>? Items { get; set; }
 
-    [Parameter]
-    public bool Loading { get; set; }
+    [Parameter] public bool Loading { get; set; }
 
-    [Parameter]
-    public RenderFragment? HeaderContent { get; set; }
+    [Parameter] public RenderFragment? HeaderContent { get; set; }
 
-    [Parameter, EditorRequired]
-    public RenderFragment<T> RowTemplate { get; set; } = null!;
+    [Parameter] [EditorRequired] public RenderFragment<T> RowTemplate { get; set; } = null!;
 
-    [Parameter]
-    public EventCallback<T> OnRowClick { get; set; }
+    [Parameter] public EventCallback<T> OnRowClick { get; set; }
 
-    [Parameter]
-    public RenderFragment? EmptyState { get; set; }
+    [Parameter] public RenderFragment? EmptyState { get; set; }
 
-    [Parameter, EditorRequired]
-    public string Caption { get; set; } = string.Empty;
+    [Parameter] [EditorRequired] public string Caption { get; set; } = string.Empty;
 
-    [Parameter]
-    public bool AllowPaging { get; set; } = true;
+    [Parameter] public bool AllowPaging { get; set; } = true;
 
-    [Parameter]
-    public int PageSize { get; set; } = 25;
+    [Parameter] public int PageSize { get; set; } = 25;
 
-    [Parameter]
-    public int SkeletonRows { get; set; } = 5;
+    [Parameter] public int SkeletonRows { get; set; } = 5;
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private async Task HandleRowClick(TableRowClickEventArgs<T> args)
     {
@@ -87,4 +75,5 @@ else
             await OnRowClick.InvokeAsync(args.Item);
         }
     }
+
 }

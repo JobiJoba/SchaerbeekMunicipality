@@ -1,8 +1,8 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Api.Validation;
 using SchaerbeekMunicipality.Application.Features.IdentityDocuments.AttachApplicantPhoto;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 
 namespace SchaerbeekMunicipality.Api.Features.IdentityDocuments.AttachApplicantPhoto;
 
@@ -37,10 +37,7 @@ public static class AttachApplicantPhotoEndpoint
     {
         var form = new AttachApplicantPhotoForm { File = file };
         var validation = await validator.ValidateAsync(form, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return ValidationResults.ToProblemDetails(validation);
-        }
+        if (!validation.IsValid) return ValidationResults.ToProblemDetails(validation);
 
         await using var stream = file.OpenReadStream();
         var result = await handler.Handle(

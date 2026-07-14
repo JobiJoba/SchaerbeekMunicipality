@@ -56,6 +56,13 @@ public sealed class ChangeOfAddressCase
 
     public string? DecisionNotes { get; private set; }
 
+    public bool IsReadyForConfirmation =>
+        Status is ChangeOfAddressCaseStatus.Intake or ChangeOfAddressCaseStatus.UnderReview &&
+        Checklist.PersonIdentified &&
+        Checklist.NewAddressDeclared &&
+        (!Checklist.HousingDocumentRequired || Checklist.HousingDocumentAttached) &&
+        (!Checklist.PoliceVerificationRequested || Checklist.PoliceVerificationPositive);
+
     public static ChangeOfAddressCase Open(
         PersonId personId,
         BelgianAddress? previousAddress,
@@ -71,7 +78,7 @@ public sealed class ChangeOfAddressCase
             Status = ChangeOfAddressCaseStatus.Intake,
             PreviousAddress = previousAddress,
             OpenedAt = openedAt,
-            Checklist = checklist,
+            Checklist = checklist
         };
     }
 
@@ -112,11 +119,15 @@ public sealed class ChangeOfAddressCase
             message => new InvalidChangeOfAddressTransitionException(message));
     }
 
-    public bool IsLockedTo(OfficerId officer) =>
-        OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
+    public bool IsLockedTo(OfficerId officer)
+    {
+        return OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
+    }
 
-    public bool IsLockedToAnother(OfficerId officer) =>
-        OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
+    public bool IsLockedToAnother(OfficerId officer)
+    {
+        return OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
+    }
 
     public void DeclareNewAddress(
         BelgianAddress address,
@@ -126,10 +137,8 @@ public sealed class ChangeOfAddressCase
         EnsureIntakeDataEditable(nameof(DeclareNewAddress));
 
         if (!ChangeOfAddressRules.IsValidMunicipalityAddress(address))
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "The new address must be within the municipality of Schaerbeek (1030).");
-        }
 
         NewAddress = address;
         HousingSituation = housingSituation;
@@ -140,13 +149,9 @@ public sealed class ChangeOfAddressCase
         Checklist.SetHousingDocumentRequired(requiresDocument);
 
         if (!requiresDocument)
-        {
             Checklist.MarkHousingDocumentAttached();
-        }
         else
-        {
             Checklist.ClearHousingDocumentAttached();
-        }
 
         MoveToUnderReviewIfReady();
     }
@@ -166,10 +171,7 @@ public sealed class ChangeOfAddressCase
 
         HousingDocumentId = null;
 
-        if (Checklist.HousingDocumentRequired)
-        {
-            Checklist.ClearHousingDocumentAttached();
-        }
+        if (Checklist.HousingDocumentRequired) Checklist.ClearHousingDocumentAttached();
     }
 
     public void AddHouseholdMember(PersonId personId)
@@ -177,16 +179,12 @@ public sealed class ChangeOfAddressCase
         EnsureIntakeDataEditable(nameof(AddHouseholdMember));
 
         if (personId == PersonId)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "The subject of the case is already the primary resident.");
-        }
 
         if (_householdMemberLinks.Any(link => link.PersonId == personId))
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "This person is already linked to the household move.");
-        }
 
         _householdMemberLinks.Add(ChangeOfAddressHouseholdMemberLink.Create(personId));
     }
@@ -197,10 +195,8 @@ public sealed class ChangeOfAddressCase
 
         var removed = _householdMemberLinks.RemoveAll(link => link.PersonId == personId);
         if (removed == 0)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "The person is not linked to this household move.");
-        }
     }
 
     public void RequestPoliceVerification()
@@ -208,16 +204,12 @@ public sealed class ChangeOfAddressCase
         EnsureIntakeDataEditable(nameof(RequestPoliceVerification));
 
         if (NewAddress is null)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "A new address must be declared before requesting police verification.");
-        }
 
         if (PoliceVerificationRequestId is not null && Status == ChangeOfAddressCaseStatus.AwaitingPoliceVerification)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "A police verification request is already pending for this case.");
-        }
 
         Checklist.MarkPoliceVerificationRequested();
         Checklist.ClearPoliceVerificationPositive();
@@ -245,38 +237,23 @@ public sealed class ChangeOfAddressCase
         }
     }
 
-    public bool IsReadyForConfirmation =>
-        Status is ChangeOfAddressCaseStatus.Intake or ChangeOfAddressCaseStatus.UnderReview &&
-        Checklist.PersonIdentified &&
-        Checklist.NewAddressDeclared &&
-        (!Checklist.HousingDocumentRequired || Checklist.HousingDocumentAttached) &&
-        (!Checklist.PoliceVerificationRequested || Checklist.PoliceVerificationPositive);
-
     public AddressChangedEventDetails ConfirmAddressChange(DateTimeOffset confirmedAt)
     {
         if (Status is not (ChangeOfAddressCaseStatus.Intake or ChangeOfAddressCaseStatus.UnderReview))
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 $"Cannot perform '{nameof(ConfirmAddressChange)}' while the case is in status '{Status}'.");
-        }
 
         if (Status == ChangeOfAddressCaseStatus.AwaitingPoliceVerification)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "Cannot confirm the address change while police verification is pending.");
-        }
 
         if (!IsReadyForConfirmation)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "Cannot confirm the address change until all checklist items are satisfied.");
-        }
 
         if (NewAddress is null)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "A new address must be declared before confirmation.");
-        }
 
         Status = ChangeOfAddressCaseStatus.Confirmed;
         ConfirmedAt = confirmedAt;
@@ -291,11 +268,10 @@ public sealed class ChangeOfAddressCase
         string? notes,
         DateTimeOffset rejectedAt)
     {
-        if (Status is not (ChangeOfAddressCaseStatus.UnderReview or ChangeOfAddressCaseStatus.AwaitingPoliceVerification))
-        {
+        if (Status is not (ChangeOfAddressCaseStatus.UnderReview
+            or ChangeOfAddressCaseStatus.AwaitingPoliceVerification))
             throw new InvalidChangeOfAddressTransitionException(
                 $"Cannot perform '{nameof(Reject)}' while the case is in status '{Status}'.");
-        }
 
         DecisionOfficerId = officer;
         RejectionReason = reason;
@@ -309,32 +285,23 @@ public sealed class ChangeOfAddressCase
         if (Status is not (ChangeOfAddressCaseStatus.Intake
             or ChangeOfAddressCaseStatus.UnderReview
             or ChangeOfAddressCaseStatus.AwaitingPoliceVerification))
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 $"Cannot perform '{operation}' while the case is in status '{Status}'.");
-        }
     }
 
     private void MoveToUnderReviewIfReady()
     {
-        if (Status is ChangeOfAddressCaseStatus.AwaitingPoliceVerification)
-        {
-            return;
-        }
+        if (Status is ChangeOfAddressCaseStatus.AwaitingPoliceVerification) return;
 
         if (Checklist.NewAddressDeclared &&
             (!Checklist.HousingDocumentRequired || Checklist.HousingDocumentAttached))
-        {
             Status = ChangeOfAddressCaseStatus.UnderReview;
-        }
     }
 
     private void EnsureStatus(ChangeOfAddressCaseStatus requiredStatus, string operation)
     {
         if (Status != requiredStatus)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 $"Cannot perform '{operation}' while the case is in status '{Status}'.");
-        }
     }
 }

@@ -1,6 +1,6 @@
-namespace SchaerbeekMunicipality.Domain.Identity;
-
 using SchaerbeekMunicipality.Domain.Registration;
+
+namespace SchaerbeekMunicipality.Domain.Identity;
 
 public sealed class CivilStatusRecord
 {
@@ -20,6 +20,11 @@ public sealed class CivilStatusRecord
 
     public MarriageRecognitionStatus MarriageRecognitionStatus { get; private set; }
 
+    public CivilStatus EffectiveRegisterStatus =>
+        IsMarriageRecognitionBlocking()
+            ? CivilStatus.Single
+            : Status;
+
     public static CivilStatusRecord Create(CivilStatusDetails details)
     {
         if (RequiresMarriageDetails(details.Status))
@@ -28,9 +33,7 @@ public sealed class CivilStatusRecord
             ArgumentException.ThrowIfNullOrWhiteSpace(details.SpouseFamilyName);
 
             if (details.MarriageDate is null)
-            {
                 throw new ArgumentException("Marriage date is required for this civil status.");
-            }
         }
 
         return new CivilStatusRecord
@@ -46,40 +49,29 @@ public sealed class CivilStatusRecord
             MarriagePlace = string.IsNullOrWhiteSpace(details.MarriagePlace)
                 ? null
                 : details.MarriagePlace.Trim(),
-            MarriageRecognitionStatus = ResolveMarriageRecognitionStatus(details),
+            MarriageRecognitionStatus = ResolveMarriageRecognitionStatus(details)
         };
     }
 
-    public CivilStatus EffectiveRegisterStatus =>
-        IsMarriageRecognitionBlocking()
-            ? CivilStatus.Single
-            : Status;
-
-    public bool IsMarriageRecognitionBlocking() =>
-        RegistrationExceptionRules.IsMarriageRecognitionBlocking(this);
+    public bool IsMarriageRecognitionBlocking()
+    {
+        return RegistrationExceptionRules.IsMarriageRecognitionBlocking(this);
+    }
 
     private static MarriageRecognitionStatus ResolveMarriageRecognitionStatus(CivilStatusDetails details)
     {
-        if (!RequiresMarriageDetails(details.Status))
-        {
-            return MarriageRecognitionStatus.NotApplicable;
-        }
+        if (!RequiresMarriageDetails(details.Status)) return MarriageRecognitionStatus.NotApplicable;
 
         if (details.MarriageRecognitionStatus != MarriageRecognitionStatus.NotApplicable)
-        {
             return details.MarriageRecognitionStatus;
-        }
 
-        if (string.IsNullOrWhiteSpace(details.MarriagePlace))
-        {
-            return MarriageRecognitionStatus.NotApplicable;
-        }
+        if (string.IsNullOrWhiteSpace(details.MarriagePlace)) return MarriageRecognitionStatus.NotApplicable;
 
         var record = new CivilStatusRecord
         {
             Status = details.Status,
             MarriagePlace = details.MarriagePlace.Trim(),
-            MarriageRecognitionStatus = MarriageRecognitionStatus.NotApplicable,
+            MarriageRecognitionStatus = MarriageRecognitionStatus.NotApplicable
         };
 
         return RegistrationExceptionRules.IsMarriageAbroad(record)
@@ -87,6 +79,8 @@ public sealed class CivilStatusRecord
             : MarriageRecognitionStatus.Recognised;
     }
 
-    public static bool RequiresMarriageDetails(CivilStatus status) =>
-        status is CivilStatus.Married or CivilStatus.RegisteredPartnership;
+    public static bool RequiresMarriageDetails(CivilStatus status)
+    {
+        return status is CivilStatus.Married or CivilStatus.RegisteredPartnership;
+    }
 }

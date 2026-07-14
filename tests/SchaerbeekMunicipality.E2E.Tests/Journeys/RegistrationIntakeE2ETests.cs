@@ -18,7 +18,7 @@ public sealed class RegistrationIntakeE2ETests(MunicipalE2EFixture fixture) : E2
         await page.WaitForBlazorAsync();
 
         await page.GetByTestId("create-registration-case").ClickAsync();
-        await page.GetByRole(AriaRole.Heading, new() { Name = "Case created" })
+        await page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = "Case created" })
             .WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
 
         (await page.GetByText("The intake file is open").IsVisibleAsync()).Should().BeTrue();

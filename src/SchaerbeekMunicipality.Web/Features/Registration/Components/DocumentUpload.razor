@@ -1,8 +1,5 @@
-@using Microsoft.AspNetCore.Components.Forms
 @using SchaerbeekMunicipality.Domain.Documents
-@using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Web.Api.Registration
-
 <AppCard Title="Attach document" Outlined="true">
     <MudSelect T="DocumentType" @bind-Value="_documentType" Label="Document type" Class="mb-3">
         <MudSelectItem Value="DocumentType.Passport">Passport</MudSelectItem>
@@ -36,23 +33,23 @@
 </AppCard>
 
 @code {
-    [Parameter, EditorRequired]
-    public Guid CaseId { get; set; }
+    [Parameter] [EditorRequired] public Guid CaseId { get; set; }
 
-    [Parameter]
-    public EventCallback OnUploaded { get; set; }
+    [Parameter] public EventCallback OnUploaded { get; set; }
 
-    [Inject]
-    private IRegistrationApi RegistrationApi { get; set; } = null!;
+    [Inject] private IRegistrationApi RegistrationApi { get; set; } = null!;
 
-    [Inject]
-    private ISnackbar Snackbar { get; set; } = null!;
+    [Inject] private ISnackbar Snackbar { get; set; } = null!;
 
     private DocumentType _documentType = DocumentType.Passport;
     private IBrowserFile? _selectedFile;
     private bool _uploading;
 
-    private void OnFileSelected(IBrowserFile file) => _selectedFile = file;
+    private Task OnFileSelected(IBrowserFile? file)
+    {
+        _selectedFile = file;
+        return Task.CompletedTask;
+    }
 
     private async Task Upload()
     {
@@ -64,7 +61,7 @@
         _uploading = true;
         try
         {
-            await using var stream = _selectedFile.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
+            await using var stream = _selectedFile.OpenReadStream(10 * 1024 * 1024);
             await RegistrationApi.AttachDocumentAsync(
                 CaseId,
                 _documentType,
@@ -85,4 +82,5 @@
             _uploading = false;
         }
     }
+
 }

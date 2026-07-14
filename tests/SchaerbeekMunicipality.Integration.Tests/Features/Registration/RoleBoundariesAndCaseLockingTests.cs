@@ -1,17 +1,16 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.OpenBirthDeclarationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.ClaimRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
+using SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard;
 using SchaerbeekMunicipality.Application.Features.Registration.ListCaseAudit;
 using SchaerbeekMunicipality.Application.Features.Registration.ListRegistrationCases;
-using SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard;
 using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.ReleaseCaseLock;
-using SchaerbeekMunicipality.Application.Features.Registration;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -84,10 +83,10 @@ public sealed class RoleBoundariesAndCaseLockingTests
         await scope.ServiceProvider.GetRequiredService<ClaimRegistrationCaseHandler>()
             .Handle(caseId, CancellationToken.None);
 
-        RegistrationTestHelpers.SelectPopulationOfficer(scope.ServiceProvider, secondary: true);
+        RegistrationTestHelpers.SelectPopulationOfficer(scope.ServiceProvider, true);
 
-        var claimAct = () => scope.ServiceProvider.GetRequiredService<ClaimRegistrationCaseHandler>()
-            .Handle(caseId, CancellationToken.None);
+        var claimHandler = scope.ServiceProvider.GetRequiredService<ClaimRegistrationCaseHandler>();
+        var claimAct = () => claimHandler.Handle(caseId, CancellationToken.None);
         await claimAct.Should().ThrowAsync<InvalidRegistrationTransitionException>();
 
         var detail = await scope.ServiceProvider.GetRequiredService<GetRegistrationCaseHandler>()
@@ -114,7 +113,7 @@ public sealed class RoleBoundariesAndCaseLockingTests
         await scope.ServiceProvider.GetRequiredService<ReleaseCaseLockHandler>()
             .Handle(caseId, CancellationToken.None);
 
-        RegistrationTestHelpers.SelectPopulationOfficer(scope.ServiceProvider, secondary: true);
+        RegistrationTestHelpers.SelectPopulationOfficer(scope.ServiceProvider, true);
 
         var claim = await scope.ServiceProvider.GetRequiredService<ClaimRegistrationCaseHandler>()
             .Handle(caseId, CancellationToken.None);
@@ -131,8 +130,8 @@ public sealed class RoleBoundariesAndCaseLockingTests
 
         RegistrationTestHelpers.SetRole(scope.ServiceProvider, OfficerRole.PoliceClerk);
 
-        var listAct = () => scope.ServiceProvider.GetRequiredService<ListRegistrationCasesHandler>()
-            .Handle(CancellationToken.None);
+        var listHandler = scope.ServiceProvider.GetRequiredService<ListRegistrationCasesHandler>();
+        var listAct = () => listHandler.Handle(CancellationToken.None);
         await listAct.Should().ThrowAsync<UnauthorizedAccessException>();
     }
 
@@ -172,13 +171,11 @@ public sealed class RoleBoundariesAndCaseLockingTests
         await scope.ServiceProvider.GetRequiredService<ClaimRegistrationCaseHandler>()
             .Handle(caseId, CancellationToken.None);
 
-        RegistrationTestHelpers.SelectPopulationOfficer(scope.ServiceProvider, secondary: true);
+        RegistrationTestHelpers.SelectPopulationOfficer(scope.ServiceProvider, true);
 
-        var act = () => scope.ServiceProvider.GetRequiredService<RecordIdentityHandler>()
-            .Handle(
-                caseId,
-                new RecordIdentityRequest("Jean", "Dupont", new DateOnly(1985, 5, 5), "French"),
-                CancellationToken.None);
+        var recordIdentityHandler = scope.ServiceProvider.GetRequiredService<RecordIdentityHandler>();
+        var identityRequest = new RecordIdentityRequest("Jean", "Dupont", new DateOnly(1985, 5, 5), "French");
+        var act = () => recordIdentityHandler.Handle(caseId, identityRequest, CancellationToken.None);
 
         await act.Should().ThrowAsync<InvalidRegistrationTransitionException>();
     }

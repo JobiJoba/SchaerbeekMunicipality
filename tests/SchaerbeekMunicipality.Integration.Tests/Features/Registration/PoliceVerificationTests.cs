@@ -1,15 +1,12 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Address;
-using SchaerbeekMunicipality.Domain.Police;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress;
 using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.ListPendingPoliceVerifications;
-using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
-using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
 using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
+using SchaerbeekMunicipality.Domain.Police;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -17,7 +14,6 @@ public sealed class PoliceVerificationTests
 {
     private static async Task<RegistrationCaseId> OpenCaseWithIdentityAndAddressAsync(IServiceProvider services)
     {
-        var openHandler = services.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
         var declareHandler = services.GetRequiredService<DeclareAddressHandler>();
 
@@ -45,7 +41,6 @@ public sealed class PoliceVerificationTests
 
         var requestHandler = scope.ServiceProvider.GetRequiredService<RequestPoliceVerificationHandler>();
         var listHandler = scope.ServiceProvider.GetRequiredService<ListPendingPoliceVerificationsHandler>();
-        var recordHandler = scope.ServiceProvider.GetRequiredService<RecordPoliceResultHandler>();
         var caseRepo = scope.ServiceProvider.GetRequiredService<IRegistrationCaseRepository>();
 
         var request = await requestHandler.Handle(caseId, CancellationToken.None);
@@ -76,7 +71,6 @@ public sealed class PoliceVerificationTests
         var caseId = await OpenCaseWithIdentityAndAddressAsync(scope.ServiceProvider);
 
         var requestHandler = scope.ServiceProvider.GetRequiredService<RequestPoliceVerificationHandler>();
-        var recordHandler = scope.ServiceProvider.GetRequiredService<RecordPoliceResultHandler>();
         var caseRepo = scope.ServiceProvider.GetRequiredService<IRegistrationCaseRepository>();
 
         var request = await requestHandler.Handle(caseId, CancellationToken.None);
@@ -99,7 +93,6 @@ public sealed class PoliceVerificationTests
         var caseId = await OpenCaseWithIdentityAndAddressAsync(scope.ServiceProvider);
 
         var requestHandler = scope.ServiceProvider.GetRequiredService<RequestPoliceVerificationHandler>();
-        var recordHandler = scope.ServiceProvider.GetRequiredService<RecordPoliceResultHandler>();
         var caseRepo = scope.ServiceProvider.GetRequiredService<IRegistrationCaseRepository>();
 
         var first = await requestHandler.Handle(caseId, CancellationToken.None);
@@ -140,7 +133,6 @@ public sealed class PoliceVerificationTests
         var caseId = await OpenCaseWithIdentityAndAddressAsync(scope.ServiceProvider);
 
         var requestHandler = scope.ServiceProvider.GetRequiredService<RequestPoliceVerificationHandler>();
-        var recordHandler = scope.ServiceProvider.GetRequiredService<RecordPoliceResultHandler>();
         var getHandler = scope.ServiceProvider.GetRequiredService<GetRegistrationCaseHandler>();
 
         var request = await requestHandler.Handle(caseId, CancellationToken.None);
@@ -154,7 +146,7 @@ public sealed class PoliceVerificationTests
         var detail = await getHandler.Handle(caseId, CancellationToken.None);
 
         detail.Should().NotBeNull();
-        detail!.ActivePoliceVerification.Should().BeNull();
+        detail.ActivePoliceVerification.Should().BeNull();
         detail.PoliceVerificationHistory.Should().ContainSingle();
         detail.PoliceVerificationHistory[0].Result.Should().Be(PoliceVerificationResult.NotFound);
         detail.PoliceVerificationHistory[0].OfficerNotes.Should().Be("Nobody answered the door.");

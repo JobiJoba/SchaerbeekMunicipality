@@ -3,33 +3,28 @@
     @if (Kind == AppLoadingKind.Spinner)
     {
         <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Class="pa-8">
-            <MudProgressCircular Color="Color.Primary" Indeterminate="true" aria-hidden="true" />
+            <MudProgressCircular Color="Color.Primary" Indeterminate="true" aria-hidden="true"/>
         </MudStack>
     }
     else
     {
         @for (var i = 0; i < SkeletonRows; i++)
         {
-            <MudSkeleton Height="40px" Class="mb-2" aria-hidden="true" />
+            <MudSkeleton Height="40px" Class="mb-2" aria-hidden="true"/>
         }
     }
 </div>
 
 @code {
-    [Parameter]
-    public AppLoadingKind Kind { get; set; } = AppLoadingKind.Spinner;
+    [Parameter] public AppLoadingKind Kind { get; set; } = AppLoadingKind.Spinner;
 
-    [Parameter]
-    public int SkeletonRows { get; set; } = 5;
+    [Parameter] public int SkeletonRows { get; set; } = 5;
 
-    [Parameter]
-    public string Label { get; set; } = "Loading…";
+    [Parameter] public string Label { get; set; } = "Loading…";
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 }
 
 <style>

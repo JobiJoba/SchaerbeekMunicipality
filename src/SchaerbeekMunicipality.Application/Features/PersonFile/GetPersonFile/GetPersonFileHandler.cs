@@ -18,8 +18,10 @@ public sealed class GetPersonFileHandler(
     IRegistrationCaseRepository registrationCaseRepository,
     IChangeOfAddressCaseRepository changeOfAddressCaseRepository)
 {
-    public Task<GetPersonFileResponse> Handle(PersonId personId, CancellationToken cancellationToken) =>
-        BuildResponseAsync(personId, cancellationToken);
+    public Task<GetPersonFileResponse> Handle(PersonId personId, CancellationToken cancellationToken)
+    {
+        return BuildResponseAsync(personId, cancellationToken);
+    }
 
     public async Task<GetPersonFileResponse> HandleByNationalRegisterNumber(
         string nationalRegisterNumber,
@@ -38,7 +40,7 @@ public sealed class GetPersonFileHandler(
         }
 
         var person = await personRepository.GetByNationalRegisterNumberAsync(nr, cancellationToken)
-            ?? throw new KeyNotFoundException("Person not found.");
+                     ?? throw new KeyNotFoundException("Person not found.");
 
         return await BuildResponseAsync(person.Id, cancellationToken);
     }
@@ -50,7 +52,7 @@ public sealed class GetPersonFileHandler(
         authorization.EnsureCanView(currentOfficer);
 
         var person = await personRepository.GetByIdAsync(personId, cancellationToken)
-            ?? throw new KeyNotFoundException("Person not found.");
+                     ?? throw new KeyNotFoundException("Person not found.");
 
         var registerTarget = await personFileQuery.GetRegisterTargetAsync(personId, cancellationToken);
         var cases = await personFileQuery.ListCasesByPersonIdAsync(personId, cancellationToken);
@@ -156,10 +158,7 @@ public sealed class GetPersonFileHandler(
             .OrderByDescending(c => c.ConfirmedAt ?? c.OpenedAt)
             .FirstOrDefault();
 
-        if (latestConfirmedCoa?.HousingSituation is { } coaHousing)
-        {
-            return coaHousing.ToString();
-        }
+        if (latestConfirmedCoa?.HousingSituation is { } coaHousing) return coaHousing.ToString();
 
         var registrationCase = await registrationCaseRepository.GetLatestRegisteredByPersonIdAsync(
             personId,

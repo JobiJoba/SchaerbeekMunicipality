@@ -30,14 +30,10 @@ public sealed class BelgianAddress
 
         var normalizedPostalCode = postalCode.Trim();
         if (normalizedPostalCode.Length != 4 || !normalizedPostalCode.All(char.IsDigit))
-        {
             throw new ArgumentException("Postal code must be a four-digit Belgian code.");
-        }
 
         if (int.Parse(normalizedPostalCode) is < 1000 or > 9999)
-        {
             throw new ArgumentException("Postal code must be between 1000 and 9999.");
-        }
 
         return new BelgianAddress
         {
@@ -45,17 +41,14 @@ public sealed class BelgianAddress
             HouseNumber = houseNumber.Trim(),
             Box = string.IsNullOrWhiteSpace(box) ? null : box.Trim(),
             PostalCode = normalizedPostalCode,
-            Municipality = municipality.Trim(),
+            Municipality = municipality.Trim()
         };
     }
 
     public string FormatSingleLine()
     {
         var line = $"{Street} {HouseNumber}";
-        if (!string.IsNullOrWhiteSpace(Box))
-        {
-            line += $" bus {Box}";
-        }
+        if (!string.IsNullOrWhiteSpace(Box)) line += $" bus {Box}";
 
         return $"{line}, {PostalCode} {Municipality}";
     }

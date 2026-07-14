@@ -1,13 +1,12 @@
-@using SchaerbeekMunicipality.Domain.IdentityDocuments
 @using SchaerbeekMunicipality.Application.Features.IdentityDocuments.GetDocumentRequestCase
-
+@using SchaerbeekMunicipality.Domain.IdentityDocuments
 <AppCard Title="Workflow" Outlined="true">
     <MudStack Spacing="3">
         <MudCheckBox T="bool"
                      Value="Case.FeePaid"
                      ValueChanged="OnFeePaidChanged"
                      Disabled="!Case.CanEdit || Case.Status is DocumentRequestCaseStatus.Issued or DocumentRequestCaseStatus.Cancelled"
-                     Label="Fee paid (stub)" />
+                     Label="Fee paid (stub)"/>
 
         @if (!string.IsNullOrWhiteSpace(Case.FeePaymentReference))
         {
@@ -79,39 +78,48 @@
 </AppCard>
 
 @code {
-    [Parameter, EditorRequired]
-    public DocumentRequestCaseDetailDto Case { get; set; } = null!;
+    [Parameter] [EditorRequired] public DocumentRequestCaseDetailDto Case { get; set; } = null!;
 
-    [Parameter]
-    public bool Busy { get; set; }
+    [Parameter] public bool Busy { get; set; }
 
-    [Parameter]
-    public EventCallback OnFeePaidChangedRequested { get; set; }
+    [Parameter] public EventCallback OnFeePaidChangedRequested { get; set; }
 
-    [Parameter]
-    public EventCallback OnAdvanceStatus { get; set; }
+    [Parameter] public EventCallback OnAdvanceStatus { get; set; }
 
-    [Parameter]
-    public EventCallback OnIssueDocument { get; set; }
+    [Parameter] public EventCallback OnIssueDocument { get; set; }
 
-    [Parameter]
-    public EventCallback OnCancelRequest { get; set; }
+    [Parameter] public EventCallback OnCancelRequest { get; set; }
 
     private bool CanAdvance => Case.PhotoAttached && Case.FeePaid;
 
-    private Task OnFeePaidChanged(bool value) => OnFeePaidChangedRequested.InvokeAsync();
+    private Task OnFeePaidChanged(bool value)
+    {
+        return OnFeePaidChangedRequested.InvokeAsync();
+    }
 
-    private Task AdvanceStatus() => OnAdvanceStatus.InvokeAsync();
+    private Task AdvanceStatus()
+    {
+        return OnAdvanceStatus.InvokeAsync();
+    }
 
-    private Task IssueDocument() => OnIssueDocument.InvokeAsync();
+    private Task IssueDocument()
+    {
+        return OnIssueDocument.InvokeAsync();
+    }
 
-    private Task CancelRequest() => OnCancelRequest.InvokeAsync();
+    private Task CancelRequest()
+    {
+        return OnCancelRequest.InvokeAsync();
+    }
 
-    private string GetAdvanceLabel() =>
-        Case.Status switch
+    private string GetAdvanceLabel()
+    {
+        return Case.Status switch
         {
             DocumentRequestCaseStatus.Submitted => "Start production",
             DocumentRequestCaseStatus.InProduction => "Mark ready for collection",
-            _ => "Advance status",
+            _ => "Advance status"
         };
+    }
+
 }

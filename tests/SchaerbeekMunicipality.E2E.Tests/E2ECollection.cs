@@ -11,7 +11,10 @@ public sealed class E2ECollection : ICollectionFixture<MunicipalE2EFixture>
 [Collection(E2ECollection.Name)]
 public abstract class E2ETestBase
 {
-    protected MunicipalE2EFixture Fixture { get; }
+    protected E2ETestBase(MunicipalE2EFixture fixture)
+    {
+        Fixture = fixture;
+    }
 
-    protected E2ETestBase(MunicipalE2EFixture fixture) => Fixture = fixture;
+    protected MunicipalE2EFixture Fixture { get; }
 }

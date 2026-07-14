@@ -1,22 +1,17 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Address;
-using SchaerbeekMunicipality.Domain.Immigration;
-using SchaerbeekMunicipality.Domain.Police;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.ApproveCase;
 using SchaerbeekMunicipality.Application.Features.Registration.ConfirmRegistration;
 using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress;
 using SchaerbeekMunicipality.Application.Features.Registration.GetCaseReviewChecklist;
 using SchaerbeekMunicipality.Application.Features.Registration.ListCaseAudit;
-using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
-using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
-using SchaerbeekMunicipality.Application.Features.Registration.RecordBirthInformation;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
-using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult;
 using SchaerbeekMunicipality.Application.Features.Registration.RejectCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCategory;
+using SchaerbeekMunicipality.Domain.Immigration;
+using SchaerbeekMunicipality.Domain.Police;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -24,12 +19,10 @@ public sealed class CaseDecisionTests
 {
     private static async Task<RegistrationCaseId> CreateCaseReadyForDecisionAsync(IServiceProvider services)
     {
-        var openHandler = services.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
         var categoryHandler = services.GetRequiredService<SetResidenceCategoryHandler>();
         var declareHandler = services.GetRequiredService<DeclareAddressHandler>();
         var requestPoliceHandler = services.GetRequiredService<RequestPoliceVerificationHandler>();
-        var recordPoliceHandler = services.GetRequiredService<RecordPoliceResultHandler>();
 
         var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);
 
@@ -118,11 +111,9 @@ public sealed class CaseDecisionTests
         await using var factory = new MunicipalAppFactory();
         await using var scope = factory.Services.CreateAsyncScope();
 
-        var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = scope.ServiceProvider.GetRequiredService<RecordIdentityHandler>();
         var declareHandler = scope.ServiceProvider.GetRequiredService<DeclareAddressHandler>();
         var requestPoliceHandler = scope.ServiceProvider.GetRequiredService<RequestPoliceVerificationHandler>();
-        var recordPoliceHandler = scope.ServiceProvider.GetRequiredService<RecordPoliceResultHandler>();
         var approveHandler = scope.ServiceProvider.GetRequiredService<ApproveCaseHandler>();
 
         var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);

@@ -8,5 +8,5 @@ public enum RegistrationCaseStatus
     Approved = 3,
     Registered = 4,
     Rejected = 5,
-    Suspended = 6,
+    Suspended = 6
 }

@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration;
 
@@ -29,7 +29,9 @@ public sealed class RegistrationCaseGuard(
 
     private async Task<RegistrationCase> GetRequiredAsync(
         RegistrationCaseId caseId,
-        CancellationToken cancellationToken) =>
-        await repository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+        CancellationToken cancellationToken)
+    {
+        return await repository.GetByIdAsync(caseId, cancellationToken)
+               ?? throw new KeyNotFoundException($"Registration case '{caseId}' was not found.");
+    }
 }

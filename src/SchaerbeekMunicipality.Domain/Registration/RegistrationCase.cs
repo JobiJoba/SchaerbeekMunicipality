@@ -59,6 +59,20 @@ public sealed class RegistrationCase
 
     public DuplicateInvestigationStatus DuplicateInvestigationStatus { get; private set; }
 
+    public bool HasPositivePoliceVerification => Checklist.AddressConfirmed;
+
+    public bool IsReadyForApproval =>
+        Status == RegistrationCaseStatus.UnderReview &&
+        Checklist.IdentityEstablished &&
+        Checklist.LegalResidenceEstablished &&
+        Checklist.AddressDeclared &&
+        Checklist.AddressConfirmed &&
+        Checklist.RegisterDeterminable &&
+        Checklist.BirthEvidenceEstablished &&
+        Checklist.DuplicateInvestigationResolved &&
+        DuplicateInvestigationStatus != DuplicateInvestigationStatus.Open &&
+        HasPositivePoliceVerification;
+
     public static RegistrationCase Open(VisitReason visitReason, DateTimeOffset openedAt)
     {
         return new RegistrationCase
@@ -67,7 +81,7 @@ public sealed class RegistrationCase
             Status = RegistrationCaseStatus.Intake,
             VisitReason = visitReason,
             OpenedAt = openedAt,
-            Checklist = RegistrationCaseChecklist.Empty(),
+            Checklist = RegistrationCaseChecklist.Empty()
         };
     }
 
@@ -108,11 +122,15 @@ public sealed class RegistrationCase
             message => new InvalidRegistrationTransitionException(message));
     }
 
-    public bool IsLockedTo(OfficerId officer) =>
-        OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
+    public bool IsLockedTo(OfficerId officer)
+    {
+        return OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
+    }
 
-    public bool IsLockedToAnother(OfficerId officer) =>
-        OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
+    public bool IsLockedToAnother(OfficerId officer)
+    {
+        return OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
+    }
 
     public Person RecordIdentity(IdentityDetails identity)
     {
@@ -144,16 +162,12 @@ public sealed class RegistrationCase
         EnsureIntakeDataEditable(nameof(CorrectIdentity));
 
         if (PersonId is null)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Identity has not been recorded for this case.");
-        }
 
         if (person.Id != PersonId)
-        {
             throw new InvalidRegistrationTransitionException(
                 "The person does not belong to this registration case.");
-        }
 
         person.Update(identity);
     }
@@ -177,13 +191,9 @@ public sealed class RegistrationCase
     public void ApplyBirthEvidenceRule(Person? person, IReadOnlyList<DocumentType> documentTypes)
     {
         if (RegistrationExceptionRules.IsBirthEvidenceComplete(person, documentTypes))
-        {
             Checklist.MarkBirthEvidenceEstablished();
-        }
         else
-        {
             Checklist.ClearBirthEvidenceEstablished();
-        }
     }
 
     public void ApplyDuplicateInvestigationRule(
@@ -204,10 +214,7 @@ public sealed class RegistrationCase
             return;
         }
 
-        if (DuplicateInvestigationStatus == DuplicateInvestigationStatus.Open)
-        {
-            return;
-        }
+        if (DuplicateInvestigationStatus == DuplicateInvestigationStatus.Open) return;
 
         DuplicateInvestigationStatus = DuplicateInvestigationStatus.None;
         Checklist.MarkDuplicateInvestigationResolved();
@@ -218,20 +225,22 @@ public sealed class RegistrationCase
         EnsureIntakeDataEditable(nameof(ResolveDuplicateAsDistinct));
 
         if (DuplicateInvestigationStatus != DuplicateInvestigationStatus.Open)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Duplicate investigation is not open for this case.");
-        }
 
         DuplicateInvestigationStatus = DuplicateInvestigationStatus.ResolvedDistinct;
         Checklist.MarkDuplicateInvestigationResolved();
     }
 
-    public bool IsIllegalStayDetected(ResidencePolicyResult? policyResult) =>
-        RegistrationExceptionRules.IsIllegalStay(this, policyResult);
+    public bool IsIllegalStayDetected(ResidencePolicyResult? policyResult)
+    {
+        return RegistrationExceptionRules.IsIllegalStay(this, policyResult);
+    }
 
-    public bool IsMarriageRecognitionBlocking(Person? person) =>
-        person?.CivilStatus is { } civilStatus && civilStatus.IsMarriageRecognitionBlocking();
+    public bool IsMarriageRecognitionBlocking(Person? person)
+    {
+        return person?.CivilStatus is { } civilStatus && civilStatus.IsMarriageRecognitionBlocking();
+    }
 
     public void RefreshRegisterDeterminability(string? nationality)
     {
@@ -240,13 +249,9 @@ public sealed class RegistrationCase
             nationality,
             ImmigrationDecision is not null);
         if (suggested is not null)
-        {
             Checklist.MarkRegisterDeterminable();
-        }
         else
-        {
             Checklist.ClearRegisterDeterminable();
-        }
     }
 
     public void RecordImmigrationDecision(ImmigrationDecisionDetails details)
@@ -260,13 +265,9 @@ public sealed class RegistrationCase
     public void ApplyResidencePolicyResult(ResidencePolicyResult result)
     {
         if (result.IsValid)
-        {
             Checklist.MarkLegalResidenceEstablished();
-        }
         else
-        {
             Checklist.ClearLegalResidenceEstablished();
-        }
     }
 
     public void DeclareAddress(AddressDetails details)
@@ -291,10 +292,8 @@ public sealed class RegistrationCase
         EnsureIdentityEstablished("housing information");
 
         if (DeclaredAddress is null)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Address must be declared before recording housing situation.");
-        }
 
         HousingSituation = situation;
     }
@@ -302,10 +301,8 @@ public sealed class RegistrationCase
     public void RequestPoliceVerification()
     {
         if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
-        {
             throw new InvalidRegistrationTransitionException(
                 $"Cannot request police verification while the case is in status '{Status}'.");
-        }
 
         EnsurePoliceVerificationPrerequisites();
 
@@ -317,56 +314,33 @@ public sealed class RegistrationCase
         EnsureStatus(RegistrationCaseStatus.AwaitingPoliceVerification, nameof(ApplyPoliceVerificationResult));
 
         if (result == PoliceVerificationResult.Confirmed)
-        {
             Checklist.MarkAddressConfirmed();
-        }
         else
-        {
             Checklist.ClearAddressConfirmed();
-        }
 
         Status = RegistrationCaseStatus.UnderReview;
     }
 
-    public bool HasPositivePoliceVerification => Checklist.AddressConfirmed;
-
-    public bool IsReadyForApproval =>
-        Status == RegistrationCaseStatus.UnderReview &&
-        Checklist.IdentityEstablished &&
-        Checklist.LegalResidenceEstablished &&
-        Checklist.AddressDeclared &&
-        Checklist.AddressConfirmed &&
-        Checklist.RegisterDeterminable &&
-        Checklist.BirthEvidenceEstablished &&
-        Checklist.DuplicateInvestigationResolved &&
-        DuplicateInvestigationStatus != DuplicateInvestigationStatus.Open &&
-        HasPositivePoliceVerification;
-
-    public void Approve(OfficerId officer, RegisterTarget registerTarget, string? nationality, DateTimeOffset approvedAt)
+    public void Approve(OfficerId officer, RegisterTarget registerTarget, string? nationality,
+        DateTimeOffset approvedAt)
     {
         EnsureStatus(RegistrationCaseStatus.UnderReview, nameof(Approve));
 
         if (DuplicateInvestigationStatus == DuplicateInvestigationStatus.Open)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Cannot approve the case while duplicate identity investigation is open.");
-        }
 
         if (!IsReadyForApproval)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Cannot approve the case until all review checklist items are satisfied.");
-        }
 
         if (!RegisterTargetResolver.IsAllowed(
                 ResidenceCategory,
                 nationality,
                 registerTarget,
                 ImmigrationDecision is not null))
-        {
             throw new InvalidRegistrationTransitionException(
                 $"Register target '{registerTarget}' is not allowed for this residence category.");
-        }
 
         SelectedRegisterTarget = registerTarget;
         DecisionOfficerId = officer;
@@ -402,10 +376,8 @@ public sealed class RegistrationCase
         DateTimeOffset suspendedAt)
     {
         if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
-        {
             throw new InvalidRegistrationTransitionException(
                 $"Cannot suspend the case while it is in status '{Status}'.");
-        }
 
         StatusBeforeSuspension = Status;
         DecisionOfficerId = officer;
@@ -432,16 +404,12 @@ public sealed class RegistrationCase
         EnsureStatus(RegistrationCaseStatus.Approved, nameof(ConfirmRegistration));
 
         if (SelectedRegisterTarget is null)
-        {
             throw new InvalidRegistrationTransitionException(
                 "A register target must be selected before confirming registration.");
-        }
 
         if (PersonId is null)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Identity must be recorded before confirming registration.");
-        }
 
         Status = RegistrationCaseStatus.Registered;
         ClosedAt = confirmedAt;
@@ -456,10 +424,8 @@ public sealed class RegistrationCase
     public void EnsureIntakeDataEditable(string operation)
     {
         if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
-        {
             throw new InvalidRegistrationTransitionException(
                 $"Cannot perform '{operation}' while the case is in status '{Status}'.");
-        }
     }
 
     public void EnsureCanAttachDocuments()
@@ -476,73 +442,55 @@ public sealed class RegistrationCase
     private void EnsurePersonBelongsToCase(Person person)
     {
         if (PersonId is null || person.Id != PersonId)
-        {
             throw new InvalidRegistrationTransitionException(
                 "The person does not belong to this registration case.");
-        }
 
         if (!Checklist.IdentityEstablished)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Identity must be recorded before birth information can be captured.");
-        }
     }
 
     private void EnsureIdentityEstablished(string stepDescription)
     {
         if (!Checklist.IdentityEstablished)
-        {
             throw new InvalidRegistrationTransitionException(
                 $"Identity must be recorded before {stepDescription} can be captured.");
-        }
     }
 
     private static void EnsureSchaerbeekDomicile(AddressDetails details)
     {
         if (details.PostalCode.Trim() != SchaerbeekCommune.PostalCode
             || !details.Municipality.Trim().Equals(SchaerbeekCommune.Name, StringComparison.OrdinalIgnoreCase))
-        {
             throw new InvalidRegistrationTransitionException(
                 $"Registration at Schaerbeek requires a domicile in {SchaerbeekCommune.PostalCode} {SchaerbeekCommune.Name}.");
-        }
     }
 
     private void EnsureStatus(RegistrationCaseStatus requiredStatus, string operation)
     {
         if (Status != requiredStatus)
-        {
             throw new InvalidRegistrationTransitionException(
                 $"Cannot perform '{operation}' while the case is in status '{Status}'.");
-        }
     }
 
     private void EnsureIdentityNotYetRecorded(string operation)
     {
         if (PersonId is not null)
-        {
             throw new InvalidRegistrationTransitionException(
-                $"Identity has already been recorded for this case.");
-        }
+                "Identity has already been recorded for this case.");
     }
 
     private void EnsurePoliceVerificationPrerequisites()
     {
         if (!Checklist.IdentityEstablished)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Identity must be established before requesting police verification.");
-        }
 
         if (!Checklist.AddressDeclared)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Address must be declared before requesting police verification.");
-        }
 
         if (DeclaredAddress is null)
-        {
             throw new InvalidRegistrationTransitionException(
                 "A declared address is required before requesting police verification.");
-        }
     }
 }

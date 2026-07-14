@@ -1,6 +1,5 @@
 using Bunit;
 using FluentAssertions;
-using Microsoft.Extensions.DependencyInjection;
 using MudBlazor;
 using MudBlazor.Services;
 using SchaerbeekMunicipality.Domain.Registration;

@@ -24,6 +24,8 @@ internal sealed class NationalRegisterRepository(MunicipalDbContext dbContext) :
         return NationalRegisterSearchScorer.ScoreMatches(criteria, candidates);
     }
 
-    public Task SaveChangesAsync(CancellationToken cancellationToken) =>
-        dbContext.SaveChangesAsync(cancellationToken);
+    public Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        return dbContext.SaveChangesAsync(cancellationToken);
+    }
 }

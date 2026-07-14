@@ -1,6 +1,6 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Application.Features.IdentityDocuments.CancelDocumentRequest;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 
 namespace SchaerbeekMunicipality.Api.Features.IdentityDocuments.CancelDocumentRequest;
 
@@ -14,10 +14,7 @@ public static class CancelDocumentRequestEndpoint
         CancellationToken cancellationToken)
     {
         var validation = await validator.ValidateAsync(request, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return Results.ValidationProblem(validation.ToDictionary());
-        }
+        if (!validation.IsValid) return Results.ValidationProblem(validation.ToDictionary());
 
         var response = await handler.Handle(
             DocumentRequestCaseId.From(id),

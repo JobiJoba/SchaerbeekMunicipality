@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ReleaseCaseLock;
 
@@ -18,7 +18,8 @@ public sealed class ReleaseCaseLockHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var changeOfAddressCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Change of address case '{caseId}' was not found.");
+                                  ?? throw new KeyNotFoundException(
+                                      $"Change of address case '{caseId}' was not found.");
 
         var officerId = OfficerId.From(currentOfficer.OfficerId);
         changeOfAddressCase.ReleaseLock(officerId);

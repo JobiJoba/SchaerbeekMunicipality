@@ -9,5 +9,5 @@ public enum DocumentType
     RentalContract = 4,
     Other = 5,
     MedicalBirthDeclaration = 6,
-    ApplicantPhoto = 7,
+    ApplicantPhoto = 7
 }

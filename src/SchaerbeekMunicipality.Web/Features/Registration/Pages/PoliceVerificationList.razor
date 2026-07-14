@@ -1,7 +1,4 @@
 @page "/registration/police-verifications"
-@using SchaerbeekMunicipality.Domain.Police
-@using SchaerbeekMunicipality.Application.Auth
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
 @using SchaerbeekMunicipality.Application.Features.Registration.ListPendingPoliceVerifications
 @using SchaerbeekMunicipality.Web.Api.Registration
 @inject IRegistrationApi RegistrationApi
@@ -31,13 +28,13 @@
 
     @if (_loading)
     {
-        <AppLoading />
+        <AppLoading/>
     }
     else if (_items.Count == 0)
     {
         <AppEmptyState Title="No pending verifications"
                        Description="When a population officer sends a case for police verification, it will appear here."
-                       Icon="@Icons.Material.Outlined.LocalPolice" />
+                       Icon="@Icons.Material.Outlined.LocalPolice"/>
     }
     else
     {
@@ -95,7 +92,7 @@
         {
             { x => x.RequestId, item.RequestId },
             { x => x.PersonName, item.PersonName },
-            { x => x.Address, item.Address },
+            { x => x.Address, item.Address }
         };
 
         var dialog = await DialogService.ShowAsync<RecordPoliceResultDialog>(
@@ -111,4 +108,5 @@
             await Reload();
         }
     }
+
 }

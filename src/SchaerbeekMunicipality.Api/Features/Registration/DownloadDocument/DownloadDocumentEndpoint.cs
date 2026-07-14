@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.Registration.DownloadDocument;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration.DownloadDocument;
 
 namespace SchaerbeekMunicipality.Api.Features.Registration.DownloadDocument;
 
@@ -21,7 +21,7 @@ public static class DownloadDocumentEndpoint
 
             return Results.Stream(
                 result.Content,
-                contentType: result.ContentType,
+                result.ContentType,
                 enableRangeProcessing: true);
         }
         catch (KeyNotFoundException)

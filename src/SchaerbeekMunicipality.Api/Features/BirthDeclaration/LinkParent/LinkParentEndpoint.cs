@@ -1,7 +1,7 @@
 using FluentValidation;
-using SchaerbeekMunicipality.Domain.BirthDeclaration;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent;
 using SchaerbeekMunicipality.Api.Validation;
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent;
+using SchaerbeekMunicipality.Domain.BirthDeclaration;
 
 namespace SchaerbeekMunicipality.Api.Features.BirthDeclaration.LinkParent;
 
@@ -15,10 +15,7 @@ public static class LinkParentEndpoint
         CancellationToken cancellationToken)
     {
         var validation = await validator.ValidateAsync(request, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return ValidationResults.ToProblemDetails(validation);
-        }
+        if (!validation.IsValid) return ValidationResults.ToProblemDetails(validation);
 
         try
         {

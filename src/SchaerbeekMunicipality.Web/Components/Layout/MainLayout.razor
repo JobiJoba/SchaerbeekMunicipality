@@ -1,11 +1,8 @@
 ﻿@inherits LayoutComponentBase
-@implements IDisposable
 @using SchaerbeekMunicipality.Application.Auth
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Navigation
-@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
-@using SchaerbeekMunicipality.Web.DesignSystem.Theme
-@using SchaerbeekMunicipality.Web.Auth.Components
 @using SchaerbeekMunicipality.Web.Api.Registration
+@using SchaerbeekMunicipality.Web.DesignSystem.Theme
+@implements IDisposable
 @inject IRegistrationApi RegistrationApi
 @inject ICurrentOfficer CurrentOfficer
 @inject IWebHostEnvironment HostEnvironment
@@ -13,17 +10,17 @@
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<MudThemeProvider Theme="SchaerbeekTheme.Default" />
-<MudPopoverProvider />
-<MudDialogProvider />
-<MudSnackbarProvider />
+<MudThemeProvider Theme="SchaerbeekTheme.Default"/>
+<MudPopoverProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
 
 <MudLayout data-testid="app-shell">
     <AppTopNavigation Title="Schaerbeek — Population Department"
                       OfficerDisplayName="@CurrentOfficer.DisplayName"
                       OnMenuToggle="ToggleDrawer">
         <TrailingContent>
-            <RoleSwitcher />
+            <RoleSwitcher/>
         </TrailingContent>
     </AppTopNavigation>
 
@@ -32,7 +29,7 @@
                Elevation="@SchaerbeekElevation.Flat"
                Variant="DrawerVariant.Responsive"
                Style="border-right: 1px solid var(--mud-palette-lines-default);">
-        <AppSideNavigation Items="_navItems" CurrentRole="@CurrentOfficer.Role" />
+        <AppSideNavigation Items="_navItems" CurrentRole="@CurrentOfficer.Role"/>
     </MudDrawer>
 
     <MudMainContent Class="app-main-content">
@@ -69,7 +66,7 @@
 
     private async Task RefreshNavItemsAsync()
     {
-        var pendingCount = 0;
+        int pendingCount;
         try
         {
             var pending = await RegistrationApi.ListPendingPoliceVerificationsAsync(CancellationToken.None);
@@ -105,7 +102,7 @@
                 new AppNavItem(
                     "Outbound notifications",
                     "/administration/outbound-notifications",
-                    Icons.Material.Outlined.Send),
+                    Icons.Material.Outlined.Send)
             ]);
         }
         else if (CurrentOfficer.Role == OfficerRole.BackOfficeOfficer)
@@ -137,7 +134,7 @@
         var targetUri = DemoOfficerPersistence.AppendToUri(
             ResolveUriAfterRoleSwitch(),
             CurrentOfficer.OfficerId);
-        Navigation.NavigateTo(targetUri, forceLoad: true);
+        Navigation.NavigateTo(targetUri, true);
     }
 
     private string ResolveUriAfterRoleSwitch()
@@ -154,23 +151,29 @@
                 "/registration/review-dashboard",
             OfficerRole.BackOfficeOfficer when path is "" or "home" or "registration/new-case" or "registration/police-verifications" || IsPopulationOnlyPath(path) =>
                 "/administration/reports",
-            _ => Navigation.Uri,
+            _ => Navigation.Uri
         };
     }
 
-    private static bool IsPopulationOnlyPath(string path) =>
-        path is "registration/cases" or "registration/review-dashboard" or "birth-declarations" or "change-of-address" or "identity-documents/requests" ||
-        path.StartsWith("registration/cases/", StringComparison.OrdinalIgnoreCase) ||
-        path.StartsWith("birth-declarations/", StringComparison.OrdinalIgnoreCase) ||
-        path.StartsWith("change-of-address/", StringComparison.OrdinalIgnoreCase) ||
-        path.StartsWith("identity-documents/requests/", StringComparison.OrdinalIgnoreCase) ||
-        path.StartsWith("administration/outbound-notifications", StringComparison.OrdinalIgnoreCase) ||
-        path is "administration/reports";
+    private static bool IsPopulationOnlyPath(string path)
+    {
+        return path is "registration/cases" or "registration/review-dashboard" or "birth-declarations" or "change-of-address" or "identity-documents/requests" ||
+               path.StartsWith("registration/cases/", StringComparison.OrdinalIgnoreCase) ||
+               path.StartsWith("birth-declarations/", StringComparison.OrdinalIgnoreCase) ||
+               path.StartsWith("change-of-address/", StringComparison.OrdinalIgnoreCase) ||
+               path.StartsWith("identity-documents/requests/", StringComparison.OrdinalIgnoreCase) ||
+               path.StartsWith("administration/outbound-notifications", StringComparison.OrdinalIgnoreCase) ||
+               path is "administration/reports";
+    }
 
-    private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
+    private void ToggleDrawer()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
 
     public void Dispose()
     {
         CurrentOfficer.Changed -= OnOfficerChanged;
     }
+
 }

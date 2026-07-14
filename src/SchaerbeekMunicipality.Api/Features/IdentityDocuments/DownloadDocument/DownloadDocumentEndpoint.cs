@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.IdentityDocuments.DownloadDocument;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
-using SchaerbeekMunicipality.Application.Features.IdentityDocuments.DownloadDocument;
 
 namespace SchaerbeekMunicipality.Api.Features.IdentityDocuments.DownloadDocument;
 

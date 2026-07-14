@@ -1,5 +1,3 @@
-using SchaerbeekMunicipality.Domain.Police;
-
 namespace SchaerbeekMunicipality.Application.Features.Registration.ListPendingPoliceVerifications;
 
 public sealed record PendingPoliceVerificationDto(

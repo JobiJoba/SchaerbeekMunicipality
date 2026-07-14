@@ -29,12 +29,12 @@ public sealed class CurrentOfficer : ICurrentOfficer
 
     public void SelectOfficer(Guid officerId)
     {
-        Apply(DemoOfficers.Find(officerId), notify: true);
+        Apply(DemoOfficers.Find(officerId), true);
     }
 
     public void RestoreOfficer(Guid officerId)
     {
-        Apply(DemoOfficers.Find(officerId), notify: false);
+        Apply(DemoOfficers.Find(officerId), false);
     }
 
     public void SetRole(OfficerRole role)
@@ -45,10 +45,10 @@ public sealed class CurrentOfficer : ICurrentOfficer
             OfficerRole.PopulationOfficer => DemoOfficers.Marie,
             OfficerRole.PoliceClerk => DemoOfficers.Luc,
             OfficerRole.BackOfficeOfficer => DemoOfficers.Sophie,
-            _ => DemoOfficers.Marie,
+            _ => DemoOfficers.Marie
         };
 
-        Apply(officer, notify: true);
+        Apply(officer, true);
     }
 
     public void Impersonate(Guid officerId, OfficerRole role, string displayName)
@@ -65,9 +65,6 @@ public sealed class CurrentOfficer : ICurrentOfficer
         Role = officer.Role;
         DisplayName = officer.DisplayName;
 
-        if (notify)
-        {
-            Changed?.Invoke();
-        }
+        if (notify) Changed?.Invoke();
     }
 }

@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ClaimChangeOfAddressCase;
 
@@ -25,15 +25,13 @@ public sealed class ClaimChangeOfAddressCaseHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var changeOfAddressCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Change of address case '{caseId}' was not found.");
+                                  ?? throw new KeyNotFoundException(
+                                      $"Change of address case '{caseId}' was not found.");
 
         authorization.EnsureCanView(currentOfficer);
 
         var officerId = OfficerId.From(currentOfficer.OfficerId);
-        if (!authorization.ShouldAutoClaim(changeOfAddressCase, officerId))
-        {
-            return null;
-        }
+        if (!authorization.ShouldAutoClaim(changeOfAddressCase, officerId)) return null;
 
         return await ClaimCoreAsync(changeOfAddressCase, officerId, cancellationToken);
     }
@@ -45,7 +43,8 @@ public sealed class ClaimChangeOfAddressCaseHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var changeOfAddressCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Change of address case '{caseId}' was not found.");
+                                  ?? throw new KeyNotFoundException(
+                                      $"Change of address case '{caseId}' was not found.");
 
         authorization.EnsureCanView(currentOfficer);
 

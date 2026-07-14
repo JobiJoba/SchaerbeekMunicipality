@@ -1,10 +1,11 @@
-@using SchaerbeekMunicipality.Domain.BirthDeclaration
-@using SchaerbeekMunicipality.Domain.NationalRegister
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
+@using SchaerbeekMunicipality.Domain.BirthDeclaration
+@using SchaerbeekMunicipality.Domain.NationalRegister
 @using SchaerbeekMunicipality.Web.Api.BirthDeclaration
 @using SchaerbeekMunicipality.Web.Api.Registration
-
+@using Severity = MudBlazor.Severity
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h4">Link parent — National Register search</MudText>
@@ -40,8 +41,7 @@
 </MudDialog>
 
 @code {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
     [Parameter] public Guid CaseId { get; set; }
 
@@ -82,9 +82,9 @@
                 CancellationToken.None);
             MudDialog.Close(DialogResult.Ok(true));
         }
-        catch (Exception ex) when (ex is InvalidBirthDeclarationTransitionException or NationalRegisterConflictException or FluentValidation.ValidationException)
+        catch (Exception ex) when (ex is InvalidBirthDeclarationTransitionException or NationalRegisterConflictException or ValidationException)
         {
-            _linkError = ex is FluentValidation.ValidationException validation
+            _linkError = ex is ValidationException validation
                 ? string.Join(" ", validation.Errors.Select(e => e.ErrorMessage))
                 : ex.Message;
         }
@@ -94,10 +94,14 @@
         }
     }
 
-    private void Cancel() => MudDialog.Cancel();
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
 
-    private static NationalRegisterSearchMatch Map(NationalRegisterMatchDto match) =>
-        new(
+    private static NationalRegisterSearchMatch Map(NationalRegisterMatchDto match)
+    {
+        return new NationalRegisterSearchMatch(
             match.RegisterPersonId,
             match.GivenName,
             match.FamilyName,
@@ -108,4 +112,6 @@
             match.MatchReason,
             match.IsRegisteredInPopulation,
             match.PersonId);
+    }
+
 }

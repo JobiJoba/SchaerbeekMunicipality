@@ -27,7 +27,8 @@ public interface IBirthDeclarationApi
 
     Task<ClaimBirthDeclarationCaseResponse> ClaimCaseAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<ClaimBirthDeclarationCaseResponse?> TryAutoClaimCaseAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<ClaimBirthDeclarationCaseResponse?> TryAutoClaimCaseAsync(Guid id,
+        CancellationToken cancellationToken = default);
 
     Task<ReleaseCaseLockResponse> ReleaseCaseLockAsync(Guid id, CancellationToken cancellationToken = default);
 

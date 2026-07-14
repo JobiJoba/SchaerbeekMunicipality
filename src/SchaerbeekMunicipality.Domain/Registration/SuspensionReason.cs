@@ -6,5 +6,5 @@ public enum SuspensionReason
     AwaitingFederalDecision = 1,
     MarriageRecognitionPending = 2,
     InvestigationRequired = 3,
-    Other = 4,
+    Other = 4
 }

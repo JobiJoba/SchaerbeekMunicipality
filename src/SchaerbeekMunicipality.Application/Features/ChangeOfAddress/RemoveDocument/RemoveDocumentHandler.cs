@@ -24,13 +24,11 @@ public sealed class RemoveDocumentHandler(
         changeOfAddressCase.EnsureIntakeDataEditable(nameof(RemoveDocument));
 
         var document = await documentRepository.GetByIdAsync(documentId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
+                       ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
 
         if (!document.BelongsToChangeOfAddressCase(caseId))
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "The document does not belong to this change of address case.");
-        }
 
         documentRepository.Remove(document);
         await documentStorage.DeleteAsync(document.StoragePath, cancellationToken);

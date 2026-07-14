@@ -12,30 +12,30 @@
         @if (CanEdit)
         {
             <MedicalDeclarationUpload CaseId="CaseId"
-                                      OnUploaded="OnUploaded" />
+                                      OnUploaded="OnUploaded"/>
         }
     </UploadContent>
 </CaseDocumentPanel>
 
 @code {
-    [Parameter, EditorRequired]
-    public Guid CaseId { get; set; }
+    [Parameter] [EditorRequired] public Guid CaseId { get; set; }
 
-    [Parameter, EditorRequired]
-    public IReadOnlyList<BirthDeclarationDocumentDto> Documents { get; set; } = [];
+    [Parameter] [EditorRequired] public IReadOnlyList<BirthDeclarationDocumentDto> Documents { get; set; } = [];
 
-    [Parameter]
-    public bool CanEdit { get; set; }
+    [Parameter] public bool CanEdit { get; set; }
 
-    [Parameter]
-    public EventCallback<Guid> OnRemoveDocument { get; set; }
+    [Parameter] public EventCallback<Guid> OnRemoveDocument { get; set; }
 
-    [Parameter]
-    public EventCallback OnUploaded { get; set; }
+    [Parameter] public EventCallback OnUploaded { get; set; }
 
-    private IReadOnlyList<CaseDocumentItem> MapDocuments() =>
-        Documents.Select(d => new CaseDocumentItem(d.Id, d.FileName, d.UploadedAt)).ToList();
+    private IReadOnlyList<CaseDocumentItem> MapDocuments()
+    {
+        return Documents.Select(d => new CaseDocumentItem(d.Id, d.FileName, d.UploadedAt)).ToList();
+    }
 
-    private string GetDocumentUrl(Guid documentId) =>
-        Navigation.ToAbsoluteUri($"/api/birth-declarations/cases/{CaseId}/documents/{documentId}").ToString();
+    private string GetDocumentUrl(Guid documentId)
+    {
+        return Navigation.ToAbsoluteUri($"/api/birth-declarations/cases/{CaseId}/documents/{documentId}").ToString();
+    }
+
 }

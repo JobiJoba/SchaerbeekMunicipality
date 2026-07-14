@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
@@ -34,7 +35,7 @@ internal static class BirthDeclarationCaseTestData
         birthDeclarationCase.LinkParent(personId, ParentRole.Mother);
         birthDeclarationCase.AttachMedicalDeclaration(AdministrativeDocumentId.New());
         birthDeclarationCase.SetHousehold(
-            Domain.Address.BelgianAddress.Create("Chaussée de Louvain", "10", null, "1030", "Schaerbeek"));
+            BelgianAddress.Create("Chaussée de Louvain", "10", null, "1030", "Schaerbeek"));
 
         return birthDeclarationCase;
     }

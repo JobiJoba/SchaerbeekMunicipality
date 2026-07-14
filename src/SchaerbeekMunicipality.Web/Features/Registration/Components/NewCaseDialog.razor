@@ -1,9 +1,6 @@
-@using SchaerbeekMunicipality.Domain.Registration
-@using SchaerbeekMunicipality.Application.Features.Registration
 @using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase
-@using SchaerbeekMunicipality.Web.Api.Registration
 @using SchaerbeekMunicipality.Web.Api.BirthDeclaration
-
+@using SchaerbeekMunicipality.Web.Api.Registration
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h4">Open registration case</MudText>
@@ -35,24 +32,23 @@
 </MudDialog>
 
 @code {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
-    [Parameter]
-    public string OfficerName { get; set; } = string.Empty;
+    [Parameter] public string OfficerName { get; set; } = string.Empty;
 
-    [Inject]
-    private IRegistrationApi RegistrationApi { get; set; } = null!;
+    [Inject] private IRegistrationApi RegistrationApi { get; set; } = null!;
 
-    [Inject]
-    private IBirthDeclarationApi BirthDeclarationApi { get; set; } = null!;
+    [Inject] private IBirthDeclarationApi BirthDeclarationApi { get; set; } = null!;
 
     private MudForm _form = null!;
     private bool _formValid;
     private bool _submitting;
     private VisitReason _visitReason = VisitReason.FirstRegistration;
 
-    private void Cancel() => MudDialog.Cancel();
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
 
     private async Task Submit()
     {
@@ -92,4 +88,5 @@
             _submitting = false;
         }
     }
+
 }

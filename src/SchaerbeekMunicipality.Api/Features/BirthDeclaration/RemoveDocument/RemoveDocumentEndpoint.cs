@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RemoveDocument;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RemoveDocument;
 
 namespace SchaerbeekMunicipality.Api.Features.BirthDeclaration.RemoveDocument;
 

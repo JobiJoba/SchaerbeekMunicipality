@@ -55,7 +55,7 @@ public sealed class AdministrativeDocument
             StoragePath = storagePath,
             ContentHash = contentHash,
             UploadedByOfficerId = uploadedByOfficerId,
-            UploadedAt = uploadedAt,
+            UploadedAt = uploadedAt
         };
     }
 
@@ -73,10 +73,8 @@ public sealed class AdministrativeDocument
         ArgumentException.ThrowIfNullOrWhiteSpace(contentHash);
 
         if (documentType != DocumentType.MedicalBirthDeclaration)
-        {
             throw new ArgumentException(
                 "Birth declaration cases only accept medical birth declaration documents.");
-        }
 
         return new AdministrativeDocument
         {
@@ -87,7 +85,7 @@ public sealed class AdministrativeDocument
             StoragePath = storagePath,
             ContentHash = contentHash,
             UploadedByOfficerId = uploadedByOfficerId,
-            UploadedAt = uploadedAt,
+            UploadedAt = uploadedAt
         };
     }
 
@@ -105,10 +103,8 @@ public sealed class AdministrativeDocument
         ArgumentException.ThrowIfNullOrWhiteSpace(contentHash);
 
         if (documentType is not (DocumentType.RentalContract or DocumentType.Other))
-        {
             throw new ArgumentException(
                 "Change of address cases only accept rental contracts or other housing documents.");
-        }
 
         return new AdministrativeDocument
         {
@@ -119,15 +115,19 @@ public sealed class AdministrativeDocument
             StoragePath = storagePath,
             ContentHash = contentHash,
             UploadedByOfficerId = uploadedByOfficerId,
-            UploadedAt = uploadedAt,
+            UploadedAt = uploadedAt
         };
     }
 
-    public bool BelongsToRegistrationCase(RegistrationCaseId caseId) =>
-        RegistrationCaseId == caseId;
+    public bool BelongsToRegistrationCase(RegistrationCaseId caseId)
+    {
+        return RegistrationCaseId == caseId;
+    }
 
-    public bool BelongsToBirthDeclarationCase(BirthDeclarationCaseId caseId) =>
-        BirthDeclarationCaseId == caseId;
+    public bool BelongsToBirthDeclarationCase(BirthDeclarationCaseId caseId)
+    {
+        return BirthDeclarationCaseId == caseId;
+    }
 
     public static AdministrativeDocument CreateForDocumentRequestCase(
         DocumentRequestCaseId documentRequestCaseId,
@@ -143,10 +143,8 @@ public sealed class AdministrativeDocument
         ArgumentException.ThrowIfNullOrWhiteSpace(contentHash);
 
         if (documentType != DocumentType.ApplicantPhoto)
-        {
             throw new ArgumentException(
                 "Document request cases only accept applicant photo documents.");
-        }
 
         return new AdministrativeDocument
         {
@@ -157,13 +155,17 @@ public sealed class AdministrativeDocument
             StoragePath = storagePath,
             ContentHash = contentHash,
             UploadedByOfficerId = uploadedByOfficerId,
-            UploadedAt = uploadedAt,
+            UploadedAt = uploadedAt
         };
     }
 
-    public bool BelongsToChangeOfAddressCase(ChangeOfAddressCaseId caseId) =>
-        ChangeOfAddressCaseId == caseId;
+    public bool BelongsToChangeOfAddressCase(ChangeOfAddressCaseId caseId)
+    {
+        return ChangeOfAddressCaseId == caseId;
+    }
 
-    public bool BelongsToDocumentRequestCase(DocumentRequestCaseId caseId) =>
-        DocumentRequestCaseId == caseId;
+    public bool BelongsToDocumentRequestCase(DocumentRequestCaseId caseId)
+    {
+        return DocumentRequestCaseId == caseId;
+    }
 }

@@ -1,7 +1,6 @@
-@using SchaerbeekMunicipality.Domain.Police
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordPoliceResult
+@using SchaerbeekMunicipality.Domain.Police
 @using SchaerbeekMunicipality.Web.Api.Registration
-
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h4">Record police verification result</MudText>
@@ -11,7 +10,7 @@
             @PersonName · @Address
         </MudText>
 
-        <MudForm @ref="_form">
+        <MudForm>
             <AppFormSection Title="Verification outcome">
                 <MudItem xs="12">
                     <MudSelect @bind-Value="_result"
@@ -29,7 +28,7 @@
                                   Label="Officer notes"
                                   Lines="3"
                                   MaxLength="2000"
-                                  Counter="2000" />
+                                  Counter="2000"/>
                 </MudItem>
             </AppFormSection>
         </MudForm>
@@ -46,27 +45,24 @@
 </MudDialog>
 
 @code {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
-    [Parameter, EditorRequired]
-    public Guid RequestId { get; set; }
+    [Parameter] [EditorRequired] public Guid RequestId { get; set; }
 
-    [Parameter, EditorRequired]
-    public string PersonName { get; set; } = string.Empty;
+    [Parameter] [EditorRequired] public string PersonName { get; set; } = string.Empty;
 
-    [Parameter, EditorRequired]
-    public string Address { get; set; } = string.Empty;
+    [Parameter] [EditorRequired] public string Address { get; set; } = string.Empty;
 
-    [Inject]
-    private IRegistrationApi RegistrationApi { get; set; } = null!;
+    [Inject] private IRegistrationApi RegistrationApi { get; set; } = null!;
 
-    private MudForm _form = null!;
     private PoliceVerificationResult _result = PoliceVerificationResult.Confirmed;
     private string? _officerNotes;
     private bool _submitting;
 
-    private void Cancel() => MudDialog.Cancel();
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
 
     private async Task Submit()
     {
@@ -86,15 +82,19 @@
         }
     }
 
-    private static string FormatResult(PoliceVerificationResult result) => result switch
+    private static string FormatResult(PoliceVerificationResult result)
     {
-        PoliceVerificationResult.Confirmed => "Confirmed — person found at address",
-        PoliceVerificationResult.NotFound => "Not found — person not present",
-        PoliceVerificationResult.AddressIncorrect => "Address incorrect",
-        PoliceVerificationResult.MailboxOnly => "Mailbox only — not actually residing",
-        PoliceVerificationResult.EmptyDwelling => "Empty dwelling",
-        PoliceVerificationResult.RefusedAccess => "Refused access — could not verify",
-        PoliceVerificationResult.Incomplete => "Incomplete — needs second visit",
-        _ => result.ToDisplayString(),
-    };
+        return result switch
+        {
+            PoliceVerificationResult.Confirmed => "Confirmed — person found at address",
+            PoliceVerificationResult.NotFound => "Not found — person not present",
+            PoliceVerificationResult.AddressIncorrect => "Address incorrect",
+            PoliceVerificationResult.MailboxOnly => "Mailbox only — not actually residing",
+            PoliceVerificationResult.EmptyDwelling => "Empty dwelling",
+            PoliceVerificationResult.RefusedAccess => "Refused access — could not verify",
+            PoliceVerificationResult.Incomplete => "Incomplete — needs second visit",
+            _ => result.ToDisplayString()
+        };
+    }
+
 }

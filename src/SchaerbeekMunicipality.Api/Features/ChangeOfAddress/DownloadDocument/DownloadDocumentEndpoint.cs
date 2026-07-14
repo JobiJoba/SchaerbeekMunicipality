@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.DownloadDocument;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.DownloadDocument;
 
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress.DownloadDocument;
 

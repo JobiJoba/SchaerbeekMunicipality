@@ -6,5 +6,5 @@ public enum ChangeOfAddressCaseStatus
     AwaitingPoliceVerification = 1,
     UnderReview = 2,
     Confirmed = 3,
-    Rejected = 4,
+    Rejected = 4
 }

@@ -1,9 +1,9 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Events;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Infrastructure.Events;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.BirthDeclaration.ConfirmBirthDeclaration;
 
@@ -26,9 +26,7 @@ public sealed class ConfirmBirthDeclarationHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can confirm birth declarations.");
-        }
 
         var birthDeclarationCase = await caseGuard.GetForEditAsync(
             caseId,
@@ -38,10 +36,8 @@ public sealed class ConfirmBirthDeclarationHandler(
         if (birthDeclarationCase.ChildDateOfBirth is null ||
             string.IsNullOrWhiteSpace(birthDeclarationCase.ChildGivenNames) ||
             string.IsNullOrWhiteSpace(birthDeclarationCase.ChildFamilyName))
-        {
             throw new InvalidBirthDeclarationTransitionException(
                 "Child details must be recorded before confirmation.");
-        }
 
         var child = Person.Create(new IdentityDetails(
             birthDeclarationCase.ChildGivenNames,
@@ -56,10 +52,8 @@ public sealed class ConfirmBirthDeclarationHandler(
         if (await personRepository.IsNationalRegisterNumberAssignedAsync(
                 nationalRegisterNumber,
                 cancellationToken))
-        {
             throw new NationalRegisterConflictException(
                 "Generated National Register number is already assigned. Retry confirmation.");
-        }
 
         child.AssignNationalRegisterNumber(nationalRegisterNumber);
         await personRepository.AddAsync(child, cancellationToken);

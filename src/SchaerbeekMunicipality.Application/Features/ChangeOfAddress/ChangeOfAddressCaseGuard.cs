@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Application.Auth;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress;
 
@@ -29,7 +29,9 @@ public sealed class ChangeOfAddressCaseGuard(
 
     private async Task<ChangeOfAddressCase> GetRequiredAsync(
         ChangeOfAddressCaseId caseId,
-        CancellationToken cancellationToken) =>
-        await repository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Change of address case '{caseId}' was not found.");
+        CancellationToken cancellationToken)
+    {
+        return await repository.GetByIdAsync(caseId, cancellationToken)
+               ?? throw new KeyNotFoundException($"Change of address case '{caseId}' was not found.");
+    }
 }

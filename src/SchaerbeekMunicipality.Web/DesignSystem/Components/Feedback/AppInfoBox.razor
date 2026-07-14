@@ -1,8 +1,6 @@
-@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
-
 <MudPaper Elevation="0" Outlined="false" Class="@PaperClass" Style="@InfoStyle">
     <MudStack Row="true" Spacing="2" AlignItems="AlignItems.Start">
-        <MudIcon Icon="@(_icon)" Style="@($"color: {SchaerbeekColors.Info}")" aria-hidden="true" />
+        <MudIcon Icon="@(_icon)" Style="@($"color: {SchaerbeekColors.Info}")" aria-hidden="true"/>
         <MudText Typo="Typo.body2" Style="@($"color: {SchaerbeekColors.TextPrimary}")">
             @ChildContent
         </MudText>
@@ -10,17 +8,13 @@
 </MudPaper>
 
 @code {
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public string? Icon { get; set; }
+    [Parameter] public string? Icon { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private string _icon = Icons.Material.Outlined.Info;
 
@@ -43,4 +37,5 @@
             .AddStyle("border-radius", "4px")
             .AddStyle(Style)
             .Build();
+
 }

@@ -54,7 +54,6 @@ public sealed class SearchPersonFileHandler(
             cancellationToken);
 
         if (person is null && match.NationalRegisterNumber is not null)
-        {
             try
             {
                 var nr = NationalRegisterNumber.Create(match.NationalRegisterNumber);
@@ -64,7 +63,6 @@ public sealed class SearchPersonFileHandler(
             {
                 return null;
             }
-        }
 
         return person?.Id.Value;
     }

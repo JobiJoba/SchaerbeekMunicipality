@@ -21,7 +21,7 @@ public sealed class StreetReference
         {
             Id = id,
             PostalCode = postalCode.Trim(),
-            Name = name.Trim(),
+            Name = name.Trim()
         };
     }
 }

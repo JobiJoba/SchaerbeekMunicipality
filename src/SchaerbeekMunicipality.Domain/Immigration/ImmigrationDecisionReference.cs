@@ -17,7 +17,7 @@ public sealed class ImmigrationDecisionReference
         return new ImmigrationDecisionReference
         {
             ReferenceNumber = details.ReferenceNumber.Trim(),
-            DecisionDate = details.DecisionDate,
+            DecisionDate = details.DecisionDate
         };
     }
 }

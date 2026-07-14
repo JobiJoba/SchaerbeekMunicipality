@@ -41,7 +41,7 @@ public sealed class CertificateRequest
             PersonId = personId,
             IssuedByOfficerId = issuedByOfficerId,
             ReferenceNumber = referenceNumber.Trim(),
-            IssuedAt = issuedAt,
+            IssuedAt = issuedAt
         };
     }
 }

@@ -7,22 +7,19 @@
 </MudPaper>
 
 @code {
-    [Parameter]
-    public bool Sticky { get; set; } = true;
+    [Parameter] public bool Sticky { get; set; } = true;
 
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private string BarClass => new CssBuilder()
         .AddClass("app-action-bar", Sticky)
         .AddClass(Class)
         .Build();
+
 }
 
 <style>

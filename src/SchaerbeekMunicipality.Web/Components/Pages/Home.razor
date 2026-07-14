@@ -6,13 +6,13 @@
 
 @if (_redirecting)
 {
-    <AppLoading />
+    <AppLoading/>
 }
 else
 {
     <AppPage Title="Population Department">
         <AppPageHeader Title="Population Department"
-                       Subtitle="Educational simulation of Belgian municipal population registration workflows." />
+                       Subtitle="Educational simulation of Belgian municipal population registration workflows."/>
 
         <AppSection>
             <AppCard Title="Four core decisions" Icon="@Icons.Material.Outlined.Gavel">
@@ -59,4 +59,5 @@ else
             Navigation.NavigateTo("/administration/reports", replace: true);
         }
     }
+
 }

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ResolveRegisteredPerson;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress.ResolveRegisteredPerson;
 

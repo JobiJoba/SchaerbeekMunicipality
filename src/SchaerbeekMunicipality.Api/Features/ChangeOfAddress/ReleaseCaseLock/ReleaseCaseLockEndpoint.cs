@@ -1,5 +1,5 @@
-using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ReleaseCaseLock;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress.ReleaseCaseLock;
 

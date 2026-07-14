@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Features.BirthDeclaration.DownloadDocument;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.DownloadDocument;
 
 namespace SchaerbeekMunicipality.Api.Features.BirthDeclaration.DownloadDocument;
 

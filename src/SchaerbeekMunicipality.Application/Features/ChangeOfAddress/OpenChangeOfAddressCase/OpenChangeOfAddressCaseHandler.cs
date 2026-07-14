@@ -1,8 +1,8 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.ChangeOfAddress.OpenChangeOfAddressCase;
 
@@ -24,13 +24,11 @@ public sealed class OpenChangeOfAddressCaseHandler(
 
         var personId = new PersonId(request.PersonId);
         var person = await personRepository.GetByIdAsync(personId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Person '{personId}' was not found.");
+                     ?? throw new KeyNotFoundException($"Person '{personId}' was not found.");
 
         if (person.NationalRegisterNumber is null)
-        {
             throw new InvalidChangeOfAddressTransitionException(
                 "Cannot open a change of address case for a person without a National Register number.");
-        }
 
         var previousAddress = person.DomicileAddress;
         if (previousAddress is null)

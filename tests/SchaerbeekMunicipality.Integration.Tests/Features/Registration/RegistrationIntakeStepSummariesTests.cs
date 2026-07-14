@@ -1,11 +1,11 @@
 using FluentAssertions;
+using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Web.Features.Registration.Components;
-using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -14,7 +14,7 @@ public sealed class RegistrationIntakeStepSummariesTests
     [Fact]
     public void GetDefaultExpandedSteps_FreshCase_ExpandsIdentityOnly()
     {
-        var dto = CreateCase(checklist: EmptyChecklist(identityEstablished: false));
+        var dto = CreateCase(checklist: EmptyChecklist());
 
         var expanded = RegistrationIntakeStepSummaries.GetDefaultExpandedSteps(dto);
 
@@ -25,7 +25,7 @@ public sealed class RegistrationIntakeStepSummariesTests
     public void GetDefaultExpandedSteps_IdentityComplete_ExpandsLegalResidence()
     {
         var dto = CreateCase(
-            checklist: EmptyChecklist(identityEstablished: true),
+            checklist: EmptyChecklist(true),
             person: SamplePerson());
 
         var expanded = RegistrationIntakeStepSummaries.GetDefaultExpandedSteps(dto);
@@ -33,7 +33,7 @@ public sealed class RegistrationIntakeStepSummariesTests
         expanded.Should().BeEquivalentTo(
         [
             RegistrationIntakeStep.Identity,
-            RegistrationIntakeStep.LegalResidence,
+            RegistrationIntakeStep.LegalResidence
         ]);
     }
 
@@ -42,9 +42,9 @@ public sealed class RegistrationIntakeStepSummariesTests
     {
         var dto = CreateCase(
             checklist: EmptyChecklist(
-                identityEstablished: true,
-                legalResidenceEstablished: true,
-                addressDeclared: true),
+                true,
+                true,
+                true),
             person: SamplePerson(),
             residenceCategory: ResidenceCategory.EuCitizen,
             declaredAddress: SampleAddress(),
@@ -55,7 +55,7 @@ public sealed class RegistrationIntakeStepSummariesTests
         expanded.Should().BeEquivalentTo(
         [
             RegistrationIntakeStep.Identity,
-            RegistrationIntakeStep.Household,
+            RegistrationIntakeStep.Household
         ]);
     }
 
@@ -63,19 +63,19 @@ public sealed class RegistrationIntakeStepSummariesTests
     public void GetDefaultExpandedSteps_AwaitingPolice_ExpandsPoliceVerification()
     {
         var dto = CreateCase(
-            status: RegistrationCaseStatus.AwaitingPoliceVerification,
-            checklist: EmptyChecklist(
-                identityEstablished: true,
-                legalResidenceEstablished: true,
-                addressDeclared: true),
-            person: SamplePerson(),
-            residenceCategory: ResidenceCategory.EuCitizen,
-            declaredAddress: SampleAddress(),
-            housingSituation: HousingSituation.Owner,
-            householdMembers: [SampleHouseholdMember()],
-            civilStatus: SampleCivilStatus(),
-            birthInformation: new BirthInformationDto("Brussels", "Belgium"),
-            activePoliceVerification: new PoliceVerificationDto(
+            RegistrationCaseStatus.AwaitingPoliceVerification,
+            EmptyChecklist(
+                true,
+                true,
+                true),
+            SamplePerson(),
+            ResidenceCategory.EuCitizen,
+            SampleAddress(),
+            HousingSituation.Owner,
+            [SampleHouseholdMember()],
+            SampleCivilStatus(),
+            new BirthInformationDto("Brussels", "Belgium"),
+            new PoliceVerificationDto(
                 Guid.NewGuid(),
                 1,
                 DateTimeOffset.UtcNow,
@@ -89,7 +89,7 @@ public sealed class RegistrationIntakeStepSummariesTests
         expanded.Should().BeEquivalentTo(
         [
             RegistrationIntakeStep.Identity,
-            RegistrationIntakeStep.PoliceVerification,
+            RegistrationIntakeStep.PoliceVerification
         ]);
     }
 
@@ -120,7 +120,7 @@ public sealed class RegistrationIntakeStepSummariesTests
                 null,
                 null,
                 null,
-                true),
+                true)
         };
 
         RegistrationIntakeStepSummaries.IsVisible(RegistrationIntakeStep.PoliceVerification, withoutPolice)
@@ -136,8 +136,9 @@ public sealed class RegistrationIntakeStepSummariesTests
         bool addressConfirmed = false,
         bool registerDeterminable = false,
         bool birthEvidenceEstablished = false,
-        bool duplicateInvestigationResolved = true) =>
-        new(
+        bool duplicateInvestigationResolved = true)
+    {
+        return new RegistrationCaseChecklistDto(
             identityEstablished,
             legalResidenceEstablished,
             addressDeclared,
@@ -145,16 +146,20 @@ public sealed class RegistrationIntakeStepSummariesTests
             registerDeterminable,
             birthEvidenceEstablished,
             duplicateInvestigationResolved);
+    }
 
-    private static RegistrationCaseChecklistDto CompleteChecklist() =>
-        EmptyChecklist(
-            identityEstablished: true,
-            legalResidenceEstablished: true,
-            addressDeclared: true,
+    private static RegistrationCaseChecklistDto CompleteChecklist()
+    {
+        return EmptyChecklist(
+            true,
+            true,
+            true,
             birthEvidenceEstablished: true);
+    }
 
-    private static PersonDto SamplePerson(BirthInformationDto? birthInformation = null) =>
-        new(
+    private static PersonDto SamplePerson(BirthInformationDto? birthInformation = null)
+    {
+        return new PersonDto(
             Guid.NewGuid(),
             "Marie",
             "Leclerc",
@@ -164,9 +169,11 @@ public sealed class RegistrationIntakeStepSummariesTests
             null,
             false,
             birthInformation);
+    }
 
-    private static CivilStatusDto SampleCivilStatus() =>
-        new(
+    private static CivilStatusDto SampleCivilStatus()
+    {
+        return new CivilStatusDto(
             CivilStatus.Single,
             CivilStatus.Single,
             null,
@@ -174,12 +181,18 @@ public sealed class RegistrationIntakeStepSummariesTests
             null,
             null,
             MarriageRecognitionStatus.NotApplicable);
+    }
 
-    private static BelgianAddressDto SampleAddress() =>
-        new("Chaussée de Louvain", "42", null, "1030", "Schaerbeek");
+    private static BelgianAddressDto SampleAddress()
+    {
+        return new BelgianAddressDto("Chaussée de Louvain", "42", null, "1030", "Schaerbeek");
+    }
 
-    private static HouseholdMemberDto SampleHouseholdMember() =>
-        new(Guid.NewGuid(), "Jean", "Dupont", new DateOnly(2010, 5, 5), HouseholdMemberRole.Child);
+    private static HouseholdMemberDto SampleHouseholdMember()
+    {
+        return new HouseholdMemberDto(Guid.NewGuid(), "Jean", "Dupont", new DateOnly(2010, 5, 5),
+            HouseholdMemberRole.Child);
+    }
 
     private static RegistrationCaseDetailDto CreateCase(
         RegistrationCaseStatus status = RegistrationCaseStatus.Intake,
@@ -191,42 +204,44 @@ public sealed class RegistrationIntakeStepSummariesTests
         IReadOnlyList<HouseholdMemberDto>? householdMembers = null,
         CivilStatusDto? civilStatus = null,
         BirthInformationDto? birthInformation = null,
-        PoliceVerificationDto? activePoliceVerification = null) =>
-        new(
-            Id: Guid.NewGuid(),
-            Status: status,
-            VisitReason: VisitReason.FirstRegistration,
-            AssignedOfficerId: Guid.NewGuid(),
-            LockedByOfficerId: Guid.NewGuid(),
-            LockedAt: DateTimeOffset.UtcNow,
-            CanEdit: true,
-            IsReadOnlyDueToLock: false,
-            OpenedAt: DateTimeOffset.UtcNow,
-            ClosedAt: null,
-            Checklist: checklist ?? EmptyChecklist(),
-            IsReadyForApproval: false,
-            IllegalStayDetected: false,
-            MarriageRecognitionBlocking: false,
-            DuplicateInvestigationStatus: DuplicateInvestigationStatus.None,
-            SuggestedRegisterTarget: null,
-            SelectedRegisterTarget: null,
-            RejectionReason: null,
-            SuspensionReason: null,
-            DecisionNotes: null,
-            Person: person is null
+        PoliceVerificationDto? activePoliceVerification = null)
+    {
+        return new RegistrationCaseDetailDto(
+            Guid.NewGuid(),
+            status,
+            VisitReason.FirstRegistration,
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            DateTimeOffset.UtcNow,
+            true,
+            false,
+            DateTimeOffset.UtcNow,
+            null,
+            checklist ?? EmptyChecklist(),
+            false,
+            false,
+            false,
+            DuplicateInvestigationStatus.None,
+            null,
+            null,
+            null,
+            null,
+            null,
+            person is null
                 ? null
                 : birthInformation is null
                     ? person
                     : person with { BirthInformation = birthInformation },
-            ResidenceCategory: residenceCategory,
-            ResidencePermit: null,
-            ImmigrationDecision: null,
-            DeclaredAddress: declaredAddress,
-            HousingSituation: housingSituation,
-            HouseholdMembers: householdMembers ?? [],
-            CivilStatus: civilStatus,
-            Documents: [],
-            PossibleDuplicateMatches: [],
-            ActivePoliceVerification: activePoliceVerification,
-            PoliceVerificationHistory: []);
+            residenceCategory,
+            null,
+            null,
+            declaredAddress,
+            housingSituation,
+            householdMembers ?? [],
+            civilStatus,
+            [],
+            [],
+            activePoliceVerification,
+            []);
+    }
 }

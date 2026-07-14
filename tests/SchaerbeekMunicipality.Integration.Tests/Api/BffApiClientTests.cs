@@ -2,11 +2,9 @@ using FluentAssertions;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Application.Auth;
-using SchaerbeekMunicipality.Application.Features.BirthDeclaration.AttachDocument;
 using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Web.Api;
 using SchaerbeekMunicipality.Web.Api.BirthDeclaration;
 using SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
 using SchaerbeekMunicipality.Web.Api.IdentityDocuments;
@@ -74,7 +72,7 @@ public sealed class BffApiClientTests
         await birthDeclarationApi.ClaimCaseAsync(opened.CaseId);
 
         await using var uploadStream = new MemoryStream([0x25, 0x50, 0x44, 0x46]);
-        AttachDocumentResponse attached = await birthDeclarationApi.AttachDocumentAsync(
+        var attached = await birthDeclarationApi.AttachDocumentAsync(
             opened.CaseId,
             uploadStream,
             "medical.pdf");
@@ -108,9 +106,11 @@ public sealed class BffApiClientTests
         var services = new ServiceCollection();
         services.AddScoped<ICurrentOfficer, CurrentOfficer>();
 
-        void ConfigureClient(IHttpClientBuilder builder) =>
+        void ConfigureClient(IHttpClientBuilder builder)
+        {
             builder.ConfigureHttpClient(client => client.BaseAddress = factory.Server.BaseAddress)
                 .ConfigurePrimaryHttpMessageHandler(() => factory.Server.CreateHandler());
+        }
 
         ConfigureClient(services.AddHttpClient<IRegistrationApi, RegistrationApiClient>());
         ConfigureClient(services.AddHttpClient<IBirthDeclarationApi, BirthDeclarationApiClient>());

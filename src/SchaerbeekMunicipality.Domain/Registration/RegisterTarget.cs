@@ -5,5 +5,5 @@ public enum RegisterTarget
     PopulationRegister = 0,
     ForeignersRegister = 1,
     WaitingRegister = 2,
-    SpecialRegister = 3,
+    SpecialRegister = 3
 }

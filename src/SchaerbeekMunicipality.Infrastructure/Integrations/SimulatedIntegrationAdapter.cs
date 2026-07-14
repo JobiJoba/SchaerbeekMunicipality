@@ -14,10 +14,7 @@ internal sealed class SimulatedIntegrationAdapter(
     public async Task DeliverAsync(OutboundNotification notification, CancellationToken cancellationToken)
     {
         var delay = options.Value.SimulatedDeliveryDelayMilliseconds;
-        if (delay > 0)
-        {
-            await Task.Delay(delay, cancellationToken);
-        }
+        if (delay > 0) await Task.Delay(delay, cancellationToken);
 
         logger.LogInformation(
             "Simulated delivery to {Recipient} for notification {NotificationId}: {Message}",

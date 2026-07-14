@@ -18,7 +18,7 @@ public sealed class AppDialogService(IDialogService dialogService) : IAppDialogS
             { x => x.Message, message },
             { x => x.ConfirmText, confirmText },
             { x => x.Destructive, destructive },
-            { x => x.Consequence, consequence },
+            { x => x.Consequence, consequence }
         };
 
         var options = new DialogOptions
@@ -26,7 +26,7 @@ public sealed class AppDialogService(IDialogService dialogService) : IAppDialogS
             MaxWidth = MaxWidth.ExtraSmall,
             FullWidth = true,
             CloseButton = true,
-            BackdropClick = false,
+            BackdropClick = false
         };
 
         var dialog = await dialogService.ShowAsync<AppConfirmDialog>(title, parameters, options);

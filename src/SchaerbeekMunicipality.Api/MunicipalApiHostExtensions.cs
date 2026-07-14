@@ -1,8 +1,4 @@
 using FluentValidation;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using SchaerbeekMunicipality.Api.Features.BirthDeclaration;
 using SchaerbeekMunicipality.Api.Features.ChangeOfAddress;
 using SchaerbeekMunicipality.Api.Features.IdentityDocuments;
@@ -34,7 +30,8 @@ public static class MunicipalApiHostExtensions
     {
         await app.Services.InitializeDatabaseAsync();
 
-        if (app.Configuration.GetValue($"{DemoDataOptions.SectionName}:{nameof(DemoDataOptions.SeedWorkflowCases)}", false))
+        if (app.Configuration.GetValue($"{DemoDataOptions.SectionName}:{nameof(DemoDataOptions.SeedWorkflowCases)}",
+                false))
         {
             await using var scope = app.Services.CreateAsyncScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<MunicipalDbContext>();

@@ -21,7 +21,7 @@ public sealed class ChangeOfAddressE2ETests(MunicipalE2EFixture fixture) : E2ETe
 
         await page.GetByText("First registration").ClickAsync();
         await page.Locator(".mud-popover-open .mud-list-item")
-            .Filter(new() { HasText = "Change of address" })
+            .Filter(new LocatorFilterOptions { HasText = "Change of address" })
             .ClickAsync();
         await page.GetByTestId("create-registration-case").ClickAsync();
 
@@ -30,12 +30,12 @@ public sealed class ChangeOfAddressE2ETests(MunicipalE2EFixture fixture) : E2ETe
         await page.GetByTestId("nr-search-submit").ClickAsync();
 
         var openCaseButton = page.GetByRole(AriaRole.Row)
-            .Filter(new() { HasText = "Jean" })
+            .Filter(new LocatorFilterOptions { HasText = "Jean" })
             .GetByTestId("open-change-of-address-case");
         await openCaseButton.WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
         await openCaseButton.ClickAsync();
 
-        await page.GetByRole(AriaRole.Heading, new() { Name = "Case created" })
+        await page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = "Case created" })
             .WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
         (await page.GetByText("Change of address").First.IsVisibleAsync()).Should().BeTrue();
     }
@@ -56,7 +56,7 @@ public sealed class ChangeOfAddressE2ETests(MunicipalE2EFixture fixture) : E2ETe
         await page.GetByTestId("nr-search-submit").ClickAsync();
 
         var openCaseButton = page.GetByRole(AriaRole.Row)
-            .Filter(new() { HasText = "Jean" })
+            .Filter(new LocatorFilterOptions { HasText = "Jean" })
             .GetByTestId("open-change-of-address-case");
         await openCaseButton.WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
         await openCaseButton.ClickAsync();

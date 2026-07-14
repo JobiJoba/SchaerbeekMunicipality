@@ -6,21 +6,15 @@
 }
 
 @code {
-    [Parameter]
-    public bool IsReadOnlyDueToLock { get; set; }
+    [Parameter] public bool IsReadOnlyDueToLock { get; set; }
 
-    [Parameter]
-    public bool CanEdit { get; set; }
+    [Parameter] public bool CanEdit { get; set; }
 
-    [Parameter]
-    public EventCallback OnTakeCase { get; set; }
+    [Parameter] public EventCallback OnTakeCase { get; set; }
 
-    [Parameter]
-    public EventCallback OnReleaseLock { get; set; }
+    [Parameter] public EventCallback OnReleaseLock { get; set; }
 
-    [Parameter]
-    public string ReadOnlyMessage { get; set; } = "This case is locked to another officer. You can review the file but cannot make changes until they release the lock.";
+    [Parameter] public string ReadOnlyMessage { get; set; } = "This case is locked to another officer. You can review the file but cannot make changes until they release the lock.";
 
-    [Parameter]
-    public string? AlertClass { get; set; } = "mb-4";
+    [Parameter] public string? AlertClass { get; set; } = "mb-4";
 }

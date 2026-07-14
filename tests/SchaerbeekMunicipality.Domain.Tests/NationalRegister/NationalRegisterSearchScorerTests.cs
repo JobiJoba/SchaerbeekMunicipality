@@ -18,7 +18,7 @@ public sealed class NationalRegisterSearchScorerTests
                 new DateOnly(1992, 3, 20),
                 "French",
                 BisNumber.Create("72032054321"),
-                null),
+                null)
         };
 
         var matches = NationalRegisterSearchScorer.ScoreMatches(criteria, candidates);
@@ -40,7 +40,7 @@ public sealed class NationalRegisterSearchScorerTests
                 new DateOnly(1985, 6, 12),
                 "Belgian",
                 BisNumber.Create("75061298765"),
-                null),
+                null)
         };
 
         var matches = NationalRegisterSearchScorer.ScoreMatches(criteria, candidates);
@@ -70,7 +70,7 @@ public sealed class NationalRegisterSearchScorerTests
                 new DateOnly(2000, 11, 8),
                 "Vietnamese",
                 null,
-                NationalRegisterNumber.GenerateStub(new DateOnly(2000, 11, 8), 1)),
+                NationalRegisterNumber.GenerateStub(new DateOnly(2000, 11, 8), 1))
         };
 
         var matches = NationalRegisterSearchScorer.ScoreMatches(criteria, candidates);
@@ -109,7 +109,7 @@ public sealed class NationalRegisterSearchScorerTests
                 new DateOnly(1975, 1, 1),
                 "Belgian",
                 BisNumber.Create("75010112345"),
-                null),
+                null)
         };
 
         var matches = NationalRegisterSearchScorer.ScoreMatches(criteria, candidates);
@@ -131,7 +131,7 @@ public sealed class NationalRegisterSearchScorerTests
                 new DateOnly(2000, 11, 8),
                 "Vietnamese",
                 null,
-                NationalRegisterNumber.GenerateStub(new DateOnly(2000, 11, 8), 1)),
+                NationalRegisterNumber.GenerateStub(new DateOnly(2000, 11, 8), 1))
         };
 
         var matches = NationalRegisterSearchScorer.ScoreMatches(criteria, candidates);
@@ -160,7 +160,7 @@ public sealed class NationalRegisterSearchScorerTests
                 new DateOnly(1975, 1, 1),
                 "Belgian",
                 BisNumber.Create("75010112345"),
-                null),
+                null)
         };
 
         var matches = NationalRegisterSearchScorer.ScoreMatches(criteria, candidates);

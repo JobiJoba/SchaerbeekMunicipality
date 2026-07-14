@@ -1,38 +1,31 @@
 @using Microsoft.AspNetCore.Components.Web
-@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
-
 <PageTitle>@Title | Schaerbeek BO</PageTitle>
 
 <main id="main">
     <MudContainer MaxWidth="@MaxWidth" Class="@ContainerClass">
         @if (Breadcrumbs is { Count: > 0 })
         {
-            <AppBreadcrumb Items="Breadcrumbs" Class="mb-4" />
+            <AppBreadcrumb Items="Breadcrumbs" Class="mb-4"/>
         }
         @ChildContent
     </MudContainer>
 </main>
 
 @code {
-    [Parameter, EditorRequired]
-    public string Title { get; set; } = string.Empty;
+    [Parameter] [EditorRequired] public string Title { get; set; } = string.Empty;
 
-    [Parameter]
-    public List<BreadcrumbItem>? Breadcrumbs { get; set; }
+    [Parameter] public List<BreadcrumbItem>? Breadcrumbs { get; set; }
 
-    [Parameter]
-    public MaxWidth MaxWidth { get; set; } = SchaerbeekLayout.PageMaxWidth;
+    [Parameter] public MaxWidth MaxWidth { get; set; } = SchaerbeekLayout.PageMaxWidth;
 
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private string ContainerClass => new CssBuilder("pa-4 pa-md-6")
         .AddClass(Class)
         .Build();
+
 }

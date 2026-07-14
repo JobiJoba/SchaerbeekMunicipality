@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.IdentityDocuments.ReleaseCaseLock;
 
@@ -18,7 +18,7 @@ public sealed class ReleaseCaseLockHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var documentRequestCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Document request case '{caseId}' was not found.");
+                                  ?? throw new KeyNotFoundException($"Document request case '{caseId}' was not found.");
 
         var officerId = OfficerId.From(currentOfficer.OfficerId);
         documentRequestCase.ReleaseLock(officerId);

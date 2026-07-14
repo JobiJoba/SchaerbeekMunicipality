@@ -1,5 +1,4 @@
 @using SchaerbeekMunicipality.Domain.Registration
-
 <MudChip T="string"
          Size="@Size"
          Class="@Class"
@@ -9,23 +8,17 @@
 </MudChip>
 
 @code {
-    [Parameter]
-    public RegistrationCaseStatus? Status { get; set; }
+    [Parameter] public RegistrationCaseStatus? Status { get; set; }
 
-    [Parameter]
-    public string? Label { get; set; }
+    [Parameter] public string? Label { get; set; }
 
-    [Parameter]
-    public AppSeverity Severity { get; set; } = AppSeverity.Neutral;
+    [Parameter] public AppSeverity Severity { get; set; } = AppSeverity.Neutral;
 
-    [Parameter]
-    public Size Size { get; set; } = Size.Small;
+    [Parameter] public Size Size { get; set; } = Size.Small;
 
-    [Parameter]
-    public string? Class { get; set; }
+    [Parameter] public string? Class { get; set; }
 
-    [Parameter]
-    public string? Style { get; set; }
+    [Parameter] public string? Style { get; set; }
 
     private string _label = string.Empty;
     private string _icon = string.Empty;
@@ -55,4 +48,5 @@
             .AddStyle("border-radius", "12px")
             .AddStyle(Style)
             .Build();
+
 }

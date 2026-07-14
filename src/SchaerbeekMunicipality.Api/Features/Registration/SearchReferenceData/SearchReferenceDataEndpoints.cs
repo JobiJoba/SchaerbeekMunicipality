@@ -19,10 +19,7 @@ public static class SearchReferenceDataEndpoints
         SearchStreetsHandler handler,
         CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(postalCode))
-        {
-            return Results.BadRequest("Postal code is required.");
-        }
+        if (string.IsNullOrWhiteSpace(postalCode)) return Results.BadRequest("Postal code is required.");
 
         var result = await handler.Handle(postalCode, search, cancellationToken);
         return Results.Ok(result);

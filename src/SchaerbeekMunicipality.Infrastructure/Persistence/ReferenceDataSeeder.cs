@@ -7,10 +7,7 @@ internal static class ReferenceDataSeeder
 {
     public static async Task SeedAsync(MunicipalDbContext dbContext, CancellationToken cancellationToken)
     {
-        if (await dbContext.Municipalities.AnyAsync(cancellationToken))
-        {
-            return;
-        }
+        if (await dbContext.Municipalities.AnyAsync(cancellationToken)) return;
 
         var municipalities = new[]
         {
@@ -18,7 +15,7 @@ internal static class ReferenceDataSeeder
             // Neighbouring communes kept for future flows (e.g. change of address); not offered during first registration intake.
             MunicipalityReference.Create("1000", "Bruxelles"),
             MunicipalityReference.Create("1040", "Etterbeek"),
-            MunicipalityReference.Create("1210", "Saint-Josse-ten-Noode"),
+            MunicipalityReference.Create("1210", "Saint-Josse-ten-Noode")
         };
 
         await dbContext.Municipalities.AddRangeAsync(municipalities, cancellationToken);
@@ -34,7 +31,7 @@ internal static class ReferenceDataSeeder
             StreetReference.Create(7, "1030", "Rue de la Chasse"),
             StreetReference.Create(8, "1030", "Avenue Huart Hamoir"),
             StreetReference.Create(9, "1030", "Rue Gallait"),
-            StreetReference.Create(10, "1030", "Rue de Jérusalem"),
+            StreetReference.Create(10, "1030", "Rue de Jérusalem")
         };
 
         await dbContext.Streets.AddRangeAsync(streets, cancellationToken);

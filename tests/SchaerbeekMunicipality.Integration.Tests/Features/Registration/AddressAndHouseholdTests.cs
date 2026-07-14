@@ -1,15 +1,14 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using SchaerbeekMunicipality.Domain.Address;
-using SchaerbeekMunicipality.Domain.Household;
-using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress;
-using SchaerbeekMunicipality.Application.Features.Registration.OpenRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordCivilStatus;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordHouseholdComposition;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordHousingSituation;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
+using SchaerbeekMunicipality.Domain.Address;
+using SchaerbeekMunicipality.Domain.Household;
+using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Integration.Tests.Features.Registration;
 
@@ -17,7 +16,6 @@ public sealed class AddressAndHouseholdTests
 {
     private static async Task<RegistrationCaseId> OpenAndRecordIdentityAsync(IServiceProvider services)
     {
-        var openHandler = services.GetRequiredService<OpenRegistrationCaseHandler>();
         var recordHandler = services.GetRequiredService<RecordIdentityHandler>();
 
         var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(services);
@@ -34,7 +32,6 @@ public sealed class AddressAndHouseholdTests
     {
         await using var factory = new MunicipalAppFactory();
         await using var scope = factory.Services.CreateAsyncScope();
-        var openHandler = scope.ServiceProvider.GetRequiredService<OpenRegistrationCaseHandler>();
         var declareHandler = scope.ServiceProvider.GetRequiredService<DeclareAddressHandler>();
 
         var caseId = await RegistrationTestHelpers.OpenAndClaimCaseAsync(scope.ServiceProvider);
@@ -145,7 +142,7 @@ public sealed class AddressAndHouseholdTests
             new RecordHouseholdCompositionRequest(
             [
                 new HouseholdMemberRequest("Marc", "Lambert", new DateOnly(1985, 3, 1), HouseholdMemberRole.Spouse),
-                new HouseholdMemberRequest("Léa", "Lambert", new DateOnly(2015, 9, 20), HouseholdMemberRole.Child),
+                new HouseholdMemberRequest("Léa", "Lambert", new DateOnly(2015, 9, 20), HouseholdMemberRole.Child)
             ]),
             CancellationToken.None);
 

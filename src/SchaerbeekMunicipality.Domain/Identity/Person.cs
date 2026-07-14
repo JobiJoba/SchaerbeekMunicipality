@@ -45,7 +45,7 @@ public sealed class Person
             GivenName = details.GivenName.Trim(),
             FamilyName = details.FamilyName.Trim(),
             BirthDate = details.BirthDate,
-            Nationality = details.Nationality.Trim(),
+            Nationality = details.Nationality.Trim()
         };
     }
 
@@ -62,7 +62,7 @@ public sealed class Person
             Nationality = registerPerson.Nationality,
             LinkedRegisterRecordId = registerPerson.Id,
             BisNumber = registerPerson.BisNumber,
-            NationalRegisterNumber = registerPerson.NationalRegisterNumber,
+            NationalRegisterNumber = registerPerson.NationalRegisterNumber
         };
     }
 
@@ -81,24 +81,17 @@ public sealed class Person
     public void AssignNationalRegisterNumber(NationalRegisterNumber nationalRegisterNumber)
     {
         if (NationalRegisterNumber is not null)
-        {
             throw new InvalidOperationException("Person already has a National Register number.");
-        }
 
         NationalRegisterNumber = nationalRegisterNumber;
     }
 
     public void ConvertBisToNationalRegister(NationalRegisterNumber nationalRegisterNumber)
     {
-        if (BisNumber is null)
-        {
-            throw new InvalidOperationException("Person does not have a BIS number to convert.");
-        }
+        if (BisNumber is null) throw new InvalidOperationException("Person does not have a BIS number to convert.");
 
         if (NationalRegisterNumber is not null)
-        {
             throw new InvalidOperationException("Person already has a National Register number.");
-        }
 
         NationalRegisterNumber = nationalRegisterNumber;
     }

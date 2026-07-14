@@ -1,8 +1,9 @@
-@using SchaerbeekMunicipality.Domain.NationalRegister
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
+@using SchaerbeekMunicipality.Domain.NationalRegister
 @using SchaerbeekMunicipality.Web.Api.Registration
-
+@using Severity = MudBlazor.Severity
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h4">Search National Register</MudText>
@@ -53,14 +54,11 @@
 </MudDialog>
 
 @code {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
-    [Parameter]
-    public Guid CaseId { get; set; }
+    [Parameter] public Guid CaseId { get; set; }
 
-    [Inject]
-    private IRegistrationApi RegistrationApi { get; set; } = null!;
+    [Inject] private IRegistrationApi RegistrationApi { get; set; } = null!;
 
     private bool _linking;
     private string? _linkError;
@@ -97,7 +95,7 @@
 
             MudDialog.Close(DialogResult.Ok(true));
         }
-        catch (FluentValidation.ValidationException ex)
+        catch (ValidationException ex)
         {
             _linkError = string.Join(" ", ex.Errors.Select(e => e.ErrorMessage));
         }
@@ -119,10 +117,14 @@
         }
     }
 
-    private void Cancel() => MudDialog.Cancel();
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
 
-    private static NationalRegisterSearchMatch Map(NationalRegisterMatchDto match) =>
-        new(
+    private static NationalRegisterSearchMatch Map(NationalRegisterMatchDto match)
+    {
+        return new NationalRegisterSearchMatch(
             match.RegisterPersonId,
             match.GivenName,
             match.FamilyName,
@@ -133,4 +135,6 @@
             match.MatchReason,
             match.IsRegisteredInPopulation,
             match.PersonId);
+    }
+
 }

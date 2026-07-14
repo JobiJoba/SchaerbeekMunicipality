@@ -11,26 +11,17 @@ public static class EnumDisplayExtensions
     {
         var type = value.GetType();
         var name = Enum.GetName(type, value);
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            return value.ToString();
-        }
+        if (string.IsNullOrWhiteSpace(name)) return value.ToString();
 
         var members = type.GetMember(name);
         if (members.Length > 0)
         {
             var member = members[0];
             var display = member.GetCustomAttribute<DisplayAttribute>();
-            if (!string.IsNullOrWhiteSpace(display?.Name))
-            {
-                return display.Name;
-            }
+            if (!string.IsNullOrWhiteSpace(display?.Name)) return display.Name;
 
             var description = member.GetCustomAttribute<DescriptionAttribute>();
-            if (!string.IsNullOrWhiteSpace(description?.Description))
-            {
-                return description.Description;
-            }
+            if (!string.IsNullOrWhiteSpace(description?.Description)) return description.Description;
         }
 
         return HumanizePascalCase(name);
@@ -38,10 +29,7 @@ public static class EnumDisplayExtensions
 
     private static string HumanizePascalCase(string input)
     {
-        if (string.IsNullOrWhiteSpace(input))
-        {
-            return input;
-        }
+        if (string.IsNullOrWhiteSpace(input)) return input;
 
         // Split "AwaitingPoliceVerification" -> "Awaiting police verification"
         // Keeps acronyms together: "NRNumber" -> "NR number"
@@ -59,22 +47,15 @@ public static class EnumDisplayExtensions
                 var prevIsLowerOrDigit = char.IsLower(prev) || char.IsDigit(prev);
                 var boundaryBetweenAcronymAndWord = char.IsUpper(prev) && char.IsLower(next);
 
-                if (prevIsLowerOrDigit || boundaryBetweenAcronymAndWord)
-                {
-                    sb.Append(' ');
-                }
+                if (prevIsLowerOrDigit || boundaryBetweenAcronymAndWord) sb.Append(' ');
             }
 
             sb.Append(c);
         }
 
         // Lowercase the first letter to read naturally in chips/labels.
-        if (sb.Length > 0)
-        {
-            sb[0] = char.ToUpperInvariant(sb[0]);
-        }
+        if (sb.Length > 0) sb[0] = char.ToUpperInvariant(sb[0]);
 
         return sb.ToString();
     }
 }
-

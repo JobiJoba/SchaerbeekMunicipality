@@ -27,7 +27,7 @@ public sealed class MunicipalE2EFixture : IAsyncLifetime
         Playwright = await Microsoft.Playwright.Playwright.CreateAsync();
         Browser = await Playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
         {
-            Headless = true,
+            Headless = true
         });
     }
 
@@ -45,7 +45,7 @@ public sealed class MunicipalE2EFixture : IAsyncLifetime
         await page.GotoAsync(DemoOfficerUrls.WithOfficer(BaseUri, "/", officerId));
         await page.WaitForSelectorAsync("[data-testid='app-shell']", new PageWaitForSelectorOptions
         {
-            Timeout = 30_000,
+            Timeout = 30_000
         });
 
         return page;

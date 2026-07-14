@@ -5,5 +5,5 @@ public enum DocumentRequestType
     Passport = 0,
     IdentityCard = 1,
     PassportRenewal = 2,
-    IdentityCardRenewal = 3,
+    IdentityCardRenewal = 3
 }

@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Domain.CaseManagement;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
-using SchaerbeekMunicipality.Domain.CaseManagement;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.IdentityDocuments;
@@ -54,7 +54,7 @@ public sealed class DocumentRequestCase
             PersonId = personId,
             RequestType = requestType,
             Status = DocumentRequestCaseStatus.Submitted,
-            RequestedAt = requestedAt,
+            RequestedAt = requestedAt
         };
     }
 
@@ -95,11 +95,15 @@ public sealed class DocumentRequestCase
             message => new InvalidDocumentRequestTransitionException(message));
     }
 
-    public bool IsLockedTo(OfficerId officer) =>
-        OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
+    public bool IsLockedTo(OfficerId officer)
+    {
+        return OfficerCaseLocking.IsLockedTo(LockedByOfficerId, officer);
+    }
 
-    public bool IsLockedToAnother(OfficerId officer) =>
-        OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
+    public bool IsLockedToAnother(OfficerId officer)
+    {
+        return OfficerCaseLocking.IsLockedToAnother(LockedByOfficerId, officer);
+    }
 
     public void AttachApplicantPhoto(AdministrativeDocumentId documentId)
     {
@@ -153,9 +157,7 @@ public sealed class DocumentRequestCase
     private void EnsureNotTerminal(string operation)
     {
         if (Status is DocumentRequestCaseStatus.Issued or DocumentRequestCaseStatus.Cancelled)
-        {
             throw new InvalidDocumentRequestTransitionException(
                 $"Cannot perform '{operation}' on a request in '{Status}' status.");
-        }
     }
 }

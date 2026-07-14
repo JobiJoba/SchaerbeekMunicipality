@@ -2,6 +2,7 @@ using FluentAssertions;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Tests.Immigration;
 
@@ -34,7 +35,7 @@ public sealed class ResidencePolicyTests
         var result = policy.Validate(EmptyDocuments with
         {
             Category = ResidenceCategory.NonEuWorker,
-            AttachedDocumentTypes = PassportOnly,
+            AttachedDocumentTypes = PassportOnly
         });
 
         result.IsValid.Should().BeFalse();
@@ -45,13 +46,13 @@ public sealed class ResidencePolicyTests
     public void NonEuWorkerPolicy_WithValidBCard_IsValid()
     {
         var policy = new NonEuWorkerPolicy();
-        var permit = CreatePermit(ResidencePermitType.BCard, validUntil: DateOnly.FromDateTime(DateTime.UtcNow.AddYears(1)));
+        var permit = CreatePermit(ResidencePermitType.BCard, DateOnly.FromDateTime(DateTime.UtcNow.AddYears(1)));
 
         var result = policy.Validate(EmptyDocuments with
         {
             Category = ResidenceCategory.NonEuWorker,
             Permit = permit,
-            AttachedDocumentTypes = PassportOnly,
+            AttachedDocumentTypes = PassportOnly
         });
 
         result.IsValid.Should().BeTrue();
@@ -61,13 +62,13 @@ public sealed class ResidencePolicyTests
     public void StudentPolicy_WithAnnex15_IsValid()
     {
         var policy = new StudentPolicy();
-        var permit = CreatePermit(ResidencePermitType.Annex15, validUntil: DateOnly.FromDateTime(DateTime.UtcNow.AddYears(1)));
+        var permit = CreatePermit(ResidencePermitType.Annex15, DateOnly.FromDateTime(DateTime.UtcNow.AddYears(1)));
 
         var result = policy.Validate(EmptyDocuments with
         {
             Category = ResidenceCategory.Student,
             Permit = permit,
-            AttachedDocumentTypes = PassportOnly,
+            AttachedDocumentTypes = PassportOnly
         });
 
         result.IsValid.Should().BeTrue();
@@ -81,7 +82,7 @@ public sealed class ResidencePolicyTests
         var result = policy.Validate(EmptyDocuments with
         {
             Category = ResidenceCategory.EuCitizen,
-            AttachedDocumentTypes = PassportOnly,
+            AttachedDocumentTypes = PassportOnly
         });
 
         result.IsValid.Should().BeTrue();
@@ -90,7 +91,7 @@ public sealed class ResidencePolicyTests
     private static ResidencePermit CreatePermit(ResidencePermitType permitType, DateOnly validUntil)
     {
         return ResidencePermit.Create(
-            Domain.Registration.RegistrationCaseId.New(),
+            RegistrationCaseId.New(),
             new ResidencePermitDetails(
                 permitType,
                 DateOnly.FromDateTime(DateTime.UtcNow.AddYears(-1)),

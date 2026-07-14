@@ -1,10 +1,11 @@
-@using SchaerbeekMunicipality.Domain.IdentityDocuments
+@using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.IdentityDocuments.OpenDocumentRequestCase
 @using SchaerbeekMunicipality.Application.Features.IdentityDocuments.ResolveRegisteredPerson
 @using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
+@using SchaerbeekMunicipality.Domain.IdentityDocuments
 @using SchaerbeekMunicipality.Web.Api.IdentityDocuments
 @using SchaerbeekMunicipality.Web.Api.Registration
-
+@using Severity = MudBlazor.Severity
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h4">New document request</MudText>
@@ -46,8 +47,7 @@
 </MudDialog>
 
 @code {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
     [Inject] private IRegistrationApi RegistrationApi { get; set; } = null!;
     [Inject] private IIdentityDocumentsApi IdentityDocumentsApi { get; set; } = null!;
@@ -90,9 +90,9 @@
 
             MudDialog.Close(DialogResult.Ok(opened.CaseId));
         }
-        catch (Exception ex) when (ex is InvalidDocumentRequestTransitionException or InvalidOperationException or KeyNotFoundException or FluentValidation.ValidationException)
+        catch (Exception ex) when (ex is InvalidDocumentRequestTransitionException or InvalidOperationException or KeyNotFoundException or ValidationException)
         {
-            _actionError = ex is FluentValidation.ValidationException validation
+            _actionError = ex is ValidationException validation
                 ? string.Join(" ", validation.Errors.Select(e => e.ErrorMessage))
                 : ex.Message;
         }
@@ -102,10 +102,14 @@
         }
     }
 
-    private void Cancel() => MudDialog.Cancel();
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
 
-    private static NationalRegisterSearchMatch Map(NationalRegisterMatchDto match) =>
-        new(
+    private static NationalRegisterSearchMatch Map(NationalRegisterMatchDto match)
+    {
+        return new NationalRegisterSearchMatch(
             match.RegisterPersonId,
             match.GivenName,
             match.FamilyName,
@@ -116,4 +120,6 @@
             match.MatchReason,
             match.IsRegisteredInPopulation,
             match.PersonId);
+    }
+
 }

@@ -17,7 +17,7 @@ public sealed class BirthDeclarationParentLink
         return new BirthDeclarationParentLink
         {
             PersonId = personId,
-            Role = role,
+            Role = role
         };
     }
 }

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
-using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Certificates;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;

@@ -54,9 +54,7 @@ public sealed class SearchNationalRegisterHandler(
         CancellationToken cancellationToken)
     {
         if (match.NationalRegisterNumber is null)
-        {
             return await personRepository.GetByRegisterRecordIdAsync(match.RegisterPersonId, cancellationToken);
-        }
 
         var person = await personRepository.GetByRegisterRecordIdAsync(
             match.RegisterPersonId,
@@ -69,9 +67,7 @@ public sealed class SearchNationalRegisterHandler(
                 cancellationToken);
 
             if (registerPerson?.NationalRegisterNumber is { } nrNumber)
-            {
                 person = await personRepository.GetByNationalRegisterNumberAsync(nrNumber, cancellationToken);
-            }
         }
 
         return person;

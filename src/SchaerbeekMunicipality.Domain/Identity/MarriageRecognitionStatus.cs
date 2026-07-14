@@ -4,5 +4,5 @@ public enum MarriageRecognitionStatus
 {
     NotApplicable = 0,
     Recognised = 1,
-    PendingRecognition = 2,
+    PendingRecognition = 2
 }

@@ -1,5 +1,3 @@
-@using SchaerbeekMunicipality.Web.DesignSystem.Tokens
-
 @if (Items.Count == 0)
 {
     <MudText Typo="Typo.body2" Color="Color.Secondary">No history recorded yet.</MudText>
@@ -26,8 +24,7 @@ else
 }
 
 @code {
-    [Parameter, EditorRequired]
-    public IReadOnlyList<AppTimelineItem> Items { get; set; } = [];
+    [Parameter] [EditorRequired] public IReadOnlyList<AppTimelineItem> Items { get; set; } = [];
 
     public sealed record AppTimelineItem(
         string Title,
@@ -35,12 +32,15 @@ else
         string? Description,
         AppSeverity Severity = AppSeverity.Info);
 
-    private static Color GetColor(AppSeverity severity) =>
-        severity switch
+    private static Color GetColor(AppSeverity severity)
+    {
+        return severity switch
         {
             AppSeverity.Success => Color.Success,
             AppSeverity.Warning => Color.Warning,
             AppSeverity.Error => Color.Error,
-            _ => Color.Info,
+            _ => Color.Info
         };
+    }
+
 }

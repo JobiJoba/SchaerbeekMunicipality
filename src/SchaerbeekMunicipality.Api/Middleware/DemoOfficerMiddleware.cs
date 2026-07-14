@@ -9,11 +9,11 @@ public sealed class DemoOfficerMiddleware(RequestDelegate next)
         if (context.Request.Headers.TryGetValue(DemoOfficerHeaders.OfficerId, out var officerIdHeader) &&
             Guid.TryParse(officerIdHeader.ToString(), out var officerId) &&
             context.Request.Headers.TryGetValue(DemoOfficerHeaders.OfficerRole, out var roleHeader) &&
-            Enum.TryParse<OfficerRole>(roleHeader.ToString(), ignoreCase: true, out var role))
+            Enum.TryParse<OfficerRole>(roleHeader.ToString(), true, out var role))
         {
             var displayName = context.Request.Headers.TryGetValue(DemoOfficerHeaders.OfficerName, out var nameHeader)
-                && !string.IsNullOrWhiteSpace(nameHeader.ToString())
-                ? nameHeader.ToString()!
+                              && !string.IsNullOrWhiteSpace(nameHeader.ToString())
+                ? nameHeader.ToString()
                 : DemoOfficers.Find(officerId).DisplayName;
 
             currentOfficer.Impersonate(officerId, role, displayName);
@@ -25,6 +25,8 @@ public sealed class DemoOfficerMiddleware(RequestDelegate next)
 
 public static class DemoOfficerMiddlewareExtensions
 {
-    public static IApplicationBuilder UseDemoOfficerResolution(this IApplicationBuilder app) =>
-        app.UseMiddleware<DemoOfficerMiddleware>();
+    public static IApplicationBuilder UseDemoOfficerResolution(this IApplicationBuilder app)
+    {
+        return app.UseMiddleware<DemoOfficerMiddleware>();
+    }
 }

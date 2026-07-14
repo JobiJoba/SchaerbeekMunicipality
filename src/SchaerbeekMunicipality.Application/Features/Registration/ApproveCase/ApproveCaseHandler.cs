@@ -1,8 +1,7 @@
 using FluentValidation;
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.ApproveCase;
 
@@ -22,9 +21,7 @@ public sealed class ApproveCaseHandler(
         CancellationToken cancellationToken)
     {
         if (!currentOfficer.CanApproveRegistration)
-        {
             throw new UnauthorizedAccessException("Only population officers can approve registration cases.");
-        }
 
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
@@ -38,22 +35,16 @@ public sealed class ApproveCaseHandler(
             cancellationToken);
 
         if (evaluation.IllegalStayDetected)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Cannot approve a case with no legal residence basis — reject and refer to Immigration Office.");
-        }
 
         if (evaluation.MarriageRecognitionBlocking)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Cannot approve while foreign marriage recognition is pending.");
-        }
 
         if (!registrationCase.IsReadyForApproval)
-        {
             throw new InvalidRegistrationTransitionException(
                 "Cannot approve the case until all review checklist items are satisfied.");
-        }
 
         string? nationality = null;
         if (registrationCase.PersonId is { } personId)

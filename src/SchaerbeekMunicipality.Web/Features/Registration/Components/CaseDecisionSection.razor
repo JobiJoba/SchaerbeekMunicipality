@@ -1,14 +1,9 @@
-@using SchaerbeekMunicipality.Domain.Registration
-@using SchaerbeekMunicipality.Domain.NationalRegister
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
 @using SchaerbeekMunicipality.Application.Features.Registration.ApproveCase
-@using SchaerbeekMunicipality.Application.Features.Registration.ConfirmRegistration
 @using SchaerbeekMunicipality.Application.Features.Registration.GetCaseReviewChecklist
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @using SchaerbeekMunicipality.Application.Features.Registration.RejectCase
-@using SchaerbeekMunicipality.Application.Features.Registration.ResumeCase
 @using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase
-@using SchaerbeekMunicipality.Application.Auth
+@using SchaerbeekMunicipality.Domain.NationalRegister
 @using SchaerbeekMunicipality.Web.Api.Registration
 @inject IRegistrationApi RegistrationApi
 @inject ICurrentOfficer CurrentOfficer
@@ -22,7 +17,7 @@
     }
     else
     {
-        <OfficerDecisionChecklist Items="@MapChecklist(_checklist)" />
+        <OfficerDecisionChecklist Items="@MapChecklist(_checklist)"/>
 
         @if (Case.IllegalStayDetected && Case.Status == RegistrationCaseStatus.UnderReview)
         {
@@ -113,11 +108,9 @@
 </AppCard>
 
 @code {
-    [Parameter, EditorRequired]
-    public RegistrationCaseDetailDto Case { get; set; } = null!;
+    [Parameter] [EditorRequired] public RegistrationCaseDetailDto Case { get; set; } = null!;
 
-    [Parameter, EditorRequired]
-    public EventCallback OnUpdated { get; set; }
+    [Parameter] [EditorRequired] public EventCallback OnUpdated { get; set; }
 
     private GetCaseReviewChecklistResponse? _checklist;
     private bool _busy;
@@ -138,7 +131,7 @@
     {
         var parameters = new DialogParameters<ApproveCaseDialog>
         {
-            { x => x.SuggestedRegisterTarget, Case.SuggestedRegisterTarget },
+            { x => x.SuggestedRegisterTarget, Case.SuggestedRegisterTarget }
         };
 
         var dialog = await DialogService.ShowAsync<ApproveCaseDialog>(
@@ -150,9 +143,9 @@
         if (result is { Canceled: false } && result.Data is RegisterTarget registerTarget)
         {
             await ExecuteAsync(() => RegistrationApi.ApproveCaseAsync(
-                Case.Id,
-                new ApproveCaseRequest(registerTarget),
-                CancellationToken.None),
+                    Case.Id,
+                    new ApproveCaseRequest(registerTarget),
+                    CancellationToken.None),
                 "Case approved.");
         }
     }
@@ -177,9 +170,9 @@
         if (result is { Canceled: false } && result.Data is RejectCaseRequest request)
         {
             await ExecuteAsync(() => RegistrationApi.RejectCaseAsync(
-                Case.Id,
-                request,
-                CancellationToken.None),
+                    Case.Id,
+                    request,
+                    CancellationToken.None),
                 "Case rejected.");
         }
     }
@@ -194,22 +187,26 @@
         if (result is { Canceled: false } && result.Data is SuspendCaseRequest request)
         {
             await ExecuteAsync(() => RegistrationApi.SuspendCaseAsync(
-                Case.Id,
-                request,
-                CancellationToken.None),
+                    Case.Id,
+                    request,
+                    CancellationToken.None),
                 "Case suspended.");
         }
     }
 
-    private Task ConfirmRegistration() =>
-        ExecuteAsync(
+    private Task ConfirmRegistration()
+    {
+        return ExecuteAsync(
             () => RegistrationApi.ConfirmRegistrationAsync(Case.Id, CancellationToken.None),
             "Registration confirmed.");
+    }
 
-    private Task ResumeCase() =>
-        ExecuteAsync(
+    private Task ResumeCase()
+    {
+        return ExecuteAsync(
             () => RegistrationApi.ResumeCaseAsync(Case.Id, CancellationToken.None),
             "Case resumed.");
+    }
 
     private async Task ExecuteAsync<T>(Func<Task<T>> action, string successMessage)
     {
@@ -238,8 +235,11 @@
         }
     }
 
-    private static IReadOnlyList<AppChecklistItem> MapChecklist(GetCaseReviewChecklistResponse? checklist) =>
-        checklist?.Questions
+    private static IReadOnlyList<AppChecklistItem> MapChecklist(GetCaseReviewChecklistResponse? checklist)
+    {
+        return checklist?.Questions
             .Select(q => new AppChecklistItem(q.Question, q.IsSatisfied, q.BlockingReason))
             .ToList() ?? [];
+    }
+
 }

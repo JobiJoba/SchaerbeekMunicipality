@@ -1,10 +1,8 @@
 @page "/identity-documents/requests"
-@using SchaerbeekMunicipality.Domain.IdentityDocuments
-@using SchaerbeekMunicipality.Application.Auth
-@using SchaerbeekMunicipality.Web.Features.IdentityDocuments.Components
 @using SchaerbeekMunicipality.Application.Features.IdentityDocuments.ListDocumentRequestCases
-@using SchaerbeekMunicipality.Web.Features.Registration.Components
+@using SchaerbeekMunicipality.Domain.IdentityDocuments
 @using SchaerbeekMunicipality.Web.Api.IdentityDocuments
+@using SchaerbeekMunicipality.Web.Features.IdentityDocuments.Components
 @inject IIdentityDocumentsApi IdentityDocumentsApi
 @inject ICurrentOfficer CurrentOfficer
 @inject IDialogService DialogService
@@ -29,7 +27,7 @@
         <AppSection>
             @if (_loading)
             {
-                <AppLoading Kind="AppLoadingKind.Skeleton" />
+                <AppLoading Kind="AppLoadingKind.Skeleton"/>
             }
             else if (_cases.Count == 0)
             {
@@ -51,7 +49,7 @@
                 <AppSearchBar @bind-Value="_searchText"
                               Placeholder="Search requests…"
                               Class="mb-3"
-                              OnSearch="OnSearch" />
+                              OnSearch="OnSearch"/>
 
                 <AppDataTable T="DocumentRequestCaseListItem"
                               Items="_filteredCases"
@@ -74,7 +72,7 @@
                         <MudTd DataLabel="Applicant">@(item.PersonDisplayName ?? "—")</MudTd>
                         <MudTd DataLabel="Type">@item.RequestType.ToDisplayString()</MudTd>
                         <MudTd DataLabel="Status">
-                            <AppStatusChip Label="@item.Status.ToDisplayString()" Severity="@GetSeverity(item.Status)" />
+                            <AppStatusChip Label="@item.Status.ToDisplayString()" Severity="@GetSeverity(item.Status)"/>
                         </MudTd>
                         <MudTd DataLabel="Officer">
                             @OfficerDisplayNames.LockStatus(item.AssignedOfficerId, item.LockedByOfficerId)
@@ -88,6 +86,7 @@
 </RegistrationRoleGate>
 
 @code {
+
     [SupplyParameterFromQuery(Name = "open")]
     public string? Open { get; set; }
 
@@ -120,7 +119,10 @@
         _loading = false;
     }
 
-    private void OnSearch(string _) => ApplyFilter();
+    private void OnSearch(string _)
+    {
+        ApplyFilter();
+    }
 
     private void ApplyFilter()
     {
@@ -141,8 +143,10 @@
         _filteredCases = query.ToList();
     }
 
-    private void NavigateToCase(DocumentRequestCaseListItem item) =>
+    private void NavigateToCase(DocumentRequestCaseListItem item)
+    {
         Navigation.NavigateTo($"/identity-documents/requests/{item.Id}");
+    }
 
     private async Task OpenNewCase()
     {
@@ -157,13 +161,16 @@
         }
     }
 
-    private static AppSeverity GetSeverity(DocumentRequestCaseStatus status) =>
-        status switch
+    private static AppSeverity GetSeverity(DocumentRequestCaseStatus status)
+    {
+        return status switch
         {
             DocumentRequestCaseStatus.Issued => AppSeverity.Success,
             DocumentRequestCaseStatus.Cancelled => AppSeverity.Error,
             DocumentRequestCaseStatus.ReadyForCollection => AppSeverity.Info,
             DocumentRequestCaseStatus.InProduction => AppSeverity.Warning,
-            _ => AppSeverity.Neutral,
+            _ => AppSeverity.Neutral
         };
+    }
+
 }

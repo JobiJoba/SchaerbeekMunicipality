@@ -1,4 +1,3 @@
-@using SchaerbeekMunicipality.Domain.Documents
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
 @inject NavigationManager Navigation
 
@@ -10,33 +9,33 @@
                    EmptyDescription="Upload a passport, permit, or other supporting document.">
     <UploadContent>
         <DocumentUpload CaseId="CaseId"
-                        OnUploaded="OnUploaded" />
+                        OnUploaded="OnUploaded"/>
     </UploadContent>
 </CaseDocumentPanel>
 
 @code {
-    [Parameter, EditorRequired]
-    public Guid CaseId { get; set; }
+    [Parameter] [EditorRequired] public Guid CaseId { get; set; }
 
-    [Parameter, EditorRequired]
-    public IReadOnlyList<DocumentDto> Documents { get; set; } = [];
+    [Parameter] [EditorRequired] public IReadOnlyList<DocumentDto> Documents { get; set; } = [];
 
-    [Parameter]
-    public bool CanEdit { get; set; }
+    [Parameter] public bool CanEdit { get; set; }
 
-    [Parameter]
-    public EventCallback<Guid> OnRemoveDocument { get; set; }
+    [Parameter] public EventCallback<Guid> OnRemoveDocument { get; set; }
 
-    [Parameter]
-    public EventCallback OnUploaded { get; set; }
+    [Parameter] public EventCallback OnUploaded { get; set; }
 
-    private IReadOnlyList<CaseDocumentItem> MapDocuments() =>
-        Documents.Select(d => new CaseDocumentItem(
+    private IReadOnlyList<CaseDocumentItem> MapDocuments()
+    {
+        return Documents.Select(d => new CaseDocumentItem(
             d.Id,
             d.FileName,
             d.UploadedAt,
             d.DocumentType.ToString())).ToList();
+    }
 
-    private string GetDocumentUrl(Guid documentId) =>
-        Navigation.ToAbsoluteUri($"/api/registration/cases/{CaseId}/documents/{documentId}").ToString();
+    private string GetDocumentUrl(Guid documentId)
+    {
+        return Navigation.ToAbsoluteUri($"/api/registration/cases/{CaseId}/documents/{documentId}").ToString();
+    }
+
 }

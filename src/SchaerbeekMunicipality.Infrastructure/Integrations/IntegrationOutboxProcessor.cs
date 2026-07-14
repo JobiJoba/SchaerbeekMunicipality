@@ -20,13 +20,9 @@ internal sealed class IntegrationOutboxProcessor(
             now,
             cancellationToken);
 
-        if (claimed.Count == 0)
-        {
-            return 0;
-        }
+        if (claimed.Count == 0) return 0;
 
         foreach (var notification in claimed)
-        {
             try
             {
                 var adapter = adapterRegistry.GetRequired(notification.Recipient);
@@ -44,7 +40,6 @@ internal sealed class IntegrationOutboxProcessor(
 
                 notification.RecordDeliveryFailure(ex.Message, timeProvider.GetUtcNow(), settings.MaxAttempts);
             }
-        }
 
         await notificationRepository.SaveChangesAsync(cancellationToken);
         return claimed.Count;

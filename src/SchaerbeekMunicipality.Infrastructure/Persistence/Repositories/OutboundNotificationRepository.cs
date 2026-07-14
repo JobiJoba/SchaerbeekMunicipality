@@ -51,20 +51,14 @@ internal sealed class OutboundNotificationRepository(MunicipalDbContext dbContex
 
         var pending = candidates
             .Where(n => n.DeliveryStatus == OutboundNotificationDeliveryStatus.Pending
-                && n.NextAttemptAt <= now)
+                        && n.NextAttemptAt <= now)
             .OrderBy(n => n.CreatedAt)
             .Take(batchSize)
             .ToList();
 
-        foreach (var notification in pending)
-        {
-            notification.MarkProcessing();
-        }
+        foreach (var notification in pending) notification.MarkProcessing();
 
-        if (pending.Count > 0)
-        {
-            await dbContext.SaveChangesAsync(cancellationToken);
-        }
+        if (pending.Count > 0) await dbContext.SaveChangesAsync(cancellationToken);
 
         return pending;
     }

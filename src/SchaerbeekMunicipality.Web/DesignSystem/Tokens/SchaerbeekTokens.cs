@@ -46,12 +46,12 @@ public static class SchaerbeekColors
 
 public static class SchaerbeekTypography
 {
-    public static readonly string[] FontFamily =
-        ["Open Sans", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"];
-
     public const string WeightRegular = "400";
     public const string WeightSemiBold = "600";
     public const string WeightBold = "700";
+
+    public static readonly string[] FontFamily =
+        ["Open Sans", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"];
 }
 
 public static class SchaerbeekSpacing

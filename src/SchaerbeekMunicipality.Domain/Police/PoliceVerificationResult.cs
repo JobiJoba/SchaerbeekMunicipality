@@ -8,5 +8,5 @@ public enum PoliceVerificationResult
     MailboxOnly = 3,
     EmptyDwelling = 4,
     RefusedAccess = 5,
-    Incomplete = 6,
+    Incomplete = 6
 }

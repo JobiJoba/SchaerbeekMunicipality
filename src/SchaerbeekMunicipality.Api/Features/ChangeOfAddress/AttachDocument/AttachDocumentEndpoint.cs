@@ -1,8 +1,8 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Api.Validation;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.AttachDocument;
+using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 
 namespace SchaerbeekMunicipality.Api.Features.ChangeOfAddress.AttachDocument;
 
@@ -37,10 +37,7 @@ public static class AttachDocumentEndpoint
     {
         var form = new AttachDocumentForm { File = file };
         var validation = await validator.ValidateAsync(form, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return ValidationResults.ToProblemDetails(validation);
-        }
+        if (!validation.IsValid) return ValidationResults.ToProblemDetails(validation);
 
         try
         {

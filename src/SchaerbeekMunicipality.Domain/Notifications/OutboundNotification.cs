@@ -47,9 +47,9 @@ public sealed class OutboundNotification
         ArgumentException.ThrowIfNullOrWhiteSpace(message);
 
         return CreatePending(
-            registrationCaseId: registrationCaseId,
-            birthDeclarationCaseId: null,
-            changeOfAddressCaseId: null,
+            registrationCaseId,
+            null,
+            null,
             personId,
             recipient,
             message,
@@ -66,9 +66,9 @@ public sealed class OutboundNotification
         ArgumentException.ThrowIfNullOrWhiteSpace(message);
 
         return CreatePending(
-            registrationCaseId: null,
+            null,
             birthDeclarationCaseId,
-            changeOfAddressCaseId: null,
+            null,
             personId,
             recipient,
             message,
@@ -85,8 +85,8 @@ public sealed class OutboundNotification
         ArgumentException.ThrowIfNullOrWhiteSpace(message);
 
         return CreatePending(
-            registrationCaseId: null,
-            birthDeclarationCaseId: null,
+            null,
+            null,
             changeOfAddressCaseId,
             personId,
             recipient,
@@ -99,21 +99,21 @@ public sealed class OutboundNotification
         PersonId personId,
         OutboundNotificationRecipient recipient,
         string message,
-        DateTimeOffset createdAt) =>
-        CreateForRegistration(
+        DateTimeOffset createdAt)
+    {
+        return CreateForRegistration(
             registrationCaseId,
             personId,
             recipient,
             message,
             createdAt);
+    }
 
     public void MarkProcessing()
     {
         if (DeliveryStatus is not OutboundNotificationDeliveryStatus.Pending)
-        {
             throw new InvalidOperationException(
                 $"Cannot mark notification '{Id}' as processing from status '{DeliveryStatus}'.");
-        }
 
         DeliveryStatus = OutboundNotificationDeliveryStatus.Processing;
     }
@@ -165,10 +165,12 @@ public sealed class OutboundNotification
             CreatedAt = createdAt,
             DeliveryStatus = OutboundNotificationDeliveryStatus.Pending,
             AttemptCount = 0,
-            NextAttemptAt = createdAt,
+            NextAttemptAt = createdAt
         };
     }
 
-    private static TimeSpan CalculateRetryDelay(int attemptCount) =>
-        TimeSpan.FromSeconds(30 * Math.Pow(2, Math.Max(0, attemptCount - 1)));
+    private static TimeSpan CalculateRetryDelay(int attemptCount)
+    {
+        return TimeSpan.FromSeconds(30 * Math.Pow(2, Math.Max(0, attemptCount - 1)));
+    }
 }

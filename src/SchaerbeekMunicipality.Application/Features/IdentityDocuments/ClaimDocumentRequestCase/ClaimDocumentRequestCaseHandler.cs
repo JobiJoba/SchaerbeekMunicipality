@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.IdentityDocuments.ClaimDocumentRequestCase;
 
@@ -25,15 +25,12 @@ public sealed class ClaimDocumentRequestCaseHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var documentRequestCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Document request case '{caseId}' was not found.");
+                                  ?? throw new KeyNotFoundException($"Document request case '{caseId}' was not found.");
 
         authorization.EnsureCanView(currentOfficer);
 
         var officerId = OfficerId.From(currentOfficer.OfficerId);
-        if (!authorization.ShouldAutoClaim(documentRequestCase, officerId))
-        {
-            return null;
-        }
+        if (!authorization.ShouldAutoClaim(documentRequestCase, officerId)) return null;
 
         return await ClaimCoreAsync(documentRequestCase, officerId, cancellationToken);
     }
@@ -45,7 +42,7 @@ public sealed class ClaimDocumentRequestCaseHandler(
         authorization.EnsureCanClaim(currentOfficer);
 
         var documentRequestCase = await caseRepository.GetByIdAsync(caseId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Document request case '{caseId}' was not found.");
+                                  ?? throw new KeyNotFoundException($"Document request case '{caseId}' was not found.");
 
         authorization.EnsureCanView(currentOfficer);
 

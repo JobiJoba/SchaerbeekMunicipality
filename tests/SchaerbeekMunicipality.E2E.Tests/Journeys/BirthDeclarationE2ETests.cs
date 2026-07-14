@@ -23,10 +23,10 @@ public sealed class BirthDeclarationE2ETests(MunicipalE2EFixture fixture) : E2ET
 
         await page.GetByText("First registration").ClickAsync();
         await page.Locator(".mud-popover-open .mud-list-item")
-            .Filter(new() { HasText = "Birth declaration" })
+            .Filter(new LocatorFilterOptions { HasText = "Birth declaration" })
             .ClickAsync();
         await page.GetByTestId("create-registration-case").ClickAsync();
-        await page.GetByRole(AriaRole.Heading, new() { Name = "Case created" })
+        await page.GetByRole(AriaRole.Heading, new PageGetByRoleOptions { Name = "Case created" })
             .WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
         (await page.GetByText("The intake file is open").IsVisibleAsync()).Should().BeTrue();
     }
@@ -40,7 +40,7 @@ public sealed class BirthDeclarationE2ETests(MunicipalE2EFixture fixture) : E2ET
         var detail = await scope.ServiceProvider.GetRequiredService<GetBirthDeclarationCaseHandler>()
             .Handle(caseId, CancellationToken.None);
         detail.Should().NotBeNull();
-        detail!.Status.Should().Be(BirthDeclarationCaseStatus.UnderReview);
+        detail.Status.Should().Be(BirthDeclarationCaseStatus.UnderReview);
         detail.ReadyForConfirmation.Should().BeTrue();
         detail.CanEdit.Should().BeTrue();
 
@@ -52,11 +52,13 @@ public sealed class BirthDeclarationE2ETests(MunicipalE2EFixture fixture) : E2ET
         await page.WaitForBlazorAsync();
         await page.GetByText("Officer decision").WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
 
-        var confirmButton = page.GetByRole(AriaRole.Button, new() { Name = "Confirm birth declaration" });
-        await confirmButton.WaitForAsync(new LocatorWaitForOptions { State = WaitForSelectorState.Visible, Timeout = 30_000 });
+        var confirmButton =
+            page.GetByRole(AriaRole.Button, new PageGetByRoleOptions { Name = "Confirm birth declaration" });
+        await confirmButton.WaitForAsync(new LocatorWaitForOptions
+            { State = WaitForSelectorState.Visible, Timeout = 30_000 });
         await confirmButton.ClickAsync(new LocatorClickOptions { Timeout = 30_000 });
 
-        await page.GetByRole(AriaRole.Alert).Filter(new() { HasText = "Child NR" })
+        await page.GetByRole(AriaRole.Alert).Filter(new LocatorFilterOptions { HasText = "Child NR" })
             .WaitForAsync(new LocatorWaitForOptions { Timeout = 30_000 });
         (await page.GetByText("Birth registered").IsVisibleAsync()).Should().BeTrue();
     }

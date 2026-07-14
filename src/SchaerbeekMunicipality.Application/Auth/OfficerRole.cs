@@ -5,5 +5,5 @@ public enum OfficerRole
     ReceptionOfficer,
     PopulationOfficer,
     PoliceClerk,
-    BackOfficeOfficer,
+    BackOfficeOfficer
 }

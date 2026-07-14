@@ -1,3 +1,3 @@
 namespace SchaerbeekMunicipality.Web;
 
-public partial class Program;
+public class Program;

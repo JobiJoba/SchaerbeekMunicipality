@@ -1,6 +1,6 @@
+using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Auth;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.DownloadDocument;
 
@@ -22,12 +22,10 @@ public sealed class DownloadDocumentHandler(
         _ = await caseGuard.GetForViewAsync(caseId, cancellationToken);
 
         var document = await documentRepository.GetByIdAsync(documentId, cancellationToken)
-            ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
+                       ?? throw new KeyNotFoundException($"Document '{documentId}' was not found.");
 
         if (!document.BelongsToRegistrationCase(caseId))
-        {
             throw new KeyNotFoundException($"Document '{documentId}' was not found on case '{caseId}'.");
-        }
 
         var content = await documentStorage.OpenReadAsync(document.StoragePath, cancellationToken);
 
@@ -37,12 +35,14 @@ public sealed class DownloadDocumentHandler(
             GetContentType(document.FileName));
     }
 
-    private static string GetContentType(string fileName) =>
-        Path.GetExtension(fileName).ToLowerInvariant() switch
+    private static string GetContentType(string fileName)
+    {
+        return Path.GetExtension(fileName).ToLowerInvariant() switch
         {
             ".pdf" => "application/pdf",
             ".jpg" or ".jpeg" => "image/jpeg",
             ".png" => "image/png",
-            _ => "application/octet-stream",
+            _ => "application/octet-stream"
         };
+    }
 }

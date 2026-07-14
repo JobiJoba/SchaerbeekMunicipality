@@ -1,6 +1,5 @@
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.Registration;
-using SchaerbeekMunicipality.Application.Features.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
 
@@ -22,10 +21,8 @@ public sealed class RequestPoliceVerificationHandler(
 
         var pending = await policeVerificationRepository.GetPendingByCaseIdAsync(caseId, cancellationToken);
         if (pending is not null)
-        {
             throw new InvalidPoliceVerificationException(
                 "A police verification request is already pending for this case.");
-        }
 
         registrationCase.RequestPoliceVerification();
 

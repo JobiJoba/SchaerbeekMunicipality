@@ -1,5 +1,3 @@
-using SchaerbeekMunicipality.Domain.Registration;
-
 namespace SchaerbeekMunicipality.Application.Features.Registration.ListCaseAudit;
 
 public sealed record CaseAuditEntryDto(

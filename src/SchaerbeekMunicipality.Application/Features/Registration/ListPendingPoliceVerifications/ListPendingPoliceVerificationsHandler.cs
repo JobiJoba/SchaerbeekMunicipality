@@ -17,24 +17,16 @@ public sealed class ListPendingPoliceVerificationsHandler(
         var items = new List<PendingPoliceVerificationDto>(pending.Count);
 
         foreach (var request in pending)
-        {
             if (request.RegistrationCaseId is { } registrationCaseId)
             {
                 var item = await MapRegistrationRequestAsync(request, registrationCaseId, cancellationToken);
-                if (item is not null)
-                {
-                    items.Add(item);
-                }
+                if (item is not null) items.Add(item);
             }
             else if (request.ChangeOfAddressCaseId is { } changeOfAddressCaseId)
             {
                 var item = await MapChangeOfAddressRequestAsync(request, changeOfAddressCaseId, cancellationToken);
-                if (item is not null)
-                {
-                    items.Add(item);
-                }
+                if (item is not null) items.Add(item);
             }
-        }
 
         return new ListPendingPoliceVerificationsResponse(items, items.Count);
     }
@@ -45,16 +37,11 @@ public sealed class ListPendingPoliceVerificationsHandler(
         CancellationToken cancellationToken)
     {
         var registrationCase = await caseRepository.GetByIdAsync(registrationCaseId, cancellationToken);
-        if (registrationCase is null)
-        {
-            return null;
-        }
+        if (registrationCase is null) return null;
 
         Person? person = null;
         if (registrationCase.PersonId is { } personId)
-        {
             person = await personRepository.GetByIdAsync(personId, cancellationToken);
-        }
 
         var personName = person is null
             ? "Unknown person"
@@ -80,10 +67,7 @@ public sealed class ListPendingPoliceVerificationsHandler(
         var changeOfAddressCase = await changeOfAddressCaseRepository.GetByIdAsync(
             changeOfAddressCaseId,
             cancellationToken);
-        if (changeOfAddressCase is null)
-        {
-            return null;
-        }
+        if (changeOfAddressCase is null) return null;
 
         var person = await personRepository.GetByIdAsync(changeOfAddressCase.PersonId, cancellationToken);
         var personName = person is null

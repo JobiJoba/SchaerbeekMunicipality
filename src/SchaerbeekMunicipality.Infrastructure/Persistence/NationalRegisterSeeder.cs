@@ -22,10 +22,7 @@ public static class NationalRegisterSeeder
 
     public static async Task SeedAsync(MunicipalDbContext dbContext, CancellationToken cancellationToken)
     {
-        if (await dbContext.NationalRegisterPersons.AnyAsync(cancellationToken))
-        {
-            return;
-        }
+        if (await dbContext.NationalRegisterPersons.AnyAsync(cancellationToken)) return;
 
         var records = new[]
         {
@@ -68,7 +65,7 @@ public static class NationalRegisterSeeder
                 new DateOnly(2000, 11, 8),
                 "Vietnamese",
                 null,
-                NationalRegisterNumber.GenerateStub(new DateOnly(2000, 11, 8), 1)),
+                NationalRegisterNumber.GenerateStub(new DateOnly(2000, 11, 8), 1))
         };
 
         await dbContext.NationalRegisterPersons.AddRangeAsync(records, cancellationToken);

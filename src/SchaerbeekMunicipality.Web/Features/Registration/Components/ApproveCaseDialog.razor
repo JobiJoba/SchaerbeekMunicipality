@@ -1,7 +1,3 @@
-@using SchaerbeekMunicipality.Domain.Registration
-@using SchaerbeekMunicipality.Domain.NationalRegister
-@using SchaerbeekMunicipality.Web.DesignSystem.Components.Dialogs
-
 <MudDialog>
     <DialogContent>
         <MudText Typo="Typo.body2" Class="mb-4">
@@ -30,11 +26,9 @@
 </MudDialog>
 
 @code {
-    [CascadingParameter]
-    private IMudDialogInstance MudDialog { get; set; } = null!;
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
-    [Parameter]
-    public string? SuggestedRegisterTarget { get; set; }
+    [Parameter] public string? SuggestedRegisterTarget { get; set; }
 
     private RegisterTarget _registerTarget = RegisterTarget.ForeignersRegister;
 
@@ -47,17 +41,26 @@
         }
     }
 
-    private void Cancel() => MudDialog.Cancel();
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
 
-    private void Confirm() => MudDialog.Close(DialogResult.Ok(_registerTarget));
+    private void Confirm()
+    {
+        MudDialog.Close(DialogResult.Ok(_registerTarget));
+    }
 
-    private static string FormatRegisterTarget(RegisterTarget target) =>
-        target switch
+    private static string FormatRegisterTarget(RegisterTarget target)
+    {
+        return target switch
         {
             RegisterTarget.PopulationRegister => "Population register",
             RegisterTarget.ForeignersRegister => "Foreigners register",
             RegisterTarget.WaitingRegister => "Waiting register",
             RegisterTarget.SpecialRegister => "Special register",
-            _ => target.ToDisplayString(),
+            _ => target.ToDisplayString()
         };
+    }
+
 }

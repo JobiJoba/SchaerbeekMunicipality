@@ -1,7 +1,5 @@
-@using Microsoft.AspNetCore.Components.Forms
 @using SchaerbeekMunicipality.Domain.BirthDeclaration
 @using SchaerbeekMunicipality.Web.Api.BirthDeclaration
-
 <AppCard Title="Attach medical declaration" Outlined="true">
     <MudFileUpload T="IBrowserFile" Accept=".pdf,.jpg,.jpeg,.png" FilesChanged="OnFileSelected">
         <CustomContent Context="fileUpload">
@@ -27,22 +25,22 @@
 </AppCard>
 
 @code {
-    [Parameter, EditorRequired]
-    public Guid CaseId { get; set; }
+    [Parameter] [EditorRequired] public Guid CaseId { get; set; }
 
-    [Parameter]
-    public EventCallback OnUploaded { get; set; }
+    [Parameter] public EventCallback OnUploaded { get; set; }
 
-    [Inject]
-    private IBirthDeclarationApi BirthDeclarationApi { get; set; } = null!;
+    [Inject] private IBirthDeclarationApi BirthDeclarationApi { get; set; } = null!;
 
-    [Inject]
-    private ISnackbar Snackbar { get; set; } = null!;
+    [Inject] private ISnackbar Snackbar { get; set; } = null!;
 
     private IBrowserFile? _selectedFile;
     private bool _uploading;
 
-    private void OnFileSelected(IBrowserFile file) => _selectedFile = file;
+    private Task OnFileSelected(IBrowserFile? file)
+    {
+        _selectedFile = file;
+        return Task.CompletedTask;
+    }
 
     private async Task Upload()
     {
@@ -54,7 +52,7 @@
         _uploading = true;
         try
         {
-            await using var stream = _selectedFile.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
+            await using var stream = _selectedFile.OpenReadStream(10 * 1024 * 1024);
             await BirthDeclarationApi.AttachDocumentAsync(
                 CaseId,
                 stream,
@@ -74,4 +72,5 @@
             _uploading = false;
         }
     }
+
 }

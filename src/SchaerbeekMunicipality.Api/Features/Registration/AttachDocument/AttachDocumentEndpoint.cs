@@ -1,9 +1,9 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using SchaerbeekMunicipality.Domain.Documents;
-using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Api.Validation;
 using SchaerbeekMunicipality.Application.Features.Registration.AttachDocument;
+using SchaerbeekMunicipality.Domain.Documents;
+using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Api.Features.Registration.AttachDocument;
 
@@ -45,10 +45,7 @@ public static class AttachDocumentEndpoint
     {
         var form = new AttachDocumentForm { DocumentType = documentType, File = file };
         var validation = await validator.ValidateAsync(form, cancellationToken);
-        if (!validation.IsValid)
-        {
-            return ValidationResults.ToProblemDetails(validation);
-        }
+        if (!validation.IsValid) return ValidationResults.ToProblemDetails(validation);
 
         try
         {
@@ -71,7 +68,7 @@ public static class AttachDocumentEndpoint
         catch (InvalidRegistrationTransitionException ex)
         {
             return Results.Problem(
-                detail: ex.Message,
+                ex.Message,
                 statusCode: StatusCodes.Status409Conflict,
                 title: "Invalid registration transition");
         }
