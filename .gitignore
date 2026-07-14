@@ -30,6 +30,9 @@ artifacts/
 .idea/
 *.swp
 *~
+# ReSharper CLI (repo uses SchaerbeekMunicipality.slnx for dotnet/CI)
+SchaerbeekMunicipality.sln
+SchaerbeekMunicipality.sln.DotSettings
 
 ## OS
 .DS_Store

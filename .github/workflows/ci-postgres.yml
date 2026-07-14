@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore SchaerbeekMunicipality.slnx
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build SchaerbeekMunicipality.slnx --no-restore --configuration Release
 
       - name: Test migrations (Testcontainers)
         run: dotnet test tests/SchaerbeekMunicipality.Integration.Tests --no-build --configuration Release --filter "Category=PostgreSQL" --verbosity normal
