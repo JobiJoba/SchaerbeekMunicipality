@@ -5,6 +5,7 @@ using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Common;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.PersonFile;
+using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence.Queries;
@@ -100,6 +101,19 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             c.RequestedAt,
             c.IssuedAt ?? c.CancelledAt,
             $"/identity-documents/requests/{c.Id.Value}")));
+
+        var amendmentCases = await dbContext.RegisterAmendmentCases
+            .AsNoTracking()
+            .Where(c => c.PersonId == personId)
+            .ToListAsync(cancellationToken);
+
+        cases.AddRange(amendmentCases.Select(c => new PersonCaseSummary(
+            c.Id.Value,
+            "Register amendment",
+            c.Status.ToDisplayString(),
+            c.OpenedAt,
+            c.ClosedAt,
+            $"/register-amendments/cases/{c.Id.Value}")));
 
         return cases
             .OrderByDescending(c => c.OpenedAt)
@@ -422,6 +436,49 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             c.IssuedAt,
             c.ReferenceNumber,
             "Certificate")));
+
+        var amendmentCases = await dbContext.RegisterAmendmentCases
+            .AsNoTracking()
+            .Where(c => c.PersonId == personId)
+            .ToListAsync(cancellationToken);
+
+        foreach (var amendmentCase in amendmentCases)
+        {
+            events.Add(new PersonHistoryEvent(
+                "Register amendment opened",
+                amendmentCase.OpenedAt,
+                amendmentCase.AmendmentType.ToDisplayString(),
+                "Register amendment"));
+
+            if (amendmentCase.SubmittedAt is { } submittedAt)
+                events.Add(new PersonHistoryEvent(
+                    "Amendment submitted for review",
+                    submittedAt,
+                    amendmentCase.BuildChangeSummary(),
+                    "Register amendment"));
+
+            if (amendmentCase.ApprovedAt is { } approvedAt)
+                events.Add(new PersonHistoryEvent(
+                    "Amendment approved",
+                    approvedAt,
+                    amendmentCase.DecisionNotes,
+                    "Register amendment"));
+
+            if (amendmentCase.AppliedAt is { } appliedAt)
+                events.Add(new PersonHistoryEvent(
+                    "Amendment applied",
+                    appliedAt,
+                    amendmentCase.BuildChangeSummary(),
+                    "Register amendment"));
+
+            if (amendmentCase.ClosedAt is { } closedAt &&
+                amendmentCase.Status == RegisterAmendmentCaseStatus.Rejected)
+                events.Add(new PersonHistoryEvent(
+                    "Amendment rejected",
+                    closedAt,
+                    amendmentCase.RejectionReason?.ToDisplayString(),
+                    "Register amendment"));
+        }
 
         return events
             .OrderByDescending(e => e.Timestamp)

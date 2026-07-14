@@ -1,0 +1,173 @@
+@page "/register-amendments/cases"
+@using SchaerbeekMunicipality.Application.Features.RegisterAmendment.ListRegisterAmendmentCases
+@using SchaerbeekMunicipality.Domain.RegisterAmendment
+@using SchaerbeekMunicipality.Web.Api.RegisterAmendment
+@using SchaerbeekMunicipality.Web.Features.RegisterAmendment.Components
+@inject IRegisterAmendmentApi RegisterAmendmentApi
+@inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/cases">
+    <AppPage Title="Register amendments">
+        <AppPageHeader Title="Register amendments"
+                       Subtitle="Correct register data after registration with approval workflow.">
+            <Actions>
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.Add"
+                           Style="min-height: 48px;"
+                           OnClick="OpenNewCase">
+                    New amendment
+                </MudButton>
+            </Actions>
+        </AppPageHeader>
+
+        <AppSection>
+            @if (_loading)
+            {
+                <AppLoading Kind="AppLoadingKind.Skeleton"/>
+            }
+            else if (_cases.Count == 0)
+            {
+                <AppEmptyState Title="No register amendment cases yet"
+                               Description="Open a new amendment from a registered person's file or start one here."
+                               Icon="@Icons.Material.Outlined.EditNote"/>
+            }
+            else
+            {
+                <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center" Class="mb-4">
+                    @foreach (var option in _filterOptions)
+                    {
+                        <MudButton Variant="@GetFilterVariant(option.Filter)"
+                                   Color="@GetFilterColor(option.Filter)"
+                                   OnClick="@(() => SetQuickFilter(option.Filter))">
+                            @option.Label
+                        </MudButton>
+                    }
+                </MudStack>
+
+                <AppDataTable T="RegisterAmendmentCaseListItem"
+                              Items="_filteredCases"
+                              Caption="Register amendment cases"
+                              OnRowClick="NavigateToCase">
+                    <HeaderContent>
+                        <MudTh>Case ID</MudTh>
+                        <MudTh>Resident</MudTh>
+                        <MudTh>Type</MudTh>
+                        <MudTh>Status</MudTh>
+                        <MudTh>Opened</MudTh>
+                    </HeaderContent>
+                    <RowTemplate Context="item">
+                        <MudTd DataLabel="Case ID">
+                            <MudLink Href="@($"/register-amendments/cases/{item.Id}")">
+                                @item.Id.ToString()[..8]…
+                            </MudLink>
+                        </MudTd>
+                        <MudTd DataLabel="Resident">@(item.PersonDisplayName ?? "—")</MudTd>
+                        <MudTd DataLabel="Type">@item.AmendmentType.ToDisplayString()</MudTd>
+                        <MudTd DataLabel="Status">
+                            <AppStatusChip Label="@item.Status.ToDisplayString()" Severity="@GetSeverity(item.Status)"/>
+                        </MudTd>
+                        <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+                    </RowTemplate>
+                </AppDataTable>
+            }
+        </AppSection>
+    </AppPage>
+</RegistrationRoleGate>
+
+@code {
+    private enum CaseListFilter { All, Review, Draft, Applied }
+
+    private sealed record FilterOption(CaseListFilter Filter, string Label);
+
+    private static readonly FilterOption[] _filterOptions =
+    [
+        new(CaseListFilter.All, "All cases"),
+        new(CaseListFilter.Review, "Pending review"),
+        new(CaseListFilter.Draft, "Draft"),
+        new(CaseListFilter.Applied, "Applied")
+    ];
+
+    [SupplyParameterFromQuery(Name = "filter")]
+    public string? Filter { get; set; }
+
+    private IReadOnlyList<RegisterAmendmentCaseListItem> _cases = [];
+    private IReadOnlyList<RegisterAmendmentCaseListItem> _filteredCases = [];
+    private bool _loading = true;
+    private CaseListFilter _quickFilter = CaseListFilter.All;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _quickFilter = ParseFilter(Filter);
+        await ReloadAsync();
+    }
+
+    private async Task ReloadAsync()
+    {
+        _loading = true;
+        _cases = await RegisterAmendmentApi.ListCasesAsync(CancellationToken.None);
+        ApplyFilter();
+        _loading = false;
+    }
+
+    private static CaseListFilter ParseFilter(string? filter)
+    {
+        return filter?.Trim().ToLowerInvariant() switch
+        {
+            "review" or "pending-review" => CaseListFilter.Review,
+            "draft" => CaseListFilter.Draft,
+            "applied" => CaseListFilter.Applied,
+            _ => CaseListFilter.All
+        };
+    }
+
+    private void SetQuickFilter(CaseListFilter filter)
+    {
+        _quickFilter = filter;
+        ApplyFilter();
+    }
+
+    private void ApplyFilter()
+    {
+        IEnumerable<RegisterAmendmentCaseListItem> query = _cases;
+        query = _quickFilter switch
+        {
+            CaseListFilter.Review => query.Where(c =>
+                c.Status == RegisterAmendmentCaseStatus.UnderReview && c.IsReadyForApproval),
+            CaseListFilter.Draft => query.Where(c => c.Status == RegisterAmendmentCaseStatus.Draft),
+            CaseListFilter.Applied => query.Where(c => c.Status == RegisterAmendmentCaseStatus.Applied),
+            _ => query
+        };
+        _filteredCases = query.ToList();
+    }
+
+    private Variant GetFilterVariant(CaseListFilter filter) =>
+        _quickFilter == filter ? Variant.Filled : Variant.Outlined;
+
+    private Color GetFilterColor(CaseListFilter filter) =>
+        _quickFilter == filter ? Color.Primary : Color.Default;
+
+    private void NavigateToCase(RegisterAmendmentCaseListItem item) =>
+        Navigation.NavigateTo($"/register-amendments/cases/{item.Id}");
+
+    private async Task OpenNewCase()
+    {
+        var dialog = await DialogService.ShowAsync<OpenRegisterAmendmentDialog>(
+            string.Empty,
+            new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+        var result = await dialog.Result;
+        if (result is { Canceled: false, Data: Guid caseId })
+            Navigation.NavigateTo($"/register-amendments/cases/{caseId}");
+    }
+
+    private static AppSeverity GetSeverity(RegisterAmendmentCaseStatus status) => status switch
+    {
+        RegisterAmendmentCaseStatus.Applied => AppSeverity.Success,
+        RegisterAmendmentCaseStatus.Rejected => AppSeverity.Error,
+        RegisterAmendmentCaseStatus.UnderReview => AppSeverity.Info,
+        RegisterAmendmentCaseStatus.Approved => AppSeverity.Warning,
+        _ => AppSeverity.Neutral
+    };
+}

@@ -1,0 +1,266 @@
+@page "/register-amendments/cases/{CaseId:guid}"
+@using SchaerbeekMunicipality.Application.Features.RegisterAmendment.GetRegisterAmendmentCase
+@using SchaerbeekMunicipality.Application.Features.RegisterAmendment.RecordProposedAmendment
+@using SchaerbeekMunicipality.Domain.Identity
+@using SchaerbeekMunicipality.Domain.RegisterAmendment
+@using SchaerbeekMunicipality.Web.Api.RegisterAmendment
+@using SchaerbeekMunicipality.Web.Features.RegisterAmendment.Components
+@inject IRegisterAmendmentApi RegisterAmendmentApi
+@inject ICurrentOfficer CurrentOfficer
+@inject ISnackbar Snackbar
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/cases">
+    @if (_loading)
+    {
+        <AppLoading Kind="AppLoadingKind.Skeleton"/>
+    }
+    else if (_case is null)
+    {
+        <AppAlert Severity="Severity.Error" Title="Case not found"/>
+    }
+    else
+    {
+        <AppPage Title="Register amendment">
+            <AppPageHeader Title="Register amendment"
+                           Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.PersonGivenName} {_case.PersonFamilyName}")">
+                <Actions>
+                    <AppStatusChip Label="@_case.Status.ToDisplayString()" Severity="@GetSeverity(_case.Status)"/>
+                    <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
+                                     CanEdit="_case.CanEdit"
+                                     OnTakeCase="TakeCase"
+                                     OnReleaseLock="ReleaseLock"/>
+                    <MudButton Variant="Variant.Outlined"
+                               Color="Color.Primary"
+                               StartIcon="@Icons.Material.Outlined.Person"
+                               Href="@($"/persons/{_case.PersonId}")">
+                        View person file
+                    </MudButton>
+                    <MudButton Variant="Variant.Text"
+                               StartIcon="@Icons.Material.Outlined.ArrowBack"
+                               OnClick="@(() => Navigation.NavigateTo("/register-amendments/cases"))">
+                        Back to list
+                    </MudButton>
+                </Actions>
+            </AppPageHeader>
+
+            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"/>
+
+            <MudGrid Spacing="4">
+                <MudItem xs="12" lg="7">
+                    <MudStack Spacing="4">
+                        <AppCard Title="Amendment type" Outlined="true">
+                            <MudText>@_case.AmendmentType.ToDisplayString()</MudText>
+                        </AppCard>
+
+                        <AppCollapsibleSection Title="Proposed changes"
+                                               Summary="@GetProposedSummary()"
+                                               StatusLabel="@(_case.ProposedChangesRecorded ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.ProposedChangesRecorded ? AppSeverity.Success : AppSeverity.Neutral)"
+                                               IsExpanded="@(!_case.ProposedChangesRecorded)">
+                            <MudForm Disabled="@(!CanEditDraft)">
+                                <MudTextField @bind-Value="_reason" Label="Reason" Lines="2" Class="mb-3"/>
+
+                                @if (_case.AmendmentType == AmendmentType.IdentityCorrection)
+                                {
+                                    <MudTextField @bind-Value="_givenName" Label="New given name" Required="true" Class="mb-3"/>
+                                    <MudTextField @bind-Value="_familyName" Label="New family name" Required="true"/>
+                                }
+                                else if (_case.AmendmentType == AmendmentType.NationalityChange)
+                                {
+                                    <MudTextField @bind-Value="_nationality" Label="New nationality" Required="true"/>
+                                }
+                                else if (_case.AmendmentType == AmendmentType.CivilStatusUpdate)
+                                {
+                                    <MudSelect T="CivilStatus" @bind-Value="_civilStatus" Label="Civil status" Required="true" Class="mb-3">
+                                        @foreach (var status in Enum.GetValues<CivilStatus>())
+                                        {
+                                            <MudSelectItem Value="status">@status.ToDisplayString()</MudSelectItem>
+                                        }
+                                    </MudSelect>
+                                    @if (_civilStatus is CivilStatus.Married or CivilStatus.RegisteredPartnership)
+                                    {
+                                        <MudTextField @bind-Value="_spouseGivenName" Label="Spouse given name" Class="mb-3"/>
+                                        <MudTextField @bind-Value="_spouseFamilyName" Label="Spouse family name" Class="mb-3"/>
+                                        <AppDateField @bind-Value="_marriageDate" Label="Marriage date"/>
+                                    }
+                                }
+
+                                @if (CanEditDraft)
+                                {
+                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-3" Disabled="_busy" OnClick="SaveProposedChanges">
+                                        Save proposed changes
+                                    </MudButton>
+                                }
+                            </MudForm>
+                        </AppCollapsibleSection>
+
+                        <AppCollapsibleSection Title="Supporting documents"
+                                               Summary="@($"{_case.Documents.Count} document(s)")"
+                                               StatusLabel="@(_case.SupportingDocumentAttached ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.SupportingDocumentAttached ? AppSeverity.Success : AppSeverity.Neutral)">
+                            <RegisterAmendmentDocumentPanel Case="_case" OnChanged="ReloadCase"/>
+                        </AppCollapsibleSection>
+
+                        @if (CanEditDraft && _case.ProposedChangesRecorded && _case.SupportingDocumentAttached)
+                        {
+                            <MudButton Variant="Variant.Filled"
+                                       Color="Color.Secondary"
+                                       Disabled="_busy"
+                                       OnClick="SubmitForReview">
+                                Submit for review
+                            </MudButton>
+                        }
+                    </MudStack>
+                </MudItem>
+
+                <MudItem xs="12" lg="5">
+                    <RegisterAmendmentDecisionSection Case="_case" OnChanged="ReloadCase"/>
+                </MudItem>
+            </MudGrid>
+        </AppPage>
+    }
+</RegistrationRoleGate>
+
+@code {
+    [Parameter] public Guid CaseId { get; set; }
+
+    private RegisterAmendmentCaseDetailDto? _case;
+    private bool _loading = true;
+    private bool _busy;
+    private string? _reason;
+    private string? _givenName;
+    private string? _familyName;
+    private string? _nationality;
+    private CivilStatus _civilStatus = CivilStatus.Single;
+    private string? _spouseGivenName;
+    private string? _spouseFamilyName;
+    private DateOnly? _marriageDate;
+
+    private bool CanEditDraft =>
+        _case is { CanEdit: true, Status: RegisterAmendmentCaseStatus.Draft };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ReloadCase();
+    }
+
+    private async Task ReloadCase()
+    {
+        _loading = true;
+        try
+        {
+            await RegisterAmendmentApi.TryAutoClaimCaseAsync(CaseId, CancellationToken.None);
+            var detail = await RegisterAmendmentApi.GetCaseAsync(CaseId, CancellationToken.None);
+            _case = detail;
+            _reason = detail.Reason;
+            _givenName = detail.ProposedGivenName ?? detail.CurrentGivenName;
+            _familyName = detail.ProposedFamilyName ?? detail.CurrentFamilyName;
+            _nationality = detail.ProposedNationality ?? detail.CurrentNationality;
+            if (detail.ProposedCivilStatus is { } proposed)
+            {
+                _civilStatus = proposed.Status;
+                _spouseGivenName = proposed.SpouseGivenName;
+                _spouseFamilyName = proposed.SpouseFamilyName;
+                _marriageDate = proposed.MarriageDate;
+            }
+        }
+        catch (Exception ex)
+        {
+            _case = null;
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    private async Task TakeCase()
+    {
+        await RegisterAmendmentApi.ClaimCaseAsync(CaseId, CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private async Task ReleaseLock()
+    {
+        await RegisterAmendmentApi.ReleaseCaseLockAsync(CaseId, CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private async Task SaveProposedChanges()
+    {
+        if (_case is null) return;
+        _busy = true;
+        try
+        {
+            await RegisterAmendmentApi.RecordProposedChangesAsync(
+                CaseId,
+                new RecordProposedAmendmentRequest(
+                    _reason,
+                    _givenName,
+                    _familyName,
+                    _nationality,
+                    _civilStatus,
+                    _spouseGivenName,
+                    _spouseFamilyName,
+                    _marriageDate,
+                    null,
+                    MarriageRecognitionStatus.NotApplicable),
+                CancellationToken.None);
+            Snackbar.Add("Proposed changes saved.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task SubmitForReview()
+    {
+        _busy = true;
+        try
+        {
+            await RegisterAmendmentApi.SubmitForReviewAsync(CaseId, CancellationToken.None);
+            Snackbar.Add("Submitted for review.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private string GetProposedSummary()
+    {
+        if (_case is null) return "Pending";
+        return _case.AmendmentType switch
+        {
+            AmendmentType.IdentityCorrection =>
+                $"{_case.ProposedGivenName ?? _case.CurrentGivenName} {_case.ProposedFamilyName ?? _case.CurrentFamilyName}",
+            AmendmentType.NationalityChange =>
+                _case.ProposedNationality ?? _case.CurrentNationality ?? "Pending",
+            AmendmentType.CivilStatusUpdate =>
+                _case.ProposedCivilStatus?.Status.ToDisplayString() ?? "Pending",
+            _ => "Pending"
+        };
+    }
+
+    private static AppSeverity GetSeverity(RegisterAmendmentCaseStatus status) => status switch
+    {
+        RegisterAmendmentCaseStatus.Applied => AppSeverity.Success,
+        RegisterAmendmentCaseStatus.Rejected => AppSeverity.Error,
+        RegisterAmendmentCaseStatus.UnderReview => AppSeverity.Info,
+        RegisterAmendmentCaseStatus.Approved => AppSeverity.Warning,
+        _ => AppSeverity.Neutral
+    };
+}

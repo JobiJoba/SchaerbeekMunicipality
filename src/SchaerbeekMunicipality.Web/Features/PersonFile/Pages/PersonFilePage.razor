@@ -2,7 +2,11 @@
 @using System.Net
 @using SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile
 @using SchaerbeekMunicipality.Web.Api.PersonFile
+@using SchaerbeekMunicipality.Web.Api.RegisterAmendment
+@using SchaerbeekMunicipality.Web.Features.RegisterAmendment.Components
 @inject IPersonFileApi PersonFileApi
+@inject IRegisterAmendmentApi RegisterAmendmentApi
+@inject IDialogService DialogService
 @inject NavigationManager Navigation
 
 <RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]"
@@ -19,13 +23,24 @@
         else if (_personFile is not null)
         {
             <AppSection>
-                <AppPersonCard GivenName="@_personFile.Header.GivenName"
-                               FamilyName="@_personFile.Header.FamilyName"
-                               Initials="@_personFile.Header.Initials"
-                               NationalRegisterNumber="@_personFile.Header.NationalRegisterNumber"
-                               BisNumber="@_personFile.Header.BisNumber"
-                               RegisterTarget="@_personFile.Header.RegisterTarget"
-                               Class="mb-6"/>
+                <MudStack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center" Class="mb-4">
+                    <AppPersonCard GivenName="@_personFile.Header.GivenName"
+                                   FamilyName="@_personFile.Header.FamilyName"
+                                   Initials="@_personFile.Header.Initials"
+                                   NationalRegisterNumber="@_personFile.Header.NationalRegisterNumber"
+                                   BisNumber="@_personFile.Header.BisNumber"
+                                   RegisterTarget="@_personFile.Header.RegisterTarget"
+                                   Class="flex-grow-1"/>
+                    @if (!string.IsNullOrWhiteSpace(_personFile.Header.NationalRegisterNumber))
+                    {
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   StartIcon="@Icons.Material.Outlined.EditNote"
+                                   OnClick="RequestAmendment">
+                            Request amendment
+                        </MudButton>
+                    }
+                </MudStack>
             </AppSection>
 
             <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true">
@@ -301,6 +316,23 @@
     {
         var box = string.IsNullOrWhiteSpace(address.Box) ? string.Empty : $" bus {address.Box}";
         return $"{address.Street} {address.HouseNumber}{box}, {address.PostalCode} {address.Municipality}";
+    }
+
+    private async Task RequestAmendment()
+    {
+        var parameters = new DialogParameters<OpenRegisterAmendmentDialog>
+        {
+            { dialog => dialog.PersonId, PersonId }
+        };
+
+        var dialog = await DialogService.ShowAsync<OpenRegisterAmendmentDialog>(
+            string.Empty,
+            parameters,
+            new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false, Data: Guid caseId })
+            Navigation.NavigateTo($"/register-amendments/cases/{caseId}");
     }
 
 }

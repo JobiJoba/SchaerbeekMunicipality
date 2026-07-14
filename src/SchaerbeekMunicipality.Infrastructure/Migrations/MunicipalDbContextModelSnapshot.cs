@@ -289,6 +289,10 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("character varying(256)")
                         .HasColumnName("file_name");
 
+                    b.Property<Guid?>("RegisterAmendmentCaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("register_amendment_case_id");
+
                     b.Property<Guid?>("RegistrationCaseId")
                         .HasColumnType("uuid")
                         .HasColumnName("registration_case_id");
@@ -318,6 +322,9 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
 
                     b.HasIndex("DocumentRequestCaseId")
                         .HasDatabaseName("ix_administrative_documents_document_request_case_id");
+
+                    b.HasIndex("RegisterAmendmentCaseId")
+                        .HasDatabaseName("ix_administrative_documents_register_amendment_case_id");
 
                     b.HasIndex("RegistrationCaseId")
                         .HasDatabaseName("ix_administrative_documents_registration_case_id");
@@ -807,6 +814,110 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasDatabaseName("ix_streets_postal_code");
 
                     b.ToTable("streets", (string)null);
+                });
+
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.RegisterAmendment.RegisterAmendmentCase", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("AmendmentType")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("amendment_type");
+
+                    b.Property<DateTimeOffset?>("AppliedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("applied_at");
+
+                    b.Property<Guid?>("AppliedByOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("applied_by_officer_id");
+
+                    b.Property<DateTimeOffset?>("ApprovedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("approved_at");
+
+                    b.Property<Guid?>("AssignedOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("assigned_officer_id");
+
+                    b.Property<DateTimeOffset?>("ClosedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("closed_at");
+
+                    b.Property<string>("DecisionNotes")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)")
+                        .HasColumnName("decision_notes");
+
+                    b.Property<Guid?>("DecisionOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("decision_officer_id");
+
+                    b.Property<DateTimeOffset?>("LockedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("locked_at");
+
+                    b.Property<Guid?>("LockedByOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("locked_by_officer_id");
+
+                    b.Property<DateTimeOffset>("OpenedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("opened_at");
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("person_id");
+
+                    b.Property<string>("ProposedFamilyName")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("proposed_family_name");
+
+                    b.Property<string>("ProposedGivenName")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("proposed_given_name");
+
+                    b.Property<string>("ProposedNationality")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("proposed_nationality");
+
+                    b.Property<string>("Reason")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)")
+                        .HasColumnName("reason");
+
+                    b.Property<string>("RejectionReason")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("rejection_reason");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("status");
+
+                    b.Property<DateTimeOffset?>("SubmittedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("submitted_at");
+
+                    b.HasKey("Id")
+                        .HasName("pk_register_amendment_cases");
+
+                    b.HasIndex("PersonId")
+                        .HasDatabaseName("ix_register_amendment_cases_person_id");
+
+                    b.HasIndex("Status")
+                        .HasDatabaseName("ix_register_amendment_cases_status");
+
+                    b.ToTable("register_amendment_cases", (string)null);
                 });
 
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Registration.CaseAuditEntry", b =>
@@ -1315,6 +1426,83 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.Navigation("CivilStatus");
 
                     b.Navigation("DomicileAddress");
+                });
+
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.RegisterAmendment.RegisterAmendmentCase", b =>
+                {
+                    b.OwnsOne("SchaerbeekMunicipality.Domain.Identity.CivilStatusRecord", "ProposedCivilStatus", b1 =>
+                        {
+                            b1.Property<Guid>("RegisterAmendmentCaseId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<DateOnly?>("MarriageDate")
+                                .HasColumnType("date")
+                                .HasColumnName("proposed_marriage_date");
+
+                            b1.Property<string>("MarriagePlace")
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("proposed_marriage_place");
+
+                            b1.Property<string>("MarriageRecognitionStatus")
+                                .IsRequired()
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
+                                .HasColumnName("proposed_marriage_recognition_status");
+
+                            b1.Property<string>("SpouseFamilyName")
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("proposed_spouse_family_name");
+
+                            b1.Property<string>("SpouseGivenName")
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("proposed_spouse_given_name");
+
+                            b1.Property<string>("Status")
+                                .IsRequired()
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
+                                .HasColumnName("proposed_civil_status");
+
+                            b1.HasKey("RegisterAmendmentCaseId");
+
+                            b1.ToTable("register_amendment_cases");
+
+                            b1.WithOwner()
+                                .HasForeignKey("RegisterAmendmentCaseId")
+                                .HasConstraintName("fk_register_amendment_cases_register_amendment_cases_id");
+                        });
+
+                    b.OwnsOne("SchaerbeekMunicipality.Domain.RegisterAmendment.RegisterAmendmentCaseChecklist", "Checklist", b1 =>
+                        {
+                            b1.Property<Guid>("RegisterAmendmentCaseId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<bool>("ProposedChangesRecorded")
+                                .HasColumnType("boolean")
+                                .HasColumnName("proposed_changes_recorded");
+
+                            b1.Property<bool>("SupportingDocumentAttached")
+                                .HasColumnType("boolean")
+                                .HasColumnName("supporting_document_attached");
+
+                            b1.HasKey("RegisterAmendmentCaseId");
+
+                            b1.ToTable("register_amendment_cases");
+
+                            b1.WithOwner()
+                                .HasForeignKey("RegisterAmendmentCaseId")
+                                .HasConstraintName("fk_register_amendment_cases_register_amendment_cases_id");
+                        });
+
+                    b.Navigation("Checklist")
+                        .IsRequired();
+
+                    b.Navigation("ProposedCivilStatus");
                 });
 
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Registration.RegistrationCase", b =>

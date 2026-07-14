@@ -15,6 +15,7 @@ using SchaerbeekMunicipality.Domain.Notifications;
 using SchaerbeekMunicipality.Domain.PersonFile;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.ReferenceData;
+using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
 using SchaerbeekMunicipality.Infrastructure.Certificates;
 using SchaerbeekMunicipality.Infrastructure.Events;
@@ -47,6 +48,7 @@ public static class DependencyInjection
         services.AddScoped<IRegistrationCaseRepository, RegistrationCaseRepository>();
         services.AddScoped<IBirthDeclarationCaseRepository, BirthDeclarationCaseRepository>();
         services.AddScoped<IChangeOfAddressCaseRepository, ChangeOfAddressCaseRepository>();
+        services.AddScoped<IRegisterAmendmentCaseRepository, RegisterAmendmentCaseRepository>();
         services.AddScoped<IDocumentRequestCaseRepository, DocumentRequestCaseRepository>();
         services.AddScoped<IPersonRepository, PersonRepository>();
         services.AddScoped<IAdministrativeDocumentRepository, AdministrativeDocumentRepository>();

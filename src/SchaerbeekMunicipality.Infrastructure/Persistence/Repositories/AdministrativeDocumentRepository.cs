@@ -3,6 +3,7 @@ using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
+using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence.Repositories;
@@ -59,6 +60,20 @@ internal sealed class AdministrativeDocumentRepository(MunicipalDbContext dbCont
         var documents = await dbContext.AdministrativeDocuments
             .AsNoTracking()
             .Where(d => d.DocumentRequestCaseId == documentRequestCaseId)
+            .ToListAsync(cancellationToken);
+
+        return documents
+            .OrderByDescending(d => d.UploadedAt)
+            .ToList();
+    }
+
+    public async Task<IReadOnlyList<AdministrativeDocument>> ListByRegisterAmendmentCaseIdAsync(
+        RegisterAmendmentCaseId registerAmendmentCaseId,
+        CancellationToken cancellationToken)
+    {
+        var documents = await dbContext.AdministrativeDocuments
+            .AsNoTracking()
+            .Where(d => d.RegisterAmendmentCaseId == registerAmendmentCaseId)
             .ToListAsync(cancellationToken);
 
         return documents

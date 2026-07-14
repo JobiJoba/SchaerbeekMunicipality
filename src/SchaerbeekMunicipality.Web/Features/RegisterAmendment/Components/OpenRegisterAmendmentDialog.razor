@@ -1,0 +1,172 @@
+@using FluentValidation
+@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ResolveRegisteredPerson
+@using SchaerbeekMunicipality.Domain.ChangeOfAddress
+@using SchaerbeekMunicipality.Domain.RegisterAmendment
+@using SchaerbeekMunicipality.Application.Features.PersonFile.SearchPersonFile
+@using SchaerbeekMunicipality.Application.Features.RegisterAmendment.OpenRegisterAmendmentCase
+@using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
+@using SchaerbeekMunicipality.Web.Api.ChangeOfAddress
+@using SchaerbeekMunicipality.Web.Api.PersonFile
+@using SchaerbeekMunicipality.Web.Api.RegisterAmendment
+@using Severity = MudBlazor.Severity
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h4">@(PersonId is null ? "New register amendment" : "Request register amendment")</MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudSelect T="AmendmentType" @bind-Value="_amendmentType" Label="Amendment type" Required="true" Class="mb-4">
+            <MudSelectItem Value="AmendmentType.IdentityCorrection">Identity correction</MudSelectItem>
+            <MudSelectItem Value="AmendmentType.NationalityChange">Nationality change</MudSelectItem>
+            <MudSelectItem Value="AmendmentType.CivilStatusUpdate">Civil status update</MudSelectItem>
+        </MudSelect>
+
+        @if (PersonId is null)
+        {
+            <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-4">
+                Search the National Register to identify a registered resident.
+            </MudText>
+
+            <NationalRegisterSearchForm ShowMatchScore="true"
+                                        ShowFormattedNumbers="true"
+                                        NoMatchesMessage="No matching records found in the National Register."
+                                        SearchAsync="SearchAsync">
+                <RowActions Context="match">
+                    <MudButton Variant="Variant.Outlined"
+                               Size="Size.Small"
+                               Disabled="_opening || !match.CanOpenServiceCase"
+                               data-testid="open-register-amendment-case"
+                               OnClick="@(() => OpenCaseForMatchAsync(match))">
+                        Open case
+                    </MudButton>
+                </RowActions>
+            </NationalRegisterSearchForm>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(_actionError))
+        {
+            <AppAlert Severity="Severity.Error" Title="Error" Class="mt-4">@_actionError</AppAlert>
+        }
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Outlined" OnClick="Cancel">Cancel</MudButton>
+        @if (PersonId is not null)
+        {
+            <MudButton Color="Color.Primary"
+                       Variant="Variant.Filled"
+                       Disabled="_opening"
+                       OnClick="OpenCaseForPersonAsync">
+                Open case
+            </MudButton>
+        }
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    [Parameter] public Guid? PersonId { get; set; }
+
+    [Inject] private IPersonFileApi PersonFileApi { get; set; } = null!;
+    [Inject] private IChangeOfAddressApi ChangeOfAddressApi { get; set; } = null!;
+    [Inject] private IRegisterAmendmentApi RegisterAmendmentApi { get; set; } = null!;
+
+    private bool _opening;
+    private string? _actionError;
+    private AmendmentType _amendmentType = AmendmentType.IdentityCorrection;
+
+    private async Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria)
+    {
+        var response = await PersonFileApi.SearchPersonFileAsync(
+            new SearchNationalRegisterRequest(
+                criteria.GivenName,
+                criteria.FamilyName,
+                criteria.BirthDate,
+                criteria.Page,
+                criteria.PageSize),
+            CancellationToken.None);
+
+        return new NationalRegisterSearchResult(
+            response.Matches.Select(Map).ToList(),
+            response.TotalCount,
+            response.Page,
+            response.PageSize);
+    }
+
+    private async Task OpenCaseForPersonAsync()
+    {
+        if (PersonId is not { } personId)
+            return;
+
+        await OpenCaseAsync(personId);
+    }
+
+    private async Task OpenCaseForMatchAsync(NationalRegisterSearchMatch match)
+    {
+        try
+        {
+            var personId = match.PersonId
+                           ?? (await ChangeOfAddressApi.ResolveRegisteredPersonAsync(
+                               new ResolveRegisteredPersonRequest(match.RegisterPersonId),
+                               CancellationToken.None)).PersonId;
+
+            await OpenCaseAsync(personId);
+        }
+        catch (Exception ex) when (ex is InvalidChangeOfAddressTransitionException
+                                       or InvalidOperationException
+                                       or KeyNotFoundException
+                                       or ValidationException)
+        {
+            _actionError = ex is ValidationException validation
+                ? string.Join(" ", validation.Errors.Select(e => e.ErrorMessage))
+                : ex.Message;
+        }
+    }
+
+    private async Task OpenCaseAsync(Guid personId)
+    {
+        _opening = true;
+        _actionError = null;
+        try
+        {
+            var opened = await RegisterAmendmentApi.OpenCaseAsync(
+                new OpenRegisterAmendmentCaseRequest(personId, _amendmentType.ToString()),
+                CancellationToken.None);
+
+            MudDialog.Close(DialogResult.Ok(opened.CaseId));
+        }
+        catch (Exception ex) when (ex is InvalidRegisterAmendmentTransitionException
+                                       or InvalidChangeOfAddressTransitionException
+                                       or InvalidOperationException
+                                       or KeyNotFoundException
+                                       or ValidationException)
+        {
+            _actionError = ex is ValidationException validation
+                ? string.Join(" ", validation.Errors.Select(e => e.ErrorMessage))
+                : ex.Message;
+        }
+        finally
+        {
+            _opening = false;
+        }
+    }
+
+    private void Cancel()
+    {
+        MudDialog.Cancel();
+    }
+
+    private static NationalRegisterSearchMatch Map(PersonFileSearchMatchDto match)
+    {
+        return new NationalRegisterSearchMatch(
+            match.RegisterPersonId,
+            match.GivenName,
+            match.FamilyName,
+            match.BirthDate,
+            match.BisNumber,
+            match.NationalRegisterNumber,
+            match.MatchScore,
+            match.MatchReason,
+            match.IsRegisteredInPopulation,
+            match.PersonId);
+    }
+}

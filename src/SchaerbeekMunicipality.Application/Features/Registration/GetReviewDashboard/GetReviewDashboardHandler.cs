@@ -1,6 +1,8 @@
 using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Common;
+using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard;
@@ -8,6 +10,7 @@ namespace SchaerbeekMunicipality.Application.Features.Registration.GetReviewDash
 public sealed class GetReviewDashboardHandler(
     IRegistrationCaseRepository caseRepository,
     IBirthDeclarationCaseRepository birthDeclarationCaseRepository,
+    IRegisterAmendmentCaseRepository amendmentCaseRepository,
     RegistrationCaseAuthorization authorization,
     ICurrentOfficer currentOfficer)
 {
@@ -17,6 +20,7 @@ public sealed class GetReviewDashboardHandler(
 
         var registrationCases = await caseRepository.ListAsync(cancellationToken);
         var birthCases = await birthDeclarationCaseRepository.ListAsync(cancellationToken);
+        var amendmentCases = await amendmentCaseRepository.ListAsync(cancellationToken);
         var officerId = OfficerId.From(currentOfficer.OfficerId);
 
         var openCases = registrationCases.Count(c =>
@@ -37,6 +41,9 @@ public sealed class GetReviewDashboardHandler(
 
         var readyForConfirmation = birthCases.Count(c => c.IsReadyForConfirmation);
 
+        var amendmentsPendingReview = amendmentCases.Count(c =>
+            c.Status == RegisterAmendmentCaseStatus.UnderReview && c.IsReadyForApproval);
+
         var statistics = new List<ReviewDashboardStatistic>
         {
             new("My open cases", openCases, "/registration/cases?filter=mine", false),
@@ -47,7 +54,9 @@ public sealed class GetReviewDashboardHandler(
             new("Suspended", suspendedRegistration, "/registration/cases", false),
             new("Birth unassigned", birthUnassigned, "/birth-declarations?filter=unassigned", birthUnassigned > 0),
             new("Ready for confirmation", readyForConfirmation, "/birth-declarations?filter=ready",
-                readyForConfirmation > 0)
+                readyForConfirmation > 0),
+            new("Amendments pending review", amendmentsPendingReview, "/register-amendments/cases?filter=review",
+                amendmentsPendingReview > 0)
         };
 
         var actionable = registrationCases
@@ -77,6 +86,20 @@ public sealed class GetReviewDashboardHandler(
                     c.IsReadyForConfirmation,
                     IsUnassignedBirth(c),
                     c.Status == BirthDeclarationCaseStatus.Suspended,
+                    false)))
+            .Concat(amendmentCases
+                .Where(IsActionableAmendment)
+                .Select(c => new ActionableCandidate(
+                    new ActionableCaseRow(
+                        c.Id.Value,
+                        ReviewDashboardCaseType.RegisterAmendment,
+                        c.Status.ToDisplayString(),
+                        c.AmendmentType.ToDisplayString(),
+                        c.OpenedAt,
+                        BuildAmendmentSummary(c)),
+                    c.IsReadyForApproval,
+                    false,
+                    false,
                     false)))
             .OrderByDescending(c => c.IsReady)
             .ThenByDescending(c => c.IsUnassigned)
@@ -129,6 +152,19 @@ public sealed class GetReviewDashboardHandler(
             _ when IsUnassignedRegistration(registrationCase) => "Unassigned — awaiting intake",
             _ => registrationCase.Status.ToDisplayString()
         };
+    }
+
+    private static bool IsActionableAmendment(RegisterAmendmentCase amendmentCase)
+    {
+        return amendmentCase.Status == RegisterAmendmentCaseStatus.UnderReview &&
+               amendmentCase.IsReadyForApproval;
+    }
+
+    private static string BuildAmendmentSummary(RegisterAmendmentCase amendmentCase)
+    {
+        return amendmentCase.IsReadyForApproval
+            ? $"Ready for approval — {amendmentCase.BuildChangeSummary()}"
+            : amendmentCase.Status.ToDisplayString();
     }
 
     private static string BuildBirthSummary(BirthDeclarationCase birthDeclarationCase)

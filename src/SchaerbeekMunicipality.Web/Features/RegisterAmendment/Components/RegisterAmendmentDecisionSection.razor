@@ -1,0 +1,138 @@
+@using SchaerbeekMunicipality.Application.Features.RegisterAmendment.ApproveRegisterAmendment
+@using SchaerbeekMunicipality.Application.Features.RegisterAmendment.GetRegisterAmendmentCase
+@using SchaerbeekMunicipality.Application.Features.RegisterAmendment.RejectRegisterAmendment
+@using SchaerbeekMunicipality.Domain.RegisterAmendment
+@using SchaerbeekMunicipality.Web.Api.RegisterAmendment
+@inject IRegisterAmendmentApi RegisterAmendmentApi
+@inject ICurrentOfficer CurrentOfficer
+@inject ISnackbar Snackbar
+
+<AppCard Title="Officer decision" Outlined="true">
+    @if (Case.Status == RegisterAmendmentCaseStatus.Applied)
+    {
+        <AppAlert Severity="Severity.Success" Title="Amendment applied">
+            Register data updated for @Case.PersonGivenName @Case.PersonFamilyName.
+        </AppAlert>
+    }
+    else if (Case.Status == RegisterAmendmentCaseStatus.Rejected)
+    {
+        <AppAlert Severity="Severity.Error" Title="Amendment rejected">
+            @Case.RejectionReason — @Case.DecisionNotes
+        </AppAlert>
+    }
+    else if (Case.Status == RegisterAmendmentCaseStatus.Approved)
+    {
+        <AppAlert Severity="Severity.Info" Title="Approved — ready to apply">
+            Apply the amendment to update the golden register record.
+        </AppAlert>
+    }
+
+    @if (CanApproveOrReject)
+    {
+        <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mt-4">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       Disabled="_busy || !Case.IsReadyForApproval"
+                       OnClick="Approve">
+                Approve amendment
+            </MudButton>
+            <MudButton Variant="Variant.Outlined"
+                       Color="Color.Error"
+                       Disabled="_busy"
+                       OnClick="Reject">
+                Reject
+            </MudButton>
+        </MudStack>
+    }
+
+    @if (CanApply)
+    {
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Success"
+                   Class="mt-4"
+                   Disabled="_busy"
+                   OnClick="Apply">
+            Apply to register
+        </MudButton>
+    }
+</AppCard>
+
+@code {
+    [Parameter] public RegisterAmendmentCaseDetailDto Case { get; set; } = null!;
+    [Parameter] public EventCallback OnChanged { get; set; }
+
+    private bool _busy;
+
+    private bool CanApproveOrReject =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
+        Case.Status == RegisterAmendmentCaseStatus.UnderReview;
+
+    private bool CanApply =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
+        Case.Status == RegisterAmendmentCaseStatus.Approved;
+
+    private async Task Approve()
+    {
+        _busy = true;
+        try
+        {
+            await RegisterAmendmentApi.ApproveAsync(
+                Case.CaseId,
+                new ApproveRegisterAmendmentRequest(null),
+                CancellationToken.None);
+            Snackbar.Add("Amendment approved.", Severity.Success);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task Reject()
+    {
+        _busy = true;
+        try
+        {
+            await RegisterAmendmentApi.RejectAsync(
+                Case.CaseId,
+                new RejectRegisterAmendmentRequest(RegisterAmendmentRejectionReason.InsufficientEvidence, null),
+                CancellationToken.None);
+            Snackbar.Add("Amendment rejected.", Severity.Warning);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task Apply()
+    {
+        _busy = true;
+        try
+        {
+            var result = await RegisterAmendmentApi.ApplyAsync(Case.CaseId, CancellationToken.None);
+            Snackbar.Add($"Amendment applied: {result.ChangeSummary}", Severity.Success);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+}

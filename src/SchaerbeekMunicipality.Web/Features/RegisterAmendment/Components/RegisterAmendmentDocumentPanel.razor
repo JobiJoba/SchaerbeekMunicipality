@@ -1,0 +1,46 @@
+@using SchaerbeekMunicipality.Application.Features.RegisterAmendment.GetRegisterAmendmentCase
+@using SchaerbeekMunicipality.Domain.Documents
+@using SchaerbeekMunicipality.Domain.RegisterAmendment
+@using SchaerbeekMunicipality.Web.Api.RegisterAmendment
+@inject IRegisterAmendmentApi RegisterAmendmentApi
+@inject NavigationManager Navigation
+
+<CaseDocumentPanel Documents="@MapDocuments()"
+                   CanEdit="@CanEditDraft"
+                   GetDocumentUrl="GetDocumentUrl"
+                   OnRemoveDocument="RemoveDocument"
+                   EmptyTitle="No supporting documents"
+                   EmptyDescription="Attach a court judgment, marriage certificate, or other supporting document.">
+    <UploadContent>
+        @if (CanEditDraft)
+        {
+            <RegisterAmendmentDocumentUpload CaseId="Case.CaseId"
+                                             OnUploaded="OnChanged"/>
+        }
+    </UploadContent>
+</CaseDocumentPanel>
+
+@code {
+    [Parameter] public RegisterAmendmentCaseDetailDto Case { get; set; } = null!;
+    [Parameter] public EventCallback OnChanged { get; set; }
+
+    private bool CanEditDraft =>
+        Case.CanEdit && Case.Status == RegisterAmendmentCaseStatus.Draft;
+
+    private IReadOnlyList<CaseDocumentItem> MapDocuments() =>
+        Case.Documents.Select(d => new CaseDocumentItem(
+            d.Id,
+            d.FileName,
+            d.UploadedAt,
+            d.DocumentType)).ToList();
+
+    private string GetDocumentUrl(Guid documentId) =>
+        Navigation.ToAbsoluteUri(
+            $"/api/register-amendments/cases/{Case.CaseId}/documents/{documentId}").ToString();
+
+    private async Task RemoveDocument(Guid documentId)
+    {
+        await RegisterAmendmentApi.RemoveDocumentAsync(Case.CaseId, documentId, CancellationToken.None);
+        await OnChanged.InvokeAsync();
+    }
+}

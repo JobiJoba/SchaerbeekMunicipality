@@ -1,0 +1,83 @@
+@using SchaerbeekMunicipality.Domain.Documents
+@using SchaerbeekMunicipality.Domain.RegisterAmendment
+@using SchaerbeekMunicipality.Web.Api.RegisterAmendment
+<AppCard Title="Attach document" Outlined="true">
+    <MudSelect T="DocumentType" @bind-Value="_documentType" Label="Document type" Class="mb-3">
+        <MudSelectItem Value="DocumentType.Other">Other (court judgment, etc.)</MudSelectItem>
+        <MudSelectItem Value="DocumentType.BirthCertificate">Birth certificate</MudSelectItem>
+    </MudSelect>
+
+    <MudFileUpload T="IBrowserFile" Accept=".pdf,.jpg,.jpeg,.png" FilesChanged="OnFileSelected">
+        <CustomContent Context="fileUpload">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Outlined.Upload"
+                       OnClick="@fileUpload.OpenFilePickerAsync">
+                Choose file
+            </MudButton>
+        </CustomContent>
+    </MudFileUpload>
+
+    @if (_selectedFile is not null)
+    {
+        <MudText Typo="Typo.body2" Class="mt-2">Selected: @_selectedFile.Name</MudText>
+    }
+
+    <MudButton Class="mt-3"
+               Variant="Variant.Filled"
+               Color="Color.Secondary"
+               Disabled="_uploading || _selectedFile is null"
+               OnClick="Upload">
+        Upload
+    </MudButton>
+</AppCard>
+
+@code {
+    [Parameter] [EditorRequired] public Guid CaseId { get; set; }
+
+    [Parameter] public EventCallback OnUploaded { get; set; }
+
+    [Inject] private IRegisterAmendmentApi RegisterAmendmentApi { get; set; } = null!;
+
+    [Inject] private ISnackbar Snackbar { get; set; } = null!;
+
+    private DocumentType _documentType = DocumentType.Other;
+    private IBrowserFile? _selectedFile;
+    private bool _uploading;
+
+    private Task OnFileSelected(IBrowserFile? file)
+    {
+        _selectedFile = file;
+        return Task.CompletedTask;
+    }
+
+    private async Task Upload()
+    {
+        if (_selectedFile is null)
+        {
+            return;
+        }
+
+        _uploading = true;
+        try
+        {
+            await using var stream = _selectedFile.OpenReadStream(10 * 1024 * 1024);
+            await RegisterAmendmentApi.AttachDocumentAsync(
+                CaseId,
+                _documentType,
+                stream,
+                _selectedFile.Name,
+                CancellationToken.None);
+
+            Snackbar.Add("Document uploaded.", Severity.Success);
+            _selectedFile = null;
+            await OnUploaded.InvokeAsync();
+        }
+        catch (InvalidRegisterAmendmentTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _uploading = false;
+        }
+    }
+}

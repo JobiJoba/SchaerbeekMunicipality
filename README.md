@@ -4,6 +4,45 @@ An educational .NET project that simulates the **Population Department** of a Be
 
 This is **not** a production system. It simplifies Belgian law and inter-administration integrations while preserving the *shape* of real municipal work: identity verification, legal residence, address confirmation, register assignment, audit trails, and role-based officer UX.
 
+## Why & how
+
+### The story
+
+It started when I moved back to Belgium — as a French national, with my Thai wife and our daughter (dual nationality). We ran straight into a wall of bureaucracy. On paper, our case was simple: we are married, we had every document we could think of, and we just wanted to register with the municipality.
+
+It took **three months** to get a first appointment to submit our papers.
+
+When we finally got in, we were missing one document — because the required checklist was not displayed anywhere, and the missing piece turned out to be a very recent change in the law.
+
+Another **two weeks** for a follow-up appointment. Then **three hours** at the desk while the officer encoded everything and clicked through the right screens in the right order.
+
+### From frustration to project
+
+I work in IT and was looking for a fun, educational side project that would also sharpen skills I use day to day: the same stack I work with professionally, and an architecture I believe in but had not practiced enough — **Vertical Slice**.
+
+Instead of yet another TODO app, I wondered: with the help of AI, could I reproduce what a municipality's internal population system might look like?
+
+That is how this repository started — a tool that simplifies the whole process, but is genuinely fun to build. Along the way I learn what happens behind the scenes at a Belgian commune — or at least what I, and the AI, think happens.
+
+### How it is built
+
+I did not write a single line of code by hand. Everything here comes from **prompting**.
+
+The workflow looks like this:
+
+1. Start with an idea — a prompt asking the AI to act as an expert in Belgian municipal population services and describe the business.
+2. The AI drafts the plan: documentation, domain rules, phased delivery ([ROADMAP](./docs/ROADMAP.md), [IDEA.md](./IDEA.md), phase notes under [docs/phases/](./docs/phases/)).
+3. Apply my technical constraints (.NET, Vertical Slice, Blazor, tests, deploy profile).
+4. Implement slice by slice — new rules, use cases, and features for my dream municipal back-office.
+
+The full conversation history is captured with **[SpecStory](https://docs.specstory.com/)** in [`.specstory/history/`](./.specstory/history/) — useful if you want to see how a feature went from a prompt to code and docs.
+
+### A word about Cursor
+
+I have used Copilot, Codex, AntiGravity, and others. I have never used Claude Code. **Cursor** is, by far, the best tool I have tried: the strongest documentation, and the most reliable code delivery.
+
+I mostly work in **Auto** mode, and switch to **Fable** when I still have credits. For this project, that combination has been enough to go from zero to a multi-phase municipal simulation without typing application code myself.
+
 ## Try it live
 
 The app is hosted on Azure Container Apps — open it in your browser and walk through the municipal workflows:

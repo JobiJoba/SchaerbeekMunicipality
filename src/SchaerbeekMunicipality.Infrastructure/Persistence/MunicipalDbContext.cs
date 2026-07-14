@@ -11,6 +11,7 @@ using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Notifications;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.ReferenceData;
+using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence;
@@ -24,6 +25,8 @@ public sealed class MunicipalDbContext(DbContextOptions<MunicipalDbContext> opti
     public DbSet<ChangeOfAddressCase> ChangeOfAddressCases => Set<ChangeOfAddressCase>();
 
     public DbSet<DocumentRequestCase> DocumentRequestCases => Set<DocumentRequestCase>();
+
+    public DbSet<RegisterAmendmentCase> RegisterAmendmentCases => Set<RegisterAmendmentCase>();
 
     public DbSet<Person> Persons => Set<Person>();
 

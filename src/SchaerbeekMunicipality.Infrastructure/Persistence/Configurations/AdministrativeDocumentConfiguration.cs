@@ -4,6 +4,7 @@ using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
+using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Infrastructure.Persistence.Configurations;
@@ -46,6 +47,12 @@ internal sealed class AdministrativeDocumentConfiguration : IEntityTypeConfigura
                 value => value.HasValue ? new DocumentRequestCaseId(value.Value) : null)
             .HasColumnName("document_request_case_id");
 
+        builder.Property(d => d.RegisterAmendmentCaseId)
+            .HasConversion(
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? RegisterAmendmentCaseId.From(value.Value) : null)
+            .HasColumnName("register_amendment_case_id");
+
         builder.Property(d => d.DocumentType)
             .HasColumnName("document_type")
             .HasConversion<string>()
@@ -79,5 +86,6 @@ internal sealed class AdministrativeDocumentConfiguration : IEntityTypeConfigura
         builder.HasIndex(d => d.BirthDeclarationCaseId);
         builder.HasIndex(d => d.ChangeOfAddressCaseId);
         builder.HasIndex(d => d.DocumentRequestCaseId);
+        builder.HasIndex(d => d.RegisterAmendmentCaseId);
     }
 }

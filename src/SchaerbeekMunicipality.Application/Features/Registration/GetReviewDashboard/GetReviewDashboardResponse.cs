@@ -3,7 +3,8 @@ namespace SchaerbeekMunicipality.Application.Features.Registration.GetReviewDash
 public enum ReviewDashboardCaseType
 {
     Registration,
-    BirthDeclaration
+    BirthDeclaration,
+    RegisterAmendment
 }
 
 public sealed record ReviewDashboardStatistic(

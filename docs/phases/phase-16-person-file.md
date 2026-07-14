@@ -68,7 +68,7 @@ Authorization: **`PopulationOfficer` only** (`PersonFileAuthorization`).
 
 ## Out of scope (unchanged)
 
-- Editing from person file (Phase 17).
+- Editing from person file → **Phase 17** (register amendment workflow).
 - Server-side pagination for cases tab.
 - FR / NL localization.
 

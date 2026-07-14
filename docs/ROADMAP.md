@@ -30,7 +30,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 14 | Passport / ID card request | ✅ Complete |
 | 15 | Reporting dashboard | ✅ Complete |
 | 16 | Person file (read model) | ✅ Complete |
-| 17 | Post-registration amendments | Planned |
+| 17 | Post-registration amendments | ✅ Complete |
 | 18 | Remaining exception scenarios | Planned (optional) |
 
 Delivery notes for completed phases: [phases/](./phases/).
@@ -563,13 +563,13 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 
 ---
 
-## Phase 17 — Post-registration amendments
+## Phase 17 — Post-registration amendments ✅
 
-**Status:** Planned — see [phases/phase-17-post-registration-amendments.md](./phases/phase-17-post-registration-amendments.md).
+**Status:** Complete — see [phases/phase-17-post-registration-amendments.md](./phases/phase-17-post-registration-amendments.md).
 
 **Goal:** Correct register data after registration (name, civil status, nationality) with approval workflow and audit trail.
 
-**Demo:** Legal name change with supporting judgment → approve → person file updated.
+**Demo:** Legal name change with supporting judgment → approve → apply → person file updated.
 
 ---
 

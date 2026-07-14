@@ -1,6 +1,7 @@
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
+using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Documents;
@@ -20,6 +21,8 @@ public sealed class AdministrativeDocument
     public ChangeOfAddressCaseId? ChangeOfAddressCaseId { get; private set; }
 
     public DocumentRequestCaseId? DocumentRequestCaseId { get; private set; }
+
+    public RegisterAmendmentCaseId? RegisterAmendmentCaseId { get; private set; }
 
     public DocumentType DocumentType { get; private set; }
 
@@ -167,5 +170,40 @@ public sealed class AdministrativeDocument
     public bool BelongsToDocumentRequestCase(DocumentRequestCaseId caseId)
     {
         return DocumentRequestCaseId == caseId;
+    }
+
+    public static AdministrativeDocument CreateForRegisterAmendmentCase(
+        RegisterAmendmentCaseId registerAmendmentCaseId,
+        DocumentType documentType,
+        string fileName,
+        string storagePath,
+        string contentHash,
+        OfficerId uploadedByOfficerId,
+        DateTimeOffset uploadedAt)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(fileName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(storagePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(contentHash);
+
+        if (documentType is not (DocumentType.BirthCertificate or DocumentType.Other))
+            throw new ArgumentException(
+                "Register amendment cases only accept birth certificates or other supporting documents.");
+
+        return new AdministrativeDocument
+        {
+            Id = AdministrativeDocumentId.New(),
+            RegisterAmendmentCaseId = registerAmendmentCaseId,
+            DocumentType = documentType,
+            FileName = fileName.Trim(),
+            StoragePath = storagePath,
+            ContentHash = contentHash,
+            UploadedByOfficerId = uploadedByOfficerId,
+            UploadedAt = uploadedAt
+        };
+    }
+
+    public bool BelongsToRegisterAmendmentCase(RegisterAmendmentCaseId caseId)
+    {
+        return RegisterAmendmentCaseId == caseId;
     }
 }

@@ -80,6 +80,16 @@ using SchaerbeekMunicipality.Application.Features.Registration.SetResidenceCateg
 using SchaerbeekMunicipality.Application.Features.Registration.SuspendCase;
 using SchaerbeekMunicipality.Application.Features.Reporting;
 using SchaerbeekMunicipality.Application.Features.Reporting.GetMunicipalityReport;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment.ApplyRegisterAmendment;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment.ApproveRegisterAmendment;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment.ClaimRegisterAmendmentCase;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment.GetRegisterAmendmentCase;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment.ListRegisterAmendmentCases;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment.OpenRegisterAmendmentCase;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment.RecordProposedAmendment;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment.RejectRegisterAmendment;
+using SchaerbeekMunicipality.Application.Features.RegisterAmendment.SubmitRegisterAmendmentForReview;
 
 namespace SchaerbeekMunicipality.Application;
 
@@ -173,6 +183,22 @@ public static class DependencyInjection
         services.AddScoped<ConfirmAddressChangeHandler>();
         services.AddScoped<RejectChangeOfAddressHandler>();
         services.AddScoped<ResolveRegisteredPersonHandler>();
+
+        services.AddScoped<RegisterAmendmentCaseAuthorization>();
+        services.AddScoped<RegisterAmendmentCaseGuard>();
+        services.AddScoped<OpenRegisterAmendmentCaseHandler>();
+        services.AddScoped<ListRegisterAmendmentCasesHandler>();
+        services.AddScoped<GetRegisterAmendmentCaseHandler>();
+        services.AddScoped<ClaimRegisterAmendmentCaseHandler>();
+        services.AddScoped<Features.RegisterAmendment.ReleaseCaseLock.ReleaseCaseLockHandler>();
+        services.AddScoped<RecordProposedAmendmentHandler>();
+        services.AddScoped<Features.RegisterAmendment.AttachDocument.AttachDocumentHandler>();
+        services.AddScoped<Features.RegisterAmendment.RemoveDocument.RemoveDocumentHandler>();
+        services.AddScoped<Features.RegisterAmendment.DownloadDocument.DownloadDocumentHandler>();
+        services.AddScoped<SubmitRegisterAmendmentForReviewHandler>();
+        services.AddScoped<ApproveRegisterAmendmentHandler>();
+        services.AddScoped<RejectRegisterAmendmentHandler>();
+        services.AddScoped<ApplyRegisterAmendmentHandler>();
 
         services.AddScoped<DocumentRequestCaseAuthorization>();
         services.AddScoped<DocumentRequestCaseGuard>();
