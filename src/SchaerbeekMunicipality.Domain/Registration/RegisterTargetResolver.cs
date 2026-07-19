@@ -18,6 +18,7 @@ public static class RegisterTargetResolver
             ResidenceCategory.NonEuWorker => RegisterTarget.ForeignersRegister,
             ResidenceCategory.Student => RegisterTarget.ForeignersRegister,
             ResidenceCategory.Refugee when hasImmigrationDecision => RegisterTarget.WaitingRegister,
+            ResidenceCategory.Diplomat => RegisterTarget.SpecialRegister,
             _ => null
         };
     }

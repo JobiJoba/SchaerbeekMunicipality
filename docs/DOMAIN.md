@@ -268,16 +268,16 @@ A **PersonFile** read model consolidates everything IDEA lists under “Informat
 
 Each IDEA exception becomes a testable slice or domain rule:
 
-| Scenario | Behavior |
-|----------|----------|
-| Duplicate identity | Block registration; open investigation flag |
-| Illegal stay | Reject; refer to immigration (status reason) |
-| EU citizen | Lighter document policy |
-| Diplomat | Separate register rules |
-| Homeless | Reference address mechanism |
-| Refugee | Additional federal decision prerequisite |
+| Scenario | Behavior | Phase |
+|----------|----------|-------|
+| Duplicate identity | Block registration; open investigation flag | 9 |
+| Illegal stay | Reject; refer to immigration (status reason) | 9 |
+| EU citizen | Lighter document policy | 9 |
+| Refugee | Additional federal decision prerequisite | 9 |
+| Diplomat | Special Register; diplomatic card / passport; police waived | [18](./phases/phase-18-remaining-exception-scenarios.md) |
+| Homeless | Municipality reference address when no fixed abode | [18](./phases/phase-18-remaining-exception-scenarios.md) |
 
-See [ROADMAP.md](./ROADMAP.md) for when each is implemented.
+See [ROADMAP.md](./ROADMAP.md) for delivery status.
 
 ---
 

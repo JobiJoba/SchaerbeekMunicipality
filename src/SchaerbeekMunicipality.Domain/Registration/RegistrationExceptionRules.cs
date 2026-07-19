@@ -51,6 +51,7 @@ public static class RegistrationExceptionRules
     {
         return registrationCase.ResidenceCategory is not null
                && registrationCase.ResidenceCategory != ResidenceCategory.Refugee
+               && registrationCase.ResidenceCategory != ResidenceCategory.Diplomat
                && registrationCase.ImmigrationDecision is null
                && policyResult is { IsValid: false };
     }

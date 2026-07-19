@@ -110,6 +110,7 @@ public sealed record RegistrationCaseDetailDto(
     ResidencePermitDto? ResidencePermit,
     ImmigrationDecisionDto? ImmigrationDecision,
     BelgianAddressDto? DeclaredAddress,
+    AddressDeclarationType AddressDeclarationType,
     HousingSituation? HousingSituation,
     IReadOnlyList<HouseholdMemberDto> HouseholdMembers,
     CivilStatusDto? CivilStatus,

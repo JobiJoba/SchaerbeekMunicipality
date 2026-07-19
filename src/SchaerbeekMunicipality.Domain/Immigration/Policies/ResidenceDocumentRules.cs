@@ -17,4 +17,19 @@ internal static class ResidenceDocumentRules
         return ResidencePolicyResult.Invalid(
             "A passport or national identity card must be attached.");
     }
+
+    public static bool HasDiplomaticIdentityDocument(IReadOnlyList<DocumentType> documentTypes)
+    {
+        return documentTypes.Contains(DocumentType.Passport)
+               || documentTypes.Contains(DocumentType.DiplomaticCard);
+    }
+
+    public static ResidencePolicyResult RequireDiplomaticIdentityDocument(
+        IReadOnlyList<DocumentType> documentTypes)
+    {
+        if (HasDiplomaticIdentityDocument(documentTypes)) return ResidencePolicyResult.Valid();
+
+        return ResidencePolicyResult.Invalid(
+            "A passport or diplomatic card must be attached.");
+    }
 }

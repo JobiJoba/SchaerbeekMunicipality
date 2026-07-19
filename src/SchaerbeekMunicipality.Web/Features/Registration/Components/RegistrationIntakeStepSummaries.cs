@@ -22,9 +22,11 @@ public static class RegistrationIntakeStepSummaries
 
     public static bool IsVisible(RegistrationIntakeStep step, RegistrationCaseDetailDto dto)
     {
-        return step != RegistrationIntakeStep.PoliceVerification ||
-               dto.ActivePoliceVerification is not null ||
-               dto.PoliceVerificationHistory.Count > 0;
+        if (step != RegistrationIntakeStep.PoliceVerification) return true;
+
+        return dto.ActivePoliceVerification is not null
+               || dto.PoliceVerificationHistory.Count > 0
+               || (dto.ResidenceCategory == ResidenceCategory.Diplomat && dto.Checklist.AddressDeclared);
     }
 
     public static bool IsComplete(RegistrationIntakeStep step, RegistrationCaseDetailDto dto)
@@ -37,7 +39,8 @@ public static class RegistrationIntakeStepSummaries
             RegistrationIntakeStep.Household => dto.HouseholdMembers.Count > 0,
             RegistrationIntakeStep.CivilStatus => dto.CivilStatus is not null,
             RegistrationIntakeStep.BirthInformation => dto.Person?.BirthInformation is not null,
-            RegistrationIntakeStep.PoliceVerification => dto.ActivePoliceVerification is null,
+            RegistrationIntakeStep.PoliceVerification =>
+                dto.Checklist.AddressConfirmed || dto.ActivePoliceVerification is null,
             _ => false
         };
     }
@@ -129,6 +132,9 @@ public static class RegistrationIntakeStepSummaries
 
         line += $", {address.PostalCode} {address.Municipality}";
 
+        if (dto.AddressDeclarationType == AddressDeclarationType.ReferenceAddress)
+            line += " · reference address";
+
         if (dto.HousingSituation is { } housing) line += $" · {FormatHousingSituation(housing)}";
 
         return line;
@@ -185,6 +191,12 @@ public static class RegistrationIntakeStepSummaries
 
         if (latest?.Result is { } result) return $"{FormatPoliceResult(result)} · visit {latest.AttemptNumber}";
 
+        if (dto.ResidenceCategory == ResidenceCategory.Diplomat && dto.Checklist.AddressConfirmed)
+            return "Waived for diplomat (Special Register)";
+
+        if (dto.ResidenceCategory == ResidenceCategory.Diplomat && dto.Checklist.AddressDeclared)
+            return "Police verification waived for diplomats — confirm waiver";
+
         return "No visits recorded";
     }
 
@@ -196,6 +208,7 @@ public static class RegistrationIntakeStepSummaries
             ResidenceCategory.NonEuWorker => "Non-EU worker",
             ResidenceCategory.Student => "Student",
             ResidenceCategory.Refugee => "Refugee / temporary protection",
+            ResidenceCategory.Diplomat => "Diplomat",
             _ => category.ToString()
         };
     }

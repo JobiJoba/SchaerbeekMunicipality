@@ -184,6 +184,7 @@ public sealed class GetRegistrationCaseHandler(
                     registrationCase.DeclaredAddress.Box,
                     registrationCase.DeclaredAddress.PostalCode,
                     registrationCase.DeclaredAddress.Municipality),
+            registrationCase.AddressDeclarationType,
             registrationCase.HousingSituation,
             household?.Members
                 .Select(m => new HouseholdMemberDto(

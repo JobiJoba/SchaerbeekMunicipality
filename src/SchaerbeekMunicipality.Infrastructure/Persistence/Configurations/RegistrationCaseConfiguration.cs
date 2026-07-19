@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -121,6 +122,12 @@ internal sealed class RegistrationCaseConfiguration : IEntityTypeConfiguration<R
             address.Property(a => a.PostalCode).HasColumnName("address_postal_code").HasMaxLength(4);
             address.Property(a => a.Municipality).HasColumnName("address_municipality").HasMaxLength(128);
         });
+
+        builder.Property(c => c.AddressDeclarationType)
+            .HasColumnName("address_declaration_type")
+            .HasConversion<string>()
+            .HasMaxLength(64)
+            .HasDefaultValue(AddressDeclarationType.Domicile);
 
         builder.Property(c => c.HousingSituation)
             .HasColumnName("housing_situation")

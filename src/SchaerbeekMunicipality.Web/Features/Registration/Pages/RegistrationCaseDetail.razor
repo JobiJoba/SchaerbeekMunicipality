@@ -4,6 +4,7 @@
 @using SchaerbeekMunicipality.Application.Features.Registration.ListCaseAudit
 @using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity
 @using SchaerbeekMunicipality.Application.Features.Registration.ResolveDuplicateInvestigation
+@using SchaerbeekMunicipality.Domain.Immigration
 @using SchaerbeekMunicipality.Domain.NationalRegister
 @using SchaerbeekMunicipality.Domain.Police
 @using SchaerbeekMunicipality.Web.Api.Registration
@@ -63,6 +64,16 @@ else
                            Disabled="_sendingToPolice"
                            OnClick="SendToPolice">
                     Send to police
+                </MudButton>
+            }
+            @if (CanWaivePolice)
+            {
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.VerifiedUser"
+                           Disabled="_waivingPolice"
+                           OnClick="WaivePolice">
+                    Waive police verification
                 </MudButton>
             }
             @if (_case.Person is { } linkedPerson)
@@ -332,7 +343,12 @@ else
                                    IsExpanded="IsStepExpanded(RegistrationIntakeStep.PoliceVerification)"
                                    IsExpandedChanged="@(value => SetStepExpanded(RegistrationIntakeStep.PoliceVerification, value))">
                 <PoliceVerificationSection ActiveVerification="_case.ActivePoliceVerification"
-                                           History="_case.PoliceVerificationHistory"/>
+                                           History="_case.PoliceVerificationHistory"
+                                           Category="_case.ResidenceCategory"
+                                           AddressConfirmed="_case.Checklist.AddressConfirmed"
+                                           CanWaive="CanWaivePolice"
+                                           Waiving="_waivingPolice"
+                                           OnWaive="WaivePolice"/>
             </AppCollapsibleSection>
         }
 
@@ -420,6 +436,7 @@ else
     private bool _savingIdentity;
     private bool _convertingBis;
     private bool _sendingToPolice;
+    private bool _waivingPolice;
     private bool _releasingLock;
     private bool _claimingCase;
     private bool _resolvingDuplicate;
@@ -443,9 +460,19 @@ else
     private bool CanSendToPolice =>
         CanEditIntakeData &&
         _case is not null &&
+        _case.ResidenceCategory != ResidenceCategory.Diplomat &&
         _case.Checklist.IdentityEstablished &&
         _case.Checklist.AddressDeclared &&
+        !_case.Checklist.AddressConfirmed &&
         _case.ActivePoliceVerification is null;
+
+    private bool CanWaivePolice =>
+        CanEditIntakeData &&
+        _case is not null &&
+        _case.ResidenceCategory == ResidenceCategory.Diplomat &&
+        _case.Checklist.IdentityEstablished &&
+        _case.Checklist.AddressDeclared &&
+        !_case.Checklist.AddressConfirmed;
 
     private bool IdentityFormDirty =>
         _case?.Person is not null &&
@@ -572,6 +599,7 @@ else
             "ResidenceCategorySet" => "Residence category set",
             "AddressDeclared" => "Address declared",
             "PoliceVerificationRequested" => "Sent to police",
+            "PoliceVerificationWaived" => "Police verification waived",
             "PoliceResultRecorded" => "Police result recorded",
             "CaseApproved" => "Case approved",
             "CaseRejected" => "Case rejected",
@@ -835,6 +863,35 @@ else
         finally
         {
             _sendingToPolice = false;
+        }
+    }
+
+    private async Task WaivePolice()
+    {
+        var confirmed = await DialogService.ConfirmAsync(
+            "Waive police verification?",
+            "Diplomat protocol waives the local police residence check. The address will be treated as confirmed for Special Register registration.",
+            "Waive verification");
+
+        if (!confirmed)
+        {
+            return;
+        }
+
+        _waivingPolice = true;
+        try
+        {
+            await RegistrationApi.WaivePoliceVerificationAsync(CaseId, CancellationToken.None);
+            Snackbar.Add("Police verification waived for diplomat case.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (InvalidRegistrationTransitionException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _waivingPolice = false;
         }
     }
 

@@ -88,6 +88,45 @@ public sealed class ResidencePolicyTests
         result.IsValid.Should().BeTrue();
     }
 
+    [Fact]
+    public void DiplomatPolicy_WithoutIdentityDocument_IsInvalid()
+    {
+        var policy = new DiplomatPolicy();
+
+        var result = policy.Validate(EmptyDocuments with { Category = ResidenceCategory.Diplomat });
+
+        result.IsValid.Should().BeFalse();
+        result.FailureReason.Should().Contain("diplomatic");
+    }
+
+    [Fact]
+    public void DiplomatPolicy_WithDiplomaticCard_IsValid()
+    {
+        var policy = new DiplomatPolicy();
+
+        var result = policy.Validate(EmptyDocuments with
+        {
+            Category = ResidenceCategory.Diplomat,
+            AttachedDocumentTypes = [DocumentType.DiplomaticCard]
+        });
+
+        result.IsValid.Should().BeTrue();
+    }
+
+    [Fact]
+    public void DiplomatPolicy_WithPassport_IsValid()
+    {
+        var policy = new DiplomatPolicy();
+
+        var result = policy.Validate(EmptyDocuments with
+        {
+            Category = ResidenceCategory.Diplomat,
+            AttachedDocumentTypes = PassportOnly
+        });
+
+        result.IsValid.Should().BeTrue();
+    }
+
     private static ResidencePermit CreatePermit(ResidencePermitType permitType, DateOnly validUntil)
     {
         return ResidencePermit.Create(

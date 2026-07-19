@@ -5,6 +5,7 @@ using SchaerbeekMunicipality.Api.Features.Registration.ConfirmRegistration;
 using SchaerbeekMunicipality.Api.Features.Registration.ConvertBisNumber;
 using SchaerbeekMunicipality.Api.Features.Registration.CorrectIdentity;
 using SchaerbeekMunicipality.Api.Features.Registration.DeclareAddress;
+using SchaerbeekMunicipality.Api.Features.Registration.DeclareReferenceAddress;
 using SchaerbeekMunicipality.Api.Features.Registration.DownloadDocument;
 using SchaerbeekMunicipality.Api.Features.Registration.GetCaseReviewChecklist;
 using SchaerbeekMunicipality.Api.Features.Registration.GetRegistrationCase;
@@ -29,6 +30,7 @@ using SchaerbeekMunicipality.Api.Features.Registration.RejectCase;
 using SchaerbeekMunicipality.Api.Features.Registration.ReleaseCaseLock;
 using SchaerbeekMunicipality.Api.Features.Registration.RemoveDocument;
 using SchaerbeekMunicipality.Api.Features.Registration.RequestPoliceVerification;
+using SchaerbeekMunicipality.Api.Features.Registration.WaivePoliceVerification;
 using SchaerbeekMunicipality.Api.Features.Registration.ResolveDuplicateInvestigation;
 using SchaerbeekMunicipality.Api.Features.Registration.ResumeCase;
 using SchaerbeekMunicipality.Api.Features.Registration.SearchNationalRegister;
@@ -104,6 +106,10 @@ public static class RegistrationEndpoints
             .WithName("DeclareAddress")
             .WithTags("Registration");
 
+        group.MapPost("/cases/{id:guid}/address/reference", DeclareReferenceAddressEndpoint.Handle)
+            .WithName("DeclareReferenceAddress")
+            .WithTags("Registration");
+
         group.MapPost("/cases/{id:guid}/housing-situation", RecordHousingSituationEndpoint.Handle)
             .WithName("RecordHousingSituation")
             .WithTags("Registration");
@@ -147,6 +153,10 @@ public static class RegistrationEndpoints
 
         group.MapPost("/cases/{id:guid}/police-verification", RequestPoliceVerificationEndpoint.Handle)
             .WithName("RequestPoliceVerification")
+            .WithTags("PoliceVerification");
+
+        group.MapPost("/cases/{id:guid}/police-verification/waive", WaivePoliceVerificationEndpoint.Handle)
+            .WithName("WaivePoliceVerification")
             .WithTags("PoliceVerification");
 
         group.MapGet("/police-verifications/pending", ListPendingPoliceVerificationsEndpoint.Handle)

@@ -24,22 +24,47 @@ else if (_case.DeclaredAddress is null)
     @if (CanEdit)
     {
         <AppCard Title="Declared address" Outlined="true">
-            <MudForm @ref="_addressForm"
-                     @bind-IsValid="_addressFormValid"
-                     Model="_addressModel"
-                     Validation="@(DeclareAddressValidator.ToMudValidateValue<DeclareAddressRequest, AddressFormModel>(MapAddressRequest))">
-                <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
-                                      @bind-HouseNumber="_addressModel.HouseNumber"
-                                      @bind-Box="_addressModel.Box"
-                                      SearchStreets="SearchStreets"
-                                      ShowHelpText="true"/>
+            <MudSwitch T="bool"
+                       @bind-Value="_useReferenceAddress"
+                       Label="No fixed abode — use reference address"
+                       Color="Color.Primary"
+                       Class="mb-3"/>
 
-                <AppSaveCancelBar SaveText="Declare address"
+            @if (_useReferenceAddress)
+            {
+                <AppAlert Severity="Severity.Info" Title="Reference address" Class="mb-3">
+                    Persons without a fixed domicile are registered at the municipality-hosted reference address.
+                    Police verification still applies to this site.
+                </AppAlert>
+                <MudText Typo="Typo.body1" Class="mb-3">
+                    @SchaerbeekCommune.ReferenceStreet @SchaerbeekCommune.ReferenceHouseNumber,
+                    @SchaerbeekCommune.PostalCode @SchaerbeekCommune.Name
+                </MudText>
+                <AppSaveCancelBar SaveText="Declare reference address"
                                   CancelText="Clear"
                                   Saving="_savingAddress"
-                                  OnSave="SaveAddress"
+                                  OnSave="SaveReferenceAddress"
                                   OnCancel="HandleAddressCancel"/>
-            </MudForm>
+            }
+            else
+            {
+                <MudForm @ref="_addressForm"
+                         @bind-IsValid="_addressFormValid"
+                         Model="_addressModel"
+                         Validation="@(DeclareAddressValidator.ToMudValidateValue<DeclareAddressRequest, AddressFormModel>(MapAddressRequest))">
+                    <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
+                                          @bind-HouseNumber="_addressModel.HouseNumber"
+                                          @bind-Box="_addressModel.Box"
+                                          SearchStreets="SearchStreets"
+                                          ShowHelpText="true"/>
+
+                    <AppSaveCancelBar SaveText="Declare address"
+                                      CancelText="Clear"
+                                      Saving="_savingAddress"
+                                      OnSave="SaveAddress"
+                                      OnCancel="HandleAddressCancel"/>
+                </MudForm>
+            }
         </AppCard>
     }
     else
@@ -52,23 +77,48 @@ else if (_case.DeclaredAddress is null)
 else if (_editingAddress && CanEdit)
 {
     <AppCard Title="Declared address" Outlined="true">
-        <MudForm @ref="_addressForm"
-                 @bind-IsValid="_addressFormValid"
-                 Model="_addressModel"
-                 Validation="@(DeclareAddressValidator.ToMudValidateValue<DeclareAddressRequest, AddressFormModel>(MapAddressRequest))">
-            <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
-                                  @bind-HouseNumber="_addressModel.HouseNumber"
-                                  @bind-Box="_addressModel.Box"
-                                  SearchStreets="SearchStreets"
-                                  ShowHelpText="true"/>
+        <MudSwitch T="bool"
+                   @bind-Value="_useReferenceAddress"
+                   Label="No fixed abode — use reference address"
+                   Color="Color.Primary"
+                   Class="mb-3"/>
 
-            <AppSaveCancelBar SaveText="Save changes"
+        @if (_useReferenceAddress)
+        {
+            <AppAlert Severity="Severity.Info" Title="Reference address" Class="mb-3">
+                Persons without a fixed domicile are registered at the municipality-hosted reference address.
+                Police verification still applies to this site.
+            </AppAlert>
+            <MudText Typo="Typo.body1" Class="mb-3">
+                @SchaerbeekCommune.ReferenceStreet @SchaerbeekCommune.ReferenceHouseNumber,
+                @SchaerbeekCommune.PostalCode @SchaerbeekCommune.Name
+            </MudText>
+            <AppSaveCancelBar SaveText="Save reference address"
                               CancelText="Cancel"
                               Saving="_savingAddress"
-                              Disabled="!AddressFormDirty"
-                              OnSave="SaveAddress"
+                              OnSave="SaveReferenceAddress"
                               OnCancel="HandleAddressCancel"/>
-        </MudForm>
+        }
+        else
+        {
+            <MudForm @ref="_addressForm"
+                     @bind-IsValid="_addressFormValid"
+                     Model="_addressModel"
+                     Validation="@(DeclareAddressValidator.ToMudValidateValue<DeclareAddressRequest, AddressFormModel>(MapAddressRequest))">
+                <BelgianAddressFields @bind-SelectedStreet="_selectedStreet"
+                                      @bind-HouseNumber="_addressModel.HouseNumber"
+                                      @bind-Box="_addressModel.Box"
+                                      SearchStreets="SearchStreets"
+                                      ShowHelpText="true"/>
+
+                <AppSaveCancelBar SaveText="Save changes"
+                                  CancelText="Cancel"
+                                  Saving="_savingAddress"
+                                  Disabled="!AddressFormDirty"
+                                  OnSave="SaveAddress"
+                                  OnCancel="HandleAddressCancel"/>
+            </MudForm>
+        }
     </AppCard>
 }
 else
@@ -86,6 +136,12 @@ else
             }
         </HeaderActions>
         <ChildContent>
+            @if (_case.AddressDeclarationType == AddressDeclarationType.ReferenceAddress)
+            {
+                <AppAlert Severity="Severity.Info" Title="Reference address" Class="mb-2">
+                    No fixed abode — municipality-hosted reference address.
+                </AppAlert>
+            }
             <MudText Typo="Typo.body1">@AddressFormatting.FormatBelgianAddress(_case.DeclaredAddress)</MudText>
         </ChildContent>
     </AppCard>
@@ -209,6 +265,7 @@ else
     private readonly HousingFormModel _housingModel = new();
 
     private StreetDto? _selectedStreet;
+    private bool _useReferenceAddress;
 
     private static readonly MunicipalityDto Schaerbeek = new(
         SchaerbeekCommune.PostalCode,
@@ -219,6 +276,7 @@ else
         _case = Case;
         _editingAddress = false;
         _editingHousing = false;
+        _useReferenceAddress = _case.AddressDeclarationType == AddressDeclarationType.ReferenceAddress;
     }
 
     private bool AddressFormDirty =>
@@ -254,6 +312,7 @@ else
             return;
         }
 
+        _useReferenceAddress = _case.AddressDeclarationType == AddressDeclarationType.ReferenceAddress;
         _selectedStreet = new StreetDto(0, _case.DeclaredAddress.PostalCode, _case.DeclaredAddress.Street);
         _addressModel.HouseNumber = _case.DeclaredAddress.HouseNumber;
         _addressModel.Box = _case.DeclaredAddress.Box;
@@ -285,6 +344,7 @@ else
         _addressModel.Street = string.Empty;
         _addressModel.HouseNumber = string.Empty;
         _addressModel.Box = null;
+        _useReferenceAddress = false;
     }
 
     private async Task HandleAddressCancel()
@@ -329,6 +389,26 @@ else
             Snackbar.Add(ex.Message, Severity.Error);
         }
         catch (ArgumentException ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _savingAddress = false;
+        }
+    }
+
+    private async Task SaveReferenceAddress()
+    {
+        _savingAddress = true;
+        try
+        {
+            await RegistrationApi.DeclareReferenceAddressAsync(CaseId, CancellationToken.None);
+            _editingAddress = false;
+            Snackbar.Add("Reference address declared.", Severity.Success);
+            await OnUpdated.InvokeAsync();
+        }
+        catch (InvalidRegistrationTransitionException ex)
         {
             Snackbar.Add(ex.Message, Severity.Error);
         }

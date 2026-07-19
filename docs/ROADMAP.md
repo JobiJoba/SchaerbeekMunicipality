@@ -573,13 +573,13 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 
 ---
 
-## Phase 18 — Remaining exception scenarios (optional)
+## Phase 18 — Remaining exception scenarios ✅
 
-**Status:** Planned — see [phases/phase-18-remaining-exception-scenarios.md](./phases/phase-18-remaining-exception-scenarios.md).
+**Status:** Complete — see [phases/phase-18-remaining-exception-scenarios.md](./phases/phase-18-remaining-exception-scenarios.md).
 
 **Goal:** Phase 9 deferred slices — diplomat register rules and homeless reference address.
 
-**Demo:** Diplomat path to special register; reference address satisfies domicile checklist without fixed abode.
+**Demo:** Diplomat path to special register (police waived); reference address satisfies domicile checklist; police still applies to reference site.
 
 ---
 

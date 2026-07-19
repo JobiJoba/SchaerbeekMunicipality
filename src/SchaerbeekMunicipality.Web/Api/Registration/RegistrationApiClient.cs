@@ -6,6 +6,7 @@ using SchaerbeekMunicipality.Application.Features.Registration.ConfirmRegistrati
 using SchaerbeekMunicipality.Application.Features.Registration.ConvertBisNumber;
 using SchaerbeekMunicipality.Application.Features.Registration.CorrectIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.DeclareAddress;
+using SchaerbeekMunicipality.Application.Features.Registration.DeclareReferenceAddress;
 using SchaerbeekMunicipality.Application.Features.Registration.GetCaseReviewChecklist;
 using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Application.Features.Registration.GetReviewDashboard;
@@ -27,6 +28,7 @@ using SchaerbeekMunicipality.Application.Features.Registration.RejectCase;
 using SchaerbeekMunicipality.Application.Features.Registration.ReleaseCaseLock;
 using SchaerbeekMunicipality.Application.Features.Registration.RemoveDocument;
 using SchaerbeekMunicipality.Application.Features.Registration.RequestPoliceVerification;
+using SchaerbeekMunicipality.Application.Features.Registration.WaivePoliceVerification;
 using SchaerbeekMunicipality.Application.Features.Registration.ResolveDuplicateInvestigation;
 using SchaerbeekMunicipality.Application.Features.Registration.ResumeCase;
 using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister;
@@ -177,6 +179,15 @@ public sealed class RegistrationApiClient(HttpClient httpClient, ICurrentOfficer
             cancellationToken);
     }
 
+    public Task<DeclareReferenceAddressResponse> DeclareReferenceAddressAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        return PostJsonAsync<DeclareReferenceAddressResponse>(
+            $"{BasePath}/cases/{id}/address/reference",
+            cancellationToken);
+    }
+
     public Task<RecordHousingSituationResponse> RecordHousingSituationAsync(
         Guid id,
         RecordHousingSituationRequest request,
@@ -286,6 +297,15 @@ public sealed class RegistrationApiClient(HttpClient httpClient, ICurrentOfficer
         CancellationToken cancellationToken = default)
     {
         return PostJsonAsync<RequestPoliceVerificationResponse>($"{BasePath}/cases/{id}/police-verification",
+            cancellationToken);
+    }
+
+    public Task<WaivePoliceVerificationResponse> WaivePoliceVerificationAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        return PostJsonAsync<WaivePoliceVerificationResponse>(
+            $"{BasePath}/cases/{id}/police-verification/waive",
             cancellationToken);
     }
 

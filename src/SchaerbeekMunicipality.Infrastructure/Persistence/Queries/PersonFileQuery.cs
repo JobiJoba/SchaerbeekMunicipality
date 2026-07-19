@@ -495,16 +495,17 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         var cases = await ListCasesByPersonIdAsync(personId, cancellationToken);
         var caseLookup = cases.ToDictionary(c => c.CaseId);
 
+        // Nullable IDs so Contains matches the converted nullable columns (Npgsql T vs T? bug).
         var registrationCaseIds = cases
             .Where(c => c.Workflow == "Registration")
-            .Select(c => new RegistrationCaseId(c.CaseId))
+            .Select(c => (RegistrationCaseId?)new RegistrationCaseId(c.CaseId))
             .ToList();
 
         if (registrationCaseIds.Count > 0)
         {
             var registrationDocuments = await dbContext.AdministrativeDocuments
                 .AsNoTracking()
-                .Where(d => d.RegistrationCaseId != null && registrationCaseIds.Contains(d.RegistrationCaseId.Value))
+                .Where(d => registrationCaseIds.Contains(d.RegistrationCaseId))
                 .ToListAsync(cancellationToken);
 
             documents.AddRange(registrationDocuments.Select(d => ToDocumentSummary(
@@ -519,14 +520,14 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
 
         var birthCaseIds = cases
             .Where(c => c.Workflow == "Birth declaration")
-            .Select(c => new BirthDeclarationCaseId(c.CaseId))
+            .Select(c => (BirthDeclarationCaseId?)new BirthDeclarationCaseId(c.CaseId))
             .ToList();
 
         if (birthCaseIds.Count > 0)
         {
             var birthDocuments = await dbContext.AdministrativeDocuments
                 .AsNoTracking()
-                .Where(d => d.BirthDeclarationCaseId != null && birthCaseIds.Contains(d.BirthDeclarationCaseId.Value))
+                .Where(d => birthCaseIds.Contains(d.BirthDeclarationCaseId))
                 .ToListAsync(cancellationToken);
 
             documents.AddRange(birthDocuments.Select(d => ToDocumentSummary(
@@ -541,15 +542,14 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
 
         var changeOfAddressCaseIds = cases
             .Where(c => c.Workflow == "Change of address")
-            .Select(c => new ChangeOfAddressCaseId(c.CaseId))
+            .Select(c => (ChangeOfAddressCaseId?)new ChangeOfAddressCaseId(c.CaseId))
             .ToList();
 
         if (changeOfAddressCaseIds.Count > 0)
         {
             var changeOfAddressDocuments = await dbContext.AdministrativeDocuments
                 .AsNoTracking()
-                .Where(d => d.ChangeOfAddressCaseId != null &&
-                            changeOfAddressCaseIds.Contains(d.ChangeOfAddressCaseId.Value))
+                .Where(d => changeOfAddressCaseIds.Contains(d.ChangeOfAddressCaseId))
                 .ToListAsync(cancellationToken);
 
             documents.AddRange(changeOfAddressDocuments.Select(d => ToDocumentSummary(
@@ -564,15 +564,14 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
 
         var documentRequestCaseIds = cases
             .Where(c => c.Workflow == "Identity document")
-            .Select(c => new DocumentRequestCaseId(c.CaseId))
+            .Select(c => (DocumentRequestCaseId?)new DocumentRequestCaseId(c.CaseId))
             .ToList();
 
         if (documentRequestCaseIds.Count > 0)
         {
             var identityDocuments = await dbContext.AdministrativeDocuments
                 .AsNoTracking()
-                .Where(d => d.DocumentRequestCaseId != null &&
-                            documentRequestCaseIds.Contains(d.DocumentRequestCaseId.Value))
+                .Where(d => documentRequestCaseIds.Contains(d.DocumentRequestCaseId))
                 .ToListAsync(cancellationToken);
 
             documents.AddRange(identityDocuments.Select(d => ToDocumentSummary(
@@ -587,15 +586,14 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
 
         var amendmentCaseIds = cases
             .Where(c => c.Workflow == "Register amendment")
-            .Select(c => new RegisterAmendmentCaseId(c.CaseId))
+            .Select(c => (RegisterAmendmentCaseId?)new RegisterAmendmentCaseId(c.CaseId))
             .ToList();
 
         if (amendmentCaseIds.Count > 0)
         {
             var amendmentDocuments = await dbContext.AdministrativeDocuments
                 .AsNoTracking()
-                .Where(d => d.RegisterAmendmentCaseId != null &&
-                            amendmentCaseIds.Contains(d.RegisterAmendmentCaseId.Value))
+                .Where(d => amendmentCaseIds.Contains(d.RegisterAmendmentCaseId))
                 .ToListAsync(cancellationToken);
 
             documents.AddRange(amendmentDocuments.Select(d => ToDocumentSummary(

@@ -12,6 +12,7 @@ public sealed class RegisterTargetResolverTests
     [InlineData(ResidenceCategory.NonEuWorker, "Moroccan", RegisterTarget.ForeignersRegister)]
     [InlineData(ResidenceCategory.Student, "Chinese", RegisterTarget.ForeignersRegister)]
     [InlineData(ResidenceCategory.Refugee, "Syrian", RegisterTarget.WaitingRegister)]
+    [InlineData(ResidenceCategory.Diplomat, "American", RegisterTarget.SpecialRegister)]
     public void Suggest_ReturnsExpectedTarget(
         ResidenceCategory category,
         string nationality,

@@ -1,5 +1,39 @@
 @using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase
+@using SchaerbeekMunicipality.Domain.Immigration
 @using SchaerbeekMunicipality.Domain.Police
+@if (IsDiplomat)
+{
+    @if (AddressConfirmed)
+    {
+        <AppAlert Severity="Severity.Success"
+                  Title="Police verification waived"
+                  Class="mb-4">
+            Diplomat protocol: residence verification was waived. The case can proceed on the Special Register.
+        </AppAlert>
+    }
+    else
+    {
+        <AppAlert Severity="Severity.Info"
+                  Title="Police verification waived for diplomats"
+                  Class="mb-4">
+            Diplomat cases do not require a local police residence check. Confirm the waiver after the address is declared.
+        </AppAlert>
+
+        @if (CanWaive)
+        {
+            <AppCard Title="Waive police verification" Outlined="true" Class="mb-4">
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.VerifiedUser"
+                           Disabled="Waiving"
+                           OnClick="OnWaive">
+                    Waive police verification
+                </MudButton>
+            </AppCard>
+        }
+    }
+}
+
 @if (ActiveVerification is not null)
 {
     <AppAlert Severity="Severity.Info"
@@ -85,6 +119,18 @@ else if (OrderedHistory.Count > 1)
     [Parameter] public PoliceVerificationDto? ActiveVerification { get; set; }
 
     [Parameter] public IReadOnlyList<PoliceVerificationDto> History { get; set; } = [];
+
+    [Parameter] public ResidenceCategory? Category { get; set; }
+
+    [Parameter] public bool AddressConfirmed { get; set; }
+
+    [Parameter] public bool CanWaive { get; set; }
+
+    [Parameter] public bool Waiving { get; set; }
+
+    [Parameter] public EventCallback OnWaive { get; set; }
+
+    private bool IsDiplomat => Category == ResidenceCategory.Diplomat;
 
     private IReadOnlyList<PoliceVerificationDto> OrderedHistory =>
         History.OrderByDescending(v => v.AttemptNumber).ToList();

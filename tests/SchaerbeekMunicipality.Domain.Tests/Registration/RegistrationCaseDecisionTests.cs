@@ -6,6 +6,7 @@ using SchaerbeekMunicipality.Domain.Immigration;
 using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Police;
+using SchaerbeekMunicipality.Domain.ReferenceData;
 using SchaerbeekMunicipality.Domain.Registration;
 
 namespace SchaerbeekMunicipality.Domain.Tests.Registration;
@@ -214,5 +215,133 @@ public sealed class RegistrationCaseDecisionTests
         var act = () => registrationCase.ConfirmRegistration(DecisionAt);
 
         act.Should().Throw<InvalidRegistrationTransitionException>();
+    }
+
+    [Fact]
+    public void WaivePoliceVerification_ForDiplomat_ConfirmsAddress()
+    {
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
+        registrationCase.RecordIdentity(
+            new IdentityDetails("Elena", "Morales", new DateOnly(1979, 3, 8), "Spanish"));
+        registrationCase.SetResidenceCategory(ResidenceCategory.Diplomat);
+        registrationCase.ApplyResidencePolicyResult(ResidencePolicyResult.Valid());
+        registrationCase.RefreshRegisterDeterminability("Spanish");
+        registrationCase.DeclareAddress(new AddressDetails(
+            "Chaussée de Louvain",
+            "10",
+            null,
+            "1030",
+            "Schaerbeek"));
+
+        registrationCase.WaivePoliceVerification();
+
+        registrationCase.Checklist.AddressConfirmed.Should().BeTrue();
+        registrationCase.Status.Should().Be(RegistrationCaseStatus.UnderReview);
+    }
+
+    [Fact]
+    public void RequestPoliceVerification_ForDiplomat_Throws()
+    {
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
+        registrationCase.RecordIdentity(
+            new IdentityDetails("Elena", "Morales", new DateOnly(1979, 3, 8), "Spanish"));
+        registrationCase.SetResidenceCategory(ResidenceCategory.Diplomat);
+        registrationCase.DeclareAddress(new AddressDetails(
+            "Chaussée de Louvain",
+            "10",
+            null,
+            "1030",
+            "Schaerbeek"));
+
+        var act = () => registrationCase.RequestPoliceVerification();
+
+        act.Should().Throw<InvalidRegistrationTransitionException>()
+            .WithMessage("*waived*");
+    }
+
+    [Fact]
+    public void SetResidenceCategory_LeavingDiplomat_ClearsAddressConfirmed()
+    {
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
+        registrationCase.RecordIdentity(
+            new IdentityDetails("Elena", "Morales", new DateOnly(1979, 3, 8), "Spanish"));
+        registrationCase.SetResidenceCategory(ResidenceCategory.Diplomat);
+        registrationCase.DeclareAddress(new AddressDetails(
+            "Chaussée de Louvain",
+            "10",
+            null,
+            "1030",
+            "Schaerbeek"));
+        registrationCase.WaivePoliceVerification();
+
+        registrationCase.SetResidenceCategory(ResidenceCategory.EuCitizen);
+
+        registrationCase.Checklist.AddressConfirmed.Should().BeFalse();
+    }
+
+    [Fact]
+    public void DeclareReferenceAddress_MarksAddressDeclaredAsReference()
+    {
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
+        registrationCase.RecordIdentity(
+            new IdentityDetails("Marc", "Dupont", new DateOnly(1975, 9, 12), "Belgian"));
+
+        registrationCase.DeclareReferenceAddress();
+
+        registrationCase.Checklist.AddressDeclared.Should().BeTrue();
+        registrationCase.AddressDeclarationType.Should().Be(AddressDeclarationType.ReferenceAddress);
+        registrationCase.DeclaredAddress!.Street.Should().Be(SchaerbeekCommune.ReferenceStreet);
+        registrationCase.DeclaredAddress.HouseNumber.Should().Be(SchaerbeekCommune.ReferenceHouseNumber);
+    }
+
+    [Fact]
+    public void DeclareAddress_AfterReferenceAddress_SwitchesToDomicile()
+    {
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
+        registrationCase.RecordIdentity(
+            new IdentityDetails("Marc", "Dupont", new DateOnly(1975, 9, 12), "Belgian"));
+        registrationCase.DeclareReferenceAddress();
+
+        registrationCase.DeclareAddress(new AddressDetails(
+            "Chaussée de Louvain",
+            "10",
+            null,
+            "1030",
+            "Schaerbeek"));
+
+        registrationCase.AddressDeclarationType.Should().Be(AddressDeclarationType.Domicile);
+        registrationCase.DeclaredAddress!.Street.Should().Be("Chaussée de Louvain");
+        registrationCase.Checklist.AddressConfirmed.Should().BeFalse();
+    }
+
+    [Fact]
+    public void Approve_Diplomat_WithSpecialRegister_Succeeds()
+    {
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
+        var person = registrationCase.RecordIdentity(
+            new IdentityDetails("Elena", "Morales", new DateOnly(1979, 3, 8), "Spanish"));
+        person.RecordBirthInformation(new BirthInformationDetails("Madrid", "Spain"));
+        registrationCase.ApplyBirthEvidenceRule(
+            person,
+            [DocumentType.BirthCertificate, DocumentType.DiplomaticCard]);
+        registrationCase.SetResidenceCategory(ResidenceCategory.Diplomat);
+        registrationCase.ApplyResidencePolicyResult(ResidencePolicyResult.Valid());
+        registrationCase.RefreshRegisterDeterminability("Spanish");
+        registrationCase.DeclareAddress(new AddressDetails(
+            "Chaussée de Louvain",
+            "10",
+            null,
+            "1030",
+            "Schaerbeek"));
+        registrationCase.WaivePoliceVerification();
+
+        registrationCase.Approve(
+            DemoOfficer,
+            RegisterTarget.SpecialRegister,
+            "Spanish",
+            DecisionAt);
+
+        registrationCase.Status.Should().Be(RegistrationCaseStatus.Approved);
+        registrationCase.SelectedRegisterTarget.Should().Be(RegisterTarget.SpecialRegister);
     }
 }

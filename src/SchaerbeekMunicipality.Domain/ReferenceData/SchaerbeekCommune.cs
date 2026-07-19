@@ -9,4 +9,11 @@ public static class SchaerbeekCommune
     public const string PostalCode = "1030";
 
     public const string Name = "Schaerbeek";
+
+    /// <summary>
+    ///     Municipality-hosted reference address for persons without a fixed abode (Phase 18 demo).
+    /// </summary>
+    public const string ReferenceStreet = "Place Colignon";
+
+    public const string ReferenceHouseNumber = "2";
 }

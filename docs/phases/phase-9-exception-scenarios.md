@@ -13,7 +13,7 @@ Phase 9 extends the Phase 7 decision state machine with **rule-driven exception 
 
 **In scope:** missing birth certificate, duplicate investigation, EU/non-EU policy deepening, refugee/temporary protection, illegal stay referral, marriage not recognised.
 
-**Deferred:** diplomat rules, homeless reference address (low priority).
+**Originally deferred:** diplomat rules, homeless reference address — **delivered in [Phase 18](./phase-18-remaining-exception-scenarios.md).**
 
 ---
 

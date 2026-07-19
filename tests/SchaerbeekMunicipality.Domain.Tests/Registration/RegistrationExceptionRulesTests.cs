@@ -69,6 +69,19 @@ public sealed class RegistrationExceptionRulesTests
     }
 
     [Fact]
+    public void IsIllegalStay_ExcludesDiplomat()
+    {
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
+        registrationCase.RecordIdentity(
+            new IdentityDetails("Amara", "Diallo", new DateOnly(1985, 2, 1), "Senegalese"));
+        registrationCase.SetResidenceCategory(ResidenceCategory.Diplomat);
+
+        var invalid = ResidencePolicyResult.Invalid("A passport or diplomatic card must be attached.");
+
+        RegistrationExceptionRules.IsIllegalStay(registrationCase, invalid).Should().BeFalse();
+    }
+
+    [Fact]
     public void CivilStatusRecord_ForeignMarriage_DefaultsToPendingRecognition()
     {
         var record = CivilStatusRecord.Create(new CivilStatusDetails(

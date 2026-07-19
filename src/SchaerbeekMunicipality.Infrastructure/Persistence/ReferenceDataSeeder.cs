@@ -31,7 +31,9 @@ internal static class ReferenceDataSeeder
             StreetReference.Create(7, "1030", "Rue de la Chasse"),
             StreetReference.Create(8, "1030", "Avenue Huart Hamoir"),
             StreetReference.Create(9, "1030", "Rue Gallait"),
-            StreetReference.Create(10, "1030", "Rue de Jérusalem")
+            StreetReference.Create(10, "1030", "Rue de Jérusalem"),
+            // Municipality reference address for persons without a fixed abode (Phase 18).
+            StreetReference.Create(11, "1030", "Place Colignon")
         };
 
         await dbContext.Streets.AddRangeAsync(streets, cancellationToken);

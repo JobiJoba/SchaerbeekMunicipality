@@ -236,6 +236,7 @@ public sealed class RegistrationIntakeStepSummariesTests
             null,
             null,
             declaredAddress,
+            AddressDeclarationType.Domicile,
             housingSituation,
             householdMembers ?? [],
             civilStatus,

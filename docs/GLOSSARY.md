@@ -58,7 +58,7 @@ Belgian municipal and immigration terms used in this project. English is primary
 | **Researcher** | `Researcher` | Research appointment |
 | **Family reunification** | `FamilyReunification` | Joining family member legally in Belgium |
 | **Highly skilled worker** | `HighlySkilledWorker` | EU Blue Card / skilled migration |
-| **Diplomat** | `Diplomat` | Special registration rules |
+| **Diplomat** | `Diplomat` | Special Register; passport or diplomatic card; police verification waived (Phase 18) |
 | **Refugee** | `Refugee` | Recognised refugee status |
 | **Subsidiary protection** | `SubsidiaryProtection` | Alternative protection status |
 | **Temporary protection** | `TemporaryProtection` | e.g. mass displacement schemes |
@@ -69,7 +69,7 @@ Belgian municipal and immigration terms used in this project. English is primary
 | Term | Description |
 |------|-------------|
 | **Domicile / official address** | Address recorded in the register; legal residence for admin purposes |
-| **Reference address** | Address used when person has no fixed domicile (homeless procedures) |
+| **Reference address** | Municipality-hosted address when person has no fixed domicile (`AddressDeclarationType.ReferenceAddress`, Phase 18); police verification still applies |
 | **Housing situation** | Owner, tenant, living with parents, student housing, shelter, hotel, … |
 | **Household composition** | List of persons living at the same address with relationships |
 

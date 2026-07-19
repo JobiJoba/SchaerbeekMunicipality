@@ -39,12 +39,13 @@ else if (_case.ResidenceCategory is null)
                             <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.NonEuWorker">Non-EU worker</MudSelectItem>
                             <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Student">Student</MudSelectItem>
                             <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Refugee">Refugee / temporary protection</MudSelectItem>
+                            <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Diplomat">Diplomat</MudSelectItem>
                         </MudSelect>
                     </MudItem>
                 </AppFormSection>
 
                 <AppInfoBox Class="mb-4">
-                    EU citizens need a passport or national ID on file. Non-EU workers and students must record a valid permit plus identity document. Refugees require a federal protection decision.
+                    EU citizens need a passport or national ID on file. Non-EU workers and students must record a valid permit plus identity document. Refugees require a federal protection decision. Diplomats need a passport or diplomatic card and are registered on the Special Register.
                 </AppInfoBox>
 
                 <AppSaveCancelBar SaveText="Set category"
@@ -80,12 +81,13 @@ else if (_editingCategory && CanEdit)
                         <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.NonEuWorker">Non-EU worker</MudSelectItem>
                         <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Student">Student</MudSelectItem>
                         <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Refugee">Refugee / temporary protection</MudSelectItem>
+                        <MudSelectItem T="ResidenceCategory?" Value="ResidenceCategory.Diplomat">Diplomat</MudSelectItem>
                     </MudSelect>
                 </MudItem>
             </AppFormSection>
 
             <AppInfoBox Class="mb-4">
-                EU citizens need a passport or national ID on file. Non-EU workers and students must record a valid permit plus identity document. Refugees require a federal protection decision.
+                EU citizens need a passport or national ID on file. Non-EU workers and students must record a valid permit plus identity document. Refugees require a federal protection decision. Diplomats need a passport or diplomatic card and are registered on the Special Register.
             </AppInfoBox>
 
             <AppSaveCancelBar SaveText="Save changes"
@@ -135,10 +137,24 @@ else
         </AppAlert>
     }
 
+    @if (_case.ResidenceCategory == ResidenceCategory.Diplomat)
+    {
+        <AppAlert Severity="Severity.Info" Title="Special Register" Class="mt-4">
+            Diplomat cases are registered on the Special Register. Attach a passport or diplomatic card. Police residence verification is waived; a federal diplomatic notification is recorded as a stub for this demo.
+        </AppAlert>
+    }
+
     @if (_case.ResidenceCategory == ResidenceCategory.EuCitizen && !_case.Checklist.LegalResidenceEstablished)
     {
         <AppAlert Severity="Severity.Warning" Title="Identity document required" Class="mt-4">
             Attach a passport or national identity card to establish legal residence for EU citizens.
+        </AppAlert>
+    }
+
+    @if (_case.ResidenceCategory == ResidenceCategory.Diplomat && !_case.Checklist.LegalResidenceEstablished)
+    {
+        <AppAlert Severity="Severity.Warning" Title="Diplomatic identity document required" Class="mt-4">
+            Attach a passport or diplomatic card to establish legal residence for diplomats.
         </AppAlert>
     }
 
@@ -484,6 +500,7 @@ else
             ResidenceCategory.NonEuWorker => "Non-EU worker",
             ResidenceCategory.Student => "Student",
             ResidenceCategory.Refugee => "Refugee / temporary protection",
+            ResidenceCategory.Diplomat => "Diplomat",
             _ => "Select category"
         };
     }

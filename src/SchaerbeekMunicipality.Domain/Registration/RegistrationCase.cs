@@ -7,6 +7,7 @@ using SchaerbeekMunicipality.Domain.Immigration.Policies;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.Police;
 using SchaerbeekMunicipality.Domain.ReferenceData;
+using ResidenceCategoryCode = SchaerbeekMunicipality.Domain.Immigration.ResidenceCategory;
 
 namespace SchaerbeekMunicipality.Domain.Registration;
 
@@ -36,6 +37,8 @@ public sealed class RegistrationCase
     public ImmigrationDecisionReference? ImmigrationDecision { get; private set; }
 
     public BelgianAddress? DeclaredAddress { get; private set; }
+
+    public AddressDeclarationType AddressDeclarationType { get; private set; } = AddressDeclarationType.Domicile;
 
     public HousingSituation? HousingSituation { get; private set; }
 
@@ -177,7 +180,11 @@ public sealed class RegistrationCase
         EnsureIntakeDataEditable(nameof(SetResidenceCategory));
         EnsureIdentityEstablished("residence information");
 
+        var previous = ResidenceCategory;
         ResidenceCategory = category;
+
+        if (previous == ResidenceCategoryCode.Diplomat && category != ResidenceCategoryCode.Diplomat)
+            Checklist.ClearAddressConfirmed();
     }
 
     public void RecordBirthInformation(Person person, BirthInformationDetails details)
@@ -282,8 +289,25 @@ public sealed class RegistrationCase
             details.Box,
             details.PostalCode,
             details.Municipality);
-
+        AddressDeclarationType = AddressDeclarationType.Domicile;
         Checklist.MarkAddressDeclared();
+        Checklist.ClearAddressConfirmed();
+    }
+
+    public void DeclareReferenceAddress()
+    {
+        EnsureIntakeDataEditable(nameof(DeclareReferenceAddress));
+        EnsureIdentityEstablished("address information");
+
+        DeclaredAddress = BelgianAddress.Create(
+            SchaerbeekCommune.ReferenceStreet,
+            SchaerbeekCommune.ReferenceHouseNumber,
+            null,
+            SchaerbeekCommune.PostalCode,
+            SchaerbeekCommune.Name);
+        AddressDeclarationType = AddressDeclarationType.ReferenceAddress;
+        Checklist.MarkAddressDeclared();
+        Checklist.ClearAddressConfirmed();
     }
 
     public void RecordHousingSituation(HousingSituation situation)
@@ -304,9 +328,29 @@ public sealed class RegistrationCase
             throw new InvalidRegistrationTransitionException(
                 $"Cannot request police verification while the case is in status '{Status}'.");
 
+        if (ResidenceCategory == ResidenceCategoryCode.Diplomat)
+            throw new InvalidRegistrationTransitionException(
+                "Police verification is waived for diplomat cases. Use waive police verification instead.");
+
         EnsurePoliceVerificationPrerequisites();
 
         Status = RegistrationCaseStatus.AwaitingPoliceVerification;
+    }
+
+    public void WaivePoliceVerification()
+    {
+        EnsureIntakeDataEditable(nameof(WaivePoliceVerification));
+
+        if (ResidenceCategory != ResidenceCategoryCode.Diplomat)
+            throw new InvalidRegistrationTransitionException(
+                "Police verification can only be waived for diplomat cases.");
+
+        EnsurePoliceVerificationPrerequisites();
+
+        Checklist.MarkAddressConfirmed();
+
+        if (Status == RegistrationCaseStatus.Intake)
+            Status = RegistrationCaseStatus.UnderReview;
     }
 
     public void ApplyPoliceVerificationResult(PoliceVerificationResult result)
