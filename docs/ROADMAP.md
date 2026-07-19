@@ -31,9 +31,17 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 15 | Reporting dashboard | ✅ Complete |
 | 16 | Person file (read model) | ✅ Complete |
 | 17 | Post-registration amendments | ✅ Complete |
-| 18 | Remaining exception scenarios | Planned (optional) |
+| 18 | Remaining exception scenarios | ✅ Complete |
+| 19 | Life events & citizen services (scope) | ✅ Complete |
+| 20 | Death declaration & radiation | Planned |
+| 21 | Certificate desk (on-demand) | Planned |
+| 22 | Inter-municipal move & emigration | Planned |
+| 23 | Residence card production | Planned |
+| 24 | Marriage / partnership declaration | Planned |
+| 25 | Investigation workspace | Planned |
+| 26 | Cross-workflow polish | Planned |
 
-Delivery notes for completed phases: [phases/](./phases/).
+Delivery notes for completed phases: [phases/](./phases/). Second-horizon plan: [phase-19](./phases/phase-19-life-events-citizen-services.md).
 
 ---
 
@@ -488,6 +496,8 @@ Each adds domain rules + UI branch + dedicated tests.
 
 The original optional backlog is split into **Phases 12–18**. Multi-language UI (FR / NL) is **not planned**.
 
+A further backlog (life events & citizen services) is defined in **Phase 19** and sequenced as **Phases 20–26**.
+
 ---
 
 ## Phase 12 — Birth declaration ✅
@@ -580,6 +590,100 @@ The original optional backlog is split into **Phases 12–18**. Multi-language U
 **Goal:** Phase 9 deferred slices — diplomat register rules and homeless reference address.
 
 **Demo:** Diplomat path to special register (police waived); reference address satisfies domicile checklist; police still applies to reference site.
+
+---
+
+## Phase 19 — Life events & citizen services (scope definition) ✅
+
+**Status:** Complete — see [phases/phase-19-life-events-citizen-services.md](./phases/phase-19-life-events-citizen-services.md).
+
+**Goal:** Identify and sequence the **second horizon** after Phases 12–18 — death/radiation, certificate desk, inter-municipal departure, residence cards, marriage declaration, investigations, and cross-workflow polish.
+
+The backlog is split into **Phases 20–26**. Multi-language UI (FR / NL) remains **not planned**.
+
+---
+
+## Phase 20 — Death declaration & radiation
+
+**Status:** Planned — see [phases/phase-20-death-declaration-radiation.md](./phases/phase-20-death-declaration-radiation.md).
+
+**Goal:** Lifecycle counterpart to birth — record death, radiate person from the active register, update household, stub outbound notifications.
+
+**Demo:** NR lookup → death case → confirm → person file shows deceased; household membership removed.
+
+**Tests:** Domain guards + integration confirm path; review dashboard includes death cases.
+
+---
+
+## Phase 21 — Certificate desk (on-demand)
+
+**Status:** Planned — see [phases/phase-21-certificate-desk.md](./phases/phase-21-certificate-desk.md).
+
+**Goal:** Issue residence / household / register-extract certificates from current person state — not only after a registration case closes.
+
+**Demo:** Person file → issue household composition PDF → issuance appears in history and desk list.
+
+**Tests:** Block unregistered persons; composition reflects post-COA household.
+
+---
+
+## Phase 22 — Inter-municipal move & emigration
+
+**Status:** Planned — see [phases/phase-22-inter-municipal-move-emigration.md](./phases/phase-22-inter-municipal-move-emigration.md).
+
+**Goal:** Residents leaving Schaerbeek — transfer to another Belgian commune or emigrate abroad (Phase 13 follow-up).
+
+**Demo:** Move to Ixelles → domicile cleared + destination notification stub; emigrate → status blocks new residence certificates.
+
+**Tests:** Regression on intra-municipal COA; departure clears domicile.
+
+---
+
+## Phase 23 — Residence card production
+
+**Status:** Planned — see [phases/phase-23-residence-card-production.md](./phases/phase-23-residence-card-production.md).
+
+**Goal:** IDEA Phase 21 — order / produce / collect residence cards (distinct from passport/eID in Phase 14).
+
+**Demo:** Non-EU registration complete → residence card request → production → issued stub with PIN/PUK note.
+
+**Tests:** Issue requires ready-for-collection; card type suggestion from permit/category.
+
+---
+
+## Phase 24 — Marriage / partnership declaration
+
+**Status:** Planned — see [phases/phase-24-marriage-partnership-declaration.md](./phases/phase-24-marriage-partnership-declaration.md).
+
+**Goal:** First-class civil-status life event for two parties, including foreign-act recognition (Phase 9).
+
+**Demo:** Two registered residents marry → both person files updated; foreign certificate → suspend until recognised.
+
+**Tests:** Confirm updates both parties; not-recognised path leaves status unchanged.
+
+---
+
+## Phase 25 — Investigation workspace
+
+**Status:** Planned — see [phases/phase-25-investigation-workspace.md](./phases/phase-25-investigation-workspace.md).
+
+**Goal:** Actionable queue for Phase 9 duplicate-identity flags — compare, link, dismiss, or escalate.
+
+**Demo:** Duplicate warning → open investigation → link existing NR person → registration unblocked.
+
+**Tests:** Approve blocked while investigation open; dismiss requires reason.
+
+---
+
+## Phase 26 — Cross-workflow polish & demo hardening
+
+**Status:** Planned — see [phases/phase-26-cross-workflow-polish.md](./phases/phase-26-cross-workflow-polish.md).
+
+**Goal:** Deferred UX across contexts — unregistered parent banner, person-file family links, reference→domicile COA, NR unlink/re-link, Phase 18 demo seeds.
+
+**Demo:** Birth parent CTA → registration; reference-address resident converts to real domicile via COA; wrong NR link corrected.
+
+**Tests:** One integration test per selected polish slice; existing suites stay green.
 
 ---
 

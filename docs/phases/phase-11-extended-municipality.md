@@ -41,6 +41,8 @@ Phase 11 was an **umbrella planning phase** — not a single delivery slice. It 
 
 Phases 15 and 16 can swap if a consolidated citizen view is needed before analytics.
 
+**Follow-on:** After Phases 12–18, the next backlog is defined in [Phase 19 — Life events & citizen services](./phase-19-life-events-citizen-services.md) (Phases 20–26).
+
 ---
 
 ## Carries forward

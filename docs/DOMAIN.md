@@ -277,7 +277,7 @@ Each IDEA exception becomes a testable slice or domain rule:
 | Diplomat | Special Register; diplomatic card / passport; police waived | [18](./phases/phase-18-remaining-exception-scenarios.md) |
 | Homeless | Municipality reference address when no fixed abode | [18](./phases/phase-18-remaining-exception-scenarios.md) |
 
-See [ROADMAP.md](./ROADMAP.md) for delivery status.
+See [ROADMAP.md](./ROADMAP.md) for delivery status. Second-horizon life events and citizen services are sequenced in [Phase 19](./phases/phase-19-life-events-citizen-services.md) (Phases 20–26).
 
 ---
 

@@ -22,12 +22,20 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 10 | Azure deployment | Complete | [phase-10-azure-deployment.md](./phase-10-azure-deployment.md) |
 | 11 | Extended municipality (scope definition) | Complete | [phase-11-extended-municipality.md](./phase-11-extended-municipality.md) |
 | 12 | Birth declaration | Complete | [phase-12-birth-declaration.md](./phase-12-birth-declaration.md) |
-| 13 | Change of address | Planned | [phase-13-change-of-address.md](./phase-13-change-of-address.md) |
-| 14 | Passport / ID card request | Planned | [phase-14-passport-id-request.md](./phase-14-passport-id-request.md) |
+| 13 | Change of address | Complete | [phase-13-change-of-address.md](./phase-13-change-of-address.md) |
+| 14 | Passport / ID card request | Complete | [phase-14-passport-id-request.md](./phase-14-passport-id-request.md) |
 | 15 | Reporting dashboard | Complete | [phase-15-reporting-dashboard.md](./phase-15-reporting-dashboard.md) |
 | 16 | Person file (read model) | Complete | [phase-16-person-file.md](./phase-16-person-file.md) |
 | 17 | Post-registration amendments | Complete | [phase-17-post-registration-amendments.md](./phase-17-post-registration-amendments.md) |
-| 18 | Remaining exception scenarios | Planned (optional) | [phase-18-remaining-exception-scenarios.md](./phase-18-remaining-exception-scenarios.md) |
+| 18 | Remaining exception scenarios | Complete | [phase-18-remaining-exception-scenarios.md](./phase-18-remaining-exception-scenarios.md) |
+| 19 | Life events & citizen services (scope) | Complete | [phase-19-life-events-citizen-services.md](./phase-19-life-events-citizen-services.md) |
+| 20 | Death declaration & radiation | Planned | [phase-20-death-declaration-radiation.md](./phase-20-death-declaration-radiation.md) |
+| 21 | Certificate desk (on-demand) | Planned | [phase-21-certificate-desk.md](./phase-21-certificate-desk.md) |
+| 22 | Inter-municipal move & emigration | Planned | [phase-22-inter-municipal-move-emigration.md](./phase-22-inter-municipal-move-emigration.md) |
+| 23 | Residence card production | Planned | [phase-23-residence-card-production.md](./phase-23-residence-card-production.md) |
+| 24 | Marriage / partnership declaration | Planned | [phase-24-marriage-partnership-declaration.md](./phase-24-marriage-partnership-declaration.md) |
+| 25 | Investigation workspace | Planned | [phase-25-investigation-workspace.md](./phase-25-investigation-workspace.md) |
+| 26 | Cross-workflow polish | Planned | [phase-26-cross-workflow-polish.md](./phase-26-cross-workflow-polish.md) |
 
 When a phase is completed, add delivery notes or update the planning document with what was actually built.
 
