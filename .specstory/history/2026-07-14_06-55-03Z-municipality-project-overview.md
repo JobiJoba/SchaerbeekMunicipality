@@ -44,11 +44,37 @@ I mostly use Auto mode and from times to times Fable when I still have credits :
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+I'll add a new README section covering the personal story behind the project, the implementation approach, and the user's experience with AI tools like Cursor.
+
+First, I'll read the existing README to understand its structure and find the right place for the new section.</details></think>
+
+_**Agent (default)**_
+
+I'll read the main README to see its structure, then add a section with your story and approach.
+
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **10** results in **1** directory</summary>
 
-No results found
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (10 files)
+
+| File |
+|------|
+| `tests/SchaerbeekMunicipality.E2E.Tests/README.md` |
+| `docs/design-system/README.md` |
+| `docs/features/registration/README.md` |
+| `README.md` |
+| `deploy/azure/README.md` |
+| `docs/features/README.md` |
+| `deploy/azure/sqlite/README.md` |
+| `docs/adr/README.md` |
+| `deploy/azure/postgres/README.md` |
+| `docs/phases/README.md` |
+
 </details>
 </tool-use>
 
@@ -59,8 +85,13 @@ No results found
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+Reading the main README.md to understand its current structure.</details></think>
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
 
 </details>
 </tool-use>
@@ -69,3 +100,325 @@ _**Agent (default)**_
 <summary>Tool use: **read_file_v2**</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I'll add a new README section telling the story of moving back to Belgium with a bi-national family and the bureaucratic delays. I'll also include thoughts on Cursor and the fact that no code was written directly.
+
+I'll polish the English while keeping the original voice. The section will likely sit right after the intro paragraph or before "Try it live," since it's motivational rather than technical.</details></think>
+
+_**Agent (default)**_
+
+Checking for SpecStory references and whether the roadmap progress line needs updating.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.{md,json}",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "SpecStory|specstory"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "SpecStory|specstory",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_19-04-48Z-change-of-address-access-error.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-13_19-20-41Z-certificate-loading-error.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-05_11-47-10Z-dbcontext-threading-issue.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": ".specstory/history/2026-07-06_19-26-02Z-merge-conflict-resolution.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_19-18-42Z-e2e-test-run-failure.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": ".specstory/history/2026-07-05_17-36-40Z-github-project-sync-issue.md"
+    }
+  ],
+  "totalFiles": 6,
+  "totalMatches": 508
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether .specstory is tracked or ignored in git, and deciding what the README should reference.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.gitignore</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **61** results in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (61 files)
+
+| File |
+|------|
+| `.specstory/history/2026-07-14_06-55-03Z-municipality-project-overview.md` |
+| `.specstory/statistics.json` |
+| `.specstory/history/2026-07-14_06-46-04Z-phase-17-implementation.md` |
+| `.specstory/history/2026-07-14_06-32-06Z-github-build-error-resolution.md` |
+| `.specstory/history/2026-07-13_20-31-37Z-jb-inspecttool-warnings.md` |
+| `.specstory/history/2026-07-13_19-39-40Z-to-do-implementation-tasks.md` |
+| `.specstory/history/2026-07-13_19-11-49Z-code-duplication-in-domain-classes.md` |
+| `.specstory/history/2026-07-13_17-49-53Z-document-completion-update.md` |
+| `.specstory/.project.json` |
+| `.specstory/history/2026-07-13_19-08-08Z-enum-display-formatting.md` |
+| `.specstory/history/2026-07-13_19-24-55Z-national-register-linking-issue.md` |
+| `.specstory/history/2026-07-13_19-20-41Z-certificate-loading-error.md` |
+| `.specstory/history/2026-07-13_18-55-54Z-person-lookup-search-behavior.md` |
+| `.specstory/history/2026-07-12_19-18-42Z-e2e-test-run-failure.md` |
+| `.specstory/history/2026-07-12_19-11-52Z-ci-build-test-failure.md` |
+| `.specstory/history/2026-07-12_19-07-27Z-phase-16-implementation.md` |
+| `.specstory/history/2026-07-12_19-04-48Z-change-of-address-access-error.md` |
+| `.specstory/history/2026-07-12_18-49-38Z-dashboard-access-for-officers.md` |
+| `.specstory/history/2026-07-12_18-55-29Z-github-build-failure.md` |
+| `.specstory/history/2026-07-12_12-32-23Z-case-lock-button-issues.md` |
+| `.specstory/history/2026-07-12_12-27-28Z-fluent-assertions-license-query.md` |
+| `.specstory/history/2026-07-12_12-23-19Z-seed-data-for-workflows.md` |
+| `.specstory/history/2026-07-12_11-54-25Z-phase-14-implementation.md` |
+| `.specstory/history/2026-07-12_11-30-45Z-aspire-local-launch-issue.md` |
+| `.specstory/history/2026-07-12_11-27-34Z-azure-deployment-url-consistency.md` |
+| `.specstory/history/2026-07-12_11-25-25Z-dependency-version-check.md` |
+| `.specstory/history/2026-07-12_11-09-34Z-azure-deployment-socket-exception.md` |
+| `.specstory/history/2026-07-12_11-03-08Z-documentation-update-steps.md` |
+| `.specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md` |
+| `.specstory/history/2026-07-11_18-50-24Z-unauthorized-access-error.md` |
+| `.specstory/history/2026-07-11_18-39-55Z-phase-5a-to-do-implementation.md` |
+| `.specstory/history/2026-07-11_18-33-16Z-phase-4-monolith-retirement.md` |
+| `.specstory/history/2026-07-11_18-24-32Z-phase-3-ui-migration.md` |
+| `.specstory/history/2026-07-11_18-19-00Z-phase-2-bff-client-tasks.md` |
+| `.specstory/history/2026-07-11_18-08-15Z-phase-1-backend-foundation.md` |
+| `.specstory/history/2026-07-11_17-50-18Z-municipality-folder-update.md` |
+| `.specstory/history/2026-07-11_17-28-07Z-appdatepicker-code-improvements.md` |
+| `.specstory/history/2026-07-11_17-45-01Z-outbound-notification-error.md` |
+| `.specstory/history/2026-07-10_09-35-33Z-datepicker-component-creation.md` |
+| `.specstory/history/2026-07-09_19-13-47Z-phase-13-summary.md` |
+| `.specstory/history/2026-07-10_09-35-33Z-mudblazor-date-validation-component.md` |
+| `.specstory/history/2026-07-07_19-14-02Z-phase-12-implementation.md` |
+| `.specstory/history/2026-07-07_18-58-10Z-phase-11-implementation-summary.md` |
+| `.specstory/history/2026-07-06_19-47-38Z-document-upload-error.md` |
+| `.specstory/history/2026-07-06_18-43-21Z-phase-10-overview.md` |
+| `.specstory/history/2026-07-03_18-45-43Z-roadmap-and-phase-0.md` |
+| `.specstory/history/2026-07-03_18-00-53Z-municipality-project-architecture.md` |
+| `.specstory/history/2026-07-06_19-26-02Z-merge-conflict-resolution.md` |
+| `.specstory/history/2026-07-05_19-32-21Z-phase-9-implementation-details.md` |
+| `.specstory/history/2026-07-05_18-57-28Z-case-history-and-decision-box.md` |
+| `.specstory/history/2026-07-05_18-27-04Z-case-access-and-locking-rules.md` |
+| `.specstory/history/2026-07-05_18-23-47Z-difference-between-officer-roles.md` |
+| `.specstory/history/2026-07-05_18-18-58Z-registration-feature-discussion.md` |
+| `.specstory/history/2026-07-05_17-36-40Z-github-project-sync-issue.md` |
+| `.specstory/history/2026-07-05_17-31-49Z-phase-8-overview.md` |
+| `.specstory/history/2026-07-05_17-20-48Z-resetting-all-cases.md` |
+| `.specstory/history/2026-07-05_11-47-10Z-dbcontext-threading-issue.md` |
+| `.specstory/history/2026-07-05_11-32-39Z-phase-7-development.md` |
+| `.specstory/history/2026-07-05_11-21-15Z-non-eu-worker-visa-options.md` |
+| `.specstory/history/2026-07-05_08-24-31Z-collapsible-categories-improvement.md` |
+| `.specstory/cli/config.toml` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+A relevant SpecStory file exists: `2026-07-14_06-55-03Z-municipality-project-overview.md`. It may relate to the current conversation.
+
+I'll link to `.specstory/history/` to showcase the AI conversation history. The new README section will cover the personal story, the AI-first workflow, and a brief note on Cursor.
+
+The new section belongs between the introduction and the "Try it live" block. I am fixing grammar and vocabulary, such as changing "tooks" to "took" and "bi-nationality" to "dual nationality".</details></think>
+
+_**Agent (default)**_
+
+Adding a polished "Why & how" section after the intro, preserving your voice and story.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Verifying the SpecStory URL before adding it to the README.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search">
+<details>
+<summary>Tool use: **web_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "searchTerm": "SpecStory Cursor AI chat history tool website"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [Cursor](https://docs.specstory.com/integrations/cursor)\n2. [Overview](https://docs.specstory.com/)\n3. [Install our extensions](https://docs.specstory.com/specstory/introduction)\n4. [Features](https://docs.specstory.com/specstory/features)\n5. [Settings - SpecStory](https://specstory.mintlify.app/integrations/terminal-coding-agents/settings)\n\nSynthesis:\nSpecStory is a tool that captures your AI coding assistant conversations—including Cursor, GitHub Copilot, and various CLI agents—into searchable, versioned Markdown files [1][2][3]. It stores these files locally in your project folder under.specstory/history/ to preserve context, reasoning, and design decisions [1][4][5].\n\nTo install it for Cursor, search for SpecStory in the Cursor extensions marketplace (Ctrl/Cmd+Shift+X) and install it directly within the editor [1][6]. Use the command palette (Ctrl/Cmd+Shift+P) to save chats manually or sync them to the SpecStory cloud for cross-project search [1][7][5].\n\nHighlights:\n\u003cresult id=\"1\"\u003e\n\u003ctitle\u003eCursor\u003c/title\u003e\n\u003curl\u003ehttps://docs.specstory.com/integrations/cursor\u003c/url\u003e\n\u003ccontent\u003eSpecStory integrates seamlessly with Cursor. Cursor already helps developers move faster with inline edits, multi-line completions, and codebase chat. SpecStory adds the missing layer by capturing why the changes were made.\n...\nWith SpecStory enabled, every AI conversation in Cursor is auto-saved as Markdown in your project. Your reasoning, tradeoffs, and design decisions live alongside your code: versioned, reusable, and shareable.\n...\n## Install the\n...\n1. Open Cursor.\n2. Go to Extensions Marketplace (&#96;Ctrl/Cmd+Shift+X&#96;).\n3. Search for SpecStory and click Install.\n4. Verify installation:\n5. - Open the Command Palette (&#96;Ctrl/Cmd+Shift+P&#96;).\n...\n- Type&#96;SpecStory&#96;, the commands should appear.\n...\n- Start a chat with Cursor’s AI.\n- Open your project folder.\n- You should now see a new&#96;.specstory/history/&#96; directory.\n- Inside, you should see a Markdown file of your session, named with a timestamp.\n...\n- Auto-save: Every AI conversations in Cursor are automatically stored in&#96;.specstory/history/&#96; as clean Markdown.\n- Manual saves: From the Command Palette, run&#96;SpecStory: Save AI Chat History&#96; to cherry-pick and combine conversations.\n- Share conversations with a URL: Use&#96;SpecStory: Share AI Chat History&#96; to generate a private, anonymous link at&#96;share.specstory.com&#96;.\n\n- Derived rules for AI: SpecStory can extract project-level rules and custom instructions from your chats, feeding them back into Cursor to improve suggestions.\n...\nTool coverage includes Cursor tool v2 handlers (edit/read/terminal), plus Read/Write, Apply Patch, Grep, Glob, Ripgrep, Read Lints, and MultiEdit in Markdown exports.\n...\n- Commit your history: Include&#96;.specstory/history/&#96; in your repo so teammates can review reasoning in PRs.\n- Use manual saves before big changes: Preserve the conversation context before accepting multi-line or agent-driven edits.\n- Leverage derived rules: Cursor’s Project Rules evolve automatically when SpecStory is active.\n...\ns built-\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"2\"\u003e\n\u003ctitle\u003eOverview\u003c/title\u003e\n\u003curl\u003ehttps://docs.specstory.com/\u003c/url\u003e\n\u003ccontent\u003eSpecStory is the intent layer for modern software development. It automatically saves your AI conversations across tools as clean markdown. This preserves the reasoning, decisions, and design tradeoffs behind your code, turning the conversations into versioned, reusable, shareable, and git-friendly knowledge.\n...\n### I use Cursor IDE\n...\nInstall the SpecStory extension and capture AI chats automatically\n...\nSave all your context from Claude Code, Codex, Droid, Cursor CLI, or Gemini CLI\n...\n## What SpecStory does\n...\n- Preserve intent: Automatically capture AI conversations in Markdown.\n- Make knowledge reusable: Search, reference, and build on prior problem-solving.\n- Share selectively: Publish a conversation as a URL when you choose.\n- Derive rules for AI: Generate and maintain project rules from your previous chats.\n- Stay private: Nothing leaves your machine unless you explicitly share or opt in.\n...\n- Works where you already code: Cursor, VS Code + Copilot, Claude Code, Cursor CLI, Codex CLI and Gemini CLI.\n- Git-friendly Markdown: History lives in your repo alongside code.\n- Frictionless start: No sign-in required for auto-save and manual save.\n- Future-proof: Designed to scale from individuals to teams to orgs.\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"3\"\u003e\n\u003ctitle\u003eInstall our extensions\u003c/title\u003e\n\u003curl\u003ehttps://docs.specstory.com/specstory/introduction\u003c/url\u003e\n\u003ccontent\u003eThe SpecStory Extension(changelog) supports both Cursor and GitHub Copilot. For terminal agents like Claude Code, Cursor CLI, Codex CLI, and Droid CLI, we offer a CLI wrapper (changelog) that captures your sessions.\n...\nSpecStory saves, organizes, and makes all your AI chats searchable in structured Markdown. Never lose a great solution, easily share interactions, and use conversation history to refine Copilot and Cursor with custom instructions and project rules.\n...\n### Extensions for VSCode \u0026 Cursor\n...\nOur VSIX extension works with both VSCode (with GitHub Copilot) and Cursor. Install directly from the Extension Marketplace in your preferred editor.\n...\n1. Open VSCode with GitHub Copilot installed and activated.\n2. Search for SpecStory in the Extensions Marketplace (Ctrl/CMD-Shift-X).\n3. Click Install. Consult our Changelog to make sure you're on the latest version.\n4. Once installed, SpecStory automatically saves your Copilot chats to the&#96;.specstory&#96; folder in your project.\n...\n### SpecStory CLI for Terminal Agents\n...\nThe SpecStory CLI auto-generates markdown files from your chat sessions with terminal agents (e.g. Claude Code, Cursor CLI, Codex CLI, Droid CLI, Gemini CLI, etc.). It runs the terminal agent while saving your conversations to&#96;.specstory/history/&#96; in your project.\n...\n&#96;&#96;&#96;\n# Run Claude Code through SpecStory wrapper\nspecstory run claude\n...\n# Run Cursor CLI through SpecStory wrapper\nspecstory run cursor\n...\nWhy this will\n...\nThink of SpecStory as your AI conversation time machine.\n...\n- Auto-save your conversations into digestible Markdown format (readable by both humans AND machines).\n- Make your vibe-coding adventures shareable via URLs at share.specstory.com.\n- Auto-magically derive Copilot custom instructions and Cursor project rules to improve agent-first coding performance.\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"4\"\u003e\n\u003ctitle\u003eFeatures\u003c/title\u003e\n\u003curl\u003ehttps://docs.specstory.com/specstory/features\u003c/url\u003e\n\u003ccontent\u003e## Cursor and VS Code Extension\n...\n### Auto-save your AI conversations\n...\nSpecStory automatically saves chat history in your project's&#96;.specstory&#96; folder. Each conversation is stored as a separate Markdown file so you retain the full context of every interaction.\n...\n- Autosave is enabled by default but can be disabled with the&#96;specstory.autoSave&#96; setting.\n- Runs quietly in the background without interrupting your work.\n- Preserves the entire conversation, including code blocks and diffs.\n- Works in local workspaces as well as SSH, Dev Containers, and WSL.\n...\n### Manual save and export\n...\nNeed more control over what gets stored? Open the command palette (Cmd/Ctrl+Shift+P) and run&#96;SpecStory: Save AI Chat History&#96; to:\n...\n- Select specific conversations to persist.\n- Combine multiple conversations into a single Markdown file.\n...\n### Share and annotate conversations\n...\nGenerate a secure public link by running&#96;SpecStory: Share AI Chat History&#96; from the command palette.\n...\n- Receive a unique, shareable URL instantly—no account required.\n- Choose which conversations to include before publishing.\n- Edit the shared page with additional Markdown, images, or embedded videos.\n- Link a GitHub URL so reviewers can jump to the related work.\n- Cookie-based auth allows you to update or remove shares later.\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"5\"\u003e\n\u003ctitle\u003eSettings - SpecStory\u003c/title\u003e\n\u003curl\u003ehttps://specstory.mintlify.app/integrations/terminal-coding-agents/settings\u003c/url\u003e\n\u003ccontent\u003e\u003e ## Documentation Index\n\u003e \n\u003e Fetch the complete documentation index at: https://specstory.mintlify.site/llms.txt\n...\n\u003e Use this file to discover all available pages before exploring further.\n...\nThe SpecStory CLI wrapper works out of the box with minimal setup.\n...\n| Command | Description | Examples |\n| --- | --- | --- |\n| &#96;help&#96; | Show help information | &#96;specstory help&#96; |\n| &#96;specstory help run&#96; | | |\n| &#96;check&#96; | Verify that terminal agents are installed and accessible to SpecStory | &#96;specstory check&#96; |\n| &#96;run&#96; | Launch Claude Code, Cursor CLI, Codex CLI or Gemini CLI with autosave to local Markdown (and SpecStory Cloud if logged in) | &#96;specstory run claude&#96; |\n| &#96;specstory run cursor&#96; | | |\n| &#96;specstory run codex&#96; | | |\n| &#96;specstory run gemini&#96; | | |\n| &#96;sync&#96; | Convert existing sessions to Markdown and optionally sync them to SpecStory Cloud | &#96;specstory sync&#96; |\n| &#96;specstory sync -s &#96; | | |\n| &#96;login&#96; | Authenticate with SpecStory Cloud | &#96;specstory login&#96; |\n| &#96;logout&#96; | Sign out of SpecStory Cloud | &#96;specstory logout&#96; |\n| &#96;version&#96; | Display the current SpecStory version | &#96;specstory version&#96; |\n...\nclaude --danger\n...\n-skip-permissions\"&#96;\n...\nto Markdown | &#96;\n...\nstory sync claude\n...\ns &#96; |\n...\nconsole&#96; or\n...\nSuppress non\n...\nspecstory sync\n...\n| &#96;--no-cloud-sync&#96; |\n...\ncloud sync even when authenticated | &#96;specstory sync --no-cloud-sync&#96; |\n...\n| &#96;--no-usage-analytics&#96; | Opt out of usage analytics | &#96;specstory run cursor --no-usage-analytics&#96; |\n| &#96;--\n...\n-version-check&#96; | Skip the version check | &#96;specstory run codex --no-version\n...\ncheck&#96; |\n...\n--output-dir\n...\n- Session storage: &#96;.specstory/history/&#96; in the working directory.\n- Cloud sync: Enabled when logged in with &#96;specstory login&#96; unless &#96;--no-cloud-sync&#96; is provided.\n- Session sources: Reads from locations like &#96;~/.claude/projects/&#96; and &#96;~/.cursor/chats/&#96;.\n- Output format: Markdown files stamped with the session timestamp.\u003c/content\u003e\n\u003c/result\u003e",
+      "title": "Web search results"
+    }
+  ],
+  "rejected": false
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The main website appears to be specstory.com or docs.specstory.com.
+
+The link will point to https://docs.specstory.com/.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The new section has been added to the README. I am reviewing the final result to present it.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The story section is ready. It covers the Belgian bureaucracy tale, the Cursor workflow, and the no-code approach.</details></think>
+
+_**Agent (default)**_
+
+Added a **Why & how** section to `README.md`, placed right after the intro and before **Try it live**. It keeps your story and voice, with light editing for clarity and flow.
+
+The section has four subsections:
+
+1. **The story** — Moving back to Belgium, the bureaucracy wall, 3 months for the first appointment, missing document, 2 more weeks, 3 hours at the desk.
+2. **From frustration to project** — IT background, Vertical Slice learning goal, “why not reproduce the municipal system?” instead of a TODO app.
+3. **How it is built** — Prompt-only workflow (idea → AI docs → constraints → slices), with links to [ROADMAP](./docs/ROADMAP.md), [IDEA.md](./IDEA.md), [docs/phases/](./docs/phases/), and [`.specstory/history/`](./.specstory/history/).
+4. **A word about Cursor** — Comparison with other tools, Auto + Fable, no hand-written code.
+
+If you want changes, I can easily adjust tone (more personal vs. more formal), add your municipality name, or mention Phase 17 register amendment work in the “how it is built” part.

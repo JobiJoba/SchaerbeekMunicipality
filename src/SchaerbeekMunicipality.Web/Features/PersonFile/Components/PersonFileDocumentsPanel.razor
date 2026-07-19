@@ -1,0 +1,118 @@
+@using SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile
+@inject NavigationManager Navigation
+
+@if (Documents.Count == 0)
+{
+    <AppEmptyState Title="No documents"
+                   Description="Uploaded supporting documents from registration, amendments, and other workflows will appear here."/>
+}
+else
+{
+    <AppDataTable Items="Documents"
+                  T="PersonFileDocumentDto"
+                  Caption="Uploaded documents">
+        <HeaderContent>
+            <MudTh>Document</MudTh>
+            <MudTh>Type</MudTh>
+            <MudTh>Source</MudTh>
+            <MudTh>Uploaded</MudTh>
+            <MudTh></MudTh>
+        </HeaderContent>
+        <RowTemplate Context="document">
+            <MudTd DataLabel="Document">
+                <MudButton Variant="Variant.Text"
+                           Size="Size.Small"
+                           Class="pa-0 text-transform-none"
+                           OnClick="@(() => SelectDocument(document.DocumentId))">
+                    @document.FileName
+                </MudButton>
+            </MudTd>
+            <MudTd DataLabel="Type">@document.DocumentType</MudTd>
+            <MudTd DataLabel="Source">
+                <MudStack Spacing="0">
+                    <MudText Typo="Typo.body2">@document.Workflow</MudText>
+                    <MudButton Variant="Variant.Text"
+                               Size="Size.Small"
+                               Class="pa-0 align-self-start"
+                               Href="@document.CaseDetailPath">
+                        Open case
+                    </MudButton>
+                </MudStack>
+            </MudTd>
+            <MudTd DataLabel="Uploaded">@document.UploadedAt.LocalDateTime.ToString("g")</MudTd>
+            <MudTd>
+                <MudButton Variant="Variant.Text"
+                           Size="Size.Small"
+                           StartIcon="@Icons.Material.Outlined.Visibility"
+                           OnClick="@(() => SelectDocument(document.DocumentId))">
+                    Preview
+                </MudButton>
+                <MudButton Variant="Variant.Text"
+                           Size="Size.Small"
+                           StartIcon="@Icons.Material.Outlined.Download"
+                           Href="@GetAbsoluteDownloadUrl(document)"
+                           Target="_blank">
+                    Download
+                </MudButton>
+            </MudTd>
+        </RowTemplate>
+    </AppDataTable>
+
+    @if (_selectedDocument is not null)
+    {
+        <AppSection Class="mt-4">
+            <AppCard Title="Preview" Outlined="true">
+                <HeaderActions>
+                    <MudButton Variant="Variant.Text"
+                               Size="Size.Small"
+                               StartIcon="@Icons.Material.Outlined.Download"
+                               Href="@GetAbsoluteDownloadUrl(_selectedDocument)"
+                               Target="_blank">
+                        Download
+                    </MudButton>
+                </HeaderActions>
+                <ChildContent>
+                    <MudText Typo="Typo.caption" Color="Color.Secondary" Class="mb-2">
+                        @_selectedDocument.DocumentType — @_selectedDocument.Workflow
+                    </MudText>
+                    <AppFilePreview Url="@GetAbsoluteDownloadUrl(_selectedDocument)"
+                                    FileName="@_selectedDocument.FileName"/>
+                </ChildContent>
+            </AppCard>
+        </AppSection>
+    }
+}
+
+@code {
+    [Parameter] [EditorRequired] public IReadOnlyList<PersonFileDocumentDto> Documents { get; set; } = [];
+
+    private Guid? _selectedDocumentId;
+
+    private PersonFileDocumentDto? _selectedDocument =>
+        _selectedDocumentId is null
+            ? null
+            : Documents.FirstOrDefault(d => d.DocumentId == _selectedDocumentId);
+
+    protected override void OnParametersSet()
+    {
+        if (Documents.Count == 0)
+        {
+            _selectedDocumentId = null;
+            return;
+        }
+
+        if (_selectedDocumentId is not null && Documents.All(d => d.DocumentId != _selectedDocumentId))
+            _selectedDocumentId = null;
+    }
+
+    private void SelectDocument(Guid documentId)
+    {
+        _selectedDocumentId = documentId;
+    }
+
+    private string GetAbsoluteDownloadUrl(PersonFileDocumentDto document)
+    {
+        return Navigation.ToAbsoluteUri(document.DownloadPath).ToString();
+    }
+
+}

@@ -55,6 +55,12 @@ public sealed class PersonFileTests
             c.CaseId == caseId.Value &&
             c.Workflow == "Registration" &&
             c.Status == nameof(RegistrationCaseStatus.Registered));
+        personFile.Documents.Should().HaveCount(2);
+        personFile.Documents.Should().OnlyContain(d =>
+            d.Workflow == "Registration" &&
+            d.CaseId == caseId.Value);
+        personFile.Documents.Should().Contain(d => d.DocumentType == "Passport" && d.FileName == "passport.pdf");
+        personFile.Documents.Should().Contain(d => d.DocumentType == "Birth Certificate" && d.FileName == "birth-certificate.pdf");
     }
 
     [Fact]
@@ -97,6 +103,7 @@ public sealed class PersonFileTests
         personFile.Header.FamilyName.Should().Be("Dupont");
         personFile.Cases.Should().BeEmpty();
         personFile.Certificates.Should().BeEmpty();
+        personFile.Documents.Should().BeEmpty();
     }
 
     [Theory]

@@ -12,11 +12,25 @@ public static class DownloadDocumentEndpoint
         DownloadDocumentHandler handler,
         CancellationToken cancellationToken)
     {
-        var result = await handler.Handle(
-            RegisterAmendmentCaseId.From(id),
-            new AdministrativeDocumentId(documentId),
-            cancellationToken);
+        try
+        {
+            var result = await handler.Handle(
+                RegisterAmendmentCaseId.From(id),
+                new AdministrativeDocumentId(documentId),
+                cancellationToken);
 
-        return Results.File(result.Content, result.ContentType, result.FileName);
+            return Results.Stream(
+                result.Content,
+                result.ContentType,
+                enableRangeProcessing: true);
+        }
+        catch (KeyNotFoundException)
+        {
+            return Results.NotFound();
+        }
+        catch (FileNotFoundException)
+        {
+            return Results.NotFound();
+        }
     }
 }

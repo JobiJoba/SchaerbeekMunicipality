@@ -56,6 +56,16 @@ public sealed record PersonFileHistoryEventDto(
     string? Description,
     string Source);
 
+public sealed record PersonFileDocumentDto(
+    Guid DocumentId,
+    Guid CaseId,
+    string Workflow,
+    string DocumentType,
+    string FileName,
+    DateTimeOffset UploadedAt,
+    string DownloadPath,
+    string CaseDetailPath);
+
 public sealed record GetPersonFileResponse(
     PersonFileHeaderDto Header,
     PersonDto Identity,
@@ -65,4 +75,5 @@ public sealed record GetPersonFileResponse(
     IReadOnlyList<PersonFileAddressDto> Addresses,
     IReadOnlyList<PersonFileCaseDto> Cases,
     IReadOnlyList<PersonFileCertificateDto> Certificates,
-    IReadOnlyList<PersonFileHistoryEventDto> History);
+    IReadOnlyList<PersonFileHistoryEventDto> History,
+    IReadOnlyList<PersonFileDocumentDto> Documents);

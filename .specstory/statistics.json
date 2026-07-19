@@ -128,12 +128,21 @@
     },
     "400bba35-7cbd-4885-9582-692d914a556c": {
       "user_message_count": 1,
-      "agent_message_count": 2,
+      "agent_message_count": 23,
       "start_timestamp": "2026-07-14T08:55:03+02:00",
       "end_timestamp": "2026-07-14T08:55:03+02:00",
-      "markdown_size_bytes": 3292,
+      "markdown_size_bytes": 27859,
       "provider": "cursoride",
-      "last_updated": "2026-07-14T07:05:48Z"
+      "last_updated": "2026-07-19T18:11:56Z"
+    },
+    "40f8a13f-46f3-46de-adf7-9d847d09f49b": {
+      "user_message_count": 1,
+      "agent_message_count": 12,
+      "start_timestamp": "2026-07-19T20:12:09+02:00",
+      "end_timestamp": "2026-07-19T20:12:09+02:00",
+      "markdown_size_bytes": 5967,
+      "provider": "cursoride",
+      "last_updated": "2026-07-19T18:12:56Z"
     },
     "43d44b5e-6210-4ba5-b257-a50a464be03b": {
       "user_message_count": 2,
@@ -299,12 +308,12 @@
     },
     "8cd29691-e2d1-4a81-af46-a9dc6f1664e6": {
       "user_message_count": 5,
-      "agent_message_count": 436,
+      "agent_message_count": 541,
       "start_timestamp": "2026-07-14T08:46:04+02:00",
       "end_timestamp": "2026-07-14T08:46:04+02:00",
-      "markdown_size_bytes": 298750,
+      "markdown_size_bytes": 394768,
       "provider": "cursoride",
-      "last_updated": "2026-07-14T07:17:22Z"
+      "last_updated": "2026-07-19T18:11:56Z"
     },
     "8fbafd91-06d5-4dae-bdd6-d7d7e22497f5": {
       "user_message_count": 6,
@@ -485,6 +494,15 @@
       "markdown_size_bytes": 115505,
       "provider": "cursoride",
       "last_updated": "2026-07-12T18:47:19Z"
+    },
+    "f46be26f-4865-402c-b730-b6b2536c5528": {
+      "user_message_count": 1,
+      "agent_message_count": 99,
+      "start_timestamp": "2026-07-14T09:28:17+02:00",
+      "end_timestamp": "2026-07-14T09:28:17+02:00",
+      "markdown_size_bytes": 72652,
+      "provider": "cursoride",
+      "last_updated": "2026-07-19T18:11:56Z"
     },
     "f59f99a3-1606-4d0e-8d32-426af836ad0c": {
       "user_message_count": 7,

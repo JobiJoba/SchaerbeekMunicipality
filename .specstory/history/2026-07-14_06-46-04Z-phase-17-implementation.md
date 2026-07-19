@@ -7749,11 +7749,127 @@ The preview of an image doesn't work anymore
 
 _**Agent (default)**_
 
+<think><details><summary>Thought Process</summary>
+Image preview is broken in the register amendment document panel.
+
+Investigating the AppFilePreview component and document URL handling. Comparing register amendment document serving against working registration and birth declaration documents.</details></think>
+
+_**Agent (default)**_
+
+Investigating document preview: tracing how preview URLs are built and how the register-amendment document endpoint serves files.
+
+
+_**Agent (default)**_
+
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AppFilePreview|register-amendments.*documents"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AppFilePreview|register-amendments.*documents",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-13_17-49-53Z-document-completion-update.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "resharper.sarif"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_18-33-16Z-phase-4-monolith-retirement.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "resharper-warnings.sarif"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/RegisterAmendmentDocumentPanel.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "docs/APP-OVERVIEW.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/design-system/05-ui-kit.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "resharper-warnings-3.sarif"
+    },
+    {
+      "matchCount": 23,
+      "uri": ".specstory/history/2026-07-11_17-28-07Z-appdatepicker-code-improvements.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "resharper-current.sarif"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/MUNICIPAL-UI.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "resharper-warnings-after-cleanup.sarif"
+    },
+    {
+      "matchCount": 2,
+      "uri": "resharper-warnings-2.sarif"
+    },
+    {
+      "matchCount": 9,
+      "uri": ".specstory/history/2026-07-13_20-31-37Z-jb-inspecttool-warnings.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-14_06-46-04Z-phase-17-implementation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/07-architecture-and-guidelines.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_19-07-27Z-phase-16-implementation.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "resharper-warnings-final.sarif"
+    }
+  ],
+  "totalFiles": 21,
+  "totalMatches": 61
+}
+```
+Status: **completed**
 
 
 </details>
@@ -7768,9 +7884,36 @@ _**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **23** results in **1** directory</summary>
 
-No results found
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api** (23 files)
+
+| File |
+|------|
+| `Features/IdentityDocuments/CancelDocumentRequest/CancelDocumentRequestEndpoint.cs` |
+| `Features/IdentityDocuments/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `Features/BirthDeclaration/AttachDocument/AttachDocumentEndpoint.cs` |
+| `Features/IdentityDocuments/ClaimDocumentRequestCase/AutoClaimDocumentRequestCaseEndpoint.cs` |
+| `Features/RegisterAmendment/AttachDocument/AttachDocumentEndpoint.cs` |
+| `Features/IdentityDocuments/GetDocumentRequestCase/GetDocumentRequestCaseEndpoint.cs` |
+| `Features/IdentityDocuments/OpenDocumentRequestCase/OpenDocumentRequestCaseEndpoint.cs` |
+| `Features/IdentityDocuments/AdvanceDocumentRequestStatus/AdvanceDocumentRequestStatusEndpoint.cs` |
+| `Features/BirthDeclaration/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `Features/IdentityDocuments/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `Features/IdentityDocuments/IssueDocument/IssueDocumentEndpoint.cs` |
+| `Features/Registration/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `Features/ChangeOfAddress/AttachDocument/AttachDocumentEndpoint.cs` |
+| `Features/ChangeOfAddress/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `Features/IdentityDocuments/ListDocumentRequestCases/ListDocumentRequestCasesEndpoint.cs` |
+| `Features/ChangeOfAddress/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `Features/IdentityDocuments/ClaimDocumentRequestCase/ClaimDocumentRequestCaseEndpoint.cs` |
+| `Features/Registration/AttachDocument/AttachDocumentEndpoint.cs` |
+| `Features/Registration/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `Features/IdentityDocuments/IdentityDocumentsEndpoints.cs` |
+| `Features/BirthDeclaration/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `Features/RegisterAmendment/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `Features/RegisterAmendment/RemoveDocument/RemoveDocumentEndpoint.cs` |
+
 </details>
 </tool-use>
 
@@ -7778,3 +7921,2569 @@ No results found
 <summary>Tool use: **glob_file_search**</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking DownloadDocument endpoints for register amendment and registration. Reviewing AppFilePreview to understand how image previews work.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/DownloadDocument/DownloadDocumentEndpoint.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/Registration/DownloadDocument/DownloadDocumentEndpoint.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppFilePreview.razor</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api",
+  "pattern": "register-amendments|DownloadDocument"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api",
+  "pattern": "register-amendments|DownloadDocument",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/DownloadDocument/DownloadDocumentEndpoint.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/AttachDocument/AttachDocumentEndpoint.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/OpenRegisterAmendmentCase/OpenRegisterAmendmentCaseEndpoint.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RegisterAmendmentEndpoints.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/DownloadDocument/DownloadDocumentEndpoint.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/IdentityDocumentsEndpoints.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/DownloadDocument/DownloadDocumentEndpoint.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ChangeOfAddressEndpoints.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/DownloadDocument/DownloadDocumentEndpoint.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/BirthDeclarationEndpoints.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/DownloadDocument/DownloadDocumentEndpoint.cs"
+    }
+  ],
+  "totalFiles": 12,
+  "totalMatches": 35
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The image preview may fail because the source URL requires authentication. Browsers might not send auth cookies or anti-forgery tokens when loading an image directly.
+
+Other possible causes include a wrong URL, a mismatch between Results.File and Results.Stream, or incorrect Content-Disposition headers. The web app proxy setup and BirthDeclaration download endpoint need review.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/DownloadDocument/DownloadDocumentEndpoint.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/DownloadDocument/DownloadDocumentHandler.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "documents/|DownloadDocument|ToAbsoluteUri.*api"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "documents/|DownloadDocument|ToAbsoluteUri.*api",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/ChangeOfAddress/ChangeOfAddressApiClient.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/RegisterAmendment/RegisterAmendmentApiClient.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IdentityDocuments/IdentityDocumentsApiClient.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Registration/RegistrationApiClient.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/RegisterAmendment/IRegisterAmendmentApi.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IdentityDocuments/IIdentityDocumentsApi.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Registration/IRegistrationApi.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/RegisterAmendmentDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/ChangeOfAddress/IChangeOfAddressApi.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/BirthDeclaration/BirthDeclarationApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/BirthDeclaration/IBirthDeclarationApi.cs"
+    }
+  ],
+  "totalFiles": 17,
+  "totalMatches": 33
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The API URL pattern is identical across all features.
+
+Suspecting the register amendment endpoint itself. Possible causes include authentication issues, Content-Disposition headers, file storage specifics, or missing YARP proxy routes for register-amendments. Checking Program.cs and AppHost next.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "register-amendments|MapReverseProxy|Yarp"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "register-amendments|MapReverseProxy|Yarp",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/RegisterAmendment/RegisterAmendmentApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RegisterAmendmentEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/OpenRegisterAmendmentCase/OpenRegisterAmendmentCaseEndpoint.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/AttachDocument/AttachDocumentEndpoint.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs"
+    },
+    {
+      "matchCount": 6,
+      "uri": "docs/phases/phase-17-post-registration-amendments.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Pages/RegisterAmendmentCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/RegisterAmendmentDocumentPanel.razor"
+    },
+    {
+      "matchCount": 4,
+      "uri": ".specstory/history/2026-07-14_06-46-04Z-phase-17-implementation.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Pages/RegisterAmendmentCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 14,
+  "totalMatches": 28
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RegisterAmendmentEndpoints.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking how the web app proxies API requests and handles authentication for document downloads.
+
+The image preview likely fails because the browser loads the direct image URL without an auth cookie. Since the upload component was recently modified, the preview URL itself may have been inadvertently broken. The filename passed to the preview component appears correct.
+
+Checking whether `CaseDocumentItem` receives the document type as its fourth parameter instead of the filename. This would cause the preview to display the wrong label.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "record CaseDocumentItem|class CaseDocumentItem"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "record CaseDocumentItem|class CaseDocumentItem",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentItem.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "Program.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "MapForwarder|AddHttpClient|api/"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "MapForwarder|AddHttpClient|api/",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Program.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web** (1 file)
+
+| File |
+|------|
+| `Program.cs` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking Program.cs in both the Web and AppHost projects to understand API routing.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentItem.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src** (0 files)
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+In development, the API runs as a separate Aspire service.
+
+Document previews fail because `/api/` requests route to the Web host instead of the API service. I will check the AppHost configuration and MunicipalApiHost extensions to find the correct routing setup.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "UseMunicipalApiHost|AddMunicipalApiHost|MapForwarder|/api/"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "UseMunicipalApiHost|AddMunicipalApiHost|MapForwarder|/api/",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/RegisterAmendmentDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/RegisterAmendment/RegisterAmendmentApiClient.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/AttachDocument/AttachDocumentEndpoint.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/OpenRegisterAmendmentCase/OpenRegisterAmendmentCaseEndpoint.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RegisterAmendmentEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CertificatesSection.razor"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Web/Program.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Reporting/ReportingApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Registration/RegistrationApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/PersonFile/PersonFileApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IdentityDocuments/IdentityDocumentsApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/ChangeOfAddress/ChangeOfAddressApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/BirthDeclaration/BirthDeclarationApiClient.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Api/Program.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Reporting/ReportingEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/OpenRegistrationCase/OpenRegistrationCaseEndpoint.cs"
+    }
+  ],
+  "totalFiles": 31,
+  "totalMatches": 37
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+File not found
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking MunicipalApiHostExtensions.cs to see how the API is hosted in production.
+
+In development the API runs separately from the Web host, so preview URLs may not reach the correct routes. Since this broke after a recent change, the AppHost configuration needs to be checked.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (5 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.AppHost/appsettings.Development.json` |
+| `src/SchaerbeekMunicipality.AppHost/AppHost.cs` |
+| `src/SchaerbeekMunicipality.AppHost/appsettings.json` |
+| `src/SchaerbeekMunicipality.AppHost/Properties/launchSettings.json` |
+| `src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+API clients use `http://api` in development. Browser document URLs route to the Web host at `/api/...`. This mismatch likely breaks image previews.
+
+The Web host lacks the `/api/...` path in development. Registration previews might still work if Aspire routes both services through the same gateway. I'll check AppHost.cs.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/AppHost.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "document.*proxy|DocumentPreview|MapGet.*documents"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "document.*proxy|DocumentPreview|MapGet.*documents",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RegisterAmendmentEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/BirthDeclarationEndpoints.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-05_17-31-49Z-phase-8-overview.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_18-24-32Z-phase-3-ui-migration.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/IdentityDocumentsEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ChangeOfAddressEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/05-ui-kit.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": "docs/design-system/06-page-templates.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_11-54-25Z-phase-14-implementation.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "docs/features/registration/download-document.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "docs/phases/phase-4.1-document-preview-case-ux.md"
+    }
+  ],
+  "totalFiles": 12,
+  "totalMatches": 20
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+A known Phase 3 migration issue causes document download links to 404 in dev unless proxied. This likely explains the broken image previews.
+
+Checking whether an IMunicipalApiBridge or existing proxy pattern handles document previews.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "IMunicipalApiBridge|MunicipalApiBridge|documents"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "IMunicipalApiBridge|MunicipalApiBridge|documents",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IMunicipalApiBridge.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Pages/RegisterAmendmentCaseDetail.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/IdentityFormSection.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Registration/RegistrationApiClient.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/ChangeOfAddress/ChangeOfAddressApiClient.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IdentityDocuments/IdentityDocumentsApiClient.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/RegisterAmendment/RegisterAmendmentApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/SuspendCaseDialog.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/BirthDeclaration/BirthDeclarationApiClient.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/RegisterAmendmentDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor"
+    },
+    {
+      "matchCount": 6,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor"
+    }
+  ],
+  "totalFiles": 18,
+  "totalMatches": 41
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/download-document.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I'll examine IMunicipalApiBridge and production setup to diagnose the image preview failure.
+
+The broken image likely stems from missing document proxy routes in production. In development, the Web host serves as the browser origin while the API runs internally, so image requests to internal API paths 404. Since document listing and uploads work, the proxy route configuration needs verification.
+
+A broader search of Web Program.cs and related files is needed to locate document proxy routes. The current review of Program.cs only shows certificate routes. An Aspire bridge may expose the API on the same origin in development. This would explain why all document previews fail in dev.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MunicipalApiBridge"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MunicipalApiBridge",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-13_17-49-53Z-document-completion-update.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalApiBridge.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 10,
+      "uri": ".specstory/history/2026-07-12_11-09-34Z-azure-deployment-socket-exception.md"
+    },
+    {
+      "matchCount": 7,
+      "uri": ".specstory/history/2026-07-13_20-31-37Z-jb-inspecttool-warnings.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "resharper.sarif"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IMunicipalApiBridge.cs"
+    },
+    {
+      "matchCount": 18,
+      "uri": ".specstory/history/2026-07-11_17-53-24Z-frontend-and-backend-integration.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_11-03-08Z-documentation-update-steps.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_12-27-28Z-fluent-assertions-license-query.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs"
+    }
+  ],
+  "totalFiles": 11,
+  "totalMatches": 48
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/IMunicipalApiBridge.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+In development with Aspire, browser requests to `/api/...` on the Web host fail to reach the API.
+
+Checking whether document proxy middleware exists for registration but is missing from register-amendments.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MapGet.*documents|ProxyDocument|DocumentProxy"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MapGet.*documents|ProxyDocument|DocumentProxy",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/BirthDeclarationEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/IdentityDocumentsEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RegisterAmendmentEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ChangeOfAddressEndpoints.cs"
+    }
+  ],
+  "totalFiles": 5,
+  "totalMatches": 5
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The E2E web host does not proxy document URLs to the browser. Only HttpClient uses the bridge.
+
+Production works because the web host uses `UseMunicipalApiHost`. In development with Aspire, the web app does not call that method, so document previews return 404. Adding proxy routes like certificates might fix this. There is also uncertainty about whether Aspire service discovery automatically maps API routes through the web app.
+
+Checking ServiceDefaults and the Web project for Aspire integration.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults",
+  "pattern": "api|proxy|Forwarder"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults",
+  "pattern": "api|proxy|Forwarder",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **157** results in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web** (157 files)
+
+| File |
+|------|
+| `Api/IdentityDocuments/IdentityDocumentsApiClient.cs` |
+| `DesignSystem/Components/Dialogs/AppDialogOptions.cs` |
+| `DesignSystem/Components/Dialogs/IAppDialogService.cs` |
+| `Api/BirthDeclaration/BirthDeclarationApiClient.cs` |
+| `wwwroot/fonts/open-sans-v43-latin-700.woff2` |
+| `DesignSystem/Components/Feedback/AppLoading.razor` |
+| `DesignSystem/_Imports.razor` |
+| `Api/ChangeOfAddress/IChangeOfAddressApi.cs` |
+| `DesignSystem/Components/Forms/AppFieldLabel.razor` |
+| `wwwroot/fonts/open-sans-v43-latin-600.woff2` |
+| `Municipal/Components/OfficerDecisionChecklist.razor` |
+| `Components/Layout/MainLayout.razor` |
+| `DesignSystem/Components/Feedback/AppAlert.razor` |
+| `Municipal/Components/NationalRegisterSearchModels.cs` |
+| `wwwroot/app.css` |
+| `DesignSystem/Theme/SchaerbeekTheme.cs` |
+| `Api/ChangeOfAddress/ChangeOfAddressApiClient.cs` |
+| `DesignSystem/Components/Forms/AppSaveCancelBar.razor` |
+| `Auth/Components/RoleSwitcher.razor` |
+| `DesignSystem/Components/Data/AppPersonCard.razor` |
+| `DesignSystem/Components/Data/EnumDisplayExtensions.cs` |
+| `Features/Registration/Components/RegistrationRoleGate.razor` |
+| `Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor` |
+| `DesignSystem/Components/Forms/AppDateField.razor` |
+| `DesignSystem/Components/Data/AppChecklistItem.cs` |
+| `Features/Registration/Components/ReasonNotesDialog.razor` |
+| `Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor` |
+| `Features/Registration/Components/NewCaseDialog.razor` |
+| `DesignSystem/Components/Layout/AppEditableSection.razor` |
+| `Api/MunicipalApiClientBase.cs` |
+| `Municipal/Components/CaseDocumentItem.cs` |
+| `DesignSystem/Components/Navigation/AppTopNavigation.razor` |
+| `Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor` |
+| `DesignSystem/Components/Data/AppTimeline.razor` |
+| `Components/Pages/DesignSystemShowcase.razor` |
+| `DesignSystem/Components/Layout/AppSection.razor` |
+| `DesignSystem/Components/Data/AppPropertyGrid.razor` |
+| `wwwroot/fonts/open-sans-v43-latin-regular.woff2` |
+| `Components/Pages/Home.razor` |
+| `DesignSystem/Components/Navigation/AppBreadcrumb.razor` |
+| `Features/RegisterAmendment/Components/RegisterAmendmentDocumentPanel.razor` |
+| `Features/IdentityDocuments/Components/CancelDocumentRequestDialog.razor` |
+| `Features/PersonFile/Pages/PersonFilePage.razor` |
+| `Features/Registration/Components/AddressStep.razor` |
+| `appsettings.Development.json` |
+| `Components/Pages/Error.razor` |
+| `Features/Registration/Components/RegistrationCaseDocumentPanel.razor` |
+| `Api/RegisterAmendment/IRegisterAmendmentApi.cs` |
+| `Auth/Components/RoleSwitcher.razor.css` |
+| `Features/RegisterAmendment/Components/RegisterAmendmentDecisionSection.razor` |
+| `Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor` |
+| `DesignSystem/Components/Layout/AppActionBar.razor` |
+| `DependencyInjection.cs` |
+| `Features/BirthDeclaration/Components/ParentLinkDialog.razor` |
+| `Features/Registration/Components/IdentityFormModel.cs` |
+| `DesignSystem/Tokens/SchaerbeekTokens.cs` |
+| `Features/Registration/Components/NewCaseDialogResult.cs` |
+| `Features/Registration/Components/RejectCaseDialog.razor` |
+| `DesignSystem/Components/Data/AppChecklist.razor` |
+| `Api/Registration/RegistrationApiClient.cs` |
+| `Features/Registration/Components/ApproveCaseDialog.razor` |
+| `Features/_Imports.razor` |
+| `Auth/DemoOfficerPersistence.cs` |
+| `DesignSystem/Components/Feedback/AppInfoBox.razor` |
+| `DesignSystem/Components/Dialogs/AppConfirmDialog.razor` |
+| `Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor` |
+| `Municipal/Components/CaseDocumentPanel.razor` |
+| `Api/Reporting/IReportingApi.cs` |
+| `Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor` |
+| `Validation/FluentMudValidation.cs` |
+| `Features/Registration/Components/ResidenceStep.razor` |
+| `Api/ApiException.cs` |
+| `WebProgram.cs` |
+| `Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor` |
+| `Features/RegisterAmendment/Components/RegisterAmendmentDocumentUpload.razor` |
+| `Features/Registration/Components/IdentityFormSection.razor` |
+| `Features/Registration/Components/CaseDecisionSection.razor` |
+| `Features/PersonFile/Pages/PersonSearchPage.razor` |
+| `Api/IMunicipalApiBridge.cs` |
+| `Features/Registration/Components/PoliceVerificationSection.razor` |
+| `Municipal/_Imports.razor` |
+| `DesignSystem/Components/Layout/AppPage.razor` |
+| `DesignSystem/Components/Layout/AppPageHeader.razor` |
+| `Municipal/Components/CaseLockActions.razor` |
+| `Municipal/Components/BelgianAddressFields.razor` |
+| `Features/Registration/Components/DocumentUpload.razor` |
+| `Components/Layout/ReconnectModal.razor.css` |
+| `Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor` |
+| `Api/Registration/IRegistrationApi.cs` |
+| `Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor` |
+| `Features/RegisterAmendment/Pages/RegisterAmendmentCaseList.razor` |
+| `Components/_Imports.razor` |
+| `Municipal/AddressFormatting.cs` |
+| `Features/Reporting/Pages/MunicipalityReportsPage.razor` |
+| `Features/Registration/Pages/NewRegistrationCasePage.razor` |
+| `Features/Registration/Pages/ReviewDashboard.razor` |
+| `Components/App.razor` |
+| `DesignSystem/Components/Dialogs/AppDialogService.cs` |
+| `DesignSystem/Components/Layout/AppCollapsibleSection.razor` |
+| `Api/DependencyInjection.cs` |
+| `Features/RegisterAmendment/Pages/RegisterAmendmentCaseDetail.razor` |
+| `Api/RegisterAmendment/RegisterAmendmentApiClient.cs` |
+| `Components/Routes.razor` |
+| `DesignSystem/Components/Layout/AppCard.razor` |
+| `Features/Registration/Components/RecordPoliceResultDialog.razor` |
+| `DesignSystem/Components/Navigation/AppNavItem.cs` |
+| `Features/Registration/Components/CivilStatusStep.razor` |
+| `DesignSystem/Components/Data/AppStatusChip.razor` |
+| `Municipal/Components/NationalRegisterSearchForm.razor` |
+| `Features/Registration/Pages/PoliceVerificationList.razor` |
+| `SchaerbeekMunicipality.Web.csproj` |
+| `DesignSystem/Components/Navigation/AppQuickActions.razor` |
+| `Components/Layout/ReconnectModal.razor` |
+| `Features/Registration/Pages/OutboundNotificationsPage.razor` |
+| `Features/Registration/Components/RegistrationCaseChecklistProgress.razor` |
+| `appsettings.Production.json` |
+| `Municipal/Components/CaseLockBar.razor` |
+| `DesignSystem/Components/Data/AppStatusChipMappings.cs` |
+| `DesignSystem/Components/Forms/AppSearchBar.razor` |
+| `DesignSystem/Components/Forms/AppFormSection.razor` |
+| `Features/RegisterAmendment/Components/OpenRegisterAmendmentDialog.razor` |
+| `Municipal/NationalRegisterFormatting.cs` |
+| `DesignSystem/Components/Data/AppFilePreview.razor` |
+| `Properties/launchSettings.json` |
+| `Features/Registration/Pages/RegistrationCaseList.razor` |
+| `Api/DemoOfficerHeaders.cs` |
+| `Features/Registration/Components/CertificatesSection.razor` |
+| `Features/IdentityDocuments/Components/DocumentRequestStatusSection.razor` |
+| `Auth/_Imports.razor` |
+| `ProgramMarker.cs` |
+| `DesignSystem/Components/Navigation/AppFooter.razor` |
+| `Features/Registration/Components/SuspendCaseDialog.razor` |
+| `Features/Registration/Components/BirthInformationStep.razor` |
+| `Features/Registration/Components/NationalRegisterSearchDialog.razor` |
+| `DesignSystem/Components/Data/AppStatisticCard.razor` |
+| `Features/IdentityDocuments/Components/OpenDocumentRequestDialog.razor` |
+| `Program.cs` |
+| `Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor` |
+| `DesignSystem/Components/Layout/AppToolbar.razor` |
+| `Api/IdentityDocuments/IIdentityDocumentsApi.cs` |
+| `DesignSystem/Components/Navigation/AppSideNavigation.razor` |
+| `Features/Registration/Components/HouseholdStep.razor` |
+| `DesignSystem/Components/Data/AppEnums.cs` |
+| `Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor` |
+| `Api/Reporting/ReportingApiClient.cs` |
+| `Features/Registration/Components/RegistrationIntakeStep.cs` |
+| `appsettings.json` |
+| `Api/PersonFile/IPersonFileApi.cs` |
+| `Components/Layout/ReconnectModal.razor.js` |
+| `Api/PersonFile/PersonFileApiClient.cs` |
+| `Features/Registration/Pages/RegistrationCaseDetail.razor` |
+| `Api/BirthDeclaration/IBirthDeclarationApi.cs` |
+| `Features/Registration/Components/RegistrationIntakeStepSummaries.cs` |
+| `DesignSystem/Components/Feedback/AppEmptyState.razor` |
+| `Components/Pages/NotFound.razor` |
+| `Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor` |
+| `DesignSystem/Components/Data/AppDataTable.razor` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking WebProgram.cs for Aspire service discovery issues that might affect image previews.
+
+Reconsidering whether the image preview broke globally or only for register amendments. The screenshot shows a broken preview for a register amendment document. Likely causes include a missing dev proxy for register-amendments documents, or a bug in the download endpoint such as incorrect Results.File usage, stream disposal, or missing error handling.
+
+Found a likely bug in `MapDocuments`: the `DocumentType` enum is passed as `TypeLabel`, but the target property expects a string. This mismatch could break image preview rendering.
+
+Inspecting RegisterAmendmentDocumentDto to verify the TypeLabel mapping.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/RegisterAmendment/**",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "RegisterAmendmentDocumentDto|record.*DocumentDto"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "RegisterAmendmentDocumentDto|record.*DocumentDto",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/GetRegisterAmendmentCase/GetRegisterAmendmentCaseHandler.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+File not found
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking GetRegisterAmendmentCaseHandler for document DTO issues.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/GetRegisterAmendmentCase/GetRegisterAmendmentCaseHandler.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Confirmed DocumentType is correctly mapped from the DTO string in RegisterAmendmentDocumentPanel.
+
+The image preview failure likely stems from a dev proxy or register amendment download endpoint issue. A blob URL approach would work across environments but requires broader changes. Adding document proxy routes in Web Program.cs for development may be the simpler fix. Searching for existing proxy implementations.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.specstory",
+  "pattern": "document.*proxy|ProxyDocument|DownloadDocumentAsync"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.specstory",
+  "pattern": "document.*proxy|ProxyDocument|DownloadDocumentAsync",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_11-54-25Z-phase-14-implementation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-11_18-24-32Z-phase-3-ui-migration.md"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/MunicipalApiClientBase.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+HttpClient API calls use demo officer headers via `ApplyOfficerHeaders()`. This likely explains why image previews fail.
+
+Browser image requests don't send the demo officer headers. Preview likely depends on `UseDemoOfficerResolution` middleware or A cookies instead. Checking the DemoOfficer middleware on APIPI.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "DemoOfficer|UseDemoOfficer"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "DemoOfficer|UseDemoOfficer",
+  "topFiles": [
+    {
+      "matchCount": 9,
+      "uri": "resharper-warnings-3.sarif"
+    },
+    {
+      "matchCount": 8,
+      "uri": ".specstory/history/2026-07-05_18-57-28Z-case-history-and-decision-box.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/BirthDeclarationE2ETests.cs"
+    },
+    {
+      "matchCount": 9,
+      "uri": "src/SchaerbeekMunicipality.Application/Auth/CurrentOfficer.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Reporting/MunicipalityReportTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-07_19-14-02Z-phase-12-implementation.md"
+    },
+    {
+      "matchCount": 9,
+      "uri": ".specstory/history/2026-07-11_18-08-15Z-phase-1-backend-foundation.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": ".specstory/history/2026-07-11_18-33-16Z-phase-4-monolith-retirement.md"
+    },
+    {
+      "matchCount": 21,
+      "uri": ".specstory/history/2026-07-12_12-32-23Z-case-lock-button-issues.md"
+    },
+    {
+      "matchCount": 16,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Domain.Tests/BirthDeclaration/BirthDeclarationCaseTestData.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseAddressTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/OfficerDisplayNames.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/README.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Api/BffApiClientTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/DemoOfficerHeaders.cs"
+    },
+    {
+      "matchCount": 26,
+      "uri": ".specstory/history/2026-07-13_20-31-37Z-jb-inspecttool-warnings.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/RegistrationConfirmE2ETests.cs"
+    },
+    {
+      "matchCount": 7,
+      "uri": "resharper-after-fixes.sarif"
+    },
+    {
+      "matchCount": 9,
+      "uri": "resharper-warnings.sarif"
+    }
+  ],
+  "totalFiles": 61,
+  "totalMatches": 341
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+DemoOfficerPersistence appears to be appending officer information to image URLs. This likely breaks the preview functionality.
+
+Document preview URLs may require demo officer query parameters.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/DemoOfficerPersistence.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "AppendToUri|GetDocumentUrl|DemoOfficerPersistence"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "AppendToUri|GetDocumentUrl|DemoOfficerPersistence",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationRoleGate.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Auth/DemoOfficerPersistence.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/RegisterAmendmentDocumentPanel.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    }
+  ],
+  "totalFiles": 7,
+  "totalMatches": 14
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The API middleware only reads headers, not query parameters, for the demo officer.
+
+Browser image requests lack headers, so the demo officer header check cannot apply to preview images. The registration document preview may instead rely on query parameters appended to URLs. Production Web hosts share the same API process, so the same limitation likely exists there.
+
+The download handler falls back to a default officer role when no headers are present. This default may satisfy the authorization check, suggesting the preview failure stems from another cause.
+
+The root cause is likely routing. In development, the Web application does not map `/api/register-amendments/...` paths, so image requests return a 404 HTML page that browsers cannot render. Production works because the API and Web are co-hosted. Since AppHost runs both services separately, the preview failure affects all features, though the user may have only noticed it on amendments.
+
+Registration previews worked in Phase 4.1. Document preview may instead use blob URLs loaded server-side. Recent changes to AppFilePreview or document proxies should be checked.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "blob:|ObjectUrl|DownloadDocument|DocumentPreview"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "blob:|ObjectUrl|DownloadDocument|DocumentPreview",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/ChangeOfAddress/IChangeOfAddressApi.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Registration/IRegistrationApi.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IdentityDocuments/IdentityDocumentsApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/IdentityDocuments/IIdentityDocumentsApi.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/RegisterAmendment/IRegisterAmendmentApi.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/RegisterAmendment/RegisterAmendmentApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/Registration/RegistrationApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/BirthDeclaration/BirthDeclarationApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/ChangeOfAddress/ChangeOfAddressApiClient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Api/BirthDeclaration/IBirthDeclarationApi.cs"
+    }
+  ],
+  "totalFiles": 10,
+  "totalMatches": 10
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.specstory/history/2026-07-05_18-57-28Z-case-history-and-decision-box.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking the phase 11 migration documentation for document proxy details. Also verifying whether the Web service uses YARP.
+
+Two fixes are being weighed. A dev proxy route in Web would forward document downloads. Alternatively, CaseDocumentPanel could fetch via the API client and render blobs. The latter is more robust but changes shared components. The former is simpler.
+
+Searching WebProgram and dependency injection for an existing document BFF endpoint.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/WebProgram.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MapMunicipal|DocumentDownload|ProxyApi"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "MapMunicipal|DocumentDownload|ProxyApi",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-12_11-09-34Z-azure-deployment-socket-exception.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether E2E tests cover registration preview, possibly testing document preview.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "preview|AppFilePreview|documents/"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "preview|AppFilePreview|documents/",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/DocumentRequestE2ETests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/appsettings.Development.json</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking IntakeCorrectionTests and RegisterAmendment integration tests for download patterns.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "DownloadDocument|register-amendments.*documents"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "DownloadDocument|register-amendments.*documents",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Api/BffApiClientTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+HttpClient downloads work in development, but direct browser URLs fail. This suggests a server-side issue rather than a client-side bug.
+
+A proxy route in the development Web Program.cs could fix the preview. Alternatively, AppFilePreview and CaseDocumentPanel could accept a download delegate or injected service to stream content directly.
+
+A generic catch-all proxy route is preferable to adding individual routes per feature. However, Web's HttpClient likely lacks Aspire service discovery for browser requests, so the proxy may need to target the API directly.
+
+Per-feature proxy routes were considered but rejected because the API client only returns a Stream without a content type. The better approach is to fix the preview components directly by fetching the document server-side and rendering it as a blob URL.
+
+Server-side fetching is the correct fix for Blazor Server when the API runs on a separate host. The registration feature currently relies on direct URLs, but that only works in production where Web and the API share the same origin. In development, Aspire also breaks because the browser cannot reach the API directly. The preview components need to switch to server-side downloads regardless of environment.
+
+Three implementation options are being weighed. A dedicated preview component could accept a download function and render a blob preview. Alternatively, AppFilePreview could gain an optional stream-loading parameter. A third option is a shared development proxy extension that covers all document endpoints.
+
+A regression theory is being explored. The preview may have stopped working because `Results.File` sets a `Content-Disposition: attachment` header, which some browsers refuse to render inside an `<img>` tag. Registration avoids this by using `Results.Stream` inline. The plan is to add a minimal development proxy for register-amendments document downloads.
+
+The `Results.File` attachment theory is unlikely. Birth declarations also use `Results.File`, yet they may still work. If both features fail, the cause is probably not the attachment header alone. The download endpoint for ChangeOfAddress needs comparison too.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/DownloadDocument/DownloadDocumentEndpoint.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/DownloadDocument/DownloadDocumentEndpoint.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The registration endpoint uses Results.Stream without an attachment disposition. This appears to be the key difference causing the broken image preview.
+
+The fix is to switch the register amendment endpoint to `Results.Stream`, matching the registration preview behavior.
+
+The stream result should include `enableRangeProcessing: true`. The download link can reuse the same URL without a filename, matching the registration behavior. A try/catch for `KeyNotFoundException` should also be added, consistent with the registration endpoint.
+
+The user may have noticed the regression after the upload change. A 404 response would render the broken image alt text, matching the screenshot.
+
+I'll verify both hypotheses by curling the endpoints. I need to check the terminal for the application ports.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/projects/Users-joba-Projects-Private-dotnet-SchaerbeekMunicipality/terminals/1.txt</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The AppHost is running. The image preview failure likely stems from a dev routing issue where the browser is hitting the web host instead of the API host for /api URLs.
+
+Adding document download proxies in Web Program.cs should fix the dev routing issue. Pattern registration previews would also break in dev unless the hosts are co-hosted. Checking terminal output for web and API URLs.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/projects/Users-joba-Projects-Private-dotnet-SchaerbeekMunicipality/terminals/1.txt</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The fix requires updating DownloadDocumentEndpoint to use Results.Stream, aligning it with the inline preview registration.
+
+A shared development proxy helper will replace per-feature routes. The certificate endpoint pattern in Program.cs provides the implementation model.
+
+The proxy will live in `MunicipalDocumentDownloadProxy.cs`. It covers five document download routes across registration, birth declarations, change of address, register amendments, and identity documents. Each route will call its API client's `DownloadDocumentAsync` and return `Results.Stream` with the correct content type.
+
+A simpler alternative emerged. Rather than building a proxy, AppFilePreview could accept a stream callback directly. This would let the component load the document from a function instead of a URL, which would fix both development and production without extra routing logic.
+
+A minimal fix is now preferred: add a dev proxy only for register-amendments in Program.cs, plus the Results.Stream endpoint fix. Changing all document panels to pass stream delegates is too invasive. Yarp or MapForwarder via Aspire was considered but the developer is checking ServiceDefaults and AddServiceDiscoveryLoading to see if Web can automatically proxy API traffic.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DependencyInjection.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The issue appears to be a browser request to `/api/`.
+
+The preview failure likely stems from recent register amendment changes. I will align the amendment download endpoint with the registration pattern using Results.Stream, and update the preview component to handle direct URL failures with server-side callbacks or dev BFF proxies.
+
+The preview component will accept a `Func<CancellationToken, Task<Stream>>` parameter. It will stream the document directly into a blob URL. This avoids CORS issues with split APIs in development.
+
+The preview component will stream the document into a base64 data URL. This removes the need for JavaScript object URLs and avoids CORS issues entirely.
+
+CaseDocumentPanel will expose a `LoadDocumentStreamAsync` callback. RegisterAmendmentDocumentPanel will stream documents through the API. Content type will be inferred from the filename. Streams must be disposed carefully. Documents are limited to 10 MB.
+
+A dev BFF proxy is the better fix. It handles both preview and download with the existing URL pattern. A new `MapMunicipalDocumentDownloadProxy` extension method will be added to the Web project.
+
+The proxy maps GET routes for registration, birth declarations, change of address, register amendments, and identity documents. A `ProxyStream` helper infers the content type from the filename.
+
+The proxy helper will return `Results.Stream` with range processing enabled. The Register Amendment endpoint will also switch to `Results.Stream` for production consistency. The extension file will live at `src/SchaerbeekMunicipality.Web/Api/MunicipalDocumentDownloadProxy.cs` and be wired in `Program.cs` during development. An integration test for register amendment downloads may be added, modeled after the existing registration BFF client tests.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Api/BffApiClientTests.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Fixing the RegisterAmendment DownloadDocumentEndpoint to use Results.Stream with error handling, matching the Registration implementation.
+
+Adding a MunicipalDocumentDownloadProxy for development in the Web Program.cs. Considering similar Results.Stream fixes for BirthDeclaration and ChangeOfAddress endpoints for inline preview consistency. The dev proxy may not fully explain why registration previews work while register amendments do not.
+
+Confirmed the root cause is dev routing. The Web app runs in Development environment, so the municipal API host middleware is not active. This explains why registration previews also fail in Aspire dev. The new register amendments feature simply exposes the bug first. The fix is a dev document download proxy for all features.</details></think>
+
+_**Agent (default)**_
+
+Register-amendment previews fail in dev because the browser hits the Web host at `/api/...`, while the API runs separately under Aspire. Adding development document proxies and aligning the download endpoint with registration (inline streaming).
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/MunicipalDocumentDownloadProxy.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/DownloadDocument/DownloadDocumentEndpoint.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The proxy returns application/octet-stream for all requests. Image tags likely need a proper content type.
+
+HttpClient DownloadStreamAsync drops the Content-Type header. I'll proxy through HttpClient directly to preserve it.
+
+A dedicated `ProxyHttpGet` helper using `HttpClient.GetAsync` would forward the Content-Type header cleanly. The endpoint still needs `CurrentOfficer` to apply officer headers.
+
+Extending the API client to return content type would be too invasive. The broken image likely means a 404 HTML response rather than a content-type mismatch. A simpler proxy helper using a shared HttpClient is preferable.
+
+The proxy helper now fetches the remote response with `GetAsync`, reads its stream, and returns it using `Results.Stream` with the actual `Content-Type` header. It falls back to `application/octet-stream` if the header is missing.
+
+Adding a download method to every API interface would be too invasive. Instead, the endpoint will inject `IHttpClientFactory` and use a named HttpClient to reach the document API directly. This avoids typed API clients while still forwarding the correct headers.
+
+The proxy is likely returning 404 HTML instead of actual image bytes. JPEGs may still render despite an incorrect content type, so the priority is restoring the real file data. Adding a new API method to the interface would be scope creep. I will instead add an internal helper to `MunicipalApiClientBase` to extract the Content-Type header from the HttpClient response.
+
+A `DownloadWithContentTypeAsync` helper on the base client would let the proxy preserve the real Content-Type header. The API already returns the correct type, but `DownloadStreamAsync` strips it away. JPEG images usually render fine even with `application/octet-stream`, so the content type may not be the root cause.
+
+I rejected inferring content type from file bytes as overkill. I will add a `DownloadAsync` method to `MunicipalApiClientBase` that fetches the full response headers, applies officer headers, throws on errors, and returns both the stream and the actual `Content-Type`.
+
+A `DocumentDownloadResult` record containing the stream and content type would let the base client return both together. Updating every API client and the proxy would be too invasive. A targeted wrapper on one client would be inconsistent.</details></think>
+
+_**Agent (default)**_
+
+Improving the proxy to forward the API's Content-Type header.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/ApiException.cs</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Adding DownloadWithMetadataAsync to MunicipalApiClientBase and updating the proxy.
+
+Switching to a minimal-diff approach. A helper method in MunicipalDocumentDownloadProxy will use HttpClient to fetch images directly.
+
+The proxy will stream the image content with range processing enabled. Considering registering a dedicated HttpClient for this download, or using IHttpClientFactory inline.
+
+Existing typed clients already configure HttpClient. Adding methods to every interface would touch too many files. A single forwarder service using injected HttpClient with service discovery is cleaner.
+
+The forwarder streams the remote response as a stream result with the returned content type.
+
+The forwarder will be registered as a typed HttpClient in dependency injection. It resolves the API base address dynamically. The proxy will be refactored to delegate downloads to this forwarder.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/MunicipalDocumentDownloadForwarder.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/MunicipalDocumentDownloadProxy.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The image preview fails because the HTTP response is disposed before the stream is returned. Using `using var response` closes the stream too early.
+
+The registration endpoint avoids this by letting ASP.NET manage the stream. The forwarder should either delay disposal until the stream finishes, or copy the response to a MemoryStream first.
+
+The fix copies the response stream into a local `MemoryStream`, resets its position, and returns it via `Results.Stream`. This mirrors the `DownloadStreamAsync` pattern.</details></think>
+
+_**Agent (default)**_
+
+Fixing stream lifetime: copying the response into memory before returning it.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/MunicipalDocumentDownloadForwarder.cs</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -15</summary>
+
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -15
+```
+
+```
+MSBUILD : error MSB1011: Specify which project or solution file to use because this folder contains more than one project or solution file.
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+A solution file needs to be specified.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (1 file)
+
+| File |
+|------|
+| `SchaerbeekMunicipality.sln` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Building with the solution file path.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln 2>&1 | tail -12</summary>
+
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln 2>&1 | tail -12
+```
+
+```
+  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.AppHost -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
+  SchaerbeekMunicipality.E2E.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:11.41
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The build succeeded.</details></think>
+
+_**Agent (default)**_
+
+The preview was failing for two reasons:
+
+**1. Development routing (main issue)**  
+With Aspire, the API runs as a separate service. The preview `<img>` loads `/api/register-amendments/...` on the **Web** host, but that route only existed on the **API** host — so the browser got a 404 HTML page instead of the image.
+
+**Fix:** Added a development-only document download proxy on the Web host (`MunicipalDocumentDownloadProxy`) that forwards document requests to the API with the demo-officer headers. This covers register amendments and the other case types that use the same preview pattern.
+
+**2. Inline display**  
+The register-amendment download endpoint used `Results.File`, which sets `Content-Disposition: attachment`. That can block inline preview in some browsers. It now uses `Results.Stream` like registration, so images and PDFs display inline.
+
+Restart AppHost (or let it hot-reload) and click the document again — the preview should load. Download still works via the same URL.

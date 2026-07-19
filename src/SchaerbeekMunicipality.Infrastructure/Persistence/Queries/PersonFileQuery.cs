@@ -3,7 +3,9 @@ using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Common;
+using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
+using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.PersonFile;
 using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -483,6 +485,151 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
         return events
             .OrderByDescending(e => e.Timestamp)
             .ToList();
+    }
+
+    public async Task<IReadOnlyList<PersonFileDocumentSummary>> ListDocumentsByPersonIdAsync(
+        PersonId personId,
+        CancellationToken cancellationToken)
+    {
+        var documents = new List<PersonFileDocumentSummary>();
+        var cases = await ListCasesByPersonIdAsync(personId, cancellationToken);
+        var caseLookup = cases.ToDictionary(c => c.CaseId);
+
+        var registrationCaseIds = cases
+            .Where(c => c.Workflow == "Registration")
+            .Select(c => new RegistrationCaseId(c.CaseId))
+            .ToList();
+
+        if (registrationCaseIds.Count > 0)
+        {
+            var registrationDocuments = await dbContext.AdministrativeDocuments
+                .AsNoTracking()
+                .Where(d => d.RegistrationCaseId != null && registrationCaseIds.Contains(d.RegistrationCaseId.Value))
+                .ToListAsync(cancellationToken);
+
+            documents.AddRange(registrationDocuments.Select(d => ToDocumentSummary(
+                d.Id.Value,
+                d.RegistrationCaseId!.Value.Value,
+                "Registration",
+                d.DocumentType,
+                d.FileName,
+                d.UploadedAt,
+                caseLookup)));
+        }
+
+        var birthCaseIds = cases
+            .Where(c => c.Workflow == "Birth declaration")
+            .Select(c => new BirthDeclarationCaseId(c.CaseId))
+            .ToList();
+
+        if (birthCaseIds.Count > 0)
+        {
+            var birthDocuments = await dbContext.AdministrativeDocuments
+                .AsNoTracking()
+                .Where(d => d.BirthDeclarationCaseId != null && birthCaseIds.Contains(d.BirthDeclarationCaseId.Value))
+                .ToListAsync(cancellationToken);
+
+            documents.AddRange(birthDocuments.Select(d => ToDocumentSummary(
+                d.Id.Value,
+                d.BirthDeclarationCaseId!.Value.Value,
+                "Birth declaration",
+                d.DocumentType,
+                d.FileName,
+                d.UploadedAt,
+                caseLookup)));
+        }
+
+        var changeOfAddressCaseIds = cases
+            .Where(c => c.Workflow == "Change of address")
+            .Select(c => new ChangeOfAddressCaseId(c.CaseId))
+            .ToList();
+
+        if (changeOfAddressCaseIds.Count > 0)
+        {
+            var changeOfAddressDocuments = await dbContext.AdministrativeDocuments
+                .AsNoTracking()
+                .Where(d => d.ChangeOfAddressCaseId != null &&
+                            changeOfAddressCaseIds.Contains(d.ChangeOfAddressCaseId.Value))
+                .ToListAsync(cancellationToken);
+
+            documents.AddRange(changeOfAddressDocuments.Select(d => ToDocumentSummary(
+                d.Id.Value,
+                d.ChangeOfAddressCaseId!.Value.Value,
+                "Change of address",
+                d.DocumentType,
+                d.FileName,
+                d.UploadedAt,
+                caseLookup)));
+        }
+
+        var documentRequestCaseIds = cases
+            .Where(c => c.Workflow == "Identity document")
+            .Select(c => new DocumentRequestCaseId(c.CaseId))
+            .ToList();
+
+        if (documentRequestCaseIds.Count > 0)
+        {
+            var identityDocuments = await dbContext.AdministrativeDocuments
+                .AsNoTracking()
+                .Where(d => d.DocumentRequestCaseId != null &&
+                            documentRequestCaseIds.Contains(d.DocumentRequestCaseId.Value))
+                .ToListAsync(cancellationToken);
+
+            documents.AddRange(identityDocuments.Select(d => ToDocumentSummary(
+                d.Id.Value,
+                d.DocumentRequestCaseId!.Value.Value,
+                "Identity document",
+                d.DocumentType,
+                d.FileName,
+                d.UploadedAt,
+                caseLookup)));
+        }
+
+        var amendmentCaseIds = cases
+            .Where(c => c.Workflow == "Register amendment")
+            .Select(c => new RegisterAmendmentCaseId(c.CaseId))
+            .ToList();
+
+        if (amendmentCaseIds.Count > 0)
+        {
+            var amendmentDocuments = await dbContext.AdministrativeDocuments
+                .AsNoTracking()
+                .Where(d => d.RegisterAmendmentCaseId != null &&
+                            amendmentCaseIds.Contains(d.RegisterAmendmentCaseId.Value))
+                .ToListAsync(cancellationToken);
+
+            documents.AddRange(amendmentDocuments.Select(d => ToDocumentSummary(
+                d.Id.Value,
+                d.RegisterAmendmentCaseId!.Value.Value,
+                "Register amendment",
+                d.DocumentType,
+                d.FileName,
+                d.UploadedAt,
+                caseLookup)));
+        }
+
+        return documents
+            .OrderByDescending(d => d.UploadedAt)
+            .ToList();
+    }
+
+    private static PersonFileDocumentSummary ToDocumentSummary(
+        Guid documentId,
+        Guid caseId,
+        string workflow,
+        DocumentType documentType,
+        string fileName,
+        DateTimeOffset uploadedAt,
+        IReadOnlyDictionary<Guid, PersonCaseSummary> caseLookup)
+    {
+        return new PersonFileDocumentSummary(
+            documentId,
+            caseId,
+            workflow,
+            documentType,
+            fileName,
+            uploadedAt,
+            caseLookup[caseId].DetailPath);
     }
 
     private static void AddMember(

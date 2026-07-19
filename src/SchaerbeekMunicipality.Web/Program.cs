@@ -87,6 +87,8 @@ else
         });
 }
 
+app.MapMunicipalDocumentDownloadProxy();
+
 app.UseAntiforgery();
 
 app.MapStaticAssets();

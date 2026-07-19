@@ -1,3 +1,4 @@
+using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -36,6 +37,15 @@ public sealed record PersonHistoryEvent(
     string? Description,
     string Source);
 
+public sealed record PersonFileDocumentSummary(
+    Guid DocumentId,
+    Guid CaseId,
+    string Workflow,
+    DocumentType DocumentType,
+    string FileName,
+    DateTimeOffset UploadedAt,
+    string CaseDetailPath);
+
 public interface IPersonFileQuery
 {
     Task<RegisterTarget?> GetRegisterTargetAsync(PersonId personId, CancellationToken cancellationToken);
@@ -53,6 +63,10 @@ public interface IPersonFileQuery
         CancellationToken cancellationToken);
 
     Task<IReadOnlyList<PersonHistoryEvent>> ListHistoryEventsAsync(
+        PersonId personId,
+        CancellationToken cancellationToken);
+
+    Task<IReadOnlyList<PersonFileDocumentSummary>> ListDocumentsByPersonIdAsync(
         PersonId personId,
         CancellationToken cancellationToken);
 }

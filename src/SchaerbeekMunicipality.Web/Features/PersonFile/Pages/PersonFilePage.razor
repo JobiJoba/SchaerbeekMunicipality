@@ -3,6 +3,7 @@
 @using SchaerbeekMunicipality.Application.Features.PersonFile.GetPersonFile
 @using SchaerbeekMunicipality.Web.Api.PersonFile
 @using SchaerbeekMunicipality.Web.Api.RegisterAmendment
+@using SchaerbeekMunicipality.Web.Features.PersonFile.Components
 @using SchaerbeekMunicipality.Web.Features.RegisterAmendment.Components
 @inject IPersonFileApi PersonFileApi
 @inject IRegisterAmendmentApi RegisterAmendmentApi
@@ -178,6 +179,10 @@
                             </RowTemplate>
                         </AppDataTable>
                     }
+                </MudTabPanel>
+
+                <MudTabPanel Text="Documents">
+                    <PersonFileDocumentsPanel Documents="_personFile.Documents"/>
                 </MudTabPanel>
 
                 <MudTabPanel Text="Certificates">

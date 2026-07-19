@@ -21,7 +21,23 @@ public static class DependencyInjection
         RegisterClient<IIdentityDocumentsApi, IdentityDocumentsApiClient>(services, environment);
         RegisterClient<IReportingApi, ReportingApiClient>(services, environment);
         RegisterClient<IPersonFileApi, PersonFileApiClient>(services, environment);
+        RegisterDocumentDownloadForwarder(services, environment);
         return services;
+    }
+
+    private static void RegisterDocumentDownloadForwarder(
+        IServiceCollection services,
+        IHostEnvironment environment)
+    {
+        services.AddHttpClient<MunicipalDocumentDownloadForwarder>((serviceProvider, client) =>
+            {
+                client.BaseAddress = ResolveApiBaseAddress(serviceProvider, environment);
+            })
+            .ConfigurePrimaryHttpMessageHandler(serviceProvider =>
+            {
+                var bridge = serviceProvider.GetService<IMunicipalApiBridge>();
+                return bridge?.CreateHandler() ?? new HttpClientHandler();
+            });
     }
 
     private static void RegisterClient<TClient, TImplementation>(

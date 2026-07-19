@@ -2,6 +2,7 @@ using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Application.Features.Registration.GetRegistrationCase;
 using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.Common;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.NationalRegister;
 using SchaerbeekMunicipality.Domain.PersonFile;
@@ -59,6 +60,7 @@ public sealed class GetPersonFileHandler(
         var householdMembers = await personFileQuery.GetHouseholdMembersAsync(personId, cancellationToken);
         var addresses = await personFileQuery.ListAddressHistoryAsync(personId, cancellationToken);
         var history = await personFileQuery.ListHistoryEventsAsync(personId, cancellationToken);
+        var documents = await personFileQuery.ListDocumentsByPersonIdAsync(personId, cancellationToken);
         var certificates = await certificateRepository.ListByPersonIdAsync(personId, cancellationToken);
         var housingSituation = await ResolveHousingSituationAsync(personId, cancellationToken);
 
@@ -145,7 +147,16 @@ public sealed class GetPersonFileHandler(
                 h.Title,
                 h.Timestamp,
                 h.Description,
-                h.Source)).ToList());
+                h.Source)).ToList(),
+            documents.Select(d => new PersonFileDocumentDto(
+                d.DocumentId,
+                d.CaseId,
+                d.Workflow,
+                d.DocumentType.ToDisplayString(),
+                d.FileName,
+                d.UploadedAt,
+                PersonFileDocumentPaths.BuildDownloadPath(d.Workflow, d.CaseId, d.DocumentId),
+                d.CaseDetailPath)).ToList());
     }
 
     private async Task<string?> ResolveHousingSituationAsync(
