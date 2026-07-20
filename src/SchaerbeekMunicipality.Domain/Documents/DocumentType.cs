@@ -10,5 +10,6 @@ public enum DocumentType
     Other = 5,
     MedicalBirthDeclaration = 6,
     ApplicantPhoto = 7,
-    DiplomaticCard = 8
+    DiplomaticCard = 8,
+    DeathCertificate = 9
 }

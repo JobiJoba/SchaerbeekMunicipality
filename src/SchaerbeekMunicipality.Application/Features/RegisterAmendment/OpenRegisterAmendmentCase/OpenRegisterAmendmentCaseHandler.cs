@@ -31,6 +31,10 @@ public sealed class OpenRegisterAmendmentCaseHandler(
             throw new InvalidRegisterAmendmentTransitionException(
                 "Cannot open a register amendment case for a person without a National Register number.");
 
+        if (person.IsDeceased)
+            throw new InvalidRegisterAmendmentTransitionException(
+                "Cannot open a register amendment case for a deceased person.");
+
         if (await caseRepository.HasOpenCaseForPersonAsync(personId, cancellationToken))
             throw new InvalidRegisterAmendmentTransitionException(
                 "This person already has an open register amendment case.");

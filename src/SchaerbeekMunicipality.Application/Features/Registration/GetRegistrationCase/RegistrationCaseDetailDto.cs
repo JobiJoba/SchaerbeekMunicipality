@@ -31,7 +31,9 @@ public sealed record PersonDto(
     string? BisNumber,
     string? NationalRegisterNumber,
     bool LinkedFromRegister,
-    BirthInformationDto? BirthInformation);
+    BirthInformationDto? BirthInformation,
+    bool IsDeceased = false,
+    DateOnly? DateOfDeath = null);
 
 public sealed record DocumentDto(
     Guid Id,

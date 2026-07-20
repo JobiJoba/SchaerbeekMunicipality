@@ -7,7 +7,8 @@ public enum OutboundNotificationCaseType
 {
     Registration,
     BirthDeclaration,
-    ChangeOfAddress
+    ChangeOfAddress,
+    DeathDeclaration
 }
 
 public sealed record OutboundNotificationDto(
@@ -70,6 +71,9 @@ public sealed class ListOutboundNotificationsHandler(IOutboundNotificationReposi
 
         if (notification.ChangeOfAddressCaseId is { } changeOfAddressCaseId)
             return (changeOfAddressCaseId.Value, OutboundNotificationCaseType.ChangeOfAddress);
+
+        if (notification.DeathDeclarationCaseId is { } deathDeclarationCaseId)
+            return (deathDeclarationCaseId.Value, OutboundNotificationCaseType.DeathDeclaration);
 
         throw new InvalidOperationException("Notification must reference a case.");
     }

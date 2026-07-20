@@ -13,6 +13,7 @@ public static class VisitReasonLabels
             VisitReason.EuCitizenRegistration => "EU citizen registration",
             VisitReason.BirthDeclaration => "Birth declaration",
             VisitReason.PassportRenewal => "Passport renewal",
+            VisitReason.DeathDeclaration => "Death declaration",
             _ => reason.ToString()
         };
     }
@@ -31,6 +32,8 @@ public static class VisitReasonLabels
                 "Declaring a newborn for registration in the population register.",
             VisitReason.PassportRenewal =>
                 "Applying for a Belgian passport or national ID card for a registered resident.",
+            VisitReason.DeathDeclaration =>
+                "Registering the death of a resident and radiating them from the population register.",
             _ => string.Empty
         };
     }

@@ -1,0 +1,357 @@
+@page "/death-declarations/{CaseId:guid}"
+@using FluentValidation
+@using SchaerbeekMunicipality.Application.Features.DeathDeclaration.GetDeathDeclarationCase
+@using SchaerbeekMunicipality.Application.Features.DeathDeclaration.RecordDeathFacts
+@using SchaerbeekMunicipality.Domain.DeathDeclaration
+@using SchaerbeekMunicipality.Web.Api.DeathDeclaration
+@using SchaerbeekMunicipality.Web.Features.DeathDeclaration.Components
+@using Severity = MudBlazor.Severity
+@inject IDeathDeclarationApi DeathDeclarationApi
+@inject IValidator<RecordDeathFactsRequest> DeathFactsValidator
+@inject ICurrentOfficer CurrentOfficer
+@inject ISnackbar Snackbar
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
+    @if (_loading)
+    {
+        <AppLoading Kind="AppLoadingKind.Skeleton"/>
+    }
+    else if (_case is null)
+    {
+        <AppAlert Severity="Severity.Error" Title="Case not found"/>
+    }
+    else
+    {
+        <AppPage Title="Death declaration">
+            <AppPageHeader Title="Death declaration"
+                           Subtitle="@($"{CaseId.ToString()[..8]}… · {_case.PersonGivenName} {_case.PersonFamilyName}")">
+                <Actions>
+                    <AppStatusChip Label="@_case.Status.ToDisplayString()" Severity="@GetSeverity(_case.Status)"/>
+                    <CaseLockActions IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"
+                                     CanEdit="_case.CanEdit"
+                                     OnTakeCase="TakeCase"
+                                     OnReleaseLock="ReleaseLock"/>
+                    <MudButton Variant="Variant.Outlined"
+                               Color="Color.Primary"
+                               StartIcon="@Icons.Material.Outlined.Person"
+                               Href="@($"/persons/{_case.PersonId}")">
+                        View person file
+                    </MudButton>
+                    <MudButton Variant="Variant.Text"
+                               StartIcon="@Icons.Material.Outlined.ArrowBack"
+                               OnClick="@(() => Navigation.NavigateTo("/death-declarations"))">
+                        Back to list
+                    </MudButton>
+                </Actions>
+            </AppPageHeader>
+
+            <CaseLockBar IsReadOnlyDueToLock="_case.IsReadOnlyDueToLock"/>
+
+            <MudGrid Spacing="4">
+                <MudItem xs="12" lg="7">
+                    <MudStack Spacing="4">
+                        <AppCard Title="Deceased" Outlined="true">
+                            <MudText Typo="Typo.body1">
+                                <strong>@_case.PersonGivenName @_case.PersonFamilyName</strong>
+                            </MudText>
+                            @if (_case.PersonBirthDate is { } birthDate)
+                            {
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                    Born @birthDate.ToString("d")
+                                </MudText>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(_case.PersonNationalRegisterNumber))
+                            {
+                                <MudText Typo="Typo.body2" Color="Color.Secondary">
+                                    NR @_case.PersonNationalRegisterNumber
+                                </MudText>
+                            }
+                        </AppCard>
+
+                        <AppCollapsibleSection Title="Death facts"
+                                               Summary="@GetDeathFactsSummary()"
+                                               StatusLabel="@(_case.DeathFactsRecorded ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.DeathFactsRecorded ? AppSeverity.Success : AppSeverity.Neutral)"
+                                               IsExpanded="@(!_case.DeathFactsRecorded)">
+                            <MudForm Disabled="!_case.CanEdit"
+                                     Model="_deathFactsModel"
+                                     Validation="@(DeathFactsValidator.ToMudValidateValue<RecordDeathFactsRequest, DeathFactsFormModel>(MapDeathFactsRequest))">
+                                <MudGrid>
+                                    <MudItem xs="12" md="6">
+                                        <AppDateField @bind-Value="_deathFactsModel.DeathDate"
+                                                      For="@(() => _deathFactsModel.DeathDate)"
+                                                      Label="Date of death"
+                                                      Required="true"
+                                                      MaxDate="@DateTime.Today"/>
+                                    </MudItem>
+                                    <MudItem xs="12" md="6">
+                                        <MudSelect T="InformantRelationship" @bind-Value="_deathFactsModel.InformantRelationship" Label="Informant relationship" Required="true">
+                                            @foreach (var relationship in Enum.GetValues<InformantRelationship>())
+                                            {
+                                                <MudSelectItem Value="relationship">@relationship.ToDisplayString()</MudSelectItem>
+                                            }
+                                        </MudSelect>
+                                    </MudItem>
+                                    <MudItem xs="12">
+                                        <MudTextField @bind-Value="_deathFactsModel.DeathPlace" Label="Place of death" Required="true"/>
+                                    </MudItem>
+                                    <MudItem xs="12">
+                                        <MudCheckBox @bind-Value="_deathFactsModel.DeathAbroad" Label="Death occurred abroad"/>
+                                    </MudItem>
+                                </MudGrid>
+                                @if (_case.CanEdit)
+                                {
+                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-3" OnClick="SaveDeathFacts" Disabled="_busy">
+                                        Save death facts
+                                    </MudButton>
+                                }
+                            </MudForm>
+                        </AppCollapsibleSection>
+
+                        <AppCollapsibleSection Title="Death act"
+                                               Summary="@($"{_case.Documents.Count} document(s)")"
+                                               StatusLabel="@(_case.DeathActAttached ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.DeathActAttached ? AppSeverity.Success : AppSeverity.Neutral)"
+                                               IsExpanded="@(!_case.DeathActAttached)">
+                            @foreach (var doc in _case.Documents)
+                            {
+                                <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween" Class="mb-2">
+                                    <MudLink Href="@GetDocumentUrl(doc.Id)" Target="_blank">@doc.FileName</MudLink>
+                                    @if (_case.CanEdit)
+                                    {
+                                        <MudIconButton Icon="@Icons.Material.Outlined.Delete"
+                                                       Size="Size.Small"
+                                                       OnClick="@(() => RemoveDocument(doc.Id))"/>
+                                    }
+                                </MudStack>
+                            }
+                            @if (_case.CanEdit)
+                            {
+                                <MudFileUpload T="IBrowserFile" Accept=".pdf,.jpg,.jpeg,.png" FilesChanged="UploadDocument">
+                                    <CustomContent Context="fileUpload">
+                                        <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Outlined.Upload"
+                                                   OnClick="@fileUpload.OpenFilePickerAsync">
+                                            Attach death certificate
+                                        </MudButton>
+                                    </CustomContent>
+                                </MudFileUpload>
+                            }
+                        </AppCollapsibleSection>
+
+                        <AppCollapsibleSection Title="Household review"
+                                               Summary="@(_case.HouseholdReviewed ? "Reviewed" : "Not reviewed")"
+                                               StatusLabel="@(_case.HouseholdReviewed ? "Complete" : "Pending")"
+                                               StatusSeverity="@(_case.HouseholdReviewed ? AppSeverity.Success : AppSeverity.Neutral)"
+                                               IsExpanded="@(!_case.HouseholdReviewed)">
+                            <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-3">
+                                Confirm the household composition has been reviewed. On confirmation the deceased is
+                                removed from any household and their domicile is cleared.
+                            </MudText>
+                            @if (_case.HouseholdReviewedAt is { } reviewedAt)
+                            {
+                                <MudText Typo="Typo.body2" Color="Color.Secondary" Class="mb-2">
+                                    Reviewed @reviewedAt.LocalDateTime.ToString("g")
+                                </MudText>
+                            }
+                            @if (_case.CanEdit && !_case.HouseholdReviewed)
+                            {
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ReviewHousehold" Disabled="_busy">
+                                    Mark household reviewed
+                                </MudButton>
+                            }
+                        </AppCollapsibleSection>
+                    </MudStack>
+                </MudItem>
+
+                <MudItem xs="12" lg="5">
+                    <DeathDeclarationDecisionSection Case="_case" OnChanged="ReloadCase"/>
+                </MudItem>
+            </MudGrid>
+        </AppPage>
+    }
+</RegistrationRoleGate>
+
+@code {
+    [Parameter] public Guid CaseId { get; set; }
+
+    private DeathDeclarationCaseDetailDto? _case;
+    private bool _loading = true;
+    private bool _busy;
+    private readonly DeathFactsFormModel _deathFactsModel = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ReloadCase();
+    }
+
+    private async Task ReloadCase()
+    {
+        _loading = _case is null;
+        try
+        {
+            await DeathDeclarationApi.TryAutoClaimCaseAsync(CaseId, CancellationToken.None);
+            var detail = await DeathDeclarationApi.GetCaseAsync(CaseId, CancellationToken.None);
+            _case = detail;
+            _deathFactsModel.DeathDate = detail.DeathDate;
+            _deathFactsModel.DeathPlace = detail.DeathPlace ?? string.Empty;
+            _deathFactsModel.DeathAbroad = detail.DeathAbroad;
+            _deathFactsModel.InformantRelationship = detail.InformantRelationship ?? InformantRelationship.Spouse;
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    private async Task SaveDeathFacts()
+    {
+        if (_deathFactsModel.DeathDate is null)
+        {
+            Snackbar.Add("Date of death is required.", Severity.Warning);
+            return;
+        }
+
+        _busy = true;
+        try
+        {
+            await DeathDeclarationApi.RecordDeathFactsAsync(
+                CaseId,
+                MapDeathFactsRequest(_deathFactsModel),
+                CancellationToken.None);
+            Snackbar.Add("Death facts saved.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task UploadDocument(IBrowserFile? file)
+    {
+        if (file is null)
+        {
+            return;
+        }
+
+        _busy = true;
+        try
+        {
+            await using var stream = file.OpenReadStream(10 * 1024 * 1024);
+            await DeathDeclarationApi.AttachDocumentAsync(
+                CaseId,
+                stream,
+                file.Name,
+                CancellationToken.None);
+            Snackbar.Add("Death certificate attached.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task RemoveDocument(Guid documentId)
+    {
+        _busy = true;
+        try
+        {
+            await DeathDeclarationApi.RemoveDocumentAsync(CaseId, documentId, CancellationToken.None);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task ReviewHousehold()
+    {
+        _busy = true;
+        try
+        {
+            await DeathDeclarationApi.ReviewHouseholdAsync(CaseId, CancellationToken.None);
+            Snackbar.Add("Household marked as reviewed.", Severity.Success);
+            await ReloadCase();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task TakeCase()
+    {
+        await DeathDeclarationApi.ClaimCaseAsync(CaseId, CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private async Task ReleaseLock()
+    {
+        await DeathDeclarationApi.ReleaseCaseLockAsync(CaseId, CancellationToken.None);
+        await ReloadCase();
+    }
+
+    private string GetDocumentUrl(Guid documentId)
+    {
+        return Navigation.ToAbsoluteUri($"/api/death-declarations/cases/{CaseId}/documents/{documentId}").ToString();
+    }
+
+    private string GetDeathFactsSummary()
+    {
+        if (_case?.DeathDate is null)
+        {
+            return "Death facts not yet recorded";
+        }
+
+        return $"{_case.DeathDate.Value:d} · {_case.DeathPlace}";
+    }
+
+    private static RecordDeathFactsRequest MapDeathFactsRequest(DeathFactsFormModel model)
+    {
+        return new RecordDeathFactsRequest(
+            model.DeathDate ?? default,
+            model.DeathPlace,
+            model.DeathAbroad,
+            model.InformantRelationship);
+    }
+
+    private sealed class DeathFactsFormModel
+    {
+        public DateOnly? DeathDate { get; set; }
+        public string DeathPlace { get; set; } = string.Empty;
+        public bool DeathAbroad { get; set; }
+        public InformantRelationship InformantRelationship { get; set; } = InformantRelationship.Spouse;
+    }
+
+    private static AppSeverity GetSeverity(DeathDeclarationCaseStatus status)
+    {
+        return status switch
+        {
+            DeathDeclarationCaseStatus.Confirmed => AppSeverity.Success,
+            DeathDeclarationCaseStatus.Rejected => AppSeverity.Error,
+            DeathDeclarationCaseStatus.Suspended => AppSeverity.Warning,
+            DeathDeclarationCaseStatus.UnderReview => AppSeverity.Info,
+            _ => AppSeverity.Neutral
+        };
+    }
+
+}

@@ -74,6 +74,10 @@
             {
                 MudDialog.Close(DialogResult.Ok(new NewCaseDialogResult(Guid.Empty, false, false, true)));
             }
+            else if (_visitReason == VisitReason.DeathDeclaration)
+            {
+                MudDialog.Close(DialogResult.Ok(new NewCaseDialogResult(Guid.Empty, false, false, false, true)));
+            }
             else
             {
                 var result = await RegistrationApi.OpenCaseAsync(

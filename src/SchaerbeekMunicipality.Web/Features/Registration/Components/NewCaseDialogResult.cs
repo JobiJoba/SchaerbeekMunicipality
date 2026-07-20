@@ -4,4 +4,5 @@ public sealed record NewCaseDialogResult(
     Guid CaseId,
     bool IsBirthDeclaration,
     bool IsChangeOfAddress = false,
-    bool IsDocumentRequest = false);
+    bool IsDocumentRequest = false,
+    bool IsDeathDeclaration = false);

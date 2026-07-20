@@ -1,0 +1,173 @@
+@using SchaerbeekMunicipality.Application.Features.DeathDeclaration.GetDeathDeclarationCase
+@using SchaerbeekMunicipality.Application.Features.DeathDeclaration.GetDeathDeclarationChecklist
+@using SchaerbeekMunicipality.Application.Features.DeathDeclaration.RejectDeathDeclaration
+@using SchaerbeekMunicipality.Application.Features.DeathDeclaration.SuspendDeathDeclaration
+@using SchaerbeekMunicipality.Domain.DeathDeclaration
+@using SchaerbeekMunicipality.Domain.Registration
+@using SchaerbeekMunicipality.Web.Api.DeathDeclaration
+@inject IDeathDeclarationApi DeathDeclarationApi
+@inject ISnackbar Snackbar
+
+<AppCard Title="Officer decision" Outlined="true">
+    @if (_checklist is not null)
+    {
+        <OfficerDecisionChecklist Items="@MapChecklist(_checklist)"/>
+    }
+
+    @if (Case.Status == DeathDeclarationCaseStatus.Confirmed)
+    {
+        <AppAlert Severity="Severity.Success" Title="Death registered">
+            Person radiated from the population register.
+        </AppAlert>
+    }
+    else if (Case.Status == DeathDeclarationCaseStatus.Rejected)
+    {
+        <AppAlert Severity="Severity.Error" Title="Case rejected">@Case.RejectionReason — @Case.DecisionNotes</AppAlert>
+    }
+    else if (Case.Status == DeathDeclarationCaseStatus.Suspended)
+    {
+        <AppAlert Severity="Severity.Warning" Title="Case suspended">@Case.SuspensionReason — @Case.DecisionNotes</AppAlert>
+    }
+
+    @if (CanDecide)
+    {
+        <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mt-4">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Outlined.CheckCircle"
+                       Disabled="_busy || Case.Status != DeathDeclarationCaseStatus.UnderReview || !Case.ReadyForConfirmation"
+                       data-testid="confirm-death-declaration"
+                       OnClick="Confirm">
+                Confirm radiation
+            </MudButton>
+            <MudButton Variant="Variant.Outlined"
+                       Color="Color.Error"
+                       Disabled="_busy"
+                       OnClick="Reject">
+                Reject
+            </MudButton>
+            <MudButton Variant="Variant.Outlined"
+                       Color="Color.Warning"
+                       Disabled="_busy"
+                       OnClick="Suspend">
+                Suspend
+            </MudButton>
+        </MudStack>
+    }
+    else if (Case.Status == DeathDeclarationCaseStatus.Suspended && Case.CanEdit)
+    {
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="_busy" OnClick="Resume" Class="mt-4">
+            Resume case
+        </MudButton>
+    }
+</AppCard>
+
+@code {
+    [Parameter] public DeathDeclarationCaseDetailDto Case { get; set; } = null!;
+    [Parameter] public EventCallback OnChanged { get; set; }
+
+    private DeathDeclarationChecklistResponse? _checklist;
+    private bool _busy;
+
+    private bool CanDecide =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
+        Case.Status is DeathDeclarationCaseStatus.UnderReview or DeathDeclarationCaseStatus.Intake;
+
+    [Inject] private ICurrentOfficer CurrentOfficer { get; set; } = null!;
+
+    protected override void OnParametersSet()
+    {
+        _checklist = DeathDeclarationChecklistMapper.FromCaseDetail(Case);
+    }
+
+    private async Task Confirm()
+    {
+        _busy = true;
+        try
+        {
+            await DeathDeclarationApi.ConfirmAsync(Case.Id, CancellationToken.None);
+            Snackbar.Add("Death confirmed — person radiated.", Severity.Success);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task Reject()
+    {
+        _busy = true;
+        try
+        {
+            await DeathDeclarationApi.RejectAsync(
+                Case.Id,
+                new RejectDeathDeclarationRequest(DeathDeclarationRejectionReason.Other, "Rejected by officer"),
+                CancellationToken.None);
+            Snackbar.Add("Case rejected.", Severity.Info);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task Suspend()
+    {
+        _busy = true;
+        try
+        {
+            await DeathDeclarationApi.SuspendAsync(
+                Case.Id,
+                new SuspendDeathDeclarationRequest(SuspensionReason.MissingDocuments, "Suspended by officer"),
+                CancellationToken.None);
+            Snackbar.Add("Case suspended.", Severity.Info);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private async Task Resume()
+    {
+        _busy = true;
+        try
+        {
+            await DeathDeclarationApi.ResumeAsync(Case.Id, CancellationToken.None);
+            Snackbar.Add("Case resumed.", Severity.Success);
+            await OnChanged.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.Message, Severity.Error);
+        }
+        finally
+        {
+            _busy = false;
+        }
+    }
+
+    private static IReadOnlyList<AppChecklistItem> MapChecklist(DeathDeclarationChecklistResponse checklist)
+    {
+        return checklist.Questions
+            .Select(q => new AppChecklistItem(q.Question, q.IsSatisfied, q.BlockingReason))
+            .ToList();
+    }
+
+}

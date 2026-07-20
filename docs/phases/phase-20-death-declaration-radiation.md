@@ -1,6 +1,7 @@
 # Phase 20 — Death declaration & radiation
 
-- **Status:** Planned
+- **Status:** Complete
+- **Completed:** July 2026
 - **Goal:** Register a death and remove (or mark) the person from the active municipal population register — the lifecycle counterpart to [Phase 12 birth declaration](./phase-12-birth-declaration.md).
 - **Maps to IDEA:** Ongoing register maintenance; person-file history.
 
@@ -16,6 +17,25 @@ A new **`DeathDeclarationCase`** (or **`RadiationCase`**) bounded context handle
 4. Confirms → person status becomes deceased / radiated; domicile cleared; outbound notification stub (e.g. tax, social security).
 
 Educational simplification: one linear confirmation path — not full funeral-home integrations or multi-commune competence disputes.
+
+---
+
+## Deliverables checklist
+
+| Deliverable | Status | Notes |
+|-------------|--------|-------|
+| `DeathDeclarationCase` aggregate + checklist | Done | Statuses, death facts, death act, household review |
+| `PersonRadiated` domain event | Done | Stub tax administration + social security notifications |
+| `Person.MarkDeceased` / `ClearDomicile` | Done | Confirmation stamps death date and clears domicile |
+| `Household.RemoveMemberMatching` + repository lookup | Done | Deceased removed from any household on confirm |
+| EF migration `Phase20DeathDeclaration` | Done | `death_declaration_cases` + document/notification FKs |
+| `IDeathDeclarationCaseRepository` | Done | List, get, active-by-person, add, save |
+| API group `/api/death-declarations/*` | Done | All intake + decision slices |
+| Claim / release lock | Done | Reuses shared case-locking pattern |
+| Web pages `/death-declarations` + detail | Done | List, detail, open dialog (NR search), decision panel |
+| Reception routing + nav + review dashboard tiles | Done | `VisitReason.DeathDeclaration`; unassigned / radiations-ready tiles |
+| Person file deceased chip + case/history/documents | Done | Deceased status chip; death case on Cases tab; filtered from household display |
+| Domain + integration tests | Done | Confirm/guard/dashboard/authorization coverage |
 
 ---
 

@@ -32,7 +32,11 @@
                                    BisNumber="@_personFile.Header.BisNumber"
                                    RegisterTarget="@_personFile.Header.RegisterTarget"
                                    Class="flex-grow-1"/>
-                    @if (!string.IsNullOrWhiteSpace(_personFile.Header.NationalRegisterNumber))
+                    @if (_personFile.Identity.IsDeceased)
+                    {
+                        <AppStatusChip Label="@DeceasedLabel" Severity="AppSeverity.Error"/>
+                    }
+                    else if (!string.IsNullOrWhiteSpace(_personFile.Header.NationalRegisterNumber))
                     {
                         <MudButton Variant="Variant.Filled"
                                    Color="Color.Primary"
@@ -229,6 +233,11 @@
             ? "Person file"
             : $"{_personFile.Header.GivenName} {_personFile.Header.FamilyName}";
 
+    private string DeceasedLabel =>
+        _personFile?.Identity.DateOfDeath is { } dateOfDeath
+            ? $"Deceased · {dateOfDeath:d}"
+            : "Deceased";
+
     protected override async Task OnParametersSetAsync()
     {
         _loading = true;
@@ -277,6 +286,11 @@
             new("Birth date", personFile.Identity.BirthDate.ToString("d")),
             new("Nationality", personFile.Identity.Nationality)
         };
+
+        if (personFile.Identity is { IsDeceased: true, DateOfDeath: { } dateOfDeath })
+        {
+            items.Add(new AppPropertyGrid.AppPropertyGridItem("Date of death", dateOfDeath.ToString("d")));
+        }
 
         if (personFile.Identity.BirthInformation is { } birthInfo)
         {

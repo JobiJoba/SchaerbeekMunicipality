@@ -278,6 +278,12 @@
                 return;
             }
 
+            if (dialogResult.IsDeathDeclaration)
+            {
+                Navigation.NavigateTo("/death-declarations?open=new");
+                return;
+            }
+
             Snackbar.Add(dialogResult.IsBirthDeclaration
                 ? "Birth declaration case opened."
                 : "Registration case opened.", Severity.Success);

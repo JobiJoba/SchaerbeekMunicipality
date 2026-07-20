@@ -11,6 +11,7 @@ internal static class PersonFileDocumentPaths
             "Change of address" => $"/api/change-of-address/cases/{caseId}/documents/{documentId}",
             "Identity document" => $"/api/identity-documents/requests/{caseId}/documents/{documentId}",
             "Register amendment" => $"/api/register-amendments/cases/{caseId}/documents/{documentId}",
+            "Death declaration" => $"/api/death-declarations/cases/{caseId}/documents/{documentId}",
             _ => throw new InvalidOperationException($"Unsupported workflow '{workflow}' for document download.")
         };
     }

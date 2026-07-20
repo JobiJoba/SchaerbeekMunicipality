@@ -33,6 +33,10 @@ public sealed class Person
 
     public BelgianAddress? DomicileAddress { get; private set; }
 
+    public DateOnly? DateOfDeath { get; private set; }
+
+    public bool IsDeceased => DateOfDeath is not null;
+
     public static Person Create(IdentityDetails details)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(details.GivenName);
@@ -115,5 +119,18 @@ public sealed class Person
     {
         ArgumentNullException.ThrowIfNull(address);
         DomicileAddress = address;
+    }
+
+    public void MarkDeceased(DateOnly deathDate)
+    {
+        if (IsDeceased)
+            throw new InvalidOperationException("Person is already recorded as deceased.");
+
+        DateOfDeath = deathDate;
+    }
+
+    public void ClearDomicile()
+    {
+        DomicileAddress = null;
     }
 }

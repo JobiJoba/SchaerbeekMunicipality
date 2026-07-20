@@ -12,7 +12,8 @@ public sealed record PersonFileSearchMatchDto(
     string MatchReason,
     bool IsRegisteredInPopulation,
     Guid? PersonId,
-    bool CanOpenPersonFile);
+    bool CanOpenPersonFile,
+    bool IsDeceased = false);
 
 public sealed record SearchPersonFileResponse(
     IReadOnlyList<PersonFileSearchMatchDto> Matches,

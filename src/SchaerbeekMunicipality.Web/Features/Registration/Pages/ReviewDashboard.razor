@@ -99,6 +99,7 @@
         Navigation.NavigateTo(row.CaseType switch
         {
             ReviewDashboardCaseType.BirthDeclaration => $"/birth-declarations/{row.CaseId}",
+            ReviewDashboardCaseType.DeathDeclaration => $"/death-declarations/{row.CaseId}",
             ReviewDashboardCaseType.RegisterAmendment => $"/register-amendments/cases/{row.CaseId}",
             _ => $"/registration/cases/{row.CaseId}"
         });
@@ -109,6 +110,7 @@
         return caseType switch
         {
             ReviewDashboardCaseType.BirthDeclaration => "Birth declaration",
+            ReviewDashboardCaseType.DeathDeclaration => "Death declaration",
             ReviewDashboardCaseType.RegisterAmendment => "Register amendment",
             _ => "Registration"
         };
@@ -125,6 +127,8 @@
             "Suspended" => Icons.Material.Outlined.PauseCircle,
             "Birth unassigned" => Icons.Material.Outlined.ChildCare,
             "Ready for confirmation" => Icons.Material.Outlined.CheckCircle,
+            "Death unassigned" => Icons.Material.Outlined.HeartBroken,
+            "Radiations ready" => Icons.Material.Outlined.PersonOff,
             _ => Icons.Material.Outlined.Analytics
         };
     }

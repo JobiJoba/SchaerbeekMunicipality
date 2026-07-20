@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.DeathDeclaration;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Notifications;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -39,6 +40,12 @@ internal sealed class OutboundNotificationConfiguration : IEntityTypeConfigurati
                 id => id.HasValue ? id.Value.Value : (Guid?)null,
                 value => value.HasValue ? new ChangeOfAddressCaseId(value.Value) : null)
             .HasColumnName("change_of_address_case_id");
+
+        builder.Property(n => n.DeathDeclarationCaseId)
+            .HasConversion(
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? new DeathDeclarationCaseId(value.Value) : null)
+            .HasColumnName("death_declaration_case_id");
 
         builder.Property(n => n.PersonId)
             .HasConversion(
@@ -81,6 +88,7 @@ internal sealed class OutboundNotificationConfiguration : IEntityTypeConfigurati
         builder.HasIndex(n => n.RegistrationCaseId);
         builder.HasIndex(n => n.BirthDeclarationCaseId);
         builder.HasIndex(n => n.ChangeOfAddressCaseId);
+        builder.HasIndex(n => n.DeathDeclarationCaseId);
         builder.HasIndex(n => n.CreatedAt);
         builder.HasIndex(n => new { n.DeliveryStatus, n.NextAttemptAt });
     }

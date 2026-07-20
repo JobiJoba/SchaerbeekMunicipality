@@ -3,6 +3,7 @@
 @using SchaerbeekMunicipality.Web.Api.BirthDeclaration
 @using SchaerbeekMunicipality.Web.Api.Registration
 @using SchaerbeekMunicipality.Web.Features.ChangeOfAddress.Components
+@using SchaerbeekMunicipality.Web.Features.DeathDeclaration.Components
 @using SchaerbeekMunicipality.Web.Features.IdentityDocuments.Components
 @inject IRegistrationApi RegistrationApi
 @inject IBirthDeclarationApi BirthDeclarationApi
@@ -175,6 +176,20 @@
         }
     }
 
+    private async Task OpenDeathDeclarationCaseAsync()
+    {
+        var dialog = await DialogService.ShowAsync<OpenDeathDeclarationDialog>(
+            "New death declaration",
+            new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false, Data: Guid caseId })
+        {
+            _createdCaseId = caseId;
+            Snackbar.Add("Death declaration case created.", Severity.Success);
+        }
+    }
+
     private async Task Submit()
     {
         await _form.ValidateAsync();
@@ -199,6 +214,10 @@
             else if (_visitReason == VisitReason.PassportRenewal)
             {
                 await OpenDocumentRequestCaseAsync();
+            }
+            else if (_visitReason == VisitReason.DeathDeclaration)
+            {
+                await OpenDeathDeclarationCaseAsync();
             }
             else
             {

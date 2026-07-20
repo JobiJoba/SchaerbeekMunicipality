@@ -1,6 +1,7 @@
 using SchaerbeekMunicipality.Application.Auth;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Common;
+using SchaerbeekMunicipality.Domain.DeathDeclaration;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -10,6 +11,7 @@ namespace SchaerbeekMunicipality.Application.Features.Registration.GetReviewDash
 public sealed class GetReviewDashboardHandler(
     IRegistrationCaseRepository caseRepository,
     IBirthDeclarationCaseRepository birthDeclarationCaseRepository,
+    IDeathDeclarationCaseRepository deathDeclarationCaseRepository,
     IRegisterAmendmentCaseRepository amendmentCaseRepository,
     RegistrationCaseAuthorization authorization,
     ICurrentOfficer currentOfficer)
@@ -20,6 +22,7 @@ public sealed class GetReviewDashboardHandler(
 
         var registrationCases = await caseRepository.ListAsync(cancellationToken);
         var birthCases = await birthDeclarationCaseRepository.ListAsync(cancellationToken);
+        var deathCases = await deathDeclarationCaseRepository.ListAsync(cancellationToken);
         var amendmentCases = await amendmentCaseRepository.ListAsync(cancellationToken);
         var officerId = OfficerId.From(currentOfficer.OfficerId);
 
@@ -41,6 +44,10 @@ public sealed class GetReviewDashboardHandler(
 
         var readyForConfirmation = birthCases.Count(c => c.IsReadyForConfirmation);
 
+        var deathUnassigned = deathCases.Count(IsUnassignedDeath);
+
+        var deathReadyForConfirmation = deathCases.Count(c => c.IsReadyForConfirmation);
+
         var amendmentsPendingReview = amendmentCases.Count(c =>
             c.Status == RegisterAmendmentCaseStatus.UnderReview && c.IsReadyForApproval);
 
@@ -55,6 +62,9 @@ public sealed class GetReviewDashboardHandler(
             new("Birth unassigned", birthUnassigned, "/birth-declarations?filter=unassigned", birthUnassigned > 0),
             new("Ready for confirmation", readyForConfirmation, "/birth-declarations?filter=ready",
                 readyForConfirmation > 0),
+            new("Death unassigned", deathUnassigned, "/death-declarations?filter=unassigned", deathUnassigned > 0),
+            new("Radiations ready", deathReadyForConfirmation, "/death-declarations?filter=ready",
+                deathReadyForConfirmation > 0),
             new("Amendments pending review", amendmentsPendingReview, "/register-amendments/cases?filter=review",
                 amendmentsPendingReview > 0)
         };
@@ -86,6 +96,20 @@ public sealed class GetReviewDashboardHandler(
                     c.IsReadyForConfirmation,
                     IsUnassignedBirth(c),
                     c.Status == BirthDeclarationCaseStatus.Suspended,
+                    false)))
+            .Concat(deathCases
+                .Where(IsActionableDeath)
+                .Select(c => new ActionableCandidate(
+                    new ActionableCaseRow(
+                        c.Id.Value,
+                        ReviewDashboardCaseType.DeathDeclaration,
+                        c.Status.ToDisplayString(),
+                        "Death declaration",
+                        c.OpenedAt,
+                        BuildDeathSummary(c)),
+                    c.IsReadyForConfirmation,
+                    IsUnassignedDeath(c),
+                    c.Status == DeathDeclarationCaseStatus.Suspended,
                     false)))
             .Concat(amendmentCases
                 .Where(IsActionableAmendment)
@@ -140,6 +164,31 @@ public sealed class GetReviewDashboardHandler(
         return birthDeclarationCase.IsReadyForConfirmation ||
                birthDeclarationCase.Status == BirthDeclarationCaseStatus.Suspended ||
                IsUnassignedBirth(birthDeclarationCase);
+    }
+
+    private static bool IsUnassignedDeath(DeathDeclarationCase deathDeclarationCase)
+    {
+        return deathDeclarationCase.LockedByOfficerId is null &&
+               deathDeclarationCase.AssignedOfficerId is null &&
+               deathDeclarationCase.Status == DeathDeclarationCaseStatus.Intake;
+    }
+
+    private static bool IsActionableDeath(DeathDeclarationCase deathDeclarationCase)
+    {
+        return deathDeclarationCase.IsReadyForConfirmation ||
+               deathDeclarationCase.Status == DeathDeclarationCaseStatus.Suspended ||
+               IsUnassignedDeath(deathDeclarationCase);
+    }
+
+    private static string BuildDeathSummary(DeathDeclarationCase deathDeclarationCase)
+    {
+        return deathDeclarationCase.Status switch
+        {
+            DeathDeclarationCaseStatus.Suspended => $"Suspended — {deathDeclarationCase.SuspensionReason}",
+            _ when deathDeclarationCase.IsReadyForConfirmation => "Ready for radiation",
+            _ when IsUnassignedDeath(deathDeclarationCase) => "Unassigned — awaiting intake",
+            _ => deathDeclarationCase.Status.ToDisplayString()
+        };
     }
 
     private static string BuildRegistrationSummary(RegistrationCase registrationCase)

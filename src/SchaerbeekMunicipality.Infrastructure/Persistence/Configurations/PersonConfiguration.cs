@@ -32,6 +32,9 @@ internal sealed class PersonConfiguration : IEntityTypeConfiguration<Person>
         builder.Property(p => p.BirthDate)
             .HasColumnName("birth_date");
 
+        builder.Property(p => p.DateOfDeath)
+            .HasColumnName("date_of_death");
+
         builder.Property(p => p.Nationality)
             .HasColumnName("nationality")
             .HasMaxLength(64)

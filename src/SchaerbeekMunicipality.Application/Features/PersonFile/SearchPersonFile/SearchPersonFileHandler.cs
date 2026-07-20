@@ -35,7 +35,8 @@ public sealed class SearchPersonFileHandler(
                 match.MatchReason,
                 match.IsRegisteredInPopulation,
                 personId,
-                personId is not null));
+                personId is not null,
+                match.IsDeceased));
         }
 
         return new SearchPersonFileResponse(

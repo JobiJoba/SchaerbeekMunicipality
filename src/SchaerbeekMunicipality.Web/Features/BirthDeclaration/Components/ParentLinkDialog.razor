@@ -60,7 +60,8 @@
                 criteria.FamilyName,
                 criteria.BirthDate,
                 criteria.Page,
-                criteria.PageSize),
+                criteria.PageSize,
+                ExcludeDeceased: true),
             CancellationToken.None);
 
         return new NationalRegisterSearchResult(
@@ -111,7 +112,8 @@
             match.MatchScore,
             match.MatchReason,
             match.IsRegisteredInPopulation,
-            match.PersonId);
+            match.PersonId,
+            match.IsDeceased);
     }
 
 }

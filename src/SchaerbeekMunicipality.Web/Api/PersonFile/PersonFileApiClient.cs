@@ -36,7 +36,8 @@ public sealed class PersonFileApiClient(HttpClient httpClient, ICurrentOfficer c
             ("FamilyName", request.FamilyName),
             ("BirthDate", request.BirthDate?.ToString("O")),
             ("Page", request.Page.ToString()),
-            ("PageSize", request.PageSize.ToString()));
+            ("PageSize", request.PageSize.ToString()),
+            ("ExcludeDeceased", request.ExcludeDeceased ? "true" : null));
 
         return GetJsonAsync<SearchPersonFileResponse>($"{BasePath}/search{query}", cancellationToken);
     }

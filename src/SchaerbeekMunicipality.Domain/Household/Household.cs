@@ -36,4 +36,20 @@ public sealed class Household
             _members.Add(householdMember);
         }
     }
+
+    public bool RemoveMemberMatching(string givenName, string familyName, DateOnly birthDate)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(givenName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(familyName);
+
+        var normalizedGiven = givenName.Trim();
+        var normalizedFamily = familyName.Trim();
+
+        var removed = _members.RemoveAll(member =>
+            string.Equals(member.GivenName, normalizedGiven, StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(member.FamilyName, normalizedFamily, StringComparison.OrdinalIgnoreCase) &&
+            member.BirthDate == birthDate);
+
+        return removed > 0;
+    }
 }

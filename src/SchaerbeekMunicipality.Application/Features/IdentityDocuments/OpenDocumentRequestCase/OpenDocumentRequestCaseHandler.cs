@@ -50,6 +50,10 @@ public sealed class OpenDocumentRequestCaseHandler(
             throw new InvalidDocumentRequestTransitionException(
                 "Cannot open a document request for a person without a National Register number.");
 
+        if (person.IsDeceased)
+            throw new InvalidDocumentRequestTransitionException(
+                "Cannot open a document request for a deceased person.");
+
         await EnsureMinorHasLinkedParentAsync(person, cancellationToken);
 
         var documentRequestCase = DocumentRequestCase.Open(

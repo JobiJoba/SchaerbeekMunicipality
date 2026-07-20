@@ -3,6 +3,7 @@ using SchaerbeekMunicipality.Domain.Address;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
 using SchaerbeekMunicipality.Domain.Common;
+using SchaerbeekMunicipality.Domain.DeathDeclaration;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
@@ -90,6 +91,19 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                 coaCase.ClosedAt,
                 $"/change-of-address/{coaCase.Id.Value}"));
         }
+
+        var deathCases = await dbContext.DeathDeclarationCases
+            .AsNoTracking()
+            .Where(c => c.PersonId == personId)
+            .ToListAsync(cancellationToken);
+
+        cases.AddRange(deathCases.Select(c => new PersonCaseSummary(
+            c.Id.Value,
+            "Death declaration",
+            c.Status.ToDisplayString(),
+            c.OpenedAt,
+            c.ClosedAt,
+            $"/death-declarations/{c.Id.Value}")));
 
         var documentCases = await dbContext.DocumentRequestCases
             .AsNoTracking()
@@ -240,7 +254,40 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
             }
         }
 
-        return members;
+        return await FilterOutDeceasedAsync(members, personId, cancellationToken);
+    }
+
+    private async Task<IReadOnlyList<PersonHouseholdMemberSummary>> FilterOutDeceasedAsync(
+        List<PersonHouseholdMemberSummary> members,
+        PersonId personId,
+        CancellationToken cancellationToken)
+    {
+        var deceased = await dbContext.Persons
+            .AsNoTracking()
+            .Where(p => p.DateOfDeath != null && p.Id != personId)
+            .ToListAsync(cancellationToken);
+
+        if (deceased.Count == 0) return members;
+
+        var deceasedIds = deceased.Select(p => p.Id.Value).ToHashSet();
+        var deceasedIdentities = deceased
+            .Select(p => ($"{p.GivenName} {p.FamilyName}".Trim().ToLowerInvariant(), (DateOnly?)p.BirthDate))
+            .ToHashSet();
+
+        return members
+            .Where(m => !IsDeceasedMember(m, deceasedIds, deceasedIdentities))
+            .ToList();
+    }
+
+    private static bool IsDeceasedMember(
+        PersonHouseholdMemberSummary member,
+        HashSet<Guid> deceasedIds,
+        HashSet<(string Name, DateOnly? BirthDate)> deceasedIdentities)
+    {
+        if (member.PersonId is { } memberPersonId && deceasedIds.Contains(memberPersonId)) return true;
+
+        var name = $"{member.GivenName} {member.FamilyName}".Trim().ToLowerInvariant();
+        return member.BirthDate is not null && deceasedIdentities.Contains((name, member.BirthDate));
     }
 
     public async Task<IReadOnlyList<PersonAddressHistoryEntry>> ListAddressHistoryAsync(
@@ -400,6 +447,35 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                     "Change of address"));
         }
 
+        var deathCases = await dbContext.DeathDeclarationCases
+            .AsNoTracking()
+            .Where(c => c.PersonId == personId)
+            .ToListAsync(cancellationToken);
+
+        foreach (var deathCase in deathCases)
+        {
+            events.Add(new PersonHistoryEvent(
+                "Death declaration opened",
+                deathCase.OpenedAt,
+                null,
+                "Death declaration"));
+
+            if (deathCase.ConfirmedAt is { } deathConfirmedAt)
+                events.Add(new PersonHistoryEvent(
+                    "Radiation confirmed",
+                    deathConfirmedAt,
+                    deathCase.DeathDate is { } deathDate ? $"Date of death: {deathDate:yyyy-MM-dd}" : null,
+                    "Death declaration"));
+
+            if (deathCase.ClosedAt is { } deathClosedAt &&
+                deathCase.Status == DeathDeclarationCaseStatus.Rejected)
+                events.Add(new PersonHistoryEvent(
+                    "Death declaration rejected",
+                    deathClosedAt,
+                    deathCase.RejectionReason is null ? null : deathCase.RejectionReason.Value.ToDisplayString(),
+                    "Death declaration"));
+        }
+
         var documentCases = await dbContext.DocumentRequestCases
             .AsNoTracking()
             .Where(c => c.PersonId == personId)
@@ -556,6 +632,28 @@ internal sealed class PersonFileQuery(MunicipalDbContext dbContext) : IPersonFil
                 d.Id.Value,
                 d.ChangeOfAddressCaseId!.Value.Value,
                 "Change of address",
+                d.DocumentType,
+                d.FileName,
+                d.UploadedAt,
+                caseLookup)));
+        }
+
+        var deathCaseIds = cases
+            .Where(c => c.Workflow == "Death declaration")
+            .Select(c => (DeathDeclarationCaseId?)new DeathDeclarationCaseId(c.CaseId))
+            .ToList();
+
+        if (deathCaseIds.Count > 0)
+        {
+            var deathDocuments = await dbContext.AdministrativeDocuments
+                .AsNoTracking()
+                .Where(d => deathCaseIds.Contains(d.DeathDeclarationCaseId))
+                .ToListAsync(cancellationToken);
+
+            documents.AddRange(deathDocuments.Select(d => ToDocumentSummary(
+                d.Id.Value,
+                d.DeathDeclarationCaseId!.Value.Value,
+                "Death declaration",
                 d.DocumentType,
                 d.FileName,
                 d.UploadedAt,

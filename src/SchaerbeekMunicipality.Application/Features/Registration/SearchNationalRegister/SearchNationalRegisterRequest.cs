@@ -5,4 +5,5 @@ public sealed record SearchNationalRegisterRequest(
     string? FamilyName,
     DateOnly? BirthDate,
     int Page = 1,
-    int PageSize = 25);
+    int PageSize = 25,
+    bool ExcludeDeceased = false);

@@ -30,6 +30,10 @@ public sealed class OpenChangeOfAddressCaseHandler(
             throw new InvalidChangeOfAddressTransitionException(
                 "Cannot open a change of address case for a person without a National Register number.");
 
+        if (person.IsDeceased)
+            throw new InvalidChangeOfAddressTransitionException(
+                "Cannot open a change of address case for a deceased person.");
+
         var previousAddress = person.DomicileAddress;
         if (previousAddress is null)
         {

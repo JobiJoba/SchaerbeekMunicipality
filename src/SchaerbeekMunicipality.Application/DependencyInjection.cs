@@ -17,6 +17,18 @@ using SchaerbeekMunicipality.Application.Features.BirthDeclaration.SuspendBirthD
 using SchaerbeekMunicipality.Application.Features.BirthDeclaration.UnlinkParent;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ClaimChangeOfAddressCase;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.ClaimDeathDeclarationCase;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.ConfirmRadiation;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.GetDeathDeclarationCase;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.GetDeathDeclarationChecklist;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.ListDeathDeclarationCases;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.OpenDeathDeclarationCase;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.RecordDeathFacts;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.RejectDeathDeclaration;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.ResumeDeathDeclaration;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.ReviewHousehold;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.SuspendDeathDeclaration;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ConfirmAddressChange;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.DeclareNewAddress;
 using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.GetChangeOfAddressCase;
@@ -187,6 +199,24 @@ public static class DependencyInjection
         services.AddScoped<ConfirmAddressChangeHandler>();
         services.AddScoped<RejectChangeOfAddressHandler>();
         services.AddScoped<ResolveRegisteredPersonHandler>();
+
+        services.AddScoped<DeathDeclarationCaseAuthorization>();
+        services.AddScoped<DeathDeclarationCaseGuard>();
+        services.AddScoped<OpenDeathDeclarationCaseHandler>();
+        services.AddScoped<ListDeathDeclarationCasesHandler>();
+        services.AddScoped<GetDeathDeclarationCaseHandler>();
+        services.AddScoped<ClaimDeathDeclarationCaseHandler>();
+        services.AddScoped<Features.DeathDeclaration.ReleaseCaseLock.ReleaseCaseLockHandler>();
+        services.AddScoped<RecordDeathFactsHandler>();
+        services.AddScoped<ReviewHouseholdHandler>();
+        services.AddScoped<Features.DeathDeclaration.AttachDocument.AttachDocumentHandler>();
+        services.AddScoped<Features.DeathDeclaration.RemoveDocument.RemoveDocumentHandler>();
+        services.AddScoped<Features.DeathDeclaration.DownloadDocument.DownloadDocumentHandler>();
+        services.AddScoped<GetDeathDeclarationChecklistHandler>();
+        services.AddScoped<ConfirmRadiationHandler>();
+        services.AddScoped<RejectDeathDeclarationHandler>();
+        services.AddScoped<SuspendDeathDeclarationHandler>();
+        services.AddScoped<ResumeDeathDeclarationHandler>();
 
         services.AddScoped<RegisterAmendmentCaseAuthorization>();
         services.AddScoped<RegisterAmendmentCaseGuard>();

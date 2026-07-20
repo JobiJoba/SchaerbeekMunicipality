@@ -95,6 +95,7 @@
                 new AppNavItem("Review dashboard", "/registration/review-dashboard", Icons.Material.Outlined.Dashboard),
                 new AppNavItem("Registration cases", "/registration/cases", Icons.Material.Outlined.FolderOpen),
                 new AppNavItem("Birth declarations", "/birth-declarations", Icons.Material.Outlined.ChildCare),
+                new AppNavItem("Death declarations", "/death-declarations", Icons.Material.Outlined.HeartBroken),
                 new AppNavItem("Change of address", "/change-of-address", Icons.Material.Outlined.Home),
                 new AppNavItem("Register amendments", "/register-amendments/cases", Icons.Material.Outlined.EditNote),
                 new AppNavItem("Identity documents", "/identity-documents/requests", Icons.Material.Outlined.Badge),
@@ -158,9 +159,10 @@
 
     private static bool IsPopulationOnlyPath(string path)
     {
-        return path is "registration/cases" or "registration/review-dashboard" or "birth-declarations" or "change-of-address" or "register-amendments/cases" or "identity-documents/requests" ||
+        return path is "registration/cases" or "registration/review-dashboard" or "birth-declarations" or "death-declarations" or "change-of-address" or "register-amendments/cases" or "identity-documents/requests" ||
                path.StartsWith("registration/cases/", StringComparison.OrdinalIgnoreCase) ||
                path.StartsWith("birth-declarations/", StringComparison.OrdinalIgnoreCase) ||
+               path.StartsWith("death-declarations/", StringComparison.OrdinalIgnoreCase) ||
                path.StartsWith("change-of-address/", StringComparison.OrdinalIgnoreCase) ||
                path.StartsWith("register-amendments/cases/", StringComparison.OrdinalIgnoreCase) ||
                path.StartsWith("identity-documents/requests/", StringComparison.OrdinalIgnoreCase) ||

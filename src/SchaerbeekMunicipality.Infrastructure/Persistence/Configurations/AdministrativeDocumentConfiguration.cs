@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.DeathDeclaration;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.RegisterAmendment;
@@ -40,6 +41,12 @@ internal sealed class AdministrativeDocumentConfiguration : IEntityTypeConfigura
                 id => id.HasValue ? id.Value.Value : (Guid?)null,
                 value => value.HasValue ? new ChangeOfAddressCaseId(value.Value) : null)
             .HasColumnName("change_of_address_case_id");
+
+        builder.Property(d => d.DeathDeclarationCaseId)
+            .HasConversion(
+                id => id.HasValue ? id.Value.Value : (Guid?)null,
+                value => value.HasValue ? new DeathDeclarationCaseId(value.Value) : null)
+            .HasColumnName("death_declaration_case_id");
 
         builder.Property(d => d.DocumentRequestCaseId)
             .HasConversion(
@@ -85,6 +92,7 @@ internal sealed class AdministrativeDocumentConfiguration : IEntityTypeConfigura
         builder.HasIndex(d => d.RegistrationCaseId);
         builder.HasIndex(d => d.BirthDeclarationCaseId);
         builder.HasIndex(d => d.ChangeOfAddressCaseId);
+        builder.HasIndex(d => d.DeathDeclarationCaseId);
         builder.HasIndex(d => d.DocumentRequestCaseId);
         builder.HasIndex(d => d.RegisterAmendmentCaseId);
     }

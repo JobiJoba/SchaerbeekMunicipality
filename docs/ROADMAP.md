@@ -33,7 +33,7 @@ Estimates are rough learning-project sizing, not calendar commitments.
 | 17 | Post-registration amendments | ✅ Complete |
 | 18 | Remaining exception scenarios | ✅ Complete |
 | 19 | Life events & citizen services (scope) | ✅ Complete |
-| 20 | Death declaration & radiation | Planned |
+| 20 | Death declaration & radiation | Complete |
 | 21 | Certificate desk (on-demand) | Planned |
 | 22 | Inter-municipal move & emigration | Planned |
 | 23 | Residence card production | Planned |
@@ -605,7 +605,7 @@ The backlog is split into **Phases 20–26**. Multi-language UI (FR / NL) remain
 
 ## Phase 20 — Death declaration & radiation
 
-**Status:** Planned — see [phases/phase-20-death-declaration-radiation.md](./phases/phase-20-death-declaration-radiation.md).
+**Status:** Complete — see [phases/phase-20-death-declaration-radiation.md](./phases/phase-20-death-declaration-radiation.md).
 
 **Goal:** Lifecycle counterpart to birth — record death, radiate person from the active register, update household, stub outbound notifications.
 

@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.Certificates;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.DeathDeclaration;
 using SchaerbeekMunicipality.Domain.Documents;
 using SchaerbeekMunicipality.Domain.Household;
 using SchaerbeekMunicipality.Domain.Identity;
@@ -48,6 +49,7 @@ public static class DependencyInjection
         services.AddScoped<IRegistrationCaseRepository, RegistrationCaseRepository>();
         services.AddScoped<IBirthDeclarationCaseRepository, BirthDeclarationCaseRepository>();
         services.AddScoped<IChangeOfAddressCaseRepository, ChangeOfAddressCaseRepository>();
+        services.AddScoped<IDeathDeclarationCaseRepository, DeathDeclarationCaseRepository>();
         services.AddScoped<IRegisterAmendmentCaseRepository, RegisterAmendmentCaseRepository>();
         services.AddScoped<IDocumentRequestCaseRepository, DocumentRequestCaseRepository>();
         services.AddScoped<IPersonRepository, PersonRepository>();
@@ -66,6 +68,7 @@ public static class DependencyInjection
         services.AddScoped<IRegistrationConfirmedHandler, RegistrationConfirmedNotificationHandler>();
         services.AddScoped<IBirthRegisteredHandler, BirthRegisteredNotificationHandler>();
         services.AddScoped<IAddressChangedHandler, AddressChangedNotificationHandler>();
+        services.AddScoped<IPersonRadiatedHandler, PersonRadiatedNotificationHandler>();
         services.AddIntegrationOutbox();
         services.AddSingleton<ICertificateRenderer, HtmlCertificateRenderer>();
         services.AddSingleton<IDocumentStorage, LocalFileDocumentStorage>();

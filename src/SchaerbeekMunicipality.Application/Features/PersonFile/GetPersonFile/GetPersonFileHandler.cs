@@ -84,7 +84,9 @@ public sealed class GetPersonFileHandler(
             person.LinkedRegisterRecordId is not null,
             person.BirthPlace is null
                 ? null
-                : new BirthInformationDto(person.BirthPlace, person.BirthCountry));
+                : new BirthInformationDto(person.BirthPlace, person.BirthCountry),
+            person.IsDeceased,
+            person.DateOfDeath);
 
         var civilStatus = person.CivilStatus is null
             ? null

@@ -1,5 +1,6 @@
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.DeathDeclaration;
 using SchaerbeekMunicipality.Domain.Identity;
 using SchaerbeekMunicipality.Domain.Registration;
 
@@ -18,6 +19,8 @@ public sealed class OutboundNotification
     public BirthDeclarationCaseId? BirthDeclarationCaseId { get; private set; }
 
     public ChangeOfAddressCaseId? ChangeOfAddressCaseId { get; private set; }
+
+    public DeathDeclarationCaseId? DeathDeclarationCaseId { get; private set; }
 
     public PersonId PersonId { get; private set; }
 
@@ -50,6 +53,7 @@ public sealed class OutboundNotification
             registrationCaseId,
             null,
             null,
+            null,
             personId,
             recipient,
             message,
@@ -68,6 +72,7 @@ public sealed class OutboundNotification
         return CreatePending(
             null,
             birthDeclarationCaseId,
+            null,
             null,
             personId,
             recipient,
@@ -88,6 +93,27 @@ public sealed class OutboundNotification
             null,
             null,
             changeOfAddressCaseId,
+            null,
+            personId,
+            recipient,
+            message,
+            createdAt);
+    }
+
+    public static OutboundNotification CreateForDeathDeclaration(
+        DeathDeclarationCaseId deathDeclarationCaseId,
+        PersonId personId,
+        OutboundNotificationRecipient recipient,
+        string message,
+        DateTimeOffset createdAt)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(message);
+
+        return CreatePending(
+            null,
+            null,
+            null,
+            deathDeclarationCaseId,
             personId,
             recipient,
             message,
@@ -146,6 +172,7 @@ public sealed class OutboundNotification
         RegistrationCaseId? registrationCaseId,
         BirthDeclarationCaseId? birthDeclarationCaseId,
         ChangeOfAddressCaseId? changeOfAddressCaseId,
+        DeathDeclarationCaseId? deathDeclarationCaseId,
         PersonId personId,
         OutboundNotificationRecipient recipient,
         string message,
@@ -159,6 +186,7 @@ public sealed class OutboundNotification
             RegistrationCaseId = registrationCaseId,
             BirthDeclarationCaseId = birthDeclarationCaseId,
             ChangeOfAddressCaseId = changeOfAddressCaseId,
+            DeathDeclarationCaseId = deathDeclarationCaseId,
             PersonId = personId,
             Recipient = recipient,
             Message = message.Trim(),

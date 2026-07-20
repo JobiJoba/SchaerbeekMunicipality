@@ -1,0 +1,3 @@
+namespace SchaerbeekMunicipality.Application.Features.DeathDeclaration.OpenDeathDeclarationCase;
+
+public sealed record OpenDeathDeclarationCaseRequest(Guid PersonId);

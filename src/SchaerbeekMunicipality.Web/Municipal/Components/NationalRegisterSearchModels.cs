@@ -23,10 +23,13 @@ public sealed record NationalRegisterSearchMatch(
     int MatchScore,
     string MatchReason,
     bool IsRegisteredInPopulation,
-    Guid? PersonId = null)
+    Guid? PersonId = null,
+    bool IsDeceased = false)
 {
     public bool CanOpenServiceCase =>
-        IsRegisteredInPopulation && !string.IsNullOrWhiteSpace(NationalRegisterNumber);
+        IsRegisteredInPopulation
+        && !string.IsNullOrWhiteSpace(NationalRegisterNumber)
+        && !IsDeceased;
 
     public bool CanOpenPersonFile => PersonId is not null;
 }

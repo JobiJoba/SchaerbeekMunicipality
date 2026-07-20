@@ -1,0 +1,273 @@
+@page "/death-declarations"
+@using SchaerbeekMunicipality.Application.Features.DeathDeclaration.ListDeathDeclarationCases
+@using SchaerbeekMunicipality.Domain.DeathDeclaration
+@using SchaerbeekMunicipality.Web.Api.DeathDeclaration
+@using SchaerbeekMunicipality.Web.Features.DeathDeclaration.Components
+@inject IDeathDeclarationApi DeathDeclarationApi
+@inject ICurrentOfficer CurrentOfficer
+@inject IDialogService DialogService
+@inject NavigationManager Navigation
+
+<RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]" RedirectTo="/registration/new-case">
+    <AppPage Title="Death declarations">
+        <AppPageHeader Title="Death declarations"
+                       Subtitle="Death registration and radiation from the population register.">
+            <Actions>
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.Add"
+                           Style="min-height: 48px;"
+                           data-testid="new-death-declaration"
+                           OnClick="OpenNewCase">
+                    New death declaration
+                </MudButton>
+            </Actions>
+        </AppPageHeader>
+
+        <AppSection>
+            @if (_loading)
+            {
+                <AppLoading Kind="AppLoadingKind.Skeleton"/>
+            }
+            else if (_cases.Count == 0)
+            {
+                <AppEmptyState Title="No death declaration cases yet"
+                               Description="Open a new case to record a death for a registered resident."
+                               Icon="@Icons.Material.Outlined.HeartBroken">
+                    <Action>
+                        <MudButton Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   StartIcon="@Icons.Material.Outlined.Add"
+                                   OnClick="OpenNewCase">
+                            New death declaration
+                        </MudButton>
+                    </Action>
+                </AppEmptyState>
+            }
+            else
+            {
+                <AppSearchBar @bind-Value="_searchText"
+                              Placeholder="Search cases…"
+                              Class="mb-3"
+                              OnSearch="OnSearch"/>
+
+                <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" AlignItems="AlignItems.Center" Class="mb-4">
+                    @foreach (var option in _filterOptions)
+                    {
+                        <MudButton Variant="@GetFilterVariant(option.Filter)"
+                                   Color="@GetFilterColor(option.Filter)"
+                                   StartIcon="@option.Icon"
+                                   OnClick="@(() => SetQuickFilter(option.Filter))">
+                            @option.Label
+                        </MudButton>
+                    }
+                </MudStack>
+
+                @if (_filteredCases.Count == 0)
+                {
+                    <AppEmptyState Title="No matching cases"
+                                   Description="@GetEmptyFilterDescription()"
+                                   Icon="@Icons.Material.Outlined.FilterList"/>
+                }
+                else
+                {
+                    <AppDataTable T="DeathDeclarationCaseListItem"
+                                  Items="_filteredCases"
+                                  Caption="Death declaration cases"
+                                  OnRowClick="NavigateToCase">
+                        <HeaderContent>
+                            <MudTh Class="app-table-header">Case ID</MudTh>
+                            <MudTh Class="app-table-header">Deceased</MudTh>
+                            <MudTh Class="app-table-header">Date of death</MudTh>
+                            <MudTh Class="app-table-header">Status</MudTh>
+                            <MudTh Class="app-table-header">Officer</MudTh>
+                            <MudTh Class="app-table-header">Opened</MudTh>
+                        </HeaderContent>
+                        <RowTemplate Context="item">
+                            <MudTd DataLabel="Case ID">
+                                <MudLink Href="@($"/death-declarations/{item.Id}")">
+                                    @item.Id.ToString()[..8]…
+                                </MudLink>
+                            </MudTd>
+                            <MudTd DataLabel="Deceased">@(item.PersonDisplayName ?? "—")</MudTd>
+                            <MudTd DataLabel="Date of death">@(item.DeathDate?.ToString("d") ?? "—")</MudTd>
+                            <MudTd DataLabel="Status">
+                                <AppStatusChip Label="@item.Status.ToDisplayString()" Severity="@GetSeverity(item.Status)"/>
+                            </MudTd>
+                            <MudTd DataLabel="Officer">
+                                @OfficerDisplayNames.LockStatus(item.AssignedOfficerId, item.LockedByOfficerId)
+                            </MudTd>
+                            <MudTd DataLabel="Opened">@item.OpenedAt.LocalDateTime.ToString("g")</MudTd>
+                        </RowTemplate>
+                    </AppDataTable>
+                }
+            }
+        </AppSection>
+    </AppPage>
+</RegistrationRoleGate>
+
+@code {
+
+    private enum CaseListFilter
+    {
+        All,
+        MyCases,
+        Unassigned,
+        Ready
+    }
+
+    private sealed record FilterOption(CaseListFilter Filter, string Label, string Icon);
+
+    private static readonly FilterOption[] _filterOptions =
+    [
+        new(CaseListFilter.All, "All cases", Icons.Material.Outlined.FolderOpen),
+        new(CaseListFilter.MyCases, "My cases", Icons.Material.Outlined.Person),
+        new(CaseListFilter.Unassigned, "Unassigned", Icons.Material.Outlined.Inbox),
+        new(CaseListFilter.Ready, "Ready for confirmation", Icons.Material.Outlined.CheckCircle)
+    ];
+
+    [SupplyParameterFromQuery(Name = "filter")]
+    public string? Filter { get; set; }
+
+    [SupplyParameterFromQuery(Name = "open")]
+    public string? Open { get; set; }
+
+    private IReadOnlyList<DeathDeclarationCaseListItem> _cases = [];
+    private IReadOnlyList<DeathDeclarationCaseListItem> _filteredCases = [];
+    private bool _loading = true;
+    private string _searchText = string.Empty;
+    private CaseListFilter _quickFilter = CaseListFilter.All;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _quickFilter = ParseFilter(Filter);
+        _cases = await DeathDeclarationApi.ListCasesAsync(CancellationToken.None);
+        ApplyFilter();
+        _loading = false;
+
+        if (string.Equals(Open, "new", StringComparison.OrdinalIgnoreCase))
+        {
+            await OpenNewCase();
+        }
+    }
+
+    private async Task OpenNewCase()
+    {
+        var dialog = await DialogService.ShowAsync<OpenDeathDeclarationDialog>(
+            "New death declaration",
+            new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true });
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false, Data: Guid caseId })
+        {
+            Navigation.NavigateTo($"/death-declarations/{caseId}");
+        }
+    }
+
+    private static CaseListFilter ParseFilter(string? filter)
+    {
+        return filter?.Trim().ToLowerInvariant() switch
+        {
+            "mine" or "my" or "my-cases" => CaseListFilter.MyCases,
+            "unassigned" => CaseListFilter.Unassigned,
+            "ready" or "ready-for-confirmation" => CaseListFilter.Ready,
+            _ => CaseListFilter.All
+        };
+    }
+
+    private void OnSearch(string _)
+    {
+        ApplyFilter();
+    }
+
+    private void SetQuickFilter(CaseListFilter filter)
+    {
+        _quickFilter = filter;
+        ApplyFilter();
+    }
+
+    private void ApplyFilter()
+    {
+        IEnumerable<DeathDeclarationCaseListItem> query = _cases;
+
+        query = _quickFilter switch
+        {
+            CaseListFilter.MyCases => query.Where(IsMyCase),
+            CaseListFilter.Unassigned => query.Where(IsUnassigned),
+            CaseListFilter.Ready => query.Where(c => c.IsReadyForConfirmation),
+            _ => query
+        };
+
+        if (!string.IsNullOrWhiteSpace(_searchText))
+        {
+            var term = _searchText.Trim();
+            query = query.Where(c =>
+                c.Id.ToString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                c.Status.ToDisplayString().Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                (c.PersonDisplayName?.Contains(term, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                OfficerDisplayNames.LockStatus(c.AssignedOfficerId, c.LockedByOfficerId)
+                    .Contains(term, StringComparison.OrdinalIgnoreCase));
+        }
+
+        _filteredCases = query.ToList();
+    }
+
+    private bool IsMyCase(DeathDeclarationCaseListItem item)
+    {
+        return item.LockedByOfficerId == CurrentOfficer.OfficerId ||
+               item.AssignedOfficerId == CurrentOfficer.OfficerId;
+    }
+
+    private static bool IsUnassigned(DeathDeclarationCaseListItem item)
+    {
+        return item.AssignedOfficerId is null &&
+               item.LockedByOfficerId is null &&
+               item.Status == DeathDeclarationCaseStatus.Intake;
+    }
+
+    private Variant GetFilterVariant(CaseListFilter filter)
+    {
+        return _quickFilter == filter ? Variant.Filled : Variant.Outlined;
+    }
+
+    private Color GetFilterColor(CaseListFilter filter)
+    {
+        return _quickFilter == filter ? Color.Primary : Color.Default;
+    }
+
+    private string GetEmptyFilterDescription()
+    {
+        return _quickFilter switch
+        {
+            CaseListFilter.MyCases when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No cases assigned to you match your search.",
+            CaseListFilter.MyCases => "You have no assigned or locked death declaration cases right now.",
+            CaseListFilter.Unassigned when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No unassigned cases match your search.",
+            CaseListFilter.Unassigned => "There are no unassigned death declaration cases waiting for intake.",
+            CaseListFilter.Ready when !string.IsNullOrWhiteSpace(_searchText) =>
+                "No cases ready for confirmation match your search.",
+            CaseListFilter.Ready => "No death declaration cases are ready for confirmation right now.",
+            _ when !string.IsNullOrWhiteSpace(_searchText) => "Try a different search term.",
+            _ => "No cases match the current filters."
+        };
+    }
+
+    private void NavigateToCase(DeathDeclarationCaseListItem item)
+    {
+        Navigation.NavigateTo($"/death-declarations/{item.Id}");
+    }
+
+    private static AppSeverity GetSeverity(DeathDeclarationCaseStatus status)
+    {
+        return status switch
+        {
+            DeathDeclarationCaseStatus.Confirmed => AppSeverity.Success,
+            DeathDeclarationCaseStatus.Rejected => AppSeverity.Error,
+            DeathDeclarationCaseStatus.Suspended => AppSeverity.Warning,
+            DeathDeclarationCaseStatus.UnderReview => AppSeverity.Info,
+            _ => AppSeverity.Neutral
+        };
+    }
+
+}

@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
+using SchaerbeekMunicipality.Application.Features.DeathDeclaration.ConfirmRadiation;
 using SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson;
 using SchaerbeekMunicipality.Application.Features.Registration.RecordIdentity;
 using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister;
@@ -146,5 +147,31 @@ public sealed class LinkExistingPersonTests
             CancellationToken.None);
 
         search.Matches.Should().Contain(m => m.MatchScore >= 100);
+    }
+
+    [Fact]
+    public async Task SearchNationalRegister_ExcludeDeceased_OmitsRadiatedPerson()
+    {
+        await using var factory = new MunicipalAppFactory();
+        await using var scope = factory.Services.CreateAsyncScope();
+        var services = scope.ServiceProvider;
+
+        var personId = await DeathDeclaration.DeathDeclarationTestHelpers.CreateRegisteredPersonAsync(services);
+        var caseId = await DeathDeclaration.DeathDeclarationTestHelpers.PrepareCaseReadyForConfirmationAsync(
+            services,
+            personId);
+        await services.GetRequiredService<ConfirmRadiationHandler>().Handle(caseId, CancellationToken.None);
+
+        var searchHandler = services.GetRequiredService<SearchNationalRegisterHandler>();
+
+        var withDeceased = await searchHandler.Handle(
+            new SearchNationalRegisterRequest("Jean", "Dupont", null),
+            CancellationToken.None);
+        withDeceased.Matches.Should().Contain(m => m.GivenName == "Jean" && m.IsDeceased);
+
+        var livingOnly = await searchHandler.Handle(
+            new SearchNationalRegisterRequest("Jean", "Dupont", null, ExcludeDeceased: true),
+            CancellationToken.None);
+        livingOnly.Matches.Should().NotContain(m => m.GivenName == "Jean");
     }
 }

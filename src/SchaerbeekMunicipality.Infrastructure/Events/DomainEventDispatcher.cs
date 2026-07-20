@@ -7,6 +7,7 @@ public sealed class DomainEventDispatcher(
     IEnumerable<IRegistrationConfirmedHandler> registrationConfirmedHandlers,
     IEnumerable<IBirthRegisteredHandler> birthRegisteredHandlers,
     IEnumerable<IAddressChangedHandler> addressChangedHandlers,
+    IEnumerable<IPersonRadiatedHandler> personRadiatedHandlers,
     ILogger<DomainEventDispatcher> logger) : IDomainEventDispatcher
 {
     public async Task DispatchAsync(IDomainEvent domainEvent, CancellationToken cancellationToken)
@@ -26,6 +27,11 @@ public sealed class DomainEventDispatcher(
             case AddressChanged addressChanged:
                 foreach (var handler in addressChangedHandlers)
                     await handler.HandleAsync(addressChanged, cancellationToken);
+
+                break;
+            case PersonRadiated personRadiated:
+                foreach (var handler in personRadiatedHandlers)
+                    await handler.HandleAsync(personRadiated, cancellationToken);
 
                 break;
             default:

@@ -118,7 +118,8 @@ public sealed class RegistrationApiClient(HttpClient httpClient, ICurrentOfficer
             ("FamilyName", request.FamilyName),
             ("BirthDate", request.BirthDate?.ToString("O")),
             ("Page", request.Page.ToString()),
-            ("PageSize", request.PageSize.ToString()));
+            ("PageSize", request.PageSize.ToString()),
+            ("ExcludeDeceased", request.ExcludeDeceased ? "true" : null));
 
         return GetJsonAsync<SearchNationalRegisterResponse>($"{BasePath}/national-register/search{query}",
             cancellationToken);

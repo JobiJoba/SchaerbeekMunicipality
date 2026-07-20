@@ -1,6 +1,7 @@
 using FluentValidation;
 using SchaerbeekMunicipality.Api.Features.BirthDeclaration;
 using SchaerbeekMunicipality.Api.Features.ChangeOfAddress;
+using SchaerbeekMunicipality.Api.Features.DeathDeclaration;
 using SchaerbeekMunicipality.Api.Features.IdentityDocuments;
 using SchaerbeekMunicipality.Api.Features.PersonFile;
 using SchaerbeekMunicipality.Api.Features.Registration;
@@ -49,6 +50,7 @@ public static class MunicipalApiHostExtensions
         app.MapRegistrationEndpoints();
         app.MapBirthDeclarationEndpoints();
         app.MapChangeOfAddressEndpoints();
+        app.MapDeathDeclarationEndpoints();
         app.MapRegisterAmendmentEndpoints();
         app.MapIdentityDocumentsEndpoints();
         app.MapReportingEndpoints();

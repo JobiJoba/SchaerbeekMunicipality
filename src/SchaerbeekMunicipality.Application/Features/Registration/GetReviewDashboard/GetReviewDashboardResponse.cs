@@ -4,7 +4,8 @@ public enum ReviewDashboardCaseType
 {
     Registration,
     BirthDeclaration,
-    RegisterAmendment
+    RegisterAmendment,
+    DeathDeclaration
 }
 
 public sealed record ReviewDashboardStatistic(

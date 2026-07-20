@@ -1,5 +1,6 @@
 using SchaerbeekMunicipality.Web.Api.BirthDeclaration;
 using SchaerbeekMunicipality.Web.Api.ChangeOfAddress;
+using SchaerbeekMunicipality.Web.Api.DeathDeclaration;
 using SchaerbeekMunicipality.Web.Api.IdentityDocuments;
 using SchaerbeekMunicipality.Web.Api.PersonFile;
 using SchaerbeekMunicipality.Web.Api.Registration;
@@ -17,6 +18,7 @@ public static class DependencyInjection
         RegisterClient<IRegistrationApi, RegistrationApiClient>(services, environment);
         RegisterClient<IBirthDeclarationApi, BirthDeclarationApiClient>(services, environment);
         RegisterClient<IChangeOfAddressApi, ChangeOfAddressApiClient>(services, environment);
+        RegisterClient<IDeathDeclarationApi, DeathDeclarationApiClient>(services, environment);
         RegisterClient<IRegisterAmendmentApi, RegisterAmendmentApiClient>(services, environment);
         RegisterClient<IIdentityDocumentsApi, IdentityDocumentsApiClient>(services, environment);
         RegisterClient<IReportingApi, ReportingApiClient>(services, environment);

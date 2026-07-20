@@ -1,5 +1,6 @@
 using SchaerbeekMunicipality.Domain.BirthDeclaration;
 using SchaerbeekMunicipality.Domain.ChangeOfAddress;
+using SchaerbeekMunicipality.Domain.DeathDeclaration;
 using SchaerbeekMunicipality.Domain.IdentityDocuments;
 using SchaerbeekMunicipality.Domain.RegisterAmendment;
 using SchaerbeekMunicipality.Domain.Registration;
@@ -19,6 +20,8 @@ public sealed class AdministrativeDocument
     public BirthDeclarationCaseId? BirthDeclarationCaseId { get; private set; }
 
     public ChangeOfAddressCaseId? ChangeOfAddressCaseId { get; private set; }
+
+    public DeathDeclarationCaseId? DeathDeclarationCaseId { get; private set; }
 
     public DocumentRequestCaseId? DocumentRequestCaseId { get; private set; }
 
@@ -165,6 +168,41 @@ public sealed class AdministrativeDocument
     public bool BelongsToChangeOfAddressCase(ChangeOfAddressCaseId caseId)
     {
         return ChangeOfAddressCaseId == caseId;
+    }
+
+    public static AdministrativeDocument CreateForDeathDeclarationCase(
+        DeathDeclarationCaseId deathDeclarationCaseId,
+        DocumentType documentType,
+        string fileName,
+        string storagePath,
+        string contentHash,
+        OfficerId uploadedByOfficerId,
+        DateTimeOffset uploadedAt)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(fileName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(storagePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(contentHash);
+
+        if (documentType != DocumentType.DeathCertificate)
+            throw new ArgumentException(
+                "Death declaration cases only accept death certificate documents.");
+
+        return new AdministrativeDocument
+        {
+            Id = AdministrativeDocumentId.New(),
+            DeathDeclarationCaseId = deathDeclarationCaseId,
+            DocumentType = documentType,
+            FileName = fileName.Trim(),
+            StoragePath = storagePath,
+            ContentHash = contentHash,
+            UploadedByOfficerId = uploadedByOfficerId,
+            UploadedAt = uploadedAt
+        };
+    }
+
+    public bool BelongsToDeathDeclarationCase(DeathDeclarationCaseId caseId)
+    {
+        return DeathDeclarationCaseId == caseId;
     }
 
     public bool BelongsToDocumentRequestCase(DocumentRequestCaseId caseId)

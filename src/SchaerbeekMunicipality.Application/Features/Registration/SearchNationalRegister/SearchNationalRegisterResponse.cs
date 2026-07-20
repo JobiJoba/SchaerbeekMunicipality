@@ -11,7 +11,8 @@ public sealed record NationalRegisterMatchDto(
     int MatchScore,
     string MatchReason,
     bool IsRegisteredInPopulation,
-    Guid? PersonId);
+    Guid? PersonId,
+    bool IsDeceased = false);
 
 public sealed record SearchNationalRegisterResponse(
     IReadOnlyList<NationalRegisterMatchDto> Matches,

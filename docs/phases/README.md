@@ -29,7 +29,7 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 | 17 | Post-registration amendments | Complete | [phase-17-post-registration-amendments.md](./phase-17-post-registration-amendments.md) |
 | 18 | Remaining exception scenarios | Complete | [phase-18-remaining-exception-scenarios.md](./phase-18-remaining-exception-scenarios.md) |
 | 19 | Life events & citizen services (scope) | Complete | [phase-19-life-events-citizen-services.md](./phase-19-life-events-citizen-services.md) |
-| 20 | Death declaration & radiation | Planned | [phase-20-death-declaration-radiation.md](./phase-20-death-declaration-radiation.md) |
+| 20 | Death declaration & radiation | Complete | [phase-20-death-declaration-radiation.md](./phase-20-death-declaration-radiation.md) |
 | 21 | Certificate desk (on-demand) | Planned | [phase-21-certificate-desk.md](./phase-21-certificate-desk.md) |
 | 22 | Inter-municipal move & emigration | Planned | [phase-22-inter-municipal-move-emigration.md](./phase-22-inter-municipal-move-emigration.md) |
 | 23 | Residence card production | Planned | [phase-23-residence-card-production.md](./phase-23-residence-card-production.md) |

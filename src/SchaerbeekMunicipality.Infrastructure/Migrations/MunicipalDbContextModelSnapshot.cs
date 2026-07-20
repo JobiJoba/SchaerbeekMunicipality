@@ -253,6 +253,105 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.ToTable("change_of_address_cases", (string)null);
                 });
 
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.DeathDeclaration.DeathDeclarationCase", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("AssignedOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("assigned_officer_id");
+
+                    b.Property<DateTimeOffset?>("ClosedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("closed_at");
+
+                    b.Property<DateTimeOffset?>("ConfirmedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("confirmed_at");
+
+                    b.Property<bool>("DeathAbroad")
+                        .HasColumnType("boolean")
+                        .HasColumnName("death_abroad");
+
+                    b.Property<Guid?>("DeathActDocumentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("death_act_document_id");
+
+                    b.Property<DateOnly?>("DeathDate")
+                        .HasColumnType("date")
+                        .HasColumnName("death_date");
+
+                    b.Property<string>("DeathPlace")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("death_place");
+
+                    b.Property<string>("DecisionNotes")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)")
+                        .HasColumnName("decision_notes");
+
+                    b.Property<Guid?>("DecisionOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("decision_officer_id");
+
+                    b.Property<DateTimeOffset?>("HouseholdReviewedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("household_reviewed_at");
+
+                    b.Property<string>("InformantRelationship")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("informant_relationship");
+
+                    b.Property<DateTimeOffset?>("LockedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("locked_at");
+
+                    b.Property<Guid?>("LockedByOfficerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("locked_by_officer_id");
+
+                    b.Property<DateTimeOffset>("OpenedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("opened_at");
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("person_id");
+
+                    b.Property<string>("RejectionReason")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("rejection_reason");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("status");
+
+                    b.Property<string>("StatusBeforeSuspension")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("status_before_suspension");
+
+                    b.Property<string>("SuspensionReason")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("suspension_reason");
+
+                    b.HasKey("Id")
+                        .HasName("pk_death_declaration_cases");
+
+                    b.HasIndex("PersonId")
+                        .HasDatabaseName("ix_death_declaration_cases_person_id");
+
+                    b.ToTable("death_declaration_cases", (string)null);
+                });
+
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Documents.AdministrativeDocument", b =>
                 {
                     b.Property<Guid>("Id")
@@ -272,6 +371,10 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)")
                         .HasColumnName("content_hash");
+
+                    b.Property<Guid?>("DeathDeclarationCaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("death_declaration_case_id");
 
                     b.Property<Guid?>("DocumentRequestCaseId")
                         .HasColumnType("uuid")
@@ -319,6 +422,9 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
 
                     b.HasIndex("ChangeOfAddressCaseId")
                         .HasDatabaseName("ix_administrative_documents_change_of_address_case_id");
+
+                    b.HasIndex("DeathDeclarationCaseId")
+                        .HasDatabaseName("ix_administrative_documents_death_declaration_case_id");
 
                     b.HasIndex("DocumentRequestCaseId")
                         .HasDatabaseName("ix_administrative_documents_document_request_case_id");
@@ -417,6 +523,10 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("character varying(11)")
                         .HasColumnName("bis_number");
+
+                    b.Property<DateOnly?>("DateOfDeath")
+                        .HasColumnType("date")
+                        .HasColumnName("date_of_death");
 
                     b.Property<string>("FamilyName")
                         .IsRequired()
@@ -659,6 +769,10 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
 
+                    b.Property<Guid?>("DeathDeclarationCaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("death_declaration_case_id");
+
                     b.Property<string>("DeliveryStatus")
                         .IsRequired()
                         .HasMaxLength(32)
@@ -709,6 +823,9 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
 
                     b.HasIndex("CreatedAt")
                         .HasDatabaseName("ix_outbound_notifications_created_at");
+
+                    b.HasIndex("DeathDeclarationCaseId")
+                        .HasDatabaseName("ix_outbound_notifications_death_declaration_case_id");
 
                     b.HasIndex("RegistrationCaseId")
                         .HasDatabaseName("ix_outbound_notifications_registration_case_id");
@@ -1327,6 +1444,43 @@ namespace SchaerbeekMunicipality.Infrastructure.Migrations
                     b.Navigation("NewAddress");
 
                     b.Navigation("PreviousAddress");
+                });
+
+            modelBuilder.Entity("SchaerbeekMunicipality.Domain.DeathDeclaration.DeathDeclarationCase", b =>
+                {
+                    b.OwnsOne("SchaerbeekMunicipality.Domain.DeathDeclaration.DeathDeclarationCaseChecklist", "Checklist", b1 =>
+                        {
+                            b1.Property<Guid>("DeathDeclarationCaseId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<bool>("DeathActAttached")
+                                .HasColumnType("boolean")
+                                .HasColumnName("death_act_attached");
+
+                            b1.Property<bool>("DeathFactsRecorded")
+                                .HasColumnType("boolean")
+                                .HasColumnName("death_facts_recorded");
+
+                            b1.Property<bool>("HouseholdReviewed")
+                                .HasColumnType("boolean")
+                                .HasColumnName("household_reviewed");
+
+                            b1.Property<bool>("PersonIdentified")
+                                .HasColumnType("boolean")
+                                .HasColumnName("person_identified");
+
+                            b1.HasKey("DeathDeclarationCaseId");
+
+                            b1.ToTable("death_declaration_cases");
+
+                            b1.WithOwner()
+                                .HasForeignKey("DeathDeclarationCaseId")
+                                .HasConstraintName("fk_death_declaration_cases_death_declaration_cases_id");
+                        });
+
+                    b.Navigation("Checklist")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SchaerbeekMunicipality.Domain.Household.HouseholdMember", b =>
