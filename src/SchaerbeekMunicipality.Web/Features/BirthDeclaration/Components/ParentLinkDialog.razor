@@ -1,10 +1,8 @@
 @using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.BirthDeclaration.LinkParent
-@using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
 @using SchaerbeekMunicipality.Domain.BirthDeclaration
 @using SchaerbeekMunicipality.Domain.NationalRegister
 @using SchaerbeekMunicipality.Web.Api.BirthDeclaration
-@using SchaerbeekMunicipality.Web.Api.Registration
 @using Severity = MudBlazor.Severity
 <MudDialog>
     <TitleContent>
@@ -45,31 +43,15 @@
 
     [Parameter] public Guid CaseId { get; set; }
 
-    [Inject] private IRegistrationApi RegistrationApi { get; set; } = null!;
+    [Inject] private INationalRegisterSearchQueries NationalRegisterSearch { get; set; } = null!;
     [Inject] private IBirthDeclarationApi BirthDeclarationApi { get; set; } = null!;
 
     private ParentRole _role = ParentRole.Mother;
     private bool _linking;
     private string? _linkError;
 
-    private async Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria)
-    {
-        var response = await RegistrationApi.SearchNationalRegisterAsync(
-            new SearchNationalRegisterRequest(
-                criteria.GivenName,
-                criteria.FamilyName,
-                criteria.BirthDate,
-                criteria.Page,
-                criteria.PageSize,
-                ExcludeDeceased: true),
-            CancellationToken.None);
-
-        return new NationalRegisterSearchResult(
-            response.Matches.Select(Map).ToList(),
-            response.TotalCount,
-            response.Page,
-            response.PageSize);
-    }
+    private Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria) =>
+        NationalRegisterSearch.SearchLivingResidentsAsync(criteria);
 
     private async Task LinkMatch(NationalRegisterSearchMatch match)
     {
@@ -98,22 +80,6 @@
     private void Cancel()
     {
         MudDialog.Cancel();
-    }
-
-    private static NationalRegisterSearchMatch Map(NationalRegisterMatchDto match)
-    {
-        return new NationalRegisterSearchMatch(
-            match.RegisterPersonId,
-            match.GivenName,
-            match.FamilyName,
-            match.BirthDate,
-            match.BisNumber,
-            match.NationalRegisterNumber,
-            match.MatchScore,
-            match.MatchReason,
-            match.IsRegisteredInPopulation,
-            match.PersonId,
-            match.IsDeceased);
     }
 
 }

@@ -25,25 +25,7 @@ public sealed class SearchNationalRegisterHandler(
         IReadOnlyList<(NationalRegisterMatch Match, Person? Person)> pageSource;
         int totalCount;
 
-        if (request.ExcludeDeceased)
-        {
-            var living = new List<(NationalRegisterMatch Match, Person? Person)>(matches.Count);
-            foreach (var match in matches)
-            {
-                var linkedPerson = await ResolveLinkedPersonAsync(match, cancellationToken);
-                if (linkedPerson?.IsDeceased == true)
-                    continue;
-
-                living.Add((match, linkedPerson));
-            }
-
-            totalCount = living.Count;
-            pageSource = living
-                .Skip((request.Page - 1) * request.PageSize)
-                .Take(request.PageSize)
-                .ToList();
-        }
-        else
+        if (request.Eligibility == NationalRegisterSearchEligibility.All)
         {
             totalCount = matches.Count;
             var pageMatches = matches
@@ -59,6 +41,24 @@ public sealed class SearchNationalRegisterHandler(
             }
 
             pageSource = resolved;
+        }
+        else
+        {
+            var eligible = new List<(NationalRegisterMatch Match, Person? Person)>(matches.Count);
+            foreach (var match in matches)
+            {
+                var linkedPerson = await ResolveLinkedPersonAsync(match, cancellationToken);
+                if (!NationalRegisterSearchEligibilityRules.Matches(match, linkedPerson, request.Eligibility))
+                    continue;
+
+                eligible.Add((match, linkedPerson));
+            }
+
+            totalCount = eligible.Count;
+            pageSource = eligible
+                .Skip((request.Page - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToList();
         }
 
         var dtos = pageSource

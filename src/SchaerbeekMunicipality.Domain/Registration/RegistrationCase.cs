@@ -402,7 +402,9 @@ public sealed class RegistrationCase
         string? notes,
         DateTimeOffset rejectedAt)
     {
-        EnsureStatus(RegistrationCaseStatus.UnderReview, nameof(Reject));
+        if (Status is not (RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview))
+            throw new InvalidRegistrationTransitionException(
+                $"Cannot perform '{nameof(Reject)}' while the case is in status '{Status}'.");
 
         DecisionOfficerId = officer;
         RejectionReason = reason;

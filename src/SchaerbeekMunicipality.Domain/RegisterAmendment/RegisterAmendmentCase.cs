@@ -219,7 +219,9 @@ public sealed class RegisterAmendmentCase
         string? notes,
         DateTimeOffset rejectedAt)
     {
-        EnsureStatus(RegisterAmendmentCaseStatus.UnderReview, nameof(Reject));
+        if (Status is not (RegisterAmendmentCaseStatus.Draft or RegisterAmendmentCaseStatus.UnderReview))
+            throw new InvalidRegisterAmendmentTransitionException(
+                $"Cannot perform '{nameof(Reject)}' while the case is in status '{Status}'.");
 
         DecisionOfficerId = officer;
         RejectionReason = reason;

@@ -6,6 +6,7 @@
 @using SchaerbeekMunicipality.Domain.Registration
 @using SchaerbeekMunicipality.Web.Api.DeathDeclaration
 @inject IDeathDeclarationApi DeathDeclarationApi
+@inject IDialogService DialogService
 @inject ISnackbar Snackbar
 
 <AppCard Title="Officer decision" Outlined="true">
@@ -29,29 +30,38 @@
         <AppAlert Severity="Severity.Warning" Title="Case suspended">@Case.SuspensionReason — @Case.DecisionNotes</AppAlert>
     }
 
-    @if (CanDecide)
+    @if (CanDecide || CanReject)
     {
         <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mt-4">
-            <MudButton Variant="Variant.Filled"
-                       Color="Color.Primary"
-                       StartIcon="@Icons.Material.Outlined.CheckCircle"
-                       Disabled="_busy || Case.Status != DeathDeclarationCaseStatus.UnderReview || !Case.ReadyForConfirmation"
-                       data-testid="confirm-death-declaration"
-                       OnClick="Confirm">
-                Confirm radiation
-            </MudButton>
-            <MudButton Variant="Variant.Outlined"
-                       Color="Color.Error"
-                       Disabled="_busy"
-                       OnClick="Reject">
-                Reject
-            </MudButton>
-            <MudButton Variant="Variant.Outlined"
-                       Color="Color.Warning"
-                       Disabled="_busy"
-                       OnClick="Suspend">
-                Suspend
-            </MudButton>
+            @if (CanDecide)
+            {
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.CheckCircle"
+                           Disabled="_busy || Case.Status != DeathDeclarationCaseStatus.UnderReview || !Case.ReadyForConfirmation"
+                           data-testid="confirm-death-declaration"
+                           OnClick="Confirm">
+                    Confirm radiation
+                </MudButton>
+            }
+            @if (CanReject)
+            {
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Error"
+                           Disabled="_busy"
+                           OnClick="OpenRejectDialog">
+                    Close case
+                </MudButton>
+            }
+            @if (CanDecide)
+            {
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Warning"
+                           Disabled="_busy"
+                           OnClick="Suspend">
+                    Suspend
+                </MudButton>
+            }
         </MudStack>
     }
     else if (Case.Status == DeathDeclarationCaseStatus.Suspended && Case.CanEdit)
@@ -73,6 +83,11 @@
         CurrentOfficer.CanApproveRegistration &&
         Case.CanEdit &&
         Case.Status is DeathDeclarationCaseStatus.UnderReview or DeathDeclarationCaseStatus.Intake;
+
+    private bool CanReject =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
+        Case.Status is DeathDeclarationCaseStatus.Intake or DeathDeclarationCaseStatus.UnderReview;
 
     [Inject] private ICurrentOfficer CurrentOfficer { get; set; } = null!;
 
@@ -100,16 +115,32 @@
         }
     }
 
-    private async Task Reject()
+    private async Task OpenRejectDialog()
+    {
+        var parameters = new DialogParameters<RejectDeathDeclarationDialog>
+        {
+            { x => x.InitialReason, DeathDeclarationRejectionReason.OpenedInError }
+        };
+
+        var dialog = await DialogService.ShowAsync<RejectDeathDeclarationDialog>(
+            "Close death declaration case",
+            parameters,
+            AppDialogOptions.Small);
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false } && result.Data is RejectDeathDeclarationRequest request)
+        {
+            await RejectAsync(request);
+        }
+    }
+
+    private async Task RejectAsync(RejectDeathDeclarationRequest request)
     {
         _busy = true;
         try
         {
-            await DeathDeclarationApi.RejectAsync(
-                Case.Id,
-                new RejectDeathDeclarationRequest(DeathDeclarationRejectionReason.Other, "Rejected by officer"),
-                CancellationToken.None);
-            Snackbar.Add("Case rejected.", Severity.Info);
+            await DeathDeclarationApi.RejectAsync(Case.Id, request, CancellationToken.None);
+            Snackbar.Add("Case closed.", Severity.Info);
             await OnChanged.InvokeAsync();
         }
         catch (Exception ex)

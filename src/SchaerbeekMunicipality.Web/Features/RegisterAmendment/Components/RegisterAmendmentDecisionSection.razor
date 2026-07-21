@@ -4,6 +4,7 @@
 @using SchaerbeekMunicipality.Domain.RegisterAmendment
 @using SchaerbeekMunicipality.Web.Api.RegisterAmendment
 @inject IRegisterAmendmentApi RegisterAmendmentApi
+@inject IDialogService DialogService
 @inject ICurrentOfficer CurrentOfficer
 @inject ISnackbar Snackbar
 
@@ -27,21 +28,27 @@
         </AppAlert>
     }
 
-    @if (CanApproveOrReject)
+    @if (CanApproveOrReject || CanReject)
     {
         <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mt-4">
-            <MudButton Variant="Variant.Filled"
-                       Color="Color.Primary"
-                       Disabled="_busy || !Case.IsReadyForApproval"
-                       OnClick="Approve">
-                Approve amendment
-            </MudButton>
-            <MudButton Variant="Variant.Outlined"
-                       Color="Color.Error"
-                       Disabled="_busy"
-                       OnClick="Reject">
-                Reject
-            </MudButton>
+            @if (CanApproveOrReject)
+            {
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           Disabled="_busy || !Case.IsReadyForApproval"
+                           OnClick="Approve">
+                    Approve amendment
+                </MudButton>
+            }
+            @if (CanReject)
+            {
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Error"
+                           Disabled="_busy"
+                           OnClick="OpenRejectDialog">
+                    Close case
+                </MudButton>
+            }
         </MudStack>
     }
 
@@ -67,6 +74,11 @@
         CurrentOfficer.CanApproveRegistration &&
         Case.CanEdit &&
         Case.Status == RegisterAmendmentCaseStatus.UnderReview;
+
+    private bool CanReject =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
+        Case.Status is RegisterAmendmentCaseStatus.Draft or RegisterAmendmentCaseStatus.UnderReview;
 
     private bool CanApply =>
         CurrentOfficer.CanApproveRegistration &&
@@ -95,16 +107,32 @@
         }
     }
 
-    private async Task Reject()
+    private async Task OpenRejectDialog()
+    {
+        var parameters = new DialogParameters<RejectRegisterAmendmentDialog>
+        {
+            { x => x.InitialReason, RegisterAmendmentRejectionReason.OpenedInError }
+        };
+
+        var dialog = await DialogService.ShowAsync<RejectRegisterAmendmentDialog>(
+            "Close register amendment case",
+            parameters,
+            AppDialogOptions.Small);
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false } && result.Data is RejectRegisterAmendmentRequest request)
+        {
+            await RejectAsync(request);
+        }
+    }
+
+    private async Task RejectAsync(RejectRegisterAmendmentRequest request)
     {
         _busy = true;
         try
         {
-            await RegisterAmendmentApi.RejectAsync(
-                Case.CaseId,
-                new RejectRegisterAmendmentRequest(RegisterAmendmentRejectionReason.InsufficientEvidence, null),
-                CancellationToken.None);
-            Snackbar.Add("Amendment rejected.", Severity.Warning);
+            await RegisterAmendmentApi.RejectAsync(Case.CaseId, request, CancellationToken.None);
+            Snackbar.Add("Case closed.", Severity.Warning);
             await OnChanged.InvokeAsync();
         }
         catch (Exception ex)

@@ -62,6 +62,22 @@ public sealed class DeathDeclarationCaseTests
     }
 
     [Fact]
+    public void Reject_FromIntake_TransitionsToRejected()
+    {
+        var deathDeclarationCase = DeathDeclarationCaseTestData.OpenClaimedCase();
+
+        deathDeclarationCase.Reject(
+            DeathDeclarationCaseTestData.DemoOfficer,
+            DeathDeclarationRejectionReason.OpenedInError,
+            "Wrong person selected",
+            DeathDeclarationCaseTestData.OpenedAt.AddHours(1));
+
+        deathDeclarationCase.Status.Should().Be(DeathDeclarationCaseStatus.Rejected);
+        deathDeclarationCase.RejectionReason.Should().Be(DeathDeclarationRejectionReason.OpenedInError);
+        deathDeclarationCase.ClosedAt.Should().NotBeNull();
+    }
+
+    [Fact]
     public void ConfirmRadiation_WhenReady_TransitionsToConfirmed()
     {
         var deathDeclarationCase = DeathDeclarationCaseTestData.CaseReadyForConfirmation();

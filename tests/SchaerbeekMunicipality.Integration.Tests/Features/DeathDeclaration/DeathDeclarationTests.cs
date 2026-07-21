@@ -91,6 +91,32 @@ public sealed class DeathDeclarationTests
     }
 
     [Fact]
+    public async Task Reject_FromIntake_AllowsOpeningNewCaseForSamePerson()
+    {
+        await using var factory = new MunicipalAppFactory();
+        await using var scope = factory.Services.CreateAsyncScope();
+        var services = scope.ServiceProvider;
+        RegistrationTestHelpers.SetRole(services, OfficerRole.PopulationOfficer);
+
+        var personId = await DeathDeclarationTestHelpers.CreateRegisteredPersonAsync(services);
+        var caseId = await DeathDeclarationTestHelpers.OpenAndClaimCaseAsync(services, personId);
+
+        var rejected = await services.GetRequiredService<RejectDeathDeclarationHandler>().Handle(
+            caseId,
+            new RejectDeathDeclarationRequest(
+                DeathDeclarationRejectionReason.OpenedInError,
+                "Wrong person selected"),
+            CancellationToken.None);
+
+        rejected.Status.Should().Be(nameof(DeathDeclarationCaseStatus.Rejected));
+
+        var reopened = await services.GetRequiredService<OpenDeathDeclarationCaseHandler>()
+            .Handle(new OpenDeathDeclarationCaseRequest(personId), CancellationToken.None);
+
+        reopened.CaseId.Should().NotBe(caseId.Value);
+    }
+
+    [Fact]
     public async Task ReviewDashboard_IncludesDeathCases()
     {
         await using var factory = new MunicipalAppFactory();

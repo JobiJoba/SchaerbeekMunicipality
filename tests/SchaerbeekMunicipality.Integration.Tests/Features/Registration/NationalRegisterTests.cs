@@ -150,7 +150,7 @@ public sealed class LinkExistingPersonTests
     }
 
     [Fact]
-    public async Task SearchNationalRegister_ExcludeDeceased_OmitsRadiatedPerson()
+    public async Task SearchNationalRegister_LivingOnly_OmitsRadiatedPerson()
     {
         await using var factory = new MunicipalAppFactory();
         await using var scope = factory.Services.CreateAsyncScope();
@@ -170,8 +170,31 @@ public sealed class LinkExistingPersonTests
         withDeceased.Matches.Should().Contain(m => m.GivenName == "Jean" && m.IsDeceased);
 
         var livingOnly = await searchHandler.Handle(
-            new SearchNationalRegisterRequest("Jean", "Dupont", null, ExcludeDeceased: true),
+            new SearchNationalRegisterRequest("Jean", "Dupont", null, Eligibility: NationalRegisterSearchEligibility.LivingOnly),
             CancellationToken.None);
         livingOnly.Matches.Should().NotContain(m => m.GivenName == "Jean");
+    }
+
+    [Fact]
+    public async Task SearchNationalRegister_RegisteredResidentsOnly_OmitsUnregisteredMatches()
+    {
+        await using var factory = new MunicipalAppFactory();
+        await using var scope = factory.Services.CreateAsyncScope();
+        var handler = scope.ServiceProvider.GetRequiredService<SearchNationalRegisterHandler>();
+
+        var all = await handler.Handle(
+            new SearchNationalRegisterRequest(null, "Dupont", null),
+            CancellationToken.None);
+        all.Matches.Should().HaveCount(2);
+
+        var registeredOnly = await handler.Handle(
+            new SearchNationalRegisterRequest(
+                null,
+                "Dupont",
+                null,
+                Eligibility: NationalRegisterSearchEligibility.RegisteredResidentsOnly),
+            CancellationToken.None);
+
+        registeredOnly.Matches.Should().BeEmpty();
     }
 }

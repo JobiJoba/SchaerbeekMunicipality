@@ -5,5 +5,6 @@ public enum RegisterAmendmentRejectionReason
     InsufficientEvidence = 0,
     IncorrectAmendmentType = 1,
     NotEligible = 2,
-    Other = 3
+    Other = 3,
+    OpenedInError = 4
 }

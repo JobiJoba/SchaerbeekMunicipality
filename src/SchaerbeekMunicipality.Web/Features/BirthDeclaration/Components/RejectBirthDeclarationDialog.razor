@@ -1,0 +1,34 @@
+@using SchaerbeekMunicipality.Application.Features.BirthDeclaration.RejectBirthDeclaration
+@using SchaerbeekMunicipality.Domain.BirthDeclaration
+<ReasonNotesDialog TReason="BirthDeclarationRejectionReason"
+                   TRequest="RejectBirthDeclarationRequest"
+                   ReasonLabel="Rejection reason"
+                   ConfirmText="Close case"
+                   ConfirmColor="Color.Error"
+                   FormatReason="FormatReason"
+                   CreateRequest="CreateRequest"
+                   InitialReason="@InitialReason"
+                   InitialNotes="@InitialNotes"/>
+
+@code {
+    [Parameter] public BirthDeclarationRejectionReason? InitialReason { get; set; }
+
+    [Parameter] public string? InitialNotes { get; set; }
+
+    private static RejectBirthDeclarationRequest CreateRequest(BirthDeclarationRejectionReason reason, string? notes)
+    {
+        return new RejectBirthDeclarationRequest(reason, notes);
+    }
+
+    private static string FormatReason(BirthDeclarationRejectionReason reason)
+    {
+        return reason switch
+        {
+            BirthDeclarationRejectionReason.OpenedInError => "Opened in error (wrong child or parents)",
+            BirthDeclarationRejectionReason.MissingMedicalDeclaration => "Missing medical declaration",
+            BirthDeclarationRejectionReason.DeclarationWindowExpired => "Declaration window expired",
+            BirthDeclarationRejectionReason.ParentNotRegistered => "Parent not registered",
+            _ => "Other"
+        };
+    }
+}

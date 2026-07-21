@@ -7,5 +7,6 @@ public enum RejectionReason
     AddressNotGenuine = 2,
     DuplicateIdentity = 3,
     IllegalStay = 4,
-    Other = 5
+    Other = 5,
+    OpenedInError = 6
 }

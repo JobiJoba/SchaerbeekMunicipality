@@ -1,8 +1,5 @@
 @page "/persons/search"
-@using SchaerbeekMunicipality.Application.Features.PersonFile.SearchPersonFile
-@using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
-@using SchaerbeekMunicipality.Web.Api.PersonFile
-@inject IPersonFileApi PersonFileApi
+@inject INationalRegisterSearchQueries NationalRegisterSearch
 @inject NavigationManager Navigation
 
 <RegistrationRoleGate AllowedRoles="[OfficerRole.PopulationOfficer]"
@@ -42,23 +39,8 @@
 
 @code {
 
-    private async Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria)
-    {
-        var response = await PersonFileApi.SearchPersonFileAsync(
-            new SearchNationalRegisterRequest(
-                criteria.GivenName,
-                criteria.FamilyName,
-                criteria.BirthDate,
-                criteria.Page,
-                criteria.PageSize),
-            CancellationToken.None);
-
-        return new NationalRegisterSearchResult(
-            response.Matches.Select(Map).ToList(),
-            response.TotalCount,
-            response.Page,
-            response.PageSize);
-    }
+    private Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria) =>
+        NationalRegisterSearch.SearchAllForPersonFileAsync(criteria);
 
     private void OpenPersonFile(NationalRegisterSearchMatch match)
     {
@@ -66,22 +48,6 @@
         {
             Navigation.NavigateTo($"/persons/{personId}");
         }
-    }
-
-    private static NationalRegisterSearchMatch Map(PersonFileSearchMatchDto match)
-    {
-        return new NationalRegisterSearchMatch(
-            match.RegisterPersonId,
-            match.GivenName,
-            match.FamilyName,
-            match.BirthDate,
-            match.BisNumber,
-            match.NationalRegisterNumber,
-            match.MatchScore,
-            match.MatchReason,
-            match.IsRegisteredInPopulation,
-            match.PersonId,
-            match.IsDeceased);
     }
 
 }

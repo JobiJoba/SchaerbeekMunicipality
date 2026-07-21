@@ -47,12 +47,12 @@
     },
     "1762460f-1356-42cf-8852-b13ce283e6f0": {
       "user_message_count": 1,
-      "agent_message_count": 4,
+      "agent_message_count": 89,
       "start_timestamp": "2026-07-19T20:51:42+02:00",
       "end_timestamp": "2026-07-19T20:51:42+02:00",
-      "markdown_size_bytes": 1629,
+      "markdown_size_bytes": 95000,
       "provider": "cursoride",
-      "last_updated": "2026-07-19T18:52:05Z"
+      "last_updated": "2026-07-21T19:56:58Z"
     },
     "1c91176d-2023-402b-873a-867698c6c0e6": {
       "user_message_count": 1,
@@ -151,7 +151,7 @@
       "end_timestamp": "2026-07-19T20:12:09+02:00",
       "markdown_size_bytes": 261430,
       "provider": "cursoride",
-      "last_updated": "2026-07-19T18:39:49Z"
+      "last_updated": "2026-07-21T19:56:58Z"
     },
     "43d44b5e-6210-4ba5-b257-a50a464be03b": {
       "user_message_count": 2,
@@ -317,12 +317,12 @@
     },
     "812dc8aa-1edb-4b9a-8e58-1b91d5a36c6d": {
       "user_message_count": 1,
-      "agent_message_count": 16,
+      "agent_message_count": 57,
       "start_timestamp": "2026-07-19T20:45:26+02:00",
       "end_timestamp": "2026-07-19T20:45:26+02:00",
-      "markdown_size_bytes": 5908,
+      "markdown_size_bytes": 76560,
       "provider": "cursoride",
-      "last_updated": "2026-07-19T18:46:35Z"
+      "last_updated": "2026-07-21T19:56:58Z"
     },
     "8834fce9-6bb5-4693-a55d-30b83ed821f0": {
       "user_message_count": 9,
@@ -469,13 +469,13 @@
       "last_updated": "2026-07-05T11:33:23Z"
     },
     "cfecb6cd-cd33-42ce-a093-a19b88fe615a": {
-      "user_message_count": 4,
-      "agent_message_count": 134,
+      "user_message_count": 10,
+      "agent_message_count": 400,
       "start_timestamp": "2026-07-20T09:14:35+02:00",
       "end_timestamp": "2026-07-20T09:14:35+02:00",
-      "markdown_size_bytes": 115451,
+      "markdown_size_bytes": 307200,
       "provider": "cursoride",
-      "last_updated": "2026-07-20T07:24:11Z"
+      "last_updated": "2026-07-21T20:01:00Z"
     },
     "d3ba3646-3010-4f27-abc1-0be5915f9540": {
       "user_message_count": 1,

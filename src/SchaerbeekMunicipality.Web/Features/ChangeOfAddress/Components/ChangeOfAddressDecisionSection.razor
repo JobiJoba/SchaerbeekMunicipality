@@ -4,6 +4,7 @@
 @using SchaerbeekMunicipality.Domain.ChangeOfAddress
 @using SchaerbeekMunicipality.Web.Api.ChangeOfAddress
 @inject IChangeOfAddressApi ChangeOfAddressApi
+@inject IDialogService DialogService
 @inject ISnackbar Snackbar
 
 <AppCard Title="Officer decision" Outlined="true">
@@ -29,22 +30,28 @@
         </AppAlert>
     }
 
-    @if (CanDecide)
+    @if (CanDecide || CanReject)
     {
         <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mt-4">
-            <MudButton Variant="Variant.Filled"
-                       Color="Color.Primary"
-                       StartIcon="@Icons.Material.Outlined.CheckCircle"
-                       Disabled="_busy || !Case.ReadyForConfirmation || Case.Status == ChangeOfAddressCaseStatus.AwaitingPoliceVerification"
-                       OnClick="Confirm">
-                Confirm address change
-            </MudButton>
-            <MudButton Variant="Variant.Outlined"
-                       Color="Color.Error"
-                       Disabled="_busy"
-                       OnClick="Reject">
-                Reject
-            </MudButton>
+            @if (CanDecide)
+            {
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Outlined.CheckCircle"
+                           Disabled="_busy || !Case.ReadyForConfirmation || Case.Status == ChangeOfAddressCaseStatus.AwaitingPoliceVerification"
+                           OnClick="Confirm">
+                    Confirm address change
+                </MudButton>
+            }
+            @if (CanReject)
+            {
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Error"
+                           Disabled="_busy"
+                           OnClick="OpenRejectDialog">
+                    Close case
+                </MudButton>
+            }
         </MudStack>
     }
 </AppCard>
@@ -57,6 +64,13 @@
     private bool _busy;
 
     private bool CanDecide =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
+        Case.Status is ChangeOfAddressCaseStatus.Intake
+            or ChangeOfAddressCaseStatus.UnderReview
+            or ChangeOfAddressCaseStatus.AwaitingPoliceVerification;
+
+    private bool CanReject =>
         CurrentOfficer.CanApproveRegistration &&
         Case.CanEdit &&
         Case.Status is ChangeOfAddressCaseStatus.Intake
@@ -89,16 +103,32 @@
         }
     }
 
-    private async Task Reject()
+    private async Task OpenRejectDialog()
+    {
+        var parameters = new DialogParameters<RejectChangeOfAddressDialog>
+        {
+            { x => x.InitialReason, ChangeOfAddressRejectionReason.OpenedInError }
+        };
+
+        var dialog = await DialogService.ShowAsync<RejectChangeOfAddressDialog>(
+            "Close change of address case",
+            parameters,
+            AppDialogOptions.Small);
+
+        var result = await dialog.Result;
+        if (result is { Canceled: false } && result.Data is RejectChangeOfAddressRequest request)
+        {
+            await RejectAsync(request);
+        }
+    }
+
+    private async Task RejectAsync(RejectChangeOfAddressRequest request)
     {
         _busy = true;
         try
         {
-            await ChangeOfAddressApi.RejectAsync(
-                Case.Id,
-                new RejectChangeOfAddressRequest(ChangeOfAddressRejectionReason.InvalidAddress, null),
-                CancellationToken.None);
-            Snackbar.Add("Case rejected.", Severity.Warning);
+            await ChangeOfAddressApi.RejectAsync(Case.Id, request, CancellationToken.None);
+            Snackbar.Add("Case closed.", Severity.Warning);
             await OnChanged.InvokeAsync();
         }
         catch (Exception ex)

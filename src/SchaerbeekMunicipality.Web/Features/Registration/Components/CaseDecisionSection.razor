@@ -53,30 +53,39 @@
             </AppAlert>
         }
 
-        @if (CanDecide)
+        @if (CanDecide || CanReject)
         {
             <MudStack Row="true" Spacing="2" Wrap="Wrap.Wrap" Class="mt-4">
-                <MudButton Variant="Variant.Filled"
-                           Color="Color.Primary"
-                           StartIcon="@Icons.Material.Outlined.CheckCircle"
-                           Disabled="_busy || !_checklist.IsReadyForApproval"
-                           OnClick="OpenApproveDialog">
-                    Approve
-                </MudButton>
-                <MudButton Variant="Variant.Outlined"
-                           Color="Color.Error"
-                           StartIcon="@Icons.Material.Outlined.Cancel"
-                           Disabled="_busy"
-                           OnClick="OpenRejectDialog">
-                    Reject
-                </MudButton>
-                <MudButton Variant="Variant.Outlined"
-                           Color="Color.Warning"
-                           StartIcon="@Icons.Material.Outlined.PauseCircle"
-                           Disabled="_busy"
-                           OnClick="OpenSuspendDialog">
-                    Suspend
-                </MudButton>
+                @if (CanDecide)
+                {
+                    <MudButton Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               StartIcon="@Icons.Material.Outlined.CheckCircle"
+                               Disabled="_busy || !_checklist.IsReadyForApproval"
+                               OnClick="OpenApproveDialog">
+                        Approve
+                    </MudButton>
+                }
+                @if (CanReject)
+                {
+                    <MudButton Variant="Variant.Outlined"
+                               Color="Color.Error"
+                               StartIcon="@Icons.Material.Outlined.Cancel"
+                               Disabled="_busy"
+                               OnClick="OpenRejectDialog">
+                        Close case
+                    </MudButton>
+                }
+                @if (CanDecide)
+                {
+                    <MudButton Variant="Variant.Outlined"
+                               Color="Color.Warning"
+                               StartIcon="@Icons.Material.Outlined.PauseCircle"
+                               Disabled="_busy"
+                               OnClick="OpenSuspendDialog">
+                        Suspend
+                    </MudButton>
+                }
             </MudStack>
         }
 
@@ -122,6 +131,11 @@
             or RegistrationCaseStatus.Approved
             or RegistrationCaseStatus.Suspended;
 
+    private bool CanReject =>
+        CurrentOfficer.CanApproveRegistration &&
+        Case.CanEdit &&
+        Case.Status is RegistrationCaseStatus.Intake or RegistrationCaseStatus.UnderReview;
+
     protected override void OnParametersSet()
     {
         _checklist = CaseReviewChecklistMapper.FromCaseDetail(Case);
@@ -160,9 +174,13 @@
                 x => x.InitialNotes,
                 "Referred to Immigration Office — population department cannot regularise immigration status.");
         }
+        else if (Case.Status == RegistrationCaseStatus.Intake)
+        {
+            parameters.Add(x => x.InitialReason, RejectionReason.OpenedInError);
+        }
 
         var dialog = await DialogService.ShowAsync<RejectCaseDialog>(
-            "Reject case",
+            "Close registration case",
             parameters,
             AppDialogOptions.Small);
 

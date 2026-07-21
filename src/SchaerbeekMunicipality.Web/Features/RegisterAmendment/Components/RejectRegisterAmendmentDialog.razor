@@ -1,0 +1,34 @@
+@using SchaerbeekMunicipality.Application.Features.RegisterAmendment.RejectRegisterAmendment
+@using SchaerbeekMunicipality.Domain.RegisterAmendment
+<ReasonNotesDialog TReason="RegisterAmendmentRejectionReason"
+                   TRequest="RejectRegisterAmendmentRequest"
+                   ReasonLabel="Rejection reason"
+                   ConfirmText="Close case"
+                   ConfirmColor="Color.Error"
+                   FormatReason="FormatReason"
+                   CreateRequest="CreateRequest"
+                   InitialReason="@InitialReason"
+                   InitialNotes="@InitialNotes"/>
+
+@code {
+    [Parameter] public RegisterAmendmentRejectionReason? InitialReason { get; set; }
+
+    [Parameter] public string? InitialNotes { get; set; }
+
+    private static RejectRegisterAmendmentRequest CreateRequest(RegisterAmendmentRejectionReason reason, string? notes)
+    {
+        return new RejectRegisterAmendmentRequest(reason, notes);
+    }
+
+    private static string FormatReason(RegisterAmendmentRejectionReason reason)
+    {
+        return reason switch
+        {
+            RegisterAmendmentRejectionReason.OpenedInError => "Opened in error (wrong person)",
+            RegisterAmendmentRejectionReason.InsufficientEvidence => "Insufficient evidence",
+            RegisterAmendmentRejectionReason.IncorrectAmendmentType => "Incorrect amendment type",
+            RegisterAmendmentRejectionReason.NotEligible => "Not eligible",
+            _ => "Other"
+        };
+    }
+}

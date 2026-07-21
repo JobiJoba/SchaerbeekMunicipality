@@ -2,12 +2,12 @@
 <ReasonNotesDialog TReason="RejectionReason"
                    TRequest="RejectCaseRequest"
                    ReasonLabel="Rejection reason"
-                   ConfirmText="Reject case"
+                   ConfirmText="Close case"
                    ConfirmColor="Color.Error"
                    FormatReason="FormatReason"
                    CreateRequest="CreateRequest"
-                   InitialReason="InitialReason"
-                   InitialNotes="InitialNotes"/>
+                   InitialReason="@InitialReason"
+                   InitialNotes="@InitialNotes"/>
 
 @code {
     [Parameter] public RejectionReason? InitialReason { get; set; }
@@ -28,6 +28,7 @@
             RejectionReason.AddressNotGenuine => "Address not genuine",
             RejectionReason.DuplicateIdentity => "Duplicate identity",
             RejectionReason.IllegalStay => "Illegal stay",
+            RejectionReason.OpenedInError => "Opened in error (wrong person)",
             _ => "Other"
         };
     }

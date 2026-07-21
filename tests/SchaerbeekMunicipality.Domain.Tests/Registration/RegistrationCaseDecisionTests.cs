@@ -107,6 +107,21 @@ public sealed class RegistrationCaseDecisionTests
     }
 
     [Fact]
+    public void Reject_FromIntake_TransitionsToRejected()
+    {
+        var registrationCase = RegistrationCaseTestData.OpenClaimedCase();
+
+        registrationCase.Reject(
+            DemoOfficer,
+            RejectionReason.OpenedInError,
+            "Wrong person",
+            DecisionAt);
+
+        registrationCase.Status.Should().Be(RegistrationCaseStatus.Rejected);
+        registrationCase.RejectionReason.Should().Be(RejectionReason.OpenedInError);
+    }
+
+    [Fact]
     public void Reject_FromUnderReview_TransitionsToRejected()
     {
         var registrationCase = CreateReadyForApprovalCase();

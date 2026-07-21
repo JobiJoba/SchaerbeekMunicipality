@@ -15,6 +15,7 @@
         </MudSelect>
         <MudTextField @bind-Value="_notes"
                       Label="Notes"
+                      Placeholder="@NotesPlaceholder"
                       Lines="3"
                       MaxLength="2000"/>
     </DialogContent>
@@ -41,8 +42,11 @@
 
     [Parameter] public string? InitialNotes { get; set; }
 
+    [Parameter] public string NotesPlaceholder { get; set; } = "Optional notes";
+
     private TReason _reason;
     private string? _notes;
+    private bool _notesInitialized;
 
     protected override void OnInitialized()
     {
@@ -56,9 +60,12 @@
             _reason = reason;
         }
 
-        if (!string.IsNullOrWhiteSpace(InitialNotes))
+        // Apply InitialNotes only once so callers can seed a real note (e.g. illegal stay)
+        // without treating empty/null as a value to put in the field.
+        if (!_notesInitialized)
         {
-            _notes = InitialNotes;
+            _notes = string.IsNullOrWhiteSpace(InitialNotes) ? null : InitialNotes;
+            _notesInitialized = true;
         }
     }
 

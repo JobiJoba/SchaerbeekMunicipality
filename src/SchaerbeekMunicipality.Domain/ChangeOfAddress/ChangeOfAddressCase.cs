@@ -268,7 +268,8 @@ public sealed class ChangeOfAddressCase
         string? notes,
         DateTimeOffset rejectedAt)
     {
-        if (Status is not (ChangeOfAddressCaseStatus.UnderReview
+        if (Status is not (ChangeOfAddressCaseStatus.Intake
+            or ChangeOfAddressCaseStatus.UnderReview
             or ChangeOfAddressCaseStatus.AwaitingPoliceVerification))
             throw new InvalidChangeOfAddressTransitionException(
                 $"Cannot perform '{nameof(Reject)}' while the case is in status '{Status}'.");

@@ -6,4 +6,4 @@ public sealed record SearchNationalRegisterRequest(
     DateOnly? BirthDate,
     int Page = 1,
     int PageSize = 25,
-    bool ExcludeDeceased = false);
+    NationalRegisterSearchEligibility Eligibility = NationalRegisterSearchEligibility.All);

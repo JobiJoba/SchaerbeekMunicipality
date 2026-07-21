@@ -10,10 +10,21 @@ ok what could be the next steps? - can you make a full analysis of what we have;
 
 ---
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I will analyze the current project status and outline next steps across multiple phases, following the previous structure.
+
+Reviewing the existing documentation, roadmap, and project status to assess completed work and remaining tasks.</details></think>
+
+_**Agent (default)**_
+
+I'll review the current roadmap, domain docs, and completed phases so we can map what's done and propose the next phases.
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details>
 </tool-use>
@@ -23,10 +34,10 @@ _**Agent (grok-4.5)**_
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/DOMAIN.md</summary>
 
 </details>
 </tool-use>
@@ -36,13 +47,41 @@ _**Agent (grok-4.5)**_
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **24** results in **1** directory</summary>
 
-No results found
+Directory: **** (24 files)
+
+| File |
+|------|
+| `docs/phases/phase-8.1-role-boundaries-case-locking.md` |
+| `docs/phases/phase-6-police-verification-loop.md` |
+| `docs/phases/phase-4.1-document-preview-case-ux.md` |
+| `docs/phases/phase-14-passport-id-request.md` |
+| `docs/phases/phase-0-foundation.md` |
+| `docs/phases/phase-5-national-register-search-bis.md` |
+| `docs/phases/phase-6.1-collapsible-intake-sections.md` |
+| `docs/phases/phase-17-post-registration-amendments.md` |
+| `docs/phases/README.md` |
+| `docs/phases/phase-12-birth-declaration.md` |
+| `docs/phases/phase-1-case-intake-identity.md` |
+| `docs/phases/phase-4-address-household.md` |
+| `docs/phases/phase-9-exception-scenarios.md` |
+| `docs/phases/phase-18-remaining-exception-scenarios.md` |
+| `docs/phases/phase-3-design-system.md` |
+| `docs/phases/phase-16-person-file.md` |
+| `docs/phases/phase-2-residence-category-permits.md` |
+| `docs/phases/phase-2.1-intake-corrections.md` |
+| `docs/phases/phase-10-azure-deployment.md` |
+| `docs/phases/phase-11-extended-municipality.md` |
+| `docs/phases/phase-13-change-of-address.md` |
+| `docs/phases/phase-15-reporting-dashboard.md` |
+| `docs/phases/phase-0.1-tooling-hygiene.md` |
+| `docs/phases/phase-7-decision-registration.md` |
+
 </details>
 </tool-use>
 
@@ -51,10 +90,10 @@ No results found
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/GLOSSARY.md</summary>
 
 </details>
 </tool-use>
@@ -64,10 +103,21 @@ _**Agent (grok-4.5)**_
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Phase 18 is marked complete in the detailed roadmap but still shows as planned in the progress table. Uncommitted work remains for this phase.
+
+Reviewing IDEA.md, Phase 11 extended municipality backlog, and current Phase 18 work to map out next steps.</details></think>
+
+_**Agent (default)**_
+
+Phase 18 looks done in the docs but still marked planned in the progress table — I'll cross-check IDEA, Phase 11 backlog, and the current code to propose the next phase set.
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-11-extended-municipality.md</summary>
 
 </details>
 </tool-use>
@@ -77,10 +127,10 @@ _**Agent (grok-4.5)**_
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-18-remaining-exception-scenarios.md</summary>
 
 </details>
 </tool-use>
@@ -90,13 +140,18 @@ _**Agent (grok-4.5)**_
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
 
-No results found
+Directory: **** (1 file)
+
+| File |
+|------|
+| `IDEA.md` |
+
 </details>
 </tool-use>
 
@@ -105,10 +160,10 @@ No results found
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/DOMAIN.md</summary>
 
 </details>
 </tool-use>
@@ -118,13 +173,118 @@ _**Agent (grok-4.5)**_
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": true,
+  "glob": "*.md",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs",
+  "pattern": "deferred|future|backlog|not planned|out of scope|optional|Phase 1[9-9]|Phase 2"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs",
+  "pattern": "deferred|future|backlog|not planned|out of scope|optional|Phase 1[9-9]|Phase 2",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-4-address-household.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/record-household-composition.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/CI.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": "docs/TECH-STACK.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "docs/MUNICIPAL-UI.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/adr/0004-checklist-over-linear-state-machine.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-14-passport-id-request.md"
+    },
+    {
+      "matchCount": 15,
+      "uri": "docs/phases/phase-2.1-intake-corrections.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-8.1-role-boundaries-case-locking.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/README.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": "docs/phases/phase-5-national-register-search-bis.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/design-system/02-accessibility.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/attach-document.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": "docs/features/registration/correct-identity.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": "docs/design-system/03-component-catalogue.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/README.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "docs/phases/phase-2-residence-category-permits.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": "docs/phases/phase-18-remaining-exception-scenarios.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-3-design-system.md"
+    },
+    {
+      "matchCount": 6,
+      "uri": "docs/phases/phase-15-reporting-dashboard.md"
+    }
+  ],
+  "totalFiles": 51,
+  "totalMatches": 164
+}
+```
+Status: **completed**
 
 
 </details>
@@ -135,10 +295,15 @@ Status: **loading**
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing IDEA.md and related documents to map out remaining municipal workflows, deferred items, and the current feature surface. This will inform the next phase proposals.</details></think>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/IDEA.md</summary>
 
 </details>
 </tool-use>
@@ -148,13 +313,67 @@ _**Agent (grok-4.5)**_
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "contextAfter": 12,
+  "glob": "phase-1{2,3,4,5,6,7,8}*.md",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases",
+  "pattern": "Out of scope|Deferred|Carries forward|Not planned|stretch|future"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases",
+  "pattern": "Out of scope|Deferred|Carries forward|Not planned|stretch|future",
+  "topFiles": [
+    {
+      "matchCount": 11,
+      "uri": "docs/phases/phase-17-post-registration-amendments.md"
+    },
+    {
+      "matchCount": 12,
+      "uri": "docs/phases/phase-16-person-file.md"
+    },
+    {
+      "matchCount": 13,
+      "uri": "docs/phases/phase-18-remaining-exception-scenarios.md"
+    },
+    {
+      "matchCount": 12,
+      "uri": "docs/phases/phase-13-change-of-address.md"
+    },
+    {
+      "matchCount": 36,
+      "uri": "docs/phases/phase-12-birth-declaration.md"
+    },
+    {
+      "matchCount": 11,
+      "uri": "docs/phases/phase-14-passport-id-request.md"
+    },
+    {
+      "matchCount": 13,
+      "uri": "docs/phases/phase-15-reporting-dashboard.md"
+    }
+  ],
+  "totalFiles": 7,
+  "totalMatches": 9
+}
+```
+Status: **completed**
 
 
 </details>
@@ -165,10 +384,10 @@ Status: **loading**
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/APP-OVERVIEW.md</summary>
 
 </details>
 </tool-use>
@@ -178,13 +397,386 @@ _**Agent (grok-4.5)**_
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search">
 <details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **369** results in **1** directory</summary>
 
-No results found
+Directory: **** (369 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordHousingSituation/RecordHousingSituationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ResolveRegisteredPerson/ResolveRegisteredPersonHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/AttachDocument/AttachDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordResidencePermit/RecordResidencePermitHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/PersonFile/SearchPersonFile/SearchPersonFileEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/SearchNationalRegisterResponse.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/RecordChildDetails/RecordChildDetailsEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/ListDocumentRequestCases/ListDocumentRequestCasesEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/ReleaseCaseLock/ReleaseCaseLockHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordBirthInformation/RecordBirthInformationRequest.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseChecklistProgress.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/SearchReferenceData/SearchReferenceDataEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/NewCaseDialogResult.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordBirthInformation/RecordBirthInformationHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/OpenRegisterAmendmentCase/OpenRegisterAmendmentCaseRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ApproveCase/ApproveCaseValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RegistrationCaseAuthorization.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ApproveCase/ApproveCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/RecordFeePayment/RecordFeePaymentHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ClaimRegistrationCase/AutoClaimRegistrationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/AttachDocument/AttachDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordIdentity/RecordIdentityValidator.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordPoliceResult/RecordPoliceResultResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SetResidenceCategory/SetResidenceCategoryValidator.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordPoliceResult/RecordPoliceResultEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/SearchNationalRegister/SearchNationalRegisterEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/ClaimRegisterAmendmentCase/ClaimRegisterAmendmentCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RejectRegisterAmendment/RejectRegisterAmendmentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/ClaimDocumentRequestCase/ClaimDocumentRequestCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/RejectRegisterAmendment/RejectRegisterAmendmentRequest.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/OpenBirthDeclarationCase/OpenBirthDeclarationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/DeclareAddress/DeclareAddressHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/ConfirmBirthDeclaration/ConfirmBirthDeclarationHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/GetReviewDashboard/GetReviewDashboardEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ListCaseAudit/ListCaseAuditHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/BirthDeclarationCaseGuard.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/AttachDocument/AttachDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordHousingSituation/RecordHousingSituationHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/SearchNationalRegisterValidator.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/ReasonNotesDialog.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/CaseAuditRecorder.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/SearchNationalRegisterHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/WaivePoliceVerification/WaivePoliceVerificationHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/DocumentNumberGenerator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/RegisterAmendmentCaseAuthorization.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/RemoveDocument/RemoveDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/DownloadDocument/DownloadDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ListBirthDeclarationCases/ListBirthDeclarationCasesEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/SubmitRegisterAmendmentForReview/SubmitRegisterAmendmentForReviewEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/GetBirthDeclarationCase/GetBirthDeclarationCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationRequestValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SearchReferenceData/SearchReferenceDataHandlers.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/CancelDocumentRequestDialog.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/Reporting/ReportingEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/AdvanceDocumentRequestStatus/AdvanceDocumentRequestStatusEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ApproveCase/ApproveCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordHousingSituation/RecordHousingSituationRequest.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/UpdateHouseholdForMove/UpdateHouseholdForMoveEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/ListRegisterAmendmentCases/ListRegisterAmendmentCasesEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/LinkParent/LinkParentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ListCaseAudit/ListCaseAuditResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ClaimChangeOfAddressCase/ClaimChangeOfAddressCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/RegisterAmendmentDocumentPanel.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/PersonFile/ListPersonCases/ListPersonCasesEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ListCaseAudit/ListCaseAuditEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/ListRegisterAmendmentCases/ListRegisterAmendmentCasesHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/GetChangeOfAddressCase/ChangeOfAddressCaseDetailDto.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/LinkExistingPerson/LinkExistingPersonEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ConvertBisNumber/ConvertBisNumberEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/OpenBirthDeclarationCase/OpenBirthDeclarationCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/IssueDocument/IssueDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/AttachDocument/AttachDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/DocumentRequestCaseAuthorization.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordCivilStatus/RecordCivilStatusEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ClaimChangeOfAddressCase/ClaimChangeOfAddressCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/AttachApplicantPhoto/AttachApplicantPhotoEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/DownloadDocument/DownloadDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/IssueResidenceCertificate/IssueResidenceCertificateHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SuspendCase/SuspendCaseValidator.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/UpdateHouseholdForMove/UnlinkHouseholdMemberEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ChangeOfAddressCaseGuard.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/RequestPoliceVerification/RequestPoliceVerificationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/LinkExistingPerson/LinkExistingPersonHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RequestPoliceVerification/RequestPoliceVerificationHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ChangeOfAddressCaseAuthorization.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/PersonFile/GetPersonFile/GetPersonFileEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/OpenRegisterAmendmentCase/OpenRegisterAmendmentCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/CertificatesSection.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/Reporting/Pages/MunicipalityReportsPage.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/AttachDocument/AttachDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/OpenBirthDeclarationCase/OpenBirthDeclarationCaseResponse.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RegistrationEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/SubmitRegisterAmendmentForReview/SubmitRegisterAmendmentForReviewHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ResolveRegisteredPerson/ResolveRegisteredPersonEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/GetRegistrationCase/GetRegistrationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/RemoveDocument/RemoveDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/UnlinkParent/UnlinkParentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordCivilStatus/RecordCivilStatusRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordCivilStatus/RecordCivilStatusValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ListRegistrationCases/ListRegistrationCasesHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/PersonFile/PersonFileDocumentPaths.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/LinkParent/LinkParentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/ApproveRegisterAmendment/ApproveRegisterAmendmentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ConfirmRegistration/ConfirmRegistrationResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/DeclareAddress/DeclareAddressValidator.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/SuspendCaseDialog.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordCivilStatus/RecordCivilStatusHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/ApplyRegisterAmendment/ApplyRegisterAmendmentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ConvertBisNumber/ConvertBisNumberHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/LinkExistingPerson/LinkExistingPersonValidator.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/GetChangeOfAddressCase/GetChangeOfAddressCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Pages/OutboundNotificationsPage.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/RecordProposedAmendment/RecordProposedAmendmentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/BirthDeclarationCaseAuthorization.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RegistrationExceptionStateCalculator.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ClaimChangeOfAddressCase/AutoClaimChangeOfAddressCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/ResolveRegisteredPerson/ResolveRegisteredPersonEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/ApproveRegisterAmendment/ApproveRegisterAmendmentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/ListBirthDeclarationCases/ListBirthDeclarationCasesHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/RecordProposedAmendment/RecordProposedAmendmentRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordPoliceResult/RecordPoliceResultHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/CertificateReferenceNumberGenerator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/ResumeBirthDeclaration/ResumeBirthDeclarationHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RegistrationCaseGuard.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/RecordChildDetails/RecordChildDetailsHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/DeclareReferenceAddress/DeclareReferenceAddressHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/LinkParent/LinkParentRequest.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ConfirmAddressChange/ConfirmAddressChangeEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RejectCase/RejectCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/UpdateHouseholdForMove/UpdateHouseholdForMoveHandler.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/RegisterAmendmentCaseGuard.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SetResidenceCategory/SetResidenceCategoryHandler.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/Reporting/ReportingAuthorization.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStep.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/WaivePoliceVerification/WaivePoliceVerificationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/OpenRegistrationCase/OpenRegistrationCaseRequest.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/NewCaseDialog.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RecordProposedAmendment/RecordProposedAmendmentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/OpenDocumentRequestDialog.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/PersonFile/PersonFileAuthorization.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ConfirmRegistration/ConfirmRegistrationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/RecordChildDetails/RecordChildDetailsRequest.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ListPendingPoliceVerifications/ListPendingPoliceVerificationsEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/RejectChangeOfAddress/RejectChangeOfAddressHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/ReleaseCaseLock/ReleaseCaseLockHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ListPendingPoliceVerifications/ListPendingPoliceVerificationsHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ConfirmRegistration/ConfirmRegistrationHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/AttachApplicantPhoto/AttachApplicantPhotoHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/GetRegisterAmendmentCase/GetRegisterAmendmentCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/OfficerDisplayNames.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseResponse.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/OpenRegisterAmendmentCase/OpenRegisterAmendmentCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/BirthDeclarationEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/GetChangeOfAddressCase/GetChangeOfAddressCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ClaimRegistrationCase/ClaimRegistrationCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/GetBirthDeclarationCase/GetBirthDeclarationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/AdvanceDocumentRequestStatus/AdvanceDocumentRequestStatusHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordResidencePermit/RecordResidencePermitRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/OpenRegisterAmendmentCase/OpenRegisterAmendmentCaseValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SetResidenceCategory/SetResidenceCategoryRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SuspendCase/SuspendCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/IdentityDocumentsEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/DocumentRequestCaseGuard.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/ClaimBirthDeclarationCase/ClaimBirthDeclarationCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/GetChangeOfAddressChecklist/ChangeOfAddressChecklistMapper.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/PersonFile/SearchPersonFile/SearchPersonFileResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordHousingSituation/RecordHousingSituationValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/CorrectIdentity/CorrectIdentityHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/GetBirthDeclarationChecklist/GetBirthDeclarationChecklistHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/GetBirthDeclarationCase/BirthDeclarationCaseDetailDto.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/SuspendCase/SuspendCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordPoliceResult/RecordPoliceResultRequest.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/OpenRegistrationCase/OpenRegistrationCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ResumeCase/ResumeCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/RemoveDocument/RemoveDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/VisitReasonLabels.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ReleaseCaseLock/ReleaseCaseLockHandler.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/_Imports.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/PersonFile/PersonFileEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/CorrectIdentity/CorrectIdentityEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ReleaseCaseLock/ReleaseCaseLockHandler.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ConfirmBirthDeclaration/ConfirmBirthDeclarationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/IdentityFormModel.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationRoleGate.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/PersonFile/Components/PersonFileDocumentsPanel.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/IssueDocument/IssueDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/RejectBirthDeclaration/RejectBirthDeclarationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordResidencePermit/RecordResidencePermitValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/ApproveRegisterAmendment/ApproveRegisterAmendmentRequest.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/SuspendBirthDeclaration/SuspendBirthDeclarationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/PersonFile/SearchPersonFile/SearchPersonFileHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/OpenRegistrationCase/OpenRegistrationCaseValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SuspendCase/SuspendCaseRequest.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/GetDocumentRequestCase/GetDocumentRequestCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/GetChangeOfAddressChecklist/GetChangeOfAddressChecklistHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RemoveDocument/RemoveDocumentResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/ApplyRegisterAmendment/ApplyRegisterAmendmentHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ClaimBirthDeclarationCase/ClaimBirthDeclarationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ApproveCase/ApproveCaseRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ConvertBisNumber/ConvertBisNumberResponse.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/IssueResidenceCertificate/IssueResidenceCertificateEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportResponse.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/ApproveCaseDialog.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/DeclareReferenceAddress/DeclareReferenceAddressEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/SetResidenceCategory/SetResidenceCategoryEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/AttachDocument/AttachDocumentResponse.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/GetDocumentRequestCase/GetDocumentRequestCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/IssueHouseholdComposition/IssueHouseholdCompositionHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordIdentity/RecordIdentityRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ConfirmAddressChange/ConfirmAddressChangeResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/RejectRegisterAmendment/RejectRegisterAmendmentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ListChangeOfAddressCases/ListChangeOfAddressCasesEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordBirthInformation/RecordBirthInformationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/UpdateHouseholdForMove/UnlinkHouseholdMemberHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/ClaimDocumentRequestCase/ClaimDocumentRequestCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/RemoveDocument/RemoveDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ClaimBirthDeclarationCase/AutoClaimBirthDeclarationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RequestPoliceVerification/RequestPoliceVerificationResponse.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/DeclareAddress/DeclareAddressEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/RegisterAmendmentDocumentUpload.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/ResolveRegisteredPerson/ResolveRegisteredPersonHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/CancelDocumentRequest/CancelDocumentRequestHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/OpenRegistrationCase/OpenRegistrationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/CorrectIdentity/CorrectIdentityResponse.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/UnlinkParent/UnlinkParentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RegistrationResidenceEvaluator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordHouseholdComposition/HouseholdMemberRequestValidator.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/OpenDocumentRequestCase/OpenDocumentRequestCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/GetRegisterAmendmentCase/GetRegisterAmendmentCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/DeclareAddress/DeclareAddressRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/LinkExistingPerson/LinkExistingPersonRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/RequestPoliceVerification/RequestPoliceVerificationResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/GetBirthDeclarationChecklist/GetBirthDeclarationChecklistEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/OpenDocumentRequestCase/OpenDocumentRequestCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/DeclareReferenceAddress/DeclareReferenceAddressResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/SearchNationalRegisterRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionValidator.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordIdentity/RecordIdentityHandler.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/IdentityFormSection.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RegistrationExceptionEvaluator.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/GetChangeOfAddressChecklist/GetChangeOfAddressChecklistEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/IssueHouseholdComposition/IssueHouseholdCompositionEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/UpdateHouseholdForMove/UpdateHouseholdForMoveRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/RegisterAmendment/DownloadDocument/DownloadDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RejectCase/RejectCaseValidator.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Pages/RegisterAmendmentCaseDetail.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/RegisterAmendmentEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/RejectChangeOfAddress/RejectChangeOfAddressEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RequestPoliceVerification/RequestPoliceVerificationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/ReleaseCaseLock/ReleaseCaseLockHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/DownloadDocument/DownloadDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonSearchPage.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/DocumentRequestStatusSection.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordResidencePermit/RecordResidencePermitEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RecordBirthInformation/RecordBirthInformationRequestValidator.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/CancelDocumentRequest/CancelDocumentRequestEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RejectCase/RejectCaseRequest.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/RejectCaseDialog.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/RecordFeePayment/RecordFeePaymentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/RejectBirthDeclaration/RejectBirthDeclarationHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/BirthDeclaration/ResumeBirthDeclaration/ResumeBirthDeclarationEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Pages/RegisterAmendmentCaseList.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ResumeCase/ResumeCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ChangeOfAddressEndpoints.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ListChangeOfAddressCases/ListChangeOfAddressCasesHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/DownloadDocument/DownloadDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/SuspendBirthDeclaration/SuspendBirthDeclarationHandler.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/RegisterAmendmentDecisionSection.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ClaimRegistrationCase/ClaimRegistrationCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/AttachDocument/AttachDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/RecordIdentity/RecordIdentityEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/GetCaseReviewChecklist/CaseReviewChecklistMapper.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ConfirmAddressChange/ConfirmAddressChangeHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/ClaimRegisterAmendmentCase/ClaimRegisterAmendmentCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RemoveDocument/RemoveDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/ListDocumentRequestCases/ListDocumentRequestCasesHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ResumeCase/ResumeCaseResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/AttachDocument/AttachDocumentHandler.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/RegisterAmendment/AttachDocument/AttachDocumentEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/RejectChangeOfAddress/RejectChangeOfAddressRequest.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/RequestPoliceVerification/RequestPoliceVerificationHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/ListPendingPoliceVerifications/ListPendingPoliceVerificationsResponse.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/RejectCase/RejectCaseHandler.cs` |
+| `src/SchaerbeekMunicipality.Application/Features/Registration/WaivePoliceVerification/WaivePoliceVerificationResponse.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/IdentityDocuments/ClaimDocumentRequestCase/AutoClaimDocumentRequestCaseEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Api/Features/Registration/ListRegistrationCases/ListRegistrationCasesEndpoint.cs` |
+| `src/SchaerbeekMunicipality.Web/Features/RegisterAmendment/Components/OpenRegisterAmendmentDialog.razor` |
+
 </details>
 </tool-use>
 
@@ -193,10 +785,15 @@ No results found
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing IDEA.md to map post-registration events like certificates, death, marriage, and emigration. Checking the VisitReason enum coverage against gaps.</details></think>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/IDEA.md</summary>
 
 </details>
 </tool-use>
@@ -206,13 +803,59 @@ _**Agent (grok-4.5)**_
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "contextAfter": 20,
+  "glob": "*.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "enum VisitReason|VisitReason\\."
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "enum VisitReason|VisitReason\\.",
+  "topFiles": [
+    {
+      "matchCount": 21,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs"
+    },
+    {
+      "matchCount": 12,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/OpenRegistrationCase/OpenRegistrationCaseHandler.cs"
+    },
+    {
+      "matchCount": 27,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/VisitReasonLabels.cs"
+    },
+    {
+      "matchCount": 8,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/VisitReason.cs"
+    },
+    {
+      "matchCount": 84,
+      "uri": "src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs"
+    }
+  ],
+  "totalFiles": 5,
+  "totalMatches": 18
+}
+```
+Status: **completed**
 
 
 </details>
@@ -223,10 +866,10 @@ Status: **loading**
 
 </details></tool-use>
 
-_**Agent (grok-4.5)**_
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
 
 </details>
 </tool-use>
@@ -235,3 +878,560 @@ _**Agent (grok-4.5)**_
 <summary>Tool use: **read_file_v2**</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: find src -type d -name 'Features' | head -20; ls src/SchaerbeekMunicipality.Domain/; ls src/SchaerbeekMunicipality.Web/Features/ 2>/dev/null; ls src/SchaerbeekMunicipality.Application/Features/ 2>/dev/null</summary>
+
+```bash
+find src -type d -name 'Features' | head -20; ls src/SchaerbeekMunicipality.Domain/; ls src/SchaerbeekMunicipality.Web/Features/ 2>/dev/null; ls src/SchaerbeekMunicipality.Application/Features/ 2>/dev/null
+```
+
+```
+src/SchaerbeekMunicipality.Api/Features
+src/SchaerbeekMunicipality.Application/Features
+src/SchaerbeekMunicipality.Web/obj/Release/net10.0/scopedcss/Features
+src/SchaerbeekMunicipality.Web/obj/Debug/net10.0/scopedcss/Features
+src/SchaerbeekMunicipality.Web/Features
+Address
+BirthDeclaration
+CaseManagement
+Certificates
+ChangeOfAddress
+Common
+Documents
+Events
+Household
+Identity
+IdentityDocuments
+Immigration
+NationalRegister
+Notifications
+PersonFile
+Police
+ReferenceData
+RegisterAmendment
+Registration
+SchaerbeekMunicipality.Domain.csproj
+bin
+obj
+BirthDeclaration
+ChangeOfAddress
+IdentityDocuments
+PersonFile
+RegisterAmendment
+Registration
+Reporting
+_Imports.razor
+BirthDeclaration
+ChangeOfAddress
+IdentityDocuments
+PersonFile
+RegisterAmendment
+Registration
+Reporting
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I have a clear picture of the current state. I will now map out a full analysis of existing progress and future direction. Multiple phases will be structured, following the same detailed approach used previously.
+
+Phase 18 is complete in code and documentation, though progress tables remain stale. I am now cataloguing completed work across Phases 0 through 18 to identify remaining gaps and define Phase 19 and beyond. The completed scope includes the full first-registration loop, design system, exception scenarios, Azure deployment, and extended workflows such as Birth, Change of Address, Passport/ID, Reporting, Person File, and Amendments.
+
+Four deferred gaps are ready to become new phases. Cross-context polish covers missing parent banners, reference-to-domicile transitions, unlinking NR identities, and residence card production. Inter-municipal moves are still deferred from Phase 13. Death declaration and deregistration are the natural lifecycle counterpart to birth.
+
+More deferred gaps are ready to become phases. These include marriage and civil partnership registration, emigration and radiation, family reunification as a dedicated workflow, residence card production, on-demand certificate desk access, and appointments or reception queues.
+
+More deferred items are ready to become new phases. These include an audit workspace for duplicate identity flags, test hardening with PG Testcontainers, demo seed completeness for Phase 18 scenarios, person file enrichment with parent and address history, richer notification stubs, document legalisation workflows, and waiting register lifecycle transitions. I will structure these as a full analysis with Phase 19 and beyond, following the same multi-phase pattern used previously.
+
+I will now draft the actual phase documents and update the roadmap, following the Phase 11 template exactly. This means producing concrete phase plans rather than just discussing them.
+
+The user explicitly requested the phase documents, so drafting them is appropriate despite the usual caution against unsolicited edits. I will present the analysis directly in the response, then produce the full phase planning documents for 19 onward. The existing phase 11-style umbrella will be updated alongside the roadmap and phases README.
+
+I am weighing two structural options for the next phase sequence. One follows the Phase 11 umbrella pattern and creates a planning-only Phase 19 called "Second horizon." The other jumps straight into concrete implementation, starting with Phase 19 as death declaration and deregistration. I will also mark Phase 18 complete in the progress tables and draft the full set of phase documents from 19 through 25.
+
+The concrete phase sequence is now set. Phase 20 handles inter-municipal moves. Phase 21 covers residence card production. Phase 22 adds an on-demand certificate desk. Phase 23 introduces marriage and partnership declarations. Phase 24 deepens the duplicate identity investigation workspace. Phase 25 closes the cross-workflow polish and demo hardening cycle.
+
+An alternative educational-value ranking is now being weighed. Death and deregistration complete the life-events triad with birth. Certificate desk access is prioritised for high citizen-facing volume. Inter-municipal moves and residence card production address Belgian geographic reality. Marriage declaration and investigation workspace add civil registry adjacency and officer depth. Platform hardening closes the test and accessibility cycle. Family reunification and waiting-register management are kept as secondary operational items.
+
+I will present the analysis first, then create the phase documents. The structure mirrors Phase 11: Phase 19 as a scope-definition umbrella, followed by concrete phases 20 through 26. I will also update ROADMAP.md, phases/README.md, and fix the stale Phase 18 status in the progress tables.
+
+Phase 19 is now defined as a scope-definition umbrella titled "Life events & citizen services," mirroring the Phase 11 template. Concrete deliveries begin at Phase 20 and run through Phase 26. The sequence is designed to follow an educational narrative: death and radiation, certificate desk, inter-municipal moves and emigration, residence card production, marriage and partnership declaration, investigation workspace, and finally cross-workflow polish.
+
+I will commit Phase 18 if it is uncommitted. The new phase documents will be written at planning-document quality, similar to early phase-13 and phase-14 drafts, rather than as empty stubs. I will limit changes to the roadmap and phase files, skipping the application overview unless explicitly requested.</details></think>
+
+_**Agent (default)**_
+
+Phases 0–18 close the first-registration loop and the extended municipality backlog. I'll mark Phase 18 complete in the docs and add a Phase 19+ horizon the same way Phase 11 spawned 12–18.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Analyze gaps \u0026 draft Phase 19+ sequence",
+      "id": "1",
+      "status": "in_progress"
+    },
+    {
+      "content": "Create phase-19 umbrella + phase 20-26 planning docs",
+      "id": "2",
+      "status": "pending"
+    },
+    {
+      "content": "Update ROADMAP.md, phases/README.md, Phase 18 status",
+      "id": "3",
+      "status": "pending"
+    }
+  ],
+  "success": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-17-post-registration-amendments.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-18-remaining-exception-scenarios.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I will draft the phase documents and update the ROADMAP. The planning documents will be comprehensive yet appropriately sized.</details></think>
+
+_**Agent (default)**_
+
+Creating the Phase 19 umbrella and concrete Phases 20–26, then updating the roadmap.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-19-life-events-citizen-services.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Drafting phases 20 through 26 in parallel.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-20-death-declaration-radiation.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Continuing to draft the remaining phase documents.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-21-certificate-desk.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Continuing with phases 22 through 26.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-22-inter-municipal-move-emigration.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Proceeding with items 23 through 26.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-23-residence-card-production.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Continuing with items 24, 25, and 26.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-24-marriage-partnership-declaration.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Drafting items 25 and 26. Updating the ROADMAP and README.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-25-investigation-workspace.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Phase 26 will be drafted next. The ROADMAP and README will be updated after that.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-26-cross-workflow-polish.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating ROADMAP.md comprehensively. Adding Phases 19 through 26. Updating the progress table and Phase 18 status. Including a Phase 11 note. Revising related documents.
+
+Also updating phases/README.md and pointing phase-11 to phase-19.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-11-extended-municipality.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/DOMAIN.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating phase-9 deferred statuses and marking completed todos. Fixing a phase 18 reference in the ROADMAP progress.</details></think>
+
+_**Agent (default)**_
+
+The string to replace was not found in the file.
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Analyze gaps \u0026 draft Phase 19+ sequence",
+      "id": "1",
+      "status": "completed"
+    },
+    {
+      "content": "Create phase-19 umbrella + phase 20-26 planning docs",
+      "id": "2",
+      "status": "completed"
+    },
+    {
+      "content": "Update ROADMAP.md, phases/README.md, Phase 18 status",
+      "id": "3",
+      "status": "completed"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Analyze gaps \u0026 draft Phase 19+ sequence",
+      "id": "1",
+      "status": "in_progress"
+    },
+    {
+      "content": "Create phase-19 umbrella + phase 20-26 planning docs",
+      "id": "2",
+      "status": "pending"
+    },
+    {
+      "content": "Update ROADMAP.md, phases/README.md, Phase 18 status",
+      "id": "3",
+      "status": "pending"
+    }
+  ],
+  "success": true,
+  "wasMerge": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Phase 9 already references Phase 18. All necessary context is gathered for a comprehensive multi-phase analysis.</details></think>
+
+_**Agent (default)**_
+
+**Phases 0–18 are a complete educational municipality.** The first-registration loop, extended procedures (birth → amendments), and Phase 18 exceptions are done. I documented the next horizon as **Phases 19–26** (same pattern as Phase 11 → 12–18).
+
+### Where you are
+
+| Layer | What you have |
+|-------|----------------|
+| **Core** | Full first registration: identity → residence → address/household/civil status → NR/BIS → police → decision → certificates |
+| **Platform** | Design system, roles/locking, review dashboard, Azure deploy |
+| **Exceptions** | Phase 9 + diplomat / reference address (Phase 18) |
+| **Extended** | Birth, COA, passport/eID, reporting, person file, amendments |
+
+Immediate housekeeping: Phase 18 code looks finished but may still need a commit; progress tables were stale and are now marked complete.
+
+### Where you can go next (Phases 19–26)
+
+| Phase | Title | Why |
+|-------|--------|-----|
+| **19** ✅ | Life events & citizen services (scope) | Umbrella — like Phase 11 |
+| **20** | Death declaration & radiation | Lifecycle pair to birth |
+| **21** | Certificate desk | Day-to-day extracts from person state (not only post-registration) |
+| **22** | Inter-municipal move & emigration | Phase 13 only covers moves *inside* Schaerbeek |
+| **23** | Residence card production | IDEA gap; distinct from passport/eID |
+| **24** | Marriage / partnership declaration | Civil-status life event (not just intake/amendment fields) |
+| **25** | Investigation workspace | Duplicate flags become a real queue |
+| **26** | Cross-workflow polish | Deferred UX: parent-not-in-NR banner, family on person file, reference→domicile, NR unlink |
+
+Suggested order: **20 → 21 → 22 → 23 → 24 → 25**, with **26** as a breather sprint anytime. Swap 21/23 if you want post-registration outputs before the public certificate desk.
+
+Still explicitly **not planned**: FR/NL localization, real federal integrations, OCR, appointment hardware.
+
+### Docs updated
+
+- [docs/phases/phase-19-life-events-citizen-services.md](docs/phases/phase-19-life-events-citizen-services.md) — full analysis + sequencing  
+- Planning docs for [20](docs/phases/phase-20-death-declaration-radiation.md)–[26](docs/phases/phase-26-cross-workflow-polish.md)  
+- [docs/ROADMAP.md](docs/ROADMAP.md) and [docs/phases/README.md](docs/phases/README.md)
+
+If you want to start building, **Phase 20 (death/radiation)** is the strongest next vertical slice; **Phase 26** is best if you’d rather tighten demos before another big context.

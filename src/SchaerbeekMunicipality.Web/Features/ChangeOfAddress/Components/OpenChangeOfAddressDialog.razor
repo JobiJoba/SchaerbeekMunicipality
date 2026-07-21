@@ -1,10 +1,8 @@
 @using FluentValidation
 @using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.OpenChangeOfAddressCase
 @using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.ResolveRegisteredPerson
-@using SchaerbeekMunicipality.Application.Features.Registration.SearchNationalRegister
 @using SchaerbeekMunicipality.Domain.ChangeOfAddress
 @using SchaerbeekMunicipality.Web.Api.ChangeOfAddress
-@using SchaerbeekMunicipality.Web.Api.Registration
 @using Severity = MudBlazor.Severity
 <MudDialog>
     <TitleContent>
@@ -21,7 +19,7 @@
             <RowActions Context="match">
                 <MudButton Variant="Variant.Outlined"
                            Size="Size.Small"
-                           Disabled="_opening || !match.CanOpenServiceCase"
+                           Disabled="_opening"
                            data-testid="open-change-of-address-case"
                            OnClick="@(() => OpenCase(match))">
                     Open case
@@ -42,30 +40,14 @@
 @code {
     [CascadingParameter] private IMudDialogInstance MudDialog { get; set; } = null!;
 
-    [Inject] private IRegistrationApi RegistrationApi { get; set; } = null!;
+    [Inject] private INationalRegisterSearchQueries NationalRegisterSearch { get; set; } = null!;
     [Inject] private IChangeOfAddressApi ChangeOfAddressApi { get; set; } = null!;
 
     private bool _opening;
     private string? _actionError;
 
-    private async Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria)
-    {
-        var response = await RegistrationApi.SearchNationalRegisterAsync(
-            new SearchNationalRegisterRequest(
-                criteria.GivenName,
-                criteria.FamilyName,
-                criteria.BirthDate,
-                criteria.Page,
-                criteria.PageSize,
-                ExcludeDeceased: true),
-            CancellationToken.None);
-
-        return new NationalRegisterSearchResult(
-            response.Matches.Select(Map).ToList(),
-            response.TotalCount,
-            response.Page,
-            response.PageSize);
-    }
+    private Task<NationalRegisterSearchResult> SearchAsync(NrSearchFormCriteria criteria) =>
+        NationalRegisterSearch.SearchRegisteredResidentsAsync(criteria);
 
     private async Task OpenCase(NationalRegisterSearchMatch match)
     {
@@ -98,22 +80,6 @@
     private void Cancel()
     {
         MudDialog.Cancel();
-    }
-
-    private static NationalRegisterSearchMatch Map(NationalRegisterMatchDto match)
-    {
-        return new NationalRegisterSearchMatch(
-            match.RegisterPersonId,
-            match.GivenName,
-            match.FamilyName,
-            match.BirthDate,
-            match.BisNumber,
-            match.NationalRegisterNumber,
-            match.MatchScore,
-            match.MatchReason,
-            match.IsRegisteredInPopulation,
-            match.PersonId,
-            match.IsDeceased);
     }
 
 }

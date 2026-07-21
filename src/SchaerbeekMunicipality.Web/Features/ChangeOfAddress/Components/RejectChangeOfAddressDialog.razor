@@ -1,0 +1,34 @@
+@using SchaerbeekMunicipality.Application.Features.ChangeOfAddress.RejectChangeOfAddress
+@using SchaerbeekMunicipality.Domain.ChangeOfAddress
+<ReasonNotesDialog TReason="ChangeOfAddressRejectionReason"
+                   TRequest="RejectChangeOfAddressRequest"
+                   ReasonLabel="Rejection reason"
+                   ConfirmText="Close case"
+                   ConfirmColor="Color.Error"
+                   FormatReason="FormatReason"
+                   CreateRequest="CreateRequest"
+                   InitialReason="@InitialReason"
+                   InitialNotes="@InitialNotes"/>
+
+@code {
+    [Parameter] public ChangeOfAddressRejectionReason? InitialReason { get; set; }
+
+    [Parameter] public string? InitialNotes { get; set; }
+
+    private static RejectChangeOfAddressRequest CreateRequest(ChangeOfAddressRejectionReason reason, string? notes)
+    {
+        return new RejectChangeOfAddressRequest(reason, notes);
+    }
+
+    private static string FormatReason(ChangeOfAddressRejectionReason reason)
+    {
+        return reason switch
+        {
+            ChangeOfAddressRejectionReason.OpenedInError => "Opened in error (wrong person)",
+            ChangeOfAddressRejectionReason.InvalidAddress => "Invalid address",
+            ChangeOfAddressRejectionReason.NegativePoliceVerification => "Negative police verification",
+            ChangeOfAddressRejectionReason.MissingDocumentation => "Missing documentation",
+            _ => "Other"
+        };
+    }
+}
