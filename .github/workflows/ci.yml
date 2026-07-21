@@ -50,7 +50,7 @@ jobs:
           --filter "Category!=E2E&Category!=PostgreSQL"
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: release-build
           retention-days: 1
