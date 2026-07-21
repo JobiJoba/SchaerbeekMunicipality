@@ -504,6 +504,15 @@
       "provider": "cursoride",
       "last_updated": "2026-07-09T18:56:42Z"
     },
+    "de3bec27-b6c0-4c87-8f1c-5a3d68a4e677": {
+      "user_message_count": 1,
+      "agent_message_count": 11,
+      "start_timestamp": "2026-07-21T22:35:25+02:00",
+      "end_timestamp": "2026-07-21T22:35:25+02:00",
+      "markdown_size_bytes": 8085,
+      "provider": "cursoride",
+      "last_updated": "2026-07-21T20:35:55Z"
+    },
     "e04824ec-6c2d-486d-b1b4-cc50f6f986ee": {
       "user_message_count": 2,
       "agent_message_count": 318,

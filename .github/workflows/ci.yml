@@ -54,6 +54,8 @@ jobs:
         with:
           name: release-build
           retention-days: 1
+          # Playwright ships driver assets under bin/.../.playwright (hidden).
+          include-hidden-files: true
           path: |
             src/*/bin/Release/
             tests/*/bin/Release/
@@ -78,6 +80,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: release-build
+
+      # Artifact round-trip can drop +x on the Playwright-bundled Node binary.
+      - name: Fix Playwright driver permissions
+        run: chmod +x tests/SchaerbeekMunicipality.E2E.Tests/bin/Release/net10.0/.playwright/node/*/node
 
       - name: Cache Playwright browsers
         uses: actions/cache@v4
