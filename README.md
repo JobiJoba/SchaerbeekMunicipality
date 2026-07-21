@@ -55,9 +55,7 @@ Use the **role switcher** in the app bar to act as reception, a population offic
 
 **Progress:** Phases **0–13** are complete (see [ROADMAP](./docs/ROADMAP.md)). Next up: passport/ID requests, reporting, person file.
 
-<!-- Uncomment after publishing to GitHub (replace YOUR_GITHUB_USER):
-[![CI](https://github.com/YOUR_GITHUB_USER/SchaerbeekMunicipality/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USER/SchaerbeekMunicipality/actions/workflows/ci.yml)
--->
+[![CI](https://github.com/JobiJoba/SchaerbeekMunicipality/actions/workflows/ci.yml/badge.svg)](https://github.com/JobiJoba/SchaerbeekMunicipality/actions/workflows/ci.yml)
 
 ## What's built today
 
@@ -101,7 +99,7 @@ Birth declaration is a **separate bounded context** — child-centric, not the s
 | [Phase delivery notes](./docs/phases/) | What was built in each completed phase |
 | [Testing strategy](./docs/TESTING.md) | Unit, integration, E2E, and UI test approach |
 | [E2E tests](./tests/SchaerbeekMunicipality.E2E.Tests/README.md) | Playwright setup, journeys, and CI |
-| [Continuous integration](./docs/CI.md) | GitHub Actions (build, test, container publish) |
+| [Continuous integration](./docs/CI.md) | GitHub Actions (build, test, GHCR publish, optional Azure CD) |
 | [Decision records](./docs/adr/) | Architecture Decision Records for key choices |
 | [Glossary](./docs/GLOSSARY.md) | Belgian administrative terminology used in the codebase |
 | [Domain source](./IDEA.md) | Original process walkthrough (Population Department perspective) |
@@ -152,7 +150,7 @@ Use cases live in **vertical slices** under `Application/Features/{Context}/{Use
 ```bash
 dotnet restore
 dotnet build
-dotnet test --filter "Category!=E2E"   # 171 tests (domain + integration, SQLite)
+dotnet test --filter "Category!=E2E&Category!=PostgreSQL"   # domain + integration (SQLite)
 dotnet run --project src/SchaerbeekMunicipality.AppHost
 ```
 
@@ -179,16 +177,18 @@ Integration tests run against **Api** directly (SQLite, no AppHost). E2E tests s
 
 ## Deploy to Azure (optional)
 
-Production hosting uses **Azure Container Apps** with an **ephemeral SQLite** database (fresh demo on each cold start). Images are published to **GHCR** on push to `main`.
+Production hosting uses **Azure Container Apps** with an **ephemeral SQLite** database (fresh demo on each cold start). On green CI for `main`, the image is scanned, pushed to **GHCR**, and can be auto-deployed via Azure OIDC (see [docs/CI.md](./docs/CI.md)).
+
+**First-time / infra:**
 
 1. Enable **Actions → Workflow permissions → Read and write** in GitHub.
-2. Push to `main` (or run the **Container publish** workflow).
+2. Push to `main` (or run the **CI** workflow via `workflow_dispatch`).
 3. Set the GHCR package to **Public** (or configure ACA registry credentials).
-4. Run `deploy/azure/sqlite/deploy.sh` with your `CONTAINER_IMAGE`.
+4. Run `deploy/azure/sqlite/deploy.sh` with a SHA-tagged `CONTAINER_IMAGE`.
 
 Optional **PostgreSQL** profile: [deploy/azure/postgres/](./deploy/azure/postgres/README.md).
 
-Full notes: [docs/phases/phase-10-azure-deployment.md](./docs/phases/phase-10-azure-deployment.md).
+Full notes: [docs/phases/phase-10-azure-deployment.md](./docs/phases/phase-10-azure-deployment.md), [deploy/azure/README.md](./deploy/azure/README.md).
 
 ## Design principles
 

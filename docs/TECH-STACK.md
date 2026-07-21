@@ -340,7 +340,7 @@ Secrets: **User Secrets** for non-Aspire standalone runs; Aspire manages contain
 | Default production | Ephemeral SQLite | [deploy/azure/sqlite/](../deploy/azure/sqlite/) |
 | Optional | PostgreSQL Flexible Server | [deploy/azure/postgres/](../deploy/azure/postgres/) |
 
-- Container image: **GHCR** (`ghcr.io/<owner>/schaerbeek-municipality-web`) — built by [.github/workflows/container-publish.yml](../.github/workflows/container-publish.yml).
+- Container image: **GHCR** (`ghcr.io/<owner>/schaerbeek-municipality-web`) — built by the publish job in [.github/workflows/ci.yml](../.github/workflows/ci.yml).
 - Registry: public GHCR package (no ACR) or private package + ACA registry credentials.
 - Target: Azure Container Apps (Bicep + `deploy.sh`).
 

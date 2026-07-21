@@ -28,7 +28,7 @@ Three test projects for application code — API tests and handler tests overlap
 
 **Target:** Domain tests for every invariant; at least one integration test per vertical slice; API test for each Minimal API route; E2E smoke for each major officer journey.
 
-**Fast suite:** `dotnet test --filter "Category!=E2E"` — **171 tests** (76 domain + 95 integration). E2E adds **7** Playwright journeys.
+**Fast suite:** `dotnet test --filter "Category!=E2E&Category!=PostgreSQL"` — domain + SQLite integration. E2E adds Playwright journeys; PostgreSQL migrations run in a separate `main`-only job.
 
 ---
 
@@ -258,7 +258,7 @@ Use coverage tools optionally to find untested domain branches.
 
 ```bash
 # Fast suite (domain + integration, no E2E)
-dotnet test --filter "Category!=E2E"
+dotnet test --filter "Category!=E2E&Category!=PostgreSQL"
 
 # Domain only (fast feedback)
 dotnet test tests/SchaerbeekMunicipality.Domain.Tests
@@ -274,12 +274,12 @@ dotnet watch test --project tests/SchaerbeekMunicipality.Domain.Tests
 
 ## CI pipeline
 
-GitHub Actions runs on every push and PR to `main`. See [CI.md](./CI.md) for the build/test workflow, Playwright E2E job, container publish to GHCR, and PostgreSQL migration job.
+GitHub Actions runs on every push and PR to `main`. See [CI.md](./CI.md) for the build/test workflow, Playwright E2E job, Trivy-scanned GHCR publish, optional Azure OIDC deploy, and the PostgreSQL migration job.
 
 ```bash
 dotnet restore
 dotnet build --configuration Release
-dotnet test --configuration Release --verbosity normal --filter "Category!=E2E"
+dotnet test --configuration Release --verbosity normal --filter "Category!=E2E&Category!=PostgreSQL"
 ```
 
 ---
