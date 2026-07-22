@@ -56,6 +56,7 @@ Use the **role switcher** in the app bar to act as reception, a population offic
 **Progress:** Phases **0–13** are complete (see [ROADMAP](./docs/ROADMAP.md)). Next up: passport/ID requests, reporting, person file.
 
 [![CI](https://github.com/JobiJoba/SchaerbeekMunicipality/actions/workflows/ci.yml/badge.svg)](https://github.com/JobiJoba/SchaerbeekMunicipality/actions/workflows/ci.yml)
+[![CD](https://github.com/JobiJoba/SchaerbeekMunicipality/actions/workflows/cd.yml/badge.svg)](https://github.com/JobiJoba/SchaerbeekMunicipality/actions/workflows/cd.yml)
 
 ## What's built today
 
@@ -99,7 +100,7 @@ Birth declaration is a **separate bounded context** — child-centric, not the s
 | [Phase delivery notes](./docs/phases/) | What was built in each completed phase |
 | [Testing strategy](./docs/TESTING.md) | Unit, integration, E2E, and UI test approach |
 | [E2E tests](./tests/SchaerbeekMunicipality.E2E.Tests/README.md) | Playwright setup, journeys, and CI |
-| [Continuous integration](./docs/CI.md) | GitHub Actions (build, test, GHCR publish, optional Azure CD) |
+| [CI / CD](./docs/CI.md) | GitHub Actions: CI (build/test) and CD (GHCR + optional Azure) |
 | [Decision records](./docs/adr/) | Architecture Decision Records for key choices |
 | [Glossary](./docs/GLOSSARY.md) | Belgian administrative terminology used in the codebase |
 | [Domain source](./IDEA.md) | Original process walkthrough (Population Department perspective) |
@@ -177,7 +178,7 @@ Integration tests run against **Api** directly (SQLite, no AppHost). E2E tests s
 
 ## Deploy to Azure (optional)
 
-Production hosting uses **Azure Container Apps** with an **ephemeral SQLite** database (fresh demo on each cold start). On green CI for `main`, the image is scanned, pushed to **GHCR**, and can be auto-deployed via Azure OIDC (see [docs/CI.md](./docs/CI.md)).
+Production hosting uses **Azure Container Apps** with an **ephemeral SQLite** database (fresh demo on each cold start). On green **CI** for a `main` push, **CD** scans and pushes the image to **GHCR**, and can auto-deploy via Azure OIDC (see [docs/CI.md](./docs/CI.md)).
 
 **First-time / infra:**
 

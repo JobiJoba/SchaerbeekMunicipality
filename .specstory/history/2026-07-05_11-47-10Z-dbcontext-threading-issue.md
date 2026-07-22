@@ -41,7 +41,8 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-A DbContext concurrent operation error is occurring when manually adding a new person in the identity section.</details></think>
+A DbContext concurrent operation error is occurring when manually adding a new person in the identity section.
+</details></think>
 
 _**Agent (default)**_
 
@@ -50,49 +51,29 @@ Investigating the DbContext concurrency issue — the stack trace points to `Cas
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -200,13 +181,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -214,7 +188,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The root cause is now clear. `SaveIdentity` and `ReloadCase()` appear to be triggering overlapping database operations on the same DbContext instance.
 
-`ReloadCase` updates the `_case` parameter on `CaseDecisionSection`. This triggers `OnParametersSetAsync`, which starts a database query. That query overlaps with `LoadAuditAsync` or `GetHandler` still running on the same DbContext instance.</details></think>
+`ReloadCase` updates the `_case` parameter on `CaseDecisionSection`. This triggers `OnParametersSetAsync`, which starts a database query. That query overlaps with `LoadAuditAsync` or `GetHandler` still running on the same DbContext instance.
+</details></think>
 
 _**Agent (default)**_
 
@@ -223,23 +198,15 @@ Checking DbContext registration and whether other child components have the same
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -275,25 +242,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs</summary>
 
 </details></tool-use>
 
@@ -304,31 +258,20 @@ The issue is confirmed to occur during `ReloadCase()`.
 
 The root cause is a concurrent DbContext access. `ReloadCase()` assigns a new `_case` object, which triggers a Blazor re-render. During that render, `CaseDecisionSection.OnParametersSetAsync` starts a `ReviewChecklistHandler` query. Meanwhile the parent continues with `LoadAuditAsync()`, both operations using the same DbContext instance. The proposed fix is to stop fetching checklist data inside `OnParametersSetAsync` and instead derive it from the `Case` parameter or have the parent pass the data directly.
 
-Other approaches were considered but rejected. Completing database work before updating state still leaves a race with StateHasChanged. Using a new service scope would isolate the query, yet it does not solve the underlying concurrency problem. Awaiting child operations is not feasible in Blazor. The cleanest solution remains moving the checklist loading to the parent and passing the data as a parameter.</details></think>
+Other approaches were considered but rejected. Completing database work before updating state still leaves a race with StateHasChanged. Using a new service scope would isolate the query, yet it does not solve the underlying concurrency problem. Awaiting child operations is not feasible in Blazor. The cleanest solution remains moving the checklist loading to the parent and passing the data as a parameter.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistResponse.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistResponse.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs</summary>
 
 </details></tool-use>
 
@@ -337,14 +280,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The RegistrationCaseDetailDto already contains all data needed for the review checklist.
 
-Refactoring `CaseDecisionSection` to build the checklist directly from the `Case` parameter will eliminate the concurrent database query in `OnParametersSetAsync`. This resolves the concurrency error and removes redundant fetches. The UI will stay synchronized automatically when the parameter updates. The next step is choosing between a static mapper or inline question building.</details></think>
+Refactoring `CaseDecisionSection` to build the checklist directly from the `Case` parameter will eliminate the concurrent database query in `OnParametersSetAsync`. This resolves the concurrency error and removes redundant fetches. The UI will stay synchronized automatically when the parameter updates. The next step is choosing between a static mapper or inline question building.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -415,43 +357,25 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The handler is shared by an API endpoint and tests.</details></think>
+The handler is shared by an API endpoint and tests.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseChecklist.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseChecklist.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistEndpoint.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistEndpoint.cs</summary>
 
 </details></tool-use>
 
@@ -464,7 +388,8 @@ The handler will be updated to use the shared builder. `CaseDecisionSection` wil
 
 `CaseDecisionSection` will switch to a synchronous `OnParametersSet` override. It will drop the injected handler and loading state because the checklist mapping is now purely synchronous.
 
-The parent component will reload the case after updates, triggering a rebuild of the checklist. The sequential execution in ReloadCase is safe; only the child component race condition needs fixing. A dedicated mapper file will be created and applied to both components. The audit loading order relative to the case parameter is also being reviewed.</details></think>
+The parent component will reload the case after updates, triggering a rebuild of the checklist. The sequential execution in ReloadCase is safe; only the child component race condition needs fixing. A dedicated mapper file will be created and applied to both components. The audit loading order relative to the case parameter is also being reviewed.
+</details></think>
 
 _**Agent (default)**_
 
@@ -473,76 +398,36 @@ Identifying the issue: when `ReloadCase()` sets `_case`, `CaseDecisionSection.On
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/CaseReviewChecklistMapper.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/CaseReviewChecklistMapper.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistHandler.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
 
 </details></tool-use>
 
@@ -551,7 +436,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 I found a bug in `GetCaseReviewChecklistHandler`. The mapper sets `nationality` to `null` in `FromRegistrationCase`, but the handler should use the person's actual nationality instead.
 
-The handler will now use the person's actual nationality. The unused `FromRegistrationCase` mapper method should be removed.</details></think>
+The handler will now use the person's actual nationality. The unused `FromRegistrationCase` mapper method should be removed.
+</details></think>
 
 _**Agent (default)**_
 
@@ -560,36 +446,27 @@ Removing the unused `FromRegistrationCase` method that omitted nationality from 
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/CaseReviewChecklistMapper.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/CaseReviewChecklistMapper.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -30</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build --no-restore 2&gt;&amp;1 | tail -30</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -30
 ```
 
 ```
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
-  SchaerbeekMunicipality.AppHost -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.AppHost -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
 
 Build succeeded.
     0 Warning(s)
@@ -598,19 +475,12 @@ Build succeeded.
 Time Elapsed 00:00:05.44
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "FullyQualifiedName~CaseDecision" --no-build 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter &#34;FullyQualifiedName~CaseDecision&#34; --no-build 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "FullyQualifiedName~CaseDecision" --no-build 2>&1
 ```
@@ -625,12 +495,6 @@ A total of 1 test files matched the specified pattern.
 Passed!  - Failed:     0, Passed:     3, Skipped:     0, Total:     3, Duration: 2 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -670,7 +534,8 @@ It's not the first time that I got a concurency issue; is there a way to make su
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The user wants a way to prevent future DbContext concurrency issues in Blazor Server.</details></think>
+The user wants a way to prevent future DbContext concurrency issues in Blazor Server.
+</details></think>
 
 _**Agent (default)**_
 
@@ -679,10 +544,8 @@ Good question — I'll scan how DbContext and async data loading are used across
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -694,28 +557,475 @@ Parameters:
   "pattern": "OnParametersSetAsync|AddDbContext|IDbContextFactory|CreateAsyncScope|IServiceScopeFactory"
 }
 ```
-Status: **loading**
+Additional data:
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "OnParametersSetAsync|AddDbContext|IDbContextFactory|CreateAsyncScope|IServiceScopeFactory",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs"
+    },
+    {
+      "matchCount": 5,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs"
+    },
+    {
+      "matchCount": 5,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Events/DomainEventDispatcher.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs"
+    },
+    {
+      "matchCount": 6,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs"
+    }
+  ],
+  "totalFiles": 12,
+  "totalMatches": 35
+}
+```
+Status: **completed**
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
 
-No results found
-</details>
-</tool-use>
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (0 files)
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (0 files)
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/skills-cursor/create-rule/SKILL.md</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking MainLayout.razor for its existing IServiceScopeFactory pattern.
+
+Evaluating architectural fixes to prevent future concurrency issues. Options include documenting a cursor rule, registering IDbContextFactory, using IServiceScopeFactory in components, establishing a parent-child data-loading convention, and adding a test to catch the pattern.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.razor",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "Handler\\.Handle|OnInitializedAsync|OnParametersSet"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "Handler\\.Handle|OnInitializedAsync|OnParametersSet",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatusChip.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/NewCaseDialog.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor"
+    },
+    {
+      "matchCount": 6,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/ApproveCaseDialog.razor"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor"
+    },
+    {
+      "matchCount": 8,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/DesignSystem/Components/Feedback/AppInfoBox.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor"
+    }
+  ],
+  "totalFiles": 17,
+  "totalMatches": 42
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **67** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (67 files)
+
+| File |
+|------|
+| `docs/features/registration/record-civil-status.md` |
+| `docs/features/registration/record-immigration-decision.md` |
+| `docs/features/registration/README.md` |
+| `docs/features/registration/record-residence-permit.md` |
+| `docs/features/registration/list-pending-police-verifications.md` |
+| `docs/features/registration/record-household-composition.md` |
+| `docs/features/registration/remove-document.md` |
+| `docs/screenshots/02-registration-case-detail.png` |
+| `docs/screenshots/03-identity-intake-form.png` |
+| `docs/adr/README.md` |
+| `docs/ROADMAP.md` |
+| `docs/design-system/07-architecture-and-guidelines.md` |
+| `docs/phases/phase-3-design-system.md` |
+| `docs/TESTING.md` |
+| `docs/adr/0004-checklist-over-linear-state-machine.md` |
+| `docs/screenshots/06-full-case-with-permit-and-documents.png` |
+| `docs/features/registration/download-document.md` |
+| `docs/screenshots/05-home-dashboard.png` |
+| `docs/phases/phase-0.1-tooling-hygiene.md` |
+| `docs/phases/phase-0-foundation.md` |
+| `docs/design-system/05-ui-kit.md` |
+| `docs/features/README.md` |
+| `docs/screenshots/08-address-household-civil-status.png` |
+| `docs/features/registration/correct-identity.md` |
+| `docs/features/registration/list-registration-cases.md` |
+| `docs/screenshots/07-document-upload-and-attached-files.png` |
+| `docs/features/registration/record-identity.md` |
+| `docs/adr/0003-health-endpoints-via-servicedefaults.md` |
+| `docs/phases/README.md` |
+| `docs/CI.md` |
+| `docs/features/registration/link-existing-person.md` |
+| `docs/features/registration/open-registration-case.md` |
+| `docs/design-system/03-component-catalogue.md` |
+| `docs/APP-OVERVIEW.md` |
+| `docs/phases/phase-6-police-verification-loop.md` |
+| `docs/phases/phase-4.1-document-preview-case-ux.md` |
+| `docs/screenshots/01-registration-case-list.png` |
+| `docs/features/registration/get-registration-case.md` |
+| `docs/design-system/01-design-tokens.md` |
+| `docs/phases/phase-1-case-intake-identity.md` |
+| `docs/features/registration/request-police-verification.md` |
+| `docs/design-system/02-accessibility.md` |
+| `docs/DOMAIN.md` |
+| `docs/phases/phase-2.1-intake-corrections.md` |
+| `docs/phases/phase-7-decision-registration.md` |
+| `docs/features/registration/record-housing-situation.md` |
+| `docs/features/registration/search-national-register.md` |
+| `docs/screenshots/09-civil-status-and-household.png` |
+| `docs/phases/phase-4-address-household.md` |
+| `docs/features/registration/attach-document.md` |
+| `docs/features/registration/set-residence-category.md` |
+| `docs/screenshots/04-open-registration-case-dialog.png` |
+| `docs/design-system/06-page-templates.md` |
+| `docs/GLOSSARY.md` |
+| `docs/design-system/README.md` |
+| `docs/design-system/04-mudtheme-and-css.md` |
+| `docs/phases/phase-5-national-register-search-bis.md` |
+| `docs/phases/phase-6.1-collapsible-intake-sections.md` |
+| `docs/adr/0001-no-mediatr.md` |
+| `docs/phases/phase-2-residence-category-permits.md` |
+| `docs/features/registration/convert-bis-number.md` |
+| `docs/ARCHITECTURE.md` |
+| `docs/TECH-STACK.md` |
+| `docs/screenshots/10-address-declaration-form.png` |
+| `docs/features/registration/declare-address.md` |
+| `docs/adr/0002-test-database-strategy.md` |
+| `docs/features/registration/record-police-result.md` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing architecture documentation for existing concurrency guidance. Then planning concrete preventative measures.
+
+A Cursor rule file would provide actionable guidance for both AI and developers. A scoped executor helper could follow the existing MainLayout pattern. The RegistrationCaseDetail component still carries a potential race condition during its reload flow. Child components using synchronous OnParametersSet appear safe.
+
+The root cause was CaseDecisionSection performing async database work inside OnParametersSetAsync while the parent continued loading. That component is now fixed. The proposed Cursor rule would ban injecting DbContext-dependent handlers into child Blazor components for render-time data loading. Parents should own data fetching. Children should receive DTOs as parameters. Independent background work should use IServiceScopeFactory. MainLayout already follows this pattern.
+
+The plan now includes concrete implementation steps. A reusable helper such as `BlazorDataScope` or an `IServiceScopeFactory` extension would simplify the scoped-execution pattern. The architecture document will receive a new section. The user likely wants code changes rather than just explanation. I will also review whether `RegistrationCaseDetail.ReloadCase` can be hardened by loading the audit before updating state or by batching database calls.
+
+Loading the audit before updating state would not prevent the race, since child components still trigger OnParametersSetAsync when the parent assigns state. The cleanest architectural rule is that data flows downward: pages fetch all data first, then assign state that triggers child renders. Child components must never perform database work inside lifecycle hooks; they should only consume passed parameters. Using IServiceScopeFactory everywhere is too heavy. Injecting handlers for user-initiated button actions is acceptable because those operations are sequential.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/07-architecture-and-guidelines.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md",
+  "pattern": "Blazor|DbContext|scoped"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md",
+  "pattern": "Blazor|DbContext|scoped",
+  "topFiles": [
+    {
+      "matchCount": 14,
+      "uri": "docs/ARCHITECTURE.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 14
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+A multi-pronged approach will prevent future concurrency issues.
+
+A Cursor rule will guide AI and developers on Blazor EF Core concurrency. ARCHITECTURE.md will gain a subsection under Blazor UI conventions. The child component pattern is the core fix. Hardening RegistrationCaseDetail.ReloadCase is optional.
+
+Blazor schedules child components to update during the next render cycle after the parent assigns `_case`. This means `OnParametersSetAsync` executes before the parent finishes awaiting `LoadAuditAsync`.
+
+The parent `ReloadCase` should load all data first, then assign state at once. This prevents child components from rendering with partial updates and avoids concurrent database queries.
+
+The concrete `ReloadCase` fix loads all data first, then assigns `_case`, `_auditEntries`, and `_editingIdentity` in a single block. This ensures child components render only after all database work completes. Combined with the rule that child components must not perform database operations during parameter set, the pattern is fully bulletproof.
+</details></think>
+
+_**Agent (default)**_
+
+Implementing durable guardrails: a project rule, architecture documentation, and hardening the page reload pattern so children don't render mid-query.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: mkdir -p /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.cursor/rules</summary>
+```bash
+mkdir -p /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.cursor/rules
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I'll add a Cursor rule for Blazor and EF Core concurrency.
+</details></think>
+
+_**Agent (default)**_
+
+Implementing three guardrails: a Cursor rule, architecture docs, and fixing the parent page to finish all DB work before updating state that re-renders children.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.cursor/rules/blazor-ef-core.mdc</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web --no-restore -v q 2&gt;&amp;1 | tail -5</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web --no-restore -v q 2>&1 | tail -5
+```
+
+```
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.24
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+Yes — this is a recurring Blazor Server + EF Core pattern, and you can guard against it with a few conventions.
+
+## Why it keeps happening
+
+In Blazor Server, `DbContext` is **scoped per circuit**. Every handler injected into a page shares the same instance. If two async operations overlap — e.g. a parent still loading audit data while a child starts its own query in `OnParametersSetAsync` — EF Core throws exactly the error you saw.
+
+## Three guardrails added
+
+**1. Cursor rule** — `.cursor/rules/blazor-ef-core.mdc`  
+Applies when editing `.razor` files. It tells the agent (and serves as a reminder for you):
+
+- **Pages** load data; **child components** receive DTOs via `[Parameter]`
+- Never call handlers in `OnParametersSetAsync` on child components
+- Finish all DB work before assigning state that re-renders children
+- Use `IServiceScopeFactory` for independent background loads (like `MainLayout` already does for the police badge count)
+
+**2. Architecture docs** — new section in `docs/ARCHITECTURE.md` under Blazor UI conventions with the same rules in table form.
+
+**3. Hardened `ReloadCase()`** — `RegistrationCaseDetail` now loads case + audit data first, then assigns `_case` and `_auditEntries` together. That way children don't re-render while the parent still has an open query.
+
+## The rule of thumb
+
+| Where | DB in lifecycle hooks? | Pattern |
+|-------|------------------------|---------|
+| Page (`Pages/*.razor`) | Yes | `await` handlers, then assign all state |
+| Child component | **No** | Map from `[Parameter]` DTOs |
+| Layout / background | Own scope | `IServiceScopeFactory` |
+
+Button clicks (`OnSave`, `OnApprove`, etc.) are fine — they run one operation at a time.
+
+The fix we made to `CaseDecisionSection` (derive checklist from the case DTO instead of re-querying) is the canonical child-component pattern. If a future component only needs data the parent already has, map it locally rather than injecting a handler.

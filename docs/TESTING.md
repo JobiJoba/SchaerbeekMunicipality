@@ -274,7 +274,7 @@ dotnet watch test --project tests/SchaerbeekMunicipality.Domain.Tests
 
 ## CI pipeline
 
-GitHub Actions runs on every push and PR to `main`. See [CI.md](./CI.md) for the build/test workflow, Playwright E2E job, Trivy-scanned GHCR publish, optional Azure OIDC deploy, and the PostgreSQL migration job.
+GitHub Actions runs on every push and PR to `main` (**CI**: build/test/E2E). After a successful CI **push** to `main`, a separate **CD** workflow handles Trivy-scanned GHCR publish and optional Azure OIDC deploy. See [CI.md](./CI.md).
 
 ```bash
 dotnet restore
@@ -298,4 +298,4 @@ dotnet test --configuration Release --verbosity normal --filter "Category!=E2E&C
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — handler and slice layout
 - [ROADMAP.md](./ROADMAP.md) — when to add tests per phase
-- [CI.md](./CI.md) — GitHub Actions workflow
+- [CI.md](./CI.md) — GitHub Actions: CI vs CD workflows

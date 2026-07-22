@@ -18,7 +18,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The user reports three issues on the case page for a population officer without a lock: the release lock button crashes, other buttons crash due to missing lock, and clicking release sends a message without actually releasing the lock. They want all buttons disabled when the lock is unavailable.
 
-I'll examine the codebase to understand the case locking logic and identify which buttons appear when the user lacks the lock.</details></think>
+I'll examine the codebase to understand the case locking logic and identify which buttons appear when the user lacks the lock.
+</details></think>
 
 _**Agent (default)**_
 
@@ -27,10 +28,8 @@ I'll trace how case locking is enforced on the first-registration case page and 
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -136,21 +135,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -256,22 +246,14 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **175** results in **1** directory</summary>
 
-Directory: **** (175 files)
+Directory: **``** (175 files)
 
 | File |
 |------|
@@ -450,69 +432,39 @@ Directory: **** (175 files)
 | `src/SchaerbeekMunicipality.Api/Features/ChangeOfAddress/ClaimChangeOfAddressCase/ClaimChangeOfAddressCaseEndpoint.cs` |
 | `src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ListChangeOfAddressCases/ListChangeOfAddressCasesHandler.cs` |
 | `src/SchaerbeekMunicipality.Domain/IdentityDocuments/DocumentRequestCaseStatus.cs` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reading RegistrationCaseDetail.razor to understand the current lock UI logic. Comparing it with ChangeOfAddressCaseDetail, which uses CaseLockActions and CaseLockBar components.</details></think>
+Reading RegistrationCaseDetail.razor to understand the current lock UI logic. Comparing it with ChangeOfAddressCaseDetail, which uses CaseLockActions and CaseLockBar components.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockActions.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockActions.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockBar.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockBar.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -523,44 +475,27 @@ I am examining how `CanEdit`, `IsReadOnlyDueToLock`, and `LockedByOfficerId` are
 
 The `CanReleaseLock` check compares `LockedByOfficerId` against the current officer ID. Buttons in the identity section are missing `CanEditIntakeData` guards. The "Link existing record", "Review matches", and "Search National Register" buttons lack checks. The save identity form and identity form itself appear even when `Person` is null.
 
-I will examine `RegistrationCaseAuthorization` and `GetRegistrationCaseHandler` to understand how `CanEdit` and `IsReadOnlyDueToLock` differ.</details></think>
+I will examine `RegistrationCaseAuthorization` and `GetRegistrationCaseHandler` to understand how `CanEdit` and `IsReadOnlyDueToLock` differ.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/RegistrationCaseAuthorization.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/RegistrationCaseAuthorization.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
 
 </details></tool-use>
 
@@ -571,40 +506,27 @@ The `CanReleaseLock` logic appears correct. It only shows the release button whe
 
 The release button may be visible due to an `AssignedOfficerId` mismatch. The current officer might be assigned to the case while another officer holds the lock. This would make `CanReleaseLock` evaluate to true incorrectly.
 
-I will examine the auto-claim logic to see how an assigned officer might hold no lock. The user may want a request-release feature instead of immediate release. I also need to check `CanDecide` in `CaseDecisionSection` and review the crash logs.</details></think>
+I will examine the auto-claim logic to see how an assigned officer might hold no lock. The user may want a request-release feature instead of immediate release. I also need to check `CanDecide` in `CaseDecisionSection` and review the crash logs.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/projects/Users-joba-Projects-Private-dotnet-SchaerbeekMunicipality/terminals/1.txt</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/projects/Users-joba-Projects-Private-dotnet-SchaerbeekMunicipality/terminals/1.txt</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -662,13 +584,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -696,27 +611,20 @@ Confirmed that CanEdit and CanEditIntakeData are identical properties, so CanEdi
 
 The missing `CanEditIntakeData` guard is the root cause of buttons crashing when clicked without the lock. The release lock button appearing for an unheld lock likely stems from stale state during officer identity switching in development, or from confusing the "Take case" button with "Release lock". Standard `CaseLockActions` shows "Take case" when a case is locked by another officer, while the Registration page currently suppresses both actions in that state.
 
-Standard `CaseLockActions` would incorrectly show "Take case" for locked registration cases, but the custom `CanTakeCase` logic correctly suppresses it when the lock belongs to another officer. The user still sees the release lock button, so the bug is isolated to that specific button rendering.</details></think>
+Standard `CaseLockActions` would incorrectly show "Take case" for locked registration cases, but the custom `CanTakeCase` logic correctly suppresses it when the lock belongs to another officer. The user still sees the release lock button, so the bug is isolated to that specific button rendering.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -762,25 +670,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
 
 </details></tool-use>
 
@@ -795,44 +690,27 @@ A same-officer release leaves the assigned officer without a lock, so the UI sho
 
 The crash likely comes from `ReleaseCaseLockHandler` throwing `InvalidRegistrationTransitionException` when a secondary officer attempts to release a primary officer's lock. The `CanReleaseLock` logic correctly checks `LockedByOfficerId`, so the button should not appear for the wrong officer. The real bug may be `_case.CanEdit` incorrectly returning true for the secondary officer, which would allow the button to render despite the invalid release attempt.
 
-The investigation now turns to `TryAutoClaimCaseAsync` inside `ReloadCase`. A silent failure or incorrect success there could explain why the secondary officer still sees the release button.</details></think>
+The investigation now turns to `TryAutoClaimCaseAsync` inside `ReloadCase`. A silent failure or incorrect success there could explain why the secondary officer still sees the release button.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/ClaimRegistrationCase/ClaimRegistrationCaseHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/ClaimRegistrationCase/ClaimRegistrationCaseHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Auth/CurrentOfficer.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Auth/CurrentOfficer.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/ReleaseCaseLock/ReleaseCaseLockHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/ReleaseCaseLock/ReleaseCaseLockHandler.cs</summary>
 
 </details></tool-use>
 
@@ -843,40 +721,27 @@ Checking DemoOfficers for a Secondary Population Officer role with a different I
 
 Reviewing the `ShouldAutoClaim` logic. When a case is assigned to an officer who later releases the lock, that same officer cannot auto-reclaim it. This leaves `CanEdit` false while `CanTakeCase` remains true. Now examining how a secondary officer views a case locked by another.
 
-A secondary officer sees a locked case as read-only with editing disabled. The identity form incorrectly renders even when the Person object is null. Still checking DemoOfficers for a SecondaryPopulationOfficer role.</details></think>
+A secondary officer sees a locked case as read-only with editing disabled. The identity form incorrectly renders even when the Person object is null. Still checking DemoOfficers for a SecondaryPopulationOfficer role.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Auth/DemoOfficer.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Auth/DemoOfficer.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -914,39 +779,25 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking whether DocumentUpload respects the CanEdit permission from its parent. CaseDocumentPanel hides the remove button when CanEdit is false, but UploadContent may still render and remain clickable.</details></think>
+Checking whether DocumentUpload respects the CanEdit permission from its parent. CaseDocumentPanel hides the remove button when CanEdit is false, but UploadContent may still render and remain clickable.
+</details></think>
 
 _**Agent (default)**_
 
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
-
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
@@ -957,14 +808,13 @@ The DocumentUpload component in RegistrationCaseDocumentPanel is always visible 
 
 RegistrationCaseDetail.razor will use `_case.CanEdit` for `CanReleaseLock` instead of manual checks. Identity section elements will be wrapped with `CanEditIntakeData`, and the identity form will hide when read-only. The Release lock button should only appear when the current user actually holds the lock.
 
-The crash may stem from a mismatch between the web UI and API identity. The API might not recognize the current officer when switching users, causing the release action to fail even though the button appears. I need to check whether the API scopes the current officer per request or uses a circuit-scoped identity.</details></think>
+The crash may stem from a mismatch between the web UI and API identity. The API might not recognize the current officer when switching users, causing the release action to fail even though the button appears. I need to check whether the API scopes the current officer per request or uses a circuit-scoped identity.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -989,39 +839,25 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/DemoOfficerPersistence.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/DemoOfficerPersistence.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking how the API identifies the current officer—via headers or cookies—to understand why lock state validation is failing.</details></think>
+Checking how the API identifies the current officer—via headers or cookies—to understand why lock state validation is failing.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1127,52 +963,32 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking how the API client retrieves the current officer identity.</details></think>
+Checking how the API client retrieves the current officer identity.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/MunicipalApiClientBase.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/MunicipalApiClientBase.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1278,13 +1094,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -1300,55 +1109,42 @@ A locked, read-only case correctly shows no header action buttons. Identity form
 
 Buttons inside the identity section lack a CanEdit guard, allowing clicks on locked cases. Unassigned reception cases auto-claim to the first officer who opens them.
 
-The Release lock button may be a legacy field that checks AssignedOfficerId instead of LockedByOfficerId. The user might also be viewing a case as a different officer in the role switcher while the URL still references the original locked case.</details></think>
+The Release lock button may be a legacy field that checks AssignedOfficerId instead of LockedByOfficerId. The user might also be viewing a case as a different officer in the role switcher while the URL still references the original locked case.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/Components/RoleSwitcher.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/Components/RoleSwitcher.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Journeys/RoleBoundaryE2ETests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Journeys/RoleBoundaryE2ETests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Searching for DemoOfficerResolution middleware and MainLayout to understand how officer state is restored from the URL.</details></think>
+Searching for DemoOfficerResolution middleware and MainLayout to understand how officer state is restored from the URL.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **6** results in **1** directory</summary>
 
-Directory: **** (6 files)
+Directory: **``** (6 files)
 
 | File |
 |------|
@@ -1358,48 +1154,32 @@ Directory: **** (6 files)
 | `src/SchaerbeekMunicipality.Web/Api/DemoOfficerHeaders.cs` |
 | `src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerHeaders.cs` |
 | `src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
-
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking DemoOfficerMiddleware and searching for RestoreOfficer in the Web project.</details></think>
+Checking DemoOfficerMiddleware and searching for RestoreOfficer in the Web project.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1434,13 +1214,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -1448,31 +1221,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Checking MainLayout.razor for a race condition between the UI and API. The Web and API run as separate Aspire processes. This may cause the UI to show one officer while API calls use another.
 
-The scoped CurrentOfficer pattern appears sound across the Web and API boundary. The release lock button likely renders incorrectly because AssignedOfficerId matches CurrentOfficer while LockedByOfficerId differs. I will re-examine the Claim and ReleaseLock logic in RegistrationCase.</details></think>
+The scoped CurrentOfficer pattern appears sound across the Web and API boundary. The release lock button likely renders incorrectly because AssignedOfficerId matches CurrentOfficer while LockedByOfficerId differs. I will re-examine the Claim and ReleaseLock logic in RegistrationCase.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
 
 </details></tool-use>
 
@@ -1491,39 +1253,26 @@ The release button should not appear for users without the lock. A request-relea
 
 A `HasCaseLock` flag will be added to cleanly gate lock status. All interactive elements will be disabled for read-only users, while document previews and section expansion remain available. `CanReleaseLock` will be updated to use `_case.CanEdit`. The header will follow a standard three-state pattern: release lock and send-to-police when editing is allowed, take case when available, and no buttons when the case is locked by another officer. The identity section will render a read-only empty state instead of a form when the user lacks edit rights and no person record exists.
 
-Checking that ResidenceStep and AddressStep do not render edit controls when CanEdit is false. CaseDecisionSection already gates decisions correctly via CanDecide. RegistrationCaseDocumentPanel will only show its upload content when CanEdit is true.</details></think>
+Checking that ResidenceStep and AddressStep do not render edit controls when CanEdit is false. CaseDecisionSection already gates decisions correctly via CanDecide. RegistrationCaseDocumentPanel will only show its upload content when CanEdit is true.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
 
-Directory: **** (1 file)
+Directory: **``** (1 file)
 
 | File |
 |------|
 | `src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -1531,14 +1280,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Another bug was found in ResidenceStep. It renders the full edit form without first checking CanEdit.
 
-The same bug likely affects other steps. When CanEdit is false and ResidenceCategory is null, the form still shows a Save button. AddressStep is being checked for the same pattern.</details></think>
+The same bug likely affects other steps. When CanEdit is false and ResidenceCategory is null, the form still shows a Save button. AddressStep is being checked for the same pattern.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1593,25 +1341,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
@@ -1626,44 +1361,27 @@ The release lock button appears clickable because `CanReleaseLock` does not requ
 
 The release lock button will be gated by `_case.CanEdit` and an extra `!IsReadOnlyDueToLock` check. The crash may stem from an unhandled Blazor circuit error or concurrent database access during `ReloadCase` after a failed release.
 
-The crash likely comes from DbContext concurrency when child components load during reload. The plan is to disable or hide all buttons and forms when `CanEdit` is false. For missing data, a read-only empty state or AppInfoBox will replace the editable form. Existing read-only displays for filled data will remain unchanged.</details></think>
+The crash likely comes from DbContext concurrency when child components load during reload. The plan is to disable or hide all buttons and forms when `CanEdit` is false. For missing data, a read-only empty state or AppInfoBox will replace the editable form. Existing read-only displays for filled data will remain unchanged.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
@@ -1672,56 +1390,38 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Checking whether AppEditableSection already handles CanEdit correctly for BirthInformation and CivilStatus. ResidenceStep and AddressStep do not use this component.
 
-HouseholdStep is mostly correct. Need to verify how AppEditableSection behaves when CanEdit is false and HasData is false.</details></think>
+HouseholdStep is mostly correct. Need to verify how AppEditableSection behaves when CanEdit is false and HasData is false.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
 
-Directory: **** (1 file)
+Directory: **``** (1 file)
 
 | File |
 |------|
 | `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppEditableSection.razor` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reading AppEditableSection to understand how buttons are rendered without checking the lock state.</details></think>
+Reading AppEditableSection to understand how buttons are rendered without checking the lock state.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppEditableSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppEditableSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
@@ -1752,7 +1452,8 @@ CaseLockActions will be updated so the Take case button only appears when the us
 
 National Register search, review matches, and document upload buttons will be hidden when the user cannot edit. Duplicate investigation buttons will also be gated by `CanEditIntakeData`. The empty read-only placeholder will use a simple default message.
 
-The combined `!HasData || IsEditing` branch in AppEditableSection is being split into separate conditions. The editing branch will now explicitly require `CanEdit` before rendering the form. This prevents a stale editing state from appearing when the user lacks permission. The full ResidenceStep structure will be reviewed next to patch every form section.</details></think>
+The combined `!HasData || IsEditing` branch in AppEditableSection is being split into separate conditions. The editing branch will now explicitly require `CanEdit` before rendering the form. This prevents a stale editing state from appearing when the user lacks permission. The full ResidenceStep structure will be reviewed next to patch every form section.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1761,27 +1462,15 @@ Fixing read-only mode: several intake steps render edit forms without checking `
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor</summary>
 
 </details></tool-use>
 
@@ -1792,145 +1481,75 @@ Implementing fixes now. Starting with ResidenceStep structure changes.
 
 Restructuring the ResidenceStep first branch into three clear cases: editable form when the category is null and CanEdit is true; a read-only "Not recorded" message when CanEdit is false; and an editable form when the user is actively editing. Now moving on to the permit block.
 
-The same conditional structure is being applied to the permit block, the immigration decision section, and AddressStep. Proceeding to apply these edits.</details></think>
+The same conditional structure is being applied to the permit block, the immigration decision section, and AddressStep. Proceeding to apply these edits.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppEditableSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppEditableSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Fixing AddressStep and ResidenceStep next.</details></think>
+Fixing AddressStep and ResidenceStep next.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
@@ -1939,91 +1558,59 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 ResidenceStep is the main component to update. The category form, permit section, and immigration decision section all need replacement. The category form section is being addressed first.
 
-The permit and immigration decision sections will follow the same conditional rendering pattern. Each will display an editable form when the value is missing and editing is allowed, otherwise a read-only view.</details></think>
+The permit and immigration decision sections will follow the same conditional rendering pattern. Each will display an editable form when the value is missing and editing is allowed, otherwise a read-only view.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reviewing the permit and immigration decision sections in ResidenceStep around lines 130–280.</details></think>
+Reviewing the permit and immigration decision sections in ResidenceStep around lines 130–280.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Replacing the permit and immigration decision blocks. The permit form is large, so the replacement will be targeted.</details></think>
+Replacing the permit and immigration decision blocks. The permit form is large, so the replacement will be targeted.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Replacing the immigration decision section.</details></think>
+Replacing the immigration decision section.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
@@ -2032,18 +1619,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 An edge case exists where `_editingIdentity` remains true while the user loses the lock during editing.
 
-The `_editingIdentity` branch needs a `CanEditIntakeData` guard. Duplicate `@if (CanEditIntakeData)` blocks in the duplicate investigation section also need removal.</details></think>
+The `_editingIdentity` branch needs a `CanEditIntakeData` guard. Duplicate `@if (CanEditIntakeData)` blocks in the duplicate investigation section also need removal.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -2052,60 +1634,35 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The editing identity branch needs to be guarded by `CanEditIntakeData`. The condition should change to `else if (_editingIdentity && CanEditIntakeData)`.
 
-Wrap ReleaseLock to catch InvalidRegistrationTransitionException specifically. Run a build to verify compilation.</details></think>
+Wrap ReleaseLock to catch InvalidRegistrationTransitionException specifically. Run a build to verify compilation.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -30</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build --no-restore 2&gt;&amp;1 | tail -30</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -30
 ```
 
 ```
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
-  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor(11,1): error RZ9996: Unrecognized child content inside component 'CaseDocumentPanel'. The component 'CaseDocumentPanel' accepts child content through the following top-level items: 'UploadContent'. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor(11,6): error RZ9996: Unrecognized child content inside component 'CaseDocumentPanel'. The component 'CaseDocumentPanel' accepts child content through the following top-level items: 'UploadContent'. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor(17,1): error RZ9996: Unrecognized child content inside component 'CaseDocumentPanel'. The component 'CaseDocumentPanel' accepts child content through the following top-level items: 'UploadContent'. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-
-Build FAILED.
-
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor(11,1): error RZ9996: Unrecognized child content inside component 'CaseDocumentPanel'. The component 'CaseDocumentPanel' accepts child content through the following top-level items: 'UploadContent'. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor(11,6): error RZ9996: Unrecognized child content inside component 'CaseDocumentPanel'. The component 'CaseDocumentPanel' accepts child content through the following top-level items: 'UploadContent'. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor(17,1): error RZ9996: Unrecognized child content inside component 'CaseDocumentPanel'. The component 'CaseDocumentPanel' accepts child content through the following top-level items: 'UploadContent'. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-    0 Warning(s)
-    3 Error(s)
-
-Time Elapsed 00:00:08.72
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor(11,6): error RZ9996: Unrecognized child content inside component 'CaseDocumentPanel'. The component 'CaseDocumentPanel' accepts child content through the following top-level items: 'UploadContent'. [/U
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -2113,7 +1670,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 A Razor `@if` inside child content breaks the UploadContent fragment. I'll fix RegistrationCaseDocumentPanel by either conditionally rendering upload inside CaseDocumentPanel or passing CanEdit to hide the upload section directly.
 
-The cleanest fix is to render the UploadContent section in CaseDocumentPanel only when CanEdit is true and UploContent is not null.</details></think>
+The cleanest fix is to render the UploadContent section in CaseDocumentPanel only when CanEdit is true and UploContent is not null.
+</details></think>
 
 _**Agent (default)**_
 
@@ -2123,31 +1681,15 @@ Fixing document upload gating in `CaseDocumentPanel` — Razor doesn't allow `@i
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
@@ -2156,27 +1698,27 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The CaseDocumentPanel change applies across all workflows. This ensures consistent behavior.
 
-Running the build and integration tests for role locking.</details></think>
+Running the build and integration tests for role locking.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -15</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build 2&gt;&amp;1 | tail -15</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -15
 ```
 
 ```
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
-  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.AppHost -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
-  SchaerbeekMunicipality.E2E.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.AppHost -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.E2E.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
 
 Build succeeded.
     0 Warning(s)
@@ -2185,24 +1727,18 @@ Build succeeded.
 Time Elapsed 00:00:09.32
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Build succeeded. Running integration tests for role boundaries.</details></think>
+Build succeeded. Running integration tests for role boundaries.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "FullyQualifiedName~RoleBoundariesAndCaseLocking" --no-build 2>&1 | tail -20</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter &#34;FullyQualifiedName~RoleBoundariesAndCaseLocking&#34; --no-build 2&gt;&amp;1 | tail -20</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "FullyQualifiedName~RoleBoundariesAndCaseLocking" --no-build 2>&1 | tail -20
 ```
@@ -2217,18 +1753,13 @@ A total of 1 test files matched the specified pattern.
 Passed!  - Failed:     0, Passed:     9, Skipped:     0, Total:     9, Duration: 2 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-All tests pass.</details></think>
+All tests pass.
+</details></think>
 
 _**Agent (default)**_
 
@@ -2268,7 +1799,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The "Take case" button should be hidden when a case is locked by another officer. It currently appears in Birth declaration, change address, and identity document workflows.
 
-The root cause is that `CaseLockActions` shows "Take case" whenever `IsReadOnlyDueToLock` is true. I will fix the logic so the button only appears when the case is actually unlocked and available to take.</details></think>
+The root cause is that `CaseLockActions` shows "Take case" whenever `IsReadOnlyDueToLock` is true. I will fix the logic so the button only appears when the case is actually unlocked and available to take.
+</details></think>
 
 _**Agent (default)**_
 
@@ -2277,23 +1809,15 @@ The "Take case" button is likely shown whenever the case is read-only due to a l
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockActions.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockActions.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -2343,13 +1867,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -2357,14 +1874,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The root cause is in `CaseLockActions`. It incorrectly shows the "Take case" button when `IsReadOnlyDueToLock` is true.
 
-The "Take case" button should appear only when the case is not locked to another officer, the user lacks edit rights, and the lock is available. The Registration workflow already defines this condition. The same logic needs to be checked for Change of Address, Birth Declaration, and Identity Documents.</details></think>
+The "Take case" button should appear only when the case is not locked to another officer, the user lacks edit rights, and the lock is available. The Registration workflow already defines this condition. The same logic needs to be checked for Change of Address, Birth Declaration, and Identity Documents.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -2402,51 +1918,26 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -2461,28 +1952,21 @@ Deriving `CanTakeCase` from `!CanEdit && !IsReadOnlyDueToLock` seems sufficient.
 
 The exact condition is `!CanEdit && !IsReadOnlyDueToLock`. The component should render the Take case button only when this is true, and the Release lock button only when `CanEdit` is true.
 
-Computing `CanTakeCase` directly inside the component is cleaner than passing it as a parameter, since it fixes all usages at once. The CaseLockBar message also needs updating, because telling users to "Take the case to edit" is misleading when another officer already holds the lock.</details></think>
+Computing `CanTakeCase` directly inside the component is cleaner than passing it as a parameter, since it fixes all usages at once. The CaseLockBar message also needs updating, because telling users to "Take the case to edit" is misleading when another officer already holds the lock.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockBar.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockBar.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
-
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
@@ -2490,14 +1974,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 CaseLockBar's default message incorrectly tells users to take the case to edit. This text needs fixing since it appears when the case is already locked.
 
-The default CaseLockBar message should explain that the user can review the file but cannot edit until the lock is released. I will update CaseLockActions to hide the Take case button when the case is already locked. I am also checking whether any components pass custom messages to CaseLockBar.</details></think>
+The default CaseLockBar message should explain that the user can review the file but cannot edit until the lock is released. I will update CaseLockActions to hide the Take case button when the case is already locked. I am also checking whether any components pass custom messages to CaseLockBar.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -2535,13 +2018,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -2549,7 +2025,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Fixing CaseLockActions and updating the default message in CaseLockBar.
 
-The CaseLockBar message will clarify that the case is locked to another officer and cannot be changed. Unused callback parameters will remain unless the linter complains.</details></think>
+The CaseLockBar message will clarify that the case is locked to another officer and cannot be changed. Unused callback parameters will remain unless the linter complains.
+</details></think>
 
 _**Agent (default)**_
 
@@ -2558,51 +2035,35 @@ The bug is in `CaseLockActions`: it shows "Take case" when the case is read-only
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockActions.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockActions.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockBar.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockBar.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Build verification succeeded. The fix applies to all three pages using CaseLockActions, since each passes IsReadOnlyDueToLock and CanEdit.</details></think>
+Build verification succeeded. The fix applies to all three pages using CaseLockActions, since each passes IsReadOnlyDueToLock and CanEdit.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web --no-restore 2>&1 | tail -8</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web --no-restore 2&gt;&amp;1 | tail -8</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web --no-restore 2>&1 | tail -8
 ```
 
 ```
-  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
 
 Build succeeded.
     0 Warning(s)
@@ -2611,18 +2072,13 @@ Build succeeded.
 Time Elapsed 00:00:07.55
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The fix is straightforward. I'll hide the Take case button when another user holds the lock, preventing the error.</details></think>
+The fix is straightforward. I'll hide the Take case button when another user holds the lock, preventing the error.
+</details></think>
 
 _**Agent (default)**_
 
@@ -2657,32 +2113,742 @@ Can you update the docs with the latest changes
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<think><details><summary>Thought Process</summary>
+Updating the documentation to reflect the latest case locking UX changes.
 
-Status: **loading**
+Identified three specific changes to document: read-only mode for locked cases, a fix in CaseLockActions to prevent taking cases already locked to another officer, and UI gating updates across registration case detail, AppEditableSection, and CaseDocumentPanel.
+</details></think>
+
+_**Agent (default)**_
+
+I'll find the docs that describe case locking and officer UX, then update them to match the recent read-only and button-gating changes.
 
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "docs/**/*",
+  "pattern": "lock|Take case|read-only|CaseLock"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "lock|Take case|read-only|CaseLock",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "docs/adr/0002-test-database-strategy.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-6-police-verification-loop.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-17-post-registration-amendments.md"
+    },
+    {
+      "matchCount": 6,
+      "uri": "docs/phases/phase-12-birth-declaration.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-6.1-collapsible-intake-sections.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/DOMAIN.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": "docs/APP-OVERVIEW.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/README.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/design-system/03-component-catalogue.md"
+    },
+    {
+      "matchCount": 8,
+      "uri": "docs/design-system/05-ui-kit.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-13-change-of-address.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-18-remaining-exception-scenarios.md"
+    },
+    {
+      "matchCount": 8,
+      "uri": "docs/phases/phase-2.1-intake-corrections.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/declare-address.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "docs/phases/phase-5-national-register-search-bis.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-7-decision-registration.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/features/registration/get-registration-case.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-4-address-household.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/request-police-verification.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/README.md"
+    }
+  ],
+  "totalFiles": 34,
+  "totalMatches": 121
+}
+```
+Status: **completed**
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
-
-No results found
-</details>
-</tool-use>
-
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **70** results in **1** directory</summary>
+
+Directory: **``** (70 files)
+
+| File |
+|------|
+| `docs/features/registration/request-police-verification.md` |
+| `docs/features/registration/record-residence-permit.md` |
+| `docs/phases/phase-0-foundation.md` |
+| `docs/phases/phase-0.1-tooling-hygiene.md` |
+| `docs/features/README.md` |
+| `docs/features/registration/record-civil-status.md` |
+| `docs/features/registration/open-registration-case.md` |
+| `docs/ARCHITECTURE.md` |
+| `docs/ROADMAP.md` |
+| `docs/adr/README.md` |
+| `docs/features/registration/download-document.md` |
+| `docs/phases/phase-18-remaining-exception-scenarios.md` |
+| `docs/features/registration/correct-identity.md` |
+| `docs/TESTING.md` |
+| `docs/adr/0002-test-database-strategy.md` |
+| `docs/design-system/07-architecture-and-guidelines.md` |
+| `docs/phases/phase-16-person-file.md` |
+| `docs/phases/phase-14-passport-id-request.md` |
+| `docs/adr/0005-deployment-database-by-environment.md` |
+| `docs/design-system/02-accessibility.md` |
+| `docs/phases/phase-2-residence-category-permits.md` |
+| `docs/DOMAIN.md` |
+| `docs/design-system/01-design-tokens.md` |
+| `docs/MUNICIPAL-UI.md` |
+| `docs/adr/0003-health-endpoints-via-servicedefaults.md` |
+| `docs/TECH-STACK.md` |
+| `docs/phases/phase-12-birth-declaration.md` |
+| `docs/phases/phase-3-design-system.md` |
+| `docs/features/registration/link-existing-person.md` |
+| `docs/features/registration/get-registration-case.md` |
+| `docs/features/registration/search-national-register.md` |
+| `docs/features/registration/set-residence-category.md` |
+| `docs/design-system/03-component-catalogue.md` |
+| `docs/features/registration/convert-bis-number.md` |
+| `docs/features/registration/record-police-result.md` |
+| `docs/phases/phase-2.1-intake-corrections.md` |
+| `docs/features/registration/declare-address.md` |
+| `docs/APP-OVERVIEW.md` |
+| `docs/features/registration/list-pending-police-verifications.md` |
+| `docs/features/registration/record-identity.md` |
+| `docs/adr/0004-checklist-over-linear-state-machine.md` |
+| `docs/features/registration/attach-document.md` |
+| `docs/features/registration/record-immigration-decision.md` |
+| `docs/adr/0001-no-mediatr.md` |
+| `docs/phases/phase-1-case-intake-identity.md` |
+| `docs/phases/phase-15-reporting-dashboard.md` |
+| `docs/features/registration/record-household-composition.md` |
+| `docs/phases/phase-6.1-collapsible-intake-sections.md` |
+| `docs/phases/phase-6-police-verification-loop.md` |
+| `docs/phases/README.md` |
+| `docs/phases/phase-4.1-document-preview-case-ux.md` |
+| `docs/design-system/04-mudtheme-and-css.md` |
+| `docs/design-system/05-ui-kit.md` |
+| `docs/design-system/06-page-templates.md` |
+| `docs/phases/phase-7-decision-registration.md` |
+| `docs/phases/phase-8.1-role-boundaries-case-locking.md` |
+| `docs/features/registration/list-registration-cases.md` |
+| `docs/GLOSSARY.md` |
+| `docs/features/registration/record-housing-situation.md` |
+| `docs/phases/phase-10-azure-deployment.md` |
+| `docs/phases/phase-11-extended-municipality.md` |
+| `docs/features/registration/remove-document.md` |
+| `docs/CI.md` |
+| `docs/phases/phase-4-address-household.md` |
+| `docs/features/registration/README.md` |
+| `docs/phases/phase-5-national-register-search-bis.md` |
+| `docs/phases/phase-17-post-registration-amendments.md` |
+| `docs/phases/phase-9-exception-scenarios.md` |
+| `docs/design-system/README.md` |
+| `docs/phases/phase-13-change-of-address.md` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I need to locate the main documentation files that require updating.
+
+Five files need updates:
+
+- phase-8.1-role-boundaries-case-locking.md
+- APP-OVERVIEW.md
+- MUNICIPAL-UI.md
+- features/registration/README.md
+- design-system/05-ui-kit.md
+
+Reading them now.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-8.1-role-boundaries-case-locking.md</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/APP-OVERVIEW.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/MUNICIPAL-UI.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The UI kit documentation needs updating for AppEditableSection's read-only behavior change.
+
+Phase-12 through phase-14 also need checking for CaseLockActions lock UX mentions.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/05-ui-kit.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "docs/**",
+  "pattern": "Take case|CaseLockActions|read-only"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "Take case|CaseLockActions|read-only",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "docs/features/registration/list-registration-cases.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-4-address-household.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-8.1-role-boundaries-case-locking.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-16-person-file.md"
+    },
+    {
+      "matchCount": 4,
+      "uri": "docs/MUNICIPAL-UI.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/ROADMAP.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-14-passport-id-request.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/design-system/06-page-templates.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-2.1-intake-corrections.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-15-reporting-dashboard.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/declare-address.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/features/registration/README.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/features/registration/get-registration-case.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/05-ui-kit.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/APP-OVERVIEW.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-5-national-register-search-bis.md"
+    }
+  ],
+  "totalFiles": 16,
+  "totalMatches": 26
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Preparing comprehensive documentation updates.
+
+Updating phase-8.1-role-boundaries-case-locking.md with read-only UX rules and updated deliverables. Expanding MUNICIPAL-UI.md with CaseLockBar and CaseLockActions details, including button visibility and CanTakeCase logic. Adding read-only UX bullets to features/registration/README.md. Also updating APP-OVERVIEW.md case locking section.
+
+Updating design-system/05-ui-kit.md with the empty-state description for AppEditableSection when CanEdit is false. Adding a "Read-only case detail (July 2026 polish)" subsection to phase-8.1-role-boundaries-case-locking.md as the canonical source, with cross-references from other documents. Checking get-registration-case.md for read-only UI mentions. May optionally update ROADMAP.md.
+
+Defining exact read-only UX rules. `CanTakeCase` is true only when the case is unassigned or the lock was released. The release lock button appears only to the lock holder. `CaseLockBar` messages indicate review-only access until release. Intake forms, save buttons, uploads, NR search, and decision buttons hide when `CanEdit` is false. Incomplete steps display "Not recorded yet" placeholders. `AppEditableSection` renders a read-only empty state when no data exists and editing is disabled. `CaseDocumentPanel` hides its upload slot under the same condition.
+
+Registration case detail uses inline header actions with the same read-only rules rather than the CaseLockActions component. Birth declaration, change of address, and identity documents use CaseLockActions and CaseLockBar. Identity documents were also added to the MUNICIPAL-UI used-by list.
+</details></think>
+
+_**Agent (default)**_
+
+Updating the phase 8.1 doc and cross-references to document the read-only case-lock UX.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-8.1-role-boundaries-case-locking.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-8.1-role-boundaries-case-locking.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-8.1-role-boundaries-case-locking.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-8.1-role-boundaries-case-locking.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/APP-OVERVIEW.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/MUNICIPAL-UI.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/MUNICIPAL-UI.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/05-ui-kit.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking get-registration-case.md for UI behavior updates. Reviewing phase-12/13 docs for lock UX mentions related to birth or address changes.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "docs/phases/phase-1*.md",
+  "pattern": "lock|Take case"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "lock|Take case",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "./docs/phases/phase-14-passport-id-request.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "./docs/phases/phase-13-change-of-address.md"
+    },
+    {
+      "matchCount": 6,
+      "uri": "./docs/phases/phase-12-birth-declaration.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "./docs/phases/phase-18-remaining-exception-scenarios.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "./docs/phases/phase-17-post-registration-amendments.md"
+    }
+  ],
+  "totalFiles": 5,
+  "totalMatches": 11
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "docs/phases/phase-12*.md",
+  "pattern": "lock|Take case|read-only"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "lock|Take case|read-only",
+  "topFiles": [
+    {
+      "matchCount": 6,
+      "uri": "./docs/phases/phase-12-birth-declaration.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 6
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "docs/phases/phase-13*.md",
+  "pattern": "lock|Take case|read-only"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "lock|Take case|read-only",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "./docs/phases/phase-13-change-of-address.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "docs/phases/phase-14*.md",
+  "pattern": "lock|Take case|read-only"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "lock|Take case|read-only",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "./docs/phases/phase-14-passport-id-request.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating get-registration-case.md to document read-only lock behavior in the Blazor UI section. Adding brief notes about CaseLockActions to phase-12 and phase-13.
+
+Checking whether phase-14 should also document the identity documents pattern.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-12-birth-declaration.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-13-change-of-address.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking phase-14 for identity documents lock mentions.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-14-passport-id-request.md",
+  "pattern": "claim|lock|CaseLock"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-14-passport-id-request.md",
+  "pattern": "claim|lock|CaseLock",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-14-passport-id-request.md"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether Phase 14 needs a claim/lock row in the checklist.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-14-passport-id-request.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Adding a UI bullet to phase-14 documentation for case locking, since DocumentRequestCaseDetail uses CaseLockActions.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-14-passport-id-request.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The documentation has been updated with the latest changes.
+</details></think>
+
+_**Agent (default)**_
+
+Updated the docs to reflect the case-lock UX changes. Summary of what changed:
+
+### Primary reference
+**[phase-8.1-role-boundaries-case-locking.md](docs/phases/phase-8.1-role-boundaries-case-locking.md)**
+- New section: **Read-only case detail (lock held by colleague)** — table of what is shown/hidden per lock state
+- Documents `CanTakeCase = !CanEdit && !IsReadOnlyDueToLock` and release-lock rules
+- Updated deliverables checklist and demo script (Anne sees no Take case while Marie holds the lock)
+- Added key files for `CaseLockActions`, `AppEditableSection`, `CaseDocumentPanel`
+
+### Cross-references updated
+| Document | Changes |
+|----------|---------|
+| [APP-OVERVIEW.md](docs/APP-OVERVIEW.md) | Expanded officer decision & case locking section |
+| [MUNICIPAL-UI.md](docs/MUNICIPAL-UI.md) | `CaseLockBar` / `CaseLockActions` behaviour; upload gated on `CanEdit`; added `DocumentRequestCaseDetail` |
+| [features/registration/README.md](docs/features/registration/README.md) | Read-only rules and link to phase 8.1 |
+| [get-registration-case.md](docs/features/registration/get-registration-case.md) | Blazor UI behaviour + locking |
+| [design-system/05-ui-kit.md](docs/design-system/05-ui-kit.md) | `AppEditableSection` read-only empty state |
+| [ROADMAP.md](docs/ROADMAP.md) | Phase 8.1 demo line |
+| [phase-12](docs/phases/phase-12-birth-declaration.md), [phase-13](docs/phases/phase-13-change-of-address.md), [phase-14](docs/phases/phase-14-passport-id-request.md) | Lock chrome notes per workflow |

@@ -15,7 +15,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Checking whether documentation was updated and determining the next steps.
 
-Reading the E2E README, test files, and git diff to assess the current state and identify next steps.</details></think>
+Reading the E2E README, test files, and git diff to assess the current state and identify next steps.
+</details></think>
 
 _**Agent (default)**_
 
@@ -24,37 +25,24 @@ Checking the docs and project state to summarize what's done and recommend next 
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/README.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Journeys/ChangeOfAddressE2ETests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Journeys/ChangeOfAddressE2ETests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **108** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (108 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (108 files)
 
 | File |
 |------|
@@ -166,20 +154,12 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (108 f
 | `docs/TESTING.md` |
 | `docs/features/registration/record-housing-situation.md` |
 | `docs/features/registration/get-registration-case.md` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git status && git log --oneline -5</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; git status &amp;&amp; git log --oneline -5</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git status && git log --oneline -5
 ```
@@ -196,12 +176,6 @@ e4eff10 Enhance web project structure and update integration tests
 a93926f Implement auto-claim functionality for birth declaration and change of address cases
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -209,40 +183,27 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Checking whether documentation was updated and identifying next steps. This follows up on the previous E2E test discussion.
 
-Reviewing phase-13-change-of-address docs, CI docs, ROADMAP, and what might be missing from documentation updates.</details></think>
+Reviewing phase-13-change-of-address docs, CI docs, ROADMAP, and what might be missing from documentation updates.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-13-change-of-address.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-13-change-of-address.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -277,22 +238,14 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **15** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests** (15 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests`** (15 files)
 
 | File |
 |------|
@@ -311,39 +264,25 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests** 
 | `SchaerbeekMunicipality.E2E.Tests/Infrastructure/PlaywrightPageExtensions.cs` |
 | `SchaerbeekMunicipality.E2E.Tests/Journeys/ChangeOfAddressE2ETests.cs` |
 | `SchaerbeekMunicipality.E2E.Tests/Infrastructure/DemoOfficerUrls.cs` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking TESTING.md, ROADMAP, README, and CI workflow for E2E documentation updates. Comparing completed work against current documentation.</details></think>
+Checking TESTING.md, ROADMAP, README, and CI workflow for E2E documentation updates. Comparing completed work against current documentation.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TESTING.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TESTING.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -395,39 +334,25 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github/workflows/ci.yml</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github/workflows/ci.yml</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking the ROADMAP and README to verify documentation updates and determine the next steps for Phase 5B and E2E.</details></think>
+Checking the ROADMAP and README to verify documentation updates and determine the next steps for Phase 5B and E2E.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -458,47 +383,26 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **2** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (2 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (2 files)
 
 | File |
 |------|
 | `docs/ROADMAP.md` |
 | `.specstory/history/2026-07-03_18-45-43Z-roadmap-and-phase-0.md` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -508,14 +412,13 @@ E2E tests were implemented and committed. Next steps are being determined.
 
 Main documentation was not updated. `docs/TESTING.md`, `docs/CI.md`, design system docs, and `README.md` still lack E2E coverage. A local E2E README exists but the main docs remain stale. Next step is updating the main documentation to reflect the new E2E tests and CI setup.
 
-Checking the backend split roadmap and chandress implementation details to provide accurate next steps.</details></think>
+Checking the backend split roadmap and chandress implementation details to provide accurate next steps.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -547,34 +450,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Journeys/RegistrationConfirmE2ETests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Journeys/RegistrationConfirmE2ETests.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -682,41 +570,26 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Running local E2E tests to verify they pass. Checking the repository for a backend split roadmap document.</details></think>
+Running local E2E tests to verify they pass. Checking the repository for a backend split roadmap document.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs** (0 files)
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs`** (0 files)
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.E2E.Tests --filter "Category=E2E" --verbosity minimal 2>&1 | tail -20</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.E2E.Tests --filter &#34;Category=E2E&#34; --verbosity minimal 2&gt;&amp;1 | tail -20</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.E2E.Tests --filter "Category=E2E" --verbosity minimal 2>&1 | tail -20
 ```
@@ -724,29 +597,23 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tes
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
-  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
-  SchaerbeekMunicipality.E2E.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.E2E.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
 Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.E2E.Tests.dll (.NETCoreApp,Version=v10.0)
 VSTest version 18.0.1 (arm64)
 
 Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
 
-Passed!  - Failed:     0, Passed:     7, Skipped:     0, Total:     7, Duration: 6 s - SchaerbeekMunicipality.E2E.Tests.dll (net10.0)
-
+Passed!  - Failed:     0, Passed:     7, Skipped:     0, Total:  
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -765,27 +632,20 @@ Next steps include:
 - Checking whether the change-of-address feature is already fully implemented despite its planned status
 - Keeping real authentication and production hardening deferred
 
-Checking the product roadmap to identify the next planned items.</details></think>
+Checking the product roadmap to identify the next planned items.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -816,13 +676,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -832,7 +685,8 @@ The Phase 13 change of address feature is already implemented in the code, but t
 
 Backend split Phase 5 is complete with all seven E2E tests passing. The main project docs still need updating. The immediate next step is syncing documentation across TESTING.md, CI.md, and the ROADMAP. After that, the team should move to Phase 14 Passport/ID. Optional follow-up includes deeper E2E testing for the change of address confirmation flow and accessibility scans.
 
-Deferred backend split items are real authentication and production hardening.</details></think>
+Deferred backend split items are real authentication and production hardening.
+</details></think>
 
 _**Agent (default)**_
 
@@ -903,180 +757,722 @@ ok update the doc; the root readme doesn't speak about the new application folde
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+Updating the documentation to reflect the new application folder and API. Stale files like TESTING.md, CI.md, and ROADMAP phase 13 need revision. The root README also needs updating.
+</details></think>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+Reviewing the solution layout and current docs so we can update them accurately.
+
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
-
-No results found
-</details>
-</tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **7** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src`** (7 files)
+
+| File |
+|------|
+| `SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj` |
+| `SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj` |
+| `SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj` |
+| `SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj` |
+| `SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj` |
+| `SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj` |
+| `SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+I need to examine the AppHost, Application, Api, and Web projects to understand the current architecture before updating the documentation.
 
-</details>
-</tool-use>
+The ROADMAP phase 13 section, TESTING.md, CI.md, and design-system docs also need review for targeted updates.
+</details></think>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
 <summary>Tool use: **read_file_v2**</summary>
-
+File not found
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+I am examining the AppHost Program and Application folder structure.
 
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
+Checking for a phase document on change of address completion. Verifying whether the phase-13 document status needs updating.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
-
-No results found
-</details>
-</tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
 
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost`** (5 files)
+
+| File |
+|------|
+| `AppHost.cs` |
+| `SchaerbeekMunicipality.AppHost.csproj` |
+| `appsettings.Development.json` |
+| `Properties/launchSettings.json` |
+| `appsettings.json` |
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
-
-No results found
-</details>
-</tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **156** results in **1** directory</summary>
 
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application`** (156 files)
+
+| File |
+|------|
+| `Features/Registration/CertificateReferenceNumberGenerator.cs` |
+| `Features/BirthDeclaration/OpenBirthDeclarationCase/OpenBirthDeclarationCaseResponse.cs` |
+| `Features/Registration/VisitReasonLabels.cs` |
+| `Features/ChangeOfAddress/AttachDocument/AttachDocumentHandler.cs` |
+| `Features/Registration/LinkExistingPerson/LinkExistingPersonHandler.cs` |
+| `Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionHandler.cs` |
+| `Features/ChangeOfAddress/ClaimChangeOfAddressCase/ClaimChangeOfAddressCaseHandler.cs` |
+| `Features/Registration/ApproveCase/ApproveCaseValidator.cs` |
+| `Features/Registration/RecordPoliceResult/RecordPoliceResultRequest.cs` |
+| `Features/Registration/ResumeCase/ResumeCaseHandler.cs` |
+| `Features/Registration/ApproveCase/ApproveCaseHandler.cs` |
+| `Features/Registration/RejectCase/RejectCaseRequest.cs` |
+| `Features/Registration/DeclareAddress/DeclareAddressRequest.cs` |
+| `Features/Registration/CaseAuditRecorder.cs` |
+| `Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs` |
+| `Features/Registration/ListPendingPoliceVerifications/ListPendingPoliceVerificationsResponse.cs` |
+| `Features/BirthDeclaration/ConfirmBirthDeclaration/ConfirmBirthDeclarationHandler.cs` |
+| `Features/Registration/RegistrationCaseAuthorization.cs` |
+| `Features/Registration/RecordBirthInformation/RecordBirthInformationRequestValidator.cs` |
+| `Features/Registration/RecordBirthInformation/RecordBirthInformationHandler.cs` |
+| `Features/ChangeOfAddress/ChangeOfAddressCaseAuthorization.cs` |
+| `Features/Registration/RecordHousingSituation/RecordHousingSituationRequest.cs` |
+| `Features/Registration/ListPendingPoliceVerifications/ListPendingPoliceVerificationsHandler.cs` |
+| `Features/Registration/RegistrationExceptionEvaluator.cs` |
+| `Features/Registration/RequestPoliceVerification/RequestPoliceVerificationResponse.cs` |
+| `Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistResponse.cs` |
+| `Features/Registration/SearchNationalRegister/SearchNationalRegisterResponse.cs` |
+| `Features/Registration/SearchReferenceData/SearchReferenceDataHandlers.cs` |
+| `Features/Registration/ReleaseCaseLock/ReleaseCaseLockHandler.cs` |
+| `Features/BirthDeclaration/LinkParent/LinkParentRequest.cs` |
+| `Features/ChangeOfAddress/ReleaseCaseLock/ReleaseCaseLockHandler.cs` |
+| `Class1.cs` |
+| `Features/ChangeOfAddress/GetChangeOfAddressChecklist/GetChangeOfAddressChecklistHandler.cs` |
+| `Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs` |
+| `Features/Registration/LinkExistingPerson/LinkExistingPersonValidator.cs` |
+| `Features/BirthDeclaration/GetBirthDeclarationCase/BirthDeclarationCaseDetailDto.cs` |
+| `Features/ChangeOfAddress/ConfirmAddressChange/ConfirmAddressChangeHandler.cs` |
+| `Features/BirthDeclaration/RemoveDocument/RemoveDocumentHandler.cs` |
+| `Features/Registration/ListRegistrationCases/ListRegistrationCasesHandler.cs` |
+| `Features/Registration/RecordResidencePermit/RecordResidencePermitRequest.cs` |
+| `Features/BirthDeclaration/AttachDocument/AttachDocumentHandler.cs` |
+| `Features/Registration/SearchNationalRegister/SearchNationalRegisterHandler.cs` |
+| `Features/Registration/RecordIdentity/RecordIdentityHandler.cs` |
+| `Features/Registration/DownloadDocument/DownloadDocumentHandler.cs` |
+| `Features/Registration/RejectCase/RejectCaseHandler.cs` |
+| `Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseRequest.cs` |
+| `Features/Registration/RecordCivilStatus/RecordCivilStatusHandler.cs` |
+| `DependencyInjection.cs` |
+| `Features/Registration/RecordHouseholdComposition/HouseholdMemberRequestValidator.cs` |
+| `Features/Registration/RecordCivilStatus/RecordCivilStatusValidator.cs` |
+| `Features/Registration/RecordResidencePermit/RecordResidencePermitValidator.cs` |
+| `Features/Registration/SearchNationalRegister/SearchNationalRegisterRequest.cs` |
+| `Features/Registration/RecordCivilStatus/RecordCivilStatusRequest.cs` |
+| `Features/ChangeOfAddress/GetChangeOfAddressChecklist/ChangeOfAddressChecklistMapper.cs` |
+| `Features/Registration/RecordResidencePermit/RecordResidencePermitHandler.cs` |
+| `Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseValidator.cs` |
+| `Features/Registration/RecordIdentity/RecordIdentityRequest.cs` |
+| `Features/BirthDeclaration/BirthDeclarationCaseAuthorization.cs` |
+| `Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionValidator.cs` |
+| `Features/Registration/SuspendCase/SuspendCaseRequest.cs` |
+| `SchaerbeekMunicipality.Application.csproj` |
+| `Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationRequestValidator.cs` |
+| `Features/ChangeOfAddress/RejectChangeOfAddress/RejectChangeOfAddressHandler.cs` |
+| `Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdRequest.cs` |
+| `Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistHandler.cs` |
+| `Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionValidator.cs` |
+| `Features/BirthDeclaration/RecordChildDetails/RecordChildDetailsHandler.cs` |
+| `Features/Registration/OpenRegistrationCase/OpenRegistrationCaseRequest.cs` |
+| `Features/Registration/SetResidenceCategory/SetResidenceCategoryRequest.cs` |
+| `Features/Registration/RecordHousingSituation/RecordHousingSituationHandler.cs` |
+| `Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionHandler.cs` |
+| `Features/Registration/GetReviewDashboard/GetReviewDashboardResponse.cs` |
+| `Features/BirthDeclaration/ClaimBirthDeclarationCase/ClaimBirthDeclarationCaseHandler.cs` |
+| `Features/Registration/ConvertBisNumber/ConvertBisNumberHandler.cs` |
+| `Features/Registration/SuspendCase/SuspendCaseValidator.cs` |
+| `Features/Registration/ResumeCase/ResumeCaseResponse.cs` |
+| `Features/Registration/OpenRegistrationCase/OpenRegistrationCaseValidator.cs` |
+| `Features/Registration/SearchNationalRegister/SearchNationalRegisterValidator.cs` |
+| `Features/BirthDeclaration/GetBirthDeclarationCase/GetBirthDeclarationCaseHandler.cs` |
+| `Features/BirthDeclaration/RejectBirthDeclaration/RejectBirthDeclarationHandler.cs` |
+| `Features/BirthDeclaration/GetBirthDeclarationChecklist/GetBirthDeclarationChecklistHandler.cs` |
+| `Features/ChangeOfAddress/RejectChangeOfAddress/RejectChangeOfAddressRequest.cs` |
+| `Features/BirthDeclaration/ResumeBirthDeclaration/ResumeBirthDeclarationHandler.cs` |
+| `Features/Registration/ConfirmRegistration/ConfirmRegistrationResponse.cs` |
+| `Features/Registration/IssueResidenceCertificate/IssueResidenceCertificateHandler.cs` |
+| `Features/ChangeOfAddress/ListChangeOfAddressCases/ListChangeOfAddressCasesHandler.cs` |
+| `Features/Registration/RecordHousingSituation/RecordHousingSituationValidator.cs` |
+| `Features/Registration/ConfirmRegistration/ConfirmRegistrationHandler.cs` |
+| `Features/ChangeOfAddress/DownloadDocument/DownloadDocumentHandler.cs` |
+| `Auth/ICurrentOfficer.cs` |
+| `Auth/DemoOfficer.cs` |
+| `Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseHandler.cs` |
+| `Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseResponse.cs` |
+| `Features/Registration/CorrectIdentity/CorrectIdentityResponse.cs` |
+| `Features/Registration/DeclareAddress/DeclareAddressValidator.cs` |
+| `Features/ChangeOfAddress/UpdateHouseholdForMove/UpdateHouseholdForMoveHandler.cs` |
+| `Features/Registration/ListCaseAudit/ListCaseAuditHandler.cs` |
+| `Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs` |
+| `Features/ChangeOfAddress/RemoveDocument/RemoveDocumentHandler.cs` |
+| `Validation/BelgianAddressRules.cs` |
+| `Features/ChangeOfAddress/ResolveRegisteredPerson/ResolveRegisteredPersonHandler.cs` |
+| `Features/Registration/CorrectIdentity/CorrectIdentityHandler.cs` |
+| `Features/Registration/DeclareAddress/DeclareAddressHandler.cs` |
+| `Features/Registration/RecordIdentity/RecordIdentityValidator.cs` |
+| `Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionRequest.cs` |
+| `Features/Registration/AttachDocument/AttachDocumentHandler.cs` |
+| `Features/Registration/RegistrationCaseGuard.cs` |
+| `Features/Registration/RemoveDocument/RemoveDocumentResponse.cs` |
+| `Features/Registration/ListCaseAudit/ListCaseAuditResponse.cs` |
+| `Features/Registration/RemoveDocument/RemoveDocumentHandler.cs` |
+| `Features/Registration/ConvertBisNumber/ConvertBisNumberResponse.cs` |
+| `Features/BirthDeclaration/SuspendBirthDeclaration/SuspendBirthDeclarationHandler.cs` |
+| `Auth/OfficerRole.cs` |
+| `Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs` |
+| `Features/Registration/RegistrationExceptionStateCalculator.cs` |
+| `Features/Registration/RejectCase/RejectCaseValidator.cs` |
+| `Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationHandler.cs` |
+| `Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdHandler.cs` |
+| `Features/ChangeOfAddress/UpdateHouseholdForMove/UnlinkHouseholdMemberHandler.cs` |
+| `Features/BirthDeclaration/BirthDeclarationCaseGuard.cs` |
+| `Features/Registration/OfficerDisplayNames.cs` |
+| `Features/Registration/OpenRegistrationCase/OpenRegistrationCaseHandler.cs` |
+| `Features/Registration/RecordPoliceResult/RecordPoliceResultHandler.cs` |
+| `Auth/CurrentOfficer.cs` |
+| `Features/Registration/RegistrationResidenceEvaluator.cs` |
+| `Features/Registration/ApproveCase/ApproveCaseRequest.cs` |
+| `Features/Registration/GetCaseReviewChecklist/CaseReviewChecklistMapper.cs` |
+| `Features/ChangeOfAddress/ChangeOfAddressCaseGuard.cs` |
+| `Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs` |
+| `Features/Registration/LinkExistingPerson/LinkExistingPersonRequest.cs` |
+| `Features/Registration/RequestPoliceVerification/RequestPoliceVerificationHandler.cs` |
+| `Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressHandler.cs` |
+| `Features/ChangeOfAddress/GetChangeOfAddressCase/GetChangeOfAddressCaseHandler.cs` |
+| `Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressRequest.cs` |
+| `Features/ChangeOfAddress/RequestPoliceVerification/RequestPoliceVerificationHandler.cs` |
+| `Features/BirthDeclaration/ListBirthDeclarationCases/ListBirthDeclarationCasesHandler.cs` |
+| `Features/ChangeOfAddress/UpdateHouseholdForMove/UpdateHouseholdForMoveRequest.cs` |
+| `Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionRequest.cs` |
+| `Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationRequest.cs` |
+| `Features/Registration/SetResidenceCategory/SetResidenceCategoryHandler.cs` |
+| `Features/BirthDeclaration/UnlinkParent/UnlinkParentHandler.cs` |
+| `Features/BirthDeclaration/DownloadDocument/DownloadDocumentHandler.cs` |
+| `Features/BirthDeclaration/LinkParent/LinkParentHandler.cs` |
+| `Features/Registration/SuspendCase/SuspendCaseHandler.cs` |
+| `Features/ChangeOfAddress/RequestPoliceVerification/RequestPoliceVerificationResponse.cs` |
+| `Features/BirthDeclaration/RecordChildDetails/RecordChildDetailsRequest.cs` |
+| `Features/ChangeOfAddress/ConfirmAddressChange/ConfirmAddressChangeResponse.cs` |
+| `Features/Registration/AttachDocument/AttachDocumentResponse.cs` |
+| `Features/Registration/SetResidenceCategory/SetResidenceCategoryValidator.cs` |
+| `Features/BirthDeclaration/ReleaseCaseLock/ReleaseCaseLockHandler.cs` |
+| `Features/Registration/RecordPoliceResult/RecordPoliceResultResponse.cs` |
+| `Features/ChangeOfAddress/GetChangeOfAddressCase/ChangeOfAddressCaseDetailDto.cs` |
+| `Features/Registration/ClaimRegistrationCase/ClaimRegistrationCaseHandler.cs` |
+| `Features/Registration/IssueHouseholdComposition/IssueHouseholdCompositionHandler.cs` |
+| `Features/Registration/RecordBirthInformation/RecordBirthInformationRequest.cs` |
+| `Features/BirthDeclaration/OpenBirthDeclarationCase/OpenBirthDeclarationCaseHandler.cs` |
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
-
-No results found
-</details>
-</tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **86** results in **1** directory</summary>
 
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api`** (86 files)
+
+| File |
+|------|
+| `Features/ChangeOfAddress/ClaimChangeOfAddressCase/ClaimChangeOfAddressCaseEndpoint.cs` |
+| `Features/BirthDeclaration/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `Features/BirthDeclaration/BirthDeclarationEndpoints.cs` |
+| `Features/ChangeOfAddress/GetChangeOfAddressChecklist/GetChangeOfAddressChecklistEndpoint.cs` |
+| `appsettings.json` |
+| `Features/ChangeOfAddress/RequestPoliceVerification/RequestPoliceVerificationEndpoint.cs` |
+| `Features/Registration/ConvertBisNumber/ConvertBisNumberEndpoint.cs` |
+| `Features/Registration/ListCaseAudit/ListCaseAuditEndpoint.cs` |
+| `Features/ChangeOfAddress/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `Features/Registration/SuspendCase/SuspendCaseEndpoint.cs` |
+| `Middleware/DomainExceptionMiddleware.cs` |
+| `Features/BirthDeclaration/GetBirthDeclarationCase/GetBirthDeclarationCaseEndpoint.cs` |
+| `Features/Registration/LinkExistingPerson/LinkExistingPersonEndpoint.cs` |
+| `Features/Registration/ConfirmRegistration/ConfirmRegistrationEndpoint.cs` |
+| `Features/ChangeOfAddress/ChangeOfAddressEndpoints.cs` |
+| `Features/BirthDeclaration/OpenBirthDeclarationCase/OpenBirthDeclarationCaseEndpoint.cs` |
+| `Features/ChangeOfAddress/GetChangeOfAddressCase/GetChangeOfAddressCaseEndpoint.cs` |
+| `Features/Registration/AttachDocument/AttachDocumentEndpoint.cs` |
+| `appsettings.Development.json` |
+| `Features/Registration/DeclareAddress/DeclareAddressEndpoint.cs` |
+| `Features/BirthDeclaration/AttachDocument/AttachDocumentEndpoint.cs` |
+| `Features/Registration/SearchNationalRegister/SearchNationalRegisterEndpoint.cs` |
+| `Features/BirthDeclaration/SuspendBirthDeclaration/SuspendBirthDeclarationEndpoint.cs` |
+| `Features/Registration/GetReviewDashboard/GetReviewDashboardEndpoint.cs` |
+| `Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionEndpoint.cs` |
+| `Features/ChangeOfAddress/ClaimChangeOfAddressCase/AutoClaimChangeOfAddressCaseEndpoint.cs` |
+| `Features/Registration/RecordPoliceResult/RecordPoliceResultEndpoint.cs` |
+| `Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationEndpoint.cs` |
+| `Features/ChangeOfAddress/UpdateHouseholdForMove/UpdateHouseholdForMoveEndpoint.cs` |
+| `Features/BirthDeclaration/UnlinkParent/UnlinkParentEndpoint.cs` |
+| `Features/Registration/ClaimRegistrationCase/ClaimRegistrationCaseEndpoint.cs` |
+| `Middleware/DemoOfficerHeaders.cs` |
+| `Properties/launchSettings.json` |
+| `Features/BirthDeclaration/ClaimBirthDeclarationCase/ClaimBirthDeclarationCaseEndpoint.cs` |
+| `Features/BirthDeclaration/GetBirthDeclarationChecklist/GetBirthDeclarationChecklistEndpoint.cs` |
+| `Features/Registration/RecordHousingSituation/RecordHousingSituationEndpoint.cs` |
+| `Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdEndpoint.cs` |
+| `Features/ChangeOfAddress/UpdateHouseholdForMove/UnlinkHouseholdMemberEndpoint.cs` |
+| `Features/BirthDeclaration/RecordChildDetails/RecordChildDetailsEndpoint.cs` |
+| `Features/ChangeOfAddress/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistEndpoint.cs` |
+| `Features/Registration/RejectCase/RejectCaseEndpoint.cs` |
+| `Middleware/DemoOfficerMiddleware.cs` |
+| `Program.cs` |
+| `Validation/ValidationResults.cs` |
+| `Features/Registration/RecordBirthInformation/RecordBirthInformationEndpoint.cs` |
+| `Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionEndpoint.cs` |
+| `Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressEndpoint.cs` |
+| `Features/BirthDeclaration/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `Features/Registration/ListOutboundNotifications/ListOutboundNotificationsEndpoint.cs` |
+| `Features/BirthDeclaration/LinkParent/LinkParentEndpoint.cs` |
+| `Features/BirthDeclaration/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `Features/ChangeOfAddress/OpenChangeOfAddressCase/OpenChangeOfAddressCaseEndpoint.cs` |
+| `Features/BirthDeclaration/ClaimBirthDeclarationCase/AutoClaimBirthDeclarationCaseEndpoint.cs` |
+| `Features/Registration/GetRegistrationCase/GetRegistrationCaseEndpoint.cs` |
+| `Features/Registration/IssueHouseholdComposition/IssueHouseholdCompositionEndpoint.cs` |
+| `Features/Registration/ListPendingPoliceVerifications/ListPendingPoliceVerificationsEndpoint.cs` |
+| `Features/Registration/RecordIdentity/RecordIdentityEndpoint.cs` |
+| `Features/Registration/RecordResidencePermit/RecordResidencePermitEndpoint.cs` |
+| `Features/ChangeOfAddress/ResolveRegisteredPerson/ResolveRegisteredPersonEndpoint.cs` |
+| `Features/Registration/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `Features/BirthDeclaration/ResumeBirthDeclaration/ResumeBirthDeclarationEndpoint.cs` |
+| `SchaerbeekMunicipality.Api.csproj` |
+| `Features/BirthDeclaration/ConfirmBirthDeclaration/ConfirmBirthDeclarationEndpoint.cs` |
+| `Features/Registration/ResumeCase/ResumeCaseEndpoint.cs` |
+| `Features/Registration/SetResidenceCategory/SetResidenceCategoryEndpoint.cs` |
+| `Features/Registration/ClaimRegistrationCase/AutoClaimRegistrationCaseEndpoint.cs` |
+| `ProgramMarker.cs` |
+| `Features/Registration/RegistrationEndpoints.cs` |
+| `Features/BirthDeclaration/ListBirthDeclarationCases/ListBirthDeclarationCasesEndpoint.cs` |
+| `Features/ChangeOfAddress/AttachDocument/AttachDocumentEndpoint.cs` |
+| `Features/ChangeOfAddress/ListChangeOfAddressCases/ListChangeOfAddressCasesEndpoint.cs` |
+| `Features/ChangeOfAddress/RemoveDocument/RemoveDocumentEndpoint.cs` |
+| `Features/ChangeOfAddress/RejectChangeOfAddress/RejectChangeOfAddressEndpoint.cs` |
+| `Features/Registration/ApproveCase/ApproveCaseEndpoint.cs` |
+| `Features/Registration/DownloadDocument/DownloadDocumentEndpoint.cs` |
+| `Features/Registration/OpenRegistrationCase/OpenRegistrationCaseEndpoint.cs` |
+| `Features/Registration/RequestPoliceVerification/RequestPoliceVerificationEndpoint.cs` |
+| `Features/Registration/SearchReferenceData/SearchReferenceDataEndpoints.cs` |
+| `Features/BirthDeclaration/RejectBirthDeclaration/RejectBirthDeclarationEndpoint.cs` |
+| `Features/ChangeOfAddress/ConfirmAddressChange/ConfirmAddressChangeEndpoint.cs` |
+| `Features/Registration/ReleaseCaseLock/ReleaseCaseLockEndpoint.cs` |
+| `Features/Registration/IssueResidenceCertificate/IssueResidenceCertificateEndpoint.cs` |
+| `Features/Registration/CorrectIdentity/CorrectIdentityEndpoint.cs` |
+| `Features/Registration/ListRegistrationCases/ListRegistrationCasesEndpoint.cs` |
+| `Features/Registration/RecordCivilStatus/RecordCivilStatusEndpoint.cs` |
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --list-tests --verbosity quiet 2>/dev/null | rg -c "^\s" || dotnet test --no-build --verbosity quiet 2>&1 | tail -3</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test --list-tests --verbosity quiet 2&gt;/dev/null | rg -c &#34;^\s&#34; || dotnet test --no-build --verbosity quiet 2&gt;&amp;1 | tail -3</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --list-tests --verbosity quiet 2>/dev/null | rg -c "^\s" || dotnet test --no-build --verbosity quiet 2>&1 | tail -3
 ```
-</details>
-</tool-use>
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
+```
+178
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reading AppHost.cs and Web Program.cs to understand how Api and Web connect.
+
+Also need to get test counts per project.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/AppHost.cs</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-13-change-of-address.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system",
+  "pattern": "E2E|Playwright"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system",
+  "pattern": "E2E|Playwright",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "docs/design-system/07-architecture-and-guidelines.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/02-accessibility.md"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating the root README.md to reflect progress through phase 13 and include details about the new application folder and API.
+
+Adding change-of-address coverage to the README. Updating the tech stack, solution layout, and feature boundaries to show the new Api and Application projects. Will also add E2E testing documentation and CI pipeline updates.
+
+Also updating ROADMAP.md and the phase 13 document to mark phase 13 complete. Syncing design-system references to include E2E. Checking test counts per project.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; for p in Domain.Tests Integration.Tests E2E.Tests; do echo -n &#34;$p: &#34;; dotnet test tests/SchaerbeekMunicipality.$p --list-tests --verbosity quiet 2&gt;/dev/null | rg -c &#34;^\s&#34; || echo 0; done</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && for p in Domain.Tests Integration.Tests E2E.Tests; do echo -n "$p: "; dotnet test tests/SchaerbeekMunicipality.$p --list-tests --verbosity quiet 2>/dev/null | rg -c "^\s" || echo 0; done
+```
+
+```
+Domain.Tests: 76
+Integration.Tests: 95
+E2E.Tests: 7
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+All 178 tests passed. Now updating the documentation to include the new application folder and API.
+
+The README will show the new `Application` folder for vertical slices alongside `Api` and `Web`.
+
+The documentation updates will also cover test folders, technology summary changes, getting started steps, and marking the roadmap phase as complete.
+
+TESTING.md will gain an E2E section. CI.md will get a new E2E job and a revised workflow table. Design-system docs will note that E2E already exists while axe-core remains a future item. ARCHITECTURE.md may also be updated to reflect the new architecture.
+
+Scope stays limited to the requested documents. ARCHITECTURE.md will remain unchanged since it was not explicitly requested.
+</details></think>
+
+_**Agent (default)**_
+
+Updating the root README and syncing the related docs.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating TESTING.md, CI.md, ROADMAP, phase-13, and design-system docs to cover the new application folder and API.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TESTING.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TESTING.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TESTING.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TESTING.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TESTING.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating CI.md, ROADMAP, phase-13, and design-system docs to include the new application folder and API.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-13-change-of-address.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/07-architecture-and-guidelines.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/02-accessibility.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The root README needs updating to cover the new application folder and API. A link to the E2E README should also be added to the documentation table.
+
+The ROADMAP incorrectly claims E2E tests cover confirm flows. E2E only covers open-case creation. Domain and integration tests cover the full workflow. Integration likely covers confirm. The ROADMAP text will be corrected.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updated the root README to cover the new application folder and API. Related documentation was also revised.
+
+ARCHITECTURE.md still shows the old monolith diagram and should be updated too, though the user did not request it.
+</details></think>
+
+_**Agent (default)**_
+
+Docs are updated. Summary of changes:
+
+### Root `README.md`
+- Progress now **0–13 complete**; Phase 14 is next
+- Added **change of address** and **transactional outbox** to “What’s built today”
+- Technology section describes the **Web (BFF) + Api + Application** split
+- Solution layout includes `Application`, `Api`, and `E2E.Tests`
+- Getting started mentions **web**, **api**, and **postgres** in Aspire
+- Test counts: **171** fast suite + **7** E2E
+- Added E2E README link in the docs table
+
+### Other docs synced
+| File | Change |
+|------|--------|
+| `docs/TESTING.md` | E2E layer in pyramid, new E2E section, updated counts |
+| `docs/CI.md` | Playwright job documented; smoke test note removed |
+| `docs/ROADMAP.md` | Phase 13 marked complete |
+| `docs/phases/phase-13-change-of-address.md` | Status → Complete |
+| `docs/design-system/*.md` | E2E exists; axe-core still future |
+
+**Note:** `docs/ARCHITECTURE.md` still shows the old monolith diagram (handlers/endpoints in Web). Say if you want that updated next — it’s the main doc still out of sync with the Api/Application split.

@@ -17,7 +17,7 @@ Phase 10 adds a containerized Azure deployment path via **GitHub Container Regis
 | Deliverable | Status | Notes |
 |-------------|--------|-------|
 | `Dockerfile` + `.dockerignore` | Done | Multi-stage; includes `Directory.Build.props` |
-| GHCR publish workflow | Done | Publish job in `.github/workflows/ci.yml` (after green tests) |
+| GHCR publish workflow | Done | Publish job in `.github/workflows/cd.yml` (after green CI) |
 | Azure SQLite deploy (default) | Done | `deploy/azure/sqlite/` |
 | Azure PostgreSQL deploy (optional) | Done | `deploy/azure/postgres/` |
 | `appsettings.Production.json` | Done | SQLite `Data Source=/tmp/schaerbeek.db` |

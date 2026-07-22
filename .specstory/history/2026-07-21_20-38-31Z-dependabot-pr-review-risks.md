@@ -61,48 +61,424 @@ Bump actions/download-artifact from 4 to 8
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: gh pr list --author "app/dependabot" --state open --json number,title,url,labels,statusCheckRollup,files --limit 20</summary>
+<think><details><summary>Thought Process</summary>
+Evaluating the risk of merging these Dependabot pull requests.
 
-```bash
-gh pr list --author "app/dependabot" --state open --json number,title,url,labels,statusCheckRollup,files --limit 20
-```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
-</details></tool-use>
+Most updates are minor version bumps. GitHub Actions upgrades include major versions. Need to check actual PR content and breaking changes.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+I'll review how these packages are used and check the Dependabot PRs for breaking-change risk, especially the major GitHub Actions bumps.
 
-Status: **loading**
+_**Agent (default)**_
 
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: gh pr list --author &#34;app/dependabot&#34; --state open --json number,title,url,labels,statusCheckRollup,files --limit 20</summary>
+```bash
+gh pr list --author "app/dependabot" --state open --json number,title,url,labels,statusCheckRollup,files --limit 20
+```
 
-</details>
-</tool-use>
+```
+Post "https://api.github.com/graphql": Forbidden
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.{csproj,yml,yaml,cs,props}",
+  "pattern": "OpenTelemetry|ServiceDiscovery|Http\\.Resilience|Microsoft\\.NET\\.Test\\.Sdk|actions/(checkout|setup-dotnet|upload-artifact|download-artifact)"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "OpenTelemetry|ServiceDiscovery|Http\\.Resilience|Microsoft\\.NET\\.Test\\.Sdk|actions/(checkout|setup-dotnet|upload-artifact|download-artifact)",
+  "topFiles": [
+    {
+      "matchCount": 7,
+      "uri": "src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".github/workflows/ci-postgres.yml"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/SchaerbeekMunicipality.E2E.Tests.csproj"
+    },
+    {
+      "matchCount": 7,
+      "uri": ".github/workflows/ci.yml"
+    },
+    {
+      "matchCount": 17,
+      "uri": "src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".github/workflows/codeql.yml"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj"
+    },
+    {
+      "matchCount": 9,
+      "uri": "Directory.Packages.props"
+    }
+  ],
+  "totalFiles": 9,
+  "totalMatches": 47
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
-
-No results found
-</details>
-</tool-use>
-
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **16** results in **1** directory</summary>
+
+Directory: **``** (16 files)
+
+| File |
+|------|
+| `.github/workflows/ci-postgres.yml` |
+| `src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj` |
+| `.github/workflows/ci.yml` |
+| `tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj` |
+| `src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj` |
+| `tests/SchaerbeekMunicipality.E2E.Tests/SchaerbeekMunicipality.E2E.Tests.csproj` |
+| `Directory.Packages.props` |
+| `src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj` |
+| `src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj` |
+| `src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj` |
+| `.github/workflows/codeql.yml` |
+| `src/SchaerbeekMunicipality.Api/SchaerbeekMunicipality.Api.csproj` |
+| `.github/dependabot.yml` |
+| `tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj` |
+| `src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj` |
+| `Directory.Build.props` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The GitHub CLI failed due to sandbox restrictions. I cannot fetch details for these pull requests right now.
+
+I'll retry with network permissions. I'll examine the workflow files and Directory.Packages.props. I need to verify whether Aspire packages should remain synchronized.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: gh pr list --author &#34;app/dependabot&#34; --state open --json number,title,url,labels,statusCheckRollup --limit 20 &amp;&amp; echo &#34;---&#34; &amp;&amp; for n in 19 20 21 18 22 23 24 25 26 27 28 29; do echo &#34;=== PR #$n ===&#34;; gh pr view $n --json title,body,files,commits,mergeable,statusCheckRollup 2&gt;/dev/null | head -c 3000; echo; done</summary>
+```bash
+gh pr list --author "app/dependabot" --state open --json number,title,url,labels,statusCheckRollup --limit 20 && echo "---" && for n in 19 20 21 18 22 23 24 25 26 27 28 29; do echo "=== PR #$n ==="; gh pr view $n --json title,body,files,commits,mergeable,statusCheckRollup 2>/dev/null | head -c 3000; echo; done
+```
+
+```
+Post "https://api.github.com/graphql": Forbidden
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Directory.Packages.props</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github/workflows/ci.yml</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github/dependabot.yml</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking release notes for breaking changes on the GitHub Actions major version bumps. These are typically the riskiest updates.
+
+OpenTelemetry packages should be bumped together as a set rather than five separate PRs. Aspire-adjacent packages are low risk. The GitHub Actions major version jumps are the main concern.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+Parameters:
+
+```json
+{
+  "searchTerm": "actions/upload-artifact v7 breaking changes from v4 2026"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [v7.0.0](https://github.com/actions/upload-artifact/releases/tag/v7.0.0)\n2. [GitHub Actions now supports uploading and downloading non-zipped artifacts - GitHub Changelog](https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-and-downloading-non-zipped-artifacts/)\n3. [GitHub Actions Artifacts No Longer Require Zipping: Migration Tips and Common Pitfalls](https://zenn.dev/korosuke613/articles/github-actions-use-archive-artifact?locale=en)\n4. [Comparing v4...v7 · actions/upload-artifact](https://github.com/actions/upload-artifact/compare/v4...v7)\n5. [v6.0.0...v7](https://github.com/actions/upload-artifact/compare/v6.0.0...v7)\n\nSynthesis:\nThe primary change in `actions/upload-artifact@v7` is the addition of the `archive` parameter, which defaults to `true` to maintain backward compatibility [1][2][3].\n\nWhen `archive: false` is set, the action uploads a single file unzipped [1][2]. In this mode, the `name` parameter is ignored; the artifact name becomes the actual filename of the uploaded file [1][3]. If you use this feature, you must update corresponding `actions/download-artifact` steps to at least `v8` and ensure the `name` parameter matches the uploaded filename [2][3]. The action will fail if the provided path resolves to multiple files [1][3].\n\nHighlights:\n\u003cresult id=\"1\"\u003e\n\u003ctitle\u003ev7.0.0\u003c/title\u003e\n\u003curl\u003ehttps://github.com/actions/upload-artifact/releases/tag/v7.0.0\u003c/url\u003e\n\u003ccontent\u003e# Release: actions/upload-artifact v7.0.0\n\n- Repository: actions/upload-artifact | 4K stars | TypeScript\n- Author: [@danwkennedy](https://github.com/danwkennedy)\n- Created: 2026-02-25T21:04:27Z\n- Published: 2026-02-26T18:21:17Z\n- Reactions: 👍 5 🎉 29 ❤️ 6 🚀 3 👀 3\n\n## v7 What's new\n\n### Direct Uploads\n\nAdds support for uploading single files directly (unzipped). Callers can set the new `archive` parameter to `fal
+… (output truncated)
+```
+User decision: **accepted**
+
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+Parameters:
+
+```json
+{
+  "searchTerm": "actions/checkout v7 breaking changes from v4"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [actions/checkout](https://github.com/actions/checkout?tab=readme-ov-file)\n2. [README.md at main · actions/checkout](https://github.com/actions/checkout/blob/main/README.md)\n3. [Safer pull_request_target defaults for GitHub Actions checkout - GitHub Changelog](https://github.blog/changelog/2026-06-18-safer-pull_request_target-defaults-for-github-actions-checkout/)\n4. [GitHub Actions Enhances CI/CD Security: actions/checkout v7 Blocks Common Pwn Request Attack Patterns – Rescana](https://www.rescana.com/post/github-actions-enhances-ci-cd-security-actions-checkout-v7-blocks-common-pwn-request-attack-patterns)\n5. [GitHub Actions Checkout v7: Migrate Before July 16 | byteiota](https://byteiota.com/github-actions-checkout-v7-migrate-before-july-16/)\n\nSynthesis:\nThe primary breaking change in actions/checkout v7 is that it refuses to check out code from a forked repository by default when used in workflows triggered by pull_request_target or workflow_run [1][2][3]. This change is designed to prevent pwn request vulnerabilities where untrusted fork code runs with privileged access to base repository secrets [1][4][5].\n\nTo opt back into this behavior, you must explicitly set the new input allow-unsafe-pr-checkout: true in your workflow configuration [1][6][5]. This protection was also backported to supported major versions (such as v4) on July 20, 2026 [3]. If you use floating major tags like actions/checkout@v4, your workflows may fail if they rely on checking out fork code [7][5][8]. Other changes in v7 include a migration to ESM and updated dependencies [9][1].\n\nHighlights:\n\u003cresult id=\"1\"\u003e\n\u003ctitle\u003eactions/checkout\u003c/title\u003e\n\u003curl\u003ehttps://github.com/actions/checkout?tab=readme-ov-file\u003c/url\u003e\n\u003ccontent\u003e# Checkout v7\n...\n## What's new\n...\n- Safer fork pull request handling: checkout now refuses to check out fork pull request code
+… (output truncated)
+```
+User decision: **accepted**
+
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+Parameters:
+
+```json
+{
+  "searchTerm": "actions/setup-dotnet v6 breaking changes from v4"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [actions/setup-dotnet](https://github.com/actions/setup-dotnet)\n2. [Setup .NET Core SDK · Actions · GitHub Marketplace · GitHub](https://github.com/marketplace/actions/setup-net-core-sdk)\n3. [v5...v6](https://github.com/actions/setup-dotnet/compare/v5...v6)\n4. [6df8cef Migrate to ESM and upgrade dependencies (#752)](https://github.com/actions/setup-dotnet/commit/6df8cefd1440cf9313e76b8fdb8aaf90cfa745a3)\n5. [716782d Migrate to ESM and upgrade dependencies](https://github.com/actions/setup-dotnet/commit/716782d47220660ee2c9d7652f974de298e339c9)\n\nSynthesis:\nThere are no breaking changes to action inputs, outputs, or behavior in v6 compared to v4. The v6 release focuses on an internal migration of the action's codebase to ESM (ECMAScript Modules) to maintain compatibility with updated GitHub Actions dependencies [1][2]. You do not need to update your workflow files or configurations to use v6, as the functional interface remains identical to previous versions [1][2].\n\nHighlights:\n\u003cresult id=\"1\"\u003e\n\u003ctitle\u003eactions/setup-dotnet\u003c/title\u003e\n\u003curl\u003ehttps://github.com/actions/setup-dotnet\u003c/url\u003e\n\u003ccontent\u003e## What's new in V6\n...\n- Migrated action internals to ESM for compatibility with latest `@actions/*` packages. No changes to action inputs, outputs, or behavior.\n...\n## Breaking changes in V5\n...\n- Upgraded action from node20 to node24\n...\n\u003e Make sure your runner is on version v2.327.1 or later to ensure compatibility with this release. see [Release Notes](https://github.com/actions/runner/releases/tag/v2.327.1)\n...\nFor more details, see the full release notes on the [release page](https://github.com/actions/setup-dotnet/releases/tag/v5.0.0)\u003c/content\u003e\n\u003c/result\u003e\n\n\u003cresult id=\"2\"\u003e\n\u003ctitle\u003eSetup .NET Core SDK · Actions · GitHub Marketplace · GitHub\u003c/title\u003e\n\u003curl\u003eht
+… (output truncated)
+```
+User decision: **accepted**
+
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+Parameters:
+
+```json
+{
+  "searchTerm": "OpenTelemetry .NET 1.17.0 release notes breaking changes Instrumentation AspNetCore Http Runtime"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [RELEASENOTES.md](https://github.com/open-telemetry/opentelemetry-dotnet/blob/core-1.17.0/RELEASENOTES.md)\n2. [867c749 [release] Core stable release 1.17.0 updates (#7530)](https://github.com/open-telemetry/opentelemetry-dotnet/commit/867c7494316793f9fa51a9d8c0bc711b8ab6c973)\n3. [src/OpenTelemetry.Instrumentation.AspNetCore/CHANGELOG.md](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/Instrumentation.AspNetCore-1.10.1/src/OpenTelemetry.Instrumentation.AspNetCore/CHANGELOG.md)\n4. [NuGet Gallery\n        | OpenTelemetry.Instrumentation.AspNetCore 1.15.2](https://www.nuget.org/packages/opentelemetry.instrumentation.aspnetcore/)\n5. [src/OpenTelemetry.Instrumentation.AspNetCore/CHANGELOG.md](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/b7d4793130554538745ae1bb7b354fb4785b677a/src/OpenTelemetry.Instrumentation.AspNetCore/CHANGELOG.md)\n\nSynthesis:\nThe OpenTelemetry.NET 1.17.0 release does not contain specific breaking changes for ASP.NET Core or HTTP instrumentation [1][2]. Note that breaking changes for these instrumentation libraries are typically documented in their own changelogs within the opentelemetry-dotnet-contrib repository rather than the core OpenTelemetry.NET release notes [3][4][5].\n\nIf you are using these instrumentations, be aware that recent historical versions introduced significant changes, such as mandatory query string redaction, the renaming of options classes to include Trace, and the removal of metric-specific enrichment and filtering [3][6][5].\n\nHighlights:\n\u003cresult id=\"1\"\u003e\n\u003ctitle\u003eRELEASENOTES.md\u003c/title\u003e\n\u003curl\u003ehttps://github.com/open-telemetry/opentelemetry-dotnet/blob/core-1.17.0/RELEASENOTES.md\u003c/url\u003e\n\u003ccontent\u003e## 1.17.0\n...\nRelease details: [1.17.0](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/core-1.17.0)\n...\n* Added support for a Sc
+… (output truncated)
+```
+User decision: **accepted**
+
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether the GitHub Actions bumps introduce Node 24 requirements. Reviewing release notes for upload-artifact and download-artifact.
+
+The CI uses `pull_request` rather than `pull_request_target`, so checkout v7 is safe. Upload and download artifact versions should be bumped together because the e2e job depends on them working in tandem. OpenTelemetry packages should be merged as a batch to avoid version mismatches between intermediate commits. Merging the OpenTelemetry bumps individually risks transient inconsistencies.
+
+Central Package Management means each OpenTelemetry PR only updates one PackageVersion. NuGet usually tolerates mixing 1.16 and 1.17 within the same major, but merging all OTel packages together is still the safer approach. The workflow does not use actions/cache, so that version remains unchanged. I am now checking whether download-artifact v8 introduced any breaking changes around include-hidden-files.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github",
+  "pattern": "pull_request_target|workflow_run"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github",
+  "pattern": "pull_request_target|workflow_run",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+Parameters:
+
+```json
+{
+  "searchTerm": "actions/download-artifact v8 breaking changes from v4 upload-artifact compatibility"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [v8.0.0](https://github.com/actions/download-artifact/releases/tag/v8.0.0)\n2. [Don't attempt to un-zip non-zipped downloads](https://github.com/actions/download-artifact/pull/460)\n3. [Releases · actions/download-artifact · GitHub](https://github.com/actions/download-artifact/releases)\n4. [README.md at main · actions/download-artifact](https://github.com/actions/download-artifact/blob/main/README.md)\n5. [Comparing v4...v8 · actions/download-artifact](https://github.com/actions/download-artifact/compare/v4...v8)\n\nSynthesis:\nThe primary breaking changes in actions/download-artifact v8 compared to v4 are its migration to an ESM module [1][2] and a change to how it handles file decompression [1][3]. While v4 automatically unzipped all artifacts, v8 now checks the Content-Type header and only decompresses files that appear to be zipped [1][2]. You can revert to the previous behavior by setting the new skip-decompress parameter to true [4][2]. Additionally, hash mismatch checks now default to error instead of a warning; you can configure this via the digest-mismatch parameter [1][4].\n\nHighlights:\n\u003cresult id=\"1\"\u003e\n\u003ctitle\u003ev8.0.0\u003c/title\u003e\n\u003curl\u003ehttps://github.com/actions/download-artifact/releases/tag/v8.0.0\u003c/url\u003e\n\u003ccontent\u003e# Release: actions/download-artifact v8.0.0\n\n- Repository: actions/download-artifact | 2K stars | TypeScript\n- Author: [@danwkennedy](https://github.com/danwkennedy)\n- Created: 2026-02-23T20:27:01Z\n- Published: 2026-02-26T18:21:25Z\n- Reactions: 👍 7 🎉 5\n\n## v8 - What's new\n\n\u003e [!IMPORTANT]\n\u003e actions/download-artifact@v8 has been migrated to an ESM module. This should be transparent to the caller but forks might need to make significant changes.\n\n\u003e [!IMPORTANT]\n\u003e Hash mismatches will now error by default. Users can override this behavior with a setting change (see below).\n\n### Direct
+… (output truncated)
+```
+User decision: **accepted**
+
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+Parameters:
+
+```json
+{
+  "url": "https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/core-1.17.0"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "# Release: open-telemetry/opentelemetry-dotnet core-1.17.0\n\n- Repository: open-telemetry/opentelemetry-dotnet | The OpenTelemetry .NET Client | 4K stars | C#\n- Author: [@otelbot-dotnet[bot]](https://github.com/otelbot-dotnet[bot])\n- Created: 2026-07-16T12:34:06Z\n- Published: 2026-07-16T12:48:11Z\n\nFor highlights and announcements pertaining to this release see: [Release Notes \u003e 1.17.0](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/RELEASENOTES.md#1170).\n\nThe following changes are from the previous release [1.17.0-rc.1](https://github.com/open-telemetry/opentelemetry-dotnet/releases/tag/core-1.17.0-rc.1).\n\n- NuGet: [OpenTelemetry v1.17.0](https://www.nuget.org/packages/OpenTelemetry/1.17.0)\n\nNo notable changes.\n\nSee [CHANGELOG](https://github.com/open-telemetry/opentelemetry-dotnet/blob/core-1.17.0/src/OpenTelemetry/CHANGELOG.md) for details.\n\n- NuGet: [OpenTelemetry.Api v1.17.0](https://www.nuget.org/packages/OpenTelemetry.Api/1.17.0)\n\nNo notable changes.\n\nSee [CHANGELOG](https://github.com/open-telemetry/opentelemetry-dotnet/blob/core-1.17.0/src/OpenTelemetry.Api/CHANGELOG.md) for details.\n\n- NuGet: [OpenTelemetry.Api.ProviderBuilderExtensions v1.17.0](https://www.nuget.org/packages/OpenTelemetry.Api.ProviderBuilderExtensions/1.17.0)\n\nNo notable changes.\n\nSee [CHANGELOG](https://github.com/open-telemetry/opentelemetry-dotnet/blob/core-1.17.0/src/OpenTelemetry.Api.ProviderBuilderExtensions/CHANGELOG.md) for details.\n\n- NuGet: [OpenTelemetry.Exporter.Console v1.17.0](https://www.nuget.org/packages/OpenTelemetry.Exporter.Console/1.17.0)\n\nNo notable changes.\n\nSee [CHANGELOG](https://github.com/open-telemetry/opentelemetry-dotnet/blob/core-1.17.0/src/OpenTelemetry.Exporter.Console/CHANGELOG.md) for details.\n\n- NuGet: [OpenTelemetry.Exporter.InMemory v1.17.0](https://www.nuget.org/packages/OpenTelemetry.Exporter.InMemory/1.17.0)\n\nNo notable changes.\n\nSee [CHANGELOG](https://github.com/open-tel
+… (output truncated)
+```
+User decision: **accepted**
+
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I have enough context to assess the risks of merging these dependency bumps.
+
+Most bumps are low risk. OpenTelemetry versions should merge as a group. Test SDK and Aspire ecosystem packages are safe to update together. GitHub Actions updates are next.
+
+GitHub Actions updates are mostly safe. checkout 4→7 is fine since this repo uses pull_request rather than pull_request_target. setup-dotnet 4→6 introduces no behavioral changes. upload-artifact 4→7 and download-artifact 4→8 should merge together. Default archive mode preserves existing zip behavior. Multi-file paths with include-hidden-files remain compatible. Digest-mismatch errors in download v8 are rare on GitHub-hosted runners.
+
+Do not squash-merge all twelve PRs blindly. Group them by category instead: OpenTelemetry together, Microsoft.Extensions packages together, and upload-artifact plus download-artifact together. Checkout, setup-dotnet, and Test.Sdk can merge individually.
+
+Wait for green CI on each PR before merging. The artifact action updates need the most scrutiny because the end-to-end job depends on artifact round-trips with Playwright binaries.
+</details></think>
+
+_**Agent (default)**_
+
+**Mostly fine to merge** — low product risk. The main caution is *how* you merge (group related PRs), not whether the bumps themselves are scary.
+
+### Safe / low risk
+| PRs | Why |
+|-----|-----|
+| **#25–#29 OpenTelemetry 1.16 → 1.17** | Minor bump; your usage in `ServiceDefaults` is stock Aspire wiring (`AddAspNetCoreInstrumentation`, OTLP exporter, etc.). No exotic API surface. |
+| **#22–#23 Resilience / ServiceDiscovery 10.7 → 10.8** | Same Aspire stack; only used via `AddStandardResilienceHandler` / `AddServiceDiscovery`. |
+| **#24 Test.Sdk 18.7 → 18.8.1** | Test tooling only; zero runtime impact. |
+| **#19 checkout 4 → 7** | Breaking change is for `pull_request_target` / fork checkouts. Your workflows use `pull_request` only — you’re fine. |
+| **#20 setup-dotnet 4 → 6** | v6 is mostly ESM internals; inputs/behavior unchanged for your `dotnet-version: 10.0.x` + cache setup. |
+
+### Worth a closer look (still probably OK)
+**#21 upload-artifact 4→7 + #18 download-artifact 4→8** — merge these **together**. Your E2E job depends on that artifact round-trip (including `include-hidden-files` for Playwright). Defaults stay zip-compatible (`archive` defaults to `true`), so your multi-path upload should keep working. Don’t enable `archive: false`. Watch that E2E job after merge.
+
+### How I’d merge
+1. Wait for green CI on each PR (especially E2E for the artifact pair).
+2. **Batch OpenTelemetry** (#25–#29) — don’t leave a mix of 1.16/1.17 long-term.
+3. **Batch** Resilience + ServiceDiscovery (#22–#23).
+4. **Batch** upload + download (#21 + #18).
+5. Checkout, setup-dotnet, Test.Sdk can go anytime.
+
+### Bottom line
+Not risky for app behavior. Biggest real failure mode is CI (artifact handoff for Playwright), not production telemetry. If CI is green on those PRs, merging them is reasonable — just group the related ones so you don’t fight version skew or a half-upgraded Actions pair.

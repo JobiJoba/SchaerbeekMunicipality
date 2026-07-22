@@ -24,10 +24,8 @@ Got it. I’m going to (1) add a small shared `OfficerLockState` helper with an 
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -80,91 +78,251 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/CaseManagement/OfficerCaseLocking.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/CaseManagement/OfficerCaseLocking.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/BirthDeclaration/BirthDeclarationCase.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/BirthDeclaration/BirthDeclarationCase.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCase.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCase.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/IdentityDocuments/DocumentRequestCase.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/IdentityDocuments/DocumentRequestCase.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
+Nice: there’s already a shared helper (`OfficerCaseLocking`) with the exception-factory hook and the exact logic we want. Next I’ll wrap it in a small `OfficerLockState` value-type for nicer delegation + add focused unit tests around the shared behavior.
 
-No results found
-</details>
-</tool-use>
+_**Agent (default)**_
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **3** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (3 files)
+
+| File |
+|------|
+| `tests/SchaerbeekMunicipality.E2E.Tests/SchaerbeekMunicipality.E2E.Tests.csproj` |
+| `tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj` |
+| `tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **19** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests`** (19 files)
+
+| File |
+|------|
+| `NationalRegister/RegistrationCaseNationalRegisterTests.cs` |
+| `IdentityDocuments/DocumentRequestCaseTests.cs` |
+| `Address/BelgianAddressTests.cs` |
+| `Registration/RegistrationCaseCorrectionTests.cs` |
+| `BirthDeclaration/BirthDeclarationCaseTestData.cs` |
+| `Registration/RegistrationCaseTestData.cs` |
+| `Registration/RegistrationExceptionRulesTests.cs` |
+| `Identity/PersonTests.cs` |
+| `Immigration/ResidencePolicyTests.cs` |
+| `Registration/RegistrationCasePoliceVerificationTests.cs` |
+| `Registration/RegistrationCaseLockingTests.cs` |
+| `Registration/RegistrationCaseResidenceTests.cs` |
+| `NationalRegister/NationalRegisterSearchScorerTests.cs` |
+| `Registration/RegisterTargetResolverTests.cs` |
+| `Registration/RegistrationCaseAddressTests.cs` |
+| `Registration/RegistrationCaseDecisionTests.cs` |
+| `Registration/RegistrationCaseTests.cs` |
+| `BirthDeclaration/BirthDeclarationCaseTests.cs` |
+| `ChangeOfAddress/ChangeOfAddressCaseTests.cs` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+I found an existing shared locking helper (`OfficerCaseLocking`) and there are already locking-focused tests (e.g. `RegistrationCaseLockingTests`). Next I’ll add shared tests for the helper/state itself, then refactor each aggregate to call into it while keeping the same public methods/properties and exception types.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseLockingTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/IdentityDocuments/DocumentRequestCaseTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+File not found
+</details></tool-use>
+
+_**Agent (default)**_
+
+Next I’ll locate where `CaseClaimResult` lives, then add `OfficerLockState` (thin wrapper over `OfficerCaseLocking`) plus a new unit test file that exercises the shared behavior directly (so the aggregate tests don’t have to duplicate scenarios).
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "enum\\s+CaseClaimResult|CaseClaimResult"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "enum\\s+CaseClaimResult|CaseClaimResult",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/CaseManagement/OfficerCaseLocking.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/IdentityDocuments/DocumentRequestCase.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCase.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/BirthDeclaration/BirthDeclarationCase.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/CaseClaimResult.cs"
+    }
+  ],
+  "totalFiles": 6,
+  "totalMatches": 6
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "CaseClaimResult\\."
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "CaseClaimResult\\.",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCase.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/CaseManagement/OfficerCaseLocking.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/IdentityDocuments/DocumentRequestCase.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/BirthDeclaration/BirthDeclarationCase.cs"
+    }
+  ],
+  "totalFiles": 5,
+  "totalMatches": 5
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/CaseClaimResult.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/CaseManagement/OfficerLockState.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+Shared type is in place (`OfficerLockState`) and it’s just a thin, unit-testable wrapper over the already-correct shared logic (`OfficerCaseLocking`). Next I’ll add direct unit tests for the shared behavior, then move on to refactoring each aggregate to delegate.The final response is intentionally omitted because the user requested the task be completed fully before yielding.

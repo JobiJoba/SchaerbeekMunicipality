@@ -1,0 +1,138 @@
+name: CD
+
+# Runs after CI succeeds on main (separate Actions run from CI).
+# workflow_dispatch allows a manual republish/redeploy from the Actions tab.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cd-main
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/schaerbeek-municipality-web
+
+jobs:
+  publish:
+    name: Build, scan & push image
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch'
+      || (github.event.workflow_run.conclusion == 'success'
+          && github.event.workflow_run.event == 'push')
+    permissions:
+      contents: read
+      packages: write
+
+    outputs:
+      short_sha: ${{ steps.sha.outputs.short_sha }}
+
+    steps:
+      - name: Resolve commit SHA
+        id: sha
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            SHA="${{ github.event.workflow_run.head_sha }}"
+          else
+            SHA="${{ github.sha }}"
+          fi
+          echo "sha=${SHA}" >> "$GITHUB_OUTPUT"
+          echo "short_sha=${SHA:0:7}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.sha.outputs.sha }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          # Prefer raw tags: under workflow_run, github.sha is not the CI commit.
+          tags: |
+            type=raw,value=latest,enable=${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.head_branch == 'main' }}
+            type=raw,value=${{ steps.sha.outputs.short_sha }}
+
+      - name: Build image
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          load: true
+          tags: schaerbeek-web:scan
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: schaerbeek-web:scan
+          format: table
+          exit-code: '1'
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+
+      - name: Push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy to Azure Container Apps
+    runs-on: ubuntu-latest
+    needs: publish
+    if: >
+      always()
+      && needs.publish.result == 'success'
+      && vars.AZURE_DEPLOY_ENABLED == 'true'
+    permissions:
+      contents: read
+      id-token: write
+
+    env:
+      RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP || 'schaerbeek-rg' }}
+      CONTAINER_APP_NAME: ${{ vars.AZURE_CONTAINER_APP_NAME || 'schaerbeek-web' }}
+
+    steps:
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Update Container App image
+        run: |
+          # OCI image refs must be lowercase; GitHub owners can be mixed-case.
+          OWNER_LC="${GITHUB_REPOSITORY_OWNER,,}"
+          SHORT_SHA="${{ needs.publish.outputs.short_sha }}"
+          IMAGE_REF="ghcr.io/${OWNER_LC}/schaerbeek-municipality-web:${SHORT_SHA}"
+          echo "Deploying ${IMAGE_REF}"
+          az containerapp update \
+            --name "${CONTAINER_APP_NAME}" \
+            --resource-group "${RESOURCE_GROUP}" \
+            --image "${IMAGE_REF}" \
+            --output table

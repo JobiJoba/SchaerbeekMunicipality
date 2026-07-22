@@ -17,7 +17,8 @@ Planning a custom MudBlazor DatePicker component that accepts DateOnly values an
 
 I'll inspect the current Components/shared directory, existing MudBlazor usage, and FluentValidation integration to align the new DatePicker with the project's conventions.
 
-Searching the codebase for existing custom components, DatePicker implementations, and FluentValidation patterns to use as design references. No edits will be made yet.</details></think>
+Searching the codebase for existing custom components, DatePicker implementations, and FluentValidation patterns to use as design references. No edits will be made yet.
+</details></think>
 
 _**Agent (default)**_
 
@@ -26,11 +27,10 @@ I'll explore how MudBlazor and FluentValidation are used in this project so we c
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **59** results in **1** directory</summary>
 
-Directory: **** (59 files)
+Directory: **``** (59 files)
 
 | File |
 |------|
@@ -93,21 +93,12 @@ Directory: **** (59 files)
 | `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor` |
 | `src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor` |
 | `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Navigation/AppQuickActions.razor` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -214,21 +205,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -259,13 +241,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -273,27 +248,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 A specstory history file already exists for this exact topic.
 
-Reviewing the specstory history file and exploring existing patterns for MudDatePicker, FluentValidation integration, and the DesignSystem component structure.</details></think>
+Reviewing the specstory history file and exploring existing patterns for MudDatePicker, FluentValidation integration, and the DesignSystem component structure.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.specstory/history/2026-07-10_09-35-33Z-mudblazor-date-validation-component.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.specstory/history/2026-07-10_09-35-33Z-mudblazor-date-validation-component.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -400,38 +368,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFieldLabel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFieldLabel.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
@@ -444,57 +393,34 @@ Checking specific files to understand the current implementation:
 
 - CivilStatusStep.razor and RegistrationCaseDetail.razor for existing date pickers
 - RecordIdentityValidator.cs for FluentValidation patterns
-- Program.cs and project files for DI configuration</details></think>
+- Program.cs and project files for DI configuration
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/ValidationResults.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/ValidationResults.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Directory.Packages.props</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Directory.Packages.props</summary>
 
 </details></tool-use>
 
@@ -503,53 +429,34 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Reviewing the design system form template and MudForm validation patterns.
 
-Checking for an existing validation bridge.</details></think>
+Checking for an existing validation bridge.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordIdentity/RecordIdentityValidator.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordIdentity/RecordIdentityValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -575,13 +482,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -601,87 +501,55 @@ MudBlazor's validation matches property names via FieldIdentifier, so the DateOn
 
 The wrapper should expose `@bind-Value` and `For` parameters so consumers can bind directly to the `DateOnly` model property. Because the `MudForm` validation delegate handles all validation at the form level, the component itself does not need its own validation logic. It only needs to wire the `For` expression correctly so the form-level validator can target the property.
 
-The component should support both standalone and MudForm-integrated modes. I am deciding whether to place it under Components/Shared or DesignSystem/Components/Forms.</details></think>
+The component should support both standalone and MudForm-integrated modes. I am deciding whether to place it under Components/Shared or DesignSystem/Components/Forms.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/03-component-catalogue.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/03-component-catalogue.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking validator registration in Program.cs and existing bunit component tests.</details></think>
+Checking validator registration in Program.cs and existing bunit component tests.
+</details></think>
 
 _**Agent (default)**_
-
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
-
-Directory: **** (0 files)
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
 
+Directory: **``** (0 files)
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
 
 </details></tool-use>
 
@@ -712,31 +580,20 @@ The plan will include a standalone `FluentMudValidator<T>` helper class or exten
 
 The component should live under DesignSystem/Components/Forms rather than Components/Shared, following the existing AppSearchBar pattern. The FluentValidation bridge is required as part of this task.
 
-The FluentValidation-to-MudForm adapter is currently missing from the codebase but documented. The component will be placed in DesignSystem/Components/Forms to match existing project conventions. Checking RecordIdentityRequest to understand the DateOnly model shape.</details></think>
+The FluentValidation-to-MudForm adapter is currently missing from the codebase but documented. The component will be placed in DesignSystem/Components/Forms to match existing project conventions. Checking RecordIdentityRequest to understand the DateOnly model shape.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordIdentity/RecordIdentityRequest.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordIdentity/RecordIdentityRequest.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFormSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFormSection.razor</summary>
 
 </details></tool-use>
 
@@ -767,7 +624,8 @@ The bridge helper will be a static extension method on `IValidator<T>`, avoiding
 
 The bridge helper returns empty strings for valid results and error messages for invalid ones. The parent page injects the validator and passes it to `MudForm` via `@Validator.ToMudValidateValue()`. If the bound property is non-nullable `DateOnly`, the form model must switch to `DateOnly?`.
 
-MaxDate and MinDate will be forwarded as DateOnly? and converted internally. The component will capture unmatched MudDatePicker parameters. Default settings follow the catalogue: Outlined variant, Editable, dd/MM/yyyy format, and Dense margin. The DesignSystem path is recommended over Components/shared.</details></think>
+MaxDate and MinDate will be forwarded as DateOnly? and converted internally. The component will capture unmatched MudDatePicker parameters. Default settings follow the catalogue: Outlined variant, Editable, dd/MM/yyyy format, and Dense margin. The DesignSystem path is recommended over Components/shared.
+</details></think>
 
 _**Agent (default)**_
 
@@ -776,10 +634,8 @@ I have enough context: the project uses `MudDatePicker` with `DateTime?` and ser
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ask_question">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ask_question"><details>
 <summary>Tool use: **ask_question**</summary>
-
 
 Parameters:
 
@@ -798,7 +654,7 @@ Parameters:
           "label": "Components/Shared/AppDateField.razor (new folder, as you suggested)"
         }
       ],
-      "prompt": "This repo has no &#96;Components/Shared&#96; folder — form wrappers live under &#96;DesignSystem/Components/Forms/&#96; (e.g. &#96;AppSearchBar&#96;). Where should the new DateOnly picker go?"
+      "prompt": "This repo has no `Components/Shared` folder — form wrappers live under `DesignSystem/Components/Forms/` (e.g. `AppSearchBar`). Where should the new DateOnly picker go?"
     }
   ],
   "title": "Component placement"
@@ -838,34 +694,26 @@ User decision: **accepted**
 
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ask_question"><details>
-<summary>Tool use: **ask_question**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The DatePicker component will be placed at DesignSystem/Components/Forms/AppDateField.razor.</details></think>
+The DatePicker component will be placed at DesignSystem/Components/Forms/AppDateField.razor.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="create_plan">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
 <summary>Tool use: **create_plan**</summary>
-
 
 Parameters:
 
-```json
+````json
 {
   "name": "AppDateField FluentValidation",
-  "overview": "Add a reusable &#96;AppDateField&#96; wrapper around &#96;MudDatePicker&#96; that binds &#96;DateOnly?&#96;, displays FluentValidation errors via &#96;MudForm&#96;, and a small validation bridge so existing &#96;AbstractValidator\u003cT\u003e&#96; classes work with MudBlazor forms.",
-  "plan": "# AppDateField with FluentValidation\n\n## Problem\n\nToday every date field repeats the same pattern:\n\n- Local &#96;DateTime?&#96; field bound to [&#96;MudDatePicker&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor) (lines 201, 234)\n- Manual &#96;DateOnly.FromDateTime(...)&#96; conversion on submit ([&#96;CivilStatusStep.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor) line 270)\n- FluentValidation only runs server-side (&#96;catch ValidationException&#96;); client-side field errors are not shown\n\nThe design system already documents the target pattern but it is not implemented yet:\n\n&#96;&#96;&#96;razor\n\u003cMudForm Model=\"_model\" Validation=\"_validator.ValidateValue\"\u003e\n&#96;&#96;&#96;\n\n(from [&#96;docs/design-system/06-page-templates.md&#96;](docs/design-system/06-page-templates.md))\n\n## Architecture\n\n&#96;&#96;&#96;mermaid\nflowchart LR\n    subgraph form [MudForm]\n        Model[Form model with DateOnly?]\n        Validation[FluentMud bridge]\n    end\n    subgraph field [AppDateField]\n        Bridge[DateOnly to DateTime?]\n        Picker[MudDatePicker]\n        Errors[EditContext field messages]\n    end\n    Model --\u003e field\n    Validation --\u003e|\"per-property rules\"| Errors\n    Bridge --\u003e Picker\n    Errors --\u003e|\"Error / ErrorText\"| Picker\n&#96;&#96;&#96;\n\n**Key design choice:** do **not** pass &#96;For&#96; through to &#96;MudDatePicker&#96; (it expects &#96;DateTime?&#96;). Instead, &#96;AppDateField&#96; accepts &#96;Expression\u003cFunc\u003cDateOnly?\u003e\u003e For&#96;, reads validation messages from the cascading &#96;EditContext&#96;, and forwards them to &#96;MudDatePicker&#96; via &#96;Error&#96; / &#96;ErrorText&#96;. On change, it calls &#96;EditContext.NotifyFieldChanged(...)&#96;.\n\nNo new NuGet package (&#96;MudBlazor.FluentValidation&#96; is not in [&#96;Directory.Packages.props&#96;](Directory.Packages.props)); reuse existing &#96;FluentValidation&#96; + &#96;MudBlazor&#96; 8.15.\n\n## Files to add\n\n### 1. FluentValidation bridge — [&#96;src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs&#96;](src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs)\n\nStatic extension on &#96;IValidator\u003cT\u003e&#96;:\n\n&#96;&#96;&#96;csharp\npublic static Func\u003cobject, string, Task\u003cIEnumerable\u003cstring\u003e\u003e\u003e ToMudValidateValue\u003cT\u003e(\n    this IValidator\u003cT\u003e validator)\n&#96;&#96;&#96;\n\nImplementation: &#96;ValidateAsync&#96; with &#96;IncludeProperties(propertyName)&#96;, return error messages. Existing validators like [&#96;RecordIdentityValidator&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/RecordIdentity/RecordIdentityValidator.cs) stay unchanged.\n\n### 2. Date field wrapper — [&#96;src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor&#96;](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor)\n\nWrap &#96;MudDatePicker&#96; following the same style as [&#96;AppSearchBar.razor&#96;](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor) (thin wrapper, pass-through parameters).\n\n**Parameters (essential):**\n\n| Parameter | Purpose |\n|-----------|---------|\n| &#96;DateOnly? Value&#96; / &#96;ValueChanged&#96; / &#96;ValueExpression&#96; | Two-way &#96;DateOnly&#96; binding |\n| &#96;Expression\u003cFunc\u003cDateOnly?\u003e\u003e? For&#96; | Field identity for MudForm validation |\n| &#96;Label&#96;, &#96;Required&#96;, &#96;Disabled&#96;, &#96;ReadOnly&#96;, &#96;Clearable&#96; | Standard field UX |\n| &#96;DateOnly? MinDate&#96;, &#96;DateOnly? MaxDate&#96; | Converted to &#96;DateTime&#96; for inner picker |\n| &#96;HelperText&#96;, &#96;Class&#96;, &#96;Style&#96; | Layout / hints |\n\n**Defaults** (from [&#96;03-component-catalogue.md&#96;](docs/design-system/03-component-catalogue.md)):\n\n- &#96;Variant=\"Outlined\"&#96;, &#96;Margin=\"Margin.Dense\"&#96;, &#96;Editable=\"true\"&#96;, &#96;DateFormat=\"dd/MM/yyyy\"&#96;\n\n**Internal logic:**\n\n&#96;&#96;&#96;csharp\nprivate DateTime? PickerDate =\u003e\n    Value is { } d ? d.ToDateTime(TimeOnly.MinValue) : null;\n\nprivate async Task OnPickerDateChanged(DateTime? date)\n{\n    Value = date is { } d ? DateOnly.FromDateTime(d) : null;\n    await ValueChanged.InvokeAsync(Value);\n    if (For is not null)\n        EditContext?.NotifyFieldChanged(FieldIdentifier.Create(For));\n}\n&#96;&#96;&#96;\n\nSubscribe to &#96;EditContext.OnValidationStateChanged&#96; to re-render when sibling fields trigger validation.\n\n**Razor markup (conceptual):**\n\n&#96;&#96;&#96;razor\n\u003cMudDatePicker Date=\"PickerDate\"\n               DateChanged=\"OnPickerDateChanged\"\n               Label=\"@Label\"\n               Required=\"@Required\"\n               MinDate=\"@MinDate?.ToDateTime(TimeOnly.MinValue)\"\n               MaxDate=\"@MaxDate?.ToDateTime(TimeOnly.MinValue)\"\n               Error=\"@_hasError\"\n               ErrorText=\"@_errorText\"\n               ... /\u003e\n&#96;&#96;&#96;\n\nNamespace is already imported via [&#96;_Imports.razor&#96;](src/SchaerbeekMunicipality.Web/Components/_Imports.razor) line 15 — no import changes needed.\n\n## Usage example\n\nForm edit model (nullable &#96;DateOnly?&#96; during editing; map to non-nullable request on save):\n\n&#96;&#96;&#96;razor\n@inject IValidator\u003cRecordIdentityRequest\u003e IdentityValidator\n\n\u003cMudForm @ref=\"_form\" Model=\"_model\" Validation=\"@IdentityValidator.ToMudValidateValue()\"\u003e\n    \u003cMudItem xs=\"12\" md=\"6\"\u003e\n        \u003cAppDateField @bind-Value=\"_model.BirthDate\"\n                      For=\"@(() =\u003e _model.BirthDate)\"\n                      Label=\"Date of birth\"\n                      Required=\"true\"\n                      MaxDate=\"@DateOnly.FromDateTime(DateTime.Today)\" /\u003e\n    \u003c/MudItem\u003e\n\u003c/MudForm\u003e\n&#96;&#96;&#96;\n\n&#96;&#96;&#96;csharp\nprivate sealed class IdentityFormModel\n{\n    public string GivenName { get; set; } = \"\";\n    public string FamilyName { get; set; } = \"\";\n    public DateOnly? BirthDate { get; set; }  // nullable edit buffer\n    public string Nationality { get; set; } = \"\";\n}\n&#96;&#96;&#96;\n\nValidator rules on &#96;DateOnly&#96; / &#96;DateOnly?&#96; work as-is (see existing &#96;RuleFor(x =\u003e x.BirthDate).LessThan(...)&#96; in &#96;RecordIdentityValidator&#96;).\n\n## Scope boundaries\n\n- **In scope:** new bridge helper + &#96;AppDateField&#96; component.\n- **Out of scope (unless you ask):** migrating all 8+ existing &#96;MudDatePicker&#96; call sites, bunit tests, design-system doc updates.\n\nOptional follow-up: replace one form (e.g. identity section in &#96;RegistrationCaseDetail.razor&#96;) as a reference implementation and remove the &#96;DateTime?&#96; ↔ &#96;DateOnly&#96; conversion boilerplate there.\n\n## Verification\n\n1. &#96;dotnet build&#96; on &#96;SchaerbeekMunicipality.Web&#96;\n2. Manual check in a &#96;MudForm&#96;: empty required date shows FluentValidation message; past-date rule from &#96;RecordIdentityValidator&#96; appears on blur/submit; picker still uses Belgian &#96;dd/MM/yyyy&#96; format\n",
+  "overview": "Add a reusable `AppDateField` wrapper around `MudDatePicker` that binds `DateOnly?`, displays FluentValidation errors via `MudForm`, and a small validation bridge so existing `AbstractValidator\u003cT\u003e` classes work with MudBlazor forms.",
+  "plan": "# AppDateField with FluentValidation\n\n## Problem\n\nToday every date field repeats the same pattern:\n\n- Local `DateTime?` field bound to [`MudDatePicker`](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor) (lines 201, 234)\n- Manual `DateOnly.FromDateTime(...)` conversion on submit ([`CivilStatusStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor) line 270)\n- FluentValidation only runs server-side (`catch ValidationException`); client-side field errors are not shown\n\nThe design system already documents the target pattern but it is not implemented yet:\n\n```razor\n\u003cMudForm Model=\"_model\" Validation=\"_validator.ValidateValue\"\u003e\n```\n\n(from [`docs/design-system/06-page-templates.md`](docs/design-system/06-page-templates.md))\n\n## Architecture\n\n```mermaid\nflowchart LR\n    subgraph form [MudForm]\n        Model[Form model with DateOnly?]\n        Validation[FluentMud bridge]\n    end\n    subgraph field [AppDateField]\n        Bridge[DateOnly to DateTime?]\n        Picker[MudDatePicker]\n        Errors[EditContext field messages]\n    end\n    Model --\u003e field\n    Validation --\u003e|\"per-property rules\"| Errors\n    Bridge --\u003e Picker\n    Errors --\u003e|\"Error / ErrorText\"| Picker\n```\n\n**Key design choice:** do **not** pass `For` through to `MudDatePicker` (it expects `DateTime?`). Instead, `AppDateField` accepts `Expression\u003cFunc\u003cDateOnly?\u003e\u003e For`, reads validation messages from the cascading `EditContext`, and forwards them to `MudDatePicker` via `Error` / `ErrorText`. On change, it calls `EditContext.NotifyFieldChanged(...)`.\n\nNo new NuGet package (`MudBlazor.FluentValidation` is not in [`Directory.Packages.props`](Directory.Packages.props)); reuse existing `FluentValidation` + `MudBlazor` 8.15.\n\n## Files to add\n\n### 1. FluentValidation bridge — [`src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs`](src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs)\n\nStatic extension on `IValidator\u003cT\u003e`:\n\n```csharp\npublic static Func\u003cobject, string, Task\u003cIEnumerable\u003cstring\u003e\u003e\u003e ToMudValidateValue\u003cT\u003e(\n    this IValidator\u003cT\u003e validator)\n```\n\nImplementation: `ValidateAsync` with `IncludeProperties(propertyName)`, return error messages. Existing validators like [`RecordIdentityValidator`](src/SchaerbeekMunicipality.Web/Features/Registration/RecordIdentity/RecordIdentityValidator.cs) stay unchanged.\n\n### 2. Date field wrapper — [`src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor)\n\nWrap `MudDatePicker` following the same style as [`AppSearchBar.razor`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor) (thin wrapper, pass-through parameters).\n\n**Parameters (essential):**\n\n| Parameter | Purpose |\n|-----------|---------|\n| `DateOnly? Value` / `ValueChanged` / `ValueExpression` | Two-way `DateOnly` binding |\n| `Expression\u003cFunc\u003cDateOnly?\u003e\u003e? For` | Field identity for MudForm validation |\n| `Label`, `Required`, `Disabled`, `ReadOnly`, `Clearable` | Standard field UX |\n| `DateOnly? MinDate`, `DateOnly? MaxDate` | Converted to `DateTime` for inner picker |\n| `HelperText`, `Class`, `Style` | Layout / hints |\n\n**Defaults** (from [`03-component-catalogue.md`](docs/design-system/03-component-catalogue.md)):\n\n- `Variant=\"Outlined\"`, `Margin=\"Margin.Dense\"`, `Editable=\"true\"`, `DateFormat=\"dd/MM/yyyy\"`\n\n**Internal logic:**\n\n```csharp\nprivate DateTime? PickerDate =\u003e\n    Value is { } d ? d.ToDateTime(TimeOnly.MinValue) : null;\n\nprivate async Task OnPickerDateChanged(DateTime? date)\n{\n    Value = date is { } d ? DateOnly.FromDateTime(d) : null;\n    await ValueChanged.InvokeAsync(Value);\n    if (For is not null)\n        EditContext?.NotifyFieldChanged(FieldIdentifier.Create(For));\n}\n```\n\nSubscribe to `EditContext.OnValidationStateChanged` to re-render when sibling fields trigger validation.\n\n**Razor markup (conceptual):**\n\n```razor\n\u003cMudDatePicker Date=\"PickerDate\"\n               DateChanged=\"OnPickerDateChanged\"\n               Label=\"@Label\"\n               Required=\"@Required\"\n               MinDate=\"@MinDate?.ToDateTime(TimeOnly.MinValue)\"\n               MaxDate=\"@MaxDate?.ToDateTime(TimeOnly.MinValue)\"\n               Error=\"@_hasError\"\n               ErrorText=\"@_errorText\"\n               ... /\u003e\n```\n\nNamespace is already imported via [`_Imports.razor`](src/SchaerbeekMunicipality.Web/Components/_Imports.razor) line 15 — no import changes needed.\n\n## Usage example\n\nForm edit model (nullable `DateOnly?` during editing; map to non-nullable request on save):\n\n```razor\n@inject IValidator\u003cRecordIdentityRequest\u003e IdentityValidator\n\n\u003cMudForm @ref=\"_form\" Model=\"_model\" Validation=\"@IdentityValidator.ToMudValidateValue()\"\u003e\n    \u003cMudItem xs=\"12\" md=\"6\"\u003e\n        \u003cAppDateField @bind-Value=\"_model.BirthDate\"\n                      For=\"@(() =\u003e _model.BirthDate)\"\n                      Label=\"Date of birth\"\n                      Required=\"true\"\n                      MaxDate=\"@DateOnly.FromDateTime(DateTime.Today)\" /\u003e\n    \u003c/MudItem\u003e\n\u003c/MudForm\u003e\n```\n\n```csharp\nprivate sealed class IdentityFormModel\n{\n    public string GivenName { get; set; } = \"\";\n    public string FamilyName { get; set; } = \"\";\n    public DateOnly? BirthDate { get; set; }  // nullable edit buffer\n    public string Nationality { get; set; } = \"\";\n}\n```\n\nValidator rules on `DateOnly` / `DateOnly?` work as-is (see existing `RuleFor(x =\u003e x.BirthDate).LessThan(...)` in `RecordIdentityValidator`).\n\n## Scope boundaries\n\n- **In scope:** new bridge helper + `AppDateField` component.\n- **Out of scope (unless you ask):** migrating all 8+ existing `MudDatePicker` call sites, bunit tests, design-system doc updates.\n\nOptional follow-up: replace one form (e.g. identity section in `RegistrationCaseDetail.razor`) as a reference implementation and remove the `DateTime?` ↔ `DateOnly` conversion boilerplate there.\n\n## Verification\n\n1. `dotnet build` on `SchaerbeekMunicipality.Web`\n2. Manual check in a `MudForm`: empty required date shows FluentValidation message; past-date rule from `RecordIdentityValidator` appears on blur/submit; picker still uses Belgian `dd/MM/yyyy` format\n",
   "todos": [
     {
       "content": "Add FluentMudValidation.cs extension (IValidator\u003cT\u003e → MudForm Validation delegate)",
@@ -884,7 +732,7 @@ Parameters:
     }
   ]
 }
-```
+````
 Additional data:
 
 ```json
@@ -908,13 +756,6 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
-<summary>Tool use: **create_plan**</summary>
-
 </details></tool-use>
 
 ---
@@ -930,7 +771,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The user approved the plan. They want to migrate existing MudDatePicker usages to the new AppDateField component.
 
-Migrating existing call sites is now part of the plan instead of being optional. I am searching the codebase for all MudDatePicker usages to identify exact locations.</details></think>
+Migrating existing call sites is now part of the plan instead of being optional. I am searching the codebase for all MudDatePicker usages to identify exact locations.
+</details></think>
 
 _**Agent (default)**_
 
@@ -939,10 +781,8 @@ I'll find every `MudDatePicker` usage so we can add concrete migration targets t
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1007,25 +847,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/plans/appdatefield_fluentvalidation_b9102a3a.plan.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/plans/appdatefield_fluentvalidation_b9102a3a.plan.md</summary>
 
 </details></tool-use>
 
@@ -1034,7 +861,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The plan needs updating to include migrating existing MudDatePicker usages.
 
-Reviewing RegistrationCaseDetail, ResidenceStep, NationalRegisterSearchDialog, and OpenChangeOfAddressDialog to gauge migration complexity.</details></think>
+Reviewing RegistrationCaseDetail, ResidenceStep, NationalRegisterSearchDialog, and OpenChangeOfAddressDialog to gauge migration complexity.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1043,10 +871,8 @@ Reviewing a few call sites to determine what each migration needs.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1105,38 +931,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
@@ -1151,31 +958,20 @@ The migration replaces `DateTime?` with `DateOnly?` and swaps `MudDatePicker` fo
 
 More validators were identified for ResidenceStep, ChangeOfAddressCaseDetail, BirthDeclarationCaseDetail, NationalRegisterSearchDialog, ParentLinkDialog, and OpenChangeOfAddressDialog. Steps using scattered fields instead of a single model object will need a different migration strategy. The plan is being split into tiers, starting with a simple swap for basic cases.
 
-Tier 1 covers dialogs without MudForm. Tier 2 adds form model and validator wiring for forms that already have MudForm. OpenChangeOfAddressDialog and ParentLinkDialog are being checked for MudForm wrappers.</details></think>
+Tier 1 covers dialogs without MudForm. Tier 2 adds form model and validator wiring for forms that already have MudForm. OpenChangeOfAddressDialog and ParentLinkDialog are being checked for MudForm wrappers.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
 
 </details></tool-use>
 
@@ -1188,7 +984,8 @@ Organizing the migration into two tiers. Dialogs without MudForm will get type s
 
 MudForm steps will be migrated in two phases. Phase A replaces pickers and swaps types immediately. Phase B wires the form model and validation. Migration will be scoped to existing usages.
 
-RegistrationCaseDetail needs a new IdentityFormModel because its validator targets scattered fields instead of a model. CivilStatusStep, HouseholdStep, ResidenceStep, ChangeOfAddressCaseDetail, and BirthDeclarationCaseDetail each have existing validators that will guide the migration.</details></think>
+RegistrationCaseDetail needs a new IdentityFormModel because its validator targets scattered fields instead of a model. CivilStatusStep, HouseholdStep, ResidenceStep, ChangeOfAddressCaseDetail, and BirthDeclarationCaseDetail each have existing validators that will guide the migration.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1197,23 +994,16 @@ Updating the plan to include migrating all 11 `MudDatePicker` call sites.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/appdatefield_fluentvalidation_b9102a3a.plan.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/appdatefield_fluentvalidation_b9102a3a.plan.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The plan has been updated. I will summarize the changes.</details></think>
+The plan has been updated. I will summarize the changes.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1255,7 +1045,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Proceeding with the plan.
 
-Creating the FluentMudValidation extension and AppDateField component. Migrating all 11 MudDatePicker call sites across 9 files. Then building and verifying.</details></think>
+Creating the FluentMudValidation extension and AppDateField component. Migrating all 11 MudDatePicker call sites across 9 files. Then building and verifying.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1264,10 +1055,8 @@ Implementing the validation bridge and `AppDateField`, then migrating all `MudDa
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -1312,31 +1101,20 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-Cannot edit non markdown files in plan mode
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
 <summary>Tool use: **edit_file_v2**</summary>
-
+Cannot edit non markdown files in plan mode
 </details></tool-use>
 
 _**Agent (default)**_
 
-Cannot edit non markdown files in plan mode
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
 <summary>Tool use: **edit_file_v2**</summary>
-
+Cannot edit non markdown files in plan mode
 </details></tool-use>
 
 _**Agent (default)**_
@@ -1344,14 +1122,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Plan mode appears to be blocking edits.
 
-Switching to agent mode to proceed.</details></think>
+Switching to agent mode to proceed.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="switch_mode">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="switch_mode"><details>
 <summary>Tool use: **switch_mode**</summary>
-
 
 Parameters:
 
@@ -1373,138 +1150,74 @@ User decision: **accepted**
 
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="switch_mode"><details>
-<summary>Tool use: **switch_mode**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Proceeding with implementation.</details></think>
+Proceeding with implementation.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordCivilStatus/RecordCivilStatusValidator.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordCivilStatus/RecordCivilStatusValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordCivilStatus/RecordCivilStatusRequest.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordCivilStatus/RecordCivilStatusRequest.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionRequest.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionRequest.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordResidencePermit/RecordResidencePermitValidator.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordResidencePermit/RecordResidencePermitValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionValidator.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/RecordChildDetails/RecordChildDetailsRequest.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/RecordChildDetails/RecordChildDetailsRequest.cs</summary>
 
 </details></tool-use>
 
@@ -1513,14 +1226,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 I will read the household composition validators and check Program.cs for their registration.
 
-The household validator targets RecordHouseholdCompositionRequest and validates a list of members. Each member uses non-nullable DateOnly for BirthDate, so the form model needs DateOnly?. The RecordIdentity BirthDate will also become nullable DateOnly? with mapping on save. I still need to read the DeclareNewAddress request and verify how validators are registered in DI.</details></think>
+The household validator targets RecordHouseholdCompositionRequest and validates a list of members. Each member uses non-nullable DateOnly for BirthDate, so the form model needs DateOnly?. The RecordIdentity BirthDate will also become nullable DateOnly? with mapping on save. I still need to read the DeclareNewAddress request and verify how validators are registered in DI.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1595,51 +1307,26 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressRequest.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressRequest.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -1648,77 +1335,46 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 HouseholdStep does not have a separate validator for HouseholdMemberRequest.
 
-RecordHouseholdCompositionValidator may validate the entire request. It likely covers the list rather than individual fields. I will check if it exists.</details></think>
+RecordHouseholdCompositionValidator may validate the entire request. It likely covers the list rather than individual fields. I will check if it exists.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
 
-Directory: **** (1 file)
+Directory: **``** (1 file)
 
 | File |
 |------|
 | `src/SchaerbeekMunicipality.Web/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionValidator.cs` |
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -1727,27 +1383,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Reading RecordHouseholdCompositionValidator and Program.cs to check validator registration.
 
-ResidenceStep is also needed for permit and decision forms.</details></think>
+ResidenceStep is also needed for permit and decision forms.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionValidator.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1778,51 +1427,26 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
@@ -1837,57 +1461,34 @@ The `HouseholdMemberFormModel` will use nullable properties to match the request
 
 The plan requires Model + Validation wiring. A shared validator is needed instead of a quick DateOnly conversion.
 
-The validator will be placed in the feature folder as `HouseholdMemberFormValidator.cs`. I will also examine `RecordResidencePermitRequest` and `RecordImmigrationDecisionRequest` to align form model shapes.</details></think>
+The validator will be placed in the feature folder as `HouseholdMemberFormValidator.cs`. I will also examine `RecordResidencePermitRequest` and `RecordImmigrationDecisionRequest` to align form model shapes.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordResidencePermit/RecordResidencePermitRequest.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordResidencePermit/RecordResidencePermitRequest.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionRequest.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionRequest.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -1930,7 +1531,8 @@ Proceeding to implement the map overload in FluentMudValidation, add HouseholdMe
 
 Checking whether AppDateField needs an explicit `@using System.Linq.Expressions` directive. The migration order will be FluentMudValidation first, then dialogs, then forms. HouseholdMemberRequestValidator will be extracted from RecordHouseholdCompositionValidator using Include or RuleSets to avoid duplicating rules.
 
-The simplest approach is to extract the nested household member rules into a standalone `HouseholdMemberRequestValidator` and reference it via `RuleForEach` with `SetValidator` inside `RecordHouseholdCompositionValidator`.</details></think>
+The simplest approach is to extract the nested household member rules into a standalone `HouseholdMemberRequestValidator` and reference it via `RuleForEach` with `SetValidator` inside `RecordHouseholdCompositionValidator`.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1939,97 +1541,57 @@ Adding a mapper overload to the validation bridge, then migrating all call sites
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordHouseholdComposition/HouseholdMemberRequestValidator.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordHouseholdComposition/HouseholdMemberRequestValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionValidator.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordHouseholdComposition/RecordHouseholdCompositionValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Restoring DesignSystem.Tokens to _Imports.</details></think>
+Restoring DesignSystem.Tokens to _Imports.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 Incorrect tool arguments
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Proceeding with dialog migration.</details></think>
+Proceeding with dialog migration.
+</details></think>
 
 _**Agent (default)**_
 
@@ -2038,386 +1600,188 @@ Migrating dialog files first, then the larger form files.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Migrating HouseholdStep and CivilStatusStep first. Then handling the larger files.</details></think>
+Migrating HouseholdStep and CivilStatusStep first. Then handling the larger files.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Proceeding to build the CivilStatusStep form model with all civil status fields and validator mappings.</details></think>
+Proceeding to build the CivilStatusStep form model with all civil status fields and validator mappings.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
@@ -2426,43 +1790,34 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 I may have broken CivilStatusStep by adding an extra closing brace.
 
-Checking the end of CivilStatusStep for a duplicated closing brace. The `with` syntax on the record looks correct.</details></think>
+Checking the end of CivilStatusStep for a duplicated closing brace. The `with` syntax on the record looks correct.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking the end of the content.</details></think>
+Checking the end of the content.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The file looks good. Now handling ResidenceStep, which is more complex due to permit and decision forms.</details></think>
+The file looks good. Now handling ResidenceStep, which is more complex due to permit and decision forms.
+</details></think>
 
 _**Agent (default)**_
 
@@ -2471,165 +1826,84 @@ Migrating `ResidenceStep.razor`:
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Updating ClearDecisionForm and SaveDecision in ResidenceStep. Adding form model classes at the end.</details></think>
+Updating ClearDecisionForm and SaveDecision in ResidenceStep. Adding form model classes at the end.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -2660,111 +1934,65 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<think><details><summary>Thought Process</summary>
+Fixing the remaining references.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Fixing the remaining references.</details></think>
+Adding PermitFormModel and DecisionFormModel classes before the closing brace.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Adding PermitFormModel and DecisionFormModel classes before the closing brace.</details></think>
+Now handling the larger case detail classes: ChangeOfAddressCaseDetail, BirthDeclarationCaseDetail, and RegistrationCaseDetail.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<think><details><summary>Thought Process</summary>
-Now handling the larger case detail classes: ChangeOfAddressCaseDetail, BirthDeclarationCaseDetail, and RegistrationCaseDetail.</details></think>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -2785,102 +2013,55 @@ The AddressFormModel will contain only EffectiveDate. MudForm will bind to this 
 
 The MapAddressRequest lambda pulls the remaining address values from scattered fields and passes them into the mapped request. This confirms the lightweight model approach works. BirthDeclaration may follow the same pattern with a ChildDetailsFormModel or direct mapping.
 
-ChangeOfAddress will use a minimal AddressFormModel containing only EffectiveDate. BirthDeclaration will use a ChildDetailsFormModel with all fields bound to the model. The ChangeOfAddress implementation will be done first.</details></think>
+ChangeOfAddress will use a minimal AddressFormModel containing only EffectiveDate. BirthDeclaration will use a ChildDetailsFormModel with all fields bound to the model. The ChangeOfAddress implementation will be done first.
+</details></think>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 The string to replace was not found in the file.
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -2889,35 +2070,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Adding dependency injection for the validator and creating the MapAddressRequest and AddressFormModel classes.
 
-The first injection attempt failed.</details></think>
+The first injection attempt failed.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -2926,128 +2092,68 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 An instance method should work as a delegate for `ToMudValidateValue`, even though it expects a `Func<TForm, TRequest>` parameter.
 
-The Razor syntax passes `MapAddressRequest` directly as a delegate. Next, migrating the child form address validation in `BirthDeclarationCaseDetail`.</details></think>
+The Razor syntax passes `MapAddressRequest` directly as a delegate. Next, migrating the child form address validation in `BirthDeclarationCaseDetail`.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Adding MapChildDetailsRequest and ChildDetailsFormModel to BirthDeclarationCaseDetail before the closing brace.</details></think>
+Adding MapChildDetailsRequest and ChildDetailsFormModel to BirthDeclarationCaseDetail before the closing brace.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -3056,14 +2162,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 RegistrationCaseDetail is the largest section, containing two identity form blocks.
 
-Injecting IValidator<RecordIdentityRequest> and creating an IdentityFormModel will replace scattered fields with a unified model across both MudForm blocks. Methods using individual properties like _givenName and _birthDate also need updating. More of RegistrationCaseDetail still needs review.</details></think>
+Injecting IValidator<RecordIdentityRequest> and creating an IdentityFormModel will replace scattered fields with a unified model across both MudForm blocks. Methods using individual properties like _givenName and _birthDate also need updating. More of RegistrationCaseDetail still needs review.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3094,245 +2199,134 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Migrating RegistrationCaseDetail to use _identityModel throughout.</details></think>
+Migrating RegistrationCaseDetail to use _identityModel throughout.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 The string to replace was not found in the file.
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Fixing the SaveIdentityCorrection method and adding the IdentityFormModel class.</details></think>
+Fixing the SaveIdentityCorrection method and adding the IdentityFormModel class.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Fixing SaveIdentityCorrection and adding IdentityFormModel at the end of the file.</details></think>
+Fixing SaveIdentityCorrection and adding IdentityFormModel at the end of the file.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Adding the IdentityFormModel class before the closing brace.</details></think>
+Adding the IdentityFormModel class before the closing brace.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -3341,73 +2335,40 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Need to add `@using FluentValidation` to `_Imports` or individual files. `IValidator` comes from FluentValidation.
 
-AppDateField also needs `@using System.Linq.Expressions` for `Expression<Func<DateOnly?>>`. Will update `_Imports.razor` and run a build.</details></think>
+AppDateField also needs `@using System.Linq.Expressions` for `Expression<Func<DateOnly?>>`. Will update `_Imports.razor` and run a build.
+</details></think>
 
 _**Agent (default)**_
 
-The model provided an ambiguous search string to replace
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
 <summary>Tool use: **edit_file_v2**</summary>
-
+The model provided an ambiguous search string to replace
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj --no-restore 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj --no-restore 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj --no-restore 2>&1
 ```
 
 ```
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(24,13): error CS0246: The type or namespace name 'EditContext' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(33,12): error CS0246: The type or namespace name 'Expression&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(6,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(31,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor(6,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(90,59): error CS0246: The type or namespace name 'ValidationStateChangedEventArgs' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(11,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(10,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(27,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(36,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-
-Build FAILED.
-
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(24,13): error CS0246: The type or namespace name 'EditContext' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(33,12): error CS0246: The type or namespace name 'Expression&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(6,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(31,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor(6,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(90,59): error CS0246: The type or namespace name 'ValidationStateChangedEventArgs' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(11,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(10,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(27,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(36,9): error CS0246: The type or namespace name 'IValidator&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-    0 Warning(s)
-    10 Error(s)
-
-Time Elapsed 00:00:05.93
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(33,12): error CS0246: The type or namespace name 'Expression<>' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(6,9): error CS0246: The type or namespace name 'IValidator<>' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(31,9): error CS0246: Th
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3438,13 +2399,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -3452,28 +2406,22 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 I need to fix _Imports.razor by adding FluentValidation and System.Linq.
 
-AppDateField is in DesignSystem/Components/Forms/. It should inherit global usings from Components/_Imports.razor. Need to verify if DesignSystem has its own imports file.</details></think>
+AppDateField is in DesignSystem/Components/Forms/. It should inherit global usings from Components/_Imports.razor. Need to verify if DesignSystem has its own imports file.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **4** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web** (4 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web`** (4 files)
 
 | File |
 |------|
@@ -3481,13 +2429,6 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/Scha
 | `Features/_Imports.razor` |
 | `DesignSystem/_Imports.razor` |
 | `Auth/_Imports.razor` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -3495,31 +2436,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 AppDateField may use DesignSystem/_Imports.razor.
 
-Reading DesignSystem/_Imports.razor and aFeatures/_Imports.razor to find missing usings.</details></think>
+Reading DesignSystem/_Imports.razor and aFeatures/_Imports.razor to find missing usings.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
 
 </details></tool-use>
 
@@ -3528,52 +2458,34 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Updating DesignSystem/_Imports.razor to include Forms, Expressions, and Linq.
 
-Also updating Features/_Imports.razor and Components/_Imports.razor with FluentValidation, Validation, and Expressions.</details></think>
+Also updating Features/_Imports.razor and Components/_Imports.razor with FluentValidation, Validation, and Expressions.
+</details></think>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 The model provided an ambiguous search string to replace
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1
 ```
@@ -3581,30 +2493,18 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build sr
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(24,13): error CS0246: The type or namespace name 'EditContext' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(33,12): error CS0246: The type or namespace name 'Expression&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(33,12): error CS0246: The type or namespace name 'Expression<>' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(90,59): error CS0246: The type or namespace name 'ValidationStateChangedEventArgs' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 
 Build FAILED.
 
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(24,13): error CS0246: The type or namespace name 'EditContext' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(33,12): error CS0246: The type or namespace name 'Expression&lt;&gt;' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor(90,59): error CS0246: The type or namespace name 'ValidationStateChangedEventArgs' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-    0 Warning(s)
-    3 Error(s)
-
-Time Elapsed 00:00:06.01
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/Sc
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -3612,28 +2512,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Only AppDateField errors remain in DesignSystem/_Imports.
 
-The Razor file was not updated. I'll fix it with more context.</details></think>
+The Razor file was not updated. I'll fix it with more context.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1
 ```
@@ -3641,291 +2533,27 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build sr
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(9,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(85,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(86,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(87,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(88,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(265,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(30,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(36,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(40,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor(64,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor(61,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(35,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(41,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(45,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(92,55): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(97,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(40,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(67,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(114,44): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(119,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(254,50): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(259,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(43,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(70,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor(63,59): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor(69,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(276,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(281,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(105,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(110,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(127,44): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(132,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(293,67): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(304,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(309,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(149,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(154,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(328,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(333,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(168,43): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(173,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(354,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(368,60): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(373,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(394,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(270,44): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(275,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(279,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(283,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(86,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(93,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(50,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(102,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(111,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(140,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(166,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(346,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(351,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(355,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(544,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(574,49): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(579,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(412,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(412,73): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(418,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(422,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(593,51): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(598,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(506,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(506,73): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(512,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(516,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(703,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(708,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(712,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(590,57): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(595,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(599,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(738,47): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(741,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(748,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(752,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(781,62): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(68,25): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(160,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(165,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(169,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(807,63): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(812,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(199,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(204,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(208,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(47,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(56,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(62,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(68,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(74,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor(74,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor(80,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(237,42): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(242,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(246,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(250,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(829,107): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(834,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(838,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(866,77): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(871,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(875,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor(6,25): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(909,47): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(914,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(918,49): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(108,41): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor(90,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor(222,58): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor(227,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor(231,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor(28,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(286,49): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(291,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(295,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(299,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor(112,66): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor(18,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor(162,65): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor(176,60): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-
-Build FAILED.
-
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(9,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(85,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(86,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(87,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(88,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(265,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(30,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(36,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(40,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor(64,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor(61,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(35,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(41,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(45,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(92,55): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(97,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(40,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(67,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(114,44): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(119,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(254,50): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(259,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(43,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(70,37): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor(63,59): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor(69,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(276,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor(281,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(105,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(110,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(127,44): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(132,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(293,67): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(304,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(309,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(149,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(154,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(328,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(333,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(168,43): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(173,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(354,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(368,60): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(373,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor(394,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(270,44): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(275,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(279,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(283,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(86,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(93,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(50,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(102,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(111,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(140,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(166,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(346,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(351,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(355,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(544,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(574,49): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(579,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(412,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(412,73): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(418,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(422,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(593,51): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(598,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(506,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(506,73): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(512,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(516,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(703,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(708,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(712,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(590,57): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(595,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor(599,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(738,47): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(741,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(748,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(752,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(781,62): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(68,25): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(160,54): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(165,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(169,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(807,63): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(812,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(199,45): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(204,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(208,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(47,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(56,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(62,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(68,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(74,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor(74,48): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor(80,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(237,42): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(242,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(246,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(250,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(829,107): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(834,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(838,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(866,77): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(871,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(875,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor(6,25): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(909,47): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(914,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor(918,49): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(108,41): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor(90,33): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor(222,58): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor(227,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor(231,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor(28,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(286,49): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(291,83): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(295,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(299,38): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor(112,66): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor(18,29): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor(162,65): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor(176,60): error CS0104: 'Severity' is an ambiguous reference between 'FluentValidation.Severity' and 'MudBlazor.Severity' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-    0 Warning(s)
-    127 Error(s)
-
-Time Elapsed 00:00:06.50
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor(87,37): error CS0104: 'Severity' is an ambiguous referen
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reading the build output file for errors.</details></think>
+Reading the build output file for errors.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3956,13 +2584,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -3972,15 +2593,15 @@ The global `@using FluentValidation` directive is configured in `Components/_Imp
 
 Global FluentValidation would cause a Severity ambiguity. It should be removed from `Components/_Imports.razor` and kept only in `Features/_Imports.razor`. Alternatively, use fully qualified `IValidator` or an alias. Pages under `Components/Pages` inherit the component-level imports, while `Features/Registration/Pages` inherits the feature-level ones.
 
-Checking for a root-level `_Imports.razor` file that might affect imports across directories.</details></think>
+Checking for a root-level `_Imports.razor` file that might affect imports across directories.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **4** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web** (4 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web`** (4 files)
 
 | File |
 |------|
@@ -3988,21 +2609,12 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/Scha
 | `Components/_Imports.razor` |
 | `Features/_Imports.razor` |
 | `Auth/_Imports.razor` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4028,13 +2640,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -4046,7 +2651,8 @@ FluentValidation will be removed from Components/_Imports.razor and kept only in
 
 Features/_Imports also causes Severity conflicts for Feature razor files. Global `@using FluentValidation` should be removed everywhere. Fully qualified injects or aliases will replace it.
 
-Features/_Imports will use `@using IValidator = FluentValidation.IValidator` instead of importing the full namespace. Files catching `FluentValidation.ValidationException` already use the full type name, so they remain unaffected.</details></think>
+Features/_Imports will use `@using IValidator = FluentValidation.IValidator` instead of importing the full namespace. Files catching `FluentValidation.ValidationException` already use the full type name, so they remain unaffected.
+</details></think>
 
 _**Agent (default)**_
 
@@ -4055,31 +2661,15 @@ Removing the global `FluentValidation` import to fix the `Severity` ambiguity.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
 
 </details></tool-use>
 
@@ -4088,118 +2678,62 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The `MudSeverity` alias won't fix existing `Severity.Success` references. Those will need explicit `MudBlazor.Severity` or a different approach.
 
-The better approach is to remove FluentValidation from the global `_Imports` file. Each file needing validation will instead use `@inject FluentValidation.IValidator<T>`. The six modified files will switch to fully qualified injection lines. The `MudSeverity` alias in `Features/_Imports` will also be reverted.</details></think>
+The better approach is to remove FluentValidation from the global `_Imports` file. Each file needing validation will instead use `@inject FluentValidation.IValidator<T>`. The six modified files will switch to fully qualified injection lines. The `MudSeverity` alias in `Features/_Imports` will also be reverted.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1 | tail -30</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2&gt;&amp;1 | tail -30</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1 | tail -30
 ```
@@ -4207,10 +2741,10 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build sr
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
 
 Build succeeded.
     0 Warning(s)
@@ -4219,25 +2753,18 @@ Build succeeded.
 Time Elapsed 00:00:07.23
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Build succeeded. Verifying no external MudDatePicker usage remains. Running full solution build and updating todos.</details></think>
+Build succeeded. Verifying no external MudDatePicker usage remains. Running full solution build and updating todos.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4268,20 +2795,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -15</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build 2&gt;&amp;1 | tail -15</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -15
 ```
@@ -4289,13 +2808,13 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-  SchaerbeekMunicipality.AppHost -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.AppHost -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
 
 Build succeeded.
     0 Warning(s)
@@ -4304,20 +2823,12 @@ Build succeeded.
 Time Elapsed 00:00:03.39
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -4390,19 +2901,13 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The task is complete. I am preparing a summary.</details></think>
+The task is complete. I am preparing a summary.
+</details></think>
 
 _**Agent (default)**_
 
@@ -4463,7 +2968,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The user clarified that MinDate and MaxDate can remain DateTime types without affecting anything.
 
-Updating AppDateField to use DateTime? for MinDate and MaxDate. Callers will pass DateTime.Today directly instead of DateOnly.FromDateTime. Now locating all usages of these properties.</details></think>
+Updating AppDateField to use DateTime? for MinDate and MaxDate. Callers will pass DateTime.Today directly instead of DateOnly.FromDateTime. Now locating all usages of these properties.
+</details></think>
 
 _**Agent (default)**_
 
@@ -4472,23 +2978,15 @@ Updating `AppDateField` to use `DateTime?` for min/max dates and simplifying cal
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4552,26 +3050,18 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking MaxDate lines for BirthDeclarationCaseDetail, RegistrationCaseDetail, HouseholdStep, and CivilStatusStep.</details></think>
+Checking MaxDate lines for BirthDeclarationCaseDetail, RegistrationCaseDetail, HouseholdStep, and CivilStatusStep.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4626,13 +3116,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 ---
@@ -4676,7 +3159,8 @@ Dual parameters would force callers to use separate names like `MaxDateOnly`. A 
 
 Using `object?` parameters with a `ResolveBound` helper is the chosen approach. It accepts both `DateTime` and `DateOnly` values and converts `DateOnly` to `DateTime` via `TimeOnly.MinValue`. This lets callers pass either type through a single parameter name in Razor.
 
-The `object?` parameter approach is confirmed. Call sites will pass `@DateTime.Today` directly, removing manual DateOnly conversion. Implementation begins on AppDateField.</details></think>
+The `object?` parameter approach is confirmed. Call sites will pass `@DateTime.Today` directly, removing manual DateOnly conversion. Implementation begins on AppDateField.
+</details></think>
 
 _**Agent (default)**_
 
@@ -4685,151 +3169,71 @@ Yes — we can accept both on the same `MinDate`/`MaxDate` parameters by resolvi
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
 
 </details></tool-use>
 
@@ -4838,20 +3242,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Considering whether MinDate and MaxDate could be nullable DateTime or DateOnly.
 
-Verifying switch expression behavior for boxed nullable DateOnly and DateTime values. Need to confirm DateOnly? matches boxed DateOnly in pattern matching. Will build to verify.</details></think>
+Verifying switch expression behavior for boxed nullable DateOnly and DateTime values. Need to confirm DateOnly? matches boxed DateOnly in pattern matching. Will build to verify.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1 | tail -8</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2&gt;&amp;1 | tail -8</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1 | tail -8
 ```
 
 ```
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
 
 Build succeeded.
     0 Warning(s)
@@ -4860,18 +3264,13 @@ Build succeeded.
 Time Elapsed 00:00:04.10
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The build passes. I'll explain the approach concisely.</details></think>
+The build passes. I'll explain the approach concisely.
+</details></think>
 
 _**Agent (default)**_
 
@@ -4903,7 +3302,8 @@ C# lacks native union types like TypeScript's `DateOnly | DateTime`. The current
 
 A custom readonly struct with implicit conversions provides the closest union-like experience. The OneOf library from discipline-stack is another option. Generic parameters cannot express "either A or B" on a single argument.
 
-The wrapper struct keeps a single parameter name while offering compile-time safety at call sites. I'll explain this approach without writing code unless asked.</details></think>
+The wrapper struct keeps a single parameter name while offering compile-time safety at call sites. I'll explain this approach without writing code unless asked.
+</details></think>
 
 _**Agent (default)**_
 
@@ -4984,7 +3384,8 @@ The expression-based API is cleaner than the string-based approach used elsewher
 
 The correct property-name extraction needs to handle UnaryExpression for nullable value types. The current code misses this pattern.
 
-The abstract class approach centralizes Mud integration and exposes a shared `ValidateValueAsync` method. However, it forces every validator to inherit from this base rather than `AbstractValidator<T>` directly, creating tighter coupling and potential generic conflicts.</details></think>
+The abstract class approach centralizes Mud integration and exposes a shared `ValidateValueAsync` method. However, it forces every validator to inherit from this base rather than `AbstractValidator<T>` directly, creating tighter coupling and potential generic conflicts.
+</details></think>
 
 _**Agent (default)**_
 
@@ -4993,14 +3394,8 @@ Reviewing your project's validation bridge for comparison.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs</summary>
 
 </details></tool-use>
 
@@ -5009,7 +3404,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The pasted code appears to be from another codebase, possibly partially merged.
 
-The snippet contains dead code at the bottom of a static class. An instance method and incomplete logic do not belong there. I will review the design concept and compare approaches. I will clearly flag these bugs.</details></think>
+The snippet contains dead code at the bottom of a static class. An instance method and incomplete logic do not belong there. I will review the design concept and compare approaches. I will clearly flag these bugs.
+</details></think>
 
 _**Agent (default)**_
 
@@ -5159,7 +3555,8 @@ The `MudBlazor.FluentValidation` NuGet package provides automatic wiring and rem
 
 The `(string value) =>` lambda targets MudTextField's Validation property, which validates the raw string value. This is separate from MudForm.Validation, which operates on the entire model. Ignoring that string value and instead running FluentValidation on the nested object is awkward. Validation should live on the MudForm, while For should remain on the fields for error binding.
 
-Three options resolve nested validation cleanly. Flatten the form model to match the validator. Use `ToMudValidateValue<TRequest, TForm>(map)` with a mapping function. Or split the UI into separate MudForms for each sub-section, each with its own Model.</details></think>
+Three options resolve nested validation cleanly. Flatten the form model to match the validator. Use `ToMudValidateValue<TRequest, TForm>(map)` with a mapping function. Or split the UI into separate MudForms for each sub-section, each with its own Model.
+</details></think>
 
 _**Agent (default)**_
 
@@ -5279,7 +3676,8 @@ A single MudForm per row is preferable to per-cell forms. The For component bind
 
 A single MudForm per row should bind Model to the row item and wrap all editable cells within it. Each field then only needs For pointing to the property on that row item. When EditMode is Cell, only one field is visible at a time, so field-level validation is reasonable. The validator expression should be a direct lambda such as x => x.ReasonCode rather than a closure. A custom validator method returning a string or IEnumerable<string> can also feed directly into MudTextField.Validation.
 
-MudBlazor's MudTextField Validation delegate signature may vary by version, so the exact Func type should be verified. Grid-level validation on CommitEdit offers another alternative. Validating an entire row during commit is simpler than validating each cell individually. The response will support their inline grid editing approach while suggesting these improvements.</details></think>
+MudBlazor's MudTextField Validation delegate signature may vary by version, so the exact Func type should be verified. Grid-level validation on CommitEdit offers another alternative. Validating an entire row during commit is simpler than validating each cell individually. The response will support their inline grid editing approach while suggesting these improvements.
+</details></think>
 
 _**Agent (default)**_
 

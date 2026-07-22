@@ -15,7 +15,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Starting implementation of phase 16.
 
-Reviewing the roadmap and documentation to determine the exact scope of phase 16. Phase 15's reporting dashboard is noted as already completed. Only research and planning will be performed in this mode; no code edits will be made yet.</details></think>
+Reviewing the roadmap and documentation to determine the exact scope of phase 16. Phase 15's reporting dashboard is noted as already completed. Only research and planning will be performed in this mode; no code edits will be made yet.
+</details></think>
 
 _**Agent (default)**_
 
@@ -24,70 +25,47 @@ I'll look up phase 16 in the roadmap and scan the codebase for what's already in
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
 
-Directory: **** (1 file)
+Directory: **``** (1 file)
 
 | File |
 |------|
 | `docs/phases/phase-16-person-file.md` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reviewing the phase 16 document and related code, including the person file, person aggregate, and national register search.</details></think>
+Reviewing the phase 16 document and related code, including the person file, person aggregate, and national register search.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-16-person-file.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-16-person-file.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -193,25 +171,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
 
 </details></tool-use>
 
@@ -220,7 +185,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Beginning to explore the codebase to prepare for implementing phase 16.
 
-Mapping out key areas to explore: Person entity and aggregates, existing feature patterns, design system templates, national register search, case type PersonId links, certificates, and component libraries. Launching parallel explorations.</details></think>
+Mapping out key areas to explore: Person entity and aggregates, existing feature patterns, design system templates, national register search, case type PersonId links, certificates, and component libraries. Launching parallel explorations.
+</details></think>
 
 _**Agent (default)**_
 
@@ -229,10 +195,8 @@ I'll explore the codebase for Person entities, existing feature patterns, and th
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="task_v2">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="task_v2"><details>
 <summary>Tool use: **task_v2**</summary>
-
 
 Parameters:
 
@@ -263,21 +227,12 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="task_v2"><details>
-<summary>Tool use: **task_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="task_v2">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="task_v2"><details>
 <summary>Tool use: **task_v2**</summary>
-
 
 Parameters:
 
@@ -308,48 +263,32 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="task_v2"><details>
-<summary>Tool use: **task_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking AppPersonCard and AppPropertyGrid. Reviewing seeder data for demo persons. Using GetMunicipalityReport as reference. Examining the design system UI-kit.</details></think>
+Checking AppPersonCard and AppPropertyGrid. Reviewing seeder data for demo persons. Using GetMunicipalityReport as reference. Examining the design system UI-kit.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -375,51 +314,26 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/05-ui-kit.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/05-ui-kit.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/PopulationRegisterSeeder.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/PopulationRegisterSeeder.cs</summary>
 
 </details></tool-use>
 
@@ -428,14 +342,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Reviewing AppPersonCard and AppPropertyGrid from the design system. Checking SearchNationalRegisterHandler and RegistrationCaseDetail for deep link patterns. Looking up demo data for NR 85.12.31-123.
 
-Phase 16 is referenced as item 45 in the phase document.</details></think>
+Phase 16 is referenced as item 45 in the phase document.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -474,34 +387,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/SearchNationalRegisterHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/SearchNationalRegisterHandler.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -596,22 +494,14 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **29** results in **1** directory</summary>
 
-Directory: **** (29 files)
+Directory: **``** (29 files)
 
 | File |
 |------|
@@ -644,13 +534,6 @@ Directory: **** (29 files)
 | `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppEditableSection.razor` |
 | `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFormSection.razor` |
 | `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Feedback/AppInfoBox.razor` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -658,57 +541,34 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Reviewing the AppPropertyGrid spec, DemoWorkflowCaseSeeder, AppTimeline usage, and an existing case detail page pattern for tabs.
 
-Also examining GetRegistrationCaseHandler for DTO mapping patterns.</details></think>
+Also examining GetRegistrationCaseHandler for DTO mapping patterns.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/05-ui-kit.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/05-ui-kit.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppTimeline.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppTimeline.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs</summary>
 
 </details></tool-use>
 
@@ -717,27 +577,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Reviewing the requirements before starting phase 16.
 
-Checking the phase 16 roadmap and route patterns. Reviewing the certificate repository interface. Evaluating whether pagination is needed for the MVP. Considering reusing the NR search endpoint instead of creating a separate SearchPersonFile endpoint. Will examine RegistrationCaseDetailDto, the reporting page UI, and required domain interface extensions.</details></think>
+Checking the phase 16 roadmap and route patterns. Reviewing the certificate repository interface. Evaluating whether pagination is needed for the MVP. Considering reusing the NR search endpoint instead of creating a separate SearchPersonFile endpoint. Will examine RegistrationCaseDetailDto, the reporting page UI, and required domain interface extensions.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -763,38 +616,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Reporting/Pages/MunicipalityReportsPage.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Reporting/Pages/MunicipalityReportsPage.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
 
 </details></tool-use>
 
@@ -805,53 +639,34 @@ Reviewing ICertificateRequestRepository, ListRegistrationCasesHandler, and Regis
 
 Checking the glossary for terms to update. Defining scope for phase 16: GetPersonFile is core, SearchPersonFile wraps NR search, and ListPersonCases may be nested in the response to avoid an extra round-trip. The Cases tab will hold paginated case history. AppPersonCard and AppPropertyGrid are wave two components implemented in this phase.
 
-Reading the ui-kit specification for AppPersonCard. Checking NationalRegisterSearchForm for action column customization.</details></think>
+Reading the ui-kit specification for AppPersonCard. Checking NationalRegisterSearchForm for action column customization.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/05-ui-kit.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/05-ui-kit.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Certificates/ICertificateRequestRepository.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Certificates/ICertificateRequestRepository.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -907,13 +722,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -923,40 +731,27 @@ Ready to plan phase 16.
 
 Settled on placing PersonFileQuery in Infrastructure to keep EF joins out of handlers. Also checking integration test helpers for registration and ListCaseAuditHandler for history.
 
-Checking IRegistrationCaseRepository for GetLatestRegisteredByPersonIdAsync.</details></think>
+Checking IRegistrationCaseRepository for GetLatestRegisteredByPersonIdAsync.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/IRegistrationCaseRepository.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/IRegistrationCaseRepository.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Reporting/MunicipalityReportTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Reporting/MunicipalityReportTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -992,26 +787,18 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking RegistrationTestHelpers to build a full registered case for integration tests.</details></think>
+Checking RegistrationTestHelpers to build a full registered case for integration tests.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1050,25 +837,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/Reporting/ReportingEndpoints.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/Reporting/ReportingEndpoints.cs</summary>
 
 </details></tool-use>
 
@@ -1089,7 +863,8 @@ Access will be restricted to PopulationOfficer only, consistent with case views.
 
 Tests will use actual seeded personas rather than demo stubs. Documentation updates are planned for the phase status, ROADes README, and glossary. The implementation will be structured into seven parts: backend read model and query, application handlers with authorization, API endpoints, web UI kit components, the person file page with search entry points and deep links, tests, and documentation. One open question remains whether SearchPersonFile should be a standalone page or integrated into existing national register search dialogs.
 
-A dedicated `/persons/search` page will serve as the global search entry point for PopulationOfficer. Phases 13 through 14 are already complete in the repository despite the README indicating they were planned. The phase specification is clear enough to proceed without further questions. The implementation plan will be created next.</details></think>
+A dedicated `/persons/search` page will serve as the global search entry point for PopulationOfficer. Phases 13 through 14 are already complete in the repository despite the README indicating they were planned. The phase specification is clear enough to proceed without further questions. The implementation plan will be created next.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1098,10 +873,8 @@ Checking one more reference for case-detail tab patterns and the registration te
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1127,25 +900,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
 
 </details></tool-use>
 
@@ -1154,7 +914,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 MudTabs does not exist in the codebase yet. The person file page will be the first to use tabs.
 
-The design template specifies Overview, Household, Addresses, Cases, and Certificates tabs. The phase document adds History as a timeline of audit entries. Overview will contain identity and domicile summaries. History may be placed on Overview or as a separate tab using AppTimeline. Now drafting the implementation plan.</details></think>
+The design template specifies Overview, Household, Addresses, Cases, and Certificates tabs. The phase document adds History as a timeline of audit entries. Overview will contain identity and domicile summaries. History may be placed on Overview or as a separate tab using AppTimeline. Now drafting the implementation plan.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1163,18 +924,16 @@ I have enough context on Phase 16 and the existing patterns. Creating the implem
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="create_plan">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
 <summary>Tool use: **create_plan**</summary>
-
 
 Parameters:
 
-```json
+````json
 {
   "name": "Phase 16 Person File",
   "overview": "Implement Phase 16 as a read-only Person File feature: compose identity, domicile, household, cases, certificates, and history from existing aggregates via a new query layer, expose three GET slices through the API, and ship a tabbed Blazor page with deep links from case workflows and NR search.",
-  "plan": "# Phase 16 — Person file (read model)\n\n## Goal\n\nDeliver a consolidated **read-only citizen profile** that officers open from NR search, a dedicated lookup page, or case detail pages. No new write tables or domain mutations — only query composition across existing data (Phases 1–14).\n\n## Architecture\n\n&#96;&#96;&#96;mermaid\nflowchart LR\n  subgraph web [Web]\n    SearchPage[PersonSearchPage]\n    FilePage[PersonFilePage]\n    CaseDetail[Case detail pages]\n  end\n  subgraph api [API]\n    PFEndpoints[\"/api/persons/*\"]\n  end\n  subgraph app [Application]\n    GetPF[GetPersonFileHandler]\n    SearchPF[SearchPersonFileHandler]\n    ListCases[ListPersonCasesHandler]\n    Auth[PersonFileAuthorization]\n  end\n  subgraph infra [Infrastructure]\n    Query[PersonFileQuery]\n    Db[(MunicipalDbContext)]\n  end\n  SearchPage --\u003e PFEndpoints\n  FilePage --\u003e PFEndpoints\n  CaseDetail --\u003e FilePage\n  PFEndpoints --\u003e GetPF\n  PFEndpoints --\u003e SearchPF\n  PFEndpoints --\u003e ListCases\n  GetPF --\u003e Auth\n  GetPF --\u003e Query\n  ListCases --\u003e Query\n  SearchPF --\u003e SearchNR[SearchNationalRegisterHandler]\n  Query --\u003e Db\n&#96;&#96;&#96;\n\n**Pattern to follow:** Phase 15 Reporting for multi-source composition ([&#96;GetMunicipalityReportHandler.cs&#96;](src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs)); Phase 5 NR search for lookup ([&#96;SearchNationalRegisterHandler.cs&#96;](src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/SearchNationalRegisterHandler.cs)); case GET for auth + 404 ([&#96;GetRegistrationCaseHandler.cs&#96;](src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs)).\n\n---\n\n## 1. Infrastructure — &#96;PersonFileQuery&#96;\n\nAdd [&#96;PersonFileQuery&#96;](src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs) (interface in Application or Domain, implementation in Infrastructure) to centralize EF joins and avoid N+1 handler logic.\n\n**New query methods:**\n\n| Method | Purpose |\n|--------|---------|\n| &#96;GetPersonHeaderAsync(PersonId)&#96; | Person row + latest registered case’s &#96;SelectedRegisterTarget&#96; for register-type chip |\n| &#96;ListCasesByPersonIdAsync(PersonId)&#96; | Union registration / birth (parent + child) / COA / document-request cases → &#96;PersonCaseSummary&#96; |\n| &#96;ListCertificatesByPersonIdAsync(PersonId)&#96; | From &#96;certificate_requests&#96; (add &#96;ListByPersonIdAsync&#96; to [&#96;ICertificateRequestRepository&#96;](src/SchaerbeekMunicipality.Domain/Certificates/ICertificateRequestRepository.cs)) |\n| &#96;GetHouseholdMembersAsync(PersonId)&#96; | Merge three sources (see below) |\n| &#96;ListAddressHistoryAsync(PersonId)&#96; | Current &#96;Person.DomicileAddress&#96; + snapshots from registration &#96;DeclaredAddress&#96; and COA &#96;PreviousAddress&#96;/&#96;NewAddress&#96; |\n| &#96;ListHistoryEventsAsync(PersonId)&#96; | Registration &#96;CaseAuditEntry&#96; rows for person’s cases + milestone events from other workflows (&#96;OpenedAt&#96;, &#96;ConfirmedAt&#96;, &#96;ClosedAt&#96;, &#96;IssuedAt&#96;) |\n\n**Household composition logic** (document in handler/query comments):\n\n- **Registration:** members from latest registered case’s [&#96;Household&#96;](src/SchaerbeekMunicipality.Domain/Household/Household.cs) (name-only, no PersonId)\n- **Birth — as parent:** children from [&#96;BirthDeclarationParentLink&#96;](src/SchaerbeekMunicipality.Domain/BirthDeclaration/) where &#96;PersonId&#96; matches\n- **Birth — as child:** parents from links on cases where &#96;ChildPersonId&#96; matches\n- **COA:** co-movers from [&#96;ChangeOfAddressHouseholdMemberLink&#96;](src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCase.cs)\n\n**Repo extension:** only &#96;ICertificateRequestRepository.ListByPersonIdAsync&#96; — other tables queried via &#96;PersonFileQuery&#96; on &#96;MunicipalDbContext&#96; (no migration needed).\n\n---\n\n## 2. Application layer\n\nNew feature folder: &#96;Application/Features/PersonFile/&#96;\n\n### Authorization — [&#96;PersonFileAuthorization.cs&#96;](src/SchaerbeekMunicipality.Application/Features/PersonFile/PersonFileAuthorization.cs)\n\n- **&#96;PopulationOfficer&#96; only** (same boundary as registration case view — BackOffice stays on reports, not operational person data)\n- &#96;EnsureCanView(ICurrentOfficer)&#96; → &#96;UnauthorizedAccessException&#96;\n\n### Slices\n\n**&#96;GetPersonFile&#96;** — primary read model\n\n- Input: &#96;PersonId&#96; **or** normalized NR number (two handler overloads or request record with optional fields)\n- Load person via [&#96;IPersonRepository&#96;](src/SchaerbeekMunicipality.Domain/Identity/IPersonRepository.cs); throw &#96;KeyNotFoundException&#96; if missing (middleware → 404)\n- Compose sections into [&#96;GetPersonFileResponse&#96;](src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileResponse.cs):\n  - **Header:** name, NR/BIS formatted, register target, initials for avatar\n  - **Identity:** reuse shapes from [&#96;RegistrationCaseDetailDto&#96;](src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/) (&#96;PersonDto&#96;, civil status, birth place)\n  - **Domicile:** current address + housing situation from latest registered/COA case\n  - **Household / Addresses / Cases / Certificates / History:** from &#96;PersonFileQuery&#96;\n\n**&#96;SearchPersonFile&#96;**\n\n- Reuse [&#96;SearchNationalRegisterRequest&#96;](src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/) + validator\n- Delegate ranking to existing &#96;SearchNationalRegisterHandler&#96;\n- Enrich each match with &#96;PersonId?&#96; (via &#96;GetByRegisterRecordIdAsync&#96; / &#96;GetByNationalRegisterNumberAsync&#96;) and &#96;CanOpenPersonFile&#96; flag\n- Auth: &#96;PersonFileAuthorization.EnsureCanView&#96; (stricter than raw NR search)\n\n**&#96;ListPersonCases&#96;**\n\n- &#96;GET&#96; by &#96;PersonId&#96;; returns sorted &#96;PersonCaseSummary&#96; records with workflow label, status, dates, deep-link path (&#96;/registration/cases/{id}&#96;, &#96;/change-of-address/cases/{id}&#96;, etc.)\n- **No server pagination for MVP** — match existing list handlers; sort by &#96;OpenedAt&#96; desc client-side in &#96;AppDataTable&#96;\n\nRegister all handlers + auth in [&#96;DependencyInjection.cs&#96;](src/SchaerbeekMunicipality.Application/DependencyInjection.cs).\n\n---\n\n## 3. API layer\n\nNew group in [&#96;PersonFileEndpoints.cs&#96;](src/SchaerbeekMunicipality.Api/Features/PersonFile/PersonFileEndpoints.cs):\n\n| Route | Handler |\n|-------|---------|\n| &#96;GET /api/persons/{personId:guid}&#96; | &#96;GetPersonFile&#96; |\n| &#96;GET /api/persons/by-nr/{nrNumber}&#96; | &#96;GetPersonFile&#96; (normalize NR, lookup person) |\n| &#96;GET /api/persons/search?GivenName=\u0026FamilyName=\u0026BirthDate=&#96; | &#96;SearchPersonFile&#96; |\n| &#96;GET /api/persons/{personId:guid}/cases&#96; | &#96;ListPersonCases&#96; |\n\nWire in [&#96;MunicipalApiHostExtensions.cs&#96;](src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs) → &#96;app.MapPersonFileEndpoints()&#96;.\n\n---\n\n## 4. Web layer\n\n### API client\n\n[&#96;IPersonFileApi&#96;](src/SchaerbeekMunicipality.Web/Api/PersonFile/IPersonFileApi.cs) + [&#96;PersonFileApiClient&#96;](src/SchaerbeekMunicipality.Web/Api/PersonFile/PersonFileApiClient.cs) extending [&#96;MunicipalApiClientBase&#96;](src/SchaerbeekMunicipality.Web/Api/MunicipalApiClientBase.cs). Register in [&#96;Web/Api/DependencyInjection.cs&#96;](src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs).\n\n### UI kit (Wave 2 — deferred until now)\n\nPer [&#96;05-ui-kit.md&#96;](docs/design-system/05-ui-kit.md) § AppPropertyGrid and § AppPersonCard:\n\n- **[&#96;AppPropertyGrid.razor&#96;](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPropertyGrid.razor)** — 2-col responsive label/value grid, em-dash for empty\n- **[&#96;AppPersonCard.razor&#96;](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPersonCard.razor)** — &#96;MudAvatar&#96; initials + name + NR + optional &#96;AppStatusChip&#96; for register type\n\n### Pages\n\n**[&#96;PersonFilePage.razor&#96;](src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor)** — &#96;@page \"/persons/{PersonId:guid}\"&#96;\n\n- &#96;RegistrationRoleGate&#96; → &#96;PopulationOfficer&#96;\n- Load full response in &#96;OnParametersSetAsync&#96; (single await batch per Blazor EF rule)\n- Header: &#96;AppPersonCard&#96;\n- **&#96;MudTabs&#96;** (first use in codebase) per [template §10](docs/design-system/06-page-templates.md):\n  - **Overview** — &#96;AppPropertyGrid&#96; identity + domicile facts; &#96;AppTimeline&#96; for recent history\n  - **Household** — &#96;AppDataTable&#96; of members with role + link to person file when &#96;PersonId&#96; known\n  - **Addresses** — current + historical rows\n  - **Cases** — &#96;AppDataTable&#96; with status chips + link buttons\n  - **Certificates** — reference number, type, issued date\n\n**[&#96;PersonSearchPage.razor&#96;](src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonSearchPage.razor)** — &#96;@page \"/persons/search\"&#96;\n\n- Reuse [&#96;NationalRegisterSearchForm.razor&#96;](src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor) with &#96;SearchAsync&#96; → &#96;IPersonFileApi.SearchAsync&#96;\n- Row action: **Open person file** when &#96;PersonId&#96; present; show “Not in population register” when registered flag false\n\n### Navigation \u0026 deep links\n\n- Add **Person lookup** nav item for &#96;PopulationOfficer&#96; in [&#96;MainLayout.razor&#96;](src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor) → &#96;/persons/search&#96;\n- **View person file** button on case detail pages when &#96;PersonId&#96; is set:\n  - [&#96;RegistrationCaseDetail.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor)\n  - [&#96;ChangeOfAddressCaseDetail.razor&#96;](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor)\n  - [&#96;BirthDeclarationCaseDetail.razor&#96;](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor) (child + linked parents)\n  - [&#96;DocumentRequestCaseDetail.razor&#96;](src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor)\n\n---\n\n## 5. Tests\n\nNew [&#96;PersonFileTests.cs&#96;](tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs):\n\n| Test | Setup |\n|------|-------|\n| Registered person returns identity + registration case link | Reuse &#96;CaseDecisionTests.CreateCaseReadyForDecisionAsync&#96; flow → confirm registration → &#96;GetPersonFileHandler&#96; |\n| Unknown NR → 404 | Random NR string → &#96;KeyNotFoundException&#96; |\n| Person with no cases returns header only | Seed person via &#96;PopulationRegisterSeeder&#96; / link without cases |\n| Non-PopulationOfficer → 403 | &#96;RegistrationTestHelpers.SetRole&#96; + assert &#96;UnauthorizedAccessException&#96; |\n| SearchPersonFile enriches PersonId | Search for seeded Jean Dupont / Sofia Nguyen |\n\nOptional HTTP smoke: &#96;GET /api/persons/{id}&#96; with &#96;DemoOfficerTestClient&#96; headers (mirror [&#96;MunicipalityReportTests.cs&#96;](tests/SchaerbeekMunicipality.Integration.Tests/Features/Reporting/MunicipalityReportTests.cs)).\n\n---\n\n## 6. Documentation\n\nUpdate on completion:\n\n- [&#96;docs/phases/phase-16-person-file.md&#96;](docs/phases/phase-16-person-file.md) — status → Complete, delivery notes\n- [&#96;docs/phases/README.md&#96;](docs/phases/README.md) and [&#96;docs/ROADMAP.md&#96;](docs/ROADMAP.md) — mark Phase 16 complete\n- [&#96;docs/GLOSSARY.md&#96;](docs/GLOSSARY.md) — add **Person file** term if missing\n\n---\n\n## Out of scope (per phase spec)\n\n- Editing from person file (Phase 17)\n- FR/NL localization\n- SQL view / dedicated read tables (only add if query performance becomes an issue)\n- Server-side pagination\n- E2E browser test (integration coverage is sufficient for MVP)\n\n---\n\n## Demo script\n\n1. Run AppHost as Population Officer (Marie Dubois)\n2. **Person lookup** → search “Nguyen” → open Sofia’s person file\n3. Tabs show Avenue Rogier domicile (from [&#96;PopulationRegisterSeeder&#96;](src/SchaerbeekMunicipality.Infrastructure/Persistence/PopulationRegisterSeeder.cs)), COA/document cases from [&#96;DemoWorkflowCaseSeeder&#96;](src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs)\n4. From a registration case with linked person → **View person file** deep link\n",
+  "plan": "# Phase 16 — Person file (read model)\n\n## Goal\n\nDeliver a consolidated **read-only citizen profile** that officers open from NR search, a dedicated lookup page, or case detail pages. No new write tables or domain mutations — only query composition across existing data (Phases 1–14).\n\n## Architecture\n\n```mermaid\nflowchart LR\n  subgraph web [Web]\n    SearchPage[PersonSearchPage]\n    FilePage[PersonFilePage]\n    CaseDetail[Case detail pages]\n  end\n  subgraph api [API]\n    PFEndpoints[\"/api/persons/*\"]\n  end\n  subgraph app [Application]\n    GetPF[GetPersonFileHandler]\n    SearchPF[SearchPersonFileHandler]\n    ListCases[ListPersonCasesHandler]\n    Auth[PersonFileAuthorization]\n  end\n  subgraph infra [Infrastructure]\n    Query[PersonFileQuery]\n    Db[(MunicipalDbContext)]\n  end\n  SearchPage --\u003e PFEndpoints\n  FilePage --\u003e PFEndpoints\n  CaseDetail --\u003e FilePage\n  PFEndpoints --\u003e GetPF\n  PFEndpoints --\u003e SearchPF\n  PFEndpoints --\u003e ListCases\n  GetPF --\u003e Auth\n  GetPF --\u003e Query\n  ListCases --\u003e Query\n  SearchPF --\u003e SearchNR[SearchNationalRegisterHandler]\n  Query --\u003e Db\n```\n\n**Pattern to follow:** Phase 15 Reporting for multi-source composition ([`GetMunicipalityReportHandler.cs`](src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs)); Phase 5 NR search for lookup ([`SearchNationalRegisterHandler.cs`](src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/SearchNationalRegisterHandler.cs)); case GET for auth + 404 ([`GetRegistrationCaseHandler.cs`](src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs)).\n\n---\n\n## 1. Infrastructure — `PersonFileQuery`\n\nAdd [`PersonFileQuery`](src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs) (interface in Application or Domain, implementation in Infrastructure) to centralize EF joins and avoid N+1 handler logic.\n\n**New query methods:**\n\n| Method | Purpose |\n|--------|---------|\n| `GetPersonHeaderAsync(PersonId)` | Person row + latest registered case’s `SelectedRegisterTarget` for register-type chip |\n| `ListCasesByPersonIdAsync(PersonId)` | Union registration / birth (parent + child) / COA / document-request cases → `PersonCaseSummary` |\n| `ListCertificatesByPersonIdAsync(PersonId)` | From `certificate_requests` (add `ListByPersonIdAsync` to [`ICertificateRequestRepository`](src/SchaerbeekMunicipality.Domain/Certificates/ICertificateRequestRepository.cs)) |\n| `GetHouseholdMembersAsync(PersonId)` | Merge three sources (see below) |\n| `ListAddressHistoryAsync(PersonId)` | Current `Person.DomicileAddress` + snapshots from registration `DeclaredAddress` and COA `PreviousAddress`/`NewAddress` |\n| `ListHistoryEventsAsync(PersonId)` | Registration `CaseAuditEntry` rows for person’s cases + milestone events from other workflows (`OpenedAt`, `ConfirmedAt`, `ClosedAt`, `IssuedAt`) |\n\n**Household composition logic** (document in handler/query comments):\n\n- **Registration:** members from latest registered case’s [`Household`](src/SchaerbeekMunicipality.Domain/Household/Household.cs) (name-only, no PersonId)\n- **Birth — as parent:** children from [`BirthDeclarationParentLink`](src/SchaerbeekMunicipality.Domain/BirthDeclaration/) where `PersonId` matches\n- **Birth — as child:** parents from links on cases where `ChildPersonId` matches\n- **COA:** co-movers from [`ChangeOfAddressHouseholdMemberLink`](src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCase.cs)\n\n**Repo extension:** only `ICertificateRequestRepository.ListByPersonIdAsync` — other tables queried via `PersonFileQuery` on `MunicipalDbContext` (no migration needed).\n\n---\n\n## 2. Application layer\n\nNew feature folder: `Application/Features/PersonFile/`\n\n### Authorization — [`PersonFileAuthorization.cs`](src/SchaerbeekMunicipality.Application/Features/PersonFile/PersonFileAuthorization.cs)\n\n- **`PopulationOfficer` only** (same boundary as registration case view — BackOffice stays on reports, not operational person data)\n- `EnsureCanView(ICurrentOfficer)` → `UnauthorizedAccessException`\n\n### Slices\n\n**`GetPersonFile`** — primary read model\n\n- Input: `PersonId` **or** normalized NR number (two handler overloads or request record with optional fields)\n- Load person via [`IPersonRepository`](src/SchaerbeekMunicipality.Domain/Identity/IPersonRepository.cs); throw `KeyNotFoundException` if missing (middleware → 404)\n- Compose sections into [`GetPersonFileResponse`](src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileResponse.cs):\n  - **Header:** name, NR/BIS formatted, register target, initials for avatar\n  - **Identity:** reuse shapes from [`RegistrationCaseDetailDto`](src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/) (`PersonDto`, civil status, birth place)\n  - **Domicile:** current address + housing situation from latest registered/COA case\n  - **Household / Addresses / Cases / Certificates / History:** from `PersonFileQuery`\n\n**`SearchPersonFile`**\n\n- Reuse [`SearchNationalRegisterRequest`](src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/) + validator\n- Delegate ranking to existing `SearchNationalRegisterHandler`\n- Enrich each match with `PersonId?` (via `GetByRegisterRecordIdAsync` / `GetByNationalRegisterNumberAsync`) and `CanOpenPersonFile` flag\n- Auth: `PersonFileAuthorization.EnsureCanView` (stricter than raw NR search)\n\n**`ListPersonCases`**\n\n- `GET` by `PersonId`; returns sorted `PersonCaseSummary` records with workflow label, status, dates, deep-link path (`/registration/cases/{id}`, `/change-of-address/cases/{id}`, etc.)\n- **No server pagination for MVP** — match existing list handlers; sort by `OpenedAt` desc client-side in `AppDataTable`\n\nRegister all handlers + auth in [`DependencyInjection.cs`](src/SchaerbeekMunicipality.Application/DependencyInjection.cs).\n\n---\n\n## 3. API layer\n\nNew group in [`PersonFileEndpoints.cs`](src/SchaerbeekMunicipality.Api/Features/PersonFile/PersonFileEndpoints.cs):\n\n| Route | Handler |\n|-------|---------|\n| `GET /api/persons/{personId:guid}` | `GetPersonFile` |\n| `GET /api/persons/by-nr/{nrNumber}` | `GetPersonFile` (normalize NR, lookup person) |\n| `GET /api/persons/search?GivenName=\u0026FamilyName=\u0026BirthDate=` | `SearchPersonFile` |\n| `GET /api/persons/{personId:guid}/cases` | `ListPersonCases` |\n\nWire in [`MunicipalApiHostExtensions.cs`](src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs) → `app.MapPersonFileEndpoints()`.\n\n---\n\n## 4. Web layer\n\n### API client\n\n[`IPersonFileApi`](src/SchaerbeekMunicipality.Web/Api/PersonFile/IPersonFileApi.cs) + [`PersonFileApiClient`](src/SchaerbeekMunicipality.Web/Api/PersonFile/PersonFileApiClient.cs) extending [`MunicipalApiClientBase`](src/SchaerbeekMunicipality.Web/Api/MunicipalApiClientBase.cs). Register in [`Web/Api/DependencyInjection.cs`](src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs).\n\n### UI kit (Wave 2 — deferred until now)\n\nPer [`05-ui-kit.md`](docs/design-system/05-ui-kit.md) § AppPropertyGrid and § AppPersonCard:\n\n- **[`AppPropertyGrid.razor`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPropertyGrid.razor)** — 2-col responsive label/value grid, em-dash for empty\n- **[`AppPersonCard.razor`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPersonCard.razor)** — `MudAvatar` initials + name + NR + optional `AppStatusChip` for register type\n\n### Pages\n\n**[`PersonFilePage.razor`](src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor)** — `@page \"/persons/{PersonId:guid}\"`\n\n- `RegistrationRoleGate` → `PopulationOfficer`\n- Load full response in `OnParametersSetAsync` (single await batch per Blazor EF rule)\n- Header: `AppPersonCard`\n- **`MudTabs`** (first use in codebase) per [template §10](docs/design-system/06-page-templates.md):\n  - **Overview** — `AppPropertyGrid` identity + domicile facts; `AppTimeline` for recent history\n  - **Household** — `AppDataTable` of members with role + link to person file when `PersonId` known\n  - **Addresses** — current + historical rows\n  - **Cases** — `AppDataTable` with status chips + link buttons\n  - **Certificates** — reference number, type, issued date\n\n**[`PersonSearchPage.razor`](src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonSearchPage.razor)** — `@page \"/persons/search\"`\n\n- Reuse [`NationalRegisterSearchForm.razor`](src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor) with `SearchAsync` → `IPersonFileApi.SearchAsync`\n- Row action: **Open person file** when `PersonId` present; show “Not in population register” when registered flag false\n\n### Navigation \u0026 deep links\n\n- Add **Person lookup** nav item for `PopulationOfficer` in [`MainLayout.razor`](src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor) → `/persons/search`\n- **View person file** button on case detail pages when `PersonId` is set:\n  - [`RegistrationCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor)\n  - [`ChangeOfAddressCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor)\n  - [`BirthDeclarationCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor) (child + linked parents)\n  - [`DocumentRequestCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor)\n\n---\n\n## 5. Tests\n\nNew [`PersonFileTests.cs`](tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs):\n\n| Test | Setup |\n|------|-------|\n| Registered person returns identity + registration case link | Reuse `CaseDecisionTests.CreateCaseReadyForDecisionAsync` flow → confirm registration → `GetPersonFileHandler` |\n| Unknown NR → 404 | Random NR string → `KeyNotFoundException` |\n| Person with no cases returns header only | Seed person via `PopulationRegisterSeeder` / link without cases |\n| Non-PopulationOfficer → 403 | `RegistrationTestHelpers.SetRole` + assert `UnauthorizedAccessException` |\n| SearchPersonFile enriches PersonId | Search for seeded Jean Dupont / Sofia Nguyen |\n\nOptional HTTP smoke: `GET /api/persons/{id}` with `DemoOfficerTestClient` headers (mirror [`MunicipalityReportTests.cs`](tests/SchaerbeekMunicipality.Integration.Tests/Features/Reporting/MunicipalityReportTests.cs)).\n\n---\n\n## 6. Documentation\n\nUpdate on completion:\n\n- [`docs/phases/phase-16-person-file.md`](docs/phases/phase-16-person-file.md) — status → Complete, delivery notes\n- [`docs/phases/README.md`](docs/phases/README.md) and [`docs/ROADMAP.md`](docs/ROADMAP.md) — mark Phase 16 complete\n- [`docs/GLOSSARY.md`](docs/GLOSSARY.md) — add **Person file** term if missing\n\n---\n\n## Out of scope (per phase spec)\n\n- Editing from person file (Phase 17)\n- FR/NL localization\n- SQL view / dedicated read tables (only add if query performance becomes an issue)\n- Server-side pagination\n- E2E browser test (integration coverage is sufficient for MVP)\n\n---\n\n## Demo script\n\n1. Run AppHost as Population Officer (Marie Dubois)\n2. **Person lookup** → search “Nguyen” → open Sofia’s person file\n3. Tabs show Avenue Rogier domicile (from [`PopulationRegisterSeeder`](src/SchaerbeekMunicipality.Infrastructure/Persistence/PopulationRegisterSeeder.cs)), COA/document cases from [`DemoWorkflowCaseSeeder`](src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs)\n4. From a registration case with linked person → **View person file** deep link\n",
   "todos": [
     {
       "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
@@ -1218,7 +977,7 @@ Parameters:
     }
   ]
 }
-```
+````
 Additional data:
 
 ```json
@@ -1242,13 +1001,6 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
-<summary>Tool use: **create_plan**</summary>
-
 </details></tool-use>
 
 ---
@@ -1263,10 +1015,21 @@ To-do's from the plan have already been created. Do not create them again. Mark 
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
-<summary>Tool use: **todo_write**</summary>
+<think><details><summary>Thought Process</summary>
+Starting Phase 16 — Person File read model implementation.
 
+Marking the first todo as in_progress and exploring the codebase structure to prepare for implementation.
+</details></think>
+
+_**Agent (default)**_
+
+Implementing Phase 16 per the plan. Starting with the infrastructure query layer and exploring the codebase structure.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
 
 Parameters:
 
@@ -1275,285 +1038,3078 @@ Parameters:
   "merge": true
 }
 ```
-Status: **loading**
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "in_progress"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "pending"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "pending"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "pending"
+    },
+    {
+      "content": "Add IPersonFileApi client, PersonSearchPage, PersonFilePage with MudTabs",
+      "id": "web-pages",
+      "status": "pending"
+    },
+    {
+      "content": "Add nav item and View person file links on case detail pages",
+      "id": "deep-links-nav",
+      "status": "pending"
+    },
+    {
+      "content": "Add PersonFileTests (happy path, 404, empty cases, auth)",
+      "id": "integration-tests",
+      "status": "pending"
+    },
+    {
+      "content": "Update phase-16, ROADMAP, phases README, GLOSSARY",
+      "id": "docs",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "pending"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "pending"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "pending"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "pending"
+    },
+    {
+… (output truncated)
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/MunicipalDbContext.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/CertificateRequestRepository.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Identity/Person.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure",
+  "pattern": "AddScoped|AddInfrastructure"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure",
+  "pattern": "AddScoped|AddInfrastructure",
+  "topFiles": [
+    {
+      "matchCount": 20,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Integrations/IntegrationOutboxServiceCollectionExtensions.cs"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 21
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing additional domain entities and existing DTO patterns to prepare for the person file implementation.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/BirthDeclaration/BirthDeclarationCase.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCase.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/IdentityDocuments/DocumentRequestCase.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase",
+  "pattern": "PersonDto|BelgianAddressDto"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase",
+  "pattern": "PersonDto|BelgianAddressDto",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 6
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing RegistrationCaseDetailDto, CaseAuditEntry, RegistrationCase fields, BirthDeclarationParentLink EF configuration, and Application dependency injection.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/CaseAuditEntry.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Certificates/CertificateRequest.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Creating the IPersonFileQuery interface in the Application layer.
+
+Next steps include implementing PersonFileQuery in Infrastructure, updating ICertificateRequestRepository, adding DTOs and handlers in Application, and creating API endpoints. Existing files such as RegistrationCaseAuthorization, SearchNationalRegisterResponse, EF configurations, and DependencyInjection configuration still need review.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/RegistrationCaseAuthorization.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/SearchNationalRegister/SearchNationalRegisterResponse.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure",
+  "pattern": "BirthDeclarationParentLink|ChangeOfAddressHouseholdMemberLink"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure",
+  "pattern": "BirthDeclarationParentLink|ChangeOfAddressHouseholdMemberLink",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/BirthDeclarationCaseConfiguration.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260712120219_Phase14PassportIdRequest.Designer.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260711184545_OutboundNotificationDeliveryLifecycle.Designer.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260707192416_Phase12BirthDeclaration.Designer.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260709193137_Phase13ChangeOfAddress.Designer.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/ChangeOfAddressCaseConfiguration.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/MunicipalDbContextModelSnapshot.cs"
+    }
+  ],
+  "totalFiles": 7,
+  "totalMatches": 11
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Creating the query interface and implementation.
+
+Checking RegistrationCaseRepository and HouseholdRepository patterns.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/RegistrationCaseRepository.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/NationalRegister/NationalRegisterNumber.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/Reporting/ReportingApiClient.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Starting implementation by creating the PersonFile query DTOs and query interface in the Application layer.
+
+Defining six query result records for the PersonFile interface. Next steps are implementing the infrastructure query class, updating the certificate request repository, and registering the service in the DI container.
+
+Checking how to parse national register numbers for the by-NR lookup.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/NationalRegister/NationalRegisterNumber.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/HouseholdRepository.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Creating all required files in a single batch.
+
+Starting the application layer implementation. Defining the PersonFileQuery interface and PersonCaseSummary record in the Application layer.
+
+Defining the remaining query model records in the Application layer: PersonCertificateSummary, PersonHouseholdMemberSummary, and PersonAddressHistoryEntry.
+
+Completing the AddressHistoryEntry record with Municipality, HousingSituation, EffectiveFrom, and Source fields. Adding the PersonHistoryEvent record with Title, Timestamp, Description, and Source. Implementing the IPersonFileQuery interface with GetRegisterTargetAsync and ListCasesByPersonIdAsync methods.
+
+Adding the remaining query methods to the IPersonFileQuery interface: GetHouseholdMembersAsync, ListAddressHistoryAsync, and ListHistoryEventsAsync.
+
+Planning the GetPersonFileHandler to map query results to response DTOs.
+
+Housing situation will be sourced from the latest COA or registration case.
+
+Reviewing GetRegistrationCaseHandler Map for PersonDto and CivilStatus patterns.
+
+Mapping out the Entity Framework query logic for each read model.
+
+Domicile data comes directly from Person.DomicileAddress. Birth parent links require querying birth cases with Include ParentLinks. Household members as parents are found by querying birth cases where the person appears in parent links. Household members as children are found by querying birth cases where ChildPersonId matches the person. COA records are identified by checking PersonId or household member links.
+
+Realized EF Core's `OwnsMany` ParentLinks collection may require loading all birth cases into memory for filtering, since direct database queries against owned collections can be problematic.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/BirthDeclarationCaseConfiguration.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The PersonFileQuery approach mirrors the reporting pattern. It loads birth cases with parent links via Include and filters them in memory.
+
+All required files are being created in batches. This covers the query interface and implementation, repository updates, authorization, response and handler classes, endpoint registration, and DI configuration.
+
+UI components and API client are next. SearchPersonFile will reuse the national register handler and repository. GetPersonFile will look up by national register number. The housing situation will come from the latest registered registration case or confirmed COA. Domain enums and tests still need review.
+</details></think>
+
+_**Agent (default)**_
+
+Creating core infrastructure and application files.
 
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/IPersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Certificates/ICertificateRequestRepository.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/CertificateRequestRepository.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/CertificateRequestRepository.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Starting the main implementation file, PersonFileQuery.cs.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Registering PersonFileQuery in the Infrastructure dependency injection container.
+
+Checking whether EF Core supports querying owned collections directly in ChangeOfAddressCase. The coaCases query may need in-memory filtering instead of Include and Where. Next step is creating the application handlers.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
 
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "completed"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "in_progress"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "pending"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "pending"
+    },
+    {
+      "content": "Add IPersonFileApi client, PersonSearchPage, PersonFilePage with MudTabs",
+      "id": "web-pages",
+      "status": "pending"
+    },
+    {
+      "content": "Add nav item and View person file links on case detail pages",
+      "id": "deep-links-nav",
+      "status": "pending"
+    },
+    {
+      "content": "Add PersonFileTests (happy path, 404, empty cases, auth)",
+      "id": "integration-tests",
+      "status": "pending"
+    },
+    {
+      "content": "Update phase-16, ROADMAP, phases README, GLOSSARY",
+      "id": "docs",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "in_progress"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "pending"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "pending"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "pending"
+    },
+… (output truncated)
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+Creating all application layer files.
 
-</details>
-</tool-use>
+Building the authorization class and three response handlers. The GetPersonFile handler will load the person record and compose the final response. Housing situation will be pulled from the latest registered case or confirmed COA.
+</details></think>
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/PersonFileAuthorization.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileResponse.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/SearchPersonFile/SearchPersonFileResponse.cs</summary>
 
-Status: **loading**
+</details></tool-use>
 
+_**Agent (default)**_
 
-</details>
-</tool-use>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/SearchPersonFile/SearchPersonFileHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesResponse.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Removing the unused INationalRegisterRepository dependency from SearchPersonFileHandler.
+
+Checking whether IChangeOfAddressCaseRepository exists and supports ListAsync.
+</details></think>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/ChangeOfAddress",
+  "pattern": "ListAsync"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/ChangeOfAddress",
+  "pattern": "ListAsync",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/ChangeOfAddress/IChangeOfAddressCaseRepository.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/SearchPersonFile/SearchPersonFileHandler.cs</summary>
 
-</details>
-</tool-use>
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Adding the missing `using` directive for `ChangeOfAddressCaseStatus` in `GetPersonFileHandler`.
+
+Checking compilation. Creating API endpoints.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+The string to replace was not found in the file.
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportEndpoint.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/Registration/SearchNationalRegister/SearchNationalRegisterEndpoint.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+Fixing GetPersonFileHandler imports and creating API endpoints.
+</details></think>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/PersonFile/PersonFileEndpoints.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/PersonFile/GetPersonFile/GetPersonFileEndpoint.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/PersonFile/SearchPersonFile/SearchPersonFileEndpoint.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/PersonFile/ListPersonCases/ListPersonCasesEndpoint.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The `/search` route may conflict with `/{personId:guid}` if defined after it.
+
+Reordering PersonFileEndpoints so `/search` and `/by-nr/` appear before `/{personId:guid}`. The `/cases` route is unaffected.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Features/PersonFile/PersonFileEndpoints.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "completed"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "completed"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "in_progress"
+    },
+    {
+      "content": "Add IPersonFileApi client, PersonSearchPage, PersonFilePage with MudTabs",
+      "id": "web-pages",
+      "status": "pending"
+    },
+    {
+      "content": "Add nav item and View person file links on case detail pages",
+      "id": "deep-links-nav",
+      "status": "pending"
+    },
+    {
+      "content": "Add PersonFileTests (happy path, 404, empty cases, auth)",
+      "id": "integration-tests",
+      "status": "pending"
+    },
+    {
+      "content": "Update phase-16, ROADMAP, phases README, GLOSSARY",
+      "id": "docs",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "completed"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "in_progress"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "pending"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "pending"
+
+… (output truncated)
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatusChip.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs</summary>
 
-Status: **loading**
+</details></tool-use>
 
+_**Agent (default)**_
 
-</details>
-</tool-use>
+<think><details><summary>Thought Process</summary>
+Creating UI kit components and web pages.
+
+Reviewing NationalRegisterSearchForm and MunicipalApiClientBase to understand integration patterns.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-</details></tool-use>
+Parameters:
 
-_**Agent (default)**_
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "NationalRegisterFormatting"
+}
+```
+Additional data:
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "NationalRegisterFormatting",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Municipal/NationalRegisterFormatting.cs"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 3
+}
+```
+Status: **completed**
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
+<think><details><summary>Thought Process</summary>
+Searching for the NationalRegisterSearchMatch type.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "NationalRegisterSearchMatch"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "NationalRegisterSearchMatch",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchModels.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/OpenDocumentRequestDialog.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor"
+    }
+  ],
+  "totalFiles": 6,
+  "totalMatches": 16
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppDataTable.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+Checking whether NationalRegisterSearchModels.cs needs extension for PersonId.
+</details></think>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchModels.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+Evaluating whether to extend NationalRegisterSearchMatch or create a new PersonFileSearchMatch for PersonSearchPage. The SearchPersonFile response includes PersonId and CanOpenPersonFile.
 
-</details>
-</tool-use>
+Adding optional PersonId and CanOpenPersonFile to NationalRegisterSearchMatch avoids side effects on other usages. A separate record for the person search page remains an alternative.
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+Settled on adding an optional `PersonId` parameter to `NationalRegisterSearchMatch` with a default value of null. This preserves existing `Map()` call compatibility while enabling the `CanOpenPersonFile` property. Next step is creating the UI components and pages.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPropertyGrid.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPersonCard.razor</summary>
 
-</details>
-</tool-use>
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchModels.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/PersonFile/IPersonFileApi.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/PersonFile/PersonFileApiClient.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Adding a @using directive for NationalRegisterFormatting in AppPersonCard. It belongs to the Municipal namespace.
+
+Checking _Imports.razor.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/_Imports.razor",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "NationalRegisterFormatting|_Imports"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "NationalRegisterFormatting|_Imports",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
 <summary>Tool use: **read_file_v2**</summary>
+File not found
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Searching for the imports file.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web`** (5 files)
+
+| File |
+|------|
+| `DesignSystem/_Imports.razor` |
+| `Auth/_Imports.razor` |
+| `Components/_Imports.razor` |
+| `Features/_Imports.razor` |
+| `Municipal/_Imports.razor` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reading DesignSystem/_Imports.razor to check if a Municipal namespace import is needed for AppPersonCard.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+AppPersonCard needs a `@using` directive for `SchaerbeekMunicipality.Web.Municipal` to access `NationalRegisterFormatting`.
+
+Proceeding to create PersonFilePage and PersonSearchPage.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPersonCard.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonSearchPage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Adding the `@using` directive for `PersonFileSearchMatchDto` in `PersonSearchPage`.
+
+Also fixing `PersonFilePage` by adding `AppSeverity` and DesignSystem token imports. Next step is adding deep links to case detail pages and navigation, then building to catch errors.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonSearchPage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor",
+  "pattern": "AppPageHeader|Person\\?"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor",
+  "pattern": "AppPageHeader|Person\\?",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor",
+  "pattern": "AppPageHeader"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor",
+  "pattern": "AppPageHeader",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing AppPageHeader sections across case details to add the View person file button.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor",
+  "pattern": "AppPageHeader"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor",
+  "pattern": "AppPageHeader",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor",
+  "pattern": "AppPageHeader"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor",
+  "pattern": "AppPageHeader",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking available fields on each case detail DTO for PersonId.
+
+RegistrationCaseDetailDto has Person?.Id. Need PersonId for ChangeOfAddress and DocumentRequest. Childrent links for Birth declaration. Grepping for PersonId in these DTOs.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/Get*Case*Dto*",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features",
+  "pattern": "PersonId"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features",
+  "pattern": "PersonId",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/GetChangeOfAddressCase",
+  "pattern": "PersonId|PersonGivenName"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/GetChangeOfAddressCase",
+  "pattern": "PersonId|PersonGivenName",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/GetChangeOfAddressCase/ChangeOfAddressCaseDetailDto.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/GetChangeOfAddressCase/GetChangeOfAddressCaseHandler.cs"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 8
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/GetDocumentRequestCase",
+  "pattern": "PersonId"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/GetDocumentRequestCase",
+  "pattern": "PersonId",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/GetDocumentRequestCase/GetDocumentRequestCaseHandler.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/GetBirthDeclarationCase",
+  "pattern": "PersonId|ChildPerson"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/GetBirthDeclarationCase",
+  "pattern": "PersonId|ChildPerson",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/GetBirthDeclarationCase/GetBirthDeclarationCaseHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/GetBirthDeclarationCase/BirthDeclarationCaseDetailDto.cs"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking BirthDeclarationCaseDetailDto for the ChildPersonId field.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/GetBirthDeclarationCase/BirthDeclarationCaseDetailDto.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The birth declaration DTO does not expose ChildPersonId. Only parents have PersonId.
+
+I'll add a "View person file" link for each parent in the birth detail card. The child link will be skipped if the child isn't registered yet. I'm also deciding where to place the button—header, resident, or applicant cards—and noting that registration uses `_case.Person?.Id`, while COA and document handlers use `_case.PersonId`.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/IdentityDocuments/GetDocumentRequestCase/GetDocumentRequestCaseHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Deciding between creating a reusable PersonFileLinkButton component or using an inline MudButton.
+
+Planning where to place the person file link buttons. Registration will show one before the back-to-list button. COA and document pages will use PersonId. Birth page will show one per parent or in the header.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Adding a View person file button next to each parent in the birth declaration list.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "completed"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "completed"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "completed"
+    },
+    {
+      "content": "Add IPersonFileApi client, PersonSearchPage, PersonFilePage with MudTabs",
+      "id": "web-pages",
+      "status": "completed"
+    },
+    {
+      "content": "Add nav item and View person file links on case detail pages",
+      "id": "deep-links-nav",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileTests (happy path, 404, empty cases, auth)",
+      "id": "integration-tests",
+      "status": "in_progress"
+    },
+    {
+      "content": "Update phase-16, ROADMAP, phases README, GLOSSARY",
+      "id": "docs",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "completed"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "completed"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "in_
+… (output truncated)
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build --no-restore 2&gt;&amp;1 | tail -40</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -40
+```
+
+```
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(22,30): error CS0234: The type or namespace name 'Application' does not exist in the namespace 'SchaerbeekMunicipality' (are you missing an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs(2,30): error CS0234: The type or namespace name 'Application' does not exist in the namespace 'SchaerbeekMunicipality' (are you missing an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs(12,71): error CS0246: The type or namespace name 'IPersonFileQuery' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs(27,37): error CS0246: The type or namespace name 'PersonCaseSummary' could not be found (are you missing a using directive or an assembly reference?) [/Use
+… (output truncated)
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+A clean architecture violation was identified: infrastructure cannot reference the application layer.
+
+IPersonFileQuery and its result records will move to the Domain project. Infrastructure will implement the interface there. Existing patterns in the codebase are being checked for consistency.
+</details></think>
+
+_**Agent (default)**_
+
+Infrastructure can't reference Application. Moving the query interface and models to the Domain layer.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/PersonFile/IPersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="delete_file"><details>
+<summary>Tool use: **delete_file**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+The string to replace was not found in the file.
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+The string to replace was not found in the file.
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Adding the missing `using Domain.PersonFile` directive to `GetPersonFileHandler`.
+
+Reading files to fix imports. Restoring the Repositories import in Infrastructure's DependencyInjection.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Fixing the Infrastructure DependencyInjection issue around lines 20–25.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether the Infrastructure DI layer still imports Repositories.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs",
+  "pattern": "Repositories"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs",
+  "pattern": "Repositories",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I accidentally removed the Repositories using directive while editing DependencyInjection.
+
+I need to restore the missing using directive.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build 2&gt;&amp;1 | tail -30</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -30
+```
+
+```
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DependencyInjection.cs(85,7): error CS0105: The using directive for 'SchaerbeekMunicipality.Application.Features.PersonFile' appeared previously in this namespace [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj]
+
+Build FAILED.
+
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DependencyInjection.cs(85,7): error CS0105: The using directive for 'SchaerbeekMunicipality.Application.Features.PersonFile' appeared previously in this namespace [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:06.52
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking Application DI imports around lines 80–95 for duplicate entries.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Removing a duplicate using directive.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build 2&gt;&amp;1 | tail -20</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -20
+```
+
+```
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor(69,25): error RZ2012: Component 'AppDataTable' expects a value for the parameter 'Caption', but a value may not have been provided. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor(105,25): error RZ2012: Component 'AppDataTable' expects a value for the parameter 'Caption', but a value may not have been provided. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor(136,25): error RZ2012: Component 'AppDataTable' expects a value for the parameter 'Caption', but a value may not have been provided. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor(171,25): error RZ2012: Component 'AppDataTable' expects a value for the parameter 'Caption', but a value may n
+… (output truncated)
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Fixing PersonFilePage by adding Caption to AppDataTable and adjusting MudTabs PanelClass for newer MudBlazor compatibility.
+
+Checking AppDataTable's required parameters.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppDataTable.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "AppDataTable"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "AppDataTable",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 29
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking RegistrationCaseDetail for Caption usage.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Fixing PersonFilePage by adding Caption to each AppDataTable and removing PanelClass from MudTabs.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing existing test files to understand the registration and search flows before creating integration tests.
+
+Also examining MunicipalAppFactory and DemoOfficerTestClient.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "DemoOfficerTestClient"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "DemoOfficerTestClient",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Reporting/MunicipalityReportTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 11
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Starting to write PersonFileTests.
+
+Planning three test scenarios for PersonFileTests: registered person via decision flow, unknown NR returning KeyNotFoundException, and person with no cases. Checking MunicipalAppFactory seeding next.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/NationalRegisterSeeder.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Persons without cases can be seeded via PopulationRegisterSeeder.
+
+Call PopulationRegisterSeeder.SeedAsync in tests after factory initialization. For registered person tests, follow the CaseDecisionTests flow and extract the person ID from the registration after confirmation. Now writing PersonFileTests.cson.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I mistakenly treated CaseDecisionTests.CreateCaseReadyForDecisionAsync as public; it is actually private.
+
+The private method won't compile. I'll add a helper or duplicate the setup in personFileTests.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs",
+  "pattern": "CreateCaseReadyForDecisionAsync"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs",
+  "pattern": "CreateCaseReadyForDecisionAsync",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The registration flow is private. I'll inline it in PersonFileTests or copy the helper.
+
+Reading MunicipalityReportTests to replicate its completed registration pattern.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Reporting/MunicipalityReportTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether MunicipalityReportTests defines its own CreateCaseReadyForDecisionAsync method at the bottom of that file.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Reporting/MunicipalityReportTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Adding a private helper method to PersonFileTests, copied from MunicipalityReportTests.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether to remove an unused Domain.Address import. DeclareAddressRequest may reside in the Application layer.
+
+Building and running tests. Fixing the UnknownNationalRegisterNumber test by ensuring the stub sequence does not exist. Validating that ArgumentException wrapping works correctly.
+
+Using sequence 999 for the unknown person stub. The 11-digit national register number will trigger ArgumentException, which the handler converts to KeyNotFoundException for the 404 response.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build 2&gt;&amp;1 | tail -15 &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter &#34;FullyQualifiedName~PersonFileTests&#34; --no-build 2&gt;&amp;1 | tail -25</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -15 && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "FullyQualifiedName~PersonFileTests" --no-build 2>&1 | tail -25
+```
+
+```
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs(50,60): error CS1503: Argument 1: cannot convert from 'SchaerbeekMunicipality.Domain.Identity.PersonId?' to 'SchaerbeekMunicipality.Domain.Identity.PersonId' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs(90,13): error CS1503: Argument 1: cannot convert from 'SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterNumber?' to 'SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterNumber' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs(153,13): error CS1503: Argument 1: cannot convert from 'SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterNumber?' to 'SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterNumber' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj]
+  SchaerbeekMunicipality.AppHost -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
+
+Build FAILED.
+
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs(50,60): error CS150
+… (output truncated)
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Fixing nullable issues in the tests.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The `.Value` property may be incorrect for the `NationalRegisterNumber` record struct.
+
+Checking the `IPersonRepository` signature.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Identity/IPersonRepository.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The national register number must be accessed via `jean.NationalRegisterNumber`.
+
+The national register number value is accessed via `.Value`, requiring two levels of unwrapping from the nullable struct.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/NationalRegister/NationalRegisterPerson.cs",
+  "pattern": "NationalRegisterNumber"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/NationalRegister/NationalRegisterPerson.cs",
+  "pattern": "NationalRegisterNumber",
+  "topFiles": [
+    {
+      "matchCount": 6,
+      "uri": "src/SchaerbeekMunicipality.Domain/NationalRegister/NationalRegisterPerson.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 6
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Considering whether `.Value` is needed on the nullable `NationalRegisterNumber`.
+
+The compiler error indicates the nullable `NationalRegisterNumber` was passed directly instead of unwrapping it with `.Value`. The correct approach is to cast or unwrap the nullable value type before passing it.
+
+Realized the double `.Value` access was incorrect. `NationalRegisterNumber` is a nullable struct, so `.Value` on the outer nullable returns the inner struct, not a string. The inner struct also has a `Value` property returning a string, which caused the type mismatch. The correct approach is to unwrap the outer nullable once before passing it.
+
+Will explicitly unwrap the nullable by assigning it to a local variable with null coalescing before passing it to the repository method.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether the ambiguous `.Value` issue applies to `NationalRegisterNumber`.
+
+Considering `GetValueOrDefault()` or casting for nullable values. Checking how other tests handle this.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "GetByNationalRegisterNumberAsync"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "GetByNationalRegisterNumberAsync",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Beginning implementation of the person file read model using C# pattern matching.
+
+Using pattern matching to extract the national register number and validate it before querying the repository.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether NationalRegisterNumber.Value maps to a string field.
+
+Pattern matching `is { } nr` is preferred over `.Value` for nullable NationalRegisterNumber. Checking PersonId for a similar struct wrapper.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Identity/PersonId.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build tests/SchaerbeekMunicipality.Integration.Tests 2&gt;&amp;1 | tail -20</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build tests/SchaerbeekMunicipality.Integration.Tests 2>&1 | tail -20
+```
+
+```
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.60
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The build succeeded. The `.Value` property correctly unwraps the nullable `NationalRegisterNumber` struct.
+
+PersonId unwraps correctly too. Now running tests.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter &#34;FullyQualifiedName~PersonFileTests&#34; 2&gt;&amp;1 | tail -30</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "FullyQualifiedName~PersonFileTests" 2>&1 | tail -30
+```
+
+```
+   System.NotSupportedException : SQLite does not support expressions of type 'DateTimeOffset' in ORDER BY clauses. Convert the values to a supported type, or use LINQ to Objects to order the results on the client side.
+  Stack Trace:
+     at Microsoft.EntityFrameworkCore.Sqlite.Query.Internal.SqliteQueryableMethodTranslatingExpressionVisitor.TranslateOrderBy(ShapedQueryExpression source, LambdaExpression keySelector, Boolean ascending)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Qu
+… (output truncated)
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+EF queries cannot order by DateTimeOffset on SQLite.
+
+Loading PersonFileQuery results into memory before ordering fixes the SQLite issue. Four methods need this change: GetRegisterTargetAsync, GetHouseholdMembersAsync, ListAddressHistoryAsync, and ListCasesByPersonIdAsync.
+</details></think>
+
+_**Agent (default)**_
+
+Fixing SQLite-incompatible `OrderBy` on `DateTimeOffset` in PersonFileQuery by ordering in memory.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Fixing the coaCases query with Include and Where. Will run tests again.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter &#34;FullyQualifiedName~PersonFileTests&#34; 2&gt;&amp;1 | tail -15</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "FullyQualifiedName~PersonFileTests" 2>&1 | tail -15
+```
+
+```
+  All projects are up-to-date for restore.
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (arm64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     8, Skipped:     0, Total:     8, Duration: 2 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+All eight tests passed. Now updating the documentation.
+</details></think>
+
+_**Agent (default)**_
+
+All tests passed. Updating documentation.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "completed"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "completed"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "completed"
+    },
+    {
+      "content": "Add IPersonFileApi client, PersonSearchPage, PersonFilePage with MudTabs",
+      "id": "web-pages",
+      "status": "completed"
+    },
+    {
+      "content": "Add nav item and View person file links on case detail pages",
+      "id": "deep-links-nav",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileTests (happy path, 404, empty cases, auth)",
+      "id": "integration-tests",
+      "status": "completed"
+    },
+    {
+      "content": "Update phase-16, ROADMAP, phases README, GLOSSARY",
+      "id": "docs",
+      "status": "in_progress"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "completed"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "completed"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "c
+… (output truncated)
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-16-person-file.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/GLOSSARY.md",
+  "pattern": "Person file|PersonFile"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/GLOSSARY.md",
+  "pattern": "Person file|PersonFile",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating the Phase 16 person file plan with delivery notes.
+
+Marking Phase 16 complete in ROADMAP.md and the phases README. Adding the Person file term to GLOSSARY.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/GLOSSARY.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-15-reporting-dashboard.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Updating the Phase 16 document with delivery notes, the ROADMAP progress table, the phases README, and a new Glossary entry.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/GLOSSARY.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Writing the full Phase 16 delivery notes and adding a glossary entry.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-16-person-file.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/GLOSSARY.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+Incorrect tool arguments
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I accidentally duplicated the glossary. I am reading the GLOSSARY around case statuses.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/GLOSSARY.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The glossary looks good. The person file has been added.
+
+Nested placement is fine. Marking docs as complete. Running full integration tests to verify nothing broke.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "completed"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "completed"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "completed"
+    },
+    {
+      "content": "Add IPersonFileApi client, PersonSearchPage, PersonFilePage with MudTabs",
+      "id": "web-pages",
+      "status": "completed"
+    },
+    {
+      "content": "Add nav item and View person file links on case detail pages",
+      "id": "deep-links-nav",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileTests (happy path, 404, empty cases, auth)",
+      "id": "integration-tests",
+      "status": "completed"
+    },
+    {
+      "content": "Update phase-16, ROADMAP, phases README, GLOSSARY",
+      "id": "docs",
+      "status": "completed"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add PersonFileQuery + ICertificateRequestRepository.ListByPersonIdAsync",
+      "id": "person-file-query",
+      "status": "completed"
+    },
+    {
+      "content": "Implement PersonFileAuthorization, GetPersonFile, SearchPersonFile, ListPersonCases handlers + DTOs; register in DI",
+      "id": "app-handlers",
+      "status": "completed"
+    },
+    {
+      "content": "Add PersonFileEndpoints (/api/persons/*) and wire in MunicipalApiHostExtensions",
+      "id": "api-endpoints",
+      "status": "completed"
+    },
+    {
+      "content": "Build AppPropertyGrid and AppPersonCard design-system components",
+      "id": "ui-kit",
+      "status": "com
+… (output truncated)
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests --no-restore 2&gt;&amp;1 | tail -8</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --no-restore 2>&1 | tail -8
+```
+
+```
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (arm64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   120, Skipped:     0, Total:   120, Duration: 12 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+All 120 integration tests passed.
+</details></think>
+
+_**Agent (default)**_
+
+Phase 16 is implemented. Here is what was delivered:
+
+## Backend
+- **`IPersonFileQuery`** + **`PersonFileQuery`** — composes cases, household, address history, and timeline from existing tables
+- **`GetPersonFile`**, **`SearchPersonFile`**, **`ListPersonCases`** handlers with **`PersonFileAuthorization`** (Population officers only)
+- API routes under **`/api/persons/*`** (search, by ID, by NR, cases list)
+- **`ICertificateRequestRepository.ListByPersonIdAsync`**
+
+## Web UI
+- **`AppPersonCard`** and **`AppPropertyGrid`** (Wave 2 design-system components)
+- **`/persons/search`** — NR lookup with “Open person file”
+- **`/persons/{personId}`** — tabbed profile (Overview, Household, Addresses, Cases, Certificates)
+- **Person lookup** nav item + **View person file** links on registration, COA, identity-document, and birth-declaration case pages
+
+## Tests & docs
+- **8 integration tests** in `PersonFileTests.cs` (all **120** integration tests pass)
+- Updated `phase-16-person-file.md`, `ROADMAP.md`, `phases/README.md`, and `GLOSSARY.md`
+
+### Demo
+As Marie Dubois (Population officer): **Person lookup** → search “Nguyen” → open Sofia’s file, or use **View person file** from any linked case.

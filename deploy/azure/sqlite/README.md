@@ -5,7 +5,7 @@ Ephemeral SQLite on Azure Container Apps: no PostgreSQL, no persistent volumes. 
 ## Prerequisites
 
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) (`az login`)
-- A GHCR image published from this repo (see [CI workflow](../../.github/workflows/ci.yml) publish job)
+- A GHCR image published from this repo (see [CD workflow](../../.github/workflows/cd.yml) publish job)
 - **GitHub:** repo **Settings → Actions → General → Workflow permissions → Read and write**
 - **GHCR package:** set the container package visibility to **Public** (easiest for ACA pull), or configure a registry secret (see parent [README](../README.md))
 

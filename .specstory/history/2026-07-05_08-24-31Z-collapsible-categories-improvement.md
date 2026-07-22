@@ -18,7 +18,8 @@ In the header of the collapsible it would be nice to show a small summary
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Planning collapsible sections for the registration case detail page. The Identity section will remain permanently visible. Each category header will display a brief summary.</details></think>
+Planning collapsible sections for the registration case detail page. The Identity section will remain permanently visible. Each category header will display a brief summary.
+</details></think>
 
 _**Agent (default)**_
 
@@ -27,36 +28,22 @@ Exploring the registration case detail page and how phases are documented so we 
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-6-police-verification-loop.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-6-police-verification-loop.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -102,40 +89,27 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Exploring step components, design system patterns, and existing sub-phase documentation conventions.</details></think>
+Exploring step components, design system patterns, and existing sub-phase documentation conventions.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **4** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (4 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (4 files)
 
 | File |
 |------|
@@ -143,47 +117,26 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (4 fil
 | `src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor` |
 | `src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor` |
 | `src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-4.1-document-preview-case-ux.md</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-4.1-document-preview-case-ux.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -233,87 +186,49 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseChecklist.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseChecklist.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **22** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (22 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (22 files)
 
 | File |
 |------|
@@ -339,78 +254,46 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (22 fi
 | `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Feedback/AppInfoBox.razor` |
 | `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppDataTable.razor` |
 | `src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppSection.razor` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reviewing existing section components and the phase-2.1 document pattern to plan the collapsible categories implementation.</details></think>
+Reviewing existing section components and the phase-2.1 document pattern to plan the collapsible categories implementation.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
@@ -421,27 +304,20 @@ Checking phase-2.1 documentation format and DesignSystemShowcase for expansion p
 
 Clarifying the interaction flow. Identity appears fixed and always shown. Other sections expand as the user progresses through the form. Each section header needs a brief summary.
 
-Mapping out the dependency chain. Identity is the root prerequisite. Legal residence and address both depend on identity. Household composition requires identity plus address. Civil status only needs identity. This determines which step should expand by default.</details></think>
+Mapping out the dependency chain. Identity is the root prerequisite. Legal residence and address both depend on identity. Household composition requires identity plus address. Civil status only needs identity. This determines which step should expand by default.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-2.1-intake-corrections.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-2.1-intake-corrections.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -491,43 +367,26 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -552,38 +411,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/adr/0004-checklist-over-linear-state-machine.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/adr/0004-checklist-over-linear-state-machine.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
 
 </details></tool-use>
 
@@ -598,40 +438,27 @@ A linear UI presentation order is being mapped out for default expansion. Identi
 
 Only one additional section should appear open by default. Police verification may collapse when empty. Completed steps will stay collapsed unless the user expands them.
 
-The checklist chips will remain fixed at the top. Police alerts and duplicate warnings will stay visible rather than collapsing. Intake steps will be wrapped in collapsible panels. Police verification will only collapse when it contains data.</details></think>
+The checklist chips will remain fixed at the top. Police alerts and duplicate warnings will stay visible rather than collapsing. Intake steps will be wrapped in collapsible panels. Police verification will only collapse when it contains data.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCard.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCard.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -661,13 +488,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -677,14 +497,13 @@ Should Identity remain non-collapsible or simply default to expanded?
 
 Identity will stay non-collapsible since it is always shown. Household and Civil Status are parallel dependencies, so the next step after Address is Household.
 
-The next-step sequence follows the visual page order: Identity, Legal residence, Address, Household, Civil status, then Police verification. Completion detection will rely on checklist fields such as IdentityEstablished, LegalResidenceEstablished, and AddressDeclared.</details></think>
+The next-step sequence follows the visual page order: Identity, Legal residence, Address, Household, Civil status, then Police verification. Completion detection will rely on checklist fields such as IdentityEstablished, LegalResidenceEstablished, and AddressDeclared.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -774,25 +593,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
@@ -815,31 +621,20 @@ Decided to recalculate default expansion on every reload rather than preserving 
 
 Identity will remain permanently expanded and non-collapsible. The Documents panel will stay sticky on the right, outside the accordion. After a save, the system will either reopen the section just edited or the next incomplete step, then allow manual expansion until the next reload.
 
-Settled on three design defaults. Identity will remain strictly non-collapsible. The full step sequence is Identity → Legal residence → Address → Household → Civil status → Police verification. The top checklist chip bar will stay separate rather than merging into section headers.</details></think>
+Settled on three design defaults. Identity will remain strictly non-collapsible. The full step sequence is Identity → Legal residence → Address → Household → Civil status → Police verification. The top checklist chip bar will stay separate rather than merging into section headers.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/APP-OVERVIEW.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/APP-OVERVIEW.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-2.1-intake-corrections.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-2.1-intake-corrections.md</summary>
 
 </details></tool-use>
 
@@ -852,7 +647,8 @@ Identity will remain permanently expanded as a special case. All other sections 
 
 Police verification will appear in the accordion only when active or historical data exists, expanding automatically if the status is AwaitingPoliceVerification. Household and civil sections will be conditionally included based on whether members exist or civil status is set.
 
-If both Household and CivilStatus are complete, Household opens first because it appears earlier in the page order. PoliceVerificationSection will move from the top of the grid into the left-column accordion for consistency. The awaiting-police alert banner will merge into the Police section header. The duplicate warning will sit inside the Identity section, which stays permanently visible.</details></think>
+If both Household and CivilStatus are complete, Household opens first because it appears earlier in the page order. PoliceVerificationSection will move from the top of the grid into the left-column accordion for consistency. The awaiting-police alert banner will merge into the Police section header. The duplicate warning will sit inside the Identity section, which stays permanently visible.
+</details></think>
 
 _**Agent (default)**_
 
@@ -861,10 +657,8 @@ One clarification on Identity behavior, then I'll draft the plan.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ask_question">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ask_question"><details>
 <summary>Tool use: **ask_question**</summary>
-
 
 Parameters:
 
@@ -923,19 +717,13 @@ User decision: **accepted**
 
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ask_question"><details>
-<summary>Tool use: **ask_question**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Identity will remain permanently expanded and non-collapsible.</details></think>
+Identity will remain permanently expanded and non-collapsible.
+</details></think>
 
 _**Agent (default)**_
 
@@ -944,18 +732,16 @@ Identity stays always expanded. Drafting the Phase 6.1 plan.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="create_plan">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
 <summary>Tool use: **create_plan**</summary>
-
 
 Parameters:
 
-```json
+````json
 {
   "name": "Phase 6.1 Collapsible Intake",
   "overview": "Add collapsible intake sections to the registration case detail page with header summaries and smart default expansion (Identity always open; exactly one \"next step\" expanded). Document as Phase 6.1 following the existing sub-phase pattern (4.1, 2.1).",
-  "plan": "# Phase 6.1 — Collapsible intake sections\n\n## Problem\n\nThe case detail page ([&#96;RegistrationCaseDetail.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor)) has grown long: checklist, alerts, police history, identity, four step components, and a sticky document panel. Every section renders fully expanded, forcing officers to scroll past completed work to reach the current task.\n\nPhase 4.1 improved layout (two-column + sticky documents) but did not reduce vertical noise within the intake column.\n\n## Goal\n\nCollapse completed intake categories by default; keep **Identity always expanded** (non-collapsible); auto-expand the **single next actionable step** on load/reload; show a **compact summary** in each collapsible header so officers can scan progress without opening panels.\n\nNo domain or API changes — UI-only, like [phase-4.1-document-preview-case-ux.md](docs/phases/phase-4.1-document-preview-case-ux.md).\n\n---\n\n## UX rules\n\n&#96;&#96;&#96;mermaid\nflowchart TD\n    subgraph alwaysVisible [Always visible]\n        Header[AppPageHeader + workflow actions]\n        Checklist[Completeness checklist chips]\n        Identity[Identity section — always expanded]\n    end\n\n    subgraph accordion [Collapsible intake accordion]\n        Residence[Legal residence]\n        Address[Address and housing]\n        Household[Household composition]\n        Civil[Civil status]\n        Police[Police verification]\n    end\n\n    Identity --\u003e Residence --\u003e Address --\u003e Household --\u003e Civil --\u003e Police\n&#96;&#96;&#96;\n\n| Rule | Behaviour |\n|------|-----------|\n| **Identity** | Always expanded; non-collapsible; summary line in section header |\n| **Other steps** | Collapsible; default **collapsed** when complete |\n| **Next step** | Exactly **one** additional panel expanded — first incomplete step in UI order |\n| **Manual toggle** | Officer can expand/collapse any collapsible section; state resets on &#96;ReloadCase()&#96; (same as today’s full re-render after save) |\n| **Checklist bar** | Keep existing chip row at top — complements, not replaces, header summaries |\n| **Document panel** | Unchanged — sticky right column, outside accordion |\n| **Contextual alerts** | Duplicate warning stays inside Identity (always visible); police “awaiting” banner moves into Police section body/header |\n\n### Step order and “complete” detection\n\nUI order (matches current page):\n\n1. **Identity** — &#96;checklist.IdentityEstablished&#96;\n2. **Legal residence** — &#96;checklist.LegalResidenceEstablished&#96;\n3. **Address \u0026 housing** — &#96;checklist.AddressDeclared&#96; (housing situation is part of this step today)\n4. **Household composition** — &#96;householdMembers.Count \u003e 0&#96; (no checklist flag today)\n5. **Civil status** — &#96;civilStatus is not null&#96;\n6. **Police verification** — shown when &#96;activePoliceVerification&#96; or history exists; “next” when &#96;status == AwaitingPoliceVerification&#96;\n\n**Default expansion algorithm** (new helper, pure function on &#96;RegistrationCaseDetailDto&#96;):\n\n&#96;&#96;&#96;\nnextStep = first step in order where !IsComplete(step)\nexpand: Identity (always) + nextStep (if any and != Identity)\nall others: collapsed\n&#96;&#96;&#96;\n\nExamples:\n- Fresh case → Identity + Legal residence open (identity incomplete → next is identity, but identity is always open; legal residence is blocked by dependency — **expand Legal residence only when identity complete**; if identity incomplete, no second panel open)\n- Identity done, no residence → Identity + Legal residence\n- Address done, no household → Identity + Household\n- All intake done, awaiting police → Identity + Police verification\n\n**Correction:** When identity is incomplete, only Identity is expanded (no second panel). When identity complete, expand the first incomplete step among 2–6.\n\n### Header summaries (examples)\n\n| Step | Complete | Incomplete |\n|------|----------|------------|\n| Identity | &#96;Marie Leclerc · born 01/01/1975 · Belgian&#96; (+ NR/BIS chips if present) | &#96;Not recorded&#96; |\n| Legal residence | &#96;EU citizen&#96; or &#96;Non-EU worker · permit until 2027-06-01&#96; | &#96;Not classified&#96; |\n| Address | &#96;Chaussée de Louvain 42, 1030 Schaerbeek · Owner&#96; | &#96;Not declared&#96; |\n| Household | &#96;3 members&#96; or &#96;1 member&#96; | &#96;No members recorded&#96; |\n| Civil status | &#96;Married · Jean Dupont&#96; | &#96;Not recorded&#96; |\n| Police | &#96;Awaiting result · visit 2&#96; or &#96;Confirmed · visit 1&#96; | (section hidden when no visits) |\n\nEach header also shows a small status chip (✓ complete / — pending / ⚠ awaiting police) aligned with existing [&#96;AppStatusChip&#96;](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatusChip.razor) patterns.\n\n---\n\n## Implementation\n\n### 1. Design system — &#96;AppCollapsibleSection&#96;\n\nNew component: [&#96;src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCollapsibleSection.razor&#96;](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCollapsibleSection.razor)\n\nWraps MudBlazor &#96;MudExpansionPanel&#96; / &#96;MudExpansionPanels&#96; with Schaerbeek styling:\n\n- Parameters: &#96;Title&#96;, &#96;Summary&#96; (string or &#96;RenderFragment&#96;), &#96;StatusChip&#96;, &#96;IsExpanded&#96;, &#96;IsExpandedChanged&#96;, &#96;Collapsible&#96; (default &#96;true&#96;; &#96;false&#96; for Identity → renders as fixed &#96;AppSection&#96;-like block with summary header, no chevron)\n- Single-panel mode used per step (avoid nested multi-panel accordion complexity)\n- Optional entry in [&#96;DesignSystemShowcase.razor&#96;](src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor) and [&#96;docs/design-system/06-page-templates.md&#96;](docs/design-system/06-page-templates.md) §2 Details page\n\nMinimal CSS in [&#96;app.css&#96;](src/SchaerbeekMunicipality.Web/wwwroot/app.css): summary text &#96;Typo.body2&#96; secondary color, truncated with ellipsis on narrow viewports; panel header height aligned with &#96;AppCard&#96; titles.\n\n### 2. Step summary helper\n\nNew file: [&#96;src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs)\n\nStatic methods:\n- &#96;GetSummary(RegistrationIntakeStep step, RegistrationCaseDetailDto dto) → string&#96;\n- &#96;IsComplete(RegistrationIntakeStep step, RegistrationCaseDetailDto dto) → bool&#96;\n- &#96;GetDefaultExpandedSteps(RegistrationCaseDetailDto dto) → IReadOnlySet\u003cRegistrationIntakeStep\u003e&#96;\n\nKeeps formatting logic out of Razor; reuse existing display helpers from step components where they exist (e.g. residence category formatting in [&#96;ResidenceStep.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor)).\n\n### 3. Refactor step components\n\nRemove outer [&#96;AppSection&#96;](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppSection.razor) wrappers from:\n\n- [&#96;ResidenceStep.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor)\n- [&#96;AddressStep.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor)\n- [&#96;HouseholdStep.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor)\n- [&#96;CivilStatusStep.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor)\n- [&#96;PoliceVerificationSection.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor)\n\nEach component becomes **body-only** (internal &#96;AppCard&#96;s unchanged). Parent owns collapsible chrome.\n\n### 4. Orchestrate in &#96;RegistrationCaseDetail.razor&#96;\n\n- After checklist, render intake accordion in the left &#96;MudItem&#96;:\n  - Identity block: &#96;AppCollapsibleSection Collapsible=\"false\"&#96; wrapping existing identity markup (three states: form / edit / read-only)\n  - One &#96;AppCollapsibleSection&#96; per step component with &#96;@bind-IsExpanded&#96; driven by &#96;_expandedSteps&#96; set initialized from &#96;GetDefaultExpandedSteps&#96; on each &#96;ReloadCase()&#96;\n- Move [&#96;PoliceVerificationSection&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor) from above the grid into the accordion (after civil status)\n- Remove standalone &#96;AwaitingPoliceVerification&#96; alert section — surface same text in Police section when pending\n- Keep duplicate alert inside Identity body (below summary header)\n\n### 5. Documentation (Phase 6.1)\n\nCreate [&#96;docs/phases/phase-6.1-collapsible-intake-sections.md&#96;](docs/phases/phase-6.1-collapsible-intake-sections.md) mirroring 4.1 structure: problem, deliverables checklist, UI behaviour, demo walkthrough.\n\nUpdate:\n- [&#96;docs/phases/README.md&#96;](docs/phases/README.md) — row for 6.1 (Planned → Complete when done)\n- [&#96;docs/ROADMAP.md&#96;](docs/ROADMAP.md) — Progress table + short Phase 6.1 section after Phase 6\n- [&#96;docs/design-system/06-page-templates.md&#96;](docs/design-system/06-page-templates.md) §2 — accordion intake layout\n- [&#96;docs/features/registration/get-registration-case.md&#96;](docs/features/registration/get-registration-case.md) — note collapsible UI (no DTO change)\n- [&#96;docs/APP-OVERVIEW.md&#96;](docs/APP-OVERVIEW.md) — one line on collapsible intake\n\n---\n\n## Demo walkthrough (for phase doc)\n\n1. Open a **new case** → Identity expanded; Legal residence collapsed with “Not classified”; no other panels open.\n2. Record identity → reload → Identity shows name summary; **Legal residence** auto-expands.\n3. Complete residence + address → **Household** auto-expands; completed steps show summaries when collapsed.\n4. Expand a completed step manually → Edit still works (Phase 2.1 correction flow).\n5. Send to police → **Police verification** panel appears and expands with “Awaiting result” summary.\n6. Document panel remains sticky on wide screens throughout.\n\n---\n\n## Tests\n\nNo new integration tests required (UI-only, consistent with Phase 4.1). Optional small unit tests for &#96;RegistrationIntakeStepSummaries.GetDefaultExpandedSteps&#96; if desired — low cost, high value for regression on expansion logic.\n\n---\n\n## Out of scope\n\n- Persisting accordion state across sessions (localStorage)\n- Changing checklist domain flags or step dependencies\n- Collapsing the document panel or top checklist bar\n- Replacing checklist chips with accordion headers entirely\n",
+  "plan": "# Phase 6.1 — Collapsible intake sections\n\n## Problem\n\nThe case detail page ([`RegistrationCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor)) has grown long: checklist, alerts, police history, identity, four step components, and a sticky document panel. Every section renders fully expanded, forcing officers to scroll past completed work to reach the current task.\n\nPhase 4.1 improved layout (two-column + sticky documents) but did not reduce vertical noise within the intake column.\n\n## Goal\n\nCollapse completed intake categories by default; keep **Identity always expanded** (non-collapsible); auto-expand the **single next actionable step** on load/reload; show a **compact summary** in each collapsible header so officers can scan progress without opening panels.\n\nNo domain or API changes — UI-only, like [phase-4.1-document-preview-case-ux.md](docs/phases/phase-4.1-document-preview-case-ux.md).\n\n---\n\n## UX rules\n\n```mermaid\nflowchart TD\n    subgraph alwaysVisible [Always visible]\n        Header[AppPageHeader + workflow actions]\n        Checklist[Completeness checklist chips]\n        Identity[Identity section — always expanded]\n    end\n\n    subgraph accordion [Collapsible intake accordion]\n        Residence[Legal residence]\n        Address[Address and housing]\n        Household[Household composition]\n        Civil[Civil status]\n        Police[Police verification]\n    end\n\n    Identity --\u003e Residence --\u003e Address --\u003e Household --\u003e Civil --\u003e Police\n```\n\n| Rule | Behaviour |\n|------|-----------|\n| **Identity** | Always expanded; non-collapsible; summary line in section header |\n| **Other steps** | Collapsible; default **collapsed** when complete |\n| **Next step** | Exactly **one** additional panel expanded — first incomplete step in UI order |\n| **Manual toggle** | Officer can expand/collapse any collapsible section; state resets on `ReloadCase()` (same as today’s full re-render after save) |\n| **Checklist bar** | Keep existing chip row at top — complements, not replaces, header summaries |\n| **Document panel** | Unchanged — sticky right column, outside accordion |\n| **Contextual alerts** | Duplicate warning stays inside Identity (always visible); police “awaiting” banner moves into Police section body/header |\n\n### Step order and “complete” detection\n\nUI order (matches current page):\n\n1. **Identity** — `checklist.IdentityEstablished`\n2. **Legal residence** — `checklist.LegalResidenceEstablished`\n3. **Address \u0026 housing** — `checklist.AddressDeclared` (housing situation is part of this step today)\n4. **Household composition** — `householdMembers.Count \u003e 0` (no checklist flag today)\n5. **Civil status** — `civilStatus is not null`\n6. **Police verification** — shown when `activePoliceVerification` or history exists; “next” when `status == AwaitingPoliceVerification`\n\n**Default expansion algorithm** (new helper, pure function on `RegistrationCaseDetailDto`):\n\n```\nnextStep = first step in order where !IsComplete(step)\nexpand: Identity (always) + nextStep (if any and != Identity)\nall others: collapsed\n```\n\nExamples:\n- Fresh case → Identity + Legal residence open (identity incomplete → next is identity, but identity is always open; legal residence is blocked by dependency — **expand Legal residence only when identity complete**; if identity incomplete, no second panel open)\n- Identity done, no residence → Identity + Legal residence\n- Address done, no household → Identity + Household\n- All intake done, awaiting police → Identity + Police verification\n\n**Correction:** When identity is incomplete, only Identity is expanded (no second panel). When identity complete, expand the first incomplete step among 2–6.\n\n### Header summaries (examples)\n\n| Step | Complete | Incomplete |\n|------|----------|------------|\n| Identity | `Marie Leclerc · born 01/01/1975 · Belgian` (+ NR/BIS chips if present) | `Not recorded` |\n| Legal residence | `EU citizen` or `Non-EU worker · permit until 2027-06-01` | `Not classified` |\n| Address | `Chaussée de Louvain 42, 1030 Schaerbeek · Owner` | `Not declared` |\n| Household | `3 members` or `1 member` | `No members recorded` |\n| Civil status | `Married · Jean Dupont` | `Not recorded` |\n| Police | `Awaiting result · visit 2` or `Confirmed · visit 1` | (section hidden when no visits) |\n\nEach header also shows a small status chip (✓ complete / — pending / ⚠ awaiting police) aligned with existing [`AppStatusChip`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatusChip.razor) patterns.\n\n---\n\n## Implementation\n\n### 1. Design system — `AppCollapsibleSection`\n\nNew component: [`src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCollapsibleSection.razor`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCollapsibleSection.razor)\n\nWraps MudBlazor `MudExpansionPanel` / `MudExpansionPanels` with Schaerbeek styling:\n\n- Parameters: `Title`, `Summary` (string or `RenderFragment`), `StatusChip`, `IsExpanded`, `IsExpandedChanged`, `Collapsible` (default `true`; `false` for Identity → renders as fixed `AppSection`-like block with summary header, no chevron)\n- Single-panel mode used per step (avoid nested multi-panel accordion complexity)\n- Optional entry in [`DesignSystemShowcase.razor`](src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor) and [`docs/design-system/06-page-templates.md`](docs/design-system/06-page-templates.md) §2 Details page\n\nMinimal CSS in [`app.css`](src/SchaerbeekMunicipality.Web/wwwroot/app.css): summary text `Typo.body2` secondary color, truncated with ellipsis on narrow viewports; panel header height aligned with `AppCard` titles.\n\n### 2. Step summary helper\n\nNew file: [`src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs)\n\nStatic methods:\n- `GetSummary(RegistrationIntakeStep step, RegistrationCaseDetailDto dto) → string`\n- `IsComplete(RegistrationIntakeStep step, RegistrationCaseDetailDto dto) → bool`\n- `GetDefaultExpandedSteps(RegistrationCaseDetailDto dto) → IReadOnlySet\u003cRegistrationIntakeStep\u003e`\n\nKeeps formatting logic out of Razor; reuse existing display helpers from step components where they exist (e.g. residence category formatting in [`ResidenceStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor)).\n\n### 3. Refactor step components\n\nRemove outer [`AppSection`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppSection.razor) wrappers from:\n\n- [`ResidenceStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor)\n- [`AddressStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor)\n- [`HouseholdStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor)\n- [`CivilStatusStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor)\n- [`PoliceVerificationSection.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor)\n\nEach component becomes **body-only** (internal `AppCard`s unchanged). Parent owns collapsible chrome.\n\n### 4. Orchestrate in `RegistrationCaseDetail.razor`\n\n- After checklist, render intake accordion in the left `MudItem`:\n  - Identity block: `AppCollapsibleSection Collapsible=\"false\"` wrapping existing identity markup (three states: form / edit / read-only)\n  - One `AppCollapsibleSection` per step component with `@bind-IsExpanded` driven by `_expandedSteps` set initialized from `GetDefaultExpandedSteps` on each `ReloadCase()`\n- Move [`PoliceVerificationSection`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor) from above the grid into the accordion (after civil status)\n- Remove standalone `AwaitingPoliceVerification` alert section — surface same text in Police section when pending\n- Keep duplicate alert inside Identity body (below summary header)\n\n### 5. Documentation (Phase 6.1)\n\nCreate [`docs/phases/phase-6.1-collapsible-intake-sections.md`](docs/phases/phase-6.1-collapsible-intake-sections.md) mirroring 4.1 structure: problem, deliverables checklist, UI behaviour, demo walkthrough.\n\nUpdate:\n- [`docs/phases/README.md`](docs/phases/README.md) — row for 6.1 (Planned → Complete when done)\n- [`docs/ROADMAP.md`](docs/ROADMAP.md) — Progress table + short Phase 6.1 section after Phase 6\n- [`docs/design-system/06-page-templates.md`](docs/design-system/06-page-templates.md) §2 — accordion intake layout\n- [`docs/features/registration/get-registration-case.md`](docs/features/registration/get-registration-case.md) — note collapsible UI (no DTO change)\n- [`docs/APP-OVERVIEW.md`](docs/APP-OVERVIEW.md) — one line on collapsible intake\n\n---\n\n## Demo walkthrough (for phase doc)\n\n1. Open a **new case** → Identity expanded; Legal residence collapsed with “Not classified”; no other panels open.\n2. Record identity → reload → Identity shows name summary; **Legal residence** auto-expands.\n3. Complete residence + address → **Household** auto-expands; completed steps show summaries when collapsed.\n4. Expand a completed step manually → Edit still works (Phase 2.1 correction flow).\n5. Send to police → **Police verification** panel appears and expands with “Awaiting result” summary.\n6. Document panel remains sticky on wide screens throughout.\n\n---\n\n## Tests\n\nNo new integration tests required (UI-only, consistent with Phase 4.1). Optional small unit tests for `RegistrationIntakeStepSummaries.GetDefaultExpandedSteps` if desired — low cost, high value for regression on expansion logic.\n\n---\n\n## Out of scope\n\n- Persisting accordion state across sessions (localStorage)\n- Changing checklist domain flags or step dependencies\n- Collapsing the document panel or top checklist bar\n- Replacing checklist chips with accordion headers entirely\n",
   "todos": [
     {
       "content": "Create docs/phases/phase-6.1-collapsible-intake-sections.md and update ROADMAP, phases README, APP-OVERVIEW, page templates, get-registration-case",
@@ -989,7 +775,7 @@ Parameters:
     }
   ]
 }
-```
+````
 Additional data:
 
 ```json
@@ -1013,13 +799,6 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
-<summary>Tool use: **create_plan**</summary>
-
 </details></tool-use>
 
 ---
@@ -1035,7 +814,8 @@ To-do's from the plan have already been created. Do not create them again. Mark 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Starting Phase 6.1 implementation. Marking the first todo as in progress.</details></think>
+Starting Phase 6.1 implementation. Marking the first todo as in progress.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1044,10 +824,8 @@ Implementing Phase 6.1 per the plan. Starting with documentation and core compon
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -1109,94 +887,50 @@ Result:
       "status": "pending"
     },
     {
-      "content": "Remove AppSection wrappers from ResidenceStep, AddressStep, HouseholdStep, CivilStatusStep, PoliceVerificationSection",
-      "id": "refactor-step-components",
-      "status": "pending"
-    },
-    {
-      "content": "Orchestrate accordion in RegistrationCaseDetail.razor: Identity fixed, bind expansion on reload, relocate police section",
-      "id": "wire-registration-case-detail",
-      "status": "pending"
-    },
-    {
-      "content": "Add unit tests for GetDefaultExpandedSteps / IsComplete matrix (recommended)",
-      "id": "optional-unit-tests",
-      "status": "pending"
-    }
-  ],
-  "success": true,
-  "wasMerge": true
-}
+      "content": "Remove AppSection wrappers from ResidenceStep, AddressStep, HouseholdStep, CivilS
+… (output truncated)
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/wwwroot/app.css</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/wwwroot/app.css</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **2** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (2 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (2 files)
 
 | File |
 |------|
 | `tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj` |
 | `tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reading step components, AppStatusChip, and the ROADMAP to understand the Phase 6.1 requirements. Checking whether to add unit tests to the domain or create a separate web tests project.</details></think>
+Reading step components, AppStatusChip, and the ROADMAP to understand the Phase 6.1 requirements. Checking whether to add unit tests to the domain or create a separate web tests project.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1226,21 +960,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1270,48 +995,28 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatusChip.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatusChip.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-4.1-document-preview-case-ux.md</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-4.1-document-preview-case-ux.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **7** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (7 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (7 files)
 
 | File |
 |------|
@@ -1322,61 +1027,34 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (7 fil
 | `src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj` |
 | `src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj` |
 | `tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
@@ -1392,7 +1070,8 @@ The fixed section uses `app-collapsible-section--fixed` styling. `IsExpanded` an
 
 CivilStatus is complete when the value is not null. PoliceVerification is visible when active or history exists, and complete only when no pending visits remain. Identity is always included in the default expanded steps.
 
-The default expanded steps logic is now defined. Identity is always included. If Identity is incomplete, only the Identity step is expanded. Otherwise the first incomplete step among LegalResidence through PoliceVerification is expanded. Police is only included when it is visible and incomplete. Police may also be expanded when awaiting police verification after all earlier intake is complete.</details></think>
+The default expanded steps logic is now defined. Identity is always included. If Identity is incomplete, only the Identity step is expanded. Otherwise the first incomplete step among LegalResidence through PoliceVerification is expanded. Police is only included when it is visible and incomplete. Police may also be expanded when awaiting police verification after all earlier intake is complete.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1401,60 +1080,35 @@ Implementing core components first, then wiring the page and documentation.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStep.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStep.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCollapsibleSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCollapsibleSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Refactoring step components to remove AppSection wrappers. Updating PoliceVerificationSection to include an awaiting alert and ensuring it appears only when its parent is visible.</details></think>
+Refactoring step components to remove AppSection wrappers. Updating PoliceVerificationSection to include an awaiting alert and ensuring it appears only when its parent is visible.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1484,21 +1138,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1528,21 +1173,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1572,21 +1208,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1616,191 +1243,95 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Removing AppSection tags from step components and wrapping their content in fragments or divs.</details></think>
+Removing AppSection tags from step components and wrapping their content in fragments or divs.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
@@ -1811,7 +1342,8 @@ AddressStep looks correct. The first replacement succeeded, and the closing AppS
 
 Wiring RegistrationCaseDetail.razor is next. Identity will sit inside a non-collapsible AppCollapsibleSection. Each step will use collapsible sections bound to IsExpanded. Police content moves into the accordion. A dictionary tracks expansion states. ReloadCase will apply default expansion after fetching data.
 
-ApplyDefaultExpansion seeds the expansion dictionary from step summaries. Helper methods read and update per-step visibility. The Legal residence section is being wired into the Razor markup.</details></think>
+ApplyDefaultExpansion seeds the expansion dictionary from step summaries. Helper methods read and update per-step visibility. The Legal residence section is being wired into the Razor markup.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1820,75 +1352,44 @@ Updating `RegistrationCaseDetail.razor` and adding CSS.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/wwwroot/app.css</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/wwwroot/app.css</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/wwwroot/app.css</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/wwwroot/app.css</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj --no-restore 2>&1 | tail -40</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj --no-restore 2&gt;&amp;1 | tail -40</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj --no-restore 2>&1 | tail -40
 ```
 
 ```
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs(80,19): error CS0246: The type or namespace name 'AppSeverity' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 
 Build FAILED.
@@ -1900,20 +1401,12 @@ Build FAILED.
 Time Elapsed 00:00:05.77
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1943,48 +1436,26 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppEnums.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppEnums.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1 | tail -20</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2&gt;&amp;1 | tail -20</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj 2>&1 | tail -20
 ```
@@ -1992,10 +1463,10 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build sr
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
 
 Build succeeded.
     0 Warning(s)
@@ -2004,25 +1475,18 @@ Build succeeded.
 Time Elapsed 00:00:06.72
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The build succeeded. Next steps include marking completed todos, writing unit tests, and proceeding with implementation.</details></think>
+The build succeeded. Next steps include marking completed todos, writing unit tests, and proceeding with implementation.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -2084,325 +1548,167 @@ Result:
       "status": "pending"
     },
     {
-      "content": "Remove AppSection wrappers from ResidenceStep, AddressStep, HouseholdStep, CivilStatusStep, PoliceVerificationSection",
-      "id": "refactor-step-components",
-      "status": "pending"
-    },
-    {
-      "content": "Orchestrate accordion in RegistrationCaseDetail.razor: Identity fixed, bind expansion on reload, relocate police section",
-      "id": "wire-registration-case-detail",
-      "status": "pending"
-    },
-    {
-      "content": "Add unit tests for GetDefaultExpandedSteps / IsComplete matrix (recommended)",
-      "id": "optional-unit-tests",
-      "status": "pending"
-    }
-  ],
-  "success": true,
-  "wasMerge": true
-}
+      "content": "Remove AppSection wrappers from ResidenceStep, AddressStep, House
+… (output truncated)
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationIntakeStepSummariesTests.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationIntakeStepSummariesTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/APP-OVERVIEW.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/APP-OVERVIEW.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Fixing a test issue where HouseholdMemberRole may need a namespace import. Running tests to catch and resolve any remaining problems.</details></think>
+Fixing a test issue where HouseholdMemberRole may need a namespace import. Running tests to catch and resolve any remaining problems.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "RegistrationIntakeStepSummariesTests" --no-restore 2>&1 | tail -25</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter &#34;RegistrationIntakeStepSummariesTests&#34; --no-restore 2&gt;&amp;1 | tail -25</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "RegistrationIntakeStepSummariesTests" --no-restore 2>&1 | tail -25
 ```
 
 ```
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationIntakeStepSummariesTests.cs(168,73): error CS0103: The name 'HouseholdMemberRole' does not exist in the current context [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj]
 
 ```
-</details>
-</tool-use>
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-6.1-collapsible-intake-sections.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationIntakeStepSummariesTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/APP-OVERVIEW.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-6.1-collapsible-intake-sections.md</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationIntakeStepSummariesTests.cs</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/06-page-templates.md</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/features/registration/get-registration-case.md</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/APP-OVERVIEW.md</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "RegistrationIntakeStepSummariesTests" 2>&1 | tail -15</summary>
-
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter &#34;RegistrationIntakeStepSummariesTests&#34; 2&gt;&amp;1 | tail -15</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests --filter "RegistrationIntakeStepSummariesTests" 2>&1 | tail -15
 ```
@@ -2410,11 +1716,11 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tes
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
 Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
 VSTest version 18.0.1 (arm64)
 
@@ -2424,60 +1730,45 @@ A total of 1 test files matched the specified pattern.
 Passed!  - Failed:     0, Passed:     7, Skipped:     0, Total:     7, Duration: 28 ms - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --configuration Release --filter "Category!=PostgreSQL" 2>&1 | tail -20</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test --configuration Release --filter &#34;Category!=PostgreSQL&#34; 2&gt;&amp;1 | tail -20</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --configuration Release --filter "Category!=PostgreSQL" 2>&1 | tail -20
 ```
 
 ```
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
 Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll (.NETCoreApp,Version=v10.0)
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
 VSTest version 18.0.1 (arm64)
 
 Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
 
 Passed!  - Failed:     0, Passed:    44, Skipped:     0, Total:    44, Duration: 45 ms - SchaerbeekMunicipality.Domain.Tests.dll (net10.0)
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
 Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
 VSTest version 18.0.1 (arm64)
 
 Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
 
-Passed!  - Failed:     0, Passed:    64, Skipped:     0, Total:    64, Duration: 3 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
-
+Pass
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="read_lints">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
 <summary>Tool use: **read_lints**</summary>
-
 
 Parameters:
 
@@ -2554,13 +1845,6 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
-<summary>Tool use: **read_lints**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -2570,10 +1854,8 @@ All 108 tests pass. Marking todos complete.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -2635,33 +1917,10 @@ Result:
       "status": "completed"
     },
     {
-      "content": "Remove AppSection wrappers from ResidenceStep, AddressStep, HouseholdStep, CivilStatusStep, PoliceVerificationSection",
-      "id": "refactor-step-components",
-      "status": "completed"
-    },
-    {
-      "content": "Orchestrate accordion in RegistrationCaseDetail.razor: Identity fixed, bind expansion on reload, relocate police section",
-      "id": "wire-registration-case-detail",
-      "status": "completed"
-    },
-    {
-      "content": "Add unit tests for GetDefaultExpandedSteps / IsComplete matrix (recommended)",
-      "id": "optional-unit-tests",
-      "status": "in_progress"
-    }
-  ],
-  "success": true,
-  "wasMerge": true
-}
+      "content": "Remove AppSection wrappers from ResidenceStep, AddressStep, House
+… (output truncated)
 ```
 Status: **completed**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
 
 </details></tool-use>
 

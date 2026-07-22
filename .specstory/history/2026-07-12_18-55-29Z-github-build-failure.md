@@ -34,7 +34,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The user reports a GitHub CI build failure after a recent commit.
 
-Two integration tests failed out of 101. I will check the recent commit and run the tests locally to identify the specific failures.</details></think>
+Two integration tests failed out of 101. I will check the recent commit and run the tests locally to identify the specific failures.
+</details></think>
 
 _**Agent (default)**_
 
@@ -43,9 +44,8 @@ I'll investigate the CI failure by checking recent changes and running the integ
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git log -3 --oneline && git diff HEAD~1 --stat</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; git log -3 --oneline &amp;&amp; git diff HEAD~1 --stat</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git log -3 --oneline && git diff HEAD~1 --stat
 ```
@@ -83,43 +83,28 @@ f3258dd Implement Phase 14 for Passport/ID card requests and enhance API endpoin
  26 files changed, 4270 insertions(+), 89 deletions(-)
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **3** results in **1** directory</summary>
 
-Directory: **** (3 files)
+Directory: **``** (3 files)
 
 | File |
 |------|
 | `.github/workflows/container-publish.yml` |
 | `.github/workflows/ci.yml` |
 | `.github/workflows/ci-postgres.yml` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **24** results in **1** directory</summary>
 
-Directory: **** (24 files)
+Directory: **``** (24 files)
 
 | File |
 |------|
@@ -147,13 +132,6 @@ Directory: **** (24 files)
 | `tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs` |
 | `tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs` |
 | `tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -161,13 +139,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Running the integration tests locally to identify the two failing tests.
 
-The commit includes case locking documentation and demo data seeder changes. RoleBoundariesAndCaseLockingTests will be examined.</details></think>
+The commit includes case locking documentation and demo data seeder changes. RoleBoundariesAndCaseLockingTests will be examined.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj --no-build 2>&1 || dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj --no-build 2&gt;&amp;1 || dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj --no-build 2>&1 || dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj 2>&1
 ```
@@ -183,94 +161,27 @@ A total of 1 test files matched the specified pattern.
   Error Message:
    Expected jean.IsRegisteredInPopulation to be False, but found True.
   Stack Trace:
-     at FluentAssertions.Primitives.BooleanAssertions&#96;1.BeFalse(String because, Object[] becauseArgs)
+     at FluentAssertions.Primitives.BooleanAssertions`1.BeFalse(String because, Object[] becauseArgs)
    at SchaerbeekMunicipality.Integration.Tests.Features.Registration.SearchNationalRegisterTests.SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 61
    at SchaerbeekMunicipality.Integration.Tests.Features.Registration.SearchNationalRegisterTests.SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 65
    at SchaerbeekMunicipality.Integration.Tests.Features.Registration.SearchNationalRegisterTests.SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 65
 --- End of stack trace from previous location ---
-[xUnit.net 00:00:05.29]     SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict [FAIL]
-  Failed SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict [393 ms]
-  Error Message:
-   SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterConflictException : This National Register record is already linked to an active person file.
-  Stack Trace:
-     at SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson.LinkExistingPersonHandler.EnsureCanLinkAsync(NationalRegisterPerson registerPerson, CancellationToken cancellationToken) in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/LinkExistingPerson/LinkExistingPersonHandler.cs:line 57
-   at SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson.LinkExistingPersonHandler.Handle(RegistrationCaseId caseId, LinkExistingPersonRequest request, CancellationToken cancellationToken) in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/LinkExistingPerson/LinkExistingPersonHandler.cs:line 33
-   at SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 101
-   at SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 113
-   at SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 113
---- End of stack trace from previous location ---
-
-Failed!  - Failed:     2, Passed:    99, Skipped:     0, Total:   101, Duration: 7 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
-  Determining projects to restore...
-  All projects are up-to-date for restore.
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
-  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
-Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
-VSTest version 18.0.1 (arm64)
-
-Starting test execution, please wait...
-A total of 1 test files matched the specified pattern.
-[xUnit.net 00:00:02.08]     SchaerbeekMunicipality.Integration.Tests.Features.Registration.SearchNationalRegisterTests.SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus [FAIL]
-[xUnit.net 00:00:02.20]     SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict [FAIL]
-  Failed SchaerbeekMunicipality.Integration.Tests.Features.Registration.SearchNationalRegisterTests.SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus [1 s]
-  Error Message:
-   Expected jean.IsRegisteredInPopulation to be False, but found True.
-  Stack Trace:
-     at FluentAssertions.Primitives.BooleanAssertions&#96;1.BeFalse(String because, Object[] becauseArgs)
-   at SchaerbeekMunicipality.Integration.Tests.Features.Registration.SearchNationalRegisterTests.SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 61
-   at SchaerbeekMunicipality.Integration.Tests.Features.Registration.SearchNationalRegisterTests.SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 65
-   at SchaerbeekMunicipality.Integration.Tests.Features.Registration.SearchNationalRegisterTests.SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 65
---- End of stack trace from previous location ---
-  Failed SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict [2 s]
-  Error Message:
-   SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterConflictException : This National Register record is already linked to an active person file.
-  Stack Trace:
-     at SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson.LinkExistingPersonHandler.EnsureCanLinkAsync(NationalRegisterPerson registerPerson, CancellationToken cancellationToken) in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/LinkExistingPerson/LinkExistingPersonHandler.cs:line 57
-   at SchaerbeekMunicipality.Application.Features.Registration.LinkExistingPerson.LinkExistingPersonHandler.Handle(RegistrationCaseId caseId, LinkExistingPersonRequest request, CancellationToken cancellationToken) in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/LinkExistingPerson/LinkExistingPersonHandler.cs:line 33
-   at SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 101
-   at SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 113
-   at SchaerbeekMunicipality.Integration.Tests.Features.Registration.LinkExistingPersonTests.LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict() in /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:line 113
---- End of stack trace from previous location ---
-
-Failed!  - Failed:     2, Passed:    99, Skipped:     0, Total:   101, Duration: 8 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
-
+[xUnit.net 00:00:05.29]     SchaerbeekMunicipality.Integration.Te
+… (output truncated)
 ```
-</details>
-</tool-use>
+</details></tool-use>
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
 
 </details></tool-use>
 
@@ -279,7 +190,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The two failing tests have been identified.
 
-One test expects Dupont to be unregistered but finds True. Another throws a conflict too early. The demo data seeder may still be populating the population register despite `DemoData:SeedWorkflowCases` being false. I will inspect the test files and seeders to find the cause.</details></think>
+One test expects Dupont to be unregistered but finds True. Another throws a conflict too early. The demo data seeder may still be populating the population register despite `DemoData:SeedWorkflowCases` being false. I will inspect the test files and seeders to find the cause.
+</details></think>
 
 _**Agent (default)**_
 
@@ -288,49 +200,29 @@ The two failures point to demo seed data affecting National Register tests — I
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
 File not found
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/PopulationRegisterSeeder.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/PopulationRegisterSeeder.cs</summary>
 
 </details></tool-use>
 
@@ -339,34 +231,25 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The test failure likely stems from database seeding. MunicipalAppFactory disables `DemoData:SeedWorkflowCases`, yet `DemoWorkflowCaseSeeder` or `InitializeDatabaseAsync` may still be populating the population register.
 
-Searching for `DemoWorkflowCaseSeeder` and `InitializeDatabaseAsync`.</details></think>
+Searching for `DemoWorkflowCaseSeeder` and `InitializeDatabaseAsync`.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
 
-Directory: **** (1 file)
+Directory: **``** (1 file)
 
 | File |
 |------|
 | `./src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -416,50 +299,408 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The problem is in `InitializeDatabaseAsync`. It always calls `PopulationRegisterSeeder.SeedAsync`.
+
+The seeder adds Jean Dupont to the population register. Tests expect him to remain unregistered. I am checking the dependency injection setup to trace the full initialization flow.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/DemoData/DemoDataOptions.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The root cause is clear. `InitializeDatabaseAsync` always calls `PopulationRegisterSeeder.SeedAsync`, which seeds Jean Dupont into the population register.
+
+Two tests fail because of this. One expects Jean Dupont to be unregistered. The other fails when trying to link him to a case because he is already seeded. The fix is to seed population register data only when `SeedWorkflowCases` is true.
+
+Checking whether change-of-address or identity-document integration tests depend on the population register seeder. This will determine if the seeder should share the `SeedWorkflowCases` flag or use a dedicated one.
+</details></think>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.{cs}",
+  "pattern": "JeanDupont|SofiaNguyen|PopulationRegister"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "JeanDupont|SofiaNguyen|PopulationRegister",
+  "topFiles": [
+    {
+      "matchCount": 7,
+      "uri": "tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseDecisionTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTestHelpers.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/ChangeOfAddress/ChangeOfAddressTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/ChangeOfAddressE2ETests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/RegisterTarget.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Journeys/DocumentRequestE2ETests.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "tests/SchaerbeekMunicipality.E2E.Tests/Seeding/E2ECaseSeeder.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/PopulationRegisterSeeder.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegisterTargetResolverTests.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/NationalRegisterSeeder.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/RegisterTargetResolver.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/IdentityDocuments/DocumentRequestTests.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs"
+    },
+    {
+      "matchCount": 6,
+      "uri": "src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs"
+    }
+  ],
+  "totalFiles": 18,
+  "totalMatches": 39
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/ChangeOfAddress/ChangeOfAddressTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/IdentityDocuments/DocumentRequestTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+The ChangeOfAddress and DocumentRequest tests each include a `CreateRegisteredPersonAsync` helper that handles cases where Jean Dupont is already registered.
 
-</details>
-</tool-use>
+Gating `PopulationRegisterSeeder` behind `SeedWorkflowCases` should resolve the integration test failures. The fix is to conditionally call `calonRegisterSeeder.SeedAsync` in `InitializeDatabaseAsync` only when `DemoData:SeedWorkflowCases` is true. Next, verify that `IConfiguration` is available in `DependencyInjection.cs`.
+</details></think>
+
+_**Agent (default)**_
+
+The failure is from `PopulationRegisterSeeder` always running and pre-linking Jean Dupont; I'll gate it behind the same `DemoData:SeedWorkflowCases` flag used for workflow demo seeding.
+
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+A missing using directive for `SchaerbeekMunicipality.Application.DemoData` may be causing the failure. The Infrastructure project might not reference the Application project.
+
+Checking project references.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Infrastructure cannot reference Application, so DemoDataOptions from the Application layer cannot be used there.
+
+The cleanest fix is to move the PopulationRegisterSeeder call into MunicipalApiHostExtensions and gate it behind the existing SeedWorkflowCases flag. This keeps all demo seeding logic in one place without duplicating configuration or adding a shared project.
+
+The implementation will create a scoped service provider inside `InitializeMunicipalApiDatabaseAsync` to resolve `MunicipalDbContext` and run the seeder. `DependencyInjection.InitializeDatabaseAsync` will be cleaned up by removing the `PopulationRegisterSeeder` call. A quick check confirms `InitializeDatabaseAsync` is only invoked from `MunicipalApiHostExtensions`, so moving the logic there is safe.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.{cs}",
+  "pattern": "InitializeDatabaseAsync|InitializeMunicipalApiDatabaseAsync"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "InitializeDatabaseAsync|InitializeMunicipalApiDatabaseAsync",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "./src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "./src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "./src/SchaerbeekMunicipality.Api/Program.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "./src/SchaerbeekMunicipality.Web/Program.cs"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 5
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Both the Api and Web projects call `InitializeMunicipalApiDatabaseAsync`.
+
+Moving `PopulationRegisterSeeder` into `InitializeMunicipalApiDatabaseAsync` is the correct approach. Checking whether the Web project uses its own `MunicipaostExtensions` or shares the Api version.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The web project only initializes the database outside of Development mode. This likely explains why the integration tests fail on GitHub Actions.
+
+The API likely seeds the database unconditionally. The fix moves the seed logic from `DependencyInjection.InitializeDatabaseAsync` to `MunicipalApiHostExtensions.InitializeMunicipalApiDatabaseAsync`, gated by `SeedWorkflowCases`. I am verifying how `Program.cs` registers the population service.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Program.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Implementing the fix and running the tests.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/MunicipalApiHostExtensions.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Running the integration tests locally to verify they pass.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj --filter &#34;FullyQualifiedName~NationalRegister&#34; 2&gt;&amp;1</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj --filter "FullyQualifiedName~NationalRegister" 2>&1
+```
+
+```
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (arm64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     5, Skipped:     0, Total:     5, Duration: 1 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The National Register tests pass.
+
+Running the full integration test suite to check for other failures.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj 2&gt;&amp;1</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj 2>&1
+```
+
+```
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (arm64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   101, Skipped:     0, Total:   101, Duration: 9 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The test runner reported 101 tests passed and 2 failed. The VSTest console error likely caused the build failure.
+</details></think>
+
+_**Agent (default)**_
+
+The CI failure came from a recent change that always ran `PopulationRegisterSeeder` during database init. That seeder pre-links Jean Dupont into the population register, which broke two National Register tests that expect him to be unlinked.
+
+**Root cause:** `PopulationRegisterSeeder` was added to `InitializeDatabaseAsync` and ran on every startup, including integration tests. The test factory already disables `DemoData:SeedWorkflowCases`, but population seeding was not gated behind that flag.
+
+**Failed tests:**
+1. `SearchNationalRegister_Dupont_MarksPopulationRegistrationStatus` — expected `IsRegisteredInPopulation` to be `false` for Jean Dupont
+2. `LinkExistingPerson_WhenNrAlreadyAssigned_ThrowsConflict` — expected conflict on the second link attempt, but Jean was already linked on the first
+
+**Fix:** Move `PopulationRegisterSeeder` out of unconditional database init and run it only when `DemoData:SeedWorkflowCases` is enabled (same gate as `DemoWorkflowCaseSeeder`). Integration tests keep a clean NR-only seed; local dev with `SeedWorkflowCases: true` still gets demo population data.
+
+All 101 integration tests pass locally now. I can commit this fix if you want.

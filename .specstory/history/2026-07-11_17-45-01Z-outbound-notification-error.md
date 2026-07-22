@@ -36,129 +36,676 @@ Substitution is not possible for environment variable ConnectionStrings__schaerb
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+The user encountered an error while loading the Outbound Notifications page.
 
-</details>
-</tool-use>
+The error originates in `ListOutboundNotificationsHandler.GetSourceCaseId`. I am investigating the relevant files to find the cause.
+</details></think>
+
+_**Agent (default)**_
+
+Investigating the outbound notifications handler and related models to find why notifications without a case reference throw.
+
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
+</details></tool-use>
 
-Status: **loading**
+_**Agent (default)**_
 
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/OutboundNotificationsPage.razor</summary>
 
-</details>
-</tool-use>
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The OutboundNotification domain model likely contains case references that GetSourceCaseId does not handle. Notifications may reference ChangeOfAddress or other case types missing from the method.
+
+Searching for the OutboundNotification entity definition.
+</details></think>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "class OutboundNotification|record OutboundNotification"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "class OutboundNotification|record OutboundNotification",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Notifications/OutboundNotification.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/OutboundNotificationConfiguration.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/OutboundNotificationRepository.cs"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "OutboundNotification"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "OutboundNotification",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Notifications/OutboundNotification.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-07_18-58-10Z-phase-11-implementation-summary.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Events/RegistrationConfirmedNotificationHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260705194034_Phase9ExceptionScenarios.Designer.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/OutboundNotificationsPage.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Program.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260709193137_Phase13ChangeOfAddress.Designer.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/DOMAIN.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260705183640_RoleBoundariesAndCaseLocking.Designer.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/MunicipalDbContext.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/ROADMAP.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-05_17-31-49Z-phase-8-overview.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Notifications/OutboundNotificationId.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/Notifications/OutboundNotificationRecipient.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Migrations/20260705174146_CertificatesAndNotifications.Designer.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-06_18-43-21Z-phase-10-overview.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Events/AddressChangedNotificationHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/OutboundNotificationRepository.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-07_19-14-02Z-phase-12-implementation.md"
+    }
+  ],
+  "totalFiles": 36,
+  "totalMatches": 36
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<think><details><summary>Thought Process</summary>
+Checking the OutboundNotification domain model and notification handlers to determine which case types can be referenced.
+</details></think>
 
-Status: **loading**
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Notifications/OutboundNotification.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/OutboundNotificationConfiguration.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Events/AddressChangedNotificationHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Events/BirthRegisteredNotificationHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The `OutboundNotification` domain model contains three case types. This likely causes the source case ID lookup to fail.
+
+`GetSourceCaseId` only checks `RegistrationCaseId` and `BirtDeclarationCaseId`, so change-of-address notifications throw an error. I will add support for `ChangeOfAddressCaseId` and verify how the page should link to each case type.
+</details></think>
+
+_**Agent (default)**_
+
+The handler only resolves registration and birth-declaration case IDs; change-of-address notifications use a third field. Checking tests and case routes next.
 
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "ListOutboundNotifications"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "ListOutboundNotifications",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-05_18-27-04Z-case-access-and-locking-rules.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/ROADMAP.md"
+    },
+    {
+      "matchCount": 14,
+      "uri": ".specstory/history/2026-07-07_19-14-02Z-phase-12-implementation.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsEndpoint.cs"
+    },
+    {
+      "matchCount": 5,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationEndpoints.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": ".specstory/history/2026-07-05_17-31-49Z-phase-8-overview.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-7-decision-registration.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/OutboundNotificationsPage.razor"
+    },
+    {
+      "matchCount": 7,
+      "uri": ".specstory/history/2026-07-05_18-18-58Z-registration-feature-discussion.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Program.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-07_18-58-10Z-phase-11-implementation-summary.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".specstory/history/2026-07-11_17-28-07Z-appdatepicker-code-improvements.md"
+    }
+  ],
+  "totalFiles": 14,
+  "totalMatches": 50
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
 
-</details>
-</tool-use>
+Parameters:
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "@page.*cases"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "@page.*cases",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 2
+}
+```
+Status: **completed**
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+Looking up the route definitions for birth declaration and change of address cases.
+</details></think>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": true,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "@page.*birth|@page.*change-of-address"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "@page.*birth|@page.*change-of-address",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 4
+}
+```
+Status: **completed**
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsEndpoint.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+The `GetSourceCaseId` method needs to handle `ChangeOfAddressCaseId` to resolve the invalid operation exception.
 
-</details>
-</tool-use>
+A minimal fix would only add `ChangeOfAddressCaseId` to `GetSourceCaseId`, but that would still produce incorrect links for change-of-address and birth-declaration notifications. A complete fix should also update the DTO and page to route to the correct case detail pages based on case type.
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+The DTO currently stores only a raw `Guid` for `CaseId`, so the page cannot determine the correct case detail link without extra context. Adding a `CaseType` enum to the DTO would let the page route to the right page per notification type.
+
+Adding a `CaseHref` or `CasePath` property directly to the DTO would let the page render the correct case link without needing a separate enum. I am checking existing domain patterns to decide which approach fits best.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "CaseType|OutboundNotificationCase"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "CaseType|OutboundNotificationCase",
+  "topFiles": [
+    {
+      "matchCount": 5,
+      "uri": "./.specstory/history/2026-07-09_19-13-47Z-phase-13-summary.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "./src/SchaerbeekMunicipality.Web/Features/Registration/RecordPoliceResult/RecordPoliceResultResponse.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "./src/SchaerbeekMunicipality.Web/Features/Registration/ListPendingPoliceVerifications/ListPendingPoliceVerificationsResponse.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs"
+    },
+    {
+      "matchCount": 5,
+      "uri": "./src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "./src/SchaerbeekMunicipality.Web/Features/Registration/GetReviewDashboard/GetReviewDashboardResponse.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "./src/SchaerbeekMunicipality.Web/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "./.specstory/history/2026-07-07_19-14-02Z-phase-12-implementation.md"
+    }
+  ],
+  "totalFiles": 8,
+  "totalMatches": 20
+}
+```
+Status: **completed**
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/DOMAIN.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The handler needs ChangeOfAddressCaseId added to GetSourceCaseId. The DTO also needs case type and case href fields so the page can link correctly.
+
+Reviewing the ReviewDashboard pattern for reference.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetReviewDashboard/GetReviewDashboardResponse.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The plan is to add an `OutboundNotificationCaseType` enum and update the DTO to include a `CaseType` field.
+
+The page will be updated to show correct links and case type labels. The handler method will be renamed to `MapNotification` to handle all three case types.
+
+A simpler approach is being considered. Instead of renaming the handler method, `GetSourceCaseId` could simply return the first non-null case ID from the three possible fields.
+
+The handler fix alone would still send change-of-address notifications to the wrong case page. The page will be updated to generate correct hrefs based on each notification's case type, likely showing the type in the link text or a separate column.
+
+The empty state description will be updated to reflect that notifications are created from registration, birth declaration, and change of address cases. Tests will be run after the fix.
+</details></think>
+
+_**Agent (default)**_
+
+The handler omits `ChangeOfAddressCaseId`. Updating it and the page so case links resolve correctly.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/OutboundNotificationsPage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/OutboundNotificationsPage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/OutboundNotificationsPage.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Verifying the build and running related tests.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj --no-restore 2&gt;&amp;1 | tail -20</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj --no-restore 2>&1 | tail -20
+```
+
+```
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.98
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj --filter &#34;FullyQualifiedName~CertificatesAndNotificationsTests&#34; --no-restore 2&gt;&amp;1 | tail -25</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj --filter "FullyQualifiedName~CertificatesAndNotificationsTests" --no-restore 2>&1 | tail -25
+```
+
+```
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (arm64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     4, Skipped:     0, Total:     4, Duration: 2 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The fix is complete.
+</details></think>
+
+_**Agent (default)**_
+
+The page crashed because `ListOutboundNotificationsHandler` only resolved `RegistrationCaseId` and `BirthDeclarationCaseId`. After Phase 13, change-of-address notifications store their case on `ChangeOfAddressCaseId` instead, so listing all notifications hit the `"Notification must reference a case."` exception.
+
+**What changed:**
+
+1. **`ListOutboundNotificationsHandler`** — `MapSourceCase` now handles all three case types and returns an `OutboundNotificationCaseType` on the DTO.
+2. **`OutboundNotificationsPage.razor`** — Case links go to the correct detail page (`/registration/cases/…`, `/birth-declarations/…`, or `/change-of-address/…`), and the case column shows the procedure type.
+
+Reload the outbound notifications page and it should load. Change-of-address notifications will show as "Change of address — {id}…" and link to the right case.

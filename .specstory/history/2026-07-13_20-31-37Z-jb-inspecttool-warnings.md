@@ -15,7 +15,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Running JetBrains inspectcode solution-wide to fix the major warnings.
 
-Checking the project structure and available JetBrains tools. Existing Resharper SARIF files suggest prior code analysis work.</details></think>
+Checking the project structure and available JetBrains tools. Existing Resharper SARIF files suggest prior code analysis work.
+</details></think>
 
 _**Agent (default)**_
 
@@ -24,11 +25,10 @@ I'll run a solution-wide JetBrains inspect and then tackle the major warnings it
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **895** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (895 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (895 files)
 
 | File |
 |------|
@@ -927,20 +927,12 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (895 f
 | `src/SchaerbeekMunicipality.AppHost/appsettings.json` |
 | `src/SchaerbeekMunicipality.Infrastructure/Integrations/IntegrationOutboxWorker.cs` |
 | `src/SchaerbeekMunicipality.Api/Features/Registration/AttachDocument/AttachDocumentEndpoint.cs` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: which jb dotnet jbinspectcode inspectcode 2>/dev/null; ls -la /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/*.sln 2>/dev/null; command -v jb || echo "jb not found"</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: which jb dotnet jbinspectcode inspectcode 2&gt;/dev/null; ls -la /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/*.sln 2&gt;/dev/null; command -v jb || echo &#34;jb not found&#34;</summary>
 ```bash
 which jb dotnet jbinspectcode inspectcode 2>/dev/null; ls -la /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/*.sln 2>/dev/null; command -v jb || echo "jb not found"
 ```
@@ -954,24 +946,12 @@ inspectcode not found
 jb not found
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-warnings-final.sarif</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-warnings-final.sarif</summary>
 
 </details></tool-use>
 
@@ -980,22 +960,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The `jb` command is missing. I am looking for alternative ways to run JetBrains inspections, such as Rider or dotnet inspectcode.
 
-I will check existing SARIF files and the inspections.docs file to understand how inspections are currently run.</details></think>
+I will check existing SARIF files and the inspections.docs file to understand how inspections are currently run.
+</details></think>
 
 _**Agent (default)**_
 
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
-
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: ls "/Applications/Rider.app/Contents/lib/ReSharperHost/macos-arm64/inspectcode" 2>/dev/null || ls "/Applications/Rider.app/Contents/lib/ReSharperHost/macos-x64/inspectcode" 2>/dev/null; ls "/Applications/JetBrains Toolbox/Rider.app/Contents/lib/ReSharperHost/"*"/inspectcode" 2>/dev/null; mdfind -name inspectcode 2>/dev/null | head -5</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: ls &#34;/Applications/Rider.app/Contents/lib/ReSharperHost/macos-arm64/inspectcode&#34; 2&gt;/dev/null || ls &#34;/Applications/Rider.app/Contents/lib/ReSharperHost/macos-x64/inspectcode&#34; 2&gt;/dev/null; ls &#34;/Applications/JetBrains Toolbox/Rider.app/Contents/lib/ReSharperHost/&#34;*&#34;/inspectcode&#34; 2&gt;/dev/null; mdfind -name inspectcode 2&gt;/dev/null | head -5</summary>
 ```bash
 ls "/Applications/Rider.app/Contents/lib/ReSharperHost/macos-arm64/inspectcode" 2>/dev/null || ls "/Applications/Rider.app/Contents/lib/ReSharperHost/macos-x64/inspectcode" 2>/dev/null; ls "/Applications/JetBrains Toolbox/Rider.app/Contents/lib/ReSharperHost/"*"/inspectcode" 2>/dev/null; mdfind -name inspectcode 2>/dev/null | head -5
 ```
@@ -1009,24 +987,12 @@ ls "/Applications/Rider.app/Contents/lib/ReSharperHost/macos-arm64/inspectcode" 
 /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.exe
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
 
 </details></tool-use>
 
@@ -1035,13 +1001,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 InspectCode was found in the Downloads folder.
 
-The Windows executable was located. Now searching for the macOS version of the JetBrains inspect tool.</details></think>
+The Windows executable was located. Now searching for the macOS version of the JetBrains inspect tool.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: ls -la "/Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/" 2>/dev/null; ls "/Users/joba/Library/Application Support/JetBrains/Toolbox/apps/Rider" 2>/dev/null; find /Users/joba -maxdepth 5 -name "inspectcode" -type f 2>/dev/null | head -10</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: ls -la &#34;/Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/&#34; 2&gt;/dev/null; ls &#34;/Users/joba/Library/Application Support/JetBrains/Toolbox/apps/Rider&#34; 2&gt;/dev/null; find /Users/joba -maxdepth 5 -name &#34;inspectcode&#34; -type f 2&gt;/dev/null | head -10</summary>
 ```bash
 ls -la "/Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/" 2>/dev/null; ls "/Users/joba/Library/Application Support/JetBrains/Toolbox/apps/Rider" 2>/dev/null; find /Users/joba -maxdepth 5 -name "inspectcode" -type f 2>/dev/null | head -10
 ```
@@ -1074,642 +1040,15 @@ drwxr-xr-x@    4 joba  staff       128 Jul 13 21:52 JavaScript
 -rw-r--r--@    1 joba  staff       179 Jan  1  1980 JetBrains.Build.Platform.Tasks.ProxyToSolutionCompiledTask.Props
 -rw-r--r--@    1 joba  staff     69016 Jan  1  1980 JetBrains.CommandLine.Installers.dll
 -rw-r--r--@    1 joba  staff       431 Jan  1  1980 JetBrains.CommandLine.Installers.xml
--rw-r--r--@    1 joba  staff     40848 Jan  1  1980 JetBrains.CommandLine.Interop.dll
--rw-r--r--@    1 joba  staff      1235 Jan  1  1980 JetBrains.CommandLine.Interop.xml
--rw-r--r--@    1 joba  staff     42221 Jan  1  1980 JetBrains.CommandLine.Products.deps.json
--rw-r--r--@    1 joba  staff     18832 Jan  1  1980 JetBrains.CommandLine.Products.dll
--rw-r--r--@    1 joba  staff       414 Jan  1  1980 JetBrains.CommandLine.Products.runtimeconfig.json
--rw-r--r--@    1 joba  staff       155 Jan  1  1980 JetBrains.CommandLine.Products.xml
--rw-r--r--@    1 joba  staff   1179016 Jan  1  1980 JetBrains.Decompiler.Core.dll
--rw-r--r--@    1 joba  staff    174986 Jan  1  1980 JetBrains.Decompiler.Core.xml
--rw-r--r--@    1 joba  staff    115744 Jan  1  1980 JetBrains.ExternalAnnotations.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     88064 Jan  1  1980 JetBrains.FormatRipper.dll
--rw-r--r--@    1 joba  staff     61952 Jan  1  1980 JetBrains.HabitatDetector.dll
--rw-r--r--@    1 joba  staff    208384 Jan  1  1980 JetBrains.ICSharpCode.SharpZipLib.dll
--rw-r--r--@    1 joba  staff    579695 Jan  1  1980 JetBrains.ICSharpCode.SharpZipLib.xml
--rw-r--r--@    1 joba  staff     54784 Jan  1  1980 JetBrains.JsonRpc.dll
--rw-r--r--@    1 joba  staff    275456 Jan  1  1980 JetBrains.Lifetimes.dll
--rw-r--r--@    1 joba  staff    231962 Jan  1  1980 JetBrains.Lifetimes.xml
--rw-r--r--@    1 joba  staff     13312 Jan  1  1980 JetBrains.MSBuild.Logger.Api.dll
--rw-r--r--@    1 joba  staff     28026 Jan  1  1980 JetBrains.MSBuild.Logger.Api.xml
--rw-r--r--@    1 joba  staff    281488 Jan  1  1980 JetBrains.Platform.BuildEngine.dll
--rw-r--r--@    1 joba  staff     44961 Jan  1  1980 JetBrains.Platform.BuildEngine.xml
--rw-r--r--@    1 joba  staff     39312 Jan  1  1980 JetBrains.Platform.BuildEvents.dll
--rw-r--r--@    1 joba  staff      1916 Jan  1  1980 JetBrains.Platform.BuildEvents.xml
--rw-r--r--@    1 joba  staff    729496 Jan  1  1980 JetBrains.Platform.BuildInterfaces.dll
--rw-r--r--@    1 joba  staff    269759 Jan  1  1980 JetBrains.Platform.BuildInterfaces.xml
--rw-r--r--@    1 joba  staff     88488 Jan  1  1980 JetBrains.Platform.ComponentModel.Legacy.dll
--rw-r--r--@    1 joba  staff     20813 Jan  1  1980 JetBrains.Platform.ComponentModel.Legacy.xml
--rw-r--r--@    1 joba  staff   1002904 Jan  1  1980 JetBrains.Platform.ComponentModel.dll
--rw-r--r--@    1 joba  staff    367509 Jan  1  1980 JetBrains.Platform.ComponentModel.xml
--rw-r--r--@    1 joba  staff     18398 Jan  1  1980 JetBrains.Platform.Core.ComponentModel.Legacy.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    881639 Jan  1  1980 JetBrains.Platform.Core.Ide.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     19290 Jan  1  1980 JetBrains.Platform.Core.IisExpress.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     21256 Jan  1  1980 JetBrains.Platform.Core.MsBuild.JetMetadata.sstg
--rw-r--r--@    1 joba  staff   1434530 Jan  1  1980 JetBrains.Platform.Core.Shell.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     49750 Jan  1  1980 JetBrains.Platform.Core.Symbols.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    142034 Jan  1  1980 JetBrains.Platform.Core.Text.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     49815 Jan  1  1980 JetBrains.Platform.Core.ViewModels.JetMetadata.sstg
--rw-r--r--@    1 joba  staff   2613640 Jan  1  1980 JetBrains.Platform.Core.dll
--rw-r--r--@    1 joba  staff   1636981 Jan  1  1980 JetBrains.Platform.Core.xml
--rw-r--r--@    1 joba  staff    270744 Jan  1  1980 JetBrains.Platform.DocumentManager.dll
--rw-r--r--@    1 joba  staff     37255 Jan  1  1980 JetBrains.Platform.DocumentManager.xml
--rw-r--r--@    1 joba  staff    147864 Jan  1  1980 JetBrains.Platform.DocumentModel.dll
--rw-r--r--@    1 joba  staff     78816 Jan  1  1980 JetBrains.Platform.DocumentModel.xml
--rw-r--r--@    1 joba  staff    707456 Jan  1  1980 JetBrains.Platform.Ide.dll
--rw-r--r--@    1 joba  staff    111190 Jan  1  1980 JetBrains.Platform.Ide.xml
--rw-r--r--@    1 joba  staff     28568 Jan  1  1980 JetBrains.Platform.IisExpressHost.dll
--rw-r--r--@    1 joba  staff      1430 Jan  1  1980 JetBrains.Platform.IisExpressHost.xml
--rw-r--r--@    1 joba  staff     23448 Jan  1  1980 JetBrains.Platform.IisExpressTask.dll
--rw-r--r--@    1 joba  staff       833 Jan  1  1980 JetBrains.Platform.IisExpressTask.xml
--rw-r--r--@    1 joba  staff     16781 Jan  1  1980 JetBrains.Platform.Interop.CommandLine.JetMetadata.sstg
--rw-r--r--@    1 joba  staff   1009544 Jan  1  1980 JetBrains.Platform.Interop.dll
--rw-r--r--@    1 joba  staff     17282 Jan  1  1980 JetBrains.Platform.Interop.dotMemoryUnit.Interop.Console.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     76972 Jan  1  1980 JetBrains.Platform.Interop.dotMemoryUnit.Interop.Ide.JetMetadata.sstg
--rw-r--r--@    1 joba  staff   3032954 Jan  1  1980 JetBrains.Platform.Interop.xml
--rw-r--r--@    1 joba  staff   1425808 Jan  1  1980 JetBrains.Platform.Metadata.dll
--rw-r--r--@    1 joba  staff    356350 Jan  1  1980 JetBrains.Platform.Metadata.xml
--rw-r--r--@    1 joba  staff     18344 Jan  1  1980 JetBrains.Platform.MsBuildAutoDetectTask.dll
--rw-r--r--@    1 joba  staff       165 Jan  1  1980 JetBrains.Platform.MsBuildAutoDetectTask.xml
--rw-r--r--@    1 joba  staff     60832 Jan  1  1980 JetBrains.Platform.MsBuildEventLogger.dll
--rw-r--r--@    1 joba  staff      2645 Jan  1  1980 JetBrains.Platform.MsBuildEventLogger.xml
--rw-r--r--@    1 joba  staff    363920 Jan  1  1980 JetBrains.Platform.MsBuildHost.dll
--rw-r--r--@    1 joba  staff     43126 Jan  1  1980 JetBrains.Platform.MsBuildHost.xml
--rw-r--r--@    1 joba  staff    487312 Jan  1  1980 JetBrains.Platform.MsBuildTask.dll
--rw-r--r--@    1 joba  staff     20888 Jan  1  1980 JetBrains.Platform.MsBuildTask.v15.dll
--rw-r--r--@    1 joba  staff       159 Jan  1  1980 JetBrains.Platform.MsBuildTask.v15.xml
--rw-r--r--@    1 joba  staff     17816 Jan  1  1980 JetBrains.Platform.MsBuildTask.v17.dll
--rw-r--r--@    1 joba  staff       159 Jan  1  1980 JetBrains.Platform.MsBuildTask.v17.xml
--rw-r--r--@    1 joba  staff     16280 Jan  1  1980 JetBrains.Platform.MsBuildTask.v4.dll
--rw-r--r--@    1 joba  staff       158 Jan  1  1980 JetBrains.Platform.MsBuildTask.v4.xml
--rw-r--r--@    1 joba  staff     47549 Jan  1  1980 JetBrains.Platform.MsBuildTask.xml
--rw-r--r--@    1 joba  staff    503200 Jan  1  1980 JetBrains.Platform.ProjectModel.Host.dll
--rw-r--r--@    1 joba  staff     60908 Jan  1  1980 JetBrains.Platform.ProjectModel.Host.xml
--rw-r--r--@    1 joba  staff    146848 Jan  1  1980 JetBrains.Platform.ProjectModel.NuGet.dll
--rw-r--r--@    1 joba  staff      2985 Jan  1  1980 JetBrains.Platform.ProjectModel.NuGet.xml
--rw-r--r--@    1 joba  staff   3768728 Jan  1  1980 JetBrains.Platform.ProjectModel.dll
--rw-r--r--@    1 joba  staff    332865 Jan  1  1980 JetBrains.Platform.ProjectModel.xml
--rw-r--r--@    1 joba  staff     50080 Jan  1  1980 JetBrains.Platform.RdFramework.Actions.dll
--rw-r--r--@    1 joba  staff       404 Jan  1  1980 JetBrains.Platform.RdFramework.Actions.xml
--rw-r--r--@    1 joba  staff     19872 Jan  1  1980 JetBrains.Platform.RdFramework.Shell.dll
--rw-r--r--@    1 joba  staff       161 Jan  1  1980 JetBrains.Platform.RdFramework.Shell.xml
--rw-r--r--@    1 joba  staff     58378 Jan  1  1980 JetBrains.Platform.RdProtocol.JetMetadata.sstg
--rw-r--r--@    1 joba  staff   6659472 Jan  1  1980 JetBrains.Platform.RdProtocol.dll
--rw-r--r--@    1 joba  staff    770072 Jan  1  1980 JetBrains.Platform.RdProtocol.xml
--rw-r--r--@    1 joba  staff  12062088 Jan  1  1980 JetBrains.Platform.Shell.dll
--rw-r--r--@    1 joba  staff   3097741 Jan  1  1980 JetBrains.Platform.Shell.xml
--rw-r--r--@    1 joba  staff     97672 Jan  1  1980 JetBrains.Platform.Symbols.dll
--rw-r--r--@    1 joba  staff      9090 Jan  1  1980 JetBrains.Platform.Symbols.xml
--rw-r--r--@    1 joba  staff    181656 Jan  1  1980 JetBrains.Platform.Text.Protocol.dll
--rw-r--r--@    1 joba  staff    152397 Jan  1  1980 JetBrains.Platform.Text.Protocol.xml
--rw-r--r--@    1 joba  staff    491408 Jan  1  1980 JetBrains.Platform.TextControl.dll
--rw-r--r--@    1 joba  staff    224717 Jan  1  1980 JetBrains.Platform.TextControl.xml
--rw-r--r--@    1 joba  staff    111504 Jan  1  1980 JetBrains.Platform.Util.NetFX.dll
--rw-r--r--@    1 joba  staff    105521 Jan  1  1980 JetBrains.Platform.Util.NetFX.xml
--rw-r--r--@    1 joba  staff     50064 Jan  1  1980 JetBrains.Platform.Util.Text.dll
--rw-r--r--@    1 joba  staff      9689 Jan  1  1980 JetBrains.Platform.Util.Text.xml
--rw-r--r--@    1 joba  staff   2450824 Jan  1  1980 JetBrains.Platform.Util.dll
--rw-r--r--@    1 joba  staff   1232121 Jan  1  1980 JetBrains.Platform.Util.xml
--rw-r--r--@    1 joba  staff     58768 Jan  1  1980 JetBrains.Platform.ViewModels.dll
--rw-r--r--@    1 joba  staff     16697 Jan  1  1980 JetBrains.Platform.ViewModels.xml
--rw-r--r--@    1 joba  staff     76301 Jan  1  1980 JetBrains.Plugins.ReSharperUnity.resharper.resharper-json.src.Json.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    967748 Jan  1  1980 JetBrains.Plugins.ReSharperUnity.resharper.resharper-unity.src.Unity.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    408523 Jan  1  1980 JetBrains.Plugins.ReSharperUnity.resharper.resharper-unity.src.Unity.Shaders.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     75401 Jan  1  1980 JetBrains.Plugins.ReSharperUnity.resharper.resharper-yaml.src.Yaml.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     16711 Jan  1  1980 JetBrains.Plugins._Unity.Pregenerated.BackendModel.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     17920 Jan  1  1980 JetBrains.Profiler.Api.dll
--rw-r--r--@    1 joba  staff     10649 Jan  1  1980 JetBrains.Profiler.Api.xml
--rw-r--r--@    1 joba  staff     56832 Jan  1  1980 JetBrains.Profiler.SelfApi.dll
--rw-r--r--@    1 joba  staff     37931 Jan  1  1980 JetBrains.Profiler.SelfApi.xml
--rw-r--r--@    1 joba  staff   2836737 Jan  1  1980 JetBrains.Psi.Features.Core.JetMetadata.sstg
--rw-r--r--@    1 joba  staff   4239535 Jan  1  1980 JetBrains.Psi.Features.Cpp.Src.Core.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    239339 Jan  1  1980 JetBrains.Psi.Features.SolutionBuilder.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     39320 Jan  1  1980 JetBrains.Psi.Features.Tasks.Build.dll
--rw-r--r--@    1 joba  staff      4738 Jan  1  1980 JetBrains.Psi.Features.Tasks.Build.xml
--rw-r--r--@    1 joba  staff     82479 Jan  1  1980 JetBrains.Psi.Features.Tasks.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    843200 Jan  1  1980 JetBrains.Psi.Features.UnitTesting.JetMetadata.sstg
--rw-r--r--@    1 joba  staff   3951334 Jan  1  1980 JetBrains.Psi.Features.Web.Core.JetMetadata.sstg
--rw-r--r--@    1 joba  staff   6681794 Jan  1  1980 JetBrains.Psi.Features.src.JetMetadata.sstg
--rw-r--r--@    1 joba  staff     95232 Jan  1  1980 JetBrains.RdFramework.Reflection.dll
--rw-r--r--@    1 joba  staff     19056 Jan  1  1980 JetBrains.RdFramework.Reflection.xml
--rw-r--r--@    1 joba  staff    205312 Jan  1  1980 JetBrains.RdFramework.dll
--rw-r--r--@    1 joba  staff     19428 Jan  1  1980 JetBrains.RdFramework.xml
--rw-r--r--@    1 joba  staff   5992840 Jan  1  1980 JetBrains.ReSharper.Cpp.dll
--rw-r--r--@    1 joba  staff     63316 Jan  1  1980 JetBrains.ReSharper.Cpp.xml
--rw-r--r--@    1 joba  staff     69032 Jan  1  1980 JetBrains.ReSharper.Daemon.BuildScripts.dll
--rw-r--r--@    1 joba  staff       978 Jan  1  1980 JetBrains.ReSharper.Daemon.BuildScripts.xml
--rw-r--r--@    1 joba  staff   7226264 Jan  1  1980 JetBrains.ReSharper.Daemon.CSharp.dll
--rw-r--r--@    1 joba  staff     36314 Jan  1  1980 JetBrains.ReSharper.Daemon.CSharp.xml
--rw-r--r--@    1 joba  staff    490904 Jan  1  1980 JetBrains.ReSharper.Daemon.Engine.dll
--rw-r--r--@    1 joba  staff      6519 Jan  1  1980 JetBrains.ReSharper.Daemon.Engine.xml
--rw-r--r--@    1 joba  staff     88480 Jan  1  1980 JetBrains.ReSharper.Daemon.Protobuf.dll
--rw-r--r--@    1 joba  staff       160 Jan  1  1980 JetBrains.ReSharper.Daemon.Protobuf.xml
--rw-r--r--@    1 joba  staff     94104 Jan  1  1980 JetBrains.ReSharper.Daemon.Resx.dll
--rw-r--r--@    1 joba  staff       156 Jan  1  1980 JetBrains.ReSharper.Daemon.Resx.xml
--rw-r--r--@    1 joba  staff    185760 Jan  1  1980 JetBrains.ReSharper.Daemon.Specific.dll
--rw-r--r--@    1 joba  staff       160 Jan  1  1980 JetBrains.ReSharper.Daemon.Specific.xml
--rw-r--r--@    1 joba  staff    777616 Jan  1  1980 JetBrains.ReSharper.Daemon.VB.dll
--rw-r--r--@    1 joba  staff      1429 Jan  1  1980 JetBrains.ReSharper.Daemon.VB.xml
--rw-r--r--@    1 joba  staff   2240400 Jan  1  1980 JetBrains.ReSharper.Daemon.Web.dll
--rw-r--r--@    1 joba  staff      7544 Jan  1  1980 JetBrains.ReSharper.Daemon.Web.xml
--rw-r--r--@    1 joba  staff    344984 Jan  1  1980 JetBrains.ReSharper.Daemon.Xaml.dll
--rw-r--r--@    1 joba  staff      1055 Jan  1  1980 JetBrains.ReSharper.Daemon.Xaml.xml
--rw-r--r--@    1 joba  staff     74640 Jan  1  1980 JetBrains.ReSharper.Daemon.Xml.dll
--rw-r--r--@    1 joba  staff      1255 Jan  1  1980 JetBrains.ReSharper.Daemon.Xml.xml
--rw-r--r--@    1 joba  staff    700808 Jan  1  1980 JetBrains.ReSharper.Daemon.dll
--rw-r--r--@    1 joba  staff     35288 Jan  1  1980 JetBrains.ReSharper.Daemon.xml
--rw-r--r--@    1 joba  staff   2189216 Jan  1  1980 JetBrains.ReSharper.ExternalSources.dll
--rw-r--r--@    1 joba  staff     61749 Jan  1  1980 JetBrains.ReSharper.ExternalSources.xml
--rw-r--r--@    1 joba  staff     37304 Jan  1  1980 JetBrains.ReSharper.Feature.Services.BuildScripts.dll
--rw-r--r--@    1 joba  staff       174 Jan  1  1980 JetBrains.ReSharper.Feature.Services.BuildScripts.xml
--rw-r--r--@    1 joba  staff   2836400 Jan  1  1980 JetBrains.ReSharper.Feature.Services.CSharp.dll
--rw-r--r--@    1 joba  staff     49911 Jan  1  1980 JetBrains.ReSharper.Feature.Services.CSharp.xml
--rw-r--r--@    1 joba  staff    207808 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Cpp.UnitTesting.dll
--rw-r--r--@    1 joba  staff      1022 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Cpp.UnitTesting.xml
--rw-r--r--@    1 joba  staff   9418664 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Cpp.dll
--rw-r--r--@    1 joba  staff    139254 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Cpp.xml
--rw-r--r--@    1 joba  staff    210896 Jan  1  1980 JetBrains.ReSharper.Feature.Services.ExternalSources.CSharp.dll
--rw-r--r--@    1 joba  staff     57509 Jan  1  1980 JetBrains.ReSharper.Feature.Services.ExternalSources.CSharp.xml
--rw-r--r--@    1 joba  staff     57288 Jan  1  1980 JetBrains.ReSharper.Feature.Services.ExternalSources.VB.dll
--rw-r--r--@    1 joba  staff      2845 Jan  1  1980 JetBrains.ReSharper.Feature.Services.ExternalSources.VB.xml
--rw-r--r--@    1 joba  staff    199616 Jan  1  1980 JetBrains.ReSharper.Feature.Services.ExternalSources.dll
--rw-r--r--@    1 joba  staff     18210 Jan  1  1980 JetBrains.ReSharper.Feature.Services.ExternalSources.xml
--rw-r--r--@    1 joba  staff     62896 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Protobuf.dll
--rw-r--r--@    1 joba  staff       170 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Protobuf.xml
--rw-r--r--@    1 joba  staff     23472 Jan  1  1980 JetBrains.ReSharper.Feature.Services.RegExp.dll
--rw-r--r--@    1 joba  staff       168 Jan  1  1980 JetBrains.ReSharper.Feature.Services.RegExp.xml
--rw-r--r--@    1 joba  staff    441768 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Resx.dll
--rw-r--r--@    1 joba  staff   9835458 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Resx.xml
--rw-r--r--@    1 joba  staff    568232 Jan  1  1980 JetBrains.ReSharper.Feature.Services.VB.dll
--rw-r--r--@    1 joba  staff       326 Jan  1  1980 JetBrains.ReSharper.Feature.Services.VB.xml
--rw-r--r--@    1 joba  staff   2856360 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Web.dll
--rw-r--r--@    1 joba  staff    181010 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Web.xml
--rw-r--r--@    1 joba  staff    202152 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Xaml.dll
--rw-r--r--@    1 joba  staff     10860 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Xaml.xml
--rw-r--r--@    1 joba  staff    103848 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Xml.dll
--rw-r--r--@    1 joba  staff      2033 Jan  1  1980 JetBrains.ReSharper.Feature.Services.Xml.xml
--rw-r--r--@    1 joba  staff   9828256 Jan  1  1980 JetBrains.ReSharper.Feature.Services.dll
--rw-r--r--@    1 joba  staff    971943 Jan  1  1980 JetBrains.ReSharper.Feature.Services.xml
--rw-r--r--@    1 joba  staff    836512 Jan  1  1980 JetBrains.ReSharper.Features.Altering.dll
--rw-r--r--@    1 joba  staff    126904 Jan  1  1980 JetBrains.ReSharper.Features.Altering.xml
--rw-r--r--@    1 joba  staff    144296 Jan  1  1980 JetBrains.ReSharper.Features.Environment.dll
--rw-r--r--@    1 joba  staff      7369 Jan  1  1980 JetBrains.ReSharper.Features.Environment.xml
--rw-r--r--@    1 joba  staff   1272232 Jan  1  1980 JetBrains.ReSharper.Features.Inspections.dll
--rw-r--r--@    1 joba  staff     51787 Jan  1  1980 JetBrains.ReSharper.Features.Inspections.xml
--rw-r--r--@    1 joba  staff    211888 Jan  1  1980 JetBrains.ReSharper.Features.Intellisense.VB.dll
--rw-r--r--@    1 joba  staff       422 Jan  1  1980 JetBrains.ReSharper.Features.Intellisense.VB.xml
--rw-r--r--@    1 joba  staff    846760 Jan  1  1980 JetBrains.ReSharper.Features.Intellisense.dll
--rw-r--r--@    1 joba  staff      9296 Jan  1  1980 JetBrains.ReSharper.Features.Intellisense.xml
--rw-r--r--@    1 joba  staff    675744 Jan  1  1980 JetBrains.ReSharper.Features.Internal.dll
--rw-r--r--@    1 joba  staff     51735 Jan  1  1980 JetBrains.ReSharper.Features.Internal.xml
--rw-r--r--@    1 joba  staff     43432 Jan  1  1980 JetBrains.ReSharper.Features.Navigation.VB.dll
--rw-r--r--@    1 joba  staff       150 Jan  1  1980 JetBrains.ReSharper.Features.Navigation.VB.xml
--rw-r--r--@    1 joba  staff    830888 Jan  1  1980 JetBrains.ReSharper.Features.Navigation.dll
--rw-r--r--@    1 joba  staff     35601 Jan  1  1980 JetBrains.ReSharper.Features.Navigation.xml
--rw-r--r--@    1 joba  staff    256928 Jan  1  1980 JetBrains.ReSharper.Features.ReSpeller.dll
--rw-r--r--@    1 joba  staff     21203 Jan  1  1980 JetBrains.ReSharper.Features.ReSpeller.xml
--rw-r--r--@    1 joba  staff    403872 Jan  1  1980 JetBrains.ReSharper.Features.RegExp.dll
--rw-r--r--@    1 joba  staff     37958 Jan  1  1980 JetBrains.ReSharper.Features.RegExp.xml
--rw-r--r--@    1 joba  staff     54176 Jan  1  1980 JetBrains.ReSharper.Features.Running.dll
--rw-r--r--@    1 joba  staff      5485 Jan  1  1980 JetBrains.ReSharper.Features.Running.xml
--rw-r--r--@    1 joba  staff    888232 Jan  1  1980 JetBrains.ReSharper.Features.SolBuilderDuo.dll
--rw-r--r--@    1 joba  staff    174351 Jan  1  1980 JetBrains.ReSharper.Features.SolBuilderDuo.xml
--rw-r--r--@    1 joba  staff    304048 Jan  1  1980 JetBrains.ReSharper.Features.StructuralSearch.dll
--rw-r--r--@    1 joba  staff       170 Jan  1  1980 JetBrains.ReSharper.Features.StructuralSearch.xml
--rw-r--r--@    1 joba  staff    159144 Jan  1  1980 JetBrains.ReSharper.Features.Web.Linters.dll
--rw-r--r--@    1 joba  staff     14292 Jan  1  1980 JetBrains.ReSharper.Features.Web.Linters.xml
--rw-r--r--@    1 joba  staff   1308568 Jan  1  1980 JetBrains.ReSharper.Features.Web.dll
--rw-r--r--@    1 joba  staff     36971 Jan  1  1980 JetBrains.ReSharper.Features.Web.xml
--rw-r--r--@    1 joba  staff     24984 Jan  1  1980 JetBrains.ReSharper.Features.Xml.dll
--rw-r--r--@    1 joba  staff       157 Jan  1  1980 JetBrains.ReSharper.Features.Xml.xml
--rw-r--r--@    1 joba  staff     78768 Jan  1  1980 JetBrains.ReSharper.I18n.Services.Asp.CSharp.dll
--rw-r--r--@    1 joba  staff       604 Jan  1  1980 JetBrains.ReSharper.I18n.Services.Asp.CSharp.xml
--rw-r--r--@    1 joba  staff     45480 Jan  1  1980 JetBrains.ReSharper.I18n.Services.Asp.VB.dll
--rw-r--r--@    1 joba  staff       165 Jan  1  1980 JetBrains.ReSharper.I18n.Services.Asp.VB.xml
--rw-r--r--@    1 joba  staff    126880 Jan  1  1980 JetBrains.ReSharper.I18n.Services.Asp.dll
--rw-r--r--@    1 joba  staff       162 Jan  1  1980 JetBrains.ReSharper.I18n.Services.Asp.xml
--rw-r--r--@    1 joba  staff    133032 Jan  1  1980 JetBrains.ReSharper.I18n.Services.CSharp.dll
--rw-r--r--@    1 joba  staff      2227 Jan  1  1980 JetBrains.ReSharper.I18n.Services.CSharp.xml
--rw-r--r--@    1 joba  staff     47024 Jan  1  1980 JetBrains.ReSharper.I18n.Services.JavaScript.dll
--rw-r--r--@    1 joba  staff       169 Jan  1  1980 JetBrains.ReSharper.I18n.Services.JavaScript.xml
--rw-r--r--@    1 joba  staff    109472 Jan  1  1980 JetBrains.ReSharper.I18n.Services.VB.dll
--rw-r--r--@    1 joba  staff      2181 Jan  1  1980 JetBrains.ReSharper.I18n.Services.VB.xml
--rw-r--r--@    1 joba  staff     43424 Jan  1  1980 JetBrains.ReSharper.I18n.Services.Xaml.dll
--rw-r--r--@    1 joba  staff       163 Jan  1  1980 JetBrains.ReSharper.I18n.Services.Xaml.xml
--rw-r--r--@    1 joba  staff    449432 Jan  1  1980 JetBrains.ReSharper.I18n.Services.dll
--rw-r--r--@    1 joba  staff      9375 Jan  1  1980 JetBrains.ReSharper.I18n.Services.xml
--rw-r--r--@    1 joba  staff    179624 Jan  1  1980 JetBrains.ReSharper.InplaceRefactorings.dll
--rw-r--r--@    1 joba  staff     13954 Jan  1  1980 JetBrains.ReSharper.InplaceRefactorings.xml
--rw-r--r--@    1 joba  staff     64944 Jan  1  1980 JetBrains.ReSharper.Intentions.BuildScripts.dll
--rw-r--r--@    1 joba  staff       168 Jan  1  1980 JetBrains.ReSharper.Intentions.BuildScripts.xml
--rw-r--r--@    1 joba  staff   3704736 Jan  1  1980 JetBrains.ReSharper.Intentions.CSharp.dll
--rw-r--r--@    1 joba  staff      7509 Jan  1  1980 JetBrains.ReSharper.Intentions.CSharp.xml
--rw-r--r--@    1 joba  staff     50080 Jan  1  1980 JetBrains.ReSharper.Intentions.Resx.dll
--rw-r--r--@    1 joba  staff       160 Jan  1  1980 JetBrains.ReSharper.Intentions.Resx.xml
--rw-r--r--@    1 joba  staff    422808 Jan  1  1980 JetBrains.ReSharper.Intentions.VB.dll
--rw-r--r--@    1 joba  staff       141 Jan  1  1980 JetBrains.ReSharper.Intentions.VB.xml
--rw-r--r--@    1 joba  staff   1270680 Jan  1  1980 JetBrains.ReSharper.Intentions.Web.dll
--rw-r--r--@    1 joba  staff     45375 Jan  1  1980 JetBrains.ReSharper.Intentions.Web.xml
--rw-r--r--@    1 joba  staff    221600 Jan  1  1980 JetBrains.ReSharper.Intentions.Xaml.dll
--rw-r--r--@    1 joba  staff       160 Jan  1  1980 JetBrains.ReSharper.Intentions.Xaml.xml
--rw-r--r--@    1 joba  staff     77208 Jan  1  1980 JetBrains.ReSharper.Intentions.Xml.dll
--rw-r--r--@    1 joba  staff       159 Jan  1  1980 JetBrains.ReSharper.Intentions.Xml.xml
--rw-r--r--@    1 joba  staff    636816 Jan  1  1980 JetBrains.ReSharper.Intentions.dll
--rw-r--r--@    1 joba  staff      8716 Jan  1  1980 JetBrains.ReSharper.Intentions.xml
--rw-r--r--@    1 joba  staff    143264 Jan  1  1980 JetBrains.ReSharper.LiveTemplates.VB.dll
--rw-r--r--@    1 joba  staff       144 Jan  1  1980 JetBrains.ReSharper.LiveTemplates.VB.xml
--rw-r--r--@    1 joba  staff    892312 Jan  1  1980 JetBrains.ReSharper.LiveTemplates.dll
--rw-r--r--@    1 joba  staff    103255 Jan  1  1980 JetBrains.ReSharper.LiveTemplates.xml
--rw-r--r--@    1 joba  staff   1948576 Jan  1  1980 JetBrains.ReSharper.NewRefactorings.dll
--rw-r--r--@    1 joba  staff     22408 Jan  1  1980 JetBrains.ReSharper.NewRefactorings.xml
--rw-r--r--@    1 joba  staff    353688 Jan  1  1980 JetBrains.ReSharper.Plugins.Json.dll
--rw-r--r--@    1 joba  staff       157 Jan  1  1980 JetBrains.ReSharper.Plugins.Json.xml
--rw-r--r--@    1 joba  staff   1192360 Jan  1  1980 JetBrains.ReSharper.Plugins.Unity.Shaders.dll
--rw-r--r--@    1 joba  staff      5998 Jan  1  1980 JetBrains.ReSharper.Plugins.Unity.Shaders.xml
--rw-r--r--@    1 joba  staff   2245016 Jan  1  1980 JetBrains.ReSharper.Plugins.Unity.dll
--rw-r--r--@    1 joba  staff    101597 Jan  1  1980 JetBrains.ReSharper.Plugins.Unity.xml
--rw-r--r--@    1 joba  staff    428440 Jan  1  1980 JetBrains.ReSharper.Plugins.Yaml.dll
--rw-r--r--@    1 joba  staff      3682 Jan  1  1980 JetBrains.ReSharper.Plugins.Yaml.xml
--rw-r--r--@    1 joba  staff    314768 Jan  1  1980 JetBrains.ReSharper.Psi.Asm.dll
--rw-r--r--@    1 joba  staff       152 Jan  1  1980 JetBrains.ReSharper.Psi.Asm.xml
--rw-r--r--@    1 joba  staff    443296 Jan  1  1980 JetBrains.ReSharper.Psi.BuildScripts.dll
--rw-r--r--@    1 joba  staff     57247 Jan  1  1980 JetBrains.ReSharper.Psi.BuildScripts.xml
--rw-r--r--@    1 joba  staff   7375760 Jan  1  1980 JetBrains.ReSharper.Psi.CSharp.dll
--rw-r--r--@    1 joba  staff    212221 Jan  1  1980 JetBrains.ReSharper.Psi.CSharp.xml
--rw-r--r--@    1 joba  staff   1199496 Jan  1  1980 JetBrains.ReSharper.Psi.IL.dll
--rw-r--r--@    1 joba  staff     13056 Jan  1  1980 JetBrains.ReSharper.Psi.IL.xml
--rw-r--r--@    1 joba  staff    553880 Jan  1  1980 JetBrains.ReSharper.Psi.Protobuf.dll
--rw-r--r--@    1 joba  staff    616953 Jan  1  1980 JetBrains.ReSharper.Psi.Protobuf.xml
--rw-r--r--@    1 joba  staff    433552 Jan  1  1980 JetBrains.ReSharper.Psi.RegExp.dll
--rw-r--r--@    1 joba  staff     10186 Jan  1  1980 JetBrains.ReSharper.Psi.RegExp.xml
--rw-r--r--@    1 joba  staff    275856 Jan  1  1980 JetBrains.ReSharper.Psi.Resx.dll
--rw-r--r--@    1 joba  staff     47301 Jan  1  1980 JetBrains.ReSharper.Psi.Resx.xml
--rw-r--r--@    1 joba  staff     43448 Jan  1  1980 JetBrains.ReSharper.Psi.VB.ConstantCalculatorLib.dll
--rw-r--r--@    1 joba  staff       156 Jan  1  1980 JetBrains.ReSharper.Psi.VB.ConstantCalculatorLib.xml
--rw-r--r--@    1 joba  staff   3634056 Jan  1  1980 JetBrains.ReSharper.Psi.VB.dll
--rw-r--r--@    1 joba  staff     27756 Jan  1  1980 JetBrains.ReSharper.Psi.VB.xml
--rw-r--r--@    1 joba  staff  31154064 Jan  1  1980 JetBrains.ReSharper.Psi.Web.dll
--rw-r--r--@    1 joba  staff   1601547 Jan  1  1980 JetBrains.ReSharper.Psi.Web.xml
--rw-r--r--@    1 joba  staff   2263952 Jan  1  1980 JetBrains.ReSharper.Psi.Xaml.dll
--rw-r--r--@    1 joba  staff     14529 Jan  1  1980 JetBrains.ReSharper.Psi.Xaml.xml
--rw-r--r--@    1 joba  staff    236944 Jan  1  1980 JetBrains.ReSharper.Psi.Xml.dll
--rw-r--r--@    1 joba  staff     18286 Jan  1  1980 JetBrains.ReSharper.Psi.Xml.xml
--rw-r--r--@    1 joba  staff   7186312 Jan  1  1980 JetBrains.ReSharper.Psi.dll
--rw-r--r--@    1 joba  staff    534734 Jan  1  1980 JetBrains.ReSharper.Psi.xml
--rw-r--r--@    1 joba  staff     42928 Jan  1  1980 JetBrains.ReSharper.Refactorings.BuildScripts.dll
--rw-r--r--@    1 joba  staff       170 Jan  1  1980 JetBrains.ReSharper.Refactorings.BuildScripts.xml
--rw-r--r--@    1 joba  staff   1120680 Jan  1  1980 JetBrains.ReSharper.Refactorings.CSharp.dll
--rw-r--r--@    1 joba  staff     19467 Jan  1  1980 JetBrains.ReSharper.Refactorings.CSharp.xml
--rw-r--r--@    1 joba  staff    421280 Jan  1  1980 JetBrains.ReSharper.Refactorings.Html.dll
--rw-r--r--@    1 joba  staff      5111 Jan  1  1980 JetBrains.ReSharper.Refactorings.Html.xml
--rw-r--r--@    1 joba  staff    362912 Jan  1  1980 JetBrains.ReSharper.Refactorings.VB.dll
--rw-r--r--@    1 joba  staff       143 Jan  1  1980 JetBrains.ReSharper.Refactorings.VB.xml
--rw-r--r--@    1 joba  staff    184224 Jan  1  1980 JetBrains.ReSharper.Refactorings.Xaml.dll
--rw-r--r--@    1 joba  staff       162 Jan  1  1980 JetBrains.ReSharper.Refactorings.Xaml.xml
--rw-r--r--@    1 joba  staff    969104 Jan  1  1980 JetBrains.ReSharper.Resources.dll
--rw-r--r--@    1 joba  staff     58921 Jan  1  1980 JetBrains.ReSharper.Resources.xml
--rw-r--r--@    1 joba  staff   2351008 Jan  1  1980 JetBrains.ReSharper.SolutionAnalysis.dll
--rw-r--r--@    1 joba  staff      1377 Jan  1  1980 JetBrains.ReSharper.SolutionAnalysis.xml
--rw-r--r--@    1 joba  staff     39936 Jan  1  1980 JetBrains.ReSharper.TestRunner.Abstractions.dll
--rw-r--r--@    1 joba  staff      9216 Jan  1  1980 JetBrains.ReSharper.TestRunner.Adapters.MsTest.Tasks.dll
--rw-r--r--@    1 joba  staff      9216 Jan  1  1980 JetBrains.ReSharper.TestRunner.Adapters.NUnit2.Tasks.dll
--rw-r--r--@    1 joba  staff     11264 Jan  1  1980 JetBrains.ReSharper.TestRunner.Adapters.NUnit3.Tasks.dll
--rw-r--r--@    1 joba  staff      6144 Jan  1  1980 JetBrains.ReSharper.TestRunner.Adapters.UWP.Tasks.dll
--rw-r--r--@    1 joba  staff      9728 Jan  1  1980 JetBrains.ReSharper.TestRunner.Adapters.VsTest.Tasks.dll
--rw-r--r--@    1 joba  staff      9728 Jan  1  1980 JetBrains.ReSharper.TestRunner.Adapters.XUnit.Tasks.dll
--rw-r--r--@    1 joba  staff   2549664 Jan  1  1980 JetBrains.ReSharper.UnitTestFramework.dll
--rw-r--r--@    1 joba  staff     42659 Jan  1  1980 JetBrains.ReSharper.UnitTestFramework.xml
--rw-r--r--@    1 joba  staff    208312 Jan  1  1980 JetBrains.ReSharper.UnitTestProvider.JavaScript.dll
--rw-r--r--@    1 joba  staff     17433 Jan  1  1980 JetBrains.ReSharper.UnitTestProvider.JavaScript.xml
--rw-r--r--@    1 joba  staff    162728 Jan  1  1980 JetBrains.ReSharper.UnitTestProvider.Xunit.dll
--rw-r--r--@    1 joba  staff      9567 Jan  1  1980 JetBrains.ReSharper.UnitTestProvider.Xunit.xml
--rw-r--r--@    1 joba  staff    314792 Jan  1  1980 JetBrains.ReSharper.UnitTestProvider.nUnit.dll
--rw-r--r--@    1 joba  staff     10177 Jan  1  1980 JetBrains.ReSharper.UnitTestProvider.nUnit.xml
--rw-r--r--@    1 joba  staff   3923376 Jan  1  1980 JetBrains.ReSharper.UnitTestRunner.JavaScript.dll
--rw-r--r--@    1 joba  staff     10149 Jan  1  1980 JetBrains.ReSharper.UnitTestRunner.JavaScript.xml
--rw-r--r--@    1 joba  staff     75192 Jan  1  1980 JetBrains.ReSharper.UnitTestRunner.dotMemoryUnit.dll
--rw-r--r--@    1 joba  staff     16475 Jan  1  1980 JetBrains.ReSharper.UnitTestRunner.dotMemoryUnit.xml
--rw-r--r--@    1 joba  staff     37296 Jan  1  1980 JetBrains.ReSharper.UnitTesting.Analysis.VB.dll
--rw-r--r--@    1 joba  staff       151 Jan  1  1980 JetBrains.ReSharper.UnitTesting.Analysis.VB.xml
--rw-r--r--@    1 joba  staff    260520 Jan  1  1980 JetBrains.ReSharper.UnitTesting.Analysis.dll
--rw-r--r--@    1 joba  staff       165 Jan  1  1980 JetBrains.ReSharper.UnitTesting.Analysis.xml
--rw-r--r--@    1 joba  staff    255416 Jan  1  1980 JetBrains.ReSharper.UnitTesting.MSTest.Provider.dll
--rw-r--r--@    1 joba  staff       536 Jan  1  1980 JetBrains.ReSharper.UnitTesting.MSTest.Provider.xml
--rw-r--r--@    1 joba  staff    176056 Jan  1  1980 JetBrains.ReSharper.UnitTesting.VsTest.Provider.dll
--rw-r--r--@    1 joba  staff      3926 Jan  1  1980 JetBrains.ReSharper.UnitTesting.VsTest.Provider.xml
--rw-r--r--@    1 joba  staff    139712 Jan  1  1980 JetBrains.ReSharperAutomationTools.CommandLine.Common.dll
--rw-r--r--@    1 joba  staff      5647 Jan  1  1980 JetBrains.ReSharperAutomationTools.CommandLine.Common.xml
--rw-r--r--@    1 joba  staff    124328 Jan  1  1980 JetBrains.ReSharperAutomationTools.src.CleanupCode.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    108627 Jan  1  1980 JetBrains.ReSharperAutomationTools.src.CommandLineProducts.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    173210 Jan  1  1980 JetBrains.ReSharperAutomationTools.src.InspectAndCleanupToolCommon.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    222415 Jan  1  1980 JetBrains.ReSharperAutomationTools.src.InspectCode.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    161404 Jan  1  1980 JetBrains.ReSharperAutomationTools.src.Roslyn.JetMetadata.sstg
--rw-r--r--@    1 joba  staff    617344 Jan  1  1980 JetBrains.Roslyn.Host.dll
--rw-r--r--@    1 joba  staff     35522 Jan  1  1980 JetBrains.Roslyn.Host.xml
--rw-r--r--@    1 joba  staff     33249 Jan  1  1980 JetBrains.Roslyn.Worker.deps.json
--rw-r--r--@    1 joba  staff    756616 Jan  1  1980 JetBrains.Roslyn.Worker.exe
--rw-r--r--@    1 joba  staff      1667 Jan  1  1980 JetBrains.Roslyn.Worker.exe.config
--rw-r--r--@    1 joba  staff       404 Jan  1  1980 JetBrains.Roslyn.Worker.netcore.runtimeconfig.json
--rw-r--r--@    1 joba  staff       404 Jan  1  1980 JetBrains.Roslyn.Worker.runtimeconfig.json
--rw-r--r--@    1 joba  staff       404 Jan  1  1980 JetBrains.Roslyn.Worker.windows.runtimeconfig.json
--rw-r--r--@    1 joba  staff     41510 Jan  1  1980 JetBrains.Roslyn.Worker.xml
--rw-r--r--@    1 joba  staff    114176 Jan  1  1980 JetBrains.SignatureVerifier.dll
--rw-r--r--@    1 joba  staff     48198 Jan  1  1980 JetBrains.TeamCity.ServiceMessages.XML
--rw-r--r--@    1 joba  staff     38400 Jan  1  1980 JetBrains.TeamCity.ServiceMessages.dll
--rw-r--r--@    1 joba  staff     11264 Jan  1  1980 JetBrains.Toolset.ScriptSourcesCompiler.Interface.dll
--rw-r--r--@    1 joba  staff      9004 Jan  1  1980 JetBrains.Toolset.ScriptSourcesCompiler.Interface.xml
--rw-r--r--@    1 joba  staff    186240 Jan  1  1980 JetBrains.Unity.Model.dll
--rw-r--r--@    1 joba  staff     29103 Jan  1  1980 JetBrains.Unity.Model.xml
--rw-r--r--@    1 joba  staff    317832 Jan  1  1980 JetBrains.UsageStatistics.dll
--rw-r--r--@    1 joba  staff     44824 Jan  1  1980 JetBrains.UsageStatistics.xml
--rw-r--r--@    1 joba  staff     34216 Jan  1  1980 JetBrains.dotMemoryUnit.Interop.Console.dll
--rw-r--r--@    1 joba  staff       732 Jan  1  1980 JetBrains.dotMemoryUnit.Interop.Console.xml
--rw-r--r--@    1 joba  staff     35744 Jan  1  1980 JetBrains.dotMemoryUnit.Interop.Ide.dll
--rw-r--r--@    1 joba  staff       160 Jan  1  1980 JetBrains.dotMemoryUnit.Interop.Ide.xml
--rw-r--r--@    1 joba  staff    644480 Jan  1  1980 JetLauncher32.exe
--rw-r--r--@    1 joba  staff    644480 Jan  1  1980 JetLauncher32c.exe
--rw-r--r--@    1 joba  staff    774528 Jan  1  1980 JetLauncher64.exe
--rw-r--r--@    1 joba  staff    758656 Jan  1  1980 JetLauncher64a.exe
--rw-r--r--@    1 joba  staff    758144 Jan  1  1980 JetLauncher64ac.exe
--rw-r--r--@    1 joba  staff    774528 Jan  1  1980 JetLauncher64c.exe
--rw-r--r--@    1 joba  staff    231808 Jan  1  1980 JetLauncherIL.exe
--rw-r--r--@    1 joba  staff        71 Jan  1  1980 JetLauncherILc.deps.json
--rw-r--r--@    1 joba  staff    231808 Jan  1  1980 JetLauncherILc.exe
--rw-r--r--@    1 joba  staff       174 Jan  1  1980 JetLauncherILc.runtimeconfig.json
-drwxr-xr-x@    4 joba  staff       128 Jul 13 21:52 License
--rw-r--r--@    1 joba  staff     26904 Jan  1  1980 Microsoft.Bcl.AsyncInterfaces.dll
--rw-r--r--@    1 joba  staff     31280 Jan  1  1980 Microsoft.Bcl.AsyncInterfaces.xml
--rw-r--r--@    1 joba  staff    145920 Jan  1  1980 Microsoft.CodeAnalysis.CSharp.ExpressionEvaluator.ExpressionCompiler.dll
--rw-r--r--@    1 joba  staff   2540544 Jan  1  1980 Microsoft.CodeAnalysis.CSharp.Features.dll
--rw-r--r--@    1 joba  staff     33792 Jan  1  1980 Microsoft.CodeAnalysis.CSharp.Scripting.dll
--rw-r--r--@    1 joba  staff   1093120 Jan  1  1980 Microsoft.CodeAnalysis.CSharp.Workspaces.dll
--rw-r--r--@    1 joba  staff   8203264 Jan  1  1980 Microsoft.CodeAnalysis.CSharp.dll
--rw-r--r--@    1 joba  staff    146328 Jan  1  1980 Microsoft.CodeAnalysis.Elfie.dll
--rw-r--r--@    1 joba  staff     90624 Jan  1  1980 Microsoft.CodeAnalysis.ExpressionEvaluator.ExpressionCompiler.dll
--rw-r--r--@    1 joba  staff     38400 Jan  1  1980 Microsoft.CodeAnalysis.ExternalAccess.AspNetCore.dll
--rw-r--r--@    1 joba  staff     17920 Jan  1  1980 Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll
--rw-r--r--@    1 joba  staff   6169088 Jan  1  1980 Microsoft.CodeAnalysis.Features.dll
--rw-r--r--@    1 joba  staff    469864 Jan  1  1980 Microsoft.CodeAnalysis.FlowAnalysis.Utilities.dll
--rw-r--r--@    1 joba  staff    170672 Jan  1  1980 Microsoft.CodeAnalysis.FlowAnalysis.Utilities.xml
--rw-r--r--@    1 joba  staff   1354240 Jan  1  1980 Microsoft.CodeAnalysis.LanguageServer.Protocol.dll
--rw-r--r--@    1 joba  staff    157184 Jan  1  1980 Microsoft.CodeAnalysis.Scripting.dll
--rw-r--r--@    1 joba  staff   1316864 Jan  1  1980 Microsoft.CodeAnalysis.VisualBasic.Features.dll
--rw-r--r--@    1 joba  staff    940032 Jan  1  1980 Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll
--rw-r--r--@    1 joba  staff   5773824 Jan  1  1980 Microsoft.CodeAnalysis.VisualBasic.dll
--rw-r--r--@    1 joba  staff   4792320 Jan  1  1980 Microsoft.CodeAnalysis.Workspaces.dll
--rw-r--r--@    1 joba  staff   3500032 Jan  1  1980 Microsoft.CodeAnalysis.dll
--rw-r--r--@    1 joba  staff     49152 Jan  1  1980 Microsoft.Deployment.Compression.Cab.dll
--rw-r--r--@    1 joba  staff     36864 Jan  1  1980 Microsoft.Deployment.Compression.dll
--rw-r--r--@    1 joba  staff     87168 Jan  1  1980 Microsoft.DiaSymReader.dll
--rw-r--r--@    1 joba  staff     32596 Jan  1  1980 Microsoft.DiaSymReader.pdb
--rw-r--r--@    1 joba  staff     66234 Jan  1  1980 Microsoft.DiaSymReader.xml
--rw-r--r--@    1 joba  staff     76344 Jan  1  1980 Microsoft.Diagnostics.FastSerialization.dll
--rw-r--r--@    1 joba  staff    105865 Jan  1  1980 Microsoft.Diagnostics.FastSerialization.xml
--rw-r--r--@    1 joba  staff    147392 Jan  1  1980 Microsoft.Diagnostics.NETCore.Client.dll
--rw-r--r--@    1 joba  staff     40608 Jan  1  1980 Microsoft.Diagnostics.NETCore.Client.xml
--rw-r--r--@    1 joba  staff   3162664 Jan  1  1980 Microsoft.Diagnostics.Tracing.TraceEvent.dll
--rw-r--r--@    1 joba  staff    898739 Jan  1  1980 Microsoft.Diagnostics.Tracing.TraceEvent.xml
--rw-r--r--@    1 joba  staff     64264 Jan  1  1980 Microsoft.Extensions.DependencyInjection.Abstractions.dll
--rw-r--r--@    1 joba  staff    203027 Jan  1  1980 Microsoft.Extensions.DependencyInjection.Abstractions.xml
--rw-r--r--@    1 joba  staff     96928 Jan  1  1980 Microsoft.Extensions.DependencyInjection.dll
--rw-r--r--@    1 joba  staff     41886 Jan  1  1980 Microsoft.Extensions.DependencyInjection.xml
--rw-r--r--@    1 joba  staff     64888 Jan  1  1980 Microsoft.Extensions.DependencyModel.dll
--rw-r--r--@    1 joba  staff       883 Jan  1  1980 Microsoft.Extensions.DependencyModel.xml
--rw-r--r--@    1 joba  staff     25888 Jan  1  1980 Microsoft.Extensions.FileProviders.Abstractions.dll
--rw-r--r--@    1 joba  staff     21986 Jan  1  1980 Microsoft.Extensions.FileProviders.Abstractions.xml
--rw-r--r--@    1 joba  staff     44160 Jan  1  1980 Microsoft.Extensions.FileSystemGlobbing.dll
--rw-r--r--@    1 joba  staff     30978 Jan  1  1980 Microsoft.Extensions.FileSystemGlobbing.xml
--rw-r--r--@    1 joba  staff     67856 Jan  1  1980 Microsoft.Extensions.Logging.Abstractions.dll
--rw-r--r--@    1 joba  staff     91749 Jan  1  1980 Microsoft.Extensions.Logging.Abstractions.xml
--rw-r--r--@    1 joba  staff     54032 Jan  1  1980 Microsoft.Extensions.Logging.dll
--rw-r--r--@    1 joba  staff     47507 Jan  1  1980 Microsoft.Extensions.Logging.xml
--rw-r--r--@    1 joba  staff     68880 Jan  1  1980 Microsoft.Extensions.Options.dll
--rw-r--r--@    1 joba  staff    146774 Jan  1  1980 Microsoft.Extensions.Options.xml
--rw-r--r--@    1 joba  staff     49936 Jan  1  1980 Microsoft.Extensions.Primitives.dll
--rw-r--r--@    1 joba  staff     95105 Jan  1  1980 Microsoft.Extensions.Primitives.xml
--rw-r--r--@    1 joba  staff    131232 Jan  1  1980 Microsoft.IO.Redist.dll
--rw-r--r--@    1 joba  staff    116711 Jan  1  1980 Microsoft.IO.Redist.xml
--rw-r--r--@    1 joba  staff     18976 Jan  1  1980 Microsoft.IdentityModel.Abstractions.dll
--rw-r--r--@    1 joba  staff     16405 Jan  1  1980 Microsoft.IdentityModel.Abstractions.xml
--rw-r--r--@    1 joba  staff    112576 Jan  1  1980 Microsoft.IdentityModel.JsonWebTokens.dll
--rw-r--r--@    1 joba  staff    104366 Jan  1  1980 Microsoft.IdentityModel.JsonWebTokens.xml
--rw-r--r--@    1 joba  staff     38336 Jan  1  1980 Microsoft.IdentityModel.Logging.dll
--rw-r--r--@    1 joba  staff     54090 Jan  1  1980 Microsoft.IdentityModel.Logging.xml
--rw-r--r--@    1 joba  staff    995776 Jan  1  1980 Microsoft.IdentityModel.Tokens.dll
--rw-r--r--@    1 joba  staff   1163188 Jan  1  1980 Microsoft.IdentityModel.Tokens.xml
--rw-r--r--@    1 joba  staff     23952 Jan  1  1980 Microsoft.Owin.FileSystems.dll
--rw-r--r--@    1 joba  staff      7916 Jan  1  1980 Microsoft.Owin.FileSystems.xml
--rw-r--r--@    1 joba  staff    101776 Jan  1  1980 Microsoft.Owin.Host.HttpListener.dll
--rw-r--r--@    1 joba  staff      8129 Jan  1  1980 Microsoft.Owin.Host.HttpListener.xml
--rw-r--r--@    1 joba  staff     80784 Jan  1  1980 Microsoft.Owin.Hosting.dll
--rw-r--r--@    1 joba  staff     49706 Jan  1  1980 Microsoft.Owin.Hosting.xml
--rw-r--r--@    1 joba  staff     74664 Jan  1  1980 Microsoft.Owin.StaticFiles.dll
--rw-r--r--@    1 joba  staff     28438 Jan  1  1980 Microsoft.Owin.StaticFiles.xml
--rw-r--r--@    1 joba  staff    122256 Jan  1  1980 Microsoft.Owin.dll
--rw-r--r--@    1 joba  staff    171535 Jan  1  1980 Microsoft.Owin.xml
--rw-r--r--@    1 joba  staff     78848 Jan  1  1980 Microsoft.TestPlatform.CommunicationUtilities.dll
--rw-r--r--@    1 joba  staff     35328 Jan  1  1980 Microsoft.TestPlatform.CoreUtilities.dll
--rw-r--r--@    1 joba  staff     22528 Jan  1  1980 Microsoft.TestPlatform.PlatformAbstractions.dll
--rw-r--r--@    1 joba  staff     33280 Jan  1  1980 Microsoft.TestPlatform.Utilities.dll
--rw-r--r--@    1 joba  staff     52224 Jan  1  1980 Microsoft.TestPlatform.VsTestConsole.TranslationLayer.dll
--rw-r--r--@    1 joba  staff    351232 Jan  1  1980 Microsoft.VisualBasic.dll
--rw-r--r--@    1 joba  staff    181304 Jan  1  1980 Microsoft.VisualStudio.SolutionPersistence.dll
--rw-r--r--@    1 joba  staff    207512 Jan  1  1980 Microsoft.VisualStudio.SolutionPersistence.xml
--rw-r--r--@    1 joba  staff    140288 Jan  1  1980 Microsoft.VisualStudio.TestPlatform.Common.dll
--rw-r--r--@    1 joba  staff    154112 Jan  1  1980 Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
--rw-r--r--@    1 joba  staff    626216 Jan  1  1980 Microsoft.VisualStudio.Threading.dll
--rw-r--r--@    1 joba  staff    592427 Jan  1  1980 Microsoft.VisualStudio.Threading.xml
--rw-r--r--@    1 joba  staff     37904 Jan  1  1980 Microsoft.VisualStudio.Validation.dll
--rw-r--r--@    1 joba  staff     72950 Jan  1  1980 Microsoft.VisualStudio.Validation.xml
--rw-r--r--@    1 joba  staff     82488 Jan  1  1980 Microsoft.Web.XmlTransform.dll
--rw-r--r--@    1 joba  staff     37080 Jan  1  1980 Microsoft.Web.XmlTransform.pdb
--rw-r--r--@    1 joba  staff     26496 Jan  1  1980 Microsoft.Win32.Registry.dll
--rw-r--r--@    1 joba  staff     94835 Jan  1  1980 Microsoft.Win32.Registry.xml
--rw-r--r--@    1 joba  staff    237568 Jan  1  1980 NVelocity.dll
--rw-r--r--@    1 joba  staff    351356 Jan  1  1980 NVelocity.xml
-drwxr-xr-x@  140 joba  staff      4480 Jul 13 21:52 NetCore
--rw-r--r--@    1 joba  staff    711952 Jan  1  1980 Newtonsoft.Json.dll
--rw-r--r--@    1 joba  staff    713541 Jan  1  1980 Newtonsoft.Json.xml
--rw-r--r--@    1 joba  staff    712048 Jan  1  1980 NuGet.Commands.dll
--rw-r--r--@    1 joba  staff    324544 Jan  1  1980 NuGet.Commands.xml
--rw-r--r--@    1 joba  staff    111472 Jan  1  1980 NuGet.Common.dll
--rw-r--r--@    1 joba  staff    117239 Jan  1  1980 NuGet.Common.xml
--rw-r--r--@    1 joba  staff    175488 Jan  1  1980 NuGet.Configuration.dll
--rw-r--r--@    1 joba  staff    107252 Jan  1  1980 NuGet.Configuration.xml
--rw-r--r--@    1 joba  staff    662016 Jan  1  1980 NuGet.Core.dll
--rw-r--r--@    1 joba  staff     52600 Jan  1  1980 NuGet.Credentials.dll
--rw-r--r--@    1 joba  staff     40497 Jan  1  1980 NuGet.Credentials.xml
--rw-r--r--@    1 joba  staff     95120 Jan  1  1980 NuGet.DependencyResolver.Core.dll
--rw-r--r--@    1 joba  staff     57698 Jan  1  1980 NuGet.DependencyResolver.Core.xml
--rw-r--r--@    1 joba  staff    125304 Jan  1  1980 NuGet.Frameworks.dll
--rw-r--r--@    1 joba  staff     78902 Jan  1  1980 NuGet.Frameworks.xml
--rw-r--r--@    1 joba  staff     55672 Jan  1  1980 NuGet.LibraryModel.dll
--rw-r--r--@    1 joba  staff     40442 Jan  1  1980 NuGet.LibraryModel.xml
--rw-r--r--@    1 joba  staff    465288 Jan  1  1980 NuGet.PackageManagement.dll
--rw-r--r--@    1 joba  staff    220482 Jan  1  1980 NuGet.PackageManagement.xml
--rw-r--r--@    1 joba  staff    711032 Jan  1  1980 NuGet.Packaging.dll
--rw-r--r--@    1 joba  staff    417888 Jan  1  1980 NuGet.Packaging.xml
--rw-r--r--@    1 joba  staff    212344 Jan  1  1980 NuGet.ProjectModel.dll
--rw-r--r--@    1 joba  staff     91556 Jan  1  1980 NuGet.ProjectModel.xml
--rw-r--r--@    1 joba  staff    830320 Jan  1  1980 NuGet.Protocol.dll
--rw-r--r--@    1 joba  staff    562211 Jan  1  1980 NuGet.Protocol.xml
--rw-r--r--@    1 joba  staff     66928 Jan  1  1980 NuGet.Resolver.dll
--rw-r--r--@    1 joba  staff     31867 Jan  1  1980 NuGet.Resolver.xml
--rw-r--r--@    1 joba  staff     64888 Jan  1  1980 NuGet.Versioning.dll
--rw-r--r--@    1 joba  staff     94759 Jan  1  1980 NuGet.Versioning.xml
--rw-r--r--@    1 joba  staff     44944 Jan  1  1980 OperatorsResolveCacheGenerator.exe
--rw-r--r--@    1 joba  staff      1667 Jan  1  1980 OperatorsResolveCacheGenerator.exe.config
--rw-r--r--@    1 joba  staff      2014 Jan  1  1980 OperatorsResolveCacheGenerator.xml
--rw-r--r--@    1 joba  staff      4608 Jan  1  1980 Owin.dll
-drwxr-xr-x@   15 joba  staff       480 Jul 13 21:52 Packages
--rw-r--r--@    1 joba  staff    289120 Jan  1  1980 PsiGen.exe
--rw-r--r--@    1 joba  staff      7110 Jan  1  1980 PsiGen.xml
-drwxr-xr-x@    8 joba  staff       256 Jul 13 21:52 PsiTasks
--rw-r--r--@    1 joba  staff     36352 Jan  1  1980 SQLitePCLRaw.core.dll
--rw-r--r--@    1 joba  staff    810528 Jan  1  1980 Sarif.dll
--rw-r--r--@    1 joba  staff     72080 Jan  1  1980 Sprache.dll
--rw-r--r--@    1 joba  staff     53662 Jan  1  1980 Sprache.xml
--rw-r--r--@    1 joba  staff     23856 Jan  1  1980 System.Buffers.dll
--rw-r--r--@    1 joba  staff     11058 Jan  1  1980 System.Buffers.xml
--rw-r--r--@    1 joba  staff     30984 Jan  1  1980 System.CodeDom.dll
--rw-r--r--@    1 joba  staff    375789 Jan  1  1980 System.CodeDom.xml
--rw-r--r--@    1 joba  staff    252696 Jan  1  1980 System.Collections.Immutable.dll
--rw-r--r--@    1 joba  staff    532144 Jan  1  1980 System.Collections.Immutable.xml
--rw-r--r--@    1 joba  staff     21280 Jan  1  1980 System.Composition.AttributedModel.dll
--rw-r--r--@    1 joba  staff     14165 Jan  1  1980 System.Composition.AttributedModel.xml
--rw-r--r--@    1 joba  staff     54536 Jan  1  1980 System.Composition.Convention.dll
--rw-r--r--@    1 joba  staff     28990 Jan  1  1980 System.Composition.Convention.xml
--rw-r--r--@    1 joba  staff     56584 Jan  1  1980 System.Composition.Hosting.dll
--rw-r--r--@    1 joba  staff     20807 Jan  1  1980 System.Composition.Hosting.xml
--rw-r--r--@    1 joba  staff     26904 Jan  1  1980 System.Composition.Runtime.dll
--rw-r--r--@    1 joba  staff     18050 Jan  1  1980 System.Composition.Runtime.xml
--rw-r--r--@    1 joba  staff     66328 Jan  1  1980 System.Composition.TypedParts.dll
--rw-r--r--@    1 joba  staff     11137 Jan  1  1980 System.Composition.TypedParts.xml
--rw-r--r--@    1 joba  staff     91824 Jan  1  1980 System.Configuration.ConfigurationManager.dll
--rw-r--r--@    1 joba  staff    469865 Jan  1  1980 System.Configuration.ConfigurationManager.xml
--rw-r--r--@    1 joba  staff    275456 Jan  1  1980 System.Design.dll
--rw-r--r--@    1 joba  staff    189104 Jan  1  1980 System.Diagnostics.DiagnosticSource.dll
--rw-r--r--@    1 joba  staff    153196 Jan  1  1980 System.Diagnostics.DiagnosticSource.xml
--rw-r--r--@    1 joba  staff     33952 Jan  1  1980 System.Diagnostics.EventLog.dll
--rw-r--r--@    1 joba  staff    184150 Jan  1  1980 System.Diagnostics.EventLog.xml
--rw-r--r--@    1 joba  staff     49824 Jan  1  1980 System.Drawing.Common.dll
--rw-r--r--@    1 joba  staff     11656 Jan  1  1980 System.Drawing.Common.pdb
--rw-r--r--@    1 joba  staff   1106897 Jan  1  1980 System.Drawing.Common.xml
--rw-r--r--@    1 joba  staff    339968 Jan  1  1980 System.Drawing.dll
--rw-r--r--@    1 joba  staff     28552 Jan  1  1980 System.IO.FileSystem.AccessControl.dll
--rw-r--r--@    1 joba  staff     65116 Jan  1  1980 System.IO.FileSystem.AccessControl.xml
--rw-r--r--@    1 joba  staff     22784 Jan  1  1980 System.IO.FileSystem.Primitives.dll
--rw-r--r--@    1 joba  staff     48440 Jan  1  1980 System.IO.Packaging.dll
--rw-r--r--@    1 joba  staff     87785 Jan  1  1980 System.IO.Packaging.xml
--rw-r--r--@    1 joba  staff    145192 Jan  1  1980 System.Memory.dll
--rw-r--r--@    1 joba  staff    208053 Jan  1  1980 System.Memory.xml
--rw-r--r--@    1 joba  staff    110344 Jan  1  1980 System.Numerics.Vectors.dll
--rw-r--r--@    1 joba  staff    191892 Jan  1  1980 System.Numerics.Vectors.xml
--rw-r--r--@    1 joba  staff   1470416 Jan  1  1980 System.Reactive.dll
--rw-r--r--@    1 joba  staff   2564839 Jan  1  1980 System.Reactive.xml
--rw-r--r--@    1 joba  staff    487696 Jan  1  1980 System.Reflection.Metadata.dll
--rw-r--r--@    1 joba  staff    654915 Jan  1  1980 System.Reflection.Metadata.xml
--rw-r--r--@    1 joba  staff     21576 Jan  1  1980 System.Reflection.TypeExtensions.dll
--rw-r--r--@    1 joba  staff     10599 Jan  1  1980 System.Reflection.TypeExtensions.xml
--rw-r--r--@    1 joba  staff     19224 Jan  1  1980 System.Runtime.CompilerServices.Unsafe.dll
--rw-r--r--@    1 joba  staff     21820 Jan  1  1980 System.Runtime.CompilerServices.Unsafe.xml
--rw-r--r--@    1 joba  staff     33256 Jan  1  1980 System.Runtime.InteropServices.RuntimeInformation.dll
--rw-r--r--@    1 joba  staff     35952 Jan  1  1980 System.Security.AccessControl.dll
--rw-r--r--@    1 joba  staff    231631 Jan  1  1980 System.Security.AccessControl.xml
--rw-r--r--@    1 joba  staff     21288 Jan  1  1980 System.Security.Cryptography.ProtectedData.dll
--rw-r--r--@    1 joba  staff      4350 Jan  1  1980 System.Security.Cryptography.ProtectedData.xml
--rw-r--r--@    1 joba  staff     31392 Jan  1  1980 System.Security.Permissions.dll
--rw-r--r--@    1 joba  staff    683829 Jan  1  1980 System.Security.Permissions.xml
--rw-r--r--@    1 joba  staff     18312 Jan  1  1980 System.Security.Principal.Windows.dll
--rw-r--r--@    1 joba  staff     90968 Jan  1  1980 System.Security.Principal.Windows.xml
--rw-r--r--@    1 joba  staff   1427456 Jan  1  1980 System.ServiceModel.dll
--rw-r--r--@    1 joba  staff     14712 Jan  1  1980 System.ServiceProcess.ServiceController.dll
--rw-r--r--@    1 joba  staff     43837 Jan  1  1980 System.ServiceProcess.ServiceController.xml
--rw-r--r--@    1 joba  staff    766224 Jan  1  1980 System.Text.Encoding.CodePages.dll
--rw-r--r--@    1 joba  staff      2075 Jan  1  1980 System.Text.Encoding.CodePages.xml
--rw-r--r--@    1 joba  staff     79024 Jan  1  1980 System.Text.Encodings.Web.dll
--rw-r--r--@    1 joba  staff     63180 Jan  1  1980 System.Text.Encodings.Web.xml
--rw-r--r--@    1 joba  staff    644888 Jan  1  1980 System.Text.Json.dll
--rw-r--r--@    1 joba  staff    537044 Jan  1  1980 System.Text.Json.xml
--rw-r--r--@    1 joba  staff     74000 Jan  1  1980 System.Threading.Channels.dll
--rw-r--r--@    1 joba  staff     18329 Jan  1  1980 System.Threading.Channels.xml
--rw-r--r--@    1 joba  staff     25984 Jan  1  1980 System.Threading.Tasks.Extensions.dll
--rw-r--r--@    1 joba  staff     10147 Jan  1  1980 System.Threading.Tasks.Extensions.xml
--rw-r--r--@    1 joba  staff     25232 Jan  1  1980 System.ValueTuple.dll
--rw-r--r--@    1 joba  staff       142 Jan  1  1980 System.ValueTuple.xml
-drwxr-xr-x@    8 joba  staff       256 Jul 13 21:52 TestRunner
--rw-r--r--@    1 joba  staff     25456 Jan  1  1980 TokenGenerator.exe
--rw-r--r--@    1 joba  staff      1071 Jan  1  1980 TokenGenerator.xml
--rw-r--r--@    1 joba  staff     23216 Jan  1  1980 TraceReloggerLib.dll
--rw-r--r--@    1 joba  staff     48640 Jan  1  1980 UIAutomationClient.dll
--rw-r--r--@    1 joba  staff     31232 Jan  1  1980 UIAutomationProvider.dll
--rw-r--r--@    1 joba  staff     90112 Jan  1  1980 UIAutomationTypes.dll
--rw-r--r--@    1 joba  staff    299347 Jan  1  1980 Vestris.ResourceLib.XML
--rw-r--r--@    1 joba  staff     77824 Jan  1  1980 Vestris.ResourceLib.dll
--rw-r--r--@    1 joba  staff     32768 Jan  1  1980 WindowsFormsIntegration.dll
--rw-r--r--@    1 joba  staff    200704 Jan  1  1980 YamlDotNet.dll
--rw-r--r--@    1 joba  staff    249389 Jan  1  1980 YamlDotNet.xml
--rw-r--r--@    1 joba  staff    106496 Jan  1  1980 antlr.runtime.dll
--rw-r--r--@    1 joba  staff     40734 Jan  1  1980 cleanupcode.deps.json
--rw-r--r--@    1 joba  staff     50032 Jan  1  1980 cleanupcode.exe
--rw-r--r--@    1 joba  staff      1667 Jan  1  1980 cleanupcode.exe.config
--rw-r--r--@    1 joba  staff       421 Jan  1  1980 cleanupcode.runtimeconfig.json
--rwxr-xr-x@    1 joba  staff       134 Jan  1  1980 cleanupcode.sh
--rw-r--r--@    1 joba  staff       414 Jan  1  1980 cleanupcode.unix.runtimeconfig.json
--rw-r--r--@    1 joba  staff       136 Jan  1  1980 cleanupcode.xml
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 cs
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 de
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 es
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 fr
--rw-r--r--@    1 joba  staff     42221 Jan  1  1980 inspectcode.deps.json
--rw-r--r--@    1 joba  staff    113520 Jan  1  1980 inspectcode.exe
--rw-r--r--@    1 joba  staff      1667 Jan  1  1980 inspectcode.exe.config
--rw-r--r--@    1 joba  staff       421 Jan  1  1980 inspectcode.runtimeconfig.json
--rwxr-xr-x@    1 joba  staff       134 Jan  1  1980 inspectcode.sh
--rw-r--r--@    1 joba  staff       414 Jan  1  1980 inspectcode.unix.runtimeconfig.json
--rw-r--r--@    1 joba  staff       363 Jan  1  1980 inspectcode.xml
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 it
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 ja
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 ko
-drwxr-xr-x@    3 joba  staff        96 Jul 13 21:52 linux-arm
-drwxr-xr-x@    4 joba  staff       128 Jul 13 21:52 linux-arm64
-drwxr-xr-x@    3 joba  staff        96 Jul 13 21:52 linux-musl-arm64
-drwxr-xr-x@    3 joba  staff        96 Jul 13 21:52 linux-musl-x64
-drwxr-xr-x@    4 joba  staff       128 Jul 13 21:52 linux-x64
-drwxr-xr-x@    4 joba  staff       128 Jul 13 21:52 macos-arm64
-drwxr-xr-x@    4 joba  staff       128 Jul 13 21:52 macos-x64
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 pl
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 pt-BR
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 ru
-drwxr-xr-x@    6 joba  staff       192 Jul 13 21:52 runtimes
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 tr
-drwxr-xr-x@    7 joba  staff       224 Jul 13 21:52 windows-arm64
-drwxr-xr-x@    6 joba  staff       192 Jul 13 21:52 windows-x64
-drwxr-xr-x@    6 joba  staff       192 Jul 13 21:52 windows-x86
--rw-r--r--@    1 joba  staff     21928 Jan  1  1980 xunit.abstractions.dll
--rw-r--r--@    1 joba  staff     53197 Jan  1  1980 xunit.abstractions.xml
--rw-r--r--@    1 joba  staff     69632 Jan  1  1980 xunit.dll
--rw-r--r--@    1 joba  staff    247208 Jan  1  1980 xunit.runner.utility.net452.dll
--rw-r--r--@    1 joba  staff    251013 Jan  1  1980 xunit.runner.utility.net452.xml
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 zh-Hans
-drwxr-xr-x@    5 joba  staff       160 Jul 13 21:52 zh-Hant
-]633;D;0
-
+-rw-r--r--@    1 jo
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1801,13 +1140,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -1815,37 +1147,31 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Found the ReSharper CommandLineTools in Downloads with inspectcode.sh.
 
-Running inspectcode on the solution now. Will parse the output to identify and fix the major warnings.</details></think>
+Running inspectcode on the solution now. Will parse the output to identify and fix the major warnings.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c "
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
 import json
 from collections import Counter
-with open('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-warnings-final.sarif') as f:
+with open(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-warnings-final.sarif&#39;) as f:
     data = json.load(f)
-results = data['runs'][0]['results']
-rules = Counter(r['ruleId'] for r in results)
-print(f'Total warnings: {len(results)}')
-print('Top rules:')
+results = data[&#39;runs&#39;][0][&#39;results&#39;]
+rules = Counter(r[&#39;ruleId&#39;] for r in results)
+print(f&#39;Total warnings: {len(results)}&#39;)
+print(&#39;Top rules:&#39;)
 for rule, count in rules.most_common(30):
-    print(f'  {count:4d}  {rule}')
-"</summary>
-
+    print(f&#39;  {count:4d}  {rule}&#39;)
+&#34;</summary>
 ```bash
 python3 -c "
 import json
@@ -1885,12 +1211,6 @@ Top rules:
      1  UnusedMethodReturnValue.Local
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -1898,7 +1218,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The largest warning cluster is `NotAccessedPositionalProperty.Global` with 240 instances. These appear to be record types with positional parameters that are never accessed.
 
-Running a fresh inspectcode scan to identify the most severe warnings. The 240 positional property warnings may be legitimate DTO fields used only for serialization.</details></think>
+Running a fresh inspectcode scan to identify the most severe warnings. The 240 positional property warnings may be legitimate DTO fields used only for serialization.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1907,9 +1228,8 @@ Running a fresh solution-wide InspectCode pass and digging into the highest-volu
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --output=resharper-current.sarif --format=Sarif --severity=WARNING --no-build 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --output=resharper-current.sarif --format=Sarif --severity=WARNING --no-build 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --output=resharper-current.sarif --format=Sarif --severity=WARNING --no-build 2>&1
 ```
@@ -1936,3111 +1256,36 @@ Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerat
 Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
 Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
 Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Analyzing files
-
-Analyzing HtmlCertificateRenderer.cs
-
-Analyzing ICertificateRenderer.cs
-
-Analyzing AddressChangedNotificationHandler.cs
-Analyzing DomainEventDispatcher.cs
-Analyzing RegistrationConfirmedLoggingHandler.cs
-Analyzing BirthRegisteredNotificationHandler.cs
-Analyzing IRegistrationConfirmedHandler.cs
-Analyzing IDomainEventDispatcher.cs
-Analyzing IBirthRegisteredHandler.cs
-Analyzing IntegrationOutboxWorker.cs
-Analyzing IntegrationOutboxOptions.cs
-Analyzing RegistrationConfirmedNotificationHandler.cs
-Analyzing IntegrationOutboxProcessor.cs
-Analyzing IntegrationOutboxServiceCollectionExtensions.cs
-Analyzing IntegrationAdapterRegistry.cs
-Analyzing IIntegrationAdapter.cs
-Analyzing SimulatedIntegrationAdapter.cs
-Analyzing IIntegrationOutboxProcessor.cs
-Analyzing SchaerbeekMunicipality.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing AdministrativeDocumentConfiguration.cs
-Analyzing BirthDeclarationCaseConfiguration.cs
-Analyzing CaseAuditEntryConfiguration.cs
-Analyzing CertificateRequestConfiguration.cs
-Analyzing ChangeOfAddressCaseConfiguration.cs
-Analyzing DocumentRequestCaseConfiguration.cs
-Analyzing HouseholdConfiguration.cs
-Analyzing HouseholdMemberConfiguration.cs
-Analyzing MunicipalityReferenceConfiguration.cs
-Analyzing NationalRegisterPersonConfiguration.cs
-Analyzing OutboundNotificationConfiguration.cs
-Analyzing PersonConfiguration.cs
-Analyzing PoliceVerificationRequestConfiguration.cs
-Analyzing RegistrationCaseConfiguration.cs
-Analyzing ResidencePermitConfiguration.cs
-Analyzing StreetReferenceConfiguration.cs
-Analyzing PersonFileQuery.cs
-Analyzing AdministrativeDocumentRepository.cs
-Analyzing BirthDeclarationCaseRepository.cs
-Analyzing CaseAuditRepository.cs
-Analyzing CertificateRequestRepository.cs
-Analyzing ChangeOfAddressCaseRepository.cs
-Analyzing DocumentRequestCaseRepository.cs
-Analyzing HouseholdRepository.cs
-Analyzing NationalRegisterRepository.cs
-Analyzing OutboundNotificationRepository.cs
-Analyzing PersonRepository.cs
-Analyzing PoliceVerificationRepository.cs
-Analyzing ReferenceDataRepository.cs
-Analyzing RegistrationCaseRepository.cs
-Analyzing ResidencePermitRepository.cs
-Analyzing MunicipalDbContext.cs
-Analyzing MunicipalDbContextFactory.cs
-Analyzing NationalRegisterSeeder.cs
-Analyzing PopulationRegisterSeeder.cs
-Analyzing ReferenceDataSeeder.cs
-Analyzing LocalFileDocumentStorage.cs
-Analyzing analysislevel_10_default.globalconfig
-Analyzing DependencyInjection.cs
-Analyzing HealthCheckExtensions.cs
-Analyzing CurrentOfficer.cs
-Analyzing DemoOfficer.cs
-Analyzing ICurrentOfficer.cs
-Analyzing OfficerRole.cs
-Analyzing DemoDataOptions.cs
-Analyzing DemoWorkflowCaseSeeder.cs
-Analyzing AttachDocumentHandler.cs
-Analyzing ClaimBirthDeclarationCaseHandler.cs
-Analyzing ConfirmBirthDeclarationHandler.cs
-Analyzing DownloadDocumentHandler.cs
-Analyzing BirthDeclarationCaseDetailDto.cs
-Analyzing GetBirthDeclarationCaseHandler.cs
-Analyzing GetBirthDeclarationChecklistHandler.cs
-Analyzing LinkParentHandler.cs
-Analyzing LinkParentRequest.cs
-Analyzing ListBirthDeclarationCasesHandler.cs
-Analyzing OpenBirthDeclarationCaseHandler.cs
-Analyzing OpenBirthDeclarationCaseResponse.cs
-Analyzing RecordChildDetailsHandler.cs
-Analyzing RecordChildDetailsRequest.cs
-Analyzing RejectBirthDeclarationHandler.cs
-Analyzing ReleaseCaseLockHandler.cs
-Analyzing RemoveDocumentHandler.cs
-Analyzing ResumeBirthDeclarationHandler.cs
-Analyzing SetDeclarationHouseholdHandler.cs
-Analyzing SetDeclarationHouseholdRequest.cs
-Analyzing SuspendBirthDeclarationHandler.cs
-Analyzing UnlinkParentHandler.cs
-Analyzing BirthDeclarationCaseAuthorization.cs
-Analyzing BirthDeclarationCaseGuard.cs
-Analyzing AttachDocumentHandler.cs
-Analyzing ClaimChangeOfAddressCaseHandler.cs
-Analyzing ConfirmAddressChangeHandler.cs
-Analyzing ConfirmAddressChangeResponse.cs
-Analyzing DeclareNewAddressHandler.cs
-Analyzing DeclareNewAddressRequest.cs
-Analyzing DeclareNewAddressValidator.cs
-Analyzing DownloadDocumentHandler.cs
-Analyzing ChangeOfAddressCaseDetailDto.cs
-Analyzing GetChangeOfAddressCaseHandler.cs
-Analyzing ChangeOfAddressChecklistMapper.cs
-Analyzing GetChangeOfAddressChecklistHandler.cs
-Analyzing ListChangeOfAddressCasesHandler.cs
-Analyzing OpenChangeOfAddressCaseHandler.cs
-Analyzing OpenChangeOfAddressCaseRequest.cs
-Analyzing OpenChangeOfAddressCaseResponse.cs
-Analyzing OpenChangeOfAddressCaseValidator.cs
-Analyzing RejectChangeOfAddressHandler.cs
-Analyzing RejectChangeOfAddressRequest.cs
-Analyzing ReleaseCaseLockHandler.cs
-Analyzing RemoveDocumentHandler.cs
-Analyzing RequestPoliceVerificationHandler.cs
-Analyzing RequestPoliceVerificationResponse.cs
-Analyzing ResolveRegisteredPersonHandler.cs
-Analyzing UnlinkHouseholdMemberHandler.cs
-Analyzing UpdateHouseholdForMoveHandler.cs
-Analyzing UpdateHouseholdForMoveRequest.cs
-Analyzing ChangeOfAddressCaseAuthorization.cs
-Analyzing ChangeOfAddressCaseGuard.cs
-Analyzing AdvanceDocumentRequestStatusHandler.cs
-Analyzing AttachApplicantPhotoHandler.cs
-Analyzing CancelDocumentRequestHandler.cs
-Analyzing ClaimDocumentRequestCaseHandler.cs
-Analyzing DownloadDocumentHandler.cs
-Analyzing GetDocumentRequestCaseHandler.cs
-Analyzing IssueDocumentHandler.cs
-Analyzing ListDocumentRequestCasesHandler.cs
-Analyzing OpenDocumentRequestCaseHandler.cs
-Analyzing RecordFeePaymentHandler.cs
-Analyzing ReleaseCaseLockHandler.cs
-Analyzing RemoveDocumentHandler.cs
-Analyzing ResolveRegisteredPersonHandler.cs
-Analyzing DocumentRequestCaseAuthorization.cs
-Analyzing DocumentNumberGenerator.cs
-Analyzing DocumentRequestCaseGuard.cs
-Analyzing GetPersonFileHandler.cs
-Analyzing GetPersonFileResponse.cs
-Analyzing ListPersonCasesHandler.cs
-Analyzing ListPersonCasesResponse.cs
-Analyzing SearchPersonFileHandler.cs
-Analyzing SearchPersonFileResponse.cs
-Analyzing PersonFileAuthorization.cs
-Analyzing ApproveCaseHandler.cs
-Analyzing ApproveCaseValidator.cs
-Analyzing ApproveCaseRequest.cs
-Analyzing AttachDocumentHandler.cs
-Analyzing AttachDocumentResponse.cs
-Analyzing ClaimRegistrationCaseHandler.cs
-Analyzing ConfirmRegistrationResponse.cs
-Analyzing ConfirmRegistrationHandler.cs
-Analyzing ConvertBisNumberHandler.cs
-Analyzing ConvertBisNumberResponse.cs
-Analyzing CorrectIdentityHandler.cs
-Analyzing CorrectIdentityResponse.cs
-Analyzing DeclareAddressHandler.cs
-Analyzing DeclareAddressRequest.cs
-Analyzing DeclareAddressValidator.cs
-Analyzing DownloadDocumentHandler.cs
-Analyzing CaseReviewChecklistMapper.cs
-Analyzing GetCaseReviewChecklistHandler.cs
-Analyzing GetCaseReviewChecklistResponse.cs
-Analyzing GetRegistrationCaseHandler.cs
-Analyzing RegistrationCaseDetailDto.cs
-Analyzing GetReviewDashboardHandler.cs
-Analyzing GetReviewDashboardResponse.cs
-Analyzing IssueHouseholdCompositionHandler.cs
-Analyzing IssueResidenceCertificateHandler.cs
-Analyzing LinkExistingPersonHandler.cs
-Analyzing LinkExistingPersonRequest.cs
-Analyzing LinkExistingPersonValidator.cs
-Analyzing ListCaseAuditHandler.cs
-Analyzing ListCaseAuditResponse.cs
-Analyzing ListOutboundNotificationsHandler.cs
-Analyzing ListPendingPoliceVerificationsHandler.cs
-Analyzing ListPendingPoliceVerificationsResponse.cs
-Analyzing ListRegistrationCasesHandler.cs
-Analyzing OpenRegistrationCaseHandler.cs
-Analyzing OpenRegistrationCaseRequest.cs
-Analyzing OpenRegistrationCaseValidator.cs
-Analyzing RecordBirthInformationHandler.cs
-Analyzing RecordBirthInformationRequest.cs
-Analyzing RecordBirthInformationRequestValidator.cs
-Analyzing RecordCivilStatusHandler.cs
-Analyzing RecordCivilStatusRequest.cs
-Analyzing RecordCivilStatusValidator.cs
-Analyzing HouseholdMemberRequestValidator.cs
-Analyzing RecordHouseholdCompositionHandler.cs
-Analyzing RecordHouseholdCompositionRequest.cs
-Analyzing RecordHouseholdCompositionValidator.cs
-Analyzing RecordHousingSituationHandler.cs
-Analyzing RecordHousingSituationRequest.cs
-Analyzing RecordHousingSituationValidator.cs
-Analyzing RecordIdentityHandler.cs
-Analyzing RecordIdentityRequest.cs
-Analyzing RecordIdentityValidator.cs
-Analyzing RecordImmigrationDecisionHandler.cs
-Analyzing RecordImmigrationDecisionRequest.cs
-Analyzing RecordImmigrationDecisionValidator.cs
-Analyzing RecordPoliceResultHandler.cs
-Analyzing RecordPoliceResultRequest.cs
-Analyzing RecordPoliceResultResponse.cs
-Analyzing RecordResidencePermitHandler.cs
-Analyzing RecordResidencePermitRequest.cs
-Analyzing RecordResidencePermitValidator.cs
-Analyzing RejectCaseHandler.cs
-Analyzing RejectCaseRequest.cs
-Analyzing RejectCaseValidator.cs
-Analyzing ReleaseCaseLockHandler.cs
-Analyzing RemoveDocumentHandler.cs
-Analyzing RemoveDocumentResponse.cs
-Analyzing RequestPoliceVerificationHandler.cs
-Analyzing RequestPoliceVerificationResponse.cs
-Analyzing ResolveDuplicateInvestigationHandler.cs
-Analyzing ResolveDuplicateInvestigationRequest.cs
-Analyzing ResolveDuplicateInvestigationRequestValidator.cs
-Analyzing ResumeCaseHandler.cs
-Analyzing ResumeCaseResponse.cs
-Analyzing SearchNationalRegisterHandler.cs
-Analyzing SearchNationalRegisterRequest.cs
-Analyzing SearchNationalRegisterResponse.cs
-Analyzing SearchNationalRegisterValidator.cs
-Analyzing SearchReferenceDataHandlers.cs
-Analyzing SetResidenceCategoryHandler.cs
-Analyzing SetResidenceCategoryRequest.cs
-Analyzing SetResidenceCategoryValidator.cs
-Analyzing SuspendCaseHandler.cs
-Analyzing SuspendCaseRequest.cs
-Analyzing SuspendCaseValidator.cs
-Analyzing CaseAuditRecorder.cs
-Analyzing CertificateReferenceNumberGenerator.cs
-Analyzing OfficerDisplayNames.cs
-Analyzing RegistrationCaseAuthorization.cs
-Analyzing RegistrationCaseGuard.cs
-Analyzing RegistrationExceptionEvaluator.cs
-Analyzing RegistrationExceptionStateCalculator.cs
-Analyzing RegistrationResidenceEvaluator.cs
-Analyzing VisitReasonLabels.cs
-Analyzing GetMunicipalityReportHandler.cs
-Analyzing GetMunicipalityReportResponse.cs
-Analyzing ReportingAuthorization.cs
-Analyzing SchaerbeekMunicipality.Application.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing BelgianAddressRules.cs
-Analyzing analysislevel_10_default.globalconfig
-Analyzing Class1.cs
-Analyzing DependencyInjection.cs
-Analyzing OpenApiXmlCommentSupport.generated.cs
-Analyzing AttachDocumentEndpoint.cs
-Analyzing AutoClaimBirthDeclarationCaseEndpoint.cs
-Analyzing ClaimBirthDeclarationCaseEndpoint.cs
-Analyzing ConfirmBirthDeclarationEndpoint.cs
-Analyzing DownloadDocumentEndpoint.cs
-Analyzing GetBirthDeclarationCaseEndpoint.cs
-Analyzing GetBirthDeclarationChecklistEndpoint.cs
-Analyzing LinkParentEndpoint.cs
-Analyzing ListBirthDeclarationCasesEndpoint.cs
-Analyzing OpenBirthDeclarationCaseEndpoint.cs
-Analyzing RecordChildDetailsEndpoint.cs
-Analyzing RejectBirthDeclarationEndpoint.cs
-Analyzing ReleaseCaseLockEndpoint.cs
-Analyzing RemoveDocumentEndpoint.cs
-Analyzing ResumeBirthDeclarationEndpoint.cs
-Analyzing SetDeclarationHouseholdEndpoint.cs
-Analyzing SuspendBirthDeclarationEndpoint.cs
-Analyzing UnlinkParentEndpoint.cs
-Analyzing BirthDeclarationEndpoints.cs
-Analyzing AttachDocumentEndpoint.cs
-Analyzing AutoClaimChangeOfAddressCaseEndpoint.cs
-Analyzing ClaimChangeOfAddressCaseEndpoint.cs
-Analyzing ConfirmAddressChangeEndpoint.cs
-Analyzing DeclareNewAddressEndpoint.cs
-Analyzing DownloadDocumentEndpoint.cs
-Analyzing GetChangeOfAddressCaseEndpoint.cs
-Analyzing GetChangeOfAddressChecklistEndpoint.cs
-Analyzing ListChangeOfAddressCasesEndpoint.cs
-Analyzing OpenChangeOfAddressCaseEndpoint.cs
-Analyzing RejectChangeOfAddressEndpoint.cs
-Analyzing ReleaseCaseLockEndpoint.cs
-Analyzing RemoveDocumentEndpoint.cs
-Analyzing RequestPoliceVerificationEndpoint.cs
-Analyzing ResolveRegisteredPersonEndpoint.cs
-Analyzing UnlinkHouseholdMemberEndpoint.cs
-Analyzing UpdateHouseholdForMoveEndpoint.cs
-Analyzing AdvanceDocumentRequestStatusEndpoint.cs
-Analyzing ChangeOfAddressEndpoints.cs
-Analyzing AttachApplicantPhotoEndpoint.cs
-Analyzing CancelDocumentRequestEndpoint.cs
-Analyzing AutoClaimDocumentRequestCaseEndpoint.cs
-Analyzing ClaimDocumentRequestCaseEndpoint.cs
-Analyzing DownloadDocumentEndpoint.cs
-Analyzing GetDocumentRequestCaseEndpoint.cs
-Analyzing IssueDocumentEndpoint.cs
-Analyzing ListDocumentRequestCasesEndpoint.cs
-Analyzing OpenDocumentRequestCaseEndpoint.cs
-Analyzing RecordFeePaymentEndpoint.cs
-Analyzing ReleaseCaseLockEndpoint.cs
-Analyzing RemoveDocumentEndpoint.cs
-Analyzing ResolveRegisteredPersonEndpoint.cs
-Analyzing GetPersonFileEndpoint.cs
-Analyzing IdentityDocumentsEndpoints.cs
-Analyzing ListPersonCasesEndpoint.cs
-Analyzing SearchPersonFileEndpoint.cs
-Analyzing PersonFileEndpoints.cs
-Analyzing ApproveCaseEndpoint.cs
-Analyzing AttachDocumentEndpoint.cs
-Analyzing AutoClaimRegistrationCaseEndpoint.cs
-Analyzing ClaimRegistrationCaseEndpoint.cs
-Analyzing ConfirmRegistrationEndpoint.cs
-Analyzing ConvertBisNumberEndpoint.cs
-Analyzing CorrectIdentityEndpoint.cs
-Analyzing DeclareAddressEndpoint.cs
-Analyzing GetCaseReviewChecklistEndpoint.cs
-Analyzing DownloadDocumentEndpoint.cs
-Analyzing GetRegistrationCaseEndpoint.cs
-Analyzing GetReviewDashboardEndpoint.cs
-Analyzing IssueHouseholdCompositionEndpoint.cs
-Analyzing IssueResidenceCertificateEndpoint.cs
-Analyzing LinkExistingPersonEndpoint.cs
-Analyzing ListCaseAuditEndpoint.cs
-Analyzing ListOutboundNotificationsEndpoint.cs
-Analyzing ListPendingPoliceVerificationsEndpoint.cs
-Analyzing ListRegistrationCasesEndpoint.cs
-Analyzing OpenRegistrationCaseEndpoint.cs
-Analyzing RecordBirthInformationEndpoint.cs
-Analyzing RecordCivilStatusEndpoint.cs
-Analyzing RecordHouseholdCompositionEndpoint.cs
-Analyzing RecordIdentityEndpoint.cs
-Analyzing RecordHousingSituationEndpoint.cs
-Analyzing RecordImmigrationDecisionEndpoint.cs
-Analyzing RecordResidencePermitEndpoint.cs
-Analyzing RecordPoliceResultEndpoint.cs
-Analyzing RejectCaseEndpoint.cs
-Analyzing ReleaseCaseLockEndpoint.cs
-Analyzing RemoveDocumentEndpoint.cs
-Analyzing RequestPoliceVerificationEndpoint.cs
-Analyzing ResolveDuplicateInvestigationEndpoint.cs
-Analyzing ResumeCaseEndpoint.cs
-Analyzing SearchNationalRegisterEndpoint.cs
-Analyzing SetResidenceCategoryEndpoint.cs
-Analyzing SearchReferenceDataEndpoints.cs
-Analyzing SuspendCaseEndpoint.cs
-Analyzing RegistrationEndpoints.cs
-Analyzing GetMunicipalityReportEndpoint.cs
-Analyzing ReportingEndpoints.cs
-Analyzing DemoOfficerHeaders.cs
-Analyzing DemoOfficerMiddleware.cs
-Analyzing DomainExceptionMiddleware.cs
-Analyzing SchaerbeekMunicipality.Api.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing launchSettings.json
-Analyzing 00040367933d44a99ad342bc66b2bfb2_passport.pdf
-Analyzing 0028a23215884b82aae0317d833fe74c_passport.pdf
-Analyzing 00625e06d0e7410c8f8b68771d03bbc6_passport.pdf
-Analyzing 007d2ae058324905bf1156de6800aef6_passport.pdf
-Analyzing 009df9d5c1474deebb7e22b3070bd30b_birth-certificate.pdf
-Analyzing 00a54f7632af448aa9fb6eeaca9d2ba5_passport.pdf
-Analyzing 0159d7d22a6a46e0bba382b79f2c6e0a_passport.pdf
-Analyzing 016aa84c33a142a78a9fc0bbaba27304_medical.pdf
-Analyzing 019ba4a9cd5d423f82d64523774057a3_passport.pdf
-Analyzing 01afe4335b6b4f6a8efc6826e7102cd9_passport.pdf
-Analyzing 01ddd436d88e472f8fe61932421c7112_passport.pdf
-Analyzing 020b2bea0a9a4f2d90fd2e255eacd5e8_birth-certificate.pdf
-Analyzing 02187dc915be4ecca22c2420fde9ca31_passport.pdf
-Analyzing 030ad2fb81d049a3b02096323bb5031c_passport.pdf
-Analyzing 030fed1a80584a1b850aaaa0ce7bbf8f_birth-certificate.pdf
-Analyzing 034b6de4ef244248b8bc2c21813eed05_passport.pdf
-Analyzing 0322dac5afee4b5381619e2cb8e61d76_medical.pdf
-Analyzing 03af03f3412c46349dbcf2c4a84d789d_passport.pdf
-Analyzing 03e88e602c3449a3957cfdd3819878e8_passport.pdf
-Analyzing 042f72eb63a7417dbbddbe748da021e7_passport.pdf
-Analyzing 04b756de53854fcaa5db6e83cc7fd4d8_medical.pdf
-Analyzing 05043bb6d07f437eb3ded6dd8a38e339_passport.pdf
-Analyzing 05051869a9a4461e91a94a1596f97fb4_birth-certificate.pdf
-Analyzing 0522f854f4b9412e8f8d303be0cd61ce_passport.pdf
-Analyzing 053463b0a96f4405ae5b39243035cc23_birth-certificate.pdf
-Analyzing 0566da2b1e6b4ed98a524668a85d0d74_passport.pdf
-Analyzing 05863158e00045c787a956d58d99f93e_passport.pdf
-Analyzing 05c9b9a7748d4e64bada5f11f688816e_passport.pdf
-Analyzing 06268095fa284d83831972f3d73bf916_birth-certificate.pdf
-Analyzing 066d07cbe00a4c28a803e20f980ba722_medical.pdf
-Analyzing 067b6edeb9a946abaa2a766c5bccfd90_passport.pdf
-Analyzing 0689f7d85cf643dd85d6deeab39f69bd_passport.pdf
-Analyzing 06c3e5f2547f4e61a352a3503865b002_passport.pdf
-Analyzing 07795ed308574aedb1c2d5e51d3cc109_passport.pdf
-Analyzing 07f6c2c93b4d440e9a17e247933ce1a4_birth-certificate.pdf
-Analyzing 07f842a84c6a403c8d08479f39515a2f_medical.pdf
-Analyzing 083536a1164d44949c36f2b1e5c37c71_passport.pdf
-Analyzing 0852407da32c45e4bcb2faa129823fd7_medical.pdf
-Analyzing 0993625cf7fa43d9b07d9ea49c566f81_passport.pdf
-Analyzing 0a0b9d0da60c4a35b78f8512bcabf3b4_birth-certificate.pdf
-Analyzing 0a719a758e1d4b21b39773a9f8a15a28_medical.pdf
-Analyzing 0abaf50bb67e45a6a010b828c6ef3f35_passport.pdf
-Analyzing 0acd7acaf81d4530ba23947087d89911_passport.pdf
-Analyzing 0af6cac0321849e5ab9b3788ab7db641_passport.pdf
-Analyzing 0afb1d30f5254b3698a2bfedaf9d8b08_birth-certificate.pdf
-Analyzing 0b07865be82c480d8c0d94822c28e2a1_passport.pdf
-Analyzing 0b373d0165c84fdd92e6b6f3bd4f148c_passport.pdf
-Analyzing 0b878e07f70949d2badc5459cb88c6af_birth-certificate.pdf
-Analyzing 0ba2b49e23cf45c1ba9a5aa4417c63c4_passport.pdf
-Analyzing 0bb957c347944111aa16367f38e0f976_passport.pdf
-Analyzing 0bca7ceb03214b898c9a9af1121024de_passport.pdf
-Analyzing 0be9236a84ff4c77a42ddebd458770b5_medical.pdf
-Analyzing 0bed63d89b074e7bb14b57ae2c14513f_birth-certificate.pdf
-Analyzing 0c0226697a1e4af5be7734844ebcef9d_passport.pdf
-Analyzing 0c8e69e12c144e6e9830e549f4303f85_passport.pdf
-Analyzing 0d07d2e4a6e84d69b1c13d5dde38ff3e_passport.pdf
-Analyzing 0cf6d1ef36674c15835c9da3c2f0aa5e_birth-certificate.pdf
-Analyzing 0d143717c8514c66b04960cc765c66d1_passport.pdf
-Analyzing 0d17a7d241774fa4a5442901e52cecac_passport.pdf
-Analyzing 0d25ad35592b47488877c9e368999283_medical.pdf
-Analyzing 0d53e4d388f6411c8d4591ce6369e49b_birth-certificate.pdf
-Analyzing 0dc78f1391fe4244a52700ad27533aa0_birth-certificate.pdf
-Analyzing 0dd587a5a46b4002bf555c0cf71312ea_passport.pdf
-Analyzing 0e9e61192bd041f7baeb390e029f8f68_passport.pdf
-Analyzing 0e53a85781694d75bb0a6034c2b1c378_passport.pdf
-Analyzing 0ebce104fa374ea9a2573c46b9b7480f_medical.pdf
-Analyzing 0f261a468c054ffdba78e2508ec8ac12_passport.pdf
-Analyzing 0f2c95265e17412ab06fc5d853dd7b93_passport.pdf
-Analyzing 0f4de7fa519843359e8daef149d3ebfb_passport.pdf
-Analyzing 0fdae7c863154094a5aeb8be083c1a44_passport.pdf
-Analyzing 0fe41327bd074a788cebe9d393175c8a_passport.pdf
-Analyzing 1064decca2cb412eb8197256a9828e76_passport.pdf
-Analyzing 108baf644b92491ca5bfd935eb91cdbe_birth-certificate.pdf
-Analyzing 10faa774799e44db90923f3cda169a9c_birth-certificate.pdf
-Analyzing 1120846f791b4f9c8a00b746039fd7d1_passport.pdf
-Analyzing 11ba19a27d99418a8ba63afcbce32786_passport.pdf
-Analyzing 11d409d3a3c74c309b17966252612b18_birth-certificate.pdf
-Analyzing 11eb0d2b43ba44588b41ca4632cee6fd_passport.pdf
-Analyzing 12a6b068bd9f4698a1f7c0ace36a5513_passport.pdf
-Analyzing 12cae5e1531d4937b02e2e6ad7f97600_passport.pdf
-Analyzing 12e09aac63684a47808a79bd9138e256_passport.pdf
-Analyzing 1390c3b99534408c8577a64f63667648_photo.jpg
-Analyzing 133c799817c347b6ae3caa6d024d9aae_birth-certificate.pdf
-Analyzing 13991de20c14460c8aa6944da126acf2_medical.pdf
-Analyzing 13e9b8ac19574453a09f5419df99f4f8_birth-certificate.pdf
-Analyzing 14506c2cba7847618361bb8d997d75c1_medical.pdf
-Analyzing 14c43830644448b1b72ac4b02c196dbc_birth-certificate.pdf
-Analyzing 14dd520f1451411f9160d0d2b695d5a0_passport.pdf
-Analyzing 1510d975b10245c7a5ca8de9b06ff076_passport.pdf
-Analyzing 1521ca93dbea495a852f3e4698a153bb_passport.pdf
-Analyzing 1528b88b5dcc4d9487b79c7a109adeb6_photo.jpg
-Analyzing 1540b0befd47465995f11e4e542dc4e2_birth-certificate.pdf
-Analyzing 1565415118a34ca5b16dfc0aa6b47e4b_medical.pdf
-Analyzing 156542c3e6bd46beaffdbdb89a08941b_passport.pdf
-Analyzing 160ec236363c4dcea3db0b208232b8c8_birth-certificate.pdf
-Analyzing 15b69320f3124272bce57fd28e92b34c_medical.pdf
-Analyzing 15e45d1842e843b7991b41199d153c46_birth-certificate.pdf
-Analyzing 16a8bf47c7ba43d5b43caa5b9b976411_passport.pdf
-Analyzing 17ee5e02b21f41da9f3dd46c0890e302_passport.pdf
-Analyzing 18d25f02f67a43f0a2555585bb37af42_passport.pdf
-Analyzing 16ee7f8973394c99a3bd100c2fd67bdd_passport.pdf
-Analyzing 17aff63c90194232a60e921aa6c78c95_photo.jpg
-Analyzing 1835d73e087f4c91a3cc54d7af95b5c5_passport.pdf
-Analyzing 192370368350469da08e4c6eac083f0a_passport.pdf
-Analyzing 198e47b7e0354ab48bbce97cbc4766ce_passport.pdf
-Analyzing 18d7c478c3d84cb6b07ee6ef40192e4a_birth-certificate.pdf
-Analyzing 191354402f5a410989ae936aa7802ec1_passport.pdf
-Analyzing 1983d328e71c412f8f7f04567e363f85_passport.pdf
-Analyzing 1a1b21a80f9640e59ccc93c044c7fbc2_passport.pdf
-Analyzing 1b47e5811f114477ab6803bb36d48624_birth-certificate.pdf
-Analyzing 1c442eaecca54aa88e8c220354326fcb_passport.pdf
-Analyzing 1c9d11d23b9342b6b72566e2eb14e222_photo.jpg
-Analyzing 1cf31d091b9c4dcb9f09a8b4d506a8e7_medical.pdf
-Analyzing 1c4d4177fe3c4566be7808d1aac9238d_passport.pdf
-Analyzing 1d2366d0ecee4c6aabe3465a9625303a_birth-certificate.pdf
-Analyzing 1d0db5762f664d0c9cf42faded5b222a_birth-certificate.pdf
-Analyzing 1d5d78a4439741fe9918cfc3c2f121f6_medical.pdf
-Analyzing 1e3a893a7b7f44128631965582852bdd_birth-certificate.pdf
-Analyzing 1e7545d495d4480aae37a8619ba91459_passport.pdf
-Analyzing 1deba7f85b734784b75487514f3ccb5a_birth-certificate.pdf
-Analyzing 1fe9670985104dfbb774d34f79b2fff3_passport.pdf
-Analyzing 2015c6e7e0644a7ea8887045f7b03c7b_birth-certificate.pdf
-Analyzing 204128c033574ae4bfff453171ac4b4f_passport.pdf
-Analyzing 20fec2ef681b46978fe1a83cea235880_birth-certificate.pdf
-Analyzing 2153a4a7b3f04c07af15cc0767af59ad_birth-certificate.pdf
-Analyzing 2156d9f3b0c8448fbdc0be685155ecdc_birth-certificate.pdf
-Analyzing 217dd802b8ef4620acf911ccb9d7f24a_birth-certificate.pdf
-Analyzing 225580b09c06436bb6fc87c4457d2a91_passport.pdf
-Analyzing 21fe09c4945a4bddb3dd728f711d83ca_passport.pdf
-Analyzing 2251711e9def4c989e75d774952060de_passport.pdf
-Analyzing 227616dc9ee747e399e2fcd18c83f8e9_birth-certificate.pdf
-Analyzing 22c426020ae941c893e2274043a5ab24_passport.pdf
-Analyzing 23116070334c490994ff1f742062aa95_passport.pdf
-Analyzing 2315d2cdec214221bd9543fcab5f28fc_passport.pdf
-Analyzing 2349bb5702df4f1e82309eebad8b2a0a_medical.pdf
-Analyzing 2372497e201a46639238900b2485f651_birth-certificate.pdf
-Analyzing 23e634ab6c614899a96637e00ec24928_birth-certificate.pdf
-Analyzing 23c654ca29c347009d5f82036340f1de_medical.pdf
-Analyzing 24739b666c594bd992c66669722a575b_passport.pdf
-Analyzing 247f63aae5c3464faed98ba519d6826b_birth-certificate.pdf
-Analyzing 267dcefea3e74171a4c62817fc8998ce_passport.pdf
-Analyzing 257460f8f3784e868f90e4475ca08489_medical.pdf
-Analyzing 25ef216f90884714a26f8b6521457a44_birth-certificate.pdf
-Analyzing 273f9fbc255d48cdbc0ea52aab87370c_passport.pdf
-Analyzing 27862d7d04634b1db90d508f6b8d6ac5_passport.pdf
-Analyzing 2765de24df434d2cb024fff80afa1263_birth-certificate.pdf
-Analyzing 276b93cca47d47c8a06e0d7f57869d83_passport.pdf
-Analyzing 28858d604e1d4853af07d8818168e72d_photo.jpg
-Analyzing 27c8722d97624233b38ea71cad87927f_passport.pdf
-Analyzing 27d8e964aa7e44caa782929dbff6322f_birth-certificate.pdf
-Analyzing 27bf7098de46466190375af8ebf9f4ff_passport.pdf
-Analyzing 28cbbd7dc1524e408e123d97b5c3479d_medical.pdf
-Analyzing 28927beed0194879a134d508f90fc623_passport.pdf
-Analyzing 289811ad06684c0a8752ebd98c063273_passport.pdf
-Analyzing 294aacf07b344947a626dd4f3c404bff_birth-certificate.pdf
-Analyzing 29ac9bf23c7e4e7597bbbbe66921b6e0_passport.pdf
-Analyzing 28dcd278dff84049818f449b50b6cb24_birth-certificate.pdf
-Analyzing 2933e745974848c2a5af88eb39600c3a_birth-certificate.pdf
-Analyzing 299662395236440d84c1ea33db5669bc_passport.pdf
-Analyzing 2a78080af99b4016acc7392b868f0275_passport.pdf
-Analyzing 2a2f502c5cf04f8889b07a3cc2727842_passport.pdf
-Analyzing 2a5254acefa94cfb9171eded0b8b8d15_birth-certificate.pdf
-Analyzing 2ae8529159604536b23f3c94a6baec43_medical.pdf
-Analyzing 2c54f2939a784bd68699138fadea1174_birth-certificate.pdf
-Analyzing 2b3c12808e9e4da782deb156bea92aec_birth-certificate.pdf
-Analyzing 2b6feddde8c446ef89ce9512931e20f9_passport.pdf
-Analyzing 2c7b22771d214150845fd92c95b6bf30_passport.pdf
-Analyzing 2cae23abcee045f1bcac7144214ee531_medical.pdf
-Analyzing 2cc86ab41d4d43cb8f16ff1775f91dc5_birth-certificate.pdf
-Analyzing 2cfcfa2b72384009ab7db4f17a4205cc_birth-certificate.pdf
-Analyzing 2d5ea4be3f8b464bb25aff0c1173cf0a_passport.pdf
-Analyzing 2e4428eb849b402b8087a37414dd18cb_passport.pdf
-Analyzing 2e20b6ed20214a949a70a4bbec3cda1c_medical.pdf
-Analyzing 2f410590ced4467ba4b202540cca6c34_photo.jpg
-Analyzing 2f8aee387f4244ca8e5f3205c2a98cdc_passport.pdf
-Analyzing 2f068b56688c4473a3b2cd950898b596_passport.pdf
-Analyzing 2fbd81ac53dd4645bca2d71d144edf8d_medical.pdf
-Analyzing 2ffb9e99344f4663812f77f35682e67e_birth-certificate.pdf
-Analyzing 2fc3639bd2314182a8da60c4ae5e0e00_passport.pdf
-Analyzing 3005c3d757044b77884b044e23b0b94b_passport.pdf
-Analyzing 30d823c064cc4414b844b2b38fa1bf24_passport.pdf
-Analyzing 3030c188fc484794b8ab0ffeba053dfa_birth-certificate.pdf
-Analyzing 309bc326d58e424a9aa4ffbd39a798c0_passport.pdf
-Analyzing 3166fd517e07437387169464700ad95b_passport.pdf
-Analyzing 322dc2b016a64b27a74e34b088b5c095_passport.pdf
-Analyzing 31c10f780a624a61b89c90d67fff7c56_passport.pdf
-Analyzing 31cf9cd5a4d24b0b82d7a5f2c39e55f6_medical.pdf
-Analyzing 32c2988a2f0743e498a60e9280540b10_passport.pdf
-Analyzing 33f5795870a54597af33598008137e8e_medical.pdf
-Analyzing 330245456dcf44bca484c6b85e3b6028_birth-certificate.pdf
-Analyzing 336fb0a72aad438eb93f54ac9ee17733_passport.pdf
-Analyzing 34014b8f775f4cbeaffd71d4ec6b6e54_birth-certificate.pdf
-Analyzing 3482cb6497cc4b24830aedac84f4a189_passport.pdf
-Analyzing 3406e0a6864c4ce49fb36dc0d80eaa2a_medical.pdf
-Analyzing 34c44aacd8a642bd8a1111f4acd7a677_birth-certificate.pdf
-Analyzing 34d95a571f8a4343896b5115ba05c679_passport.pdf
-Analyzing 351374da837d4e5e98efc374bcc617b7_passport.pdf
-Analyzing 34db8e52c9ce48a5ab221b058162df72_medical.pdf
-Analyzing 3572374e7bf84046a1fa538e3a15628a_birth-certificate.pdf
-Analyzing 3589ff3d29124f258d750e122cb8f0b2_birth-certificate.pdf
-Analyzing 3502cb1469f44050b46eec35ddd63ea3_passport.pdf
-Analyzing 35ac75fa8d5344ac82458d72e2ecc08f_passport.pdf
-Analyzing 363bf1f37ccd483d8dd8184a0029223a_passport.pdf
-Analyzing 35c9c7e17841408b8b4272ce41adddc8_passport.pdf
-Analyzing 3652eec33c24418e8049ae8dc71a08a6_birth-certificate.pdf
-Analyzing 36786c11361a424a8fe7f1510b008470_medical.pdf
-Analyzing 374270573f8a430faa0ce4ad81ff771c_birth-certificate.pdf
-Analyzing 376f1ad6a7644449b323ac5828c079fd_passport.pdf
-Analyzing 38105c5132264d4bb7724619354192e1_passport.pdf
-Analyzing 37c5654729ee46a9949d423259e60149_medical.pdf
-Analyzing 388a97f1730146618459a6cc31265e3a_birth-certificate.pdf
-Analyzing 384d593435f4412183253fcdfef5f3b9_passport.pdf
-Analyzing 366939d9743a499295869d254ac421d0_birth-certificate.pdf
-Analyzing 38207cf1228d4d6a9e843b6b540ac98c_passport.pdf
-Analyzing 396a901e8a614d0abca41aa0b36f0e02_medical.pdf
-Analyzing 38a13cd9c86b43e5a69049d60372a8e0_passport.pdf
-Analyzing 3946691514194aa6b0dc882fc4e60ba1_passport.pdf
-Analyzing 3a16cd644a3541d08f221c1647d41f7e_passport.pdf
-Analyzing 3a459bcf52eb4239be9a53ef6f22a8b4_passport.pdf
-Analyzing 3a2e2572201e465db0eb80015baefbe6_passport.pdf
-Analyzing 3a72f544948a4d729c6f6744d6a4288e_passport.pdf
-Analyzing 3b40c3892b964f08988354a4fc44cba5_passport.pdf
-Analyzing 3b51d980652e4dfc81bbd096cfb24552_passport.pdf
-Analyzing 3c15e6e32d5d4a779899532ed138ea16_passport.pdf
-Analyzing 3b667e72c0a342759d99aeeeac5d0ee9_birth-certificate.pdf
-Analyzing 3baa4ad23d804f6ea69fb3e2cdc05867_birth-certificate.pdf
-Analyzing 3c859e56627146ddac7c8701835c2530_birth-certificate.pdf
-Analyzing 3da88d96897045caa0012eabc9eece2e_passport.pdf
-Analyzing 3d8848b80b0546dd8a02cf9f7026964d_passport.pdf
-Analyzing 3c95e3a1080a4b1b9eda71c2b5897522_birth-certificate.pdf
-Analyzing 3cd5dfca10e94127b680cd17c933b975_passport.pdf
-Analyzing 3deb8e689f8e4907a53736b483d12fcf_BAZIRET_JOHANN_ID_BACK (1).jpg
-Analyzing 3e211b1aa99c4ffebf83ba7d257487c9_medical.pdf
-Analyzing 3da9c6794ef549d48e9466794baa607e_passport.pdf
-Analyzing 3dd70fbc77a8455ab71473a60d08edc5_birth-certificate.pdf
-Analyzing 3df9131f09f64d1f809bb53078a402bd_passport.pdf
-Analyzing 3ec426ff34e44c52a4840d87d5d44ecb_medical.pdf
-Analyzing 3f80ad59d8f14f9b8c769d84d23f3706_passport.pdf
-Analyzing 3e34317b29654f44bb20e46216243587_passport.pdf
-Analyzing 3e4e12aaf50844ba86db2dafd44d322b_passport.pdf
-Analyzing 3f2350f5d07e468aacccee7c0357d363_birth-certificate.pdf
-Analyzing 3fcff5fc9c83417b822f932ff0c253d9_passport.pdf
-Analyzing 40291163fd564cd5889fad893272224d_medical.pdf
-Analyzing 3fbc7d5263b54a7eaaaa862faaab721d_birth-certificate.pdf
-Analyzing 40901a3043a1426ea05646ed717e46f5_passport.pdf
-Analyzing 403a4b488f1348ab9fe737e2419cfb74_birth-certificate.pdf
-Analyzing 4064184754d043b6b7f2537dbaced3fb_passport.pdf
-Analyzing 410d41fa620c455a99a6940d43dde464_passport.pdf
-Analyzing 427b9a61dc46499a96fef1d0f9d93f4c_photo.jpg
-Analyzing 413cfe07ee5542dd88f0506672643b37_passport.pdf
-Analyzing 41eb4c0a822d43e0ad7d5e9d99a04a54_passport.pdf
-Analyzing 42cb31264fa44acea8de7143b686552f_birth-certificate.pdf
-Analyzing 4326cd1f5f254c34929967db9d1b5bf4_passport.pdf
-Analyzing 42e9e40dad924c7c885904ed10c85172_passport.pdf
-Analyzing 43db02e8fae841a5be119d539c09884e_passport.pdf
-Analyzing 430aed7be1d9493aa6fc4fa024ce3b3b_passport.pdf
-Analyzing 439d990a3771445cbfd6fcee7013654e_passport.pdf
-Analyzing 44697f3719534baf89559c8cabe119e1_medical.pdf
-Analyzing 44bc47e83f734999a8ee92cc2cf1abea_passport.pdf
-Analyzing 44ebcc8bfe5a4ff78df62994e8b8e642_passport.pdf
-Analyzing 45b9d405e66f4186833a0368e06d9707_birth-certificate.pdf
-Analyzing 45e2e22763704d6d9b546e893f303129_birth-certificate.pdf
-Analyzing 460530fda3bc49139bb08241258707da_passport.pdf
-Analyzing 467408645791466fba4df9080305666c_birth-certificate.pdf
-Analyzing 464d9166b2f4457dab93643b88caaa84_birth-certificate.pdf
-Analyzing 47172d9ecb714ce3bdbac6c7af7843c8_passport.pdf
-Analyzing 48122996ee804beb8268db1ebee71f4c_passport.pdf
-Analyzing 4782ae93674d4a339c28789b60d3881e_passport.pdf
-Analyzing 47b01004e452491badfc7577c77a23b1_birth-certificate.pdf
-Analyzing 48134058eb774471a0e88d66474dabd6_medical.pdf
-Analyzing 484d0c39fceb4efc8813b871a5c3aa81_passport.pdf
-Analyzing 4a6e800b56ff43f197b4fccea9dfc656_passport.pdf
-Analyzing 48bd769727bc44d295906ce902b861ca_birth-certificate.pdf
-Analyzing 49aed5b8b9394601a748f989335772ba_medical.pdf
-Analyzing 4a99903def0b4b32a73eb96c853ad0ef_passport.pdf
-Analyzing 4b53501026554aeba0abfa51eb3b7824_photo.jpg
-Analyzing 4c0da3db5605423898217e36e4a1c7a7_passport.pdf
-Analyzing 4b5935926e774d1e840bff9fab04a2cc_passport.pdf
-Analyzing 4bac1b43739b4210a57415918c9bf9d4_passport.pdf
-Analyzing 4c4b3ed064dc44ada9fe3d4d49ed05d1_medical.pdf
-Analyzing 4d39ab97e2a94c64bc7a7a9380287b43_passport.pdf
-Analyzing 4c57da7ab3d741f4a312b1e801687235_medical.pdf
-Analyzing 4c732361d626410e82494adbcd110baa_passport.pdf
-Analyzing 4cf10271daa74f018976d5be9d3548a2_passport.pdf
-Analyzing 4d74a8b77eff4804898b32ff014e779e_passport.pdf
-Analyzing 5043f2ea7d094d91ba372642dac89c09_passport.pdf
-Analyzing 4ff0f461917b4400ada34b32c242449c_birth-certificate.pdf
-Analyzing 4dc0a874a9274edbab38b19907daee88_medical.pdf
-Analyzing 4e9e75dda3c2499c848ef999317738d7_passport.pdf
-Analyzing 4fb794113916498cafb78205e7b655a6_passport.pdf
-Analyzing 50f3d61297124fa6b0ff5578e98cccb1_birth-certificate.pdf
-Analyzing 504f3e1f113044e291812d4e41a7b114_medical.pdf
-Analyzing 50ee86e583d9409d85027c21769f76e2_passport.pdf
-Analyzing 5101dfb55c8143d8836ad243b02ee451_birth-certificate.pdf
-Analyzing 51d0e92e6b5d48ca867014bf0c232ad9_passport.pdf
-Analyzing 512d40b78ca041c9aba6e42b0f88af95_medical.pdf
-Analyzing 5141bab36eed48609c50f9da9c0d8e87_passport.pdf
-Analyzing 51b98683c9e2438f8a550b025274e24b_passport.pdf
-Analyzing 51f635bc4936404d96ef6a3652e8162b_passport.pdf
-Analyzing 527fbcf620844274873b7c81f50d2a31_passport.pdf
-Analyzing 5323b68086d840bb81a3163c12c3a97b_BAZIRET_JOHANN_ID_BACK (1).jpg
-Analyzing 53823375265a45e0b310a4ce6b2bde2b_passport.pdf
-Analyzing 520f402665ac4b36b580701ffc52fe82_birth-certificate.pdf
-Analyzing 5229b710e1b4439a902c3fb341a6ea1f_passport.pdf
-Analyzing 5267b781f1e5430cbe07ef381b0ac5f8_medical.pdf
-Analyzing 52fbf49007d64850be27773b451fa590_passport.pdf
-Analyzing 54bc0ee2b3ef466dbdb934590b02312a_birth-certificate.pdf
-Analyzing 55a92bbf79954932a391e84ae89a0e64_birth-certificate.pdf
-Analyzing 54eed394c6104a0781d3b30f5d513d3d_passport.pdf
-Analyzing 55154602df86479db6c4628f9dada031_medical.pdf
-Analyzing 55f82e8638ca435ab758bce01117aacf_passport.pdf
-Analyzing 5525038c934e49aa857ec867579752b4_passport.pdf
-Analyzing 55b9c1310274406a93e1e34ea133957f_birth-certificate.pdf
-Analyzing 55d1c953af1a4474bfb9304cff33b73d_passport.pdf
-Analyzing 570b7b8f80644fc18be7338320cc589b_birth-certificate.pdf
-Analyzing 56110fcbc53441168396323313de76e9_birth-certificate.pdf
-Analyzing 56f99c12656e4f82927a3e930b8318a0_passport.pdf
-Analyzing 573addf3e504483898e713dba6ecffbd_BAZIRET_JOHANN_ID_BACK (2).jpg
-Analyzing 5775051e7064475294376206ea51200f_passport.pdf
-Analyzing 577ced9ccfa045f1bafddcb485909216_passport.pdf
-Analyzing 5803e45c084e449ea44deab3dd3b1806_birth-certificate.pdf
-Analyzing 57dd6edd594c49f0a01a9fad7c9cea45_birth-certificate.pdf
-Analyzing 584c9a10485549c18a369beb2780a53e_birth-certificate.pdf
-Analyzing 5a1850cbb8ca421ba78386dca88fc2cf_medical.pdf
-Analyzing 588d2f47a45f42729ef2e122f7baa9ab_birth-certificate.pdf
-Analyzing 58efe0c0a0c24011971f4a0facbe6a99_passport.pdf
-Analyzing 59da0815e4644d039c60f30282a510c9_passport.pdf
-Analyzing 5ab0a6a1183241349d568b1eead69853_birth-certificate.pdf
-Analyzing 5b823edc0b5648139fbed5906c3370d7_birth-certificate.pdf
-Analyzing 5accd74f1f97469da59c9366d9f82910_birth-certificate.pdf
-Analyzing 5acf76de480c4f8a883b256c66956d3f_birth-certificate.pdf
-Analyzing 5ad41d69f9044fa6ad0ad180b369d46f_medical.pdf
-Analyzing 5beb6a2251dd4b41ab97986120a1f054_birth-certificate.pdf
-Analyzing 5d4ed05469884c9e9575cbe725ce15a5_birth-certificate.pdf
-Analyzing 5cc45e7dec8745f89a52f3bf0e22db26_birth-certificate.pdf
-Analyzing 5d0bb5d036a34aa68376e8825273f6d8_medical.pdf
-Analyzing 5e65d0ce16b344cbb020592d167d621d_birth-certificate.pdf
-Analyzing 5effa0b583904541a2c94ae3befd7515_passport.pdf
-Analyzing 5e7235fe92cf43778beaeaa11e0ed376_passport.pdf
-Analyzing 5ec0596c4b9c4841b53b4fbc1d3c2f27_passport.pdf
-Analyzing 5f01a4e67f4d4788aac75275f8e868d6_passport.pdf
-Analyzing 60a5a6b3815d457aadcfb56ff8f553bc_medical.pdf
-Analyzing 5fa1f6d933c344c2802528b61f5371e3_passport.pdf
-Analyzing 5fa9437cfcf44e77a431f3b4ba49a16d_passport.pdf
-Analyzing 60566daa57c84fefabb1662b2bee0e9b_passport.pdf
-Analyzing 60d29a8d36634c65b089632af782e162_passport.pdf
-Analyzing 61f30dfa463349f198084b3646fea577_birth-certificate.pdf
-Analyzing 6321c27a37644397801bc13923503db6_passport.pdf
-Analyzing 633bc0887db94ed88dc2fed1d137c753_birth-certificate.pdf
-Analyzing 616e202c3a3f4b309755ee8e22e70399_medical.pdf
-Analyzing 618a1ca8ad67446eb36bb103e9c19bea_medical.pdf
-Analyzing 61bf525684bd440cbf7fb683fc882559_passport.pdf
-Analyzing 6323500e882e4dad9633b8459fc2c976_medical.pdf
-Analyzing 647f3807b4f141e0b6fab958819a39b4_birth-certificate.pdf
-Analyzing 659345d18261404b909593ec166485fb_passport.pdf
-Analyzing 64d2225d7c474b609ac22ad27bf2fa87_passport.pdf
-Analyzing 64a0682521b54f829b2917c6e62a3099_birth-certificate.pdf
-Analyzing 64bd701a4a9f4122af1c4f28d6ea2d63_birth-certificate.pdf
-Analyzing 65784b2025f44c5392232d4f8ddfe4dd_birth-certificate.pdf
-Analyzing 6598ef5bf44743abb99da039f61795b9_birth-certificate.pdf
-Analyzing 65bcb3202611405eb5bd9e968e3d9216_birth-certificate.pdf
-Analyzing 65df26e3b9684bd3b1d9f706641479a7_birth-certificate.pdf
-Analyzing 6602520d830b479fab841b089093f8f2_birth-certificate.pdf
-Analyzing 67cf90095fd74e66aba09b4e8f8ef4ce_passport.pdf
-Analyzing 6677d8b791204b5d821f49b571ab9de3_passport.pdf
-Analyzing 675b57daa30745f38fc4b61e29acac00_passport.pdf
-Analyzing 67e73a34ede64a3da1a10712077eae0c_passport.pdf
-Analyzing 688e8c1d057e4d958daba07d2be9bf52_passport.pdf
-Analyzing 682176ec1305468a8410946a7acb7eba_passport.pdf
-Analyzing 6870c658c64d463583412ce4ee73e3b8_passport.pdf
-Analyzing 68a5b6ffbb9c48edbd49f8a089ed44c2_medical.pdf
-Analyzing 6a05408c64bf43489ee391bb81ad97fd_photo.jpg
-Analyzing 69dfd49791f747ccbc71c4a57396589b_medical.pdf
-Analyzing 68c3e914f1e64d79a529448597727d58_medical.pdf
-Analyzing 6944eb10e9984e4f948287bb2b5ee9c4_birth-certificate.pdf
-Analyzing 6979fa7be3674d7a9e9c7788748524ac_birth-certificate.pdf
-Analyzing 6aa677afc8614f7da4dab2875dfb230e_passport.pdf
-Analyzing 6a7dd4f230184cf4a4c8bc851519d79e_passport.pdf
-Analyzing 6ae1ce0d07e94fd4b5fcba0eb42adaa4_medical.pdf
-Analyzing 6a4fd608d8144c599051dbaf2425c9f7_medical.pdf
-Analyzing 6c0717b8b34149599f2e6ba4ceb72005_passport.pdf
-Analyzing 6cbdf20ffdf24f368101a3351b14347b_passport.pdf
-Analyzing 6d3b3921548e46c9a640a42b42254a65_medical.pdf
-Analyzing 6d9bf188074f40979fa5fecd99aff39b_birth-certificate.pdf
-Analyzing 6dab4d2245d6476280a9050121542077_passport.pdf
-Analyzing 6dd4a098321941258c68fda87cbd43f0_medical.pdf
-Analyzing 6db0b41a667b4885b6a1b34bdbd28b78_passport.pdf
-Analyzing 6dea3147c2064875876a2178ea388e03_passport.pdf
-Analyzing 6dd08731609240f1b074cd56973af36d_medical.pdf
-Analyzing 6e169dac4c04492e85c8ca1a8ab3f7cd_birth-certificate.pdf
-Analyzing 6e920497af4d471880198b2623beae3f_birth-certificate.pdf
-Analyzing 6e1379af5b854f2288565698f8daf6cf_birth-certificate.pdf
-Analyzing 6f896ecaa27d48689f7a9f1051bd4cf2_birth-certificate.pdf
-Analyzing 6fbd49d21771467b8a447794672c5dba_photo.jpg
-Analyzing 7041084a8fc34a46b803eb66d349b837_passport.pdf
-Analyzing 70e35537ab634a5fa5ce00aeaf0c301d_passport.pdf
-Analyzing 714c7757782c4b00972308a4cbc0d822_passport.pdf
-Analyzing 710d0d67187f4e88a9886f2b035c269e_passport.pdf
-Analyzing 71203673f44741589657167921773ab9_birth-certificate.pdf
-Analyzing 7191850ef961453e94aab7f41118715d_birth-certificate.pdf
-Analyzing 72108d00fbc04e48b450b6865353a786_passport.pdf
-Analyzing 7251718b62bb45dfab098692b66bbda0_medical.pdf
-Analyzing 724eab71fd9f4c9890c04b316f44e6f5_birth-certificate.pdf
-Analyzing 723a47018d8f4372b92fb6f86f3cb529_birth-certificate.pdf
-Analyzing 72bb39002c474b868f9dda474cff608e_birth-certificate.pdf
-Analyzing 74460357458b45cc9cd0f8425c33bd7f_passport.pdf
-Analyzing 7438fcb11c2640bbab63b66ce1b36c06_passport.pdf
-Analyzing 7505f81db72c4884873f6040b9d49d32_passport.pdf
-Analyzing 7587431bb3cf435f8c067290e466fdf3_medical.pdf
-Analyzing 757d73fd5ba24726b806ddd35ded3634_medical.pdf
-Analyzing 765bb30540034a2b96190f097f5f746f_passport.pdf
-Analyzing 759bef1a7b3a493390c140c48948c155_medical.pdf
-Analyzing 76e46848dddc4945a249d263b57d1926_passport.pdf
-Analyzing 7723fbe6a7914ac9b29b94d9c48806f5_passport.pdf
-Analyzing 7862333aee85487c95fc9cb59f4c2f1c_passport.pdf
-Analyzing 7926c0bc1b764c8997d9e1e83ab0e6bc_passport.pdf
-Analyzing 7a2f7f3e85cb44a2883338f299590877_passport.pdf
-Analyzing 79ad0adfabb342239da5597c538bf7b9_passport.pdf
-Analyzing 7a551b6f4ccc414bbe55e22ecfbfd221_birth-certificate.pdf
-Analyzing 7a5145de46554fa2925204db18df8f7a_medical.pdf
-Analyzing 73e90a7c7196481487c8494ca6fe7e7c_birth-certificate.pdf
-Analyzing 7a71c1a0717a45c2923cf89dc608bc78_medical.pdf
-Analyzing 7a8835bfbd0148e68b874fb9b1ab57ee_passport.pdf
-Analyzing 7aad24f230e54cfd8e434760483e7342_passport.pdf
-Analyzing 7b4cd44235004a6f85885f67b78a244e_passport.pdf
-Analyzing 7b1e8e2927ba4a0d9cd7e28a33dd3e7a_passport.pdf
-Analyzing 7b887dce0cb34f8c8c460a1bf8070ec2_medical.pdf
-Analyzing 7c2e733c8bd34be989a4b736373ff6ca_passport.pdf
-Analyzing 7baca0598ff44a4fa04e5fee814aa2b9_birth-certificate.pdf
-Analyzing 7c332047159e40b8bb8c5229ef6b3883_passport.pdf
-Analyzing 7c55b4a5708d460a8217dd4ad4284a45_birth-certificate.pdf
-Analyzing 7cc67c81a1874e6c8f2ee04c664349f1_passport.pdf
-Analyzing 7c6cc75d57704a6788c3fa2623d2fa76_passport.pdf
-Analyzing 7cdc0777830842cfb365b9b08d04f6b1_passport.pdf
-Analyzing 7d6daf28d2584e899812c649cd3460ec_birth-certificate.pdf
-Analyzing 7d5b7daeb3e7405798cffc9fbf4e55b2_medical.pdf
-Analyzing 7d8d7cb7b4a3436ea48a8a166b799ab6_birth-certificate.pdf
-Analyzing 731688ed7d434939a42a5fe45977418c_birth-certificate.pdf
-Analyzing 7dc8b2b92ee04c4ab713ed57b19a5e36_passport.pdf
-Analyzing 7e6577715532459b9b3c6b0fdc3236a4_medical.pdf
-Analyzing 7e0ac8dd70694404bf6a21cbcdd8ce37_birth-certificate.pdf
-Analyzing 7e92e79a62a94364ab8860435a885692_passport.pdf
-Analyzing 7f4ef6207f064002a460bcd611c1f75e_passport.pdf
-Analyzing 7fdba8de785f4c23a405546d4202e3ba_medical.pdf
-Analyzing 80837195999d4bcb83a741d0ebaab72f_passport.pdf
-Analyzing 7fe72e1fa66a4b21a723703418fe63d8_passport.pdf
-Analyzing 7fea5267192a40a59bf4b32d8ec205db_passport.pdf
-Analyzing 805ac462f8f749249c2b864281f736f4_passport.pdf
-Analyzing 80bb818e7c3f4abfaef4a83545caa11c_passport.pdf
-Analyzing 81186fd0f73b4a6bb46b1766ceddb57a_birth-certificate.pdf
-Analyzing 81dae5e735cf4b9aa8e0f1096f4b69e3_passport.pdf
-Analyzing 8205eacdb4aa4d8fa8996651ebf2e46f_passport.pdf
-Analyzing 824afb675b2045fea70b2cb8ea2cc1ef_medical.pdf
-Analyzing 823523887b9b429f81b945b57faae3c5_birth-certificate.pdf
-Analyzing 82ad9ce78da5471fb67150183e8cb164_passport.pdf
-Analyzing 82ca239db44344f5b387c93cbaaa8271_medical.pdf
-Analyzing 83778c2b4e024999afade5d14ec7c590_passport.pdf
-Analyzing 838c67c481824a4a88fc9c251b81f1c7_passport.pdf
-Analyzing 842213f129af44c384faee73157e896d_passport.pdf
-Analyzing 838640d8886a49a69cfd8d5ea057a995_BAZIRET_JOHANN_ID_BACK (1).jpg
-Analyzing 83c3014f8e554d9db25c2f17d6e56de5_medical.pdf
-Analyzing 83d88aeefbd541b69c2200bf6451ac93_passport.pdf
-Analyzing 84835a5edf1c4146a122e115de75b708_passport.pdf
-Analyzing 850d7334c3cf4a2e8929f57f56bdf979_passport.pdf
-Analyzing 84f18230ebea495eb01331bb8a003438_passport.pdf
-Analyzing 85d5f0f4dffc492a84e93a7df24ce346_birth-certificate.pdf
-Analyzing 86101b03cec6484cbe74dba26283b710_passport.pdf
-Analyzing 851bd43675304eccbc25bf48b41cec82_passport.pdf
-Analyzing 8669eadadcac41c9bd1cf2b9e6fd456f_passport.pdf
-Analyzing 85dc3bb03c984e3797092ac0db8e8e52_medical.pdf
-Analyzing 864ea3b71ae64785af4d9749eb656fab_passport.pdf
-Analyzing 86ae548e08814fe49dfd13ab80c7c027_passport.pdf
-Analyzing 8689f06f6e814d3490435c396fb07b22_passport.pdf
-Analyzing 8696eb0b11eb40ee9945b5d1768881c2_birth-certificate.pdf
-Analyzing 8708115dbd824f1b8d2231838ccdef5c_passport.pdf
-Analyzing 86e499aea4b745ffbe538baf9e9e2c45_passport.pdf
-Analyzing 874d0f1360de47f98edf11f7f226250e_birth-certificate.pdf
-Analyzing 878ea18d1c71426aa0bd8d8bf613c885_passport.pdf
-Analyzing 87aad06717aa46feb57af905e1240883_medical.pdf
-Analyzing 87df4bb1b807432da2d39d374578b878_birth-certificate.pdf
-Analyzing 895d99ebb83643e3805ca388868a12a9_medical.pdf
-Analyzing 888fd7bcb2c64a1f9349b0789cd4880a_birth-certificate.pdf
-Analyzing 89695bda38df407d94906c4e159b551a_passport.pdf
-Analyzing 887d0275b4314127b82d269e0c95b879_passport.pdf
-Analyzing 8a1f26c41121491e85590d73591eaadc_passport.pdf
-Analyzing 8ab63f35678f41b2b021beea929d77de_passport.pdf
-Analyzing 89cf9b5a96fd426083a01178329071f3_medical.pdf
-Analyzing 8a36a6bdde554d55beae800ea22422e5_passport.pdf
-Analyzing 8abfa0bbb1c6496bbbd08e6c42a5ba6d_medical.pdf
-Analyzing 8ae92a4bae2b4cb98bc6e171423fa2e9_birth-certificate.pdf
-Analyzing 8b0c2f4cad5f476c8727a05d96a36f23_passport.pdf
-Analyzing 8b011e23c245465dba968156bce30f1a_passport.pdf
-Analyzing 8b5a5bd417a942549ef0fd1872b2e735_birth-certificate.pdf
-Analyzing 8c14f19205374ca3bc349c45c6d65a92_passport.pdf
-Analyzing 8cf8ad35014f449c8b0ef93355641ab7_birth-certificate.pdf
-Analyzing 8d0414022d164e74803d3fb93468f9f7_passport.pdf
-Analyzing 8d38e54020c5428d8f125b788191f093_medical.pdf
-Analyzing 8d4ed5951b8b4c028c6795abe0598258_passport.pdf
-Analyzing 8d0c5097b90444a88aa0586394036148_birth-certificate.pdf
-Analyzing 8de5e101ded24dc8a4a21a5c6cc4bc58_passport.pdf
-Analyzing 8e59e7a6b7c044bcaabb352df2cd41ac_photo.jpg
-Analyzing 8ed5ff547b6b45c4ac36fdbc8a78f212_medical.pdf
-Analyzing 8edfbd020a44481c8676ea7f2cc8b43c_passport.pdf
-Analyzing 8f34a684c8ff4f5c91c6c6534e64ecc1_birth-certificate.pdf
-Analyzing 9034097e5b73466093b570bf73dfc7f0_passport.pdf
-Analyzing 905a3e16ce46456fa8622d935cce8766_passport.pdf
-Analyzing 909677e7c77b4d2cbfb2b9e2ed134150_passport.pdf
-Analyzing 90c5fc09e2b44959909bd261bb3d916e_passport.pdf
-Analyzing 90e7393c7b0b4057baf9d98a3eda5c11_passport.pdf
-Analyzing 911fdd42c71841958e1d0da6cebc9826_passport.pdf
-Analyzing 90c5fcd9aa41430ba08404d4086dc2e9_passport.pdf
-Analyzing 913dffc0ca5f4cdc9aa1fa592857af2a_birth-certificate.pdf
-Analyzing 91ad01b14d1641ca8f9364e87e44875b_birth-certificate.pdf
-Analyzing 91992665a9aa43219a2051d83a2ca8e8_birth-certificate.pdf
-Analyzing 921580a5d726433b9cb8b817361f436b_passport.pdf
-Analyzing 9277655d72c142cca731e57e8afabbc9_passport.pdf
-Analyzing 92fc51a456ce45d3a61966b440a29a72_birth-certificate.pdf
-Analyzing 92aca47938c6476a9b3793a03239f9f2_passport.pdf
-Analyzing 93365b2468d04dc89b4cf06a8458bcd7_passport.pdf
-Analyzing 93433c7dff154a928cbc6cf7361164b8_passport.pdf
-Analyzing 934dcba7b523456e8df970b0d00548cc_medical.pdf
-Analyzing 9377395105db4040bf08103558e4f53b_passport.pdf
-Analyzing 948d177858b541259855212f3466c906_passport.pdf
-Analyzing 94cb0e42e3804fe9b9f58e7ac454c18d_passport.pdf
-Analyzing 95fd9b5e1b614c3886852b3b7bf13e47_passport.pdf
-Analyzing 9592a83dac03427e9a0c477d1768a514_passport.pdf
-Analyzing 962a293ee772407a82a989df014a379d_passport.pdf
-Analyzing 96a0bcedc3b743b4992586d0cecdb66e_BAZIRET_JOHANN_ID_BACK (1).jpg
-Analyzing 97487575fa3341eb901903527b80cdca_photo.jpg
-Analyzing 96faffd929d4470d963d40b60feb7929_passport.pdf
-Analyzing 974e6132e8b840a4b3a83d034ee0bc57_birth-certificate.pdf
-Analyzing 9815d96ebc684522838f6c551ac19bfe_passport.pdf
-Analyzing 9860340fc98b458b97582d53f220114b_birth-certificate.pdf
-Analyzing 97e0f469db3d42fa95c07fa448d3e742_passport.pdf
-Analyzing 99d3212d05fb43ac8bf5fe2fb89c337a_passport.pdf
-Analyzing 99630eeabd404c309581b9433189704e_birth-certificate.pdf
-Analyzing 99f41e4aae38481b93f6012a853dd16f_birth-certificate.pdf
-Analyzing 9ad4b9d1c4904a0eb78df21e98044b5a_passport.pdf
-Analyzing 9ace857ce2b64ed184004aca4c733531_medical.pdf
-Analyzing 9ada597bdefa47fa899cae628a31659f_passport.pdf
-Analyzing 9b232d23a3854d4195d9ad64e506763e_passport.pdf
-Analyzing 9b9853756c0d4594aad410b8985854c3_passport.pdf
-Analyzing 9c12e4565cb34369a0d76028e5acc9ab_passport.pdf
-Analyzing 9c22802d032b40579c6e014c99b15cd7_passport.pdf
-Analyzing 9c2cbfc39fbb420599f1df99b793f4ad_medical.pdf
-Analyzing 9c777c89e1234dfa86653191d6aa9371_birth-certificate.pdf
-Analyzing 9df03a1361bd4d26bd91de8322157eb5_medical.pdf
-Analyzing 9e855dd35d4c471abaa4f60bd2efc9a1_birth-certificate.pdf
-Analyzing 9fe83b2d97e54e6689dbbbb11595aa2b_birth-certificate.pdf
-Analyzing 9ff2dcb5d313437a8f8f95baf2b9fff2_birth-certificate.pdf
-Analyzing 9fffcf8fae8c44bdbe232cb4a58c5b63_birth-certificate.pdf
-Analyzing a10dcad8b3d845d7be2ae85b3b1ede95_medical.pdf
-Analyzing a15c6bdfac3648a6ad5f19da4730a93b_passport.pdf
-Analyzing a17c1bb042444ac496c40fc63f74cb96_birth-certificate.pdf
-Analyzing a1a6c45db4094eb7a621d96463bb2b4b_passport.pdf
-Analyzing a1cb68909a584840ab6519a3dccf2e63_birth-certificate.pdf
-Analyzing a1d730bfca2644288c779f63e1bedb3b_passport.pdf
-Analyzing a1f462f810fd4f4f8e29d7efa2acd356_passport.pdf
-Analyzing a219c0c815ea451eb38c76fa012ad2cb_passport.pdf
-Analyzing a25dd803f9b944d6be81b632be817d78_birth-certificate.pdf
-Analyzing a2f76a2bdd68492bad6c718a449c29d2_passport.pdf
-Analyzing a32c77639a384559b40d82a8cff3ef7c_passport.pdf
-Analyzing a36010debd0c4964ba791cba99cb6a03_birth-certificate.pdf
-Analyzing a363963190a748ba8509abb1069cbb8a_birth-certificate.pdf
-Analyzing a3c9149fe8654d52b65d237ee68f34de_passport.pdf
-Analyzing a3ec1bad9eec484591049e6e784f96d0_passport.pdf
-Analyzing a3ef9254dd8b4480bbc229787e258cbe_passport.pdf
-Analyzing a456860adbe445c48a5717dfead133a3_birth-certificate.pdf
-Analyzing a4c1fa25ceaf4759ac5b7861a3af5d6a_birth-certificate.pdf
-Analyzing 93e689b712ff41ce9c86fe6c8ee0bf88_passport.pdf
-Analyzing a50d63d2a29b4d90a7b3c7da16de3b25_passport.pdf
-Analyzing 93e646d18d9942d8a28fe18e7aa743aa_passport.pdf
-Analyzing a58799c66ae0469faa67726a17849feb_passport.pdf
-Analyzing a577cb3f02ad4b8eb84b18e106f79c08_passport.pdf
-Analyzing a5d02502018e4c14955a78d50b3195ae_passport.pdf
-Analyzing a6054b59722e4ff5bc6cb24fccfa54dc_birth-certificate.pdf
-Analyzing a6d06db20cdf4734bc45a0bc75d0cab2_medical.pdf
-Analyzing a6d846b9f4c1475184600f908aca6216_medical.pdf
-Analyzing a742efd7538c496286f4921668fc4f3c_medical.pdf
-Analyzing a75d8e44e864435ead48b5c5dd93f526_passport.pdf
-Analyzing 9b5599f0b6744ea381cb13590fd5265e_passport.pdf
-Analyzing a250bff3f4fe425cbe51d9d6994ad835_birth-certificate.pdf
-Analyzing a84562bdce4b45acb372cac145e9bf14_birth-certificate.pdf
-Analyzing a85bd636c5f84656bb8bc3c8077516b6_medical.pdf
-Analyzing a89b1470c0264b979e5c798690f175b5_passport.pdf
-Analyzing a96c8f654df54974b89ee0743868d797_passport.pdf
-Analyzing a8ea4d5c07a94dc8bbb18983718d216d_passport.pdf
-Analyzing a90e8debdc3b4c129179d4ff9d490833_photo.jpg
-Analyzing aa0350dfdd61452f98576bbc977d27dd_passport.pdf
-Analyzing a99a4edc9fd3430b83a15c3a280f6b5b_passport.pdf
-Analyzing a9abfb509de54ed2bece485bc0179eec_medical.pdf
-Analyzing aa89c24e13da44cba95bf726ba2b091e_passport.pdf
-Analyzing aac8544c470b4c0aa5cb2330cbac34ff_passport.pdf
-Analyzing aa3ca0c0a7614218b133f2364b420170_birth-certificate.pdf
-Analyzing aa1e520a7c614a03abd8c57b4d2b1c36_passport.pdf
-Analyzing ab45581ec1f742c68fdf2611f8935f01_birth-certificate.pdf
-Analyzing aae7441f0c1b49499a5bb1ca4e9eb95b_passport.pdf
-Analyzing aaeb15b0702442eba38487da07b0ad30_passport.pdf
-Analyzing ab045e16c58b41b79bae1ec2ee250c05_passport.pdf
-Analyzing ab5b8baec69541c8a3bdd1811f6af402_birth-certificate.pdf
-Analyzing aba4ac263e0e4341a469142d1eff6e2f_birth-certificate.pdf
-Analyzing abd2548ca9c24865911678d2eff04774_birth-certificate.pdf
-Analyzing abd51ca746a945d0b65dd30f4ec9a130_passport.pdf
-Analyzing acd0884a009b4fb4aca9c818416dd12c_birth-certificate.pdf
-Analyzing ac174d657a5141089af48d33dae5e0df_passport.pdf
-Analyzing ad3cc37e0bf3448494ea65e4cf7c9f3a_birth-certificate.pdf
-Analyzing ad271df24ebe4a718e39b8009aba0b33_birth-certificate.pdf
-Analyzing ad491a54b7be43aca36be94ecf182920_birth-certificate.pdf
-Analyzing ad67aed1cc3e48e681626ce99a4164de_medical.pdf
-Analyzing adecfe164e5a4ccc9d7ebbf19539d85b_passport.pdf
-Analyzing aecb82fd87d442a5be955db334101813_medical.pdf
-Analyzing ad6857d1be77419d89560702804d0e74_medical.pdf
-Analyzing ae8ef372f6574d4c9f27a8ed03feb823_birth-certificate.pdf
-Analyzing b0278b66c65a45608d1dfec7cc13e5fd_medical.pdf
-Analyzing aed910c6b4b8483d856aa816dbf55c09_passport.pdf
-Analyzing afebb34019694e9dbe5229ef09b5c5b4_birth-certificate.pdf
-Analyzing aff8bff8fbc34cc2be682264b7025516_passport.pdf
-Analyzing b0601b6833144e36ac3e1c87388465ae_passport.pdf
-Analyzing b0f014e003b245afa0ce52571a71a9ce_passport.pdf
-Analyzing b06783e197f347d086ea88c19daf2d74_birth-certificate.pdf
-Analyzing b11453c521ef4356b3056f87b3ee74a2_birth-certificate.pdf
-Analyzing b1db19fa379040e498824de5ad3ed403_medical.pdf
-Analyzing b119176083b74deda4e4c446cb3da65f_birth-certificate.pdf
-Analyzing b187ace62333411ab4175593243b37d3_medical.pdf
-Analyzing b1b5fe5089494233bbd8d33e7d925da8_passport.pdf
-Analyzing b2b6078828f04c988ad349b5eea865e3_passport.pdf
-Analyzing b1dbd618489b42709d4d284d91f8ae9f_passport.pdf
-Analyzing b2d36bfc85954f57968db11eceac86aa_passport.pdf
-Analyzing b31278a01f3a4540b51ab1c5f099473f_birth-certificate.pdf
-Analyzing b3584c678e104019bef0277a9c468faa_passport.pdf
-Analyzing b360e0add82047658b33feb059ac4bc6_birth-certificate.pdf
-Analyzing b37eb77c8632496b95128b2fbff0b9b1_passport.pdf
-Analyzing b55348dbefdb4bed90c4ed95df7121f2_passport.pdf
-Analyzing b64dda1bb61a4b01b058498fc6759537_birth-certificate.pdf
-Analyzing b3c1ee907f9d460284967559815895a1_passport.pdf
-Analyzing b66c64f501d94d7c830390afbb6e18b4_passport.pdf
-Analyzing b6be02a9c4d94477a76d23ec6bcbab63_birth-certificate.pdf
-Analyzing b70c8c9c8a914eb4aa849e5a3474a67b_passport.pdf
-Analyzing b729a5a80a7f4a03b2499a620d3974a5_birth-certificate.pdf
-Analyzing b7302eede450480bafb1b174f90b420f_passport.pdf
-Analyzing b7b4f6b703cb47e7b50992d771a9f176_birth-certificate.pdf
-Analyzing b7647b692da045f58ca053d538073185_birth-certificate.pdf
-Analyzing b7db846ec0554808981e05330d7044a0_passport.pdf
-Analyzing b77adfdfdc87418f87262516b2bfab81_medical.pdf
-Analyzing b7fc529201c14af68faf6bb42b415791_passport.pdf
-Analyzing b8758c654c4f4104ba2c984cd3797725_passport.pdf
-Analyzing b812aff923c7489ea11cf5e13e66b3ba_passport.pdf
-Analyzing b8358e259b80413db7e424546a67a8df_birth-certificate.pdf
-Analyzing b8a36c568e064129a7db4430164ca495_passport.pdf
-Analyzing b88f090864b943d1b9e0f4c6e5016bb8_birth-certificate.pdf
-Analyzing b910bde23fef4691b2458eb7a58adeee_birth-certificate.pdf
-Analyzing b9ba914001b1433281fecee66ad7b2dc_passport.pdf
-Analyzing b96d22fff4e84223994d93ce98e697d2_passport.pdf
-Analyzing ba04828263bb4d04aed62740b735709e_birth-certificate.pdf
-Analyzing b9db2646c0944ec49d27f02dcd6f0cc3_passport.pdf
-Analyzing b9c77edf1d1d4abb965d80afd56d61b0_medical.pdf
-Analyzing ba4ed63a493b4f0bb9f57c05a0fcd636_medical.pdf
-Analyzing ba679a16060849ddb14fdac8e84e901d_birth-certificate.pdf
-Analyzing bb58a5bf44a3494a809db40416595c55_medical.pdf
-Analyzing ba7ef463b1a84d9382264e708dd35396_passport.pdf
-Analyzing ba98832659604a449adebb62777653d5_birth-certificate.pdf
-Analyzing bb6d9bb771cc465287031ea7ed840eba_birth-certificate.pdf
-Analyzing bbead3978f4b47a19f606dc58f637ef7_passport.pdf
-Analyzing bb9fe1efbaa4485bb0ed6a34b44a0ac6_medical.pdf
-Analyzing bc3f416b186348c2b99e98df4ea3609c_passport.pdf
-Analyzing bca3855359cc41438bec47d3316edbc4_medical.pdf
-Analyzing bca7352463d7405a9f4ad20c86dd136e_birth-certificate.pdf
-Analyzing bc5e8246933646b490826cda263bd933_passport.pdf
-Analyzing bc29974496f34e25b1441f330f2acdc3_passport.pdf
-Analyzing bccaf8308d6b483bb2ca138e956e4af6_medical.pdf
-Analyzing bcb4400977d24c609240f2e29a8c8767_passport.pdf
-Analyzing bd4d057ad7604dd082f1ee283df98195_medical.pdf
-Analyzing bd7f224dc4e4468e802f0c0bec4b7b70_passport.pdf
-Analyzing bdbb151f148a456089bec88c6afb29fb_medical.pdf
-Analyzing bdd54bfb5c9146c88f15b095349c313b_birth-certificate.pdf
-Analyzing bde5ff12f6354652938883df6a6266f5_passport.pdf
-Analyzing be5daeb0352840b98e3a5182aa4e6205_photo.jpg
-Analyzing bec07837a92942f19fe87b5adf953ed2_birth-certificate.pdf
-Analyzing bee5cda3f86648de8a49f21c4b54583a_passport.pdf
-Analyzing befd28d1073a4ab3a722956ed9df3062_passport.pdf
-Analyzing bfa608b58abc47ce8e21747da907180e_passport.pdf
-Analyzing bf8ed8edad01408280f49a5ebec17844_birth-certificate.pdf
-Analyzing c0797106500c46f98423adc1264baa02_birth-certificate.pdf
-Analyzing c0a0bf6d951b4c3ba88ea666dacc27b5_passport.pdf
-Analyzing c13289cfc0f84d73b69a42aed38cd401_passport.pdf
-Analyzing c155f8ee1541400a8f5936d7762f3ca1_passport.pdf
-Analyzing c16e20aa188140fcb76f04295b0a00fc_passport.pdf
-Analyzing c378db2db91648e9b5cf1bd51bf16b37_passport.pdf
-Analyzing c2aa4b19aa7b4a129ba7087947261364_passport.pdf
-Analyzing c40e6e7acb99406b905936c51267b826_medical.pdf
-Analyzing c45a5423775f4321b9fd179de6ce909c_birth-certificate.pdf
-Analyzing c3a4bc74afb04f0abc11594693663d7a_passport.pdf
-Analyzing c40076f602a944ba8db9788c50772bf2_passport.pdf
-Analyzing c47886cffc084be49af9cff8c793b6a9_passport.pdf
-Analyzing c4ed656356a9419fb26c4ee44447f800_passport.pdf
-Analyzing c46e3b4b9ceb43608da57d31dc7fcbb9_passport.pdf
-Analyzing c49c4556677f420ca4e766c10088a300_birth-certificate.pdf
-Analyzing c5886877792542529316d5108eadebb8_passport.pdf
-Analyzing c4eeb2a4e5454e6daa2011a5a76ca45c_birth-certificate.pdf
-Analyzing c52ab6ee29e140b8bd085f3256b09ebe_passport.pdf
-Analyzing c619a6d9c3fd4e639db36f30994c6270_passport.pdf
-Analyzing c66f2ac90d5f48c7a6474b443bfdc56c_passport.pdf
-Analyzing c68dbda7b6054959955f0ac424498958_passport.pdf
-Analyzing c6da2f48854349a8ad1cc2b2bfcc5545_passport.pdf
-Analyzing c6f67bfdad97436a83de553d84c69c05_passport.pdf
-Analyzing c7a3e208b8e6487b915957fcd9b0991a_birth-certificate.pdf
-Analyzing c721823655ce42088eaba8038090e478_passport.pdf
-Analyzing c7b1f399c4874e0dab2c2c0f0153ca8f_passport.pdf
-Analyzing c8081e423e0e4c1d94795bfe62af468e_medical.pdf
-Analyzing c80ce015c63643c29bc901437733428c_passport.pdf
-Analyzing c88983f613274da0ae18cd497cccce28_passport.pdf
-Analyzing c958210bbe15466782f220217089a304_birth-certificate.pdf
-Analyzing c83903e334b74e43815f0ba97f5cadcf_medical.pdf
-Analyzing c8efd795f1b14392a3a5f3228f1f9285_passport.pdf
-Analyzing c88db87ece7741ad8768752d6cddb91c_passport.pdf
-Analyzing c965914b07604e5f8d34ffd47c55148d_medical.pdf
-Analyzing c999c6237fad447bb5d5a0c1b306637b_birth-certificate.pdf
-Analyzing c9d1eaf4c9d64647be16c21920d64eb5_passport.pdf
-Analyzing c9cb0dfc48764059bef2defa940994ca_passport.pdf
-Analyzing ca54234e468f427c86252d22c8848942_passport.pdf
-Analyzing ca7f0e64b6074d8a8bc705b6da3e78ea_passport.pdf
-Analyzing cb7df17550694280a93774c31ffe500c_birth-certificate.pdf
-Analyzing ca7455532b1e4d23965405783b87efa6_birth-certificate.pdf
-Analyzing cb15a1c602e54bafbb114f265d7039de_passport.pdf
-Analyzing ca84e2d64f1e4d5c8f712b4cf68e2521_passport.pdf
-Analyzing cb09ae4e319b42748a50a8f98c4cb8f7_birth-certificate.pdf
-Analyzing cbf7532e85614d918b6b3be498f5c99c_passport.pdf
-Analyzing cd787ecbc919486a915232101b4dc940_passport.pdf
-Analyzing cc414c841fb147a1996d01c4b464cbf2_passport.pdf
-Analyzing ce355694c87c4e0685423c1d5e03aea9_passport.pdf
-Analyzing cc087e43631143899604957500fbd3cd_birth-certificate.pdf
-Analyzing cd2ba2b252614a6686835639cb8e4f75_passport.pdf
-Analyzing cdc285f327d84b858ec71cd6e73883db_birth-certificate.pdf
-Analyzing cdbc5982ad884465a3e05ea684717550_passport.pdf
-Analyzing cf203ac35bda4a64b82912db1a48b463_birth-certificate.pdf
-Analyzing d0514887808a40f09027c1a2d41a1acd_passport.pdf
-Analyzing d1169f4567554e7587d6a25cb450bed9_birth-certificate.pdf
-Analyzing d07ad72ad420494188fcaa1b98141322_birth-certificate.pdf
-Analyzing d13c3963eae24aa2aa0e1e1ddbaad5e9_birth-certificate.pdf
-Analyzing d18f7fcc1dd8461e99229618e76404d2_passport.pdf
-Analyzing d1e484249a9444d299c511b1dd9fa8c7_photo.jpg
-Analyzing d27a132f603143b8b11003f2f04e0f15_birth-certificate.pdf
-Analyzing d26b366ee92d4287ba2fd0c8ef59fea2_passport.pdf
-Analyzing d30965247ff94939b194e56e4cc71a3c_birth-certificate.pdf
-Analyzing d32c6f9be9484f67a12a23e82727f2b3_birth-certificate.pdf
-Analyzing d3a1497a2a8b47b1808512dfccc9e144_passport.pdf
-Analyzing d34c78fd1de14e2498ff0d1e90221fcf_birth-certificate.pdf
-Analyzing d36e2a2306e44e7bbea8964a65496c5e_passport.pdf
-Analyzing d3e2d8fa8a634fcc9c618e3812f3b6f2_birth-certificate.pdf
-Analyzing d3f7e539346d40c7aea0f9b7de384eab_birth-certificate.pdf
-Analyzing d497c3b6c68d4c6fa6c4c7f62b3f76c9_birth-certificate.pdf
-Analyzing d41c334caeee4a84addb187643a5b2c3_birth-certificate.pdf
-Analyzing d46ac758993c4b9795fa03350dca1666_passport.pdf
-Analyzing d4ce7b5aaf8940118df04a1816316bbe_birth-certificate.pdf
-Analyzing d532039f7eca484798cbb768ff6fafe1_passport.pdf
-Analyzing d4df265230b14ee48a76dcea4ae75c32_birth-certificate.pdf
-Analyzing d50fc2d5ea31493abc8bfe5c13ebb706_birth-certificate.pdf
-Analyzing d56a1e9662954d6685bf6d57a72b680e_birth-certificate.pdf
-Analyzing d1f96a0b29d14517b967e0bf1bc10207_birth-certificate.pdf
-Analyzing d575919c3d0a49f9bfe5773fd2c42960_passport.pdf
-Analyzing d5abbbb6533d4a31b5111f285d8bf9ea_photo.jpg
-Analyzing d58492856f224cf5919e9645ff01a8b9_birth-certificate.pdf
-Analyzing d578f3ebbddd4180a688456df2dfc260_passport.pdf
-Analyzing d660899eaffa47f388360ee4c6996130_passport.pdf
-Analyzing d6b9ebb8de8f403d8b07a745e3f6d809_passport.pdf
-Analyzing d6b8989b207e46e8b9445a650285efc3_birth-certificate.pdf
-Analyzing d6cec1261f7b48eface11d37dec8d9a0_birth-certificate.pdf
-Analyzing d7667bbe57734bd191db7e6deb058581_medical.pdf
-Analyzing d7c8d934949e43efaec0fb9e00a361d6_medical.pdf
-Analyzing d7969454816749b6be97b9d585e19394_birth-certificate.pdf
-Analyzing d82c378900b24e77b456d06c7842199e_medical.pdf
-Analyzing d8ea0be2157348b3afddc3f4b0352988_passport.pdf
-Analyzing d909a328629246aa9608658a46daa992_passport.pdf
-Analyzing d95f2731167f4ae8968de80b43e462e5_passport.pdf
-Analyzing d903b00798f947daa64b21b6fd9500fd_passport.pdf
-Analyzing d971069e48c644b6be58abcf226892e1_birth-certificate.pdf
-Analyzing da35256430524948bdbb6abf2952a6ba_medical.pdf
-Analyzing da4063abb43a4461aaf8c5b66dae4151_passport.pdf
-Analyzing da8a456a9e8d46a59b50c5e73479d4aa_passport.pdf
-Analyzing dad56cee42ef448a97bc5bfb94cb18f0_medical.pdf
-Analyzing da56b6e16a884135b866509acf2a31d6_medical.pdf
-Analyzing dc456eec095f49239e4dc005210e1c9e_passport.pdf
-Analyzing dbc3f7f1d9e54bde82867b60a00044d0_passport.pdf
-Analyzing db37f13569494caab5c907697ab6fa31_birth-certificate.pdf
-Analyzing dbfd93b51d164ce1b833fd2aea11140c_passport.pdf
-Analyzing dc4e5851d3dc4df28024a58f7c528f27_medical.pdf
-Analyzing dc5a9b97052d4532b172f736eac89e2f_birth-certificate.pdf
-Analyzing de722ec2f29441568be58cfd75ec843f_birth-certificate.pdf
-Analyzing dccad8c396444c13b921015e52c9c559_birth-certificate.pdf
-Analyzing dd70b501c935438681403f49d1c9aae6_birth-certificate.pdf
-Analyzing deb773f5b10049208b9321606ea853a3_passport.pdf
-Analyzing df48a35217764af1a15cab7abeb0ad58_passport.pdf
-Analyzing df257fb14e1143009e496a0236ac1297_passport.pdf
-Analyzing df7f9f335108466997b3da805d0d39bf_medical.pdf
-Analyzing e02853e504bf491d98661849a375ee1a_passport.pdf
-Analyzing e03da35a74364469806044a3249b2e07_birth-certificate.pdf
-Analyzing e0130a41d5ab47f7a7cd29573d7e66cc_passport.pdf
-Analyzing e1406d45045b4499bd6082c6d09f67c9_passport.pdf
-Analyzing e12e3d8feef34016bf9d6c350117fbca_birth-certificate.pdf
-Analyzing e2d636cfd0c046efa6652471729b3a37_birth-certificate.pdf
-Analyzing e4787c8fb5c64f29812ff7c3a2015d17_medical.pdf
-Analyzing e42f4b88802c44349eb8454837200998_passport.pdf
-Analyzing e4a0941c57c34bc69d30270829f5bb46_birth-certificate.pdf
-Analyzing e4b39a6e050a430799cc1a596aedd7b2_passport.pdf
-Analyzing e4e287c4fe1b42e9841c0132660f5202_passport.pdf
-Analyzing e5c9fa5dfba14bc48c5afa8e54c56c32_passport.pdf
-Analyzing e554257a47b344a09a301f94fc924247_birth-certificate.pdf
-Analyzing e6644a528f4148d4bc270f7394daf138_birth-certificate.pdf
-Analyzing e564e6c3c901402c8b4beb1534ee7e2a_birth-certificate.pdf
-Analyzing e725ba601f8b471b9e8dc53bca7a2f31_medical.pdf
-Analyzing e676fe73253c40c48c52cbae7f97dd17_birth-certificate.pdf
-Analyzing e76b366b88a7432393bea11e68beb488_birth-certificate.pdf
-Analyzing e7082c58677a405da8fab3eb660e292c_medical.pdf
-Analyzing e7d7719a3e22461cb4ec8b85523b2c36_passport.pdf
-Analyzing e8364d0901a048f18ee8c2681381baf0_birth-certificate.pdf
-Analyzing e7f77aa4c72a4bdda9a2282e61520706_birth-certificate.pdf
-Analyzing e802d763665446c0b04c3bdc481af04b_photo.jpg
-Analyzing e81c3838b5de47dba171a637806624db_passport.pdf
-Analyzing e91734c2fcc541228a4aacdfc5895281_birth-certificate.pdf
-Analyzing e9279a9fa36f4ace9597992b503a960c_medical.pdf
-Analyzing e932deeae32f466f9e542b5615afe2f4_passport.pdf
-Analyzing e9b0b15b668c41449e99529d74872a56_medical.pdf
-Analyzing ea18e4730506452493f5201db6e3ea64_birth-certificate.pdf
-Analyzing ea3caba6914e46c6a3ba7794f2c4d164_passport.pdf
-Analyzing ead231dab95043ad9ac3c5d6a09ca683_birth-certificate.pdf
-Analyzing eb1c6a4756984e2c8e101295f216f86e_passport.pdf
-Analyzing ea421e2c4b9d4bcda107b99733cfdd23_passport.pdf
-Analyzing eb565b23809148c887268af93b6b6d8f_passport.pdf
-Analyzing edc47a06e78346e3b266ca7992709a79_birth-certificate.pdf
-Analyzing eb58d12841e84771b85d0875f3e1b8ae_birth-certificate.pdf
-Analyzing eb3ec4eadf7948c7b96fe9464aca2b98_medical.pdf
-Analyzing ee26a850a5a74ecaa7c17377c3e64a61_medical.pdf
-Analyzing ee57ffaf262c49518816f133c635c92b_passport.pdf
-Analyzing ee4a94fb3a6843698c3ed15ed0d73e61_passport.pdf
-Analyzing eea704440f2d4db9a86c6131f29a44c6_passport.pdf
-Analyzing eecafca261ed4bb695c6863b63a062ce_medical.pdf
-Analyzing eeb31ec26c3342ef9a87ab3444db6fab_birth-certificate.pdf
-Analyzing eee9cb430e504c42af9f026ce08cfc0e_passport.pdf
-Analyzing eef9d9773a0c4096a365ca2d40c6d5fc_passport.pdf
-Analyzing ef791d5c1d3b45c5a66478fd1685a3a3_passport.pdf
-Analyzing ef386f340f144329b8639615e2c6203e_passport.pdf
-Analyzing f013186065d74f3283e09ff3776011de_birth-certificate.pdf
-Analyzing f01686f600c44fff8022c85719e5029a_passport.pdf
-Analyzing f06016a56f3545ac82c94fa7176e94d3_birth-certificate.pdf
-Analyzing f0a959b6974c4d79bb3a622c3ee324db_passport.pdf
-Analyzing f0cda53952c64db484d90249b1bb55d2_passport.pdf
-Analyzing f0b9bab83386440886cb9f0bce88ee71_medical.pdf
-Analyzing f14a7cbd0410499e8b8dc197f2b75769_photo.jpg
-Analyzing f15a38d3d75b4988b0ad03fcfe8b7c50_passport.pdf
-Analyzing f14612dd0c074ba88b7df3b3105f61e2_medical.pdf
-Analyzing f283eacf7a3e4f659d51a5c57d0a9b00_medical.pdf
-Analyzing f13dbb22e849441cab4a8bbb774c7828_passport.pdf
-Analyzing f1b281594c064adb8353cd951875f8f3_medical.pdf
-Analyzing f286e5def0ea4cd3a457d55dd93a7139_passport.pdf
-Analyzing f29c4b5c129d4018a09917b134541608_medical.pdf
-Analyzing f2ebae21a3e84a58af3337f8d30cbcfa_passport.pdf
-Analyzing f36164198b694ecca92d19afaa18369b_passport.pdf
-Analyzing f39b804069d64bdc8f5305222de9f7ed_birth-certificate.pdf
-Analyzing f3fc7b1f7c8b4f9cb4a72ea634ed823c_medical.pdf
-Analyzing f417db2f28f341b5ba8eb3fbaa004ede_passport.pdf
-Analyzing f46269e96d7140c8acf3809dc7b6db91_birth-certificate.pdf
-Analyzing f463c5cb86b6455ba36a94424a75bbab_passport.pdf
-Analyzing f486c7024c184a7a9e250f7f2c6510d3_birth-certificate.pdf
-Analyzing f4a5d4cb58dc42558c6a38aa0e694fca_birth-certificate.pdf
-Analyzing f4ab64fd8ed045108d997d50c84f4e57_medical.pdf
-Analyzing f5008aeab0404697b5ec674d79b2e5c4_passport.pdf
-Analyzing f4eb57b9d07d44cbaab4b6740b648f30_passport.pdf
-Analyzing f58cbfb7d6474f048492caa0162e0bc2_medical.pdf
-Analyzing f62d3c237dea45dfb1674fe2d1650e3d_birth-certificate.pdf
-Analyzing f53c28d99f9743cc983ca0a4f19376b9_medical.pdf
-Analyzing f54c0f7f3a304938a178cd52ad84146c_passport.pdf
-Analyzing f65cbe23b8cc42b9bdc6622882723767_medical.pdf
-Analyzing f6613c6119c14d04a408995a3f125239_medical.pdf
-Analyzing f76640f68fb94b9598d67bef69b9206a_birth-certificate.pdf
-Analyzing f7fd573362e744b8b4cef100df648d5a_passport.pdf
-Analyzing f7b7d80d83fa4f4faf7dac1dd187c370_passport.pdf
-Analyzing f7fee20fd386443ca05dbc4dcb84e549_passport.pdf
-Analyzing f82cf9fb5ba2488db8206cda1f3d4bea_passport.pdf
-Analyzing f7ad5d42bb7944419620ef229ad9aa3a_passport.pdf
-Analyzing f90ea2709c36489b8a3fb4bf9b4ed598_medical.pdf
-Analyzing f98dde585ce74aadb607333d054d0534_medical.pdf
-Analyzing fa409ee1735f4286aa0730ee43775e56_passport.pdf
-Analyzing f9834e5ac2494473904e613b8e528243_passport.pdf
-Analyzing fa4e867d470f4404b4f68aeb7cb915dc_medical.pdf
-Analyzing fad7fcedd8b642c0b561eda0cb2b23d1_medical.pdf
-Analyzing f9a500d92865443195320a5d269c72dc_passport.pdf
-Analyzing fb6517c87fcd4d1ca3f9c66579d224bb_passport.pdf
-Analyzing f9d9d76dab914d619c60895cbd2f1485_passport.pdf
-Analyzing fba1b26ee8cf44d0970e1088a8eee77a_passport.pdf
-Analyzing fb90f2411c394712a6fdbe1f65aade70_birth-certificate.pdf
-Analyzing fc87e756d24743bebf9f51525b0e9a22_medical.pdf
-Analyzing fb9299e1f1de426e891e81e4a60ac72b_passport.pdf
-Analyzing fcd73c08d7644f7ab41a1b00fde873ba_passport.pdf
-Analyzing fc953fce845f4331b6ffb19ecd485fed_passport.pdf
-Analyzing fd0d63bdc6764f2ca27d2206f859ff56_passport.pdf
-Analyzing fda586afad1c4be1ad2256086a4bdd52_passport.pdf
-Analyzing fe03f2d45b09483c801dbe956d855f64_medical.pdf
-Analyzing fdf73a1506444979a205873f24abeb10_medical.pdf
-Analyzing fe5a3ece4709449e9584dca814bb81cc_passport.pdf
-Analyzing fe00a653cec943178c4481d5f531b998_passport.pdf
-Analyzing fe5ec29cb5c24edbb5b59ac0036c8daa_birth-certificate.pdf
-Analyzing feb677854018439f8fb94b9dbd09b1b0_passport.pdf
-Analyzing febd80140315423ea01dce444794b683_medical.pdf
-Analyzing fe9000ebcce54efa8ad2c2b3b8e1da27_passport.pdf
-Analyzing fec96fcd66584b5b95eae0ee512c92c6_passport.pdf
-Analyzing fed497a5466c4cc19767f4cdf110d7f0_passport.pdf
-Analyzing fef81a84c12849b1a49e9b6779f563da_birth-certificate.pdf
-Analyzing ff7f6ea9f40e4383800f803ab30573c0_passport.pdf
-Analyzing ff0bf41a8b6b42de86a0c04c9b9609b1_passport.pdf
-Analyzing ff33015b8e7542869cafa78ae4fe55e3_passport.pdf
-Analyzing ff8e68025af547dcb5a48cd4655c52b2_medical.pdf
-Analyzing ffb178f2d2864685b3d9544a2d54888c_birth-certificate.pdf
-Analyzing ffe117b6b60e40c8a982ecdd83583dce_passport.pdf
-Analyzing ValidationResults.cs
-Analyzing appsettings.json
-Analyzing ProgramMarker.cs
-Analyzing analysislevel_10_default.globalconfig
-Analyzing appsettings.Development.json
-Analyzing MunicipalApiHostExtensions.cs
-Analyzing Program.cs
-Analyzing BirthDeclarationApiClient.cs
-Analyzing IBirthDeclarationApi.cs
-Analyzing ChangeOfAddressApiClient.cs
-Analyzing IChangeOfAddressApi.cs
-Analyzing IIdentityDocumentsApi.cs
-Analyzing IdentityDocumentsApiClient.cs
-Analyzing IPersonFileApi.cs
-Analyzing PersonFileApiClient.cs
-Analyzing IRegistrationApi.cs
-Analyzing RegistrationApiClient.cs
-Analyzing IReportingApi.cs
-Analyzing ReportingApiClient.cs
-Analyzing ApiException.cs
-Analyzing DemoOfficerHeaders.cs
-Analyzing DependencyInjection.cs
-Analyzing IMunicipalApiBridge.cs
-Analyzing MunicipalApiClientBase.cs
-Analyzing RoleSwitcher.razor.css
-Analyzing RoleSwitcher.razor
-Analyzing RoleSwitcher.razor
-Analyzing DemoOfficerPersistence.cs
-Analyzing _Imports.razor
-Analyzing _Imports.razor
-Analyzing MainLayout.razor
-Analyzing MainLayout.razor
-Analyzing ReconnectModal.razor.css
-Analyzing ReconnectModal.razor.js
-Analyzing ReconnectModal.razor
-Analyzing ReconnectModal.razor
-Analyzing DesignSystemShowcase.razor
-Analyzing DesignSystemShowcase.razor
-Analyzing Error.razor
-Analyzing Error.razor
-Analyzing Home.razor
-Analyzing Home.razor
-Analyzing NotFound.razor
-Analyzing NotFound.razor
-Analyzing App.razor
-Analyzing App.razor
-Analyzing Routes.razor
-Analyzing _Imports.razor
-Analyzing Routes.razor
-Analyzing _Imports.razor
-Analyzing AppChecklist.razor
-Analyzing AppChecklist.razor
-Analyzing AppChecklistItem.cs
-Analyzing AppDataTable.razor
-Analyzing AppDataTable.razor
-Analyzing AppEnums.cs
-Analyzing AppFilePreview.razor
-Analyzing AppFilePreview.razor
-Analyzing AppPersonCard.razor
-Analyzing AppPersonCard.razor
-Analyzing AppPropertyGrid.razor
-Analyzing AppPropertyGrid.razor
-Analyzing AppStatisticCard.razor
-Analyzing AppStatisticCard.razor
-Analyzing AppStatusChip.razor
-Analyzing AppStatusChip.razor
-Analyzing AppStatusChipMappings.cs
-Analyzing AppTimeline.razor
-Analyzing AppTimeline.razor
-Analyzing EnumDisplayExtensions.cs
-Analyzing AppConfirmDialog.razor
-Analyzing AppConfirmDialog.razor
-Analyzing AppDialogOptions.cs
-Analyzing AppDialogService.cs
-Analyzing IAppDialogService.cs
-Analyzing AppAlert.razor
-Analyzing AppAlert.razor
-Analyzing AppEmptyState.razor
-Analyzing AppEmptyState.razor
-Analyzing AppInfoBox.razor
-Analyzing AppInfoBox.razor
-Analyzing AppLoading.razor
-Analyzing AppLoading.razor
-Analyzing AppDateField.razor
-Analyzing AppDateField.razor
-Analyzing AppFieldLabel.razor
-Analyzing AppFieldLabel.razor
-Analyzing AppFormSection.razor
-Analyzing AppFormSection.razor
-Analyzing AppSaveCancelBar.razor
-Analyzing AppSaveCancelBar.razor
-Analyzing AppSearchBar.razor
-Analyzing AppSearchBar.razor
-Analyzing AppActionBar.razor
-Analyzing AppActionBar.razor
-Analyzing AppCard.razor
-Analyzing AppCard.razor
-Analyzing AppCollapsibleSection.razor
-Analyzing AppCollapsibleSection.razor
-Analyzing AppEditableSection.razor
-Analyzing AppEditableSection.razor
-Analyzing AppPage.razor
-Analyzing AppPage.razor
-Analyzing AppPageHeader.razor
-Analyzing AppPageHeader.razor
-Analyzing AppSection.razor
-Analyzing AppSection.razor
-Analyzing AppToolbar.razor
-Analyzing AppToolbar.razor
-Analyzing AppBreadcrumb.razor
-Analyzing AppBreadcrumb.razor
-Analyzing AppFooter.razor
-Analyzing AppFooter.razor
-Analyzing AppNavItem.cs
-Analyzing AppQuickActions.razor
-Analyzing AppQuickActions.razor
-Analyzing AppSideNavigation.razor
-Analyzing AppSideNavigation.razor
-Analyzing AppTopNavigation.razor
-Analyzing AppTopNavigation.razor
-Analyzing SchaerbeekTheme.cs
-Analyzing SchaerbeekTokens.cs
-Analyzing _Imports.razor
-Analyzing _Imports.razor
-Analyzing BirthDeclarationDecisionSection.razor
-Analyzing BirthDeclarationDecisionSection.razor
-Analyzing BirthDeclarationDocumentPanel.razor
-Analyzing BirthDeclarationDocumentPanel.razor
-Analyzing MedicalDeclarationUpload.razor
-Analyzing MedicalDeclarationUpload.razor
-Analyzing ParentLinkDialog.razor
-Analyzing ParentLinkDialog.razor
-Analyzing BirthDeclarationCaseDetail.razor
-Analyzing BirthDeclarationCaseDetail.razor
-Analyzing BirthDeclarationCaseList.razor
-Analyzing BirthDeclarationCaseList.razor
-Analyzing ChangeOfAddressDecisionSection.razor
-Analyzing ChangeOfAddressDecisionSection.razor
-Analyzing OpenChangeOfAddressDialog.razor
-Analyzing OpenChangeOfAddressDialog.razor
-Analyzing ChangeOfAddressCaseDetail.razor
-Analyzing ChangeOfAddressCaseDetail.razor
-Analyzing ChangeOfAddressCaseList.razor
-Analyzing ChangeOfAddressCaseList.razor
-Analyzing ApplicantPhotoUpload.razor
-Analyzing ApplicantPhotoUpload.razor
-Analyzing CancelDocumentRequestDialog.razor
-Analyzing CancelDocumentRequestDialog.razor
-Analyzing DocumentRequestStatusSection.razor
-Analyzing DocumentRequestStatusSection.razor
-Analyzing OpenDocumentRequestDialog.razor
-Analyzing OpenDocumentRequestDialog.razor
-Analyzing DocumentRequestCaseDetail.razor
-Analyzing DocumentRequestCaseDetail.razor
-Analyzing DocumentRequestCaseList.razor
-Analyzing DocumentRequestCaseList.razor
-Analyzing PersonFilePage.razor
-Analyzing PersonFilePage.razor
-Analyzing PersonSearchPage.razor
-Analyzing PersonSearchPage.razor
-Analyzing AddressStep.razor
-Analyzing AddressStep.razor
-Analyzing ApproveCaseDialog.razor
-Analyzing BirthInformationStep.razor
-Analyzing ApproveCaseDialog.razor
-Analyzing BirthInformationStep.razor
-Analyzing CaseDecisionSection.razor
-Analyzing CaseDecisionSection.razor
-Analyzing CertificatesSection.razor
-Analyzing CertificatesSection.razor
-Analyzing CivilStatusStep.razor
-Analyzing CivilStatusStep.razor
-Analyzing DocumentUpload.razor
-Analyzing DocumentUpload.razor
-Analyzing HouseholdStep.razor
-Analyzing HouseholdStep.razor
-Analyzing IdentityFormModel.cs
-Analyzing IdentityFormSection.razor
-Analyzing IdentityFormSection.razor
-Analyzing NationalRegisterSearchDialog.razor
-Analyzing NationalRegisterSearchDialog.razor
-Analyzing NewCaseDialog.razor
-Analyzing NewCaseDialog.razor
-Analyzing NewCaseDialogResult.cs
-Analyzing PoliceVerificationSection.razor
-Analyzing PoliceVerificationSection.razor
-Analyzing ReasonNotesDialog.razor
-Analyzing ReasonNotesDialog.razor
-Analyzing RecordPoliceResultDialog.razor
-Analyzing RecordPoliceResultDialog.razor
-Analyzing RegistrationCaseChecklistProgress.razor
-Analyzing RegistrationCaseChecklistProgress.razor
-Analyzing RegistrationCaseDocumentPanel.razor
-Analyzing RegistrationCaseDocumentPanel.razor
-Analyzing RegistrationIntakeStep.cs
-Analyzing RegistrationIntakeStepSummaries.cs
-Analyzing RegistrationRoleGate.razor
-Analyzing RegistrationRoleGate.razor
-Analyzing RejectCaseDialog.razor
-Analyzing RejectCaseDialog.razor
-Analyzing ResidenceStep.razor
-Analyzing ResidenceStep.razor
-Analyzing SuspendCaseDialog.razor
-Analyzing SuspendCaseDialog.razor
-Analyzing NewRegistrationCasePage.razor
-Analyzing NewRegistrationCasePage.razor
-Analyzing OutboundNotificationsPage.razor
-Analyzing OutboundNotificationsPage.razor
-Analyzing PoliceVerificationList.razor
-Analyzing PoliceVerificationList.razor
-Analyzing RegistrationCaseDetail.razor
-Analyzing RegistrationCaseDetail.razor
-Analyzing RegistrationCaseList.razor
-Analyzing RegistrationCaseList.razor
-Analyzing ReviewDashboard.razor
-Analyzing ReviewDashboard.razor
-Analyzing MunicipalityReportsPage.razor
-Analyzing MunicipalityReportsPage.razor
-Analyzing _Imports.razor
-Analyzing _Imports.razor
-Analyzing BelgianAddressFields.razor
-Analyzing BelgianAddressFields.razor
-Analyzing CaseDocumentItem.cs
-Analyzing CaseDocumentPanel.razor
-Analyzing CaseDocumentPanel.razor
-Analyzing CaseLockActions.razor
-Analyzing CaseLockActions.razor
-Analyzing CaseLockBar.razor
-Analyzing CaseLockBar.razor
-Analyzing NationalRegisterSearchForm.razor
-Analyzing NationalRegisterSearchForm.razor
-Analyzing NationalRegisterSearchModels.cs
-Analyzing OfficerDecisionChecklist.razor
-Analyzing OfficerDecisionChecklist.razor
-Analyzing AddressFormatting.cs
-Analyzing NationalRegisterFormatting.cs
-Analyzing _Imports.razor
-Analyzing _Imports.razor
-Analyzing SchaerbeekMunicipality.Web.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing launchSettings.json
-Analyzing 007d27ff6b044ad7a2200e1d1e0fe926_passport.pdf
-Analyzing 016f33c43e964a6899796abd1759c980_birth-certificate.pdf
-Analyzing 016f973900544f4884530c2432e013a0_medical.pdf
-Analyzing 01f80c1f598c48f28b2d0b0905ddd28c_passport.pdf
-Analyzing 0223915ba9ae4cc9a2809f438f9f2780_passport.pdf
-Analyzing 022cbc6ae0164ba0a4c9855ac268961e_birth-certificate.pdf
-Analyzing 0261c948ca164aa0846f7f8b8371a0f5_passport.pdf
-Analyzing 0311c0e6d1234121931410194982c62a_passport.pdf
-Analyzing 037b1e2335d449c8a22f2719427ad441_passport.pdf
-Analyzing 03cdd4c5136349a48648e1b5fa2cedfb_birth-certificate.pdf
-Analyzing 0561b5325fa5489e8166782278065381_passport.pdf
-Analyzing 05d4efed6a974079ade9e2b6ad9579b9_passport.pdf
-Analyzing 0962aeb22ab849e0827970e602759e9e_passport.pdf
-Analyzing 0a40396a043f4839a2770fab1c0ee442_medical.pdf
-Analyzing 0a6e47b693174b80a92d6bd7e5896639_passport.pdf
-Analyzing 0a73c9e982584469bf9adfd7ea765a87_birth-certificate.pdf
-Analyzing 0beef34f32334faa86b8e00677fe5aa3_passport.pdf
-Analyzing 0c6cc9da45494b15849f9d4fb2050f98_birth-certificate.pdf
-Analyzing 0cb58954486b4bf7a0b6c10307f7344e_birth-certificate.pdf
-Analyzing 0d055c9e09514c64b459707fb0318cee_passport.pdf
-Analyzing 0d4696c0a4784c1fa86fa774779908a2_passport.pdf
-Analyzing 0e603328ab6044e5a1768a7643a59931_passport.pdf
-Analyzing 0e623886741040f4847cc5cf8913a831_birth-certificate.pdf
-Analyzing 0e8a86a676e74f2791fa257a737c7f19_BAZIRET_JOHANN_ID_FRONT.jpg
-Analyzing 1030b6614ec04648b970488fa78e416e_passport.pdf
-Analyzing 109b2877a041429bb317888ec629e8c9_passport.pdf
-Analyzing 1105a061983e4c1995f5fb13278d83cb_birth-certificate.pdf
-Analyzing 12ca69905ae34104b50b944d35e40ece_passport.pdf
-Analyzing 12d16c72df2c41f2852c1d804b943323_passport.pdf
-Analyzing 137ff227d5504f6dbf873cdc0b3fda5f_medical.pdf
-Analyzing 13c751f199d74cdabe86e9dd34d590fb_birth-certificate.pdf
-Analyzing 142c47ae08714098833cea6f51bcc991_passport.pdf
-Analyzing 158af5c335be453fbb42238d9afd41a8_passport.pdf
-Analyzing 15f131affcc145e8a9a2dd203fe66320_passport.pdf
-Analyzing 16420fd6f81e4c7e94afd95c5380a260_birth-certificate.pdf
-Analyzing 176ac0f12cb14043a961b6b80a961ae4_birth-certificate.pdf
-Analyzing 17804a9417924628953a8a643450d86b_passport.pdf
-Analyzing 17af456637184f3dac92033d7365a8d4_passport.pdf
-Analyzing 17b0a78f24354005a910c740fbefe221_birth-certificate.pdf
-Analyzing 1835c8348af74429a278e9f0a9010818_passport.pdf
-Analyzing 19c6d96450ba479a8ce8bab89c3fef1f_birth-certificate.pdf
-Analyzing 1a01c1deec624b4bac2602dcc94cd8fa_passport.pdf
-Analyzing 1a5968addd5c4c828876e009adbf6579_passport.pdf
-Analyzing 1b8fb1fc5b6d4532b2a52363d01a55ca_passport.pdf
-Analyzing 1cbd70d4afa24457ae55c0d160d5e54f_passport.pdf
-Analyzing 1d4d8d765db444e9964681cc16e836f0_birth-certificate.pdf
-Analyzing 1e17b655e93e493f9ec0101a90240036_birth-certificate.pdf
-Analyzing 1e676d43f3a84e078251aa7a423acd03_passport.pdf
-Analyzing 1f195d1891254d1c9c8249f98caf26e5_passport.pdf
-Analyzing 1f341e30e7dd4858bed79514d9201554_medical.pdf
-Analyzing 1fe2058e07e64b14a3bf3a3ec99cfdcf_birth-certificate.pdf
-Analyzing 203c8b806705445e94807d758548456a_birth-certificate.pdf
-Analyzing 208388ed9b6e4bdaa313e6526b925586_passport.pdf
-Analyzing 211ed4143e4a4e3cb2726fd6b1d194cd_passport.pdf
-Analyzing 2190695ab459440582d9c22f7e242a41_passport.pdf
-Analyzing 219dc17e17c942cc885004f2222f0570_passport.pdf
-Analyzing 221721f271f74226910dab6e017f8d4f_birth-certificate.pdf
-Analyzing 22628e14e80340329a2d4ff295217c2b_passport.pdf
-Analyzing 22c96690bc344add9c61ac6e04cbaac6_birth-certificate.pdf
-Analyzing 2341229f95774dbe8c09616ac48931db_passport.pdf
-Analyzing 2513668c03fa475bb77e11c595ab17c7_passport.pdf
-Analyzing 2782ce67299b4f95b76d7f6991b4c662_passport.pdf
-Analyzing 28b555167260450f85f057d935102168_birth-certificate.pdf
-Analyzing 2943e7f9420c4b3bacc72abbb632906a_passport.pdf
-Analyzing 298c257c4d18403984227dc201aeaaf1_birth-certificate.pdf
-Analyzing 29de9f0ebe5e4ad392f2cc02fbf2c61e_passport.pdf
-Analyzing 2a6f21054d39410eaa36d11464c95431_passport.pdf
-Analyzing 2ab8c611117f4536913b9e8a6c6c7f60_birth-certificate.pdf
-Analyzing 2c9427cac5a54df8b6d549a512f27b83_passport.pdf
-Analyzing 2cdf1fd6ac24462aa808370451020ca5_birth-certificate.pdf
-Analyzing 2d31a1259aad436b883f9f982b3781b0_medical.pdf
-Analyzing 2f3f796feaf647edbdc98ffe5c1d0afe_passport.pdf
-Analyzing 2fb21c2043ac46538ed6acd282e47f2a_birth-certificate.pdf
-Analyzing 300aed3561514e7b983489e3b6518fd5_passport.pdf
-Analyzing 302dcde41a654169998f71cc05745f7d_passport.pdf
-Analyzing 3088acd7ebbb4bbb8b84e765c059b593_birth-certificate.pdf
-Analyzing 30ef4d56d27a44b1af966d435bcbc4ec_passport.pdf
-Analyzing 31890138e183469d93add0e37d7cbc1b_birth-certificate.pdf
-Analyzing 326e686437e54497ba4b3a73d91bf48b_birth-certificate.pdf
-Analyzing 3273d129cf0e479dae001717fb7325a7_passport.pdf
-Analyzing 3294ab00efa2455e9da20b3e2f3b7bf2_passport.pdf
-Analyzing 33536788cbee4371a4592d00a788c5ea_passport.pdf
-Analyzing 33718da00f0e44a79de075512eed6ada_birth-certificate.pdf
-Analyzing 33acfc1b75aa4702b47d76ef910dca3a_passport.pdf
-Analyzing 346e34e823af4585af7300a5ba40441c_passport.pdf
-Analyzing 364f647080424921ad8bdb7b6b5c1fe9_passport.pdf
-Analyzing 37f28a4dc81c4e569c7427374398a4a8_passport.pdf
-Analyzing 3916a957e0584fef9b6d03f6c09d3506_passport.pdf
-Analyzing 392075e71a334d7a824a044a3d462287_birth-certificate.pdf
-Analyzing 3a65b32d11d5410bb6c5a5a1a301f5d3_passport.pdf
-Analyzing 3d653427a67e424098f0a7b785688c05_birth-certificate.pdf
-Analyzing 3e13754bc45b44248f802788dbafd325_passport.pdf
-Analyzing 3f8b785b0d4349389305ca0eb7b5a215_passport.pdf
-Analyzing 3fbe1f7b596b405eb52e42a543761be7_birth-certificate.pdf
-Analyzing 40334546e812481b872137530bb17015_passport.pdf
-Analyzing 40f802db5a054ea481b5aec287404481_passport.pdf
-Analyzing 405f82d8ec3e43a9bfc04054db5fd1a8_birth-certificate.pdf
-Analyzing 416d7a45522a4647bd10eb46dc4a35b0_passport.pdf
-Analyzing 4247bb66b4b742a6832553e93b34c769_passport.pdf
-Analyzing 426207ab247b484aa2beefc7654389c9_passport.pdf
-Analyzing 4269c39db0ba4005aa33617322f4e340_passport.pdf
-Analyzing 4337ad10b1114db89025031169af1235_passport.pdf
-Analyzing 439a227c9d5d4fe1965084cfd16801c9_passport.pdf
-Analyzing 4577a325df794a83968cdcad7140f0e5_passport.pdf
-Analyzing 44474dfd6cba4c7a9940037886aa882b_birth-certificate.pdf
-Analyzing 487df62c1a0246a9bb8df681782d1ebc_medical.pdf
-Analyzing 480ef7ec0f644242a8efc0072dd89953_medical.pdf
-Analyzing 4b713b28a5d541e7a71490c4ef421d1b_birth-certificate.pdf
-Analyzing 4a8195792dba448ebaedb8fa955443ef_passport.pdf
-Analyzing 4b96270c08e44e909e8b5b4f3588e3df_birth-certificate.pdf
-Analyzing 4bc6e8e1edf040b496f0bcd54fa12c34_birth-certificate.pdf
-Analyzing 4c9c72cab5b8461db36a782b2aa16d28_passport.pdf
-Analyzing 4dc30ba383fb437f93100ce1230c6613_passport.pdf
-Analyzing 4fba31b25def4ab197ad0149935855c1_birth-certificate.pdf
-Analyzing 4eb13f87b5c74526bc577904216309a7_passport.pdf
-Analyzing 50016162ab7c4c27accfe53702beef1e_birth-certificate.pdf
-Analyzing 500d787a898a4d2db479505a989f4e9c_passport.pdf
-Analyzing 5081be79cef34133a3b81dbeb013799b_birth-certificate.pdf
-Analyzing 52121d244ed447b59923b77b675d6ed6_passport.pdf
-Analyzing 5397d50879574201b7d9ff87814a31c7_birth-certificate.pdf
-Analyzing 54c120876a76430483e94131cc70ed7c_passport.pdf
-Analyzing 54de15771ea141ac9baec24c88e92cfe_passport.pdf
-Analyzing 55f9910126c74759897818bd2ff05337_birth-certificate.pdf
-Analyzing 568306c149ed4dc8b4cbe358d4aa4571_birth-certificate.pdf
-Analyzing 56b3097ff66c484899c9bee0cc844689_passport.pdf
-Analyzing 5d3f27df15694dbeb6e7a39e6c4f332a_BAZIRET_JOHANN_ID_BACK.jpg
-Analyzing 5d7e9fdb70e74c9a99fb27bd8a3a39d5_passport.pdf
-Analyzing 5ea738e22f464b25834cd082a58690a1_passport.pdf
-Analyzing 602a8bffc14149d1a051bb6dda2f70f4_passport.pdf
-Analyzing 6081fc04eb6a438988364d0b793c5bbd_birth-certificate.pdf
-Analyzing 608994896f614cb0b4b516ed02c3e34d_passport.pdf
-Analyzing 6098dc44150049b6a7c35cbea85e3110_passport.pdf
-Analyzing 61826fba9fd046dfb9126a51657498a1_passport.pdf
-Analyzing 62f62ce1161d42f981bcd15d93431596_passport.pdf
-Analyzing 632328b4834f49848d98d5fd30136acc_birth-certificate.pdf
-Analyzing 6331f06216b04b6d9b1de3175cfe8242_birth-certificate.pdf
-Analyzing 633e71f74f8245d4a16c50db5c8ecfd0_BAZIRET_JOHANN_ID_BACK.jpg
-Analyzing 6351e56a1d34400bac5d61f5bfdb6866_birth-certificate.pdf
-Analyzing 644920d70cf34ef5bce82de0adbe3536_passport.pdf
-Analyzing 65081083f01b4d20a72ab23b43479750_passport.pdf
-Analyzing 65b15dc2c881403484791c25922fd75c_passport.pdf
-Analyzing 65b260b0e78f420abc972eeae7e0f1cd_passport.pdf
-Analyzing 660cc814a7c64b1d88367b1d4b5ce117_birth-certificate.pdf
-Analyzing 661b5ff96b0a4dc5a2b92681b1ca9915_passport.pdf
-Analyzing 6702ec1d1a50441e9dcb867ddd8b255c_birth-certificate.pdf
-Analyzing 6710d80d220c4765af7927f44a88e689_birth-certificate.pdf
-Analyzing 67dec7caf858431da79079b7e37ff40c_passport.pdf
-Analyzing 692d62013e5443519694a8fe877547ae_passport.pdf
-Analyzing 6998af3663dc47ca93eeed4c2817b88f_passport.pdf
-Analyzing 69d6a477b9114ed2b0f5128be9dad0fa_passport.pdf
-Analyzing 6ae87b5068da4082bd377980c389b213_Prénotification cotisations domiciliées 2020000618315.pdf
-Analyzing 69fd908b89f149bd91e1ab40d07b1ba8_passport.pdf
-Analyzing 6c18f90603ef4131ac4113d748bb77b2_passport.pdf
-Analyzing 6c6a62637a494066a53197e96b176e97_passport.pdf
-Analyzing 6cd4b1b07e7d4ce792eca12f83268499_passport.pdf
-Analyzing 6e3760e3123349ddaee54787a764e744_passport.pdf
-Analyzing 6f7a9198976a4f93b390b5dc8c813552_passport.pdf
-Analyzing 700b882b74e1468d805116da90479402_passport.pdf
-Analyzing 707ea56ba97d4ec4a8ca52cb364d516c_birth-certificate.pdf
-Analyzing 72cef27acf024b269e3ca029b7ce0935_birth-certificate.pdf
-Analyzing 7124db93a30545c29d3125825b15dd52_passport.pdf
-Analyzing 739a27a41bb242c782bde5d8b8238e7d_passport.pdf
-Analyzing 72f7e64c71aa4d23b68cf73b1c572098_birth-certificate.pdf
-Analyzing 74899b99144848c6ab7db2c0edb504df_passport.pdf
-Analyzing 757695578ee54802bbe4ae4318c25bc6_birth-certificate.pdf
-Analyzing 7592b366942b4fcda381faabd215458b_passport.pdf
-Analyzing 759be371f06a4137a5335eb2c8e808ec_passport.pdf
-Analyzing 759d2c13f3274028bbb678516ea555d4_passport.pdf
-Analyzing 75bbf1e7af5943d182a1581f7f8bf995_BAZIRET_JOHANN_ID_FRONT.jpg
-Analyzing 75e4043ff8854bf589a81ec583613c8e_birth-certificate.pdf
-Analyzing 75eeae3bd6a24362b0a9d572bc3cd002_passport.pdf
-Analyzing 7632c937d2414f9eb9010476ccfc7c17_passport.pdf
-Analyzing 772621aaa47b4cdeb75426db07631e12_passport.pdf
-Analyzing 78858f8124c942afa2e5697f016808dc_passport.pdf
-Analyzing 7a538a75a7134982af44e4954f001aae_passport.pdf
-Analyzing 79fe3e817f274cf1bf0bce5fd2a50901_passport.pdf
-Analyzing 7b671c9981924f23a3f0622e590f89c1_birth-certificate.pdf
-Analyzing 7c8a9ab6c1a84375873e948d7906cfef_birth-certificate.pdf
-Analyzing 7ccef8e82cf04f19866338704c0ec421_birth-certificate.pdf
-Analyzing 7ceb94a7eb6f469b8bdc34040b436c16_birth-certificate.pdf
-Analyzing 7d9c244f640742c99383b9859092dab4_passport.pdf
-Analyzing 7ddc469aa8314423bb71c9a41ccf1779_medical.pdf
-Analyzing 7e7edd7a4976469dbc4d5b03139c97b0_birth-certificate.pdf
-Analyzing 7e9664f203cf4989a13e3767d275b52a_passport.pdf
-Analyzing 7ed598657fb84eebb30647842c0ac4f2_passport.pdf
-Analyzing 7ee94d54f23c432c80396aa57b1bdad2_medical.pdf
-Analyzing 7fd626ea762348f4b657b012a9131146_passport.pdf
-Analyzing 8096ec9937734a6e869febc773b5cab7_birth-certificate.pdf
-Analyzing 80c1a9abe90e492dba868dc1227e895d_BAZIRET_JOHANN_ID_BACK.jpg
-Analyzing 8148652714284a179147106c97882919_passport.pdf
-Analyzing 8186bf160c8044d79044fe138215835d_medical.pdf
-Analyzing 81a87e565d604631b41af9a727af97a6_passport.pdf
-Analyzing 81f1c9d1ebd34514afeda23c0a8fac71_passport.pdf
-Analyzing 81f2e76644a4406185e3fcc41c4fffd4_passport.pdf
-Analyzing 8290ccd2c4dd4340bf1b1b5563e35966_birth-certificate.pdf
-Analyzing 83e049576c84444ca686a7e713829f28_passport.pdf
-Analyzing 8421b664000c417f95a513f84b83a3e3_birth-certificate.pdf
-Analyzing 8459f9d18f8b46c8a161ff6cda3a66a5_passport.pdf
-Analyzing 8473b4a4bf2d413088b143e586a640fc_birth-certificate.pdf
-Analyzing 850402822c254ca5b80450f617af985b_birth-certificate.pdf
-Analyzing 85570f8f282b4ed19f5d31a769b2b6ed_birth-certificate.pdf
-Analyzing 857a644a73de40b292ad6a5216adfd0f_passport.pdf
-Analyzing 85e31ae8210345a7a0db55e80f2cefc9_passport.pdf
-Analyzing 875bb9e3af0c4d5d9015ade940bcb906_passport.pdf
-Analyzing 85f3e7a6ca004b5a8fe629851897738d_passport.pdf
-Analyzing 8894091cc3e946f68b609365872047a1_passport.pdf
-Analyzing 8b8f0c187f404f248994b8d6396f423e_birth-certificate.pdf
-Analyzing 8c58add128d84108959acbfe5f30dcad_passport.pdf
-Analyzing 8d2fcc90df9d468e92062ceca86c14e1_birth-certificate.pdf
-Analyzing 8d78aa598a78494fbd9df0189747278d_birth-certificate.pdf
-Analyzing 8dc20189ca594678b1d06bcb2c9bff8a_passport.pdf
-Analyzing 8de91951597843e0a8c68a086b668408_passport.pdf
-Analyzing 8e715d149d454f93a53ea2a89900ff7a_birth-certificate.pdf
-Analyzing 8ea6f17f221246f2b312926b12203985_BAZIRET_JOHANN_ID_BACK.jpg
-Analyzing 8eeb67d2143a49d6831530017f1788c0_birth-certificate.pdf
-Analyzing 8ef5ea01623d4ea4919b92837dc1c653_passport.pdf
-Analyzing 8f0d476594a340c1bfc9d83b4eda88e1_passport.pdf
-Analyzing 905d1f859e6c47c5ab22cbec8568a002_passport.pdf
-Analyzing 906345645f1a475a97a22d6ccaaaa637_passport.pdf
-Analyzing 90ab6310b172455e8004a45cde6e626a_birth-certificate.pdf
-Analyzing 911d7498a3734b2cad921e0ce9ff553f_passport.pdf
-Analyzing 91904d0bb55c46f1a8ef204140a7d883_passport.pdf
-Analyzing 91db852c2055412782f80bbc19b8d2ef_passport.pdf
-Analyzing 932cff79d22c417fb2528a3bb0fd38de_birth-certificate.pdf
-Analyzing 936343d62177420c9ccfd6aa07c9afa7_medical.pdf
-Analyzing 9415bd00f19b458491c850ba4a81f624_passport.pdf
-Analyzing 9467037339824b20a2660f85448a3e5c_birth-certificate.pdf
-Analyzing 94c8791932be4a7890a34f845639544b_passport.pdf
-Analyzing 9566aee082e647b5b2e8283f2cae81d7_birth-certificate.pdf
-Analyzing 95697eb088d14150bdf4284d52136c58_passport.pdf
-Analyzing 9615eccde0be46b9a9d65b532e75ffa0_birth-certificate.pdf
-Analyzing 981428c4b48e4ddaac23adf42cd8db9e_passport.pdf
-Analyzing 99c871ea5be249bdb77257697af88821_passport.pdf
-Analyzing 99edaa8b984d4a8990f952ffc52e00ad_passport.pdf
-Analyzing 99f17765e7a64288b550f6d1a520d3fd_passport.pdf
-Analyzing 9ad1e3da2f3d4decac527fc7394d52e8_passport.pdf
-Analyzing 9adf8ab6d27b4351b154954235b20dc9_passport.pdf
-Analyzing 9b3b626010ec49048ab86770757ae76e_passport.pdf
-Analyzing 9c7e387c7c004b96af0243adf37d3767_birth-certificate.pdf
-Analyzing 9da08552f6be455abfae9d292a15bbfc_passport.pdf
-Analyzing 9e7043b51dd44e3c955ec852e8c856f2_passport.pdf
-Analyzing a0078af58adc4d64ae5974d634d38c70_passport.pdf
-Analyzing a1808afbcfc7437998265bba362554fc_medical.pdf
-Analyzing a27791e6a8ef4586b0d449fc7cd74035_birth-certificate.pdf
-Analyzing a32e08e9ebc742b18fc2994427274404_passport.pdf
-Analyzing a4d2d0c790934be68e79a9cc5a06117f_passport.pdf
-Analyzing a5ef459d22a64ec2a97a4e853a5666dc_birth-certificate.pdf
-Analyzing a59d780b5e8d43adba6ca6b49932d974_passport.pdf
-Analyzing a8a05e7a1a194bf292785d13c123e98f_passport.pdf
-Analyzing a8ba0b7f857a449fa6887212fda79baa_birth-certificate.pdf
-Analyzing a8f4eb65067e47e9b155b5e1ce024265_birth-certificate.pdf
-Analyzing aa17d14c280e4f11b9870ee82eea5953_birth-certificate.pdf
-Analyzing aae121bc51af4eb68193bc30115df57f_passport.pdf
-Analyzing ab217bcdec8f4a479317b83b043a242d_passport.pdf
-Analyzing ac2aaf0d60744c0783ba2ac7100efbb3_passport.pdf
-Analyzing ac4e6d53f1ff4a1fad78722d4a648285_passport.pdf
-Analyzing ac619725354b48edbf86b099b105ccd7_passport.pdf
-Analyzing ad2a0cccb82d424684a9e1cad21af238_birth-certificate.pdf
-Analyzing adb666207fae4d349bdd759e9de0f4e2_passport.pdf
-Analyzing af0be10a07f34118b152c2585cc8a850_passport.pdf
-Analyzing afa8809d77b644e3b10d2db4701ebb3c_birth-certificate.pdf
-Analyzing b0c933ae67fe451fa1bd4027e65defbe_passport.pdf
-Analyzing b12f5d1383964e388ede7ed5e4130378_passport.pdf
-Analyzing b17c2be3c8ce4ec994cf22fe69514ad8_Brodoc_Order_24058859.pdf
-Analyzing b1b4d94a2efe413786f611f1a7715e93_passport.pdf
-Analyzing b2359601642f442db8b3472b24e8997c_birth-certificate.pdf
-Analyzing b45776aa466e402f967cab20dfbf0f08_birth-certificate.pdf
-Analyzing b533eb2a3a064783aa7b5044b8cb2e68_passport.pdf
-Analyzing b6b8c4ab4b7d44e092765a0430f00c88_medical.pdf
-Analyzing b7bd5a4671084769ae0951ec5b3e9d1b_passport.pdf
-Analyzing b809321ef57f48b9894a69df3fdc1456_passport.pdf
-Analyzing b89a6ea65e2a4f7ba4a09f58a86d5347_passport.pdf
-Analyzing b9a346d00d9346f4bad6e12e0abb5fb6_passport.pdf
-Analyzing b9e4103067394c438211fa0c03616951_passport.pdf
-Analyzing ba4c74d192cc4e0faa0d3a2c1160d74a_birth-certificate.pdf
-Analyzing bab562761b2c48e18d9f9a57b605444c_passport.pdf
-Analyzing bab673e1fe0b4404ab47e0d27ca16300_passport.pdf
-Analyzing bbe30bdd4bfe460ca026144b638a818f_birth-certificate.pdf
-Analyzing bd4d5cebec9a4432870e662171b62943_birth-certificate.pdf
-Analyzing bf5c0dc7c3d2458e982fb1a871f290cb_passport.pdf
-Analyzing c0e86d0d8921491b841283603869f5a3_birth-certificate.pdf
-Analyzing c193151d6b1c49c1ab45d45db446ea9c_passport.pdf
-Analyzing c1f1ccc6749848078a6f602deaf0f738_passport.pdf
-Analyzing c2103ef21607436197518fd3a958bd53_birth-certificate.pdf
-Analyzing c2733556653c4b3387e3c2337128fc2b_passport.pdf
-Analyzing c2f3ffa3d9e641a9a97f3a7b0d14d432_passport.pdf
-Analyzing c4195aac8dbd41e7b841b48974629c47_birth-certificate.pdf
-Analyzing c5c98b0e2a254e1e813deaca8fde7b36_passport.pdf
-Analyzing c617f5acb4104a29a083925f1bc7b18a_birth-certificate.pdf
-Analyzing c6fbf7c548714c67b1a32487e5cc0b5c_passport.pdf
-Analyzing c89d2bdb68e04a86a3ad83ec40e9dc2d_passport.pdf
-Analyzing c92636c0d43344778cf509d7eb629783_medical.pdf
-Analyzing c94b2748e0954a59b9b33b0dbdfc291b_birth-certificate.pdf
-Analyzing ca63b5510b3d4b56bd1ef8f156137dbc_birth-certificate.pdf
-Analyzing ca9dc26944d34d319db14f9c510bbc0f_passport.pdf
-Analyzing ca94c1fd2f8c4f7b8fa4085cc24349da_passport.pdf
-Analyzing cac170a2068c4a49aa09d709899121bd_passport.pdf
-Analyzing cae064dada564bab9da57675528ff6c1_passport.pdf
-Analyzing cb0e3b8cd7ec4eba98260619331709a3_medical.pdf
-Analyzing cbbdcda4be53425cbc52007f78a4685d_passport.pdf
-Analyzing cc133b46a5624730be048ca1ca4562c0_passport.pdf
-Analyzing d295c0a7f43d42dd80502ab41982e7c0_birth-certificate.pdf
-Analyzing d3f218e823244919b47e60ccc3d1eb37_passport.pdf
-Analyzing d0ef1fd4bde842e788f342b88cf1db16_passport.pdf
-Analyzing d4bf7d2f7831486f9e3f034dc19062bb_passport.pdf
-Analyzing d562ef83b62a47adb8ecb790a13ee67a_passport.pdf
-Analyzing d5c3bb3ce77c4ba3a9a9f8dd1b220800_passport.pdf
-Analyzing d6dedc6b06b34d589ccceb7fac4c868c_birth-certificate.pdf
-Analyzing d7381f7d5afd477089d84c88b60db5b1_passport.pdf
-Analyzing d90e4be21fc2428fbe6b6e895e281fd5_passport.pdf
-Analyzing d94e42394e91417c8b6b519454397d8b_passport.pdf
-Analyzing d90ac70bbadf413488cd8ac16028ab58_passport.pdf
-Analyzing d981d9f7a9424034871e071b2f6c6301_medical.pdf
-Analyzing da6ea8be23db4c128606d84b7d49d53d_passport.pdf
-Analyzing daa5184af69e4d7d9f36eef408112abd_passport.pdf
-Analyzing db805c55324543ff89d7ea9ff4afc74e_passport.pdf
-Analyzing dbdd18efe9744f2f93f059b5fd7a7ed6_passport.pdf
-Analyzing dc91b230e2cd4ff4864cf9c2ce75743d_passport.pdf
-Analyzing de0387aae8dd4f638feac6de6962c338_passport.pdf
-Analyzing de2925420daa4a70882495e4d105a3f0_medical.pdf
-Analyzing de911dd74e834985abef28aed52777c9_medical.pdf
-Analyzing df1e3e74bfde426a9a719249263f0e27_birth-certificate.pdf
-Analyzing dfd9d8b80f6a4449af8354f618e88b1f_passport.pdf
-Analyzing e026897b135f4fd08a7f4229f262b43b_birth-certificate.pdf
-Analyzing e067fade4b5842f482abc187fe43e7d0_passport.pdf
-Analyzing e26c45cb323a4784a7181174c5b32d98_passport.pdf
-Analyzing e1bfed65b15d4753b2082258a6c7f2aa_passport.pdf
-Analyzing e291ff1601d74a1bb238d3c1d9a95ca1_birth-certificate.pdf
-Analyzing e440d36c1f2a45809a3ca03b72231e17_birth-certificate.pdf
-Analyzing e30e5b86afa64246870c1b35c6d65039_birth-certificate.pdf
-Analyzing e67987565ab84e70a8dbae18db7f4840_passport.pdf
-Analyzing e6c62253ad024b2caaa64a44669bb621_birth-certificate.pdf
-Analyzing e7057c0e0133463181ddeaa2a5ff37b5_birth-certificate.pdf
-Analyzing e838cc462d8645acbe86e5caafdf7f5d_birth-certificate.pdf
-Analyzing e994929afdbd4896bfebcd8d3d6676b0_passport.pdf
-Analyzing e921cee7dbdd461ea5b319453e3cb0ff_passport.pdf
-Analyzing e9e5e0c701af4ff799004e8460f7806b_passport.pdf
-Analyzing e9eca43db4cb4cc3ac10f752761ba29b_passport.pdf
-Analyzing e9f55a817ec0434291bf0e4798999bd0_passport.pdf
-Analyzing ea069b91a4bb4530868aa1b67c1004ce_birth-certificate.pdf
-Analyzing ea1ea01b90474de2a82df5b5995128c5_birth-certificate.pdf
-Analyzing ea403ab5a25b4742bfe4ca8f7722110f_passport.pdf
-Analyzing eb2ad3925be14f7aaf1b87e1752e9c33_medical.pdf
-Analyzing eb40f828fcf944b8937a234fdd0717e5_medical.pdf
-Analyzing f05b57acb665441ab59d91aa51fcf7c5_birth-certificate.pdf
-Analyzing f03f7ba761314e75a6910fd96b52c5e6_passport.pdf
-Analyzing f1f6164fd4a940feb1e36fe95fae31ac_passport.pdf
-Analyzing f204d68365984aa48fb4f0a34ca27bac_birth-certificate.pdf
-Analyzing f238187a6f8d4dadbb69e3cc2564e0b3_passport.pdf
-Analyzing f40f3c5148914d98bece7072ed306d50_passport.pdf
-Analyzing f3637d131a924adea80fc21604c91492_passport.pdf
-Analyzing f421c8cfbef44a109ac96c8d037a1039_passport.pdf
-Analyzing f48f9c9e02ba4167a2d68ee2759b5bfe_birth-certificate.pdf
-Analyzing f497b2471f3945e1ac3dd5f479c09ab2_passport.pdf
-Analyzing f5e9763eecbb4a2fb8076f913210ea6a_passport.pdf
-Analyzing f4eeb360a81b4cc0a3ea18b8f327e5a5_passport.pdf
-Analyzing f80a76a4949e4dbd88a133659a2be0fc_passport.pdf
-Analyzing f92c2ab5b1da4c7bb6fc501113fb9bbc_birth-certificate.pdf
-Analyzing f95ea91b23e5417c9b3bc3f84ed3647b_passport.pdf
-Analyzing f962d07e2b7249c592813b1002cec74c_passport.pdf
-Analyzing f974e095565448e382d0e8ec8b6254f0_passport.pdf
-Analyzing f9cff1b83e614996a9930f32c691cc1b_passport.pdf
-Analyzing facc67a96c9a42eab8fd3ce2353bceb9_passport.pdf
-Analyzing fcb4088c1ced43e9bc6fd215dead6dbf_passport.pdf
-Analyzing fbd2f559ee7d4d1ca84c6ff75a16ff10_birth-certificate.pdf
-Analyzing fd19a7b2aa0341919f2b95239be57dce_birth-certificate.pdf
-Analyzing fdd7faf3538248b987933dbc8e1de4e4_passport.pdf
-Analyzing fd509285ad214ecea11c4b30c0e0c24c_passport.pdf
-Analyzing feaa972a9eef412f93b426361b8f35cd_medical.pdf
-Analyzing FluentMudValidation.cs
-Analyzing ff861715b1324104810ee7c39af1e45a_passport.pdf
-Analyzing open-sans-v43-latin-600.woff2
-Analyzing open-sans-v43-latin-700.woff2
-Analyzing open-sans-v43-latin-regular.woff2
-Analyzing app.css
-Analyzing analysislevel_10_default.globalconfig
-Analyzing appsettings.Development.json
-Analyzing appsettings.json
-Analyzing appsettings.Production.json
-Analyzing DependencyInjection.cs
-Analyzing Program.cs
-Analyzing ProgramMarker.cs
-Analyzing WebProgram.cs
-Analyzing SchaerbeekMunicipality.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing analysislevel_10_default.globalconfig
-Analyzing Extensions.cs
-Analyzing BelgianAddressTests.cs
-Analyzing BirthDeclarationCaseTestData.cs
-Analyzing BirthDeclarationCaseTests.cs
-Analyzing ChangeOfAddressCaseTests.cs
-Analyzing PersonTests.cs
-Analyzing DocumentRequestCaseTests.cs
-Analyzing ResidencePolicyTests.cs
-Analyzing NationalRegisterSearchScorerTests.cs
-Analyzing RegistrationCaseNationalRegisterTests.cs
-Analyzing SchaerbeekMunicipality.Domain.Tests.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing RegisterTargetResolverTests.cs
-Analyzing RegistrationCaseAddressTests.cs
-Analyzing RegistrationCaseCorrectionTests.cs
-Analyzing RegistrationCaseDecisionTests.cs
-Analyzing RegistrationCaseLockingTests.cs
-Analyzing RegistrationCasePoliceVerificationTests.cs
-Analyzing RegistrationCaseResidenceTests.cs
-Analyzing RegistrationCaseTestData.cs
-Analyzing RegistrationCaseTests.cs
-Analyzing analysislevel_10_default.globalconfig
-Analyzing RegistrationExceptionRulesTests.cs
-Analyzing Microsoft.NET.Test.Sdk.Program.cs
-Analyzing xunit.abstractions.dll
-Analyzing xunit.runner.visualstudio.testadapter.dll
-Analyzing DemoOfficerUrls.cs
-Analyzing MunicipalApiBridge.cs
-Analyzing MunicipalE2EFixture.cs
-Analyzing MunicipalWebAppFactory.cs
-Analyzing MunicipalWebHost.cs
-Analyzing PlaywrightPageExtensions.cs
-Analyzing BirthDeclarationE2ETests.cs
-Analyzing ChangeOfAddressE2ETests.cs
-Analyzing DocumentRequestE2ETests.cs
-Analyzing RegistrationConfirmE2ETests.cs
-Analyzing RegistrationIntakeE2ETests.cs
-Analyzing RoleBoundaryE2ETests.cs
-Analyzing SchaerbeekMunicipality.E2E.Tests.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing E2ECaseSeeder.cs
-Analyzing node
-Analyzing LICENSE
-Analyzing install_media_pack.ps1
-Analyzing reinstall_chrome_beta_linux.sh
-Analyzing install_webkit_wsl.ps1
-Analyzing reinstall_chrome_beta_win.ps1
-Analyzing reinstall_chrome_beta_mac.sh
-Analyzing reinstall_chrome_stable_linux.sh
-Analyzing reinstall_chrome_stable_win.ps1
-Analyzing reinstall_chrome_stable_mac.sh
-Analyzing reinstall_msedge_beta_linux.sh
-Analyzing reinstall_msedge_beta_mac.sh
-Analyzing reinstall_msedge_beta_win.ps1
-Analyzing reinstall_msedge_dev_linux.sh
-Analyzing reinstall_msedge_dev_mac.sh
-Analyzing reinstall_msedge_dev_win.ps1
-Analyzing reinstall_msedge_stable_linux.sh
-Analyzing reinstall_msedge_stable_mac.sh
-Analyzing reinstall_msedge_stable_win.ps1
-Analyzing cliDaemon.js
-Analyzing dashboardApp.js
-Analyzing mcp.js
-Analyzing appIcon.png
-Analyzing oopBrowserDownload.js
-Analyzing loader.js
-Analyzing deviceDescriptorsSource.json
-Analyzing element-attributes.md
-Analyzing playwright-tests.md
-Analyzing request-mocking.md
-Analyzing running-code.md
-Analyzing session-management.md
-Analyzing spec-driven-testing.md
-Analyzing test-generation.md
-Analyzing storage-state.md
-Analyzing tracing.md
-Analyzing video-recording.md
-Analyzing SKILL.md
-Analyzing channelSessions.js
-Analyzing cli.js
-Analyzing help.json
-Analyzing minimist.js
-Analyzing output.js
-Analyzing program.js
-Analyzing registry.js
-Analyzing session.js
-Analyzing appIcon.png
-Analyzing SKILL.md
-Analyzing extension.js
-Analyzing socketConnection.js
-Analyzing codicon-DCmgc-ay.ttf
-Analyzing firefox-1bWoP6pv.svg
-Analyzing firefox-beta-k3eOH_eK.svg
-Analyzing index-BY2S1tHT.css
-Analyzing firefox-nightly-Cp5nfeDT.svg
-Analyzing index-C_5TMfeg.js
-Analyzing safari-na3_-uQk.svg
-Analyzing index.html
-Analyzing playwright-logo.svg
-Analyzing index.html
-Analyzing report.css
-Analyzing report.js
-Analyzing codeMirrorModule-DeBYQozu.js
-Analyzing codeMirrorModule-DYBRYzYX.css
-Analyzing codicon-DCmgc-ay.ttf
-Analyzing index-4ZiSSCmn.css
-Analyzing index-Bq-mQf8S.js
-Analyzing playwright-logo.svg
-Analyzing index.html
-Analyzing codeMirrorModule-LEHpjmcn.js
-Analyzing defaultSettingsView-BNmKHKpQ.js
-Analyzing urlMatch-BYQrIQwR.js
-Analyzing xtermModule-CsJ4vdCR.js
-Analyzing codicon.DCmgc-ay.ttf
-Analyzing defaultSettingsView.CjdS-WJx.css
-Analyzing index.CzXZzn5A.css
-Analyzing index.DMMX1gXU.js
-Analyzing index.html
-Analyzing manifest.webmanifest
-Analyzing codeMirrorModule.DYBRYzYX.css
-Analyzing playwright-logo.svg
-Analyzing snapshot.v8KI4P3m.js
-Analyzing sw.bundle.js
-Analyzing uiMode.BZQ54Kgt.css
-Analyzing uiMode.html
-Analyzing uiMode.Ut8wwJNp.js
-Analyzing xtermModule.DYP7pi_n.css
-Analyzing bootstrap.js
-Analyzing coreBundle.js
-Analyzing package.js
-Analyzing serverRegistry.js
-Analyzing serverRegistry.js.LICENSE
-Analyzing utilsBundle.js
-Analyzing utilsBundle.js.LICENSE
-Analyzing xdg-open
-Analyzing protocol.d.ts
-Analyzing structs.d.ts
-Analyzing types.d.ts
-Analyzing browsers.json
-Analyzing cli.js
-Analyzing snapshot.html
-Analyzing index.d.ts
-Analyzing index.js
-Analyzing index.mjs
-Analyzing LICENSE
-Analyzing NOTICE
-Analyzing package.json
-Analyzing README.md
-Analyzing ThirdPartyNotices.txt
-Analyzing analysislevel_10_default.globalconfig
-Analyzing Microsoft.NET.Test.Sdk.Program.cs
-Analyzing E2ECollection.cs
-Analyzing playwright.ps1
-Analyzing README.md
-Analyzing xunit.abstractions.dll
-Analyzing xunit.runner.visualstudio.testadapter.dll
-Analyzing AddressDetails.cs
-Analyzing BelgianAddress.cs
-Analyzing HousingSituation.cs
-Analyzing BirthDeclarationCaseChecklist.cs
-Analyzing BirthDeclarationCase.cs
-Analyzing BirthDeclarationCaseId.cs
-Analyzing BirthDeclarationCaseStatus.cs
-Analyzing BirthDeclarationParentLink.cs
-Analyzing BirthDeclarationRejectionReason.cs
-Analyzing BirthDeclarationRules.cs
-Analyzing BirthRegisteredEventDetails.cs
-Analyzing IBirthDeclarationCaseRepository.cs
-Analyzing InvalidBirthDeclarationTransitionException.cs
-Analyzing NewbornDetails.cs
-Analyzing NewbornSex.cs
-Analyzing OfficerCaseLocking.cs
-Analyzing ParentRole.cs
-Analyzing CertificateRequest.cs
-Analyzing CertificateRequestId.cs
-Analyzing CertificateType.cs
-Analyzing ICertificateRequestRepository.cs
-Analyzing ChangeOfAddressCase.cs
-Analyzing AddressChangedEventDetails.cs
-Analyzing ChangeOfAddressCaseChecklist.cs
-Analyzing ChangeOfAddressCaseId.cs
-Analyzing ChangeOfAddressCaseStatus.cs
-Analyzing ChangeOfAddressHouseholdMemberLink.cs
-Analyzing ChangeOfAddressRejectionReason.cs
-Analyzing ChangeOfAddressRules.cs
-Analyzing IChangeOfAddressCaseRepository.cs
-Analyzing InvalidChangeOfAddressTransitionException.cs
-Analyzing EnumDisplayExtensions.cs
-Analyzing AdministrativeDocument.cs
-Analyzing AdministrativeDocumentId.cs
-Analyzing DocumentType.cs
-Analyzing IAdministrativeDocumentRepository.cs
-Analyzing IDocumentStorage.cs
-Analyzing AddressChanged.cs
-Analyzing BirthRegistered.cs
-Analyzing IDomainEvent.cs
-Analyzing RegistrationConfirmed.cs
-Analyzing Household.cs
-Analyzing HouseholdId.cs
-Analyzing HouseholdMember.cs
-Analyzing HouseholdMemberDetails.cs
-Analyzing HouseholdMemberId.cs
-Analyzing HouseholdMemberRole.cs
-Analyzing IHouseholdRepository.cs
-Analyzing BirthInformationDetails.cs
-Analyzing CivilStatus.cs
-Analyzing CivilStatusDetails.cs
-Analyzing CivilStatusRecord.cs
-Analyzing IdentityDetails.cs
-Analyzing IPersonRepository.cs
-Analyzing MarriageRecognitionStatus.cs
-Analyzing Person.cs
-Analyzing PersonId.cs
-Analyzing DocumentRequestCase.cs
-Analyzing DocumentRequestCaseId.cs
-Analyzing DocumentRequestCaseStatus.cs
-Analyzing DocumentRequestRules.cs
-Analyzing DocumentRequestType.cs
-Analyzing IDocumentRequestCaseRepository.cs
-Analyzing InvalidDocumentRequestTransitionException.cs
-Analyzing EuCitizenPolicy.cs
-Analyzing IResidencePolicy.cs
-Analyzing NonEuWorkerPolicy.cs
-Analyzing ResidenceDocumentRules.cs
-Analyzing RefugeePolicy.cs
-Analyzing ResidencePolicyEvaluator.cs
-Analyzing ResidencePolicyResult.cs
-Analyzing ResidenceValidationContext.cs
-Analyzing StudentPolicy.cs
-Analyzing ImmigrationDecisionDetails.cs
-Analyzing ImmigrationDecisionReference.cs
-Analyzing IResidencePermitRepository.cs
-Analyzing ResidenceCategory.cs
-Analyzing ResidencePermit.cs
-Analyzing ResidencePermitDetails.cs
-Analyzing ResidencePermitId.cs
-Analyzing ResidencePermitType.cs
-Analyzing BisNumber.cs
-Analyzing INationalRegisterRepository.cs
-Analyzing NationalRegisterConflictException.cs
-Analyzing NationalRegisterMatch.cs
-Analyzing NationalRegisterNumber.cs
-Analyzing NationalRegisterPerson.cs
-Analyzing NationalRegisterPersonId.cs
-Analyzing NationalRegisterSearchCriteria.cs
-Analyzing NationalRegisterSearchScorer.cs
-Analyzing IOutboundNotificationRepository.cs
-Analyzing OutboundNotification.cs
-Analyzing OutboundNotificationDeliveryStatus.cs
-Analyzing OutboundNotificationId.cs
-Analyzing OutboundNotificationRecipient.cs
-Analyzing SchaerbeekMunicipality.Domain.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing IPersonFileQuery.cs
-Analyzing InvalidPoliceVerificationException.cs
-Analyzing IPoliceVerificationRepository.cs
-Analyzing PoliceVerificationRequest.cs
-Analyzing PoliceVerificationRequestId.cs
-Analyzing PoliceVerificationResult.cs
-Analyzing IReferenceDataRepository.cs
-Analyzing MunicipalityReference.cs
-Analyzing SchaerbeekCommune.cs
-Analyzing StreetReference.cs
-Analyzing CaseAuditAction.cs
-Analyzing CaseAuditEntry.cs
-Analyzing CaseAuditEntryId.cs
-Analyzing CaseClaimResult.cs
-Analyzing DuplicateInvestigationStatus.cs
-Analyzing ICaseAuditRepository.cs
-Analyzing InvalidRegistrationTransitionException.cs
-Analyzing IRegistrationCaseRepository.cs
-Analyzing OfficerId.cs
-Analyzing RegisterTarget.cs
-Analyzing RegisterTargetResolver.cs
-Analyzing RegistrationCase.cs
-Analyzing RegistrationCaseChecklist.cs
-Analyzing RegistrationCaseId.cs
-Analyzing RegistrationCaseStatus.cs
-Analyzing RegistrationConfirmedEventDetails.cs
-Analyzing RegistrationExceptionRules.cs
-Analyzing RejectionReason.cs
-Analyzing SuspensionReason.cs
-Analyzing VisitReason.cs
-Analyzing analysislevel_10_default.globalconfig
-Analyzing BffApiClientTests.cs
-Analyzing DesignSystemComponentTests.cs
-Analyzing SchaerbeekColorContrastTests.cs
-Analyzing BirthDeclarationTestHelpers.cs
-Analyzing BirthDeclarationTests.cs
-Analyzing ChangeOfAddressTests.cs
-Analyzing DocumentRequestTests.cs
-Analyzing PersonFileTests.cs
-Analyzing AddressAndHouseholdTests.cs
-Analyzing CaseDecisionTests.cs
-Analyzing CaseIntakeTests.cs
-Analyzing CertificatesAndNotificationsTests.cs
-Analyzing IntakeCorrectionTests.cs
-Analyzing NationalRegisterTests.cs
-Analyzing Phase9ExceptionScenarioTests.cs
-Analyzing PoliceVerificationTests.cs
-Analyzing RegistrationApiTests.cs
-Analyzing RegistrationIntakeStepSummariesTests.cs
-Analyzing RegistrationTestHelpers.cs
-Analyzing RegistrationValidatorTests.cs
-Analyzing ResidenceCategoryTests.cs
-Analyzing RoleBoundariesAndCaseLockingTests.cs
-Analyzing MunicipalityReportTests.cs
-Analyzing SchaerbeekMunicipality.Integration.Tests.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing PostgreSqlMigrationTests.cs
-Analyzing analysislevel_10_default.globalconfig
-Analyzing Microsoft.NET.Test.Sdk.Program.cs
-Analyzing HealthEndpointTests.cs
-Analyzing MunicipalAppFactory.cs
-Analyzing xunit.abstractions.dll
-Analyzing xunit.runner.visualstudio.testadapter.dll
-Analyzing SchaerbeekMunicipality.AppHost.GeneratedMSBuildEditorConfig.editorconfig
-Analyzing launchSettings.json
-Analyzing analysislevel_10_default.globalconfig
-Analyzing AppHost.cs
-Analyzing appsettings.json
-Analyzing appsettings.Development.json
-Running inspections
-
-Inspecting AddressDetails.cs
-
-Inspecting SchaerbeekMunicipality.Domain.csproj
-Inspecting BirthDeclarationCase.cs
-Inspecting HousingSituation.cs
-Inspecting BirthDeclarationCaseChecklist.cs
-Inspecting BelgianAddress.cs
-Inspecting BirthDeclarationCaseId.cs
-Inspecting BirthDeclarationCaseStatus.cs
-Inspecting BirthDeclarationParentLink.cs
-Inspecting BirthDeclarationRejectionReason.cs
-Inspecting BirthDeclarationRules.cs
-Inspecting BirthRegisteredEventDetails.cs
-Inspecting IBirthDeclarationCaseRepository.cs
-Inspecting InvalidBirthDeclarationTransitionException.cs
-Inspecting NewbornDetails.cs
-Inspecting NewbornSex.cs
-Inspecting ParentRole.cs
-Inspecting OfficerCaseLocking.cs
-Inspecting CertificateRequest.cs
-Inspecting CertificateRequestId.cs
-Inspecting CertificateType.cs
-Inspecting AddressChangedEventDetails.cs
-Inspecting ICertificateRequestRepository.cs
-Inspecting ChangeOfAddressCase.cs
-Inspecting ChangeOfAddressCaseChecklist.cs
-Inspecting ChangeOfAddressCaseId.cs
-Inspecting ChangeOfAddressCaseStatus.cs
-Inspecting ChangeOfAddressHouseholdMemberLink.cs
-Inspecting ChangeOfAddressRejectionReason.cs
-Inspecting ChangeOfAddressRules.cs
-Inspecting IChangeOfAddressCaseRepository.cs
-Inspecting InvalidChangeOfAddressTransitionException.cs
-Inspecting EnumDisplayExtensions.cs
-Inspecting AdministrativeDocument.cs
-Inspecting AdministrativeDocumentId.cs
-Inspecting DocumentType.cs
-Inspecting IAdministrativeDocumentRepository.cs
-Inspecting IDocumentStorage.cs
-Inspecting AddressChanged.cs
-Inspecting BirthRegistered.cs
-Inspecting IDomainEvent.cs
-Inspecting RegistrationConfirmed.cs
-Inspecting Household.cs
-Inspecting HouseholdId.cs
-Inspecting HouseholdMember.cs
-Inspecting HouseholdMemberDetails.cs
-Inspecting HouseholdMemberId.cs
-Inspecting HouseholdMemberRole.cs
-Inspecting IHouseholdRepository.cs
-Inspecting BirthInformationDetails.cs
-Inspecting CivilStatus.cs
-Inspecting CivilStatusDetails.cs
-Inspecting CivilStatusRecord.cs
-Inspecting IdentityDetails.cs
-Inspecting IPersonRepository.cs
-Inspecting MarriageRecognitionStatus.cs
-Inspecting PersonId.cs
-Inspecting Person.cs
-Inspecting DocumentRequestCaseId.cs
-Inspecting DocumentRequestCase.cs
-Inspecting DocumentRequestCaseStatus.cs
-Inspecting DocumentRequestRules.cs
-Inspecting DocumentRequestType.cs
-Inspecting IDocumentRequestCaseRepository.cs
-Inspecting InvalidDocumentRequestTransitionException.cs
-Inspecting EuCitizenPolicy.cs
-Inspecting IResidencePolicy.cs
-Inspecting NonEuWorkerPolicy.cs
-Inspecting RefugeePolicy.cs
-Inspecting ResidenceDocumentRules.cs
-Inspecting ResidencePolicyEvaluator.cs
-Inspecting ResidencePolicyResult.cs
-Inspecting ResidenceValidationContext.cs
-Inspecting StudentPolicy.cs
-Inspecting ImmigrationDecisionDetails.cs
-Inspecting ImmigrationDecisionReference.cs
-Inspecting IResidencePermitRepository.cs
-Inspecting ResidenceCategory.cs
-Inspecting ResidencePermit.cs
-Inspecting ResidencePermitDetails.cs
-Inspecting ResidencePermitId.cs
-Inspecting ResidencePermitType.cs
-Inspecting BisNumber.cs
-Inspecting INationalRegisterRepository.cs
-Inspecting NationalRegisterConflictException.cs
-Inspecting NationalRegisterMatch.cs
-Inspecting NationalRegisterNumber.cs
-Inspecting NationalRegisterPerson.cs
-Inspecting NationalRegisterPersonId.cs
-Inspecting NationalRegisterSearchCriteria.cs
-Inspecting NationalRegisterSearchScorer.cs
-Inspecting IOutboundNotificationRepository.cs
-Inspecting OutboundNotification.cs
-Inspecting OutboundNotificationDeliveryStatus.cs
-Inspecting OutboundNotificationId.cs
-Inspecting OutboundNotificationRecipient.cs
-Inspecting IPersonFileQuery.cs
-Inspecting InvalidPoliceVerificationException.cs
-Inspecting IPoliceVerificationRepository.cs
-Inspecting PoliceVerificationRequest.cs
-Inspecting PoliceVerificationRequestId.cs
-Inspecting PoliceVerificationResult.cs
-Inspecting IReferenceDataRepository.cs
-Inspecting MunicipalityReference.cs
-Inspecting SchaerbeekCommune.cs
-Inspecting StreetReference.cs
-Inspecting CaseAuditAction.cs
-Inspecting CaseAuditEntry.cs
-Inspecting CaseAuditEntryId.cs
-Inspecting CaseClaimResult.cs
-Inspecting DuplicateInvestigationStatus.cs
-Inspecting ICaseAuditRepository.cs
-Inspecting InvalidRegistrationTransitionException.cs
-Inspecting IRegistrationCaseRepository.cs
-Inspecting OfficerId.cs
-Inspecting RegisterTarget.cs
-Inspecting RegisterTargetResolver.cs
-Inspecting RegistrationCase.cs
-Inspecting RegistrationCaseChecklist.cs
-Inspecting RegistrationCaseId.cs
-Inspecting RegistrationCaseStatus.cs
-Inspecting RegistrationConfirmedEventDetails.cs
-Inspecting RegistrationExceptionRules.cs
-Inspecting RejectionReason.cs
-Inspecting SuspensionReason.cs
-Inspecting VisitReason.cs
-Inspecting SchaerbeekMunicipality.Infrastructure.csproj
-Inspecting HtmlCertificateRenderer.cs
-Inspecting ICertificateRenderer.cs
-Inspecting AddressChangedNotificationHandler.cs
-Inspecting BirthRegisteredNotificationHandler.cs
-Inspecting DomainEventDispatcher.cs
-Inspecting IBirthRegisteredHandler.cs
-Inspecting IDomainEventDispatcher.cs
-Inspecting IRegistrationConfirmedHandler.cs
-Inspecting RegistrationConfirmedLoggingHandler.cs
-Inspecting RegistrationConfirmedNotificationHandler.cs
-Inspecting IIntegrationAdapter.cs
-Inspecting IIntegrationOutboxProcessor.cs
-Inspecting IntegrationAdapterRegistry.cs
-Inspecting IntegrationOutboxOptions.cs
-Inspecting IntegrationOutboxProcessor.cs
-Inspecting IntegrationOutboxServiceCollectionExtensions.cs
-Inspecting IntegrationOutboxWorker.cs
-Inspecting SimulatedIntegrationAdapter.cs
-Inspecting AdministrativeDocumentConfiguration.cs
-Inspecting BirthDeclarationCaseConfiguration.cs
-Inspecting CaseAuditEntryConfiguration.cs
-Inspecting CertificateRequestConfiguration.cs
-Inspecting ChangeOfAddressCaseConfiguration.cs
-Inspecting HouseholdConfiguration.cs
-Inspecting DocumentRequestCaseConfiguration.cs
-Inspecting HouseholdMemberConfiguration.cs
-Inspecting MunicipalityReferenceConfiguration.cs
-Inspecting NationalRegisterPersonConfiguration.cs
-Inspecting OutboundNotificationConfiguration.cs
-Inspecting PersonConfiguration.cs
-Inspecting PoliceVerificationRequestConfiguration.cs
-Inspecting RegistrationCaseConfiguration.cs
-Inspecting ResidencePermitConfiguration.cs
-Inspecting StreetReferenceConfiguration.cs
-Inspecting PersonFileQuery.cs
-Inspecting AdministrativeDocumentRepository.cs
-Inspecting BirthDeclarationCaseRepository.cs
-Inspecting CaseAuditRepository.cs
-Inspecting CertificateRequestRepository.cs
-Inspecting ChangeOfAddressCaseRepository.cs
-Inspecting DocumentRequestCaseRepository.cs
-Inspecting HouseholdRepository.cs
-Inspecting NationalRegisterRepository.cs
-Inspecting OutboundNotificationRepository.cs
-Inspecting PersonRepository.cs
-Inspecting PoliceVerificationRepository.cs
-Inspecting ReferenceDataRepository.cs
-Inspecting RegistrationCaseRepository.cs
-Inspecting ResidencePermitRepository.cs
-Inspecting MunicipalDbContext.cs
-Inspecting MunicipalDbContextFactory.cs
-Inspecting NationalRegisterSeeder.cs
-Inspecting PopulationRegisterSeeder.cs
-Inspecting ReferenceDataSeeder.cs
-Inspecting LocalFileDocumentStorage.cs
-Inspecting DependencyInjection.cs
-Inspecting HealthCheckExtensions.cs
-Inspecting SchaerbeekMunicipality.Application.csproj
-Inspecting CurrentOfficer.cs
-Inspecting DemoOfficer.cs
-Inspecting ICurrentOfficer.cs
-Inspecting OfficerRole.cs
-Inspecting DemoDataOptions.cs
-Inspecting DemoWorkflowCaseSeeder.cs
-Inspecting AttachDocumentHandler.cs
-Inspecting ClaimBirthDeclarationCaseHandler.cs
-Inspecting ConfirmBirthDeclarationHandler.cs
-Inspecting DownloadDocumentHandler.cs
-Inspecting BirthDeclarationCaseDetailDto.cs
-Inspecting GetBirthDeclarationCaseHandler.cs
-Inspecting GetBirthDeclarationChecklistHandler.cs
-Inspecting LinkParentHandler.cs
-Inspecting LinkParentRequest.cs
-Inspecting ListBirthDeclarationCasesHandler.cs
-Inspecting OpenBirthDeclarationCaseHandler.cs
-Inspecting OpenBirthDeclarationCaseResponse.cs
-Inspecting RecordChildDetailsHandler.cs
-Inspecting RecordChildDetailsRequest.cs
-Inspecting RejectBirthDeclarationHandler.cs
-Inspecting ReleaseCaseLockHandler.cs
-Inspecting RemoveDocumentHandler.cs
-Inspecting ResumeBirthDeclarationHandler.cs
-Inspecting SetDeclarationHouseholdHandler.cs
-Inspecting SetDeclarationHouseholdRequest.cs
-Inspecting SuspendBirthDeclarationHandler.cs
-Inspecting UnlinkParentHandler.cs
-Inspecting BirthDeclarationCaseAuthorization.cs
-Inspecting BirthDeclarationCaseGuard.cs
-Inspecting AttachDocumentHandler.cs
-Inspecting ClaimChangeOfAddressCaseHandler.cs
-Inspecting ConfirmAddressChangeHandler.cs
-Inspecting ConfirmAddressChangeResponse.cs
-Inspecting DeclareNewAddressHandler.cs
-Inspecting DeclareNewAddressRequest.cs
-Inspecting DeclareNewAddressValidator.cs
-Inspecting DownloadDocumentHandler.cs
-Inspecting ChangeOfAddressCaseDetailDto.cs
-Inspecting GetChangeOfAddressCaseHandler.cs
-Inspecting ChangeOfAddressChecklistMapper.cs
-Inspecting GetChangeOfAddressChecklistHandler.cs
-Inspecting ListChangeOfAddressCasesHandler.cs
-Inspecting OpenChangeOfAddressCaseHandler.cs
-Inspecting OpenChangeOfAddressCaseRequest.cs
-Inspecting OpenChangeOfAddressCaseResponse.cs
-Inspecting OpenChangeOfAddressCaseValidator.cs
-Inspecting RejectChangeOfAddressHandler.cs
-Inspecting RejectChangeOfAddressRequest.cs
-Inspecting ReleaseCaseLockHandler.cs
-Inspecting RemoveDocumentHandler.cs
-Inspecting RequestPoliceVerificationHandler.cs
-Inspecting RequestPoliceVerificationResponse.cs
-Inspecting ResolveRegisteredPersonHandler.cs
-Inspecting UnlinkHouseholdMemberHandler.cs
-Inspecting UpdateHouseholdForMoveHandler.cs
-Inspecting UpdateHouseholdForMoveRequest.cs
-Inspecting ChangeOfAddressCaseAuthorization.cs
-Inspecting ChangeOfAddressCaseGuard.cs
-Inspecting AdvanceDocumentRequestStatusHandler.cs
-Inspecting AttachApplicantPhotoHandler.cs
-Inspecting CancelDocumentRequestHandler.cs
-Inspecting ClaimDocumentRequestCaseHandler.cs
-Inspecting DownloadDocumentHandler.cs
-Inspecting GetDocumentRequestCaseHandler.cs
-Inspecting IssueDocumentHandler.cs
-Inspecting ListDocumentRequestCasesHandler.cs
-Inspecting OpenDocumentRequestCaseHandler.cs
-Inspecting RecordFeePaymentHandler.cs
-Inspecting ReleaseCaseLockHandler.cs
-Inspecting RemoveDocumentHandler.cs
-Inspecting ResolveRegisteredPersonHandler.cs
-Inspecting DocumentNumberGenerator.cs
-Inspecting DocumentRequestCaseAuthorization.cs
-Inspecting DocumentRequestCaseGuard.cs
-Inspecting GetPersonFileHandler.cs
-Inspecting GetPersonFileResponse.cs
-Inspecting ListPersonCasesHandler.cs
-Inspecting ListPersonCasesResponse.cs
-Inspecting SearchPersonFileHandler.cs
-Inspecting SearchPersonFileResponse.cs
-Inspecting PersonFileAuthorization.cs
-Inspecting ApproveCaseHandler.cs
-Inspecting ApproveCaseRequest.cs
-Inspecting ApproveCaseValidator.cs
-Inspecting AttachDocumentResponse.cs
-Inspecting ClaimRegistrationCaseHandler.cs
-Inspecting AttachDocumentHandler.cs
-Inspecting ConfirmRegistrationHandler.cs
-Inspecting ConfirmRegistrationResponse.cs
-Inspecting ConvertBisNumberHandler.cs
-Inspecting ConvertBisNumberResponse.cs
-Inspecting CorrectIdentityHandler.cs
-Inspecting CorrectIdentityResponse.cs
-Inspecting DeclareAddressHandler.cs
-Inspecting DeclareAddressRequest.cs
-Inspecting DeclareAddressValidator.cs
-Inspecting DownloadDocumentHandler.cs
-Inspecting CaseReviewChecklistMapper.cs
-Inspecting GetCaseReviewChecklistHandler.cs
-Inspecting GetCaseReviewChecklistResponse.cs
-Inspecting GetRegistrationCaseHandler.cs
-Inspecting RegistrationCaseDetailDto.cs
-Inspecting GetReviewDashboardHandler.cs
-Inspecting GetReviewDashboardResponse.cs
-Inspecting IssueHouseholdCompositionHandler.cs
-Inspecting IssueResidenceCertificateHandler.cs
-Inspecting LinkExistingPersonHandler.cs
-Inspecting LinkExistingPersonRequest.cs
-Inspecting LinkExistingPersonValidator.cs
-Inspecting ListCaseAuditHandler.cs
-Inspecting ListCaseAuditResponse.cs
-Inspecting ListOutboundNotificationsHandler.cs
-Inspecting ListPendingPoliceVerificationsHandler.cs
-Inspecting ListPendingPoliceVerificationsResponse.cs
-Inspecting ListRegistrationCasesHandler.cs
-Inspecting OpenRegistrationCaseHandler.cs
-Inspecting OpenRegistrationCaseRequest.cs
-Inspecting OpenRegistrationCaseValidator.cs
-Inspecting RecordBirthInformationHandler.cs
-Inspecting RecordBirthInformationRequest.cs
-Inspecting RecordBirthInformationRequestValidator.cs
-Inspecting RecordCivilStatusHandler.cs
-Inspecting RecordCivilStatusRequest.cs
-Inspecting RecordCivilStatusValidator.cs
-Inspecting HouseholdMemberRequestValidator.cs
-Inspecting RecordHouseholdCompositionHandler.cs
-Inspecting RecordHouseholdCompositionRequest.cs
-Inspecting RecordHouseholdCompositionValidator.cs
-Inspecting RecordHousingSituationHandler.cs
-Inspecting RecordHousingSituationRequest.cs
-Inspecting RecordHousingSituationValidator.cs
-Inspecting RecordIdentityHandler.cs
-Inspecting RecordIdentityRequest.cs
-Inspecting RecordIdentityValidator.cs
-Inspecting RecordImmigrationDecisionHandler.cs
-Inspecting RecordImmigrationDecisionRequest.cs
-Inspecting RecordImmigrationDecisionValidator.cs
-Inspecting RecordPoliceResultHandler.cs
-Inspecting RecordPoliceResultRequest.cs
-Inspecting RecordPoliceResultResponse.cs
-Inspecting RecordResidencePermitHandler.cs
-Inspecting RecordResidencePermitRequest.cs
-Inspecting RecordResidencePermitValidator.cs
-Inspecting RejectCaseHandler.cs
-Inspecting RejectCaseRequest.cs
-Inspecting RejectCaseValidator.cs
-Inspecting ReleaseCaseLockHandler.cs
-Inspecting RemoveDocumentHandler.cs
-Inspecting RemoveDocumentResponse.cs
-Inspecting RequestPoliceVerificationHandler.cs
-Inspecting RequestPoliceVerificationResponse.cs
-Inspecting ResolveDuplicateInvestigationHandler.cs
-Inspecting ResolveDuplicateInvestigationRequest.cs
-Inspecting ResolveDuplicateInvestigationRequestValidator.cs
-Inspecting ResumeCaseHandler.cs
-Inspecting ResumeCaseResponse.cs
-Inspecting SearchNationalRegisterHandler.cs
-Inspecting SearchNationalRegisterRequest.cs
-Inspecting SearchNationalRegisterValidator.cs
-Inspecting SearchNationalRegisterResponse.cs
-Inspecting SearchReferenceDataHandlers.cs
-Inspecting SetResidenceCategoryHandler.cs
-Inspecting SetResidenceCategoryRequest.cs
-Inspecting SetResidenceCategoryValidator.cs
-Inspecting SuspendCaseHandler.cs
-Inspecting SuspendCaseRequest.cs
-Inspecting SuspendCaseValidator.cs
-Inspecting CaseAuditRecorder.cs
-Inspecting CertificateReferenceNumberGenerator.cs
-Inspecting OfficerDisplayNames.cs
-Inspecting RegistrationCaseAuthorization.cs
-Inspecting RegistrationCaseGuard.cs
-Inspecting RegistrationExceptionEvaluator.cs
-Inspecting RegistrationExceptionStateCalculator.cs
-Inspecting RegistrationResidenceEvaluator.cs
-Inspecting VisitReasonLabels.cs
-Inspecting GetMunicipalityReportHandler.cs
-Inspecting GetMunicipalityReportResponse.cs
-Inspecting ReportingAuthorization.cs
-Inspecting BelgianAddressRules.cs
-Inspecting Class1.cs
-Inspecting DependencyInjection.cs
-Inspecting SchaerbeekMunicipality.Api.csproj
-Inspecting AttachDocumentEndpoint.cs
-Inspecting AutoClaimBirthDeclarationCaseEndpoint.cs
-Inspecting ConfirmBirthDeclarationEndpoint.cs
-Inspecting ClaimBirthDeclarationCaseEndpoint.cs
-Inspecting DownloadDocumentEndpoint.cs
-Inspecting GetBirthDeclarationCaseEndpoint.cs
-Inspecting LinkParentEndpoint.cs
-Inspecting GetBirthDeclarationChecklistEndpoint.cs
-Inspecting ListBirthDeclarationCasesEndpoint.cs
-Inspecting OpenBirthDeclarationCaseEndpoint.cs
-Inspecting RecordChildDetailsEndpoint.cs
-Inspecting RejectBirthDeclarationEndpoint.cs
-Inspecting ReleaseCaseLockEndpoint.cs
-Inspecting RemoveDocumentEndpoint.cs
-Inspecting ResumeBirthDeclarationEndpoint.cs
-Inspecting SetDeclarationHouseholdEndpoint.cs
-Inspecting SuspendBirthDeclarationEndpoint.cs
-Inspecting UnlinkParentEndpoint.cs
-Inspecting BirthDeclarationEndpoints.cs
-Inspecting AttachDocumentEndpoint.cs
-Inspecting AutoClaimChangeOfAddressCaseEndpoint.cs
-Inspecting ClaimChangeOfAddressCaseEndpoint.cs
-Inspecting ConfirmAddressChangeEndpoint.cs
-Inspecting DeclareNewAddressEndpoint.cs
-Inspecting GetChangeOfAddressCaseEndpoint.cs
-Inspecting DownloadDocumentEndpoint.cs
-Inspecting GetChangeOfAddressChecklistEndpoint.cs
-Inspecting OpenChangeOfAddressCaseEndpoint.cs
-Inspecting RejectChangeOfAddressEndpoint.cs
-Inspecting ListChangeOfAddressCasesEndpoint.cs
-Inspecting ReleaseCaseLockEndpoint.cs
-Inspecting RemoveDocumentEndpoint.cs
-Inspecting RequestPoliceVerificationEndpoint.cs
-Inspecting ResolveRegisteredPersonEndpoint.cs
-Inspecting UnlinkHouseholdMemberEndpoint.cs
-Inspecting UpdateHouseholdForMoveEndpoint.cs
-Inspecting ChangeOfAddressEndpoints.cs
-Inspecting AdvanceDocumentRequestStatusEndpoint.cs
-Inspecting AttachApplicantPhotoEndpoint.cs
-Inspecting AutoClaimDocumentRequestCaseEndpoint.cs
-Inspecting CancelDocumentRequestEndpoint.cs
-Inspecting ClaimDocumentRequestCaseEndpoint.cs
-Inspecting DownloadDocumentEndpoint.cs
-Inspecting GetDocumentRequestCaseEndpoint.cs
-Inspecting IssueDocumentEndpoint.cs
-Inspecting ListDocumentRequestCasesEndpoint.cs
-Inspecting OpenDocumentRequestCaseEndpoint.cs
-Inspecting RecordFeePaymentEndpoint.cs
-Inspecting RemoveDocumentEndpoint.cs
-Inspecting IdentityDocumentsEndpoints.cs
-Inspecting ReleaseCaseLockEndpoint.cs
-Inspecting ResolveRegisteredPersonEndpoint.cs
-Inspecting GetPersonFileEndpoint.cs
-Inspecting ListPersonCasesEndpoint.cs
-Inspecting SearchPersonFileEndpoint.cs
-Inspecting PersonFileEndpoints.cs
-Inspecting ApproveCaseEndpoint.cs
-Inspecting AttachDocumentEndpoint.cs
-Inspecting AutoClaimRegistrationCaseEndpoint.cs
-Inspecting ClaimRegistrationCaseEndpoint.cs
-Inspecting ConvertBisNumberEndpoint.cs
-Inspecting ConfirmRegistrationEndpoint.cs
-Inspecting CorrectIdentityEndpoint.cs
-Inspecting DeclareAddressEndpoint.cs
-Inspecting DownloadDocumentEndpoint.cs
-Inspecting GetCaseReviewChecklistEndpoint.cs
-Inspecting GetRegistrationCaseEndpoint.cs
-Inspecting GetReviewDashboardEndpoint.cs
-Inspecting IssueResidenceCertificateEndpoint.cs
-Inspecting IssueHouseholdCompositionEndpoint.cs
-Inspecting LinkExistingPersonEndpoint.cs
-Inspecting ListCaseAuditEndpoint.cs
-Inspecting ListOutboundNotificationsEndpoint.cs
-Inspecting ListPendingPoliceVerificationsEndpoint.cs
-Inspecting ListRegistrationCasesEndpoint.cs
-Inspecting OpenRegistrationCaseEndpoint.cs
-Inspecting RecordBirthInformationEndpoint.cs
-Inspecting RecordCivilStatusEndpoint.cs
-Inspecting RecordHouseholdCompositionEndpoint.cs
-Inspecting RecordHousingSituationEndpoint.cs
-Inspecting RecordIdentityEndpoint.cs
-Inspecting RecordImmigrationDecisionEndpoint.cs
-Inspecting RecordPoliceResultEndpoint.cs
-Inspecting RecordResidencePermitEndpoint.cs
-Inspecting RejectCaseEndpoint.cs
-Inspecting ReleaseCaseLockEndpoint.cs
-Inspecting RemoveDocumentEndpoint.cs
-Inspecting ResolveDuplicateInvestigationEndpoint.cs
-Inspecting ResumeCaseEndpoint.cs
-Inspecting RequestPoliceVerificationEndpoint.cs
-Inspecting SearchNationalRegisterEndpoint.cs
-Inspecting SearchReferenceDataEndpoints.cs
-Inspecting SetResidenceCategoryEndpoint.cs
-Inspecting SuspendCaseEndpoint.cs
-Inspecting RegistrationEndpoints.cs
-Inspecting GetMunicipalityReportEndpoint.cs
-Inspecting ReportingEndpoints.cs
-Inspecting DemoOfficerHeaders.cs
-Inspecting DemoOfficerMiddleware.cs
-Inspecting ValidationResults.cs
-Inspecting MunicipalApiHostExtensions.cs
-Inspecting DomainExceptionMiddleware.cs
-Inspecting Program.cs
-Inspecting ProgramMarker.cs
-Inspecting SchaerbeekMunicipality.ServiceDefaults.csproj
-Inspecting Extensions.cs
-Inspecting SchaerbeekMunicipality.Web.csproj
-Inspecting BirthDeclarationApiClient.cs
-Inspecting IBirthDeclarationApi.cs
-Inspecting ChangeOfAddressApiClient.cs
-Inspecting IChangeOfAddressApi.cs
-Inspecting IdentityDocumentsApiClient.cs
-Inspecting IIdentityDocumentsApi.cs
-Inspecting IPersonFileApi.cs
-Inspecting PersonFileApiClient.cs
-Inspecting IRegistrationApi.cs
-Inspecting RegistrationApiClient.cs
-Inspecting IReportingApi.cs
-Inspecting ReportingApiClient.cs
-Inspecting ApiException.cs
-Inspecting DemoOfficerHeaders.cs
-Inspecting DependencyInjection.cs
-Inspecting IMunicipalApiBridge.cs
-Inspecting MunicipalApiClientBase.cs
-Inspecting RoleSwitcher.razor
-Inspecting RoleSwitcher.razor
-Inspecting DemoOfficerPersistence.cs
-Inspecting _Imports.razor
-Inspecting _Imports.razor
-Inspecting AppEnums.cs
-Inspecting AppChecklistItem.cs
-Inspecting AppStatusChipMappings.cs
-Inspecting EnumDisplayExtensions.cs
-Inspecting AppChecklist.razor
-Inspecting AppChecklist.razor
-Inspecting AppDataTable.razor
-Inspecting AppDataTable.razor
-Inspecting AppFilePreview.razor
-Inspecting AppFilePreview.razor
-Inspecting AppPersonCard.razor
-Inspecting AppPersonCard.razor
-Inspecting AppPropertyGrid.razor
-Inspecting AppStatisticCard.razor
-Inspecting AppPropertyGrid.razor
-Inspecting AppStatisticCard.razor
-Inspecting AppStatusChip.razor
-Inspecting AppStatusChip.razor
-Inspecting AppTimeline.razor
-Inspecting AppTimeline.razor
-Inspecting AppDialogOptions.cs
-Inspecting AppDialogService.cs
-Inspecting IAppDialogService.cs
-Inspecting AppConfirmDialog.razor
-Inspecting AppConfirmDialog.razor
-Inspecting AppNavItem.cs
-Inspecting AppBreadcrumb.razor
-Inspecting AppBreadcrumb.razor
-Inspecting AppFooter.razor
-Inspecting AppFooter.razor
-Inspecting AppQuickActions.razor
-Inspecting AppQuickActions.razor
-Inspecting AppSideNavigation.razor
-Inspecting AppSideNavigation.razor
-Inspecting AppTopNavigation.razor
-Inspecting AppTopNavigation.razor
-Inspecting AppAlert.razor
-Inspecting AppAlert.razor
-Inspecting AppEmptyState.razor
-Inspecting AppEmptyState.razor
-Inspecting AppInfoBox.razor
-Inspecting AppInfoBox.razor
-Inspecting AppLoading.razor
-Inspecting AppLoading.razor
-Inspecting AppDateField.razor
-Inspecting AppDateField.razor
-Inspecting AppFieldLabel.razor
-Inspecting AppFieldLabel.razor
-Inspecting AppFormSection.razor
-Inspecting AppFormSection.razor
-Inspecting AppSaveCancelBar.razor
-Inspecting AppSaveCancelBar.razor
-Inspecting AppSearchBar.razor
-Inspecting AppSearchBar.razor
-Inspecting AppActionBar.razor
-Inspecting AppActionBar.razor
-Inspecting AppCard.razor
-Inspecting AppCard.razor
-Inspecting AppCollapsibleSection.razor
-Inspecting AppCollapsibleSection.razor
-Inspecting AppEditableSection.razor
-Inspecting AppEditableSection.razor
-Inspecting AppPage.razor
-Inspecting AppPage.razor
-Inspecting AppPageHeader.razor
-Inspecting AppPageHeader.razor
-Inspecting AppSection.razor
-Inspecting AppSection.razor
-Inspecting AppToolbar.razor
-Inspecting AppToolbar.razor
-Inspecting SchaerbeekTheme.cs
-Inspecting SchaerbeekTokens.cs
-Inspecting _Imports.razor
-Inspecting _Imports.razor
-Inspecting IdentityFormModel.cs
-Inspecting NewCaseDialogResult.cs
-Inspecting RegistrationIntakeStep.cs
-Inspecting RegistrationIntakeStepSummaries.cs
-Inspecting AddressStep.razor
-Inspecting AddressStep.razor
-Inspecting ApproveCaseDialog.razor
-Inspecting ApproveCaseDialog.razor
-Inspecting BirthInformationStep.razor
-Inspecting BirthInformationStep.razor
-Inspecting CaseDecisionSection.razor
-Inspecting CaseDecisionSection.razor
-Inspecting CertificatesSection.razor
-Inspecting CertificatesSection.razor
-Inspecting CivilStatusStep.razor
-Inspecting CivilStatusStep.razor
-Inspecting DocumentUpload.razor
-Inspecting DocumentUpload.razor
-Inspecting HouseholdStep.razor
-Inspecting HouseholdStep.razor
-Inspecting IdentityFormSection.razor
-Inspecting IdentityFormSection.razor
-Inspecting NationalRegisterSearchDialog.razor
-Inspecting NationalRegisterSearchDialog.razor
-Inspecting NewCaseDialog.razor
-Inspecting NewCaseDialog.razor
-Inspecting PoliceVerificationSection.razor
-Inspecting PoliceVerificationSection.razor
-Inspecting ReasonNotesDialog.razor
-Inspecting ReasonNotesDialog.razor
-Inspecting RecordPoliceResultDialog.razor
-Inspecting RecordPoliceResultDialog.razor
-Inspecting RegistrationCaseChecklistProgress.razor
-Inspecting RegistrationCaseChecklistProgress.razor
-Inspecting RegistrationCaseDocumentPanel.razor
-Inspecting RegistrationCaseDocumentPanel.razor
-Inspecting RegistrationRoleGate.razor
-Inspecting RejectCaseDialog.razor
-Inspecting RegistrationRoleGate.razor
-Inspecting RejectCaseDialog.razor
-Inspecting ResidenceStep.razor
-Inspecting ResidenceStep.razor
-Inspecting SuspendCaseDialog.razor
-Inspecting SuspendCaseDialog.razor
-Inspecting NewRegistrationCasePage.razor
-Inspecting NewRegistrationCasePage.razor
-Inspecting OutboundNotificationsPage.razor
-Inspecting OutboundNotificationsPage.razor
-Inspecting PoliceVerificationList.razor
-Inspecting PoliceVerificationList.razor
-Inspecting RegistrationCaseDetail.razor
-Inspecting RegistrationCaseDetail.razor
-Inspecting RegistrationCaseList.razor
-Inspecting RegistrationCaseList.razor
-Inspecting ReviewDashboard.razor
-Inspecting ReviewDashboard.razor
-Inspecting BirthDeclarationDecisionSection.razor
-Inspecting BirthDeclarationDecisionSection.razor
-Inspecting BirthDeclarationDocumentPanel.razor
-Inspecting BirthDeclarationDocumentPanel.razor
-Inspecting MedicalDeclarationUpload.razor
-Inspecting MedicalDeclarationUpload.razor
-Inspecting ParentLinkDialog.razor
-Inspecting ParentLinkDialog.razor
-Inspecting BirthDeclarationCaseDetail.razor
-Inspecting BirthDeclarationCaseDetail.razor
-Inspecting BirthDeclarationCaseList.razor
-Inspecting BirthDeclarationCaseList.razor
-Inspecting ChangeOfAddressDecisionSection.razor
-Inspecting ChangeOfAddressDecisionSection.razor
-Inspecting OpenChangeOfAddressDialog.razor
-Inspecting OpenChangeOfAddressDialog.razor
-Inspecting ChangeOfAddressCaseDetail.razor
-Inspecting ChangeOfAddressCaseDetail.razor
-Inspecting ChangeOfAddressCaseList.razor
-Inspecting ChangeOfAddressCaseList.razor
-Inspecting ApplicantPhotoUpload.razor
-Inspecting ApplicantPhotoUpload.razor
-Inspecting CancelDocumentRequestDialog.razor
-Inspecting CancelDocumentRequestDialog.razor
-Inspecting DocumentRequestStatusSection.razor
-Inspecting DocumentRequestStatusSection.razor
-Inspecting OpenDocumentRequestDialog.razor
-Inspecting OpenDocumentRequestDialog.razor
-Inspecting DocumentRequestCaseDetail.razor
-Inspecting DocumentRequestCaseList.razor
-Inspecting DocumentRequestCaseDetail.razor
-Inspecting DocumentRequestCaseList.razor
-Inspecting PersonFilePage.razor
-Inspecting PersonFilePage.razor
-Inspecting PersonSearchPage.razor
-Inspecting PersonSearchPage.razor
-Inspecting MunicipalityReportsPage.razor
-Inspecting MunicipalityReportsPage.razor
-Inspecting _Imports.razor
-Inspecting _Imports.razor
-Inspecting CaseDocumentItem.cs
-Inspecting NationalRegisterSearchModels.cs
-Inspecting BelgianAddressFields.razor
-Inspecting BelgianAddressFields.razor
-Inspecting CaseDocumentPanel.razor
-Inspecting CaseDocumentPanel.razor
-Inspecting CaseLockActions.razor
-Inspecting CaseLockActions.razor
-Inspecting CaseLockBar.razor
-Inspecting CaseLockBar.razor
-Inspecting NationalRegisterSearchForm.razor
-Inspecting NationalRegisterSearchForm.razor
-Inspecting OfficerDecisionChecklist.razor
-Inspecting OfficerDecisionChecklist.razor
-Inspecting AddressFormatting.cs
-Inspecting NationalRegisterFormatting.cs
-Inspecting _Imports.razor
-Inspecting _Imports.razor
-Inspecting FluentMudValidation.cs
-Inspecting MainLayout.razor
-Inspecting ReconnectModal.razor
-Inspecting MainLayout.razor
-Inspecting ReconnectModal.razor
-Inspecting DesignSystemShowcase.razor
-Inspecting DesignSystemShowcase.razor
-Inspecting Error.razor
-Inspecting Error.razor
-Inspecting Home.razor
-Inspecting Home.razor
-Inspecting NotFound.razor
-Inspecting NotFound.razor
-Inspecting App.razor
-Inspecting App.razor
-Inspecting Routes.razor
-Inspecting Routes.razor
-Inspecting _Imports.razor
-Inspecting _Imports.razor
-Inspecting DependencyInjection.cs
-Inspecting Program.cs
-Inspecting ProgramMarker.cs
-Inspecting WebProgram.cs
-Inspecting SchaerbeekMunicipality.AppHost.csproj
-Inspecting AppHost.cs
-Inspecting SchaerbeekMunicipality.Domain.Tests.csproj
-Inspecting BelgianAddressTests.cs
-Inspecting BirthDeclarationCaseTestData.cs
-Inspecting BirthDeclarationCaseTests.cs
-Inspecting ChangeOfAddressCaseTests.cs
-Inspecting PersonTests.cs
-Inspecting DocumentRequestCaseTests.cs
-Inspecting ResidencePolicyTests.cs
-Inspecting NationalRegisterSearchScorerTests.cs
-Inspecting RegistrationCaseNationalRegisterTests.cs
-Inspecting RegisterTargetResolverTests.cs
-Inspecting RegistrationCaseAddressTests.cs
-Inspecting RegistrationCaseCorrectionTests.cs
-Inspecting RegistrationCaseDecisionTests.cs
-Inspecting RegistrationCaseLockingTests.cs
-Inspecting RegistrationCasePoliceVerificationTests.cs
-Inspecting RegistrationCaseResidenceTests.cs
-Inspecting RegistrationCaseTestData.cs
-Inspecting RegistrationCaseTests.cs
-Inspecting RegistrationExceptionRulesTests.cs
-Inspecting SchaerbeekMunicipality.Integration.Tests.csproj
-Inspecting DesignSystemComponentTests.cs
-Inspecting BffApiClientTests.cs
-Inspecting SchaerbeekColorContrastTests.cs
-Inspecting BirthDeclarationTestHelpers.cs
-Inspecting BirthDeclarationTests.cs
-Inspecting ChangeOfAddressTests.cs
-Inspecting DocumentRequestTests.cs
-Inspecting PersonFileTests.cs
-Inspecting AddressAndHouseholdTests.cs
-Inspecting CaseDecisionTests.cs
-Inspecting CaseIntakeTests.cs
-Inspecting CertificatesAndNotificationsTests.cs
-Inspecting IntakeCorrectionTests.cs
-Inspecting NationalRegisterTests.cs
-Inspecting Phase9ExceptionScenarioTests.cs
-Inspecting PoliceVerificationTests.cs
-Inspecting RegistrationApiTests.cs
-Inspecting RegistrationIntakeStepSummariesTests.cs
-Inspecting RegistrationTestHelpers.cs
-Inspecting RegistrationValidatorTests.cs
-Inspecting ResidenceCategoryTests.cs
-Inspecting RoleBoundariesAndCaseLockingTests.cs
-Inspecting MunicipalityReportTests.cs
-Inspecting PostgreSqlMigrationTests.cs
-Inspecting HealthEndpointTests.cs
-Inspecting MunicipalAppFactory.cs
-Inspecting SchaerbeekMunicipality.E2E.Tests.csproj
-Inspecting DemoOfficerUrls.cs
-Inspecting MunicipalApiBridge.cs
-Inspecting MunicipalE2EFixture.cs
-Inspecting MunicipalWebAppFactory.cs
-Inspecting MunicipalWebHost.cs
-Inspecting PlaywrightPageExtensions.cs
-Inspecting BirthDeclarationE2ETests.cs
-Inspecting ChangeOfAddressE2ETests.cs
-Inspecting DocumentRequestE2ETests.cs
-Inspecting RegistrationConfirmE2ETests.cs
-Inspecting RegistrationIntakeE2ETests.cs
-Inspecting RoleBoundaryE2ETests.cs
-Inspecting E2ECaseSeeder.cs
-Inspecting index.html
-Inspecting index.html
-Inspecting index.html
-Inspecting index.html
-Inspecting snapshot.html
-Inspecting uiMode.html
-Inspecting E2ECollection.cs
-Inspection report was written to /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-current.sarif
-
+Warning: Files fr
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c "
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
 import json
 from collections import Counter, defaultdict
-with open('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-warnings-final.sarif') as f:
+with open(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-warnings-final.sarif&#39;) as f:
     data = json.load(f)
-results = data['runs'][0]['results']
+results = data[&#39;runs&#39;][0][&#39;results&#39;]
 # sample NotAccessedPositionalProperty
-samples = [r for r in results if r['ruleId']=='NotAccessedPositionalProperty.Global'][:5]
+samples = [r for r in results if r[&#39;ruleId&#39;]==&#39;NotAccessedPositionalProperty.Global&#39;][:5]
 for r in samples:
-    loc = r['locations'][0]['physicalLocation']
-    uri = loc['artifactLocation']['uri'].split('/')[-1]
-    line = loc['region']['startLine']
-    print(f'{uri}:{line} - {r[\"message\"][\"text\"]}')
-print('---')
+    loc = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;]
+    uri = loc[&#39;artifactLocation&#39;][&#39;uri&#39;].split(&#39;/&#39;)[-1]
+    line = loc[&#39;region&#39;][&#39;startLine&#39;]
+    print(f&#39;{uri}:{line} - {r[\&#34;message\&#34;][\&#34;text\&#34;]}&#39;)
+print(&#39;---&#39;)
 # count by file for non-NotAccessed
-other = [r for r in results if r['ruleId']!='NotAccessedPositionalProperty.Global']
+other = [r for r in results if r[&#39;ruleId&#39;]!=&#39;NotAccessedPositionalProperty.Global&#39;]
 for r in other:
-    loc = r['locations'][0]['physicalLocation']
-    uri = loc['artifactLocation']['uri'].replace('file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/','')
-    line = loc['region']['startLine']
-    print(f'{r[\"ruleId\"]}: {uri}:{line} - {r[\"message\"][\"text\"]}')
-"</summary>
-
+    loc = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;]
+    uri = loc[&#39;artifactLocation&#39;][&#39;uri&#39;].replace(&#39;file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/&#39;,&#39;&#39;)
+    line = loc[&#39;region&#39;][&#39;startLine&#39;]
+    print(f&#39;{r[\&#34;ruleId\&#34;]}: {uri}:{line} - {r[\&#34;message\&#34;][\&#34;text\&#34;]}&#39;)
+&#34;</summary>
 ```bash
 python3 -c "
 import json
@@ -5076,58 +1321,9 @@ ClaimBirthDeclarationCaseHandler.cs:13 - Positional property 'SchaerbeekMunicipa
 ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor:517 - Expression is always false according to nullable reference types' annotations
 ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract: src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor:213 - Expression is always true according to nullable reference types' annotations
 ConvertTypeCheckPatternToNullCheck: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs:16 - Use not null pattern instead of a type check succeeding on any not-null value
-ConvertTypeCheckPatternToNullCheck: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs:16 - Use not null pattern instead of a type check succeeding on any not-null value
-ConvertTypeCheckPatternToNullCheck: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor:28 - Use not null pattern instead of a type check succeeding on any not-null value
-Html.TagShouldNotBeSelfClosed: src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppFilePreview.razor:10 - Element 'iframe' requires a closing tag.
-InconsistentNaming: src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor:102 - Name '_selectedDocument' does not match rule 'Properties'. Suggested name is 'SelectedDocument'.
-NotAccessedField.Local: src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor:214 - Field '_addressForm' is assigned but its value is never used
-NotAccessedField.Local: src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor:189 - Field '_childForm' is assigned but its value is never used
-NotAccessedField.Local: src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor:58 - Field '_form' is assigned but its value is never used
-ParameterOnlyUsedForPreconditionCheck.Local: src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/ConfirmBirthDeclaration/ConfirmBirthDeclarationHandler.cs:21 - Parameter 'currentOfficer' is only used for precondition check(s)
-ParameterOnlyUsedForPreconditionCheck.Local: src/SchaerbeekMunicipality.Application/Features/BirthDeclaration/ResumeBirthDeclaration/ResumeBirthDeclarationHandler.cs:11 - Parameter 'currentOfficer' is only used for precondition check(s)
-ParameterOnlyUsedForPreconditionCheck.Local: src/SchaerbeekMunicipality.Application/Features/ChangeOfAddress/ConfirmAddressChange/ConfirmAddressChangeHandler.cs:14 - Parameter 'currentOfficer' is only used for precondition check(s)
-ParameterOnlyUsedForPreconditionCheck.Local: src/SchaerbeekMunicipality.Application/Features/Registration/ConfirmRegistration/ConfirmRegistrationHandler.cs:17 - Parameter 'currentOfficer' is only used for precondition check(s)
-ParameterOnlyUsedForPreconditionCheck.Local: src/SchaerbeekMunicipality.Application/Features/Registration/ResumeCase/ResumeCaseHandler.cs:10 - Parameter 'currentOfficer' is only used for precondition check(s)
-PatternAlwaysMatches: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs:16 - The source expression always matches the provided pattern
-PossibleMultipleEnumeration: tests/SchaerbeekMunicipality.Integration.Tests/Persistence/PostgreSqlMigrationTests.cs:36 - Possible multiple enumeration
-PossibleMultipleEnumeration: tests/SchaerbeekMunicipality.Integration.Tests/Persistence/PostgreSqlMigrationTests.cs:37 - Possible multiple enumeration
-RedundantArgumentDefaultValue: tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs:147 - The parameter 'Page' has the same default value
-RedundantArgumentDefaultValue: tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs:147 - The parameter 'PageSize' has the same default value
-RedundantArgumentDefaultValue: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationIntakeStepSummariesTests.cs:17 - The parameter 'identityEstablished' has the same default value
-RedundantAssignment: src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor:69 - Value assigned is not used in any execution path
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs:154 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs:155 - The nullable warning suppression expression is redundant
-RedundantUsingDirective: tests/SchaerbeekMunicipality.Domain.Tests/IdentityDocuments/DocumentRequestCaseTests.cs:5 - Using directive is not required by the code and can be safely removed
-RedundantUsingDirective: tests/SchaerbeekMunicipality.Domain.Tests/NationalRegister/RegistrationCaseNationalRegisterTests.cs:4 - Using directive is not required by the code and can be safely removed
-RedundantUsingDirective: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs:4 - Using directive is not required by the code and can be safely removed
-RedundantUsingDirective: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs:8 - Using directive is not required by the code and can be safely removed
-RedundantUsingDirective: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:4 - Using directive is not required by the code and can be safely removed
-RedundantUsingDirective: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs:6 - Using directive is not required by the code and can be safely removed
-RedundantUsingDirective: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs:3 - Using directive is not required by the code and can be safely removed
-ReturnTypeCanBeNotNullable: src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor:126 - Return type of 'GetListItemClass' can be made non-nullable
-UnusedAutoPropertyAccessor.Global: src/SchaerbeekMunicipality.Web/Api/ApiException.cs:17 - Auto-property accessor 'StatusCode.get' is never used
-UnusedAutoPropertyAccessor.Global: src/SchaerbeekMunicipality.Web/Api/ApiException.cs:19 - Auto-property accessor 'Title.get' is never used
-UnusedMethodReturnValue.Local: src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs:84 - Method 'AddOpenTelemetryExporters' return value is never used
-UnusedParameter.Local: src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCollapsibleSection.razor:58 - Parameter '__builder' is never used
-UnusedParameter.Local: src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs:382 - Parameter 'services' is never used
-UnusedParameter.Local: src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs:446 - Parameter 'services' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs:46 - Local variable 'recordHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs:77 - Local variable 'recordHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs:100 - Local variable 'recordHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs:141 - Local variable 'recordHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs:28 - Local variable 'recordPoliceHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs:120 - Local variable 'recordPoliceHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs:34 - Local variable 'recordPoliceHandler' is never used
-VariableHidesOuterVariable: src/SchaerbeekMunicipality.Application/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs:43 - Local variable 'caseId' hides outer parameter with the same name
-VariableHidesOuterVariable: src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs:68 - Parameter 'tracing' hides outer parameter with the same name
-
+ConvertTypeCheckPatternToNullCheck: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddlewa
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -5137,23 +1333,23 @@ Checking fresh inspectcode results to understand the scope.
 
 240 `NotAccessedPositionalProperty.Global` warnings appear on DTO records. These likely come from external JSON serialization. Fixing them would require converting records to classes or adding suppression attributes. The user probably wants the 47 actionable non-bulk warnings instead. A systemic fix may still be needed for the DTO pattern.
 
-Three approaches are being weighed for the DTO warnings: `[UsedImplicitly]`, class-based records, or suppression rules. The next step is to check existing patterns and `.DotSettings` for suppression rules. "Big warnings" likely means severity rather than bulk count. The plan is to parse the fresh results and fix only the actionable non-bulk issues.</details></think>
+Three approaches are being weighed for the DTO warnings: `[UsedImplicitly]`, class-based records, or suppression rules. The next step is to check existing patterns and `.DotSettings` for suppression rules. "Big warnings" likely means severity rather than bulk count. The plan is to parse the fresh results and fix only the actionable non-bulk issues.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c "
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
 import json
 from collections import Counter
-with open('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-current.sarif') as f:
+with open(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-current.sarif&#39;) as f:
     data = json.load(f)
-results = data['runs'][0]['results']
-rules = Counter(r['ruleId'] for r in results)
-print(f'Total warnings: {len(results)}')
+results = data[&#39;runs&#39;][0][&#39;results&#39;]
+rules = Counter(r[&#39;ruleId&#39;] for r in results)
+print(f&#39;Total warnings: {len(results)}&#39;)
 for rule, count in rules.most_common():
-    print(f'  {count:4d}  {rule}')
-"</summary>
-
+    print(f&#39;  {count:4d}  {rule}&#39;)
+&#34;</summary>
 ```bash
 python3 -c "
 import json
@@ -5202,33 +1398,19 @@ Total warnings: 553
      1  UnusedMethodReturnValue.Local
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln.DotSettings</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln.DotSettings</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -5287,13 +1469,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -5305,7 +1480,8 @@ The target warnings include redundant usings, nullable errors, disposed closure 
 
 Auto-fixable warnings like redundant usings will be handled by CleanupCode. Remaining substantive issues will be fixed manually. DTO properties marked as unused are intentionally excluded from fixes.
 
-I am now compiling a detailed list of non-suppressed warnings, specifically targeting CS8622, disposed closure issues, and HTML path errors.</details></think>
+I am now compiling a detailed list of non-suppressed warnings, specifically targeting CS8622, disposed closure issues, and HTML path errors.
+</details></think>
 
 _**Agent (default)**_
 
@@ -5314,31 +1490,30 @@ InspectCode found 553 warnings; DotSettings already suppresses the 240 DTO noise
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c "
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
 import json
 from collections import Counter, defaultdict
-with open('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-current.sarif') as f:
+with open(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-current.sarif&#39;) as f:
     data = json.load(f)
-results = data['runs'][0]['results']
-SUPPRESSED = {'NotAccessedPositionalProperty', 'NotAccessedPositionalProperty.Global', 
-              'ParameterOnlyUsedForPreconditionCheck', 'ParameterOnlyUsedForPreconditionCheck.Local',
-              'Html', 'Html.PathError', 'Html.TagShouldNotBeSelfClosed'}
-filtered = [r for r in results if r['ruleId'] not in SUPPRESSED]
-rules = Counter(r['ruleId'] for r in filtered)
-print(f'Actionable warnings (excluding DotSettings suppressed): {len(filtered)}')
+results = data[&#39;runs&#39;][0][&#39;results&#39;]
+SUPPRESSED = {&#39;NotAccessedPositionalProperty&#39;, &#39;NotAccessedPositionalProperty.Global&#39;, 
+              &#39;ParameterOnlyUsedForPreconditionCheck&#39;, &#39;ParameterOnlyUsedForPreconditionCheck.Local&#39;,
+              &#39;Html&#39;, &#39;Html.PathError&#39;, &#39;Html.TagShouldNotBeSelfClosed&#39;}
+filtered = [r for r in results if r[&#39;ruleId&#39;] not in SUPPRESSED]
+rules = Counter(r[&#39;ruleId&#39;] for r in filtered)
+print(f&#39;Actionable warnings (excluding DotSettings suppressed): {len(filtered)}&#39;)
 for rule, count in rules.most_common():
-    print(f'  {count:4d}  {rule}')
+    print(f&#39;  {count:4d}  {rule}&#39;)
 print()
 # list CS warnings and AccessToDisposedClosure
 for r in filtered:
-    if 'CS86' in r['ruleId'] or r['ruleId'] in ('AccessToDisposedClosure','ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract','ConvertTypeCheckPatternToNullCheck','PatternAlwaysMatches','VariableHidesOuterVariable','PossibleMultipleEnumeration'):
-        loc = r['locations'][0]['physicalLocation']
-        uri = loc['artifactLocation']['uri'].replace('file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/','')
-        line = loc['region']['startLine']
-        print(f'{r[\"ruleId\"]}: {uri}:{line}')
-"</summary>
-
+    if &#39;CS86&#39; in r[&#39;ruleId&#39;] or r[&#39;ruleId&#39;] in (&#39;AccessToDisposedClosure&#39;,&#39;ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract&#39;,&#39;ConvertTypeCheckPatternToNullCheck&#39;,&#39;PatternAlwaysMatches&#39;,&#39;VariableHidesOuterVariable&#39;,&#39;PossibleMultipleEnumeration&#39;):
+        loc = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;]
+        uri = loc[&#39;artifactLocation&#39;][&#39;uri&#39;].replace(&#39;file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/&#39;,&#39;&#39;)
+        line = loc[&#39;region&#39;][&#39;startLine&#39;]
+        print(f&#39;{r[\&#34;ruleId\&#34;]}: {uri}:{line}&#39;)
+&#34;</summary>
 ```bash
 python3 -c "
 import json
@@ -5402,32 +1577,15 @@ CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/Features/BirthDeclaration
 CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor:159
 CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor:6
 CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor:15
-CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor:5
-ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor:529
-ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract: src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor:221
-ConvertTypeCheckPatternToNullCheck: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs:14
-ConvertTypeCheckPatternToNullCheck: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs:14
-ConvertTypeCheckPatternToNullCheck: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor:30
-PatternAlwaysMatches: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs:14
-PossibleMultipleEnumeration: tests/SchaerbeekMunicipality.Integration.Tests/Persistence/PostgreSqlMigrationTests.cs:31
-PossibleMultipleEnumeration: tests/SchaerbeekMunicipality.Integration.Tests/Persistence/PostgreSqlMigrationTests.cs:32
-VariableHidesOuterVariable: src/SchaerbeekMunicipality.Application/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs:43
-VariableHidesOuterVariable: src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs:68
-
+CSharpWarnings::CS8622: src/SchaerbeekMuni
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --profile="Full Cleanup" --include="**/*.cs" --no-build 2>&1 | tail -30</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --profile=&#34;Full Cleanup&#34; --include=&#34;**/*.cs&#34; --no-build 2&gt;&amp;1 | tail -30</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --profile="Full Cleanup" --include="**/*.cs" --no-build 2>&1 | tail -30
 ```
@@ -5452,25 +1610,9 @@ Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerat
 Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
 Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
 Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Warning: Files from 'Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator' generator detected.
-Failed to run cleanup. Unable to find the code cleanup profile with 'Full Cleanup' name
-
+Warning: Files from 'Mic
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -5478,13 +1620,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The cleanup failed due to an incorrect profile name.
 
-Trying the default profile or listing available profiles. Some files still need manual fixes.</details></think>
+Trying the default profile or listing available profiles. Some files still need manual fixes.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh --help 2>&1 | head -40</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh --help 2&gt;&amp;1 | head -40</summary>
 ```bash
 /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh --help 2>&1 | head -40
 ```
@@ -5510,166 +1652,95 @@ Options:
   --dotnetcore : .NET Core path. Empty to ignore .NET Core. Not specified for autodetect. Example: --dotnetcore=/usr/local/share/dotnet/dotnet.
   --dotnetcoresdk : .NET Core SDK version. Example: --dotnetcoresdk=3.0.100.
   --disable-settings-layers (-dsl) : Disable specified settings layers. Possible values: GlobalAll, GlobalPerProduct, SolutionShared, SolutionPersonal, ProjectShared, ProjectPersonal.
-  --no-buildin-settings : Suppress global, solution and project settings profile usage. Alias for --disable-settings-layers:GlobalAll;GlobalPerProduct;SolutionShared;SolutionPersonal;ProjectShared;ProjectPersonal (default: False).
-  --caches-home : Path to the directory where produced caches will be stored.
-  --properties : MSBuild properties.
-  --targets-for-references : MSBuild targets. These targets will be executed to get referenced assemblies of projects..
-  --targets-for-items : MSBuild targets. These targets will be executed to get other items (e.g. Compile item) of projects..
-  --eXtensions (-x) : Install and use specified extensions.
-  --source : Install extensions from specified source(s).
-  --measure : Measure own tool's performance [MEMORY, SAMPLING, TIMELINE].
-  --no-build : Do not build solution before processing (default: False).
-  --build : Build solution before processing (default: True).
-  --target : MsBuild target to execute before processing. (default: Build).
-  --no-updates : Disable checking for updates.
-  --LogLevel : Logging level [OFF, FATAL, ERROR, WARN, INFO, VERBOSE, TRACE].
-  --LogFile : Log file path.
-  --LogFolder : Log folder path.
-Example:
-  cleanupcode --caches-home="C:\Temp\Cache" "C:\src\MySolution.sln"
-
+… (output truncated)
 ```
-</details>
-</tool-use>
+</details></tool-use>
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Running cleanupcode with the default profile. Reading more files that need fixing.</details></think>
+Running cleanupcode with the default profile. Reading more files that need fixing.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include="**/*.cs" --no-build 2>&1 | tail -20</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include=&#34;**/*.cs&#34; --no-build 2&gt;&amp;1 | tail -20</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include="**/*.cs" --no-build 2>&1 | tail -20
 ```
 
 ```
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.Integration.Tests&gt;\Features\Registration\ResidenceCategoryTests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.Integration.Tests&gt;\Features\Registration\RoleBoundariesAndCaseLockingTests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.Integration.Tests&gt;\Features\Reporting\MunicipalityReportTests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.Integration.Tests&gt;\Persistence\PostgreSqlMigrationTests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.Integration.Tests&gt;\HealthEndpointTests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.Integration.Tests&gt;\MunicipalAppFactory.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Infrastructure\DemoOfficerUrls.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Infrastructure\MunicipalApiBridge.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Infrastructure\MunicipalE2EFixture.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Infrastructure\MunicipalWebAppFactory.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Infrastructure\MunicipalWebHost.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Infrastructure\PlaywrightPageExtensions.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Journeys\BirthDeclarationE2ETests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Journeys\ChangeOfAddressE2ETests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Journeys\DocumentRequestE2ETests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Journeys\RegistrationConfirmE2ETests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Journeys\RegistrationIntakeE2ETests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Journeys\RoleBoundaryE2ETests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Seeding\E2ECaseSeeder.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\E2ECollection.cs
+<tests>\<SchaerbeekMunicipality.Integration.Tests>\Features\Registration\ResidenceCategoryTests.cs
+<tests>\<SchaerbeekMunicipality.Integration.Tests>\Features\Registration\RoleBoundariesAndCaseLockingTests.cs
+<tests>\<SchaerbeekMunicipality.Integration.Tests>\Features\Reporting\MunicipalityReportTests.cs
+<tests>\<SchaerbeekMunicipality.Integration.Tests>\Persistence\PostgreSqlMigrationTests.cs
+<tests>\<SchaerbeekMunicipality.Integration.Tests>\HealthEndpointTests.cs
+<tests>\<SchaerbeekMunicipality.Integration.Tests>\MunicipalAppFactory.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Infrastructure\DemoOfficerUrls.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Infrastructure\MunicipalApiBridge.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Infrastructure\MunicipalE2EFixture.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Infrastructure\MunicipalWebAppFactory.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Infrastructure\MunicipalWebHost.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Infrastructure\PlaywrightPageExtensions.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Journeys\BirthDeclarationE2ETests.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Journeys\ChangeOfAddressE2ETests.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Journeys\DocumentRequestE2ETests.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Journeys\RegistrationConfirmE2ETests.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Journeys\RegistrationIntakeE2ETests.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Journeys\RoleBoundaryE2ETests.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Seeding\E2ECaseSeeder.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\E2ECollection.cs
 
 ```
-</details>
-</tool-use>
+</details></tool-use>
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Persistence/PostgreSqlMigrationTests.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Persistence/PostgreSqlMigrationTests.cs</summary>
 
 </details></tool-use>
 
@@ -5691,13 +1762,13 @@ Four more issues identified:
 - Rename `caseId` to `mappedCaseId` in ListOutboundNotificationsHandler
 - Materialize applied to list before multiple enumerations in PostgreSqlMigrationTests
 
-Unused variables in tests were flagged. Reviewing git diff to identify remaining issues.</details></think>
+Unused variables in tests were flagged. Reviewing git diff to identify remaining issues.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git diff --stat 2>/dev/null | tail -20</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; git diff --stat 2&gt;/dev/null | tail -20</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git diff --stat 2>/dev/null | tail -20
 ```
@@ -5725,20 +1796,12 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git diff --stat
  572 files changed, 3186 insertions(+), 3358 deletions(-)
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -5768,51 +1831,26 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
 
 </details></tool-use>
 
@@ -5823,14 +1861,13 @@ Cleanupcode touched 572 files. Most changes were removing redundant usings and f
 
 Fixing remaining warnings manually. Checking null checks in RegistrationCaseDetail and BirthDeclarationCaseDetail. Fixing a catch pattern in DomainExceptionMiddleware. Verifying types for _createdCaseId and resolving CS8620/CS8622 warnings in BelgianAddressFields and MedicalDeclarationUpload.
 
-AccessToDisposedClosure warnings require proper await patterns or value captures. Reading more context for CS8622 and disposal scope issues.</details></think>
+AccessToDisposedClosure warnings require proper await patterns or value captures. Reading more context for CS8622 and disposal scope issues.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -5860,60 +1897,33 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -5944,13 +1954,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -5972,83 +1975,48 @@ The `AccessToDisposedClosure` fix is now fully captured: the lambda should invok
 
 `CS8620` in `BelgianAddressFields` comes from a type mismatch between `SearchStreets` and the `MudAutocomplete` `SearchFunc` parameter.
 
-The `CS8620` mismatch in `BelgianAddressFields` is caused by a nullability difference: `SearchStreets` returns `Task<IEnumerable<StreetDto>>` while `MudAutocomplete.SearchFunc` expects `Task<IEnumerable<StreetDto?>>`. The fix is to change the parameter type to `Func<string, CancellationToken, Task<IEnumerable<StreetDto?>>>` or wrap the search function accordingly. Next, I will check the remaining `CS8622` warnings and any other outstanding issues.</details></think>
+The `CS8620` mismatch in `BelgianAddressFields` is caused by a nullability difference: `SearchStreets` returns `Task<IEnumerable<StreetDto>>` while `MudAutocomplete.SearchFunc` expects `Task<IEnumerable<StreetDto?>>`. The fix is to change the parameter type to `Func<string, CancellationToken, Task<IEnumerable<StreetDto?>>>` or wrap the search function accordingly. Next, I will check the remaining `CS8622` warnings and any other outstanding issues.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
@@ -6059,14 +2027,13 @@ Reading additional files to fix remaining issues: AppSearchBar HandleValueChange
 
 CS8622 warnings require changing event handlers to return Task instead of void. The unused MainLayout assignment may be fire-and-forget. Still checking ApplicantPhotoUpload, DocumentUpload, and ChangeOfAddressCaseDetail for additional issues.
 
-Checking whether the @ref fields are truly unused so they can be removed or suppressed.</details></think>
+Checking whether the @ref fields are truly unused so they can be removed or suppressed.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -6150,51 +2117,26 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/ApiException.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Api/ApiException.cs</summary>
 
 </details></tool-use>
 
@@ -6205,70 +2147,41 @@ Reviewing AppSearchBar to resolve CS8622. The ValueChanged callback type and Han
 
 CS8622 likely stems from a nullability mismatch between HandleValueChanged(string) and MudTextField.ValueChanged expecting string?. BelgianAddressFields.SearchStreets should use IEnumerable<StreetDto?>.
 
-Unused @ref attributes on form components may be removable. These references appear only bound to IsValid and never invoke ValidateAsync. Reading the affected files now.</details></think>
+Unused @ref attributes on form components may be removable. These references appear only bound to IsValid and never invoke ValidateAsync. Reading the affected files now.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppFilePreview.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppFilePreview.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
 
 </details></tool-use>
 
@@ -6285,7 +2198,8 @@ Unused recordHandler variables in tests will be removed. A redundant assignment 
 
 The remaining AccessToDisposedClosure warnings are at lines 133-134 and 176-177. I will run inspectcode with DotSettings to check the remaining warning count after these fixes.
 
-I will pass the DotSettings file directly to inspectcode. I am also excluding the NotAccessedPositionalProperty rule from the run. DemoWorkflowCaseSeeder may have fewer unused parameters after the recent cleanup. All edits will be applied in a single batch.</details></think>
+I will pass the DotSettings file directly to inspectcode. I am also excluding the NotAccessedPositionalProperty rule from the run. DemoWorkflowCaseSeeder may have fewer unused parameters after the recent cleanup. All edits will be applied in a single batch.
+</details></think>
 
 _**Agent (default)**_
 
@@ -6294,100 +2208,50 @@ Applying manual fixes for the substantive warnings cleanupcode couldn't handle.
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 The string to replace was not found in the file.
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/ListOutboundNotifications/ListOutboundNotificationsHandler.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Persistence/PostgreSqlMigrationTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Persistence/PostgreSqlMigrationTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppFilePreview.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppFilePreview.razor</summary>
 
 </details></tool-use>
 
@@ -6396,241 +2260,130 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 DomainExceptionMiddleware uses `detail:` instead of `detail`.
 
-Reading and fixing the code now.</details></think>
+Reading and fixing the code now.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Continuing with additional fixes.</details></think>
+Continuing with additional fixes.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Continuing to fix more warnings across several files. Removing unused references from RoleBoundariesAndCaseLockingTests and PoliceVerificationTests. Cleaning up unused variables in AppSearchBar.</details></think>
+Continuing to fix more warnings across several files. Removing unused references from RoleBoundariesAndCaseLockingTests and PoliceVerificationTests. Cleaning up unused variables in AppSearchBar.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RoleBoundariesAndCaseLockingTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -6661,36 +2414,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -6721,99 +2457,53 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Removing unused field declarations from BirthDeclarationCaseDetail and ChangeOfAddressCaseDetail.</details></think>
+Removing unused field declarations from BirthDeclarationCaseDetail and ChangeOfAddressCaseDetail.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -6888,13 +2578,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -6902,44 +2585,27 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Unused `recordHandler` variables were found in PoliceVerificationTests at lines 47, 78, 101, and 142. These tests use `RegistrationTestHelpers.RecordPoliceResultAsync` instead.
 
-Unused `recordPoliceHandler` variables will also be removed from CaseDecisionTests and CertificatesAncationsTests.</details></think>
+Unused `recordPoliceHandler` variables will also be removed from CaseDecisionTests and CertificatesAncationsTests.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs</summary>
 
 </details></tool-use>
 
@@ -6948,14 +2614,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Removing four unused RecordPoliceResultHandler references from PoliceVerificationTests.
 
-Checking whether recordPoliceHandler is used in CaseDecisionTests and CertificatesAndationsTests.</details></think>
+Checking whether recordPoliceHandler is used in CaseDecisionTests and CertificatesAndationsTests.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -6986,21 +2651,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -7031,134 +2687,73 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Only one recordHandler line was replaced. Three more remain in PoliceVerificationTests and must be removed individually.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Removing `recordPoliceHandler` from `CaseDecisionTests` at line 121.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<think><details><summary>Thought Process</summary>
-Only one recordHandler line was replaced. Three more remain in PoliceVerificationTests and must be removed individually.</details></think>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<think><details><summary>Thought Process</summary>
-Removing `recordPoliceHandler` from `CaseDecisionTests` at line 121.</details></think>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -7189,21 +2784,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -7234,21 +2820,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -7279,13 +2856,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -7297,13 +2867,13 @@ Cleanup code may have left a redundant using directive. This will be removed on 
 
 The BelgianAddressFields change could break callers. SearchStreets returns IEnumerable<StreetDto> but now expects IEnumerable<StreetDto?>. This should be covariant. Callers pass SearchStreets methods.
 
-Task<IEnumerable<StreetDto>> is compatible with the nullable return type. AppSearchBar CS8622 likely needs HandleValueChanged to accept string?. ChangeOfAddressCaseDetail UploadDocument is already async Task and should be fine. InspectCode will use DotSettings to exclude noise.</details></think>
+Task<IEnumerable<StreetDto>> is compatible with the nullable return type. AppSearchBar CS8622 likely needs HandleValueChanged to accept string?. ChangeOfAddressCaseDetail UploadDocument is already async Task and should be fine. InspectCode will use DotSettings to exclude noise.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --configuration Release --no-restore 2>&1 | tail -30</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build --configuration Release --no-restore 2&gt;&amp;1 | tail -30</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --configuration Release --no-restore 2>&1 | tail -30
 ```
@@ -7312,19 +2882,12 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --
 MSBUILD : error MSB1011: Specify which project or solution file to use because this folder contains more than one project or solution file.
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2>&1 | tail -5</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2&gt;&amp;1 | tail -5</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2>&1 | tail -5
 ```
@@ -7337,24 +2900,18 @@ Inspecting E2ECollection.cs
 Inspection report was written to /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The build failed because multiple solution files were present. I will specify the correct solution file.</details></think>
+The build failed because multiple solution files were present. I will specify the correct solution file.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln --configuration Release 2>&1 | tail -20</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build SchaerbeekMunicipality.sln --configuration Release 2&gt;&amp;1 | tail -20</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln --configuration Release 2>&1 | tail -20
 ```
@@ -7362,53 +2919,40 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build Sc
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Release/net10.0/SchaerbeekMunicipality.Application.dll
-  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Release/net10.0/SchaerbeekMunicipality.Api.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
-  SchaerbeekMunicipality.AppHost -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Release/net10.0/SchaerbeekMunicipality.AppHost.dll
-  SchaerbeekMunicipality.E2E.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Release/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
-
-Build succeeded.
-    0 Warning(s)
-    0 Error(s)
-
-Time Elapsed 00:00:10.69
-
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Release/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Release/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.AppHost -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Release/net10.0/SchaerbeekMunicipality.AppHost.dll
+  SchaerbeekMunicipality.E2E.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Release/net10.0/SchaerbeekMunicipali
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c "
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
 import json
 from collections import Counter
-SUPPRESSED = {'NotAccessedPositionalProperty', 'NotAccessedPositionalProperty.Global', 
-              'ParameterOnlyUsedForPreconditionCheck', 'ParameterOnlyUsedForPreconditionCheck.Local',
-              'Html', 'Html.PathError', 'Html.TagShouldNotBeSelfClosed'}
-for fname in ['resharper-current.sarif', 'resharper-after-fixes.sarif']:
-    with open(f'/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/{fname}') as f:
+SUPPRESSED = {&#39;NotAccessedPositionalProperty&#39;, &#39;NotAccessedPositionalProperty.Global&#39;, 
+              &#39;ParameterOnlyUsedForPreconditionCheck&#39;, &#39;ParameterOnlyUsedForPreconditionCheck.Local&#39;,
+              &#39;Html&#39;, &#39;Html.PathError&#39;, &#39;Html.TagShouldNotBeSelfClosed&#39;}
+for fname in [&#39;resharper-current.sarif&#39;, &#39;resharper-after-fixes.sarif&#39;]:
+    with open(f&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/{fname}&#39;) as f:
         data = json.load(f)
-    results = data['runs'][0]['results']
-    filtered = [r for r in results if r['ruleId'] not in SUPPRESSED]
-    rules = Counter(r['ruleId'] for r in filtered)
-    print(f'=== {fname}: total={len(results)}, actionable={len(filtered)} ===')
+    results = data[&#39;runs&#39;][0][&#39;results&#39;]
+    filtered = [r for r in results if r[&#39;ruleId&#39;] not in SUPPRESSED]
+    rules = Counter(r[&#39;ruleId&#39;] for r in filtered)
+    print(f&#39;=== {fname}: total={len(results)}, actionable={len(filtered)} ===&#39;)
     for rule, count in rules.most_common(20):
-        print(f'  {count:4d}  {rule}')
+        print(f&#39;  {count:4d}  {rule}&#39;)
     print()
-"</summary>
-
+&#34;</summary>
 ```bash
 python3 -c "
 import json
@@ -7476,12 +3020,6 @@ for fname in ['resharper-current.sarif', 'resharper-after-fixes.sarif']:
 
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -7489,29 +3027,29 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Actionable warnings dropped from 301 to 195.
 
-Remaining actionable warnings include 114 redundant using directives, five CS8622 issues, three CS8621 issues, one CS8620, two type-check pattern conversions, twelve unused variables, and several smaller items. The detailed list is being pulled to continue cleanup.</details></think>
+Remaining actionable warnings include 114 redundant using directives, five CS8622 issues, three CS8621 issues, one CS8620, two type-check pattern conversions, twelve unused variables, and several smaller items. The detailed list is being pulled to continue cleanup.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c "
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
 import json
-SUPPRESSED = {'NotAccessedPositionalProperty', 'NotAccessedPositionalProperty.Global', 
-              'ParameterOnlyUsedForPreconditionCheck', 'ParameterOnlyUsedForPreconditionCheck.Local',
-              'Html', 'Html.PathError', 'Html.TagShouldNotBeSelfClosed'}
-with open('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif') as f:
+SUPPRESSED = {&#39;NotAccessedPositionalProperty&#39;, &#39;NotAccessedPositionalProperty.Global&#39;, 
+              &#39;ParameterOnlyUsedForPreconditionCheck&#39;, &#39;ParameterOnlyUsedForPreconditionCheck.Local&#39;,
+              &#39;Html&#39;, &#39;Html.PathError&#39;, &#39;Html.TagShouldNotBeSelfClosed&#39;}
+with open(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif&#39;) as f:
     data = json.load(f)
-results = [r for r in data['runs'][0]['results'] if r['ruleId'] not in SUPPRESSED]
+results = [r for r in data[&#39;runs&#39;][0][&#39;results&#39;] if r[&#39;ruleId&#39;] not in SUPPRESSED]
 # exclude RedundantUsingDirective for readability
-for r in sorted(results, key=lambda x: x['ruleId']):
-    if r['ruleId'] == 'RedundantUsingDirective':
+for r in sorted(results, key=lambda x: x[&#39;ruleId&#39;]):
+    if r[&#39;ruleId&#39;] == &#39;RedundantUsingDirective&#39;:
         continue
-    loc = r['locations'][0]['physicalLocation']
-    uri = loc['artifactLocation']['uri'].replace('file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/','')
-    line = loc['region']['startLine']
-    print(f'{r[\"ruleId\"]}: {uri}:{line} - {r[\"message\"][\"text\"][:80]}')
-"</summary>
-
+    loc = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;]
+    uri = loc[&#39;artifactLocation&#39;][&#39;uri&#39;].replace(&#39;file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/&#39;,&#39;&#39;)
+    line = loc[&#39;region&#39;][&#39;startLine&#39;]
+    print(f&#39;{r[\&#34;ruleId\&#34;]}: {uri}:{line} - {r[\&#34;message\&#34;][\&#34;text\&#34;][:80]}&#39;)
+&#34;</summary>
 ```bash
 python3 -c "
 import json
@@ -7533,95 +3071,19 @@ for r in sorted(results, key=lambda x: x['ruleId']):
 ```
 
 ```
-CSharpWarnings::CS8620: src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor:16 - Argument of type 'System.Func&lt;string,System.Threading.CancellationToken,System.T
-CSharpWarnings::CS8621: src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor:110 - Nullability of reference types in return type 'System.Threading.Tasks.Task&lt;Syste
-CSharpWarnings::CS8621: src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor:33 - Nullability of reference types in return type 'System.Threading.Tasks.Task&lt;Syste
-CSharpWarnings::CS8621: src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor:61 - Nullability of reference types in return type 'System.Threading.Tasks.Task&lt;Syste
+CSharpWarnings::CS8620: src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor:16 - Argument of type 'System.Func<string,System.Threading.CancellationToken,System.T
+CSharpWarnings::CS8621: src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor:110 - Nullability of reference types in return type 'System.Threading.Tasks.Task<Syste
+CSharpWarnings::CS8621: src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor:33 - Nullability of reference types in return type 'System.Threading.Tasks.Task<Syste
+CSharpWarnings::CS8621: src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor:61 - Nullability of reference types in return type 'System.Threading.Tasks.Task<Syste
 CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor:6 - Nullability of reference types in type of parameter 'Microsoft.AspNetCore.Compon
 CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor:158 - Nullability of reference types in type of parameter 'Microsoft.AspNetCore.Compon
 CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor:6 - Nullability of reference types in type of parameter 'Microsoft.AspNetCore.Compon
 CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor:15 - Nullability of reference types in type of parameter 'Microsoft.AspNetCore.Compon
 CSharpWarnings::CS8622: src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor:5 - Nullability of reference types in type of parameter 'string value' of 'Schaerbee
 CheckNamespace: src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs:11 - Namespace does not correspond to file location, must be: 'SchaerbeekMunicipality
-CheckNamespace: src/SchaerbeekMunicipality.Web/Auth/DemoOfficerPersistence.cs:4 - Namespace does not correspond to file location, must be: 'SchaerbeekMunicipality
-ConditionalAccessQualifierIsNonNullableAccordingToAPIContract: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor:532 - Conditional access qualifier expression is never null according to nullable refe
-ConvertTypeCheckPatternToNullCheck: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs:16 - Use not null pattern instead of a type check succeeding on any not-null value
-ConvertTypeCheckPatternToNullCheck: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs:16 - Use not null pattern instead of a type check succeeding on any not-null value
-InconsistentNaming: src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor:99 - Name '_filterOptions' does not match rule 'Static readonly fields (private)'. Su
-InconsistentNaming: src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor:123 - Name '_filterOptions' does not match rule 'Static readonly fields (private)'. Su
-InconsistentNaming: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor:127 - Name '_filterOptions' does not match rule 'Static readonly fields (private)'. Su
-InconsistentNaming: src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor:110 - Name '_selectedDocument' does not match rule 'Properties'. Suggested name is 'Se
-PatternAlwaysMatches: src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs:16 - The source expression always matches the provided pattern
-RedundantArgumentDefaultValue: tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs:147 - The parameter 'Page' has the same default value
-RedundantArgumentDefaultValue: tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs:147 - The parameter 'PageSize' has the same default value
-RedundantArgumentDefaultValue: src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor:230 - The parameter 'Severity' has the same default value
-RedundantArgumentDefaultValue: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationIntakeStepSummariesTests.cs:17 - The parameter 'identityEstablished' has the same default value
-RedundantAssignment: src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor:72 - Value assigned is not used in any execution path
-RedundantDefaultMemberInitializer: src/SchaerbeekMunicipality.Web/Features/Registration/Components/ReasonNotesDialog.razor:52 - Initializing field by default value is redundant
-RedundantExplicitArrayCreation: src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppDataTable.razor:41 - Redundant explicit array type specification
-RedundantJumpStatement: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor:200 - Redundant control flow jump statement
-RedundantJumpStatement: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/NewRegistrationCasePage.razor:205 - Redundant control flow jump statement
-RedundantNameQualifier: src/SchaerbeekMunicipality.Web/Components/Routes.razor:3 - Qualifier is redundant
-RedundantSuppressNullableWarningExpression: src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs:16 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs:45 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.E2E.Tests/Journeys/BirthDeclarationE2ETests.cs:43 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs:47 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs:48 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs:72 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/ChangeOfAddress/ChangeOfAddressTests.cs:103 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/IdentityDocuments/DocumentRequestTests.cs:181 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs:88 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs:94 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs:29 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs:155 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs:158 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs:152 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationApiTests.cs:41 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationApiTests.cs:106 - The nullable warning suppression expression is redundant
-RedundantSuppressNullableWarningExpression: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs:86 - The nullable warning suppression expression is redundant
-UnusedAutoPropertyAccessor.Global: src/SchaerbeekMunicipality.Web/Api/ApiException.cs:17 - Auto-property accessor 'StatusCode.get' is never used
-UnusedAutoPropertyAccessor.Global: src/SchaerbeekMunicipality.Web/Api/ApiException.cs:19 - Auto-property accessor 'Title.get' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/NationalRegister/RegistrationCaseNationalRegisterTests.cs:11 - Field 'DemoOfficer' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseAddressTests.cs:10 - Field 'DemoOfficer' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseCorrectionTests.cs:10 - Field 'DemoOfficer' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCasePoliceVerificationTests.cs:11 - Field 'DemoOfficer' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseResidenceTests.cs:11 - Field 'DemoOfficer' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/IdentityDocuments/DocumentRequestCaseTests.cs:13 - Field 'OfficerId' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/NationalRegister/RegistrationCaseNationalRegisterTests.cs:14 - Field 'OpenedAt' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseAddressTests.cs:11 - Field 'OpenedAt' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseCorrectionTests.cs:11 - Field 'OpenedAt' is never used
-UnusedMember.Local: tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseResidenceTests.cs:12 - Field 'OpenedAt' is never used
-UnusedMember.Local: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor:9 - Property 'BirthDeclarationApi' is never used
-UnusedMember.Local: src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor:20 - Property 'CurrentOfficer' is never used
-UnusedMember.Local: src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor:8 - Property 'DialogService' is never used
-UnusedMember.Local: src/SchaerbeekMunicipality.Web/DesignSystem/Components/Navigation/AppTopNavigation.razor:2 - Property 'Navigation' is never used
-UnusedMember.Local: src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor:7 - Property 'Navigation' is never used
-UnusedMember.Local: src/SchaerbeekMunicipality.Web/Features/Registration/Pages/PoliceVerificationList.razor:11 - Property 'Navigation' is never used
-UnusedMethodReturnValue.Local: src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs:83 - Method 'AddOpenTelemetryExporters' return value is never used
-UnusedParameter.Local: src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCollapsibleSection.razor:68 - Parameter '__builder' is never used
-UnusedParameter.Local: src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs:475 - Parameter 'operation' is never used
-UnusedParameter.Local: src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs:382 - Parameter 'services' is never used
-UnusedParameter.Local: src/SchaerbeekMunicipality.Application/DemoData/DemoWorkflowCaseSeeder.cs:446 - Parameter 'services' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs:20 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs:37 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs:24 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs:117 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs:43 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs:29 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs:166 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:92 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:112 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs:137 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs:19 - Local variable 'openHandler' is never used
-UnusedVariable: tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs:108 - Local variable 'openHandler' is never used
-
+CheckNamespace: src/SchaerbeekMunicipality.Web/Auth/DemoOffic
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -7633,7 +3095,8 @@ CS8622 requires making the MudFileUpload parameter nullable. CS8620/CS8621 requi
 
 DomainExceptionMiddleware still has a tuple pattern null check on line 16 that ReSharper wants replaced.
 
-Replacing the tuple pattern with an explicit null check in DomainExceptionMiddleware. RegistrationCaseDetail line 532 can drop the null-conditional operator since audit is now guaranteed non-null. AppSearchBar needs its HandleValueChanged parameter changed to string?. Will run cleanupcode again to remove redundant usings and batch-fix unused openHandler variables in tests.</details></think>
+Replacing the tuple pattern with an explicit null check in DomainExceptionMiddleware. RegistrationCaseDetail line 532 can drop the null-conditional operator since audit is now guaranteed non-null. AppSearchBar needs its HandleValueChanged parameter changed to string?. Will run cleanupcode again to remove redundant usings and batch-fix unused openHandler variables in tests.
+</details></think>
 
 _**Agent (default)**_
 
@@ -7642,10 +3105,8 @@ Fixing the remaining nullable-reference and middleware warnings.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -7685,38 +3146,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
 
 </details></tool-use>
 
@@ -7727,14 +3169,13 @@ SearchStreets needs its return type changed to `Task<IEnumerable<StreetDto?>>` i
 
 CS8621 is a nullability mismatch. The method signature must return `Task<IEnumerable<StreetDto?>>`. For MudFileUpload CS8622, the `FilesChanged` callback should accept `IBrowserFile?`.
 
-DomainExceptionMiddleware now throws when MapException returns null. It then deconstructs the status code, title, and detail tuple. RegistrationCaseDetail needs its audit entries return type checked against ListCaseAudit.</details></think>
+DomainExceptionMiddleware now throws when MapException returns null. It then deconstructs the status code, title, and detail tuple. RegistrationCaseDetail needs its audit entries return type checked against ListCaseAudit.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -7769,147 +3210,68 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DomainExceptionMiddleware.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppSearchBar.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
 
 </details></tool-use>
 
@@ -7918,14 +3280,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 CS8622 warning on line 158 of ChangeOfAddressCaseDetail UploadDocument. Need to update UploadDocument to accept IBrowserFile.
 
-Running a second cleanup pass to remove redundant usings and batch-fix unused `openHandler` in test helpers.</details></think>
+Running a second cleanup pass to remove redundant usings and batch-fix unused `openHandler` in test helpers.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -7956,36 +3317,22 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include="**/*.cs" --no-build 2>&1 | tail -3</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include=&#34;**/*.cs&#34; --no-build 2&gt;&amp;1 | tail -3</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include="**/*.cs" --no-build 2>&1 | tail -3
 ```
 
 ```
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Journeys\RoleBoundaryE2ETests.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\Seeding\E2ECaseSeeder.cs
-&lt;tests&gt;\&lt;SchaerbeekMunicipality.E2E.Tests&gt;\E2ECollection.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Journeys\RoleBoundaryE2ETests.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Seeding\E2ECaseSeeder.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\E2ECollection.cs
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -7993,27 +3340,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Considering whether to update UploadDocument to accept IBrowserFile.
 
-Will fix UploadDocument and add null handling. Will also remove unused openHandler assignments from test helpers.</details></think>
+Will fix UploadDocument and add null handling. Will also remove unused openHandler assignments from test helpers.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -8092,13 +3432,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -8106,330 +3439,178 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Inspect flagged only specific openHandler variables as unused in RoleBoundariesAndCaseLockingTests, though many others are actually used.
 
-Only the unused variables flagged by inspect will be removed. These appear in helper methods where OpenAndClaimCaseAsync is used instead. One file will be checked to confirm the pattern before deletion.</details></think>
+Only the unused variables flagged by inspect will be removed. These appear in helper methods where OpenAndClaimCaseAsync is used instead. One file will be checked to confirm the pattern before deletion.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Removing unused openHandler lines from helper methods across test files.</details></think>
+Removing unused openHandler lines from helper methods across test files.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Removing unused openHandler references from remaining files.</details></think>
+Removing unused openHandler references from remaining files.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/AddressAndHouseholdTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Removing unused openHandler references from remaining locations.</details></think>
+Removing unused openHandler references from remaining locations.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/NationalRegisterTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs</summary>
 
 </details></tool-use>
 
@@ -8438,20 +3619,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Running the final build and inspectcode to check the remaining warning count.
 
-Checking whether unused OpenRegistrationCase and BelgianAddressFields CS8620 remain after cleanup. Will verify SearchFunc signatures. Also removing a redundant nullable suppression in PoliceVerificationTests.</details></think>
+Checking whether unused OpenRegistrationCase and BelgianAddressFields CS8620 remain after cleanup. Will verify SearchFunc signatures. Also removing a redundant nullable suppression in PoliceVerificationTests.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln --configuration Release 2>&1 | tail -8 && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2>&1 | tail -2</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build SchaerbeekMunicipality.sln --configuration Release 2&gt;&amp;1 | tail -8 &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2&gt;&amp;1 | tail -2</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln --configuration Release 2>&1 | tail -8 && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2>&1 | tail -2
 ```
 
 ```
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
-  SchaerbeekMunicipality.E2E.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Release/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.E2E.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Release/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
 
 Build succeeded.
     0 Warning(s)
@@ -8462,38 +3643,32 @@ Inspecting E2ECollection.cs
 Inspection report was written to /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Getting final counts before launching the inspect tool.</details></think>
+Getting final counts before launching the inspect tool.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c "
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
 import json
 from collections import Counter
-SUPPRESSED = {'NotAccessedPositionalProperty', 'NotAccessedPositionalProperty.Global', 
-              'ParameterOnlyUsedForPreconditionCheck', 'ParameterOnlyUsedForPreconditionCheck.Local',
-              'Html', 'Html.PathError', 'Html.TagShouldNotBeSelfClosed'}
-with open('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif') as f:
+SUPPRESSED = {&#39;NotAccessedPositionalProperty&#39;, &#39;NotAccessedPositionalProperty.Global&#39;, 
+              &#39;ParameterOnlyUsedForPreconditionCheck&#39;, &#39;ParameterOnlyUsedForPreconditionCheck.Local&#39;,
+              &#39;Html&#39;, &#39;Html.PathError&#39;, &#39;Html.TagShouldNotBeSelfClosed&#39;}
+with open(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif&#39;) as f:
     data = json.load(f)
-results = data['runs'][0]['results']
-filtered = [r for r in results if r['ruleId'] not in SUPPRESSED]
-rules = Counter(r['ruleId'] for r in filtered)
-print(f'Total: {len(results)}, Actionable: {len(filtered)}')
+results = data[&#39;runs&#39;][0][&#39;results&#39;]
+filtered = [r for r in results if r[&#39;ruleId&#39;] not in SUPPRESSED]
+rules = Counter(r[&#39;ruleId&#39;] for r in filtered)
+print(f&#39;Total: {len(results)}, Actionable: {len(filtered)}&#39;)
 for rule, count in rules.most_common(25):
-    print(f'  {count:4d}  {rule}')
-"</summary>
-
+    print(f&#39;  {count:4d}  {rule}&#39;)
+&#34;</summary>
 ```bash
 python3 -c "
 import json
@@ -8530,12 +3705,6 @@ Total: 420, Actionable: 169
      1  UnusedMethodReturnValue.Local
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -8547,24 +3716,24 @@ Most remaining warnings are minor style issues. RedundantUsingDirective still do
 
 The CS8620 warning on BelgianAddressFields comes from a MudAutocomplete SearchFunc mismatch. The delegate returns IEnumerable<StreetDto?> while the component expects IReadOnlyCollection<StreetDto?>. I will align the types to resolve it.
 
-A lambda wrapper around SearchStreets could adapt the return type to match MudAutocomplete's expected IReadOnlyCollection. I will check the exact CS8620 message in the SARIF output to confirm the fix.</details></think>
+A lambda wrapper around SearchStreets could adapt the return type to match MudAutocomplete's expected IReadOnlyCollection. I will check the exact CS8620 message in the SARIF output to confirm the fix.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c "
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
 import json
-with open('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif') as f:
+with open(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif&#39;) as f:
     data = json.load(f)
-for r in data['runs'][0]['results']:
-    if 'CS86' in r['ruleId']:
-        loc = r['locations'][0]['physicalLocation']
-        uri = loc['artifactLocation']['uri'].split('/')[-1]
-        print(r['ruleId'], uri, loc['region']['startLine'])
-        print(r['message']['text'])
+for r in data[&#39;runs&#39;][0][&#39;results&#39;]:
+    if &#39;CS86&#39; in r[&#39;ruleId&#39;]:
+        loc = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;]
+        uri = loc[&#39;artifactLocation&#39;][&#39;uri&#39;].split(&#39;/&#39;)[-1]
+        print(r[&#39;ruleId&#39;], uri, loc[&#39;region&#39;][&#39;startLine&#39;])
+        print(r[&#39;message&#39;][&#39;text&#39;])
         print()
-"</summary>
-
+&#34;</summary>
 ```bash
 python3 -c "
 import json
@@ -8582,16 +3751,10 @@ for r in data['runs'][0]['results']:
 
 ```
 CSharpWarnings::CS8620 BelgianAddressFields.razor 16
-Argument of type 'System.Func&lt;string,System.Threading.CancellationToken,System.Threading.Tasks.Task&lt;System.Collections.Generic.IEnumerable&lt;SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData.StreetDto?&gt;&gt;&gt;' cannot be used for parameter '__SearchFunc' of type 'System.Func&lt;string?,System.Threading.CancellationToken,System.Threading.Tasks.Task&lt;System.Collections.Generic.IEnumerable&lt;SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData.StreetDto&gt;&gt;?&gt;?' in 'SchaerbeekMunicipality.Web.Municipal.Components.BelgianAddressFields.RLapirak&lt;T&gt;' because of differences in the nullability of reference types
+Argument of type 'System.Func<string,System.Threading.CancellationToken,System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData.StreetDto?>>>' cannot be used for parameter '__SearchFunc' of type 'System.Func<string?,System.Threading.CancellationToken,System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData.StreetDto>>?>?' in 'SchaerbeekMunicipality.Web.Municipal.Components.BelgianAddressFields.RLapirak<T>' because of differences in the nullability of reference types
 
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -8603,76 +3766,46 @@ The current delegate uses `string` instead of `string?` for the search parameter
 
 The delegate signature will change to `Func<string?, CancellationToken, Task<IEnumerable<StreetDto>>?>`. Callers can return the result directly since it is never null. A wrapper method in BelgianAddressFields could also convert `string?` to `string.Empty`.
 
-The wrapper approach is insufficient because the return types still mismatch. BelgianAddressFields will instead align its delegate signature exactly with Mud's expectations. AddressStep and ChangeOfAddress methods will be updated to match.</details></think>
+The wrapper approach is insufficient because the return types still mismatch. BelgianAddressFields will instead align its delegate signature exactly with Mud's expectations. AddressStep and ChangeOfAddress methods will be updated to match.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln --configuration Release -v q 2>&1 | tail -5</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build SchaerbeekMunicipality.sln --configuration Release -v q 2&gt;&amp;1 | tail -5</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln --configuration Release -v q 2>&1 | tail -5
 ```
 
 ```
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(247,9): error CS0029: Cannot implicitly convert type 'System.Threading.Tasks.Task&lt;System.Collections.Generic.IReadOnlyList&lt;SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData.StreetDto&gt;&gt;' to 'System.Threading.Tasks.Task&lt;System.Collections.Generic.IEnumerable&lt;SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData.StreetDto&gt;&gt;' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor(247,9): error CS0029: Cannot implicitly convert type 'System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyList<SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData.StreetDto>>' to 'System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<SchaerbeekMunicipality.Application.Features.Registration.SearchReferenceData.StreetDto>>' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
     0 Warning(s)
     2 Error(s)
 
 Time Elapsed 00:00:08.05
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -8680,43 +3813,27 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Fixing the return type for SearchStreetsAsync to IReadOnlyList<StreetDto>.
 
-Evaluating async/await versus casting to resolve the return type mismatch.</details></think>
+Evaluating async/await versus casting to resolve the return type mismatch.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln --configuration Release -v q 2>&1 | tail -5</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build SchaerbeekMunicipality.sln --configuration Release -v q 2&gt;&amp;1 | tail -5</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln --configuration Release -v q 2>&1 | tail -5
 ```
@@ -8729,24 +3846,18 @@ Build succeeded.
 Time Elapsed 00:00:09.54
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Build succeeded. Running a quick test subset to verify nothing broke, then checking the final inspect count.</details></think>
+Build succeeded. Running a quick test subset to verify nothing broke, then checking the final inspect count.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test SchaerbeekMunicipality.sln --configuration Release --filter "Category!=E2E" --no-build -v q 2>&1 | tail -8</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test SchaerbeekMunicipality.sln --configuration Release --filter &#34;Category!=E2E&#34; --no-build -v q 2&gt;&amp;1 | tail -8</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test SchaerbeekMunicipality.sln --configuration Release --filter "Category!=E2E" --no-build -v q 2>&1 | tail -8
 ```
@@ -8762,31 +3873,24 @@ Passed!  - Failed:     0, Passed:    87, Skipped:     0, Total:    87, Duration:
 Passed!  - Failed:     0, Passed:   122, Skipped:     0, Total:   122, Duration: 11 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2>&1 | tail -1 && python3 -c "
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2&gt;&amp;1 | tail -1 &amp;&amp; python3 -c &#34;
 import json
 from collections import Counter
-SUPPRESSED = {'NotAccessedPositionalProperty', 'NotAccessedPositionalProperty.Global', 
-              'ParameterOnlyUsedForPreconditionCheck', 'ParameterOnlyUsedForPreconditionCheck.Local',
-              'Html', 'Html.PathError', 'Html.TagShouldNotBeSelfClosed'}
-with open('resharper-after-fixes.sarif') as f:
-    results = json.load(f)['runs'][0]['results']
-filtered = [r for r in results if r['ruleId'] not in SUPPRESSED]
-print(f'Total: {len(results)}, Actionable: {len(filtered)}')
-for rule, count in Counter(r['ruleId'] for r in filtered).most_common(15):
-    print(f'  {count:4d}  {rule}')
-"</summary>
-
+SUPPRESSED = {&#39;NotAccessedPositionalProperty&#39;, &#39;NotAccessedPositionalProperty.Global&#39;, 
+              &#39;ParameterOnlyUsedForPreconditionCheck&#39;, &#39;ParameterOnlyUsedForPreconditionCheck.Local&#39;,
+              &#39;Html&#39;, &#39;Html.PathError&#39;, &#39;Html.TagShouldNotBeSelfClosed&#39;}
+with open(&#39;resharper-after-fixes.sarif&#39;) as f:
+    results = json.load(f)[&#39;runs&#39;][0][&#39;results&#39;]
+filtered = [r for r in results if r[&#39;ruleId&#39;] not in SUPPRESSED]
+print(f&#39;Total: {len(results)}, Actionable: {len(filtered)}&#39;)
+for rule, count in Counter(r[&#39;ruleId&#39;] for r in filtered).most_common(15):
+    print(f&#39;  {count:4d}  {rule}&#39;)
+&#34;</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2>&1 | tail -1 && python3 -c "
 import json
@@ -8821,12 +3925,6 @@ Total: 419, Actionable: 168
      1  UnusedMethodReturnValue.Local
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -8834,7 +3932,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 All tests pass. CS8620 is fixed. There are zero CS86xx warnings.
 
-InspectCode ran solution-wide. CleanupCode auto-fixed redundant usings and formatting across 572 files. Substantive warnings were fixed manually. Total warnings fell from 553 to 419. Actionable warnings dropped from 301 to 168. The build now has zero warnings. All 209 tests pass. Remaining warnings are mostly low-priority style issues.</details></think>
+InspectCode ran solution-wide. CleanupCode auto-fixed redundant usings and formatting across 572 files. Substantive warnings were fixed manually. Total warnings fell from 553 to 419. Actionable warnings dropped from 301 to 168. The build now has zero warnings. All 209 tests pass. Remaining warnings are mostly low-priority style issues.
+</details></think>
 
 _**Agent (default)**_
 
@@ -8901,7 +4000,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The user requested a brief summary of the task result.
 
-No follow-up actions are required.</details></think>
+No follow-up actions are required.
+</details></think>
 
 _**Agent (default)**_
 
@@ -8923,30 +4023,42 @@ DO this I can do a follow-up pass on the remaining Razor @using cleanup and redu
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c "
+<think><details><summary>Thought Process</summary>
+A follow-up pass on the remaining Razor @using cleanup and redundant ! operators is ready to proceed.
+
+I'll pull the current warning list from the SARIF file or inspectcode, then fix the redundant @using directives and ! operators systematically.
+</details></think>
+
+_**Agent (default)**_
+
+I'll tackle the remaining Razor `@using` cleanup and redundant `!` operators next. First I'm pulling the current warning list from the latest InspectCode report.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
 import json
 from collections import defaultdict
-with open('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif') as f:
-    results = json.load(f)['runs'][0]['results']
-using = [r for r in results if r['ruleId']=='RedundantUsingDirective']
-bang = [r for r in results if r['ruleId']=='RedundantSuppressNullableWarningExpression']
-print('=== RedundantUsingDirective', len(using), '===')
+with open(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif&#39;) as f:
+    results = json.load(f)[&#39;runs&#39;][0][&#39;results&#39;]
+using = [r for r in results if r[&#39;ruleId&#39;]==&#39;RedundantUsingDirective&#39;]
+bang = [r for r in results if r[&#39;ruleId&#39;]==&#39;RedundantSuppressNullableWarningExpression&#39;]
+print(&#39;=== RedundantUsingDirective&#39;, len(using), &#39;===&#39;)
 by_file = defaultdict(list)
 for r in using:
-    uri = r['locations'][0]['physicalLocation']['artifactLocation']['uri'].replace('file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/','')
-    line = r['locations'][0]['physicalLocation']['region']['startLine']
+    uri = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;][&#39;artifactLocation&#39;][&#39;uri&#39;].replace(&#39;file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/&#39;,&#39;&#39;)
+    line = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;][&#39;region&#39;][&#39;startLine&#39;]
     by_file[uri].append(line)
 for uri in sorted(by_file):
-    print(f'{uri}: {by_file[uri]}')
+    print(f&#39;{uri}: {by_file[uri]}&#39;)
 print()
-print('=== RedundantSuppressNullableWarningExpression', len(bang), '===')
+print(&#39;=== RedundantSuppressNullableWarningExpression&#39;, len(bang), &#39;===&#39;)
 for r in bang:
-    uri = r['locations'][0]['physicalLocation']['artifactLocation']['uri'].replace('file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/','')
-    line = r['locations'][0]['physicalLocation']['region']['startLine']
-    print(f'{uri}:{line}')
-"</summary>
-
+    uri = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;][&#39;artifactLocation&#39;][&#39;uri&#39;].replace(&#39;file:///Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/&#39;,&#39;&#39;)
+    line = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;][&#39;region&#39;][&#39;startLine&#39;]
+    print(f&#39;{uri}:{line}&#39;)
+&#34;</summary>
 ```bash
 python3 -c "
 import json
@@ -8971,74 +4083,1166 @@ for r in bang:
     print(f'{uri}:{line}')
 "
 ```
-</details>
-</tool-use>
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
+```
+=== RedundantUsingDirective 116 ===
+src/SchaerbeekMunicipality.Web/Auth/Components/RoleSwitcher.razor: [1]
+src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor: [4, 5, 7]
+src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPropertyGrid.razor: [1]
+src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatisticCard.razor: [1]
+src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppTimeline.razor: [1]
+src/SchaerbeekMunicipality.Web/DesignSystem/Components/Feedback/AppAlert.razor: [1]
+src/SchaerbeekMunicipality.Web/DesignSystem/Components/Feedback/AppInfoBox.razor: [1]
+src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppPage.razor: [2]
+src/SchaerbeekMunicipality.Web/DesignSystem/Components/Navigation/AppQuickActions.razor: [1]
+src/SchaerbeekMunicipality.Web/DesignSystem/Components/Navigation/AppTopNavigation.razor: [1]
+src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor: [2, 3, 7, 9]
+src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor: [1]
+src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor: [3, 4, 5, 8, 10, 11, 13, 14, 15]
+src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor: [3, 4, 5]
+src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor: [2, 6]
+src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor: [2, 5, 6, 8, 9, 10, 14, 15, 16, 17, 18, 19, 20]
+src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor: [3, 6, 7, 8, 9]
+src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/ApplicantPhotoUpload.razor: [1]
+src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor: [3, 4, 8]
+src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.r
+… (output truncated)
+```
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh --help 2>&1 | rg -i "razor|include"</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh --help 2&gt;&amp;1 | rg -i &#34;razor|include&#34;</summary>
 ```bash
 /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh --help 2>&1 | rg -i "razor|include"
 ```
-</details>
-</tool-use>
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
+```
+  --include : Set of relative paths separated by ';' that defines which files should be cleaned up. Might contains single ('*') and double ('**') wildcards..
+  --exclude : Set of relative paths separated by ';' that defines which files should not be cleaned up. Might contains single ('*') and double ('**') wildcards. If defined along with 'included' takes higher priority').
 
+```
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include="**/*.razor" --no-build 2>&1 | tail -5</summary>
+<think><details><summary>Thought Process</summary>
+I'll run cleanupcode on Razor files to auto-fix @using directives. I'll manually fix the redundant ! operators.
 
+Checking whether a global imports file makes many @using directives redundant.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include=&#34;**/*.razor&#34; --no-build 2&gt;&amp;1 | tail -5</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include="**/*.razor" --no-build 2>&1 | tail -5
 ```
-</details>
-</tool-use>
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
+```
+]633;C<src>\<SchaerbeekMunicipality.Web>\Components\Pages\Home.razor
+<src>\<SchaerbeekMunicipality.Web>\Components\Pages\NotFound.razor
+<src>\<SchaerbeekMunicipality.Web>\Components\App.razor
+<src>\<SchaerbeekMunicipality.Web>\Components\Routes.razor
+<src>\<SchaerbeekMunicipality.Web>\Components\_Imports.razor
+]633;D;0
 
+```
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **0** directories</summary>
-
-No results found
-</details>
-</tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
 
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (5 files)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Web/Municipal/_Imports.razor` |
+| `src/SchaerbeekMunicipality.Web/Features/_Imports.razor` |
+| `src/SchaerbeekMunicipality.Web/Components/_Imports.razor` |
+| `src/SchaerbeekMunicipality.Web/Auth/_Imports.razor` |
+| `src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor` |
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/PoliceVerificationTests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 5,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 5
+}
+```
+Status: **completed**
+
 </details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Awaiting the cleanupcode command. Reading _Imports.razor files to understand global usings.
+
+Starting to fix the redundant ! operators.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="await"><details>
+<summary>Tool use: **await**</summary>
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/_Imports.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/_Imports.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Razor file cleanup is complete.
+
+Checking remaining warnings. Removing redundant null-assertion operators where expressions are already non-null.
+
+Batch-fixing redundant ! operators across all affected files. Running cleanup on remaining .cs files with redundant usings.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/DemoOfficerMiddleware.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "./src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/MunicipalWebHost.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "./tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/BirthDeclarationE2ETests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "./tests/SchaerbeekMunicipality.E2E.Tests/Journeys/BirthDeclarationE2ETests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/BirthDeclarationTests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/ChangeOfAddressTests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/ChangeOfAddress/ChangeOfAddressTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/DocumentRequestTests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/IdentityDocuments/DocumentRequestTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/PersonFileTests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 8,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 8
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/CaseIntakeTests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/IntakeCorrectionTests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 6,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 6
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/RegistrationApiTests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationApiTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/ResidenceCategoryTests.cs",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "!",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "./tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Only redundant `!` operators need fixing.
+
+InspectCode flagged nine files with redundant `!` operators. Examples include `nameHeader.ToString()!`, `jean!.Id`, and `registrationCase!.Status`.
+
+Four more files were flagged. Context is being reviewed before removing the `!` operators.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Journeys/BirthDeclarationE2ETests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/ChangeOfAddress/ChangeOfAddressTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/IdentityDocuments/DocumentRequestTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationApiTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Redundant `!` operators after `.Should()` calls are next.
+
+The `!` after `.Should().NotBeNull()` is redundant because FluentAssertions already asserts non-null. Removing it matches the nullable API contract.
+
+Removing the `!` could trigger CS8602 if the compiler still sees a nullable type. The warning itself means the expression is already non-null per nullable annotations.
+
+Removing the `!` should compile fine. I'll delete the redundant suppressions.
+
+Applying the suppression removals now. `detail!.Status` becomes `detail.Status`. `jeanDupont!.Id` becomes `jeanDupont.Id`. `created!.CaseId` becomes `created.CaseId`. `nameHeader.ToString()!` becomes `nameHeader.ToString()`. The `BaseAddress!` suppression in `MunicipalWebHost` still needs verification.
+
+PersonFileTests lines 88 and 94 are next. The `!` on `jean` and `person` should be removed. RegistrationApiTests line 106 still needs review. Then I'll check remaining Razor `@using` warnings and run cleanup on test `.cs` files.
+</details></think>
+
+_**Agent (default)**_
+
+Applying the redundant `!` fixes and checking whether Razor cleanup cleared the remaining `@using` warnings.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/Middleware/DemoOfficerMiddleware.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Infrastructure/MunicipalWebHost.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/Journeys/BirthDeclarationE2ETests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/BirthDeclaration/BirthDeclarationTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/ChangeOfAddress/ChangeOfAddressTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/IdentityDocuments/DocumentRequestTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseIntakeTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/PoliceVerificationTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationApiTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Running cleanup on test .cs files with redundant usings. Checking whether the Razor cleanup worked.
+
+Manually fixing any remaining Razor @using directives that the automated cleanup missed. Running cleanup on the five test .cs files, then building and inspecting the output.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include=&#34;tests/**/*.cs&#34; --no-build 2&gt;&amp;1 | tail -3</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/cleanupcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --include="tests/**/*.cs" --no-build 2>&1 | tail -3
+```
+
+```
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Journeys\RoleBoundaryE2ETests.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\Seeding\E2ECaseSeeder.cs
+<tests>\<SchaerbeekMunicipality.E2E.Tests>\E2ECollection.cs
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The Razor cleanup did not remove @using directives from files. RegistrationCaseDetail still contains many.
+
+Razor cleanup does not remove @using directives. I will manually strip redundant ones by comparing each file against its _Imports.razor hierarchy. Global and folder-level imports apply to their respective directories and subfolders.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web`** (5 files)
+
+| File |
+|------|
+| `Components/_Imports.razor` |
+| `Municipal/_Imports.razor` |
+| `Features/_Imports.razor` |
+| `DesignSystem/_Imports.razor` |
+| `Auth/_Imports.razor` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+File not found
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+No root _Imports.razor file exists. App.razor likely handles imports instead.
+
+`Features/_Imports.razor` covers the Features folder and includes several namespaces and components. Parent folders may also contribute imports.
+
+`Features/_Imports.razor` contains many namespaces including Domain.Registration, Application.Auth, and various DesignSystem components. Each `_Imports.razor` file applies only within its own directory subtree. Therefore, any `@using` directives in `RegistrationCaseDetail.razor` that already appear in `Features/_Imports.razor` are redundant. The SARIF report flags these specific lines.
+
+Several flagged `@using` directives in `RegistrationCaseDetail.razor`—such as FluentValidation and GetRegistrationCase—are not present in `Features/_Imports.razor`. They likely originate from global usings in the `.csproj` file or implicit usings. The Web project's `.csproj` file needs inspection to confirm.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.{csproj,props,GlobalUsings.cs}",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "GlobalUsing|Using Include"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "GlobalUsing|Using Include",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (0 files)
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+ReSharper flags some @using directives as redundant. Types may be unused in the file. Parent _Imports files may already cover them.
+
+CleanupCode likely missed unused @using directives in Razor files. A Python script parsing SARIF line numbers could automate their removal. A fresh inspectcode run would provide the updated list.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build SchaerbeekMunicipality.sln --configuration Release -v q 2&gt;&amp;1 | tail -6</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build SchaerbeekMunicipality.sln --configuration Release -v q 2>&1 | tail -6
+```
+
+```
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:12.84
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The build succeeded. I'm now writing a script to auto-remove redundant @using lines from the SARIF report.
+
+Running a fresh inspect first, then applying a Python script to remove the exact flagged lines.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2&gt;&amp;1 | tail -1</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && /Users/joba/Downloads/JetBrains.ReSharper.CommandLineTools.2026.1.4/inspectcode.sh SchaerbeekMunicipality.sln --settings=SchaerbeekMunicipality.sln.DotSettings --output=resharper-after-fixes.sarif --format=Sarif --severity=WARNING --no-build 2>&1 | tail -1
+```
+
+```
+Inspection report was written to /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Writing a script to remove redundant @using lines.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 &lt;&lt;&#39;PY&#39;
+import json
+from collections import defaultdict
+from pathlib import Path
+
+root = Path(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality&#39;)
+with open(root / &#39;resharper-after-fixes.sarif&#39;) as f:
+    results = json.load(f)[&#39;runs&#39;][0][&#39;results&#39;]
+
+lines_by_file = defaultdict(set)
+for r in results:
+    if r[&#39;ruleId&#39;] != &#39;RedundantUsingDirective&#39;:
+        continue
+    loc = r[&#39;locations&#39;][0][&#39;physicalLocation&#39;]
+    uri = loc[&#39;artifactLocation&#39;][&#39;uri&#39;]
+    if uri.startswith(&#39;file://&#39;):
+        uri = uri[7:]
+    path = Path(uri)
+    if not path.is_absolute():
+        path = root / path
+    lines_by_file[path].add(loc[&#39;region&#39;][&#39;startLine&#39;])
+
+removed = 0
+for path, lines in sorted(lines_by_file.items()):
+    if not path.exists():
+        print(&#39;MISSING&#39;, path)
+        continue
+    content = path.read_text().splitlines(keepends=True)
+    to_remove = {ln - 1 for ln in lines if 1 &lt;= ln &lt;= len(content)}
+    new_content = [line for i, line in enumerate(content) if i not in to_remove]
+    if len(new_content) != len(content):
+        path.write_text(&#39;&#39;.join(new_content))
+        removed += len(to_remove)
+        print(f&#39;Removed {len(to_remove)} from {path.relative_to(root)}&#39;)
+
+print(f&#39;Total removed: {removed}&#39;)
+PY</summary>
+```bash
+python3 <<'PY'
+import json
+from collections import defaultdict
+from pathlib import Path
+
+root = Path('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality')
+with open(root / 'resharper-after-fixes.sarif') as f:
+    results = json.load(f)['runs'][0]['results']
+
+lines_by_file = defaultdict(set)
+for r in results:
+    if r['ruleId'] != 'RedundantUsingDirective':
+        continue
+    loc = r['locations'][0]['physicalLocation']
+    uri = loc['artifactLocation']['uri']
+    if uri.startswith('file://'):
+        uri = uri[7:]
+    path = Path(uri)
+    if not path.is_absolute():
+        path = root / path
+    lines_by_file[path].add(loc['region']['startLine'])
+
+removed = 0
+for path, lines in sorted(lines_by_file.items()):
+    if not path.exists():
+        print('MISSING', path)
+        continue
+    content = path.read_text().splitlines(keepends=True)
+    to_remove = {ln - 1 for ln in lines if 1 <= ln <= len(content)}
+    new_content = [line for i, line in enumerate(content) if i not in to_remove]
+    if len(new_content) != len(content):
+        path.write_text(''.join(new_content))
+        removed += len(to_remove)
+        print(f'Removed {len(to_remove)} from {path.relative_to(root)}')
+
+print(f'Total removed: {removed}')
+PY
+```
+
+```
+Total removed: 0
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+No redundant @using directives were removed. The SARIF likely changed, or the line numbers and paths no longer match.
+
+Checking current counts.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: python3 -c &#34;
+import json
+from collections import Counter
+SUPPRESSED = {&#39;NotAccessedPositionalProperty&#39;, &#39;NotAccessedPositionalProperty.Global&#39;, 
+              &#39;ParameterOnlyUsedForPreconditionCheck&#39;, &#39;ParameterOnlyUsedForPreconditionCheck.Local&#39;,
+              &#39;Html&#39;, &#39;Html.PathError&#39;, &#39;Html.TagShouldNotBeSelfClosed&#39;}
+with open(&#39;/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif&#39;) as f:
+    results = json.load(f)[&#39;runs&#39;][0][&#39;results&#39;]
+filtered = [r for r in results if r[&#39;ruleId&#39;] not in SUPPRESSED]
+print(f&#39;Total: {len(results)}, Actionable: {len(filtered)}&#39;)
+for rule, count in Counter(r[&#39;ruleId&#39;] for r in filtered).most_common(20):
+    print(f&#39;  {count:4d}  {rule}&#39;)
+&#34;</summary>
+```bash
+python3 -c "
+import json
+from collections import Counter
+SUPPRESSED = {'NotAccessedPositionalProperty', 'NotAccessedPositionalProperty.Global', 
+              'ParameterOnlyUsedForPreconditionCheck', 'ParameterOnlyUsedForPreconditionCheck.Local',
+              'Html', 'Html.PathError', 'Html.TagShouldNotBeSelfClosed'}
+with open('/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/resharper-after-fixes.sarif') as f:
+    results = json.load(f)['runs'][0]['results']
+filtered = [r for r in results if r['ruleId'] not in SUPPRESSED]
+print(f'Total: {len(results)}, Actionable: {len(filtered)}')
+for rule, count in Counter(r['ruleId'] for r in filtered).most_common(20):
+    print(f'  {count:4d}  {rule}')
+"
+```
+
+```
+Total: 280, Actionable: 29
+    16  UnusedMember.Local
+     4  InconsistentNaming
+     4  UnusedParameter.Local
+     2  CheckNamespace
+     2  UnusedAutoPropertyAccessor.Global
+     1  UnusedMethodReturnValue.Local
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The follow-up pass was very successful.
+
+Total dropped from 419 to 280. Actionable dropped from 168 to 29. All 116 RedundantUsingDirective and 17 RedundantSuppressNullableWarningExpression violations are now gone. Running tests to verify everything still works.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test SchaerbeekMunicipality.sln --configuration Release --filter &#34;Category!=E2E&#34; --no-build -v q 2&gt;&amp;1 | tail -6</summary>
+```bash
+cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test SchaerbeekMunicipality.sln --configuration Release --filter "Category!=E2E" --no-build -v q 2>&1 | tail -6
+```
+
+```
+A total of 1 test files matched the specified pattern.
+
+
+Passed!  - Failed:     0, Passed:    87, Skipped:     0, Total:    87, Duration: 53 ms - SchaerbeekMunicipality.Domain.Tests.dll (net10.0)
+
+Passed!  - Failed:     0, Passed:   122, Skipped:     0, Total:   122, Duration: 16 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The Razor cleanup is complete. A follow-up pass can trim remaining @using directives and redundant ! operators.
+</details></think>
+
+_**Agent (default)**_
+
+Follow-up pass is done.
+
+**Razor `@using` cleanup:** Ran ReSharper `cleanupcode` on all `**/*.razor` files plus test `.cs` files — removed **116** redundant `@using` directives.
+
+**Redundant `!` operators:** Removed **17** unnecessary null-forgiving operators across API middleware, E2E, and integration tests (mostly after `Should().NotBeNull()` assertions).
+
+**Results:**
+
+| Metric | Before follow-up | After |
+|--------|------------------|-------|
+| Total InspectCode warnings | 419 | **280** |
+| Actionable warnings | 168 | **29** |
+| `RedundantUsingDirective` | 116 | **0** |
+| `RedundantSuppressNullableWarningExpression` | 17 | **0** |
+
+Build is clean (0 warnings) and all **209** non-E2E tests pass.
+
+The remaining **29** actionable warnings are minor style items: unused injected Razor properties, naming conventions, and a couple of namespace checks — nothing functional.

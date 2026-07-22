@@ -15,7 +15,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Implementing Enum Display Names**
 
-I’m looking to implement friendly display names for enums in a Blazor .NET app. I’ll need to inspect the code that renders these enums. It seems I can use the DisplayAttribute and create an extension method to fetch the display name. Currently, I’m using @enumValue.ToString() in Razor pages. I could create a helper method, EnumExtensions.GetDisplayName(), that reads the DisplayAttribute or uses a fallback for humanizing. I’ll search for ".ToString()" using Grep to find enum usages in the UI. Let's move forward with this!</details></think>
+I’m looking to implement friendly display names for enums in a Blazor .NET app. I’ll need to inspect the code that renders these enums. It seems I can use the DisplayAttribute and create an extension method to fetch the display name. Currently, I’m using @enumValue.ToString() in Razor pages. I could create a helper method, EnumExtensions.GetDisplayName(), that reads the DisplayAttribute or uses a fallback for humanizing. I’ll search for ".ToString()" using Grep to find enum usages in the UI. Let's move forward with this!
+</details></think>
 
 _**Agent (default)**_
 
@@ -23,10 +24,8 @@ Got it. I’ll (1) add a single, reusable way to turn any enum into a **human-fr
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -134,21 +133,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -213,21 +203,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -335,13 +316,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -349,7 +323,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Planning project updates**
 
-I need to implement a helper and update key usages like chip labels and item selection. First, I’ll read the files before making edits. It seems logical to create an extension in the Web project, possibly under DesignSystem/Components/Data. I’ll check the AppEnums.cs file since it might already have relevant mappings. Also, I need to check the enums defined there. I’ll aim to implement everything in a shared location, like `src/SchaerbeekMunicipality.Web/DesignSystem/Formatting/EnumDisplay.cs`.</details></think>
+I need to implement a helper and update key usages like chip labels and item selection. First, I’ll read the files before making edits. It seems logical to create an extension in the Web project, possibly under DesignSystem/Components/Data. I’ll check the AppEnums.cs file since it might already have relevant mappings. Also, I need to check the enums defined there. I’ll aim to implement everything in a shared location, like `src/SchaerbeekMunicipality.Web/DesignSystem/Formatting/EnumDisplay.cs`.
+</details></think>
 
 _**Agent (default)**_
 
@@ -357,63 +332,38 @@ Nice—there are a handful of clear hotspots in the web UI (`AppStatusChip`, sel
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppEnums.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppEnums.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatusChipMappings.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppStatusChipMappings.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Auth/OfficerRole.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Auth/OfficerRole.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseStatus.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseStatus.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **5** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web** (5 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web`** (5 files)
 
 | File |
 |------|
@@ -422,64 +372,33 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/Scha
 | `Components/_Imports.razor` |
 | `Auth/_Imports.razor` |
 | `DesignSystem/_Imports.razor` |
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
 
 </details></tool-use>
 
@@ -488,70 +407,41 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Reviewing role updates**
 
-I’m looking at the OfficerRole.PoliceClerk.ToString, which is used as a required role string for a navigation item. I think it’s important to keep that stable and not change its display. The helper is only for UI labels. I should update the list of places with Label="@...ToString()" as it’s likely meant for display. I guess it’s time to read through AppPersonCard and maybe detail some cases.</details></think>
+I’m looking at the OfficerRole.PoliceClerk.ToString, which is used as a required role string for a navigation item. I think it’s important to keep that stable and not change its display. The helper is only for UI labels. I should update the list of places with Label="@...ToString()" as it’s likely meant for display. I guess it’s time to read through AppPersonCard and maybe detail some cases.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPersonCard.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPersonCard.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/OpenDocumentRequestDialog.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/OpenDocumentRequestDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
 
 </details></tool-use>
 
@@ -561,100 +451,50 @@ I’ve found the main UI places where enums are rendered raw (chips, select drop
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPersonCard.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPersonCard.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/OpenDocumentRequestDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/OpenDocumentRequestDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -699,21 +539,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -822,133 +653,68 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1049,21 +815,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1091,77 +848,40 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ApproveCaseDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ApproveCaseDialog.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
 
 </details></tool-use>
 
@@ -1170,25 +890,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Modifying registration details**
 
-I need to update the RegistrationCaseDetail subtitle for visit reason. For RegistrationCaseList, I want to display VisitReason using ToDisplayString and adjust the search filter to use ToDisplayString for both visit reason and status. Currently, status uses ToString, but since it’s an enum, I think ToDisplayString is better. There’s also the AppStatusChip component that maps status to labels, and I should probably match that mapping for the search as well. Let's standardize on ToDisplayString for now.</details></think>
+I need to update the RegistrationCaseDetail subtitle for visit reason. For RegistrationCaseList, I want to display VisitReason using ToDisplayString and adjust the search filter to use ToDisplayString for both visit reason and status. Currently, status uses ToString, but since it’s an enum, I think ToDisplayString is better. There’s also the AppStatusChip component that maps status to labels, and I should probably match that mapping for the search as well. Let's standardize on ToDisplayString for now.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 Failed to find context:
                     </MudTh>
                     <RowTemplate Context="item">
@@ -1202,104 +917,54 @@ Failed to find context:
                             <AppStatusChip Status="item.Status" />
                         </MudTd>
                         <MudTd DataLabel="Officer">
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ApproveCaseDialog.razor</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ApproveCaseDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1388,49 +1053,26 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="read_lints">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
 <summary>Tool use: **read_lints**</summary>
-
 
 Parameters:
 
@@ -1533,1289 +1175,10 @@ Result:
               "column": 1,
               "line": 3
             }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        }
-      ],
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppPersonCard.razor"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor"
-    },
-    {
-      "errors": [
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 47,
-              "line": 3
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 3
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 64,
-              "line": 4
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 4
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 67,
-              "line": 5
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 5
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Name '_filterOptions' does not match rule 'Static readonly fields (private)'. Suggested name is 'FilterOptions'.",
-          "range": {
-            "endPosition": {
-              "column": 51,
-              "line": 99
-            },
-            "startPosition": {
-              "column": 37,
-              "line": 99
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        }
-      ],
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Components/OpenDocumentRequestDialog.razor"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseDetail.razor"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/IdentityDocuments/Pages/DocumentRequestCaseList.razor"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor"
-    },
-    {
-      "errors": [
-        {
-          "message": "Cannot resolve symbol 'PersonFileApi'",
-          "range": {
-            "endPosition": {
-              "column": 49,
-              "line": 221
-            },
-            "startPosition": {
-              "column": 36,
-              "line": 221
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_loading'",
-          "range": {
-            "endPosition": {
-              "column": 22,
-              "line": 12
-            },
-            "startPosition": {
-              "column": 14,
-              "line": 12
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_error'",
-          "range": {
-            "endPosition": {
-              "column": 24,
-              "line": 16
-            },
-            "startPosition": {
-              "column": 18,
-              "line": 16
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_error'",
-          "range": {
-            "endPosition": {
-              "column": 91,
-              "line": 18
-            },
-            "startPosition": {
-              "column": 85,
-              "line": 18
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 29,
-              "line": 20
-            },
-            "startPosition": {
-              "column": 18,
-              "line": 20
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 55,
-              "line": 23
-            },
-            "startPosition": {
-              "column": 44,
-              "line": 23
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 56,
-              "line": 24
-            },
-            "startPosition": {
-              "column": 45,
-              "line": 24
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 54,
-              "line": 25
-            },
-            "startPosition": {
-              "column": 43,
-              "line": 25
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 68,
-              "line": 26
-            },
-            "startPosition": {
-              "column": 57,
-              "line": 26
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 55,
-              "line": 27
-            },
-            "startPosition": {
-              "column": 44,
-              "line": 27
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 60,
-              "line": 28
-            },
-            "startPosition": {
-              "column": 49,
-              "line": 28
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_identityItems'",
-          "range": {
-            "endPosition": {
-              "column": 72,
-              "line": 37
-            },
-            "startPosition": {
-              "column": 58,
-              "line": 37
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_domicileItems'",
-          "range": {
-            "endPosition": {
-              "column": 72,
-              "line": 42
-            },
-            "startPosition": {
-              "column": 58,
-              "line": 42
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 49,
-              "line": 47
-            },
-            "startPosition": {
-              "column": 38,
-              "line": 47
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_timelineItems'",
-          "range": {
-            "endPosition": {
-              "column": 72,
-              "line": 54
-            },
-            "startPosition": {
-              "column": 58,
-              "line": 54
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 37,
-              "line": 62
-            },
-            "startPosition": {
-              "column": 26,
-              "line": 62
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Ambiguous invocation.\nCandidates are:\n    AppendFormatted(object?, int, string?)\n    AppendFormatted(scoped ReadOnlySpan\u003cchar\u003e)\n    AppendFormatted(scoped ReadOnlySpan\u003cchar\u003e, int, string?)\n    AppendFormatted(string?)\n    AppendFormatted(string?, int, string?)\n    all from struct DefaultInterpolatedStringHandler",
-          "range": {
-            "endPosition": {
-              "column": 86,
-              "line": 89
-            },
-            "startPosition": {
-              "column": 72,
-              "line": 89
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 37,
-              "line": 100
-            },
-            "startPosition": {
-              "column": 26,
-              "line": 100
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol 'FormatAddress'",
-          "range": {
-            "endPosition": {
-              "column": 51,
-              "line": 118
-            },
-            "startPosition": {
-              "column": 38,
-              "line": 118
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 37,
-              "line": 133
-            },
-            "startPosition": {
-              "column": 26,
-              "line": 133
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 37,
-              "line": 170
-            },
-            "startPosition": {
-              "column": 26,
-              "line": 170
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Class name is not valid at this point",
-          "range": {
-            "endPosition": {
-              "column": 31,
-              "line": 11
-            },
-            "startPosition": {
-              "column": 22,
-              "line": 11
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 54,
-              "line": 2
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 2
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 67,
-              "line": 5
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 5
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Property 'PersonFileApi' is never used",
-          "range": {
-            "endPosition": {
-              "column": 37,
-              "line": 6
-            },
-            "startPosition": {
-              "column": 24,
-              "line": 6
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Property 'Navigation' is never used",
-          "range": {
-            "endPosition": {
-              "column": 37,
-              "line": 7
-            },
-            "startPosition": {
-              "column": 27,
-              "line": 7
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Field '_loading' is assigned but its value is never used",
-          "range": {
-            "endPosition": {
-              "column": 26,
-              "line": 202
-            },
-            "startPosition": {
-              "column": 18,
-              "line": 202
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Field '_error' is assigned but its value is never used",
-          "range": {
-            "endPosition": {
-              "column": 27,
-              "line": 203
-            },
-            "startPosition": {
-              "column": 21,
-              "line": 203
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Field '_identityItems' is assigned but its value is never used",
-          "range": {
-            "endPosition": {
-              "column": 78,
-              "line": 205
-            },
-            "startPosition": {
-              "column": 64,
-              "line": 205
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Field '_domicileItems' is assigned but its value is never used",
-          "range": {
-            "endPosition": {
-              "column": 78,
-              "line": 206
-            },
-            "startPosition": {
-              "column": 64,
-              "line": 206
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Field '_timelineItems' is assigned but its value is never used",
-          "range": {
-            "endPosition": {
-              "column": 70,
-              "line": 207
-            },
-            "startPosition": {
-              "column": 56,
-              "line": 207
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Property 'PageTitle' is never used",
-          "range": {
-            "endPosition": {
-              "column": 29,
-              "line": 209
-            },
-            "startPosition": {
-              "column": 20,
-              "line": 209
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Method 'FormatAddress' is never used",
-          "range": {
-            "endPosition": {
-              "column": 40,
-              "line": 303
-            },
-            "startPosition": {
-              "column": 27,
-              "line": 303
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 57,
-              "line": 69
-            },
-            "startPosition": {
-              "column": 46,
-              "line": 69
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 57,
-              "line": 107
-            },
-            "startPosition": {
-              "column": 46,
-              "line": 107
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 57,
-              "line": 140
-            },
-            "startPosition": {
-              "column": 46,
-              "line": 140
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 57,
-              "line": 177
-            },
-            "startPosition": {
-              "column": 46,
-              "line": 177
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 57,
-              "line": 69
-            },
-            "startPosition": {
-              "column": 46,
-              "line": 69
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 57,
-              "line": 107
-            },
-            "startPosition": {
-              "column": 46,
-              "line": 107
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 57,
-              "line": 140
-            },
-            "startPosition": {
-              "column": 46,
-              "line": 140
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_personFile'",
-          "range": {
-            "endPosition": {
-              "column": 57,
-              "line": 177
-            },
-            "startPosition": {
-              "column": 46,
-              "line": 177
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        }
-      ],
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/PersonFile/Pages/PersonFilePage.razor"
-    },
-    {
-      "errors": [
-        {
-          "message": "Expression is always false according to nullable reference types' annotations",
-          "range": {
-            "endPosition": {
-              "column": 39,
-              "line": 529
-            },
-            "startPosition": {
-              "column": 21,
-              "line": 529
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 79,
-              "line": 2
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 2
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 50,
-              "line": 3
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 3
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 47,
-              "line": 4
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 4
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 64,
-              "line": 5
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 5
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 86,
-              "line": 6
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 6
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 80,
-              "line": 7
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 7
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 67,
-              "line": 8
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 8
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 81,
-              "line": 9
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 9
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 80,
-              "line": 10
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 10
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 83,
-              "line": 12
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 12
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 90,
-              "line": 15
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 15
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 79,
-              "line": 16
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 16
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 87,
-              "line": 18
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 18
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 47,
-              "line": 19
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 19
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Using directive is not required by the code and can be safely removed",
-          "range": {
-            "endPosition": {
-              "column": 66,
-              "line": 22
-            },
-            "startPosition": {
-              "column": 2,
-              "line": 22
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        }
-      ],
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ApproveCaseDialog.razor"
-    },
-    {
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor"
-    },
-    {
-      "errors": [
-        {
-          "message": "Cannot resolve symbol 'PersonName'",
-          "range": {
-            "endPosition": {
-              "column": 24,
-              "line": 11
-            },
-            "startPosition": {
-              "column": 14,
-              "line": 11
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol 'Address'",
-          "range": {
-            "endPosition": {
-              "column": 35,
-              "line": 11
-            },
-            "startPosition": {
-              "column": 28,
-              "line": 11
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_form'",
-          "range": {
-            "endPosition": {
-              "column": 29,
-              "line": 14
-            },
-            "startPosition": {
-              "column": 24,
-              "line": 14
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol 'FormatResult'",
-          "range": {
-            "endPosition": {
-              "column": 73,
-              "line": 23
-            },
-            "startPosition": {
-              "column": 61,
-              "line": 23
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_result'",
-          "range": {
-            "endPosition": {
-              "column": 52,
-              "line": 17
-            },
-            "startPosition": {
-              "column": 45,
-              "line": 17
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_officerNotes'",
-          "range": {
-            "endPosition": {
-              "column": 61,
-              "line": 28
-            },
-            "startPosition": {
-              "column": 48,
-              "line": 28
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Field '_form' is assigned but its value is never used",
-          "range": {
-            "endPosition": {
-              "column": 26,
-              "line": 64
-            },
-            "startPosition": {
-              "column": 21,
-              "line": 64
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Field '_officerNotes' is never assigned",
-          "range": {
-            "endPosition": {
-              "column": 34,
-              "line": 66
-            },
-            "startPosition": {
-              "column": 21,
-              "line": 66
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Field '_submitting' is assigned but its value is never used",
-          "range": {
-            "endPosition": {
-              "column": 29,
-              "line": 67
-            },
-            "startPosition": {
-              "column": 18,
-              "line": 67
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Method 'Cancel' is never used",
-          "range": {
-            "endPosition": {
-              "column": 24,
-              "line": 69
-            },
-            "startPosition": {
-              "column": 18,
-              "line": 69
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Method 'Submit' is never used",
-          "range": {
-            "endPosition": {
-              "column": 30,
-              "line": 71
-            },
-            "startPosition": {
-              "column": 24,
-              "line": 71
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Method 'FormatResult' is never used",
-          "range": {
-            "endPosition": {
-              "column": 39,
-              "line": 89
-            },
-            "startPosition": {
-              "column": 27,
-              "line": 89
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol 'Cancel'",
-          "range": {
-            "endPosition": {
-              "column": 35,
-              "line": 38
-            },
-            "startPosition": {
-              "column": 29,
-              "line": 38
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol 'Submit'",
-          "range": {
-            "endPosition": {
-              "column": 35,
-              "line": 41
-            },
-            "startPosition": {
-              "column": 29,
-              "line": 41
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_submitting'",
-          "range": {
-            "endPosition": {
-              "column": 41,
-              "line": 42
-            },
-            "startPosition": {
-              "column": 30,
-              "line": 42
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_result'",
-          "range": {
-            "endPosition": {
-              "column": 52,
-              "line": 17
-            },
-            "startPosition": {
-              "column": 45,
-              "line": 17
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_officerNotes'",
-          "range": {
-            "endPosition": {
-              "column": 61,
-              "line": 28
-            },
-            "startPosition": {
-              "column": 48,
-              "line": 28
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol 'Cancel'",
-          "range": {
-            "endPosition": {
-              "column": 35,
-              "line": 38
-            },
-            "startPosition": {
-              "column": 29,
-              "line": 38
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol 'Submit'",
-          "range": {
-            "endPosition": {
-              "column": 35,
-              "line": 41
-            },
-            "startPosition": {
-              "column": 29,
-              "line": 41
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        },
-        {
-          "message": "Cannot resolve symbol '_submitting'",
-          "range": {
-            "endPosition": {
-              "column": 41,
-              "line": 42
-            },
-            "startPosition": {
-              "column": 30,
-              "line": 42
-            }
-          },
-          "severity": "DIAGNOSTIC_SEVERITY_ERROR",
-          "source": "ReSharper"
-        }
-      ],
-      "relativeWorkspacePath": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RecordPoliceResultDialog.razor"
-    }
-  ]
-}
+ 
+… (output truncated)
 ```
 Status: **completed**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
-<summary>Tool use: **read_lints**</summary>
 
 </details></tool-use>
 
@@ -2824,29 +1187,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Considering coding adjustments**
 
-I believe it's a good idea to simplify the code since enums derive from Enum and implicit conversion involves boxing, which is allowed. We can also eliminate the generic overload and null suppression, so using `display.Name!` isn’t necessary. I think I might still need System.Linq for FirstOrDefault, but I can also check for members using `var member = type.GetMember(name); if (member.Length > 0)` without Linq. It seems sensible to make these changes now!</details></think>
+I believe it's a good idea to simplify the code since enums derive from Enum and implicit conversion involves boxing, which is allowed. We can also eliminate the generic overload and null suppression, so using `display.Name!` isn’t necessary. I think I might still need System.Linq for FirstOrDefault, but I can also check for members using `var member = type.GetMember(name); if (member.Length > 0)` without Linq. It seems sensible to make these changes now!
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="read_lints">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
 <summary>Tool use: **read_lints**</summary>
-
 
 Parameters:
 
@@ -2887,36 +1241,19 @@ Result:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
 <summary>Tool use: **read_lints**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="read_lints">
-<details>
-<summary>Tool use: **read_lints**</summary>
-
 
 Parameters:
 
@@ -2957,25 +1294,12 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
-<summary>Tool use: **read_lints**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
 
 </details></tool-use>
 
@@ -2984,29 +1308,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Patching null checks**
 
-I need to handle the `description.Description` carefully and remove the exclamation mark. The check already ensures it's not null, but I wonder if the compiler is still being finicky about it. The description property should be non-null, so I can return it without that exclamation mark. It seems like a simple patch needs to be made here. I'll get that sorted and see how it works after the change!</details></think>
+I need to handle the `description.Description` carefully and remove the exclamation mark. The check already ensures it's not null, but I wonder if the compiler is still being finicky about it. The description property should be non-null, so I can return it without that exclamation mark. It seems like a simple patch needs to be made here. I'll get that sorted and see how it works after the change!
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/EnumDisplayExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="read_lints">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
 <summary>Tool use: **read_lints**</summary>
-
 
 Parameters:
 
@@ -3030,20 +1345,12 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
-<summary>Tool use: **read_lints**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build "src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj"</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build &#34;src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj&#34;</summary>
 ```bash
 dotnet build "src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj"
 ```
@@ -3051,12 +1358,12 @@ dotnet build "src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj"
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
-  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
 
 Build succeeded.
     0 Warning(s)
@@ -3065,12 +1372,6 @@ Build succeeded.
 Time Elapsed 00:00:05.87
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -3106,14 +1407,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Updating webpage components**
 
-I need to update a few pages, like the reports page, backlog, and review dashboard. I’m thinking about using Grep to search for those components—specifically looking for the strings "Needs my attention" and "Current backlog." I’ll locate the relevant razor files so I can make the necessary changes to ToDisplayString. I just need to ensure I run Grep correctly and efficiently to find what I'm looking for!</details></think>
+I need to update a few pages, like the reports page, backlog, and review dashboard. I’m thinking about using Grep to search for those components—specifically looking for the strings "Needs my attention" and "Current backlog." I’ll locate the relevant razor files so I can make the necessary changes to ToDisplayString. I just need to ensure I run Grep correctly and efficiently to find what I'm looking for!
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3146,21 +1446,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3193,21 +1484,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3252,21 +1534,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3299,51 +1572,26 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/ReviewDashboard.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Reporting/Pages/MunicipalityReportsPage.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Reporting/Pages/MunicipalityReportsPage.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/Home.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/Home.razor</summary>
 
 </details></tool-use>
 
@@ -3352,14 +1600,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Inspecting code details**
 
-I’m considering whether item.Status and item.Procedure are likely enums. If they are enums, I’ll need to check for a ToDisplayString method. If item.Status turns out to be a string, that might change things as well. I should inspect the ActionableCaseRow type in the Application—time to search the file to understand more about it and clarify what I’m dealing with. This will help me ensure everything is set up correctly!</details></think>
+I’m considering whether item.Status and item.Procedure are likely enums. If they are enums, I’ll need to check for a ToDisplayString method. If item.Status turns out to be a string, that might change things as well. I should inspect the ActionableCaseRow type in the Application—time to search the file to understand more about it and clarify what I’m dealing with. This will help me ensure everything is set up correctly!
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3391,21 +1638,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3445,38 +1683,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardResponse.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardResponse.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportResponse.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportResponse.cs</summary>
 
 </details></tool-use>
 
@@ -3485,31 +1704,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Updating handler methods**
 
-I'm reflecting on how those strings are already visible, hinting at enum ToString in the backend. I realize I need to update the handler to produce Status and Procedure strings. First, I'll inspect the handlers for the review dashboard and the municipality report. Should I update them to use ToDisplayString? It seems like a smart choice. Additionally, I want to explore adding a similar extension in either Application or Domain with proper formatting using switch mapping. I’ll also be searching for ".ToString()" in the handlers.</details></think>
+I'm reflecting on how those strings are already visible, hinting at enum ToString in the backend. I realize I need to update the handler to produce Status and Procedure strings. First, I'll inspect the handlers for the review dashboard and the municipality report. Should I update them to use ToDisplayString? It seems like a smart choice. Additionally, I want to explore adding a similar extension in either Application or Domain with proper formatting using switch mapping. I’ll also be searching for ".ToString()" in the handlers.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs</summary>
 
 </details></tool-use>
 
@@ -3520,58 +1728,34 @@ _**Agent (default)**_
 
 I see there's a use of ToString in the handler, and I want to improve the display. I think it would be good to create EnumDisplayExtensions in either the Application or Domain. Right now, ToDisplayString is only in Web, so the application can't reference it. 
 
-Creating a new file in the Application project for EnumDisplayExtensions could be a minimal change. I'll make sure to update the handlers to use .ToDisplayString() where needed. Also, I'll focus on cleanliness in the UI for visit reasons and statuses.</details></think>
+Creating a new file in the Application project for EnumDisplayExtensions could be a minimal change. I'll make sure to update the handlers to use .ToDisplayString() where needed. Also, I'll focus on cleanliness in the UI for visit reasons and statuses.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Common/EnumDisplayExtensions.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Common/EnumDisplayExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build "src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj"</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build &#34;src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj&#34;</summary>
 ```bash
 dotnet build "src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Application.csproj"
 ```
@@ -3579,9 +1763,9 @@ dotnet build "src/SchaerbeekMunicipality.Application/SchaerbeekMunicipality.Appl
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
 
 Build succeeded.
     0 Warning(s)
@@ -3590,12 +1774,6 @@ Build succeeded.
 Time Elapsed 00:00:02.04
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -3626,10 +1804,8 @@ Makes sense—those are coming through as **event/action codes** (e.g. `PoliceRe
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3737,21 +1913,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3803,21 +1970,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3857,73 +2015,40 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileResponse.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/CaseAuditAction.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesResponse.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileResponse.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/GetPersonFile/GetPersonFileHandler.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/CaseAuditAction.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesResponse.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3963,47 +2088,26 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/PersonFile/IPersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/CaseAuditEntry.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/PersonFile/IPersonFileQuery.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/CaseAuditEntry.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4051,61 +2155,33 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesHandler.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/PersonFile/ListPersonCases/ListPersonCasesHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build "src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj"</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build &#34;src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj&#34;</summary>
 ```bash
 dotnet build "src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj"
 ```
@@ -4113,7 +2189,7 @@ dotnet build "src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.I
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs(9,30): error CS0234: The type or namespace name 'Application' does not exist in the namespace 'SchaerbeekMunicipality' (are you missing an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
 
 Build FAILED.
@@ -4125,12 +2201,6 @@ Build FAILED.
 Time Elapsed 00:00:00.95
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -4138,7 +2208,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Refining EnumDisplayExtensions Location**
 
-I’m realizing that I can’t reference Application in this context. It makes more sense to move EnumDisplayExtensions to Domain or Infrastructure directly. Actually, creating it in Domain/Common allows both Application and Infrastructure to access it. Right now, it’s in Application, so I’ll have to remove references from Infrastructure and use a local helper or pull it from Domain. I’ll create the new file in the Domain and update everything accordingly. Should I delete the old file? It’s better to avoid duplication, but I'll check if deletion is needed first. Let’s implement this!</details></think>
+I’m realizing that I can’t reference Application in this context. It makes more sense to move EnumDisplayExtensions to Domain or Infrastructure directly. Actually, creating it in Domain/Common allows both Application and Infrastructure to access it. Right now, it’s in Application, so I’ll have to remove references from Infrastructure and use a local helper or pull it from Domain. I’ll create the new file in the Domain and update everything accordingly. Should I delete the old file? It’s better to avoid duplication, but I'll check if deletion is needed first. Let’s implement this!
+</details></think>
 
 _**Agent (default)**_
 
@@ -4146,51 +2217,29 @@ You hit a layering issue: `Infrastructure` can’t reference `Application`, so m
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Common/EnumDisplayExtensions.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Common/EnumDisplayExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Common/EnumDisplayExtensions.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Common/EnumDisplayExtensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4230,21 +2279,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4284,68 +2324,30 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetReviewDashboard/GetReviewDashboardHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Reporting/GetMunicipalityReport/GetMunicipalityReportHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="delete_file">
-<details><summary>Tool use: **delete_file**</summary>
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="delete_file"><details>
 <summary>Tool use: **delete_file**</summary>
@@ -4354,9 +2356,8 @@ _**Agent (default)**_
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build</summary>
 ```bash
 dotnet build
 ```
@@ -4364,30 +2365,20 @@ dotnet build
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Application -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
-  SchaerbeekMunicipality.Api -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.AppHost -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
-  SchaerbeekMunicipality.E2E.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.AppHost -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.E2E.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.E2E.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.E2E.Tests.dll
 
-Build succeeded.
-    0 Warning(s)
-    0 Error(s)
-
-Time Elapsed 00:00:11.29
-
+Bu
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -4432,8 +2423,374 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 **Evaluating message display**
 
-I need to consider how to display the enum in the approve dialog or wherever the message is built. It seems likely that the web component ApproveCaseDialog shows the register target, and while we've changed the FormatRegisterTarget fallback, it might not be aligned with the suggested label. I think the message after approval could be the snackbar text from CaseDecisionSection. I should look for “Approved — pending registration,” “Register target,” and “ForeignersRegister” to clarify.</details></think>
+I need to consider how to display the enum in the approve dialog or wherever the message is built. It seems likely that the web component ApproveCaseDialog shows the register target, and while we've changed the FormatRegisterTarget fallback, it might not be aligned with the suggested label. I think the message after approval could be the snackbar text from CaseDecisionSection. I should look for “Approved — pending registration,” “Register target,” and “ForeignersRegister” to clarify.
+</details></think>
 
 _**Agent (default)**_
 
 I’ll track where that “Approved — pending registration / Register target: …” message is composed (likely a snackbar or confirmation dialog) and switch the register target value to `ToDisplayString()` so `Foreigners register` shows instead of `ForeignersRegister`.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "Approved — pending registration|Register target:"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "Approved — pending registration|Register target:",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "pending registration"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "pending registration",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.{razor,cs}",
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration",
+  "pattern": "RegisterTarget"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration",
+  "pattern": "RegisterTarget",
+  "topFiles": [
+    {
+      "matchCount": 14,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/ApproveCaseDialog.razor"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 18
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
+<summary>Tool use: **read_lints**</summary>
+
+Parameters:
+
+```json
+{
+  "paths": [
+    "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor"
+  ]
+}
+```
+Result:
+
+```json
+{
+  "linterErrorsByFile": [
+    {
+      "errors": [
+        {
+          "message": "Using directive is not required by the code and can be safely removed",
+          "range": {
+            "endPosition": {
+              "column": 50,
+              "line": 1
+            },
+            "startPosition": {
+              "column": 2,
+              "line": 1
+            }
+          },
+          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
+          "source": "ReSharper"
+        },
+        {
+          "message": "Using directive is not required by the code and can be safely removed",
+          "range": {
+            "endPosition": {
+              "column": 66,
+              "line": 3
+            },
+            "startPosition": {
+              "column": 2,
+              "line": 3
+            }
+          },
+          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
+          "source": "ReSharper"
+        },
+        {
+          "message": "Using directive is not required by the code and can be safely removed",
+          "range": {
+            "endPosition": {
+              "column": 84,
+              "line": 5
+            },
+            "startPosition": {
+              "column": 2,
+              "line": 5
+            }
+          },
+          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
+          "source": "ReSharper"
+        },
+        {
+          "message": "Using directive is not required by the code and can be safely removed",
+          "range": {
+            "endPosition": {
+              "column": 75,
+              "line": 9
+            },
+            "startPosition": {
+              "column": 2,
+              "line": 9
+            }
+          },
+          "severity": "DIAGNOSTIC_SEVERITY_WARNING",
+          "source": "ReSharper"
+        },
+        {
+          "message": "Using directive is not required by the code and can be safely removed",
+          "range": {
+            "endPosition": {
+              "column": 47,
+              "line": 11
+            },
+            "startPosi
+… (output truncated)
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build &#34;src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj&#34;</summary>
+```bash
+dotnet build "src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj"
+```
+
+```
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(51,35): error CS8604: Possible null reference argument for parameter 'value' in 'string EnumDisplayExtensions.ToDisplayString(Enum value)'. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor(57,36): error CS8604: Possible null reference argument for parameter 'value' in 'string EnumDisplayExtensions.ToDisplayString(Enum value)'. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
+
+Build FAILED.
+
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Compo
+… (output truncated)
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase",
+  "pattern": "SelectedRegisterTarget"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "files_with_matches",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase",
+  "pattern": "SelectedRegisterTarget",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 2
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+**Implementing null safety**
+
+I need to ensure that the `SelectedRegisterTarget` is nullable yet in an approved status within the DTO. It seems I should create a null-safe display using a pattern like `Case.SelectedRegisterTarget?.ToDisplayString() ?? "—"` for scenarios where it's null. I should also apply this logic to the "Registered" text. Alright, I'll go ahead and implement that patch! It feels good to be making these updates and keeping everything consistent and functional.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build &#34;src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj&#34;</summary>
+```bash
+dotnet build "src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj"
+```
+
+```
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.24
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+### Fixed that `ForeignersRegister` display
+
+That text is rendered in `CaseDecisionSection.razor` when the case is **Approved**:
+
+- `Register target: @Case.SelectedRegisterTarget` was printing the enum raw.
+
+I changed it to use the display helper (and handled the nullable case):
+
+- **File**: `src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor`
+- **Now shows**: `Foreigners register` (instead of `ForeignersRegister`) in both:
+  - “Approved — pending registration”
+  - “Registered”
+
+`dotnet build src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj` succeeds.

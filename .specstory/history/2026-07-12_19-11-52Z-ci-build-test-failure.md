@@ -34,7 +34,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 CI build failed due to two E2E test failures. Seven tests passed. Two tests failed. The VSTest task returned false without logging an error.
 
-The exact failing tests aren't visible in the output. I'll inspect the E2E test files and recent changes to identify the cause. Local runs or CI logs should reveal the specific errors.</details></think>
+The exact failing tests aren't visible in the output. I'll inspect the E2E test files and recent changes to identify the cause. Local runs or CI logs should reveal the specific errors.
+</details></think>
 
 _**Agent (default)**_
 
@@ -43,11 +44,10 @@ Investigating the E2E test failures: identifying all tests and running them loca
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **9** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests** (9 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests`** (9 files)
 
 | File |
 |------|
@@ -60,21 +60,12 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests** 
 | `SchaerbeekMunicipality.E2E.Tests/Journeys/RegistrationConfirmE2ETests.cs` |
 | `SchaerbeekMunicipality.E2E.Tests/Journeys/RoleBoundaryE2ETests.cs` |
 | `SchaerbeekMunicipality.E2E.Tests/E2ECollection.cs` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -99,20 +90,11 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-Cancelled
-
 <tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
 <summary>Tool use: **run_terminal_command_v2**</summary>
-
+Cancelled
 </details></tool-use>

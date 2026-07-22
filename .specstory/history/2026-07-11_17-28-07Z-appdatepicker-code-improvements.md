@@ -15,7 +15,8 @@ It seems that we have a lot of code right now - but still keep in mind the Verti
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reviewing the codebase for duplicated logic and shared components that could replace repeated code. The goal is to keep changes aligned with Vertical Slice Architecture.</details></think>
+Reviewing the codebase for duplicated logic and shared components that could replace repeated code. The goal is to keep changes aligned with Vertical Slice Architecture.
+</details></think>
 
 _**Agent (default)**_
 
@@ -24,36 +25,22 @@ I'll review the AppDateField change and scan the codebase for duplication patter
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="task_v2">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="task_v2"><details>
 <summary>Tool use: **task_v2**</summary>
-
 
 Parameters:
 
@@ -84,21 +71,12 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="task_v2"><details>
-<summary>Tool use: **task_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="task_v2">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="task_v2"><details>
 <summary>Tool use: **task_v2**</summary>
-
 
 Parameters:
 
@@ -129,13 +107,6 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="task_v2"><details>
-<summary>Tool use: **task_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -143,7 +114,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 I've reviewed the application structure and am ready to suggest additional ways to reduce code duplication while maintaining the Vertical Slice architecture.
 
-I'll examine specific files to pinpoint exact duplication hotspots before finalizing recommendations.</details></think>
+I'll examine specific files to pinpoint exact duplication hotspots before finalizing recommendations.
+</details></think>
 
 _**Agent (default)**_
 
@@ -152,10 +124,8 @@ Verifying the highest-impact duplication hotspots with a few targeted reads.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -206,56 +176,33 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
 Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -306,26 +253,18 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking AppFieldLabel usage, edit/view patterns, and case list similarity for further consolidation.</details></think>
+Checking AppFieldLabel usage, edit/view patterns, and case list similarity for further consolidation.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -375,60 +314,33 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -462,13 +374,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -476,14 +381,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 I now have a complete picture of the application structure.
 
-Reviewing the design system guidelines to ensure recommendations align with the documented architecture.</details></think>
+Reviewing the design system guidelines to ensure recommendations align with the documented architecture.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -554,43 +458,25 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFieldLabel.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFieldLabel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reviewing the design system architecture guidelines to ensure recommendations align with Vertical Slice principles.</details></think>
+Reviewing the design system architecture guidelines to ensure recommendations align with Vertical Slice principles.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/07-architecture-and-guidelines.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/07-architecture-and-guidelines.md</summary>
 
 </details></tool-use>
 
@@ -601,14 +487,13 @@ Reviewing the architecture document to identify further consolidation opportunit
 
 National Register search is shared across Registration, Birth, and CoA slices. This violates the Vertical Slice rule that slices should not reference each other's components. Birth and CoA already depend on Registration's SearchNationalRegisterHandler. The search panel needs to be restructured to follow the architecture properly.
 
-Checking ARCHITECTURE.md to determine whether the National Register search panel should remain in Registration or move to a shared location under strict Vertical Slice rules.</details></think>
+Checking ARCHITECTURE.md to determine whether the National Register search panel should remain in Registration or move to a shared location under strict Vertical Slice rules.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -639,30 +524,18 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reviewing ARCHITECTURE.md near line 347 to understand the feature structure and identify further code consolidation opportunities.</details></think>
+Reviewing ARCHITECTURE.md near line 347 to understand the feature structure and identify further code consolidation opportunities.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
 
 </details></tool-use>
 
@@ -683,7 +556,8 @@ The national register search panel creates a design-system violation because Bir
 
 Promoting NationalRegisterSearchPanel to DesignSystem is the right move per the design document. It must accept the search handler through a callback or delegate parameter instead of injecting the Registration handler directly. This keeps the panel reusable while respecting the Vertical Slice boundary.
 
-The national register search panel should become a generic DesignSystem component accepting search criteria via parameters and firing an EventCallback. Each feature dialog then wires its own handler. Table rows could also use a generic `RenderFragment` for row actions.</details></think>
+The national register search panel should become a generic DesignSystem component accepting search criteria via parameters and firing an EventCallback. Each feature dialog then wires its own handler. Table rows could also use a generic `RenderFragment` for row actions.
+</details></think>
 
 _**Agent (default)**_
 
@@ -692,18 +566,16 @@ I have a clear picture of duplication hotspots and how they fit vertical slice b
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="create_plan">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
 <summary>Tool use: **create_plan**</summary>
-
 
 Parameters:
 
-```json
+````json
 {
   "name": "Code sharing improvements",
   "overview": "After AppDateField and FluentMudValidation, the biggest line-count wins are document panels, National Register search UI, Belgian address fields, and the edit/view card shell — all extractable as DesignSystem or thin shared UI without merging business logic across slices.",
-  "plan": "# Code Sharing Opportunities (Post-AppDateField)\n\n## What AppDateField Already Solved\n\n[&#96;AppDateField.razor&#96;](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor) is the right pattern: a thin DesignSystem wrapper that centralizes MudBlazor defaults (&#96;dd/MM/yyyy&#96;, outlined, dense), &#96;DateOnly&#96; binding, and &#96;EditContext&#96; validation via &#96;For&#96;. Raw &#96;MudDatePicker&#96; now exists only inside this component.\n\n[&#96;FluentMudValidation.cs&#96;](src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs) is the matching backend bridge — slice validators stay in their use-case folders; only the MudBlazor wiring is shared.\n\n**Follow the same rule:** promote **presentation infrastructure** to &#96;DesignSystem/&#96; or &#96;Web/Validation/&#96;; keep **commands, validators, handlers, and form models** in vertical slices.\n\n&#96;&#96;&#96;mermaid\nflowchart TB\n    subgraph slices [Feature Slices]\n        Validator[\"*Validator.cs per use case\"]\n        Handler[\"*Handler.cs per use case\"]\n        FormModel[\"Private FormModel + MapRequest()\"]\n    end\n    subgraph shared [Shared Infrastructure]\n        AppWrappers[\"DesignSystem App* components\"]\n        FluentMud[\"FluentMudValidation bridge\"]\n    end\n    slices --\u003e|\"compose\"| AppWrappers\n    Validator --\u003e|\"ToMudValidateValue\"| FluentMud\n    FluentMud --\u003e AppWrappers\n&#96;&#96;&#96;\n\nPer [design-system guidelines](docs/design-system/07-architecture-and-guidelines.md): build in a slice first, promote when a second slice needs it. Several candidates below already meet that bar.\n\n---\n\n## Estimated Duplication Today\n\n| Hotspot | Files | ~Duplicated lines |\n|---------|-------|-------------------|\n| Document list + preview | 2 panels | ~90 |\n| National Register search UI | 4 dialogs/pages | ~80 |\n| Edit/view/prerequisite card shell | 5+ registration steps | ~200 |\n| Belgian address form markup | AddressStep + CoA detail | ~60 |\n| Decision checklist + status alerts | 3 decision sections | ~75 |\n| Case list shell + filters | 3 list pages | ~240 |\n| File upload card | DocumentUpload + MedicalDeclarationUpload | ~50 |\n| Address validation rules | 3 validators | ~30 |\n\n**Rough total:** 400–600 lines of repeated Razor/markup, plus parallel backend patterns (guards, attach-document handlers) that are better left slice-specific.\n\n---\n\n## Tier 1 — Highest ROI (DesignSystem, domain-neutral)\n\n### 1. &#96;AppDocumentListPanel&#96; (~90 lines saved)\n\n[&#96;RegistrationCaseDocumentPanel.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor) and [&#96;BirthDeclarationDocumentPanel.razor&#96;](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor) share nearly identical list, selection, image/PDF preview, and &#96;@code&#96; helpers (&#96;SelectDocument&#96;, &#96;GetListItemClass&#96;, &#96;IsPdf&#96;, &#96;IsImage&#96;).\n\n**Extract to DesignSystem:**\n- Generic document interface (&#96;Id&#96;, &#96;FileName&#96;, &#96;UploadedAt&#96;, optional &#96;DocumentType&#96;)\n- Parameters: &#96;Documents&#96;, &#96;CanEdit&#96;, &#96;GetDocumentUrl&#96;, &#96;OnRemoveDocument&#96;\n- Slots: &#96;UploadContent&#96; (each slice keeps its own upload component), optional &#96;ListItemLabel&#96; render fragment\n\nFeature panels become ~30-line shells (upload slot + URL builder).\n\n### 2. &#96;AppNationalRegisterSearchForm&#96; (~60–80 lines saved)\n\nFour places share the same search criteria + results table pattern:\n- [&#96;NationalRegisterSearchDialog.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor)\n- [&#96;ParentLinkDialog.razor&#96;](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor)\n- [&#96;OpenChangeOfAddressDialog.razor&#96;](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor)\n- Partial overlap in case detail pages\n\n**Important VSA constraint:** DesignSystem must not inject &#96;SearchNationalRegisterHandler&#96; (that lives in Registration). The shared component should be **UI-only**:\n- Renders given name, family name, &#96;AppDateField&#96;, search button, empty state, results table\n- Accepts &#96;EventCallback\u003cSearchCriteria\u003e&#96; or &#96;Func\u003c..., Task\u003cSearchResult\u003e\u003e&#96; from the parent dialog\n- &#96;RowActions&#96; render fragment for per-dialog buttons (\"Link\", \"Open case\", etc.)\n\nEach feature dialog keeps its handler call and business action; only markup moves up.\n\n### 3. &#96;AppBelgianAddressFields&#96; (~50–60 lines saved)\n\nNearly identical street autocomplete + house number + box + municipality in:\n- [&#96;AddressStep.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor)\n- [&#96;ChangeOfAddressCaseDetail.razor&#96;](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor)\n\nBirth declaration uses plain text fields today — can adopt later.\n\n**Parameters:** bound street/number/box/postal/municipality, &#96;SearchStreets&#96; callback (injected by parent, not by DesignSystem), optional &#96;EffectiveDate&#96; slot for CoA.\n\nAlso centralize &#96;FormatAddress()&#96; as a small utility in &#96;Web/&#96; or &#96;Domain/&#96; (not in a slice).\n\n### 4. &#96;AppEditableSection&#96; (~150–200 lines saved across registration)\n\nRepeated 3-state pattern in every intake step (example in [&#96;CivilStatusStep.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor)):\n\n&#96;&#96;&#96;\nprerequisite not met → AppInfoBox\nno data or editing   → AppCard + MudForm + AppSaveCancelBar\nhas data, read-only  → AppCard + Edit button + display values\n&#96;&#96;&#96;\n\n**Extract shell with render fragments:**\n- &#96;PrerequisiteContent&#96;, &#96;EditContent&#96;, &#96;ReadContent&#96;\n- Optional &#96;Title&#96;, &#96;IsEditing&#96;, &#96;HasData&#96;, &#96;OnStartEdit&#96;, &#96;OnCancel&#96; (with confirm via existing &#96;IAppDialogService&#96;)\n\nBusiness fields, validators, and save handlers stay in each step component. &#96;ResidenceStep.razor&#96; (621 lines) would benefit most — it repeats this pattern three times.\n\n---\n\n## Tier 2 — Medium ROI (consistency + moderate savings)\n\n### 5. Complete &#96;FluentMudValidation&#96; adoption\n\n&#96;ToMudValidateValue&#96; is wired in **7 files** but several forms already have slice validators and skip client-side bridging:\n\n| Component | Validator exists | Gap |\n|-----------|------------------|-----|\n| &#96;AddressStep.razor&#96; | &#96;DeclareAddressValidator&#96; | Server-only on save |\n| &#96;AddressStep.razor&#96; (housing) | &#96;RecordHousingSituationValidator&#96; | No MudForm.Validation |\n| &#96;ResidenceStep.razor&#96; (category) | &#96;SetResidenceCategoryValidator&#96; | No bridge |\n| &#96;BirthInformationStep.razor&#96; | &#96;RecordBirthInformationRequestValidator&#96; | No bridge |\n| &#96;BirthDeclarationCaseDetail.razor&#96; (household) | &#96;SetDeclarationHouseholdValidator&#96; | No MudForm |\n\n**Not a large line reduction**, but same UX win as AppDateField: inline errors before submit. Validators remain in slices; only one line per form changes.\n\n### 6. &#96;BelgianAddressRules&#96; validator extensions (~30 lines)\n\nDuplicated street/house/postal rules in:\n- [&#96;DeclareAddressValidator.cs&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/DeclareAddress/DeclareAddressValidator.cs)\n- [&#96;DeclareNewAddressValidator.cs&#96;](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs)\n- Birth declaration household validator\n\nAdd &#96;RuleForBelgianStreet()&#96;, &#96;RuleForSchaerbeekPostalCode()&#96; etc. in [&#96;Web/Validation/&#96;](src/SchaerbeekMunicipality.Web/Validation/) — shared rules, slice-owned validators.\n\n### 7. &#96;AppDecisionChecklist&#96; (~50 lines)\n\nShared checklist &#96;MudList&#96; + blocking-reason caption across:\n- [&#96;CaseDecisionSection.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor)\n- [&#96;BirthDeclarationDecisionSection.razor&#96;](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor)\n- [&#96;ChangeOfAddressDecisionSection.razor&#96;](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor)\n\nAccept &#96;IReadOnlyList\u003cChecklistQuestionDto\u003e&#96; + slot for action buttons. Approve/reject handlers stay per slice.\n\n### 8. &#96;AppCaseLockBar&#96; (~40 lines)\n\nIdentical Take case / Release lock / read-only &#96;AppAlert&#96; in Birth and CoA detail pages (Registration has a richer variant). Small composable with callbacks &#96;OnTakeCase&#96;, &#96;OnReleaseLock&#96;, lock display text.\n\n### 9. Generic upload shell\n\n[&#96;DocumentUpload.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor) and &#96;MedicalDeclarationUpload.razor&#96; share file picker + selected file display + upload button. Extract &#96;AppFileUploadCard&#96; with &#96;OnUpload(Stream, string fileName)&#96; callback; each slice keeps attach handler injection.\n\n---\n\n## Tier 3 — Lower priority / slice-local\n\n### 10. &#96;IdentityFormSection&#96; (Registration slice only)\n\n[&#96;RegistrationCaseDetail.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor) renders the same identity &#96;MudForm&#96; twice (create vs edit). Extract **within Registration**, not DesignSystem (~30 lines).\n\n### 11. &#96;ReasonNotesDialog&#96; (Registration slice)\n\n[&#96;RejectCaseDialog.razor&#96;](src/SchaerbeekMunicipality.Web/Features/Registration/Components/RejectCaseDialog.razor) and &#96;SuspendCaseDialog.razor&#96; are structurally identical. Generic dialog parameterized by reason enum — stays in Registration until Birth/CoA need reject dialogs.\n\n### 12. Case list page abstraction (~200 lines, higher risk)\n\nThree list pages share skeleton/empty/filter/table shell. Viable as &#96;AppCaseListPage\u003cTFilter\u003e&#96; but filters and columns differ enough that over-abstraction could hurt readability. **Defer** until Tier 1 is done.\n\n### 13. &#96;AppTextField&#96; / &#96;AppEnumSelect\u003cT\u003e&#96; (styling only)\n\n~40+ raw &#96;MudTextField&#96; usages. Thin wrappers (outlined, dense defaults) improve consistency but save fewer lines than structural extractions. Consider only if you want AppDateField parity for all inputs.\n\n### 14. Remove or use &#96;AppFieldLabel&#96;\n\n[&#96;AppFieldLabel.razor&#96;](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFieldLabel.razor) has **zero usages** in production Razor — either wire it into read-mode displays or delete to reduce dead code.\n\n---\n\n## What to Keep Feature-Specific (Do Not Merge)\n\nThese look repetitive but are intentional VSA:\n\n- **Private &#96;FormModel&#96; + &#96;MapXxxRequest()&#96;** per step — UI shape differs from command DTO\n- **&#96;*Handler.cs&#96; / &#96;*Endpoint.cs&#96; / &#96;*Validator.cs&#96;** per use case — never generic handlers\n- **&#96;*CaseGuard.cs&#96;** — parallel structure is fine; a base class adds coupling for ~30 lines each\n- **Decision section business logic** — approve/reject/suspend flows differ per bounded context\n- **Registration intake steps** — extract shells (&#96;AppEditableSection&#96;), not merged mega-components\n\n---\n\n## Suggested Implementation Order\n\nEach item is an independent PR-sized chunk:\n\n1. **&#96;AppDocumentListPanel&#96;** — clearest duplication, no cross-slice handler issues\n2. **&#96;AppNationalRegisterSearchForm&#96;** — UI-only; wire callbacks in 3 dialogs\n3. **&#96;AppBelgianAddressFields&#96;** + &#96;BelgianAddressRules&#96; extensions\n4. **&#96;FluentMudValidation&#96; completion** — quick wins across 5 forms\n5. **&#96;AppEditableSection&#96;** — start with &#96;CivilStatusStep&#96;, then &#96;ResidenceStep&#96;\n6. **&#96;AppDecisionChecklist&#96;** + **&#96;AppCaseLockBar&#96;**\n7. Slice-local cleanups (identity form, reject/suspend dialog, &#96;AppFieldLabel&#96;)\n\n**Expected net reduction:** ~300–450 lines of Razor after Tier 1+2, with better consistency and no violation of vertical slice boundaries.\n\n---\n\n## VSA Compliance Summary\n\n| Layer | What goes here | Examples |\n|-------|----------------|----------|\n| &#96;DesignSystem/&#96; | Visual primitives, layout shells, generic UI with callbacks | AppDocumentListPanel, AppEditableSection, AppBelgianAddressFields |\n| &#96;Web/Validation/&#96; | Bridges and reusable rule extensions | FluentMudValidation, BelgianAddressRules |\n| &#96;Features/{Slice}/&#96; | Commands, handlers, validators, form models, business dialogs | RecordCivilStatusValidator, ParentLinkDialog action |\n| Cross-slice handler use (existing) | Application capability owned by one context | SearchNationalRegisterHandler stays in Registration; other slices call it via parent dialog, not via DesignSystem injection |\n",
+  "plan": "# Code Sharing Opportunities (Post-AppDateField)\n\n## What AppDateField Already Solved\n\n[`AppDateField.razor`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppDateField.razor) is the right pattern: a thin DesignSystem wrapper that centralizes MudBlazor defaults (`dd/MM/yyyy`, outlined, dense), `DateOnly` binding, and `EditContext` validation via `For`. Raw `MudDatePicker` now exists only inside this component.\n\n[`FluentMudValidation.cs`](src/SchaerbeekMunicipality.Web/Validation/FluentMudValidation.cs) is the matching backend bridge — slice validators stay in their use-case folders; only the MudBlazor wiring is shared.\n\n**Follow the same rule:** promote **presentation infrastructure** to `DesignSystem/` or `Web/Validation/`; keep **commands, validators, handlers, and form models** in vertical slices.\n\n```mermaid\nflowchart TB\n    subgraph slices [Feature Slices]\n        Validator[\"*Validator.cs per use case\"]\n        Handler[\"*Handler.cs per use case\"]\n        FormModel[\"Private FormModel + MapRequest()\"]\n    end\n    subgraph shared [Shared Infrastructure]\n        AppWrappers[\"DesignSystem App* components\"]\n        FluentMud[\"FluentMudValidation bridge\"]\n    end\n    slices --\u003e|\"compose\"| AppWrappers\n    Validator --\u003e|\"ToMudValidateValue\"| FluentMud\n    FluentMud --\u003e AppWrappers\n```\n\nPer [design-system guidelines](docs/design-system/07-architecture-and-guidelines.md): build in a slice first, promote when a second slice needs it. Several candidates below already meet that bar.\n\n---\n\n## Estimated Duplication Today\n\n| Hotspot | Files | ~Duplicated lines |\n|---------|-------|-------------------|\n| Document list + preview | 2 panels | ~90 |\n| National Register search UI | 4 dialogs/pages | ~80 |\n| Edit/view/prerequisite card shell | 5+ registration steps | ~200 |\n| Belgian address form markup | AddressStep + CoA detail | ~60 |\n| Decision checklist + status alerts | 3 decision sections | ~75 |\n| Case list shell + filters | 3 list pages | ~240 |\n| File upload card | DocumentUpload + MedicalDeclarationUpload | ~50 |\n| Address validation rules | 3 validators | ~30 |\n\n**Rough total:** 400–600 lines of repeated Razor/markup, plus parallel backend patterns (guards, attach-document handlers) that are better left slice-specific.\n\n---\n\n## Tier 1 — Highest ROI (DesignSystem, domain-neutral)\n\n### 1. `AppDocumentListPanel` (~90 lines saved)\n\n[`RegistrationCaseDocumentPanel.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor) and [`BirthDeclarationDocumentPanel.razor`](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor) share nearly identical list, selection, image/PDF preview, and `@code` helpers (`SelectDocument`, `GetListItemClass`, `IsPdf`, `IsImage`).\n\n**Extract to DesignSystem:**\n- Generic document interface (`Id`, `FileName`, `UploadedAt`, optional `DocumentType`)\n- Parameters: `Documents`, `CanEdit`, `GetDocumentUrl`, `OnRemoveDocument`\n- Slots: `UploadContent` (each slice keeps its own upload component), optional `ListItemLabel` render fragment\n\nFeature panels become ~30-line shells (upload slot + URL builder).\n\n### 2. `AppNationalRegisterSearchForm` (~60–80 lines saved)\n\nFour places share the same search criteria + results table pattern:\n- [`NationalRegisterSearchDialog.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor)\n- [`ParentLinkDialog.razor`](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor)\n- [`OpenChangeOfAddressDialog.razor`](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor)\n- Partial overlap in case detail pages\n\n**Important VSA constraint:** DesignSystem must not inject `SearchNationalRegisterHandler` (that lives in Registration). The shared component should be **UI-only**:\n- Renders given name, family name, `AppDateField`, search button, empty state, results table\n- Accepts `EventCallback\u003cSearchCriteria\u003e` or `Func\u003c..., Task\u003cSearchResult\u003e\u003e` from the parent dialog\n- `RowActions` render fragment for per-dialog buttons (\"Link\", \"Open case\", etc.)\n\nEach feature dialog keeps its handler call and business action; only markup moves up.\n\n### 3. `AppBelgianAddressFields` (~50–60 lines saved)\n\nNearly identical street autocomplete + house number + box + municipality in:\n- [`AddressStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor)\n- [`ChangeOfAddressCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor)\n\nBirth declaration uses plain text fields today — can adopt later.\n\n**Parameters:** bound street/number/box/postal/municipality, `SearchStreets` callback (injected by parent, not by DesignSystem), optional `EffectiveDate` slot for CoA.\n\nAlso centralize `FormatAddress()` as a small utility in `Web/` or `Domain/` (not in a slice).\n\n### 4. `AppEditableSection` (~150–200 lines saved across registration)\n\nRepeated 3-state pattern in every intake step (example in [`CivilStatusStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor)):\n\n```\nprerequisite not met → AppInfoBox\nno data or editing   → AppCard + MudForm + AppSaveCancelBar\nhas data, read-only  → AppCard + Edit button + display values\n```\n\n**Extract shell with render fragments:**\n- `PrerequisiteContent`, `EditContent`, `ReadContent`\n- Optional `Title`, `IsEditing`, `HasData`, `OnStartEdit`, `OnCancel` (with confirm via existing `IAppDialogService`)\n\nBusiness fields, validators, and save handlers stay in each step component. `ResidenceStep.razor` (621 lines) would benefit most — it repeats this pattern three times.\n\n---\n\n## Tier 2 — Medium ROI (consistency + moderate savings)\n\n### 5. Complete `FluentMudValidation` adoption\n\n`ToMudValidateValue` is wired in **7 files** but several forms already have slice validators and skip client-side bridging:\n\n| Component | Validator exists | Gap |\n|-----------|------------------|-----|\n| `AddressStep.razor` | `DeclareAddressValidator` | Server-only on save |\n| `AddressStep.razor` (housing) | `RecordHousingSituationValidator` | No MudForm.Validation |\n| `ResidenceStep.razor` (category) | `SetResidenceCategoryValidator` | No bridge |\n| `BirthInformationStep.razor` | `RecordBirthInformationRequestValidator` | No bridge |\n| `BirthDeclarationCaseDetail.razor` (household) | `SetDeclarationHouseholdValidator` | No MudForm |\n\n**Not a large line reduction**, but same UX win as AppDateField: inline errors before submit. Validators remain in slices; only one line per form changes.\n\n### 6. `BelgianAddressRules` validator extensions (~30 lines)\n\nDuplicated street/house/postal rules in:\n- [`DeclareAddressValidator.cs`](src/SchaerbeekMunicipality.Web/Features/Registration/DeclareAddress/DeclareAddressValidator.cs)\n- [`DeclareNewAddressValidator.cs`](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs)\n- Birth declaration household validator\n\nAdd `RuleForBelgianStreet()`, `RuleForSchaerbeekPostalCode()` etc. in [`Web/Validation/`](src/SchaerbeekMunicipality.Web/Validation/) — shared rules, slice-owned validators.\n\n### 7. `AppDecisionChecklist` (~50 lines)\n\nShared checklist `MudList` + blocking-reason caption across:\n- [`CaseDecisionSection.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor)\n- [`BirthDeclarationDecisionSection.razor`](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor)\n- [`ChangeOfAddressDecisionSection.razor`](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor)\n\nAccept `IReadOnlyList\u003cChecklistQuestionDto\u003e` + slot for action buttons. Approve/reject handlers stay per slice.\n\n### 8. `AppCaseLockBar` (~40 lines)\n\nIdentical Take case / Release lock / read-only `AppAlert` in Birth and CoA detail pages (Registration has a richer variant). Small composable with callbacks `OnTakeCase`, `OnReleaseLock`, lock display text.\n\n### 9. Generic upload shell\n\n[`DocumentUpload.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor) and `MedicalDeclarationUpload.razor` share file picker + selected file display + upload button. Extract `AppFileUploadCard` with `OnUpload(Stream, string fileName)` callback; each slice keeps attach handler injection.\n\n---\n\n## Tier 3 — Lower priority / slice-local\n\n### 10. `IdentityFormSection` (Registration slice only)\n\n[`RegistrationCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor) renders the same identity `MudForm` twice (create vs edit). Extract **within Registration**, not DesignSystem (~30 lines).\n\n### 11. `ReasonNotesDialog` (Registration slice)\n\n[`RejectCaseDialog.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/RejectCaseDialog.razor) and `SuspendCaseDialog.razor` are structurally identical. Generic dialog parameterized by reason enum — stays in Registration until Birth/CoA need reject dialogs.\n\n### 12. Case list page abstraction (~200 lines, higher risk)\n\nThree list pages share skeleton/empty/filter/table shell. Viable as `AppCaseListPage\u003cTFilter\u003e` but filters and columns differ enough that over-abstraction could hurt readability. **Defer** until Tier 1 is done.\n\n### 13. `AppTextField` / `AppEnumSelect\u003cT\u003e` (styling only)\n\n~40+ raw `MudTextField` usages. Thin wrappers (outlined, dense defaults) improve consistency but save fewer lines than structural extractions. Consider only if you want AppDateField parity for all inputs.\n\n### 14. Remove or use `AppFieldLabel`\n\n[`AppFieldLabel.razor`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFieldLabel.razor) has **zero usages** in production Razor — either wire it into read-mode displays or delete to reduce dead code.\n\n---\n\n## What to Keep Feature-Specific (Do Not Merge)\n\nThese look repetitive but are intentional VSA:\n\n- **Private `FormModel` + `MapXxxRequest()`** per step — UI shape differs from command DTO\n- **`*Handler.cs` / `*Endpoint.cs` / `*Validator.cs`** per use case — never generic handlers\n- **`*CaseGuard.cs`** — parallel structure is fine; a base class adds coupling for ~30 lines each\n- **Decision section business logic** — approve/reject/suspend flows differ per bounded context\n- **Registration intake steps** — extract shells (`AppEditableSection`), not merged mega-components\n\n---\n\n## Suggested Implementation Order\n\nEach item is an independent PR-sized chunk:\n\n1. **`AppDocumentListPanel`** — clearest duplication, no cross-slice handler issues\n2. **`AppNationalRegisterSearchForm`** — UI-only; wire callbacks in 3 dialogs\n3. **`AppBelgianAddressFields`** + `BelgianAddressRules` extensions\n4. **`FluentMudValidation` completion** — quick wins across 5 forms\n5. **`AppEditableSection`** — start with `CivilStatusStep`, then `ResidenceStep`\n6. **`AppDecisionChecklist`** + **`AppCaseLockBar`**\n7. Slice-local cleanups (identity form, reject/suspend dialog, `AppFieldLabel`)\n\n**Expected net reduction:** ~300–450 lines of Razor after Tier 1+2, with better consistency and no violation of vertical slice boundaries.\n\n---\n\n## VSA Compliance Summary\n\n| Layer | What goes here | Examples |\n|-------|----------------|----------|\n| `DesignSystem/` | Visual primitives, layout shells, generic UI with callbacks | AppDocumentListPanel, AppEditableSection, AppBelgianAddressFields |\n| `Web/Validation/` | Bridges and reusable rule extensions | FluentMudValidation, BelgianAddressRules |\n| `Features/{Slice}/` | Commands, handlers, validators, form models, business dialogs | RecordCivilStatusValidator, ParentLinkDialog action |\n| Cross-slice handler use (existing) | Application capability owned by one context | SearchNationalRegisterHandler stays in Registration; other slices call it via parent dialog, not via DesignSystem injection |\n",
   "todos": [
     {
       "content": "Extract AppDocumentListPanel from Registration + BirthDeclaration document panels (~90 lines)",
@@ -742,7 +614,7 @@ Parameters:
     }
   ]
 }
-```
+````
 Additional data:
 
 ```json
@@ -766,13 +638,6 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
-<summary>Tool use: **create_plan**</summary>
-
 </details></tool-use>
 
 ---
@@ -788,7 +653,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The user is asking where the new App components will be created. This is a clarification question about the plan.
 
-I'll check the plan file and design system structure to determine the correct folder locations for each App component under the vertical slice architecture.</details></think>
+I'll check the plan file and design system structure to determine the correct folder locations for each App component under the vertical slice architecture.
+</details></think>
 
 _**Agent (default)**_
 
@@ -797,11 +663,10 @@ Checking the DesignSystem folder structure so I can give exact paths for each pr
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **35** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem** (35 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem`** (35 files)
 
 | File |
 |------|
@@ -840,38 +705,19 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/Scha
 | `Components/Data/AppDataTable.razor` |
 | `Components/Forms/AppSaveCancelBar.razor` |
 | `Components/Layout/AppActionBar.razor` |
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
@@ -880,7 +726,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The user wants to know where each App component will be created.
 
-A "Component Locations" section will be added to the plan document. Each proposed component will be mapped to its exact file path across DsignSystem subfolders, slice-local directories, and the Validation folder.</details></think>
+A "Component Locations" section will be added to the plan document. Each proposed component will be mapped to its exact file path across DsignSystem subfolders, slice-local directories, and the Validation folder.
+</details></think>
 
 _**Agent (default)**_
 
@@ -889,23 +736,16 @@ Updating the plan with exact file paths for each proposed component.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The plan has been updated. I will now explain where each component belongs.</details></think>
+The plan has been updated. I will now explain where each component belongs.
+</details></think>
 
 _**Agent (default)**_
 
@@ -963,7 +803,8 @@ Most proposed components are domain-specific. Only AppEditableSection is truly g
 
 Promoting components to DesignSystem requires usage across two or more slices. This threshold may be too low for domain-specific pieces. A middle layer such as Web/Shared/ or Web/Components/ could bridge DesignSystem and Features. Domain-specific folders are another alternative.
 
-Keeping components inside a single feature is another valid path. Registration could own the national register search UI directly. A Web/Compnts/CaseManagement/ folder would be domain-aware yet shared across slices. I am checking whether a Web/Components/ directory already exists beyond DesignSystem.</details></think>
+Keeping components inside a single feature is another valid path. Registration could own the national register search UI directly. A Web/Compnts/CaseManagement/ folder would be domain-aware yet shared across slices. I am checking whether a Web/Components/ directory already exists beyond DesignSystem.
+</details></think>
 
 _**Agent (default)**_
 
@@ -972,11 +813,10 @@ Your instinct matches the architecture docs — I'll check how shared vs. domain
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **323** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web** (323 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web`** (323 files)
 
 | File |
 |------|
@@ -1303,34 +1143,19 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/Scha
 | `Features/Registration/Components/NewCaseDialog.razor` |
 | `Features/ChangeOfAddress/RejectChangeOfAddress/RejectChangeOfAddressEndpoint.cs` |
 | `DesignSystem/Components/Navigation/AppQuickActions.razor` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/07-architecture-and-guidelines.md</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/07-architecture-and-guidelines.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1413,43 +1238,25 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking ARCHITECTURE.md near line 91 to review the Components folder structure.</details></think>
+Checking ARCHITECTURE.md near line 91 to review the Components folder structure.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-0-foundation.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/phase-0-foundation.md</summary>
 
 </details></tool-use>
 
@@ -1478,7 +1285,8 @@ AppDocumentListPanel carries case-workflow semantics, so it belongs in the share
 
 AppDecisionChecklist could be generic if it accepts arbitrary question and answer DTOs without domain-specific naming. It might become a DesignSystem data primitive like `AppChecklist`.
 
-AppDocumentListPanel could also be split. The image and PDF preview logic is generic enough for DesignSystem. The case-specific list, delete, and empty-state framing belongs in the municipal shared layer.</details></think>
+AppDocumentListPanel could also be split. The image and PDF preview logic is generic enough for DesignSystem. The case-specific list, delete, and empty-state framing belongs in the municipal shared layer.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1487,10 +1295,8 @@ Checking how cross-feature shared UI is documented and used today.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -1526,25 +1332,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationRoleGate.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationRoleGate.razor</summary>
 
 </details></tool-use>
 
@@ -1557,7 +1350,8 @@ Proposing a four-tier UI architecture: DesignSystem primitives, a shared cross-f
 
 Settled on `Web/Municipal/Components/` for the new layer. This keeps municipal desk UI out of generic design tokens. Considering whether these components need an `App` prefix or a different one like `Municipal`.
 
-Decided to drop the `App` prefix for the new municipal components. Descriptive names like `OfficerDecisionChecklist` clearly separate them from DesignSystem primitives. Generic reusable pieces such as `AppEditableSection`, `AppFileUploadCard`, and `AppChecklist` will remain in DesignSystem. The plan document will be updated with this revised architecture philosophy.</details></think>
+Decided to drop the `App` prefix for the new municipal components. Descriptive names like `OfficerDecisionChecklist` clearly separate them from DesignSystem primitives. Generic reusable pieces such as `AppEditableSection`, `AppFileUploadCard`, and `AppChecklist` will remain in DesignSystem. The plan document will be updated with this revised architecture philosophy.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1566,14 +1360,8 @@ Agreeing — many proposed components are municipal-domain UI, not generic desig
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
@@ -1582,139 +1370,88 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Replacing the "Where Each Component Will Live" section with a revised three-tier architecture. Updating Tier 1 sections to reflect the new component placements.
 
-Adding a section to explain the rationale behind the architecture and the distinction between System and Municipal layers.</details></think>
+Adding a section to explain the rationale behind the architecture and the distinction between System and Municipal layers.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Tier 1 section references need updating to the new naming convention. The VSA compliance summary at the end also needs updating.</details></think>
+Tier 1 section references need updating to the new naming convention. The VSA compliance summary at the end also needs updating.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 The string to replace was not found in the file.
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reading the frontmatter and fixing the todos.</details></think>
+Reading the frontmatter and fixing the todos.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Updating the frontmatter todos and overview.</details></think>
+Updating the frontmatter todos and overview.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/.cursor/plans/code_sharing_improvements_5501c1fd.plan.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Ready to explain why these components belong outside DesignSystem.</details></think>
+Ready to explain why these components belong outside DesignSystem.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1784,7 +1521,8 @@ Beginning implementation of the code sharing improvements plan.
 
 Marking the first todo as in progress. The plan covers six items: extracting CaseDocumentPanel and AppFilePreview, creating NationalRegisterSearchForm with thin dialog wrappers, building BelgianAddressFields and validator extensions, wiring ToMudValidateValue into address and birth steps, creating AppEditableSection and migrating CivilStatusStep, and completing the remaining tasks.
 
-Two more extraction tasks are identified: OfficerDecisionChecklist and CseLockBar from Municipal, plus AppChecklist from DesignSystem. Registration-only components like IdentityFormSection and ReasonNotesDialog will be migrated or replaced with AppFieldLabel. Starting systematic file reads now.</details></think>
+Two more extraction tasks are identified: OfficerDecisionChecklist and CseLockBar from Municipal, plus AppChecklist from DesignSystem. Registration-only components like IdentityFormSection and ReasonNotesDialog will be migrated or replaced with AppFieldLabel. Starting systematic file reads now.
+</details></think>
 
 _**Agent (default)**_
 
@@ -1793,10 +1531,8 @@ Implementing the plan in order: starting with `CaseDocumentPanel` and `AppFilePr
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -1864,76 +1600,31 @@ Result:
     },
     {
       "content": "Wire ToMudValidateValue into AddressStep, ResidenceStep category, BirthInformationStep, Birth household",
-      "id": "fluent-mud-complete",
-      "status": "pending"
-    },
-    {
-      "content": "Create AppEditableSection (DesignSystem); migrate CivilStatusStep then other registration steps",
-      "id": "editable-section",
-      "status": "pending"
-    },
-    {
-      "content": "Extract OfficerDecisionChecklist + CaseLockBar (Municipal) and AppChecklist (DesignSystem)",
-      "id": "decision-checklist",
-      "status": "pending"
-    },
-    {
-      "content": "Registration-only: IdentityFormSection, ReasonNotesDialog; remove or use AppFieldLabel",
-      "id": "slice-local-cleanup",
-      "status": "pending"
-    }
-  ],
-  "success": true,
-  "wasMerge": true
-}
+      "id": "fluent-
+… (output truncated)
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
 
 </details></tool-use>
 
@@ -1942,46 +1633,40 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Checking CSS classes used by the document panel and identifying additional files needed for the full implementation.
 
-Planning to create AppFilePreview, a document item interface, and CaseDocumentPanel. Will update both document panels to use the new component. Searching for related CSS and design files.</details></think>
+Planning to create AppFilePreview, a document item interface, and CaseDocumentPanel. Will update both document panels to use the new component. Searching for related CSS and design files.
+</details></think>
 
 _**Agent (default)**_
 
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
-
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
-
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
-Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
-
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Trying a more specific grep pattern to locate the relevant files.</details></think>
+Trying a more specific grep pattern to locate the relevant files.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -2024,21 +1709,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -2069,21 +1745,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -2126,56 +1793,32 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reviewing the DocumentDto and BirthDeclarationDocumentDto structures.</details></think>
+Reviewing the DocumentDto and BirthDeclarationDocumentDto structures.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/GetBirthDeclarationCase/BirthDeclarationCaseDetailDto.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/GetBirthDeclarationCase/BirthDeclarationCaseDetailDto.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/wwwroot/app.css</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/wwwroot/app.css</summary>
 
 </details></tool-use>
 
@@ -2188,31 +1831,20 @@ Leaving CSS unchanged. Creating `ICaseDocumentListItem`, `AppFilePreview.razor`,
 
 Settled on a simpler generic document interface instead of a complex record. The panel will take a list of CaseDocumentItem records, edit permissions, a URL resolver, remove handler, optional upload fragment, and empty-state controls. Registration always shows the empty state when no documents exist. Birth only shows it when the user cannot edit and the list is empty.
 
-Reviewing AppCard's API to understand its component structure.</details></think>
+Reviewing AppCard's API to understand its component structure.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCard.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppCard.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
@@ -2227,7 +1859,8 @@ Settled on `app-file-preview` prefixed classes with component-scoped styles. Mov
 
 CaseDocumentItem record defined with Id, FileName, UploadedAt, and optional TypeLabel. List labels will combine the type label and filename. Next steps involve reading four dialog files, implementing Belgian address components, updating FluentMud files, and modifying AppEditableSection in CivilStatusStep and related cases.
 
-Planning the decision checklist with three decision sections and a case lock bar. Identifying slice-local files: IdentityFormSection, ReasonNotesDialog, and AppFieldLabel. Starting file creation for task 1.nicipa.</details></think>
+Planning the decision checklist with three decision sections and a case lock bar. Identifying slice-local files: IdentityFormSection, ReasonNotesDialog, and AppFieldLabel. Starting file creation for task 1.nicipa.
+</details></think>
 
 _**Agent (default)**_
 
@@ -2236,76 +1869,36 @@ Creating the foundational components and Municipal layer structure.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppFilePreview.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppFilePreview.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentItem.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentItem.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
 
 </details></tool-use>
 
@@ -2314,35 +1907,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Updating both document panels to use CaseDocumentPanel.
 
-Checking whether the csproj needs manual updates for the icipal folder, since Razor files should auto-include in Blazor. Also reviewing how DesignSystem imports work to add Municipal _Imports to the main project.</details></think>
+Checking whether the csproj needs manual updates for the icipal folder, since Razor files should auto-include in Blazor. Also reviewing how DesignSystem imports work to add Municipal _Imports to the main project.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseDocumentPanel.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDocumentPanel.razor</summary>
 
 </details></tool-use>
 
@@ -2353,14 +1931,13 @@ Realized the original BirthDeclaration layout placed UploadContent outside CaseD
 
 Confirmed the empty state logic matches the original BirthDeclaration behavior. When CanEdit is true and no documents exist, nothing renders. When documents are present, both upload and list appear. Registration always shows empty state when no documents exist.
 
-ShowEmptyState defaults to true. Now examining dialog files for NationalRegisterSearchForm.</details></think>
+ShowEmptyState defaults to true. Now examining dialog files for NationalRegisterSearchForm.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -2428,85 +2005,38 @@ Result:
     },
     {
       "content": "Wire ToMudValidateValue into AddressStep, ResidenceStep category, BirthInformationStep, Birth household",
-      "id": "fluent-mud-complete",
-      "status": "pending"
-    },
-    {
-      "content": "Create AppEditableSection shell; migrate CivilStatusStep then other registration steps",
-      "id": "editable-section",
-      "status": "pending"
-    },
-    {
-      "content": "Extract AppDecisionChecklist + AppCaseLockBar from case detail/decision components",
-      "id": "decision-checklist",
-      "status": "pending"
-    },
-    {
-      "content": "Registration-only: IdentityFormSection, ReasonNotesDialog; remove or use AppFieldLabel",
-      "id": "slice-local-cleanup",
-      "status": "pending"
-    }
-  ],
-  "success": true,
-  "wasMerge": true
-}
+      "id
+… (output truncated)
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -2553,30 +2083,18 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reading NationalRegisterMatchDto from SearchNationalRegisterResponse.cs.</details></think>
+Reading NationalRegisterMatchDto from SearchNationalRegisterResponse.cs.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/SearchNationalRegister/SearchNationalRegisterResponse.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/SearchNationalRegister/SearchNationalRegisterResponse.cs</summary>
 
 </details></tool-use>
 
@@ -2597,50 +2115,27 @@ The table will support flexible columns for different parent contexts. It will i
 
 The form will gain a `RequireSearchCriterion` boolean to control mandatory search fields per parent context. A `ShowMatchScore` flag will toggle the score column. The `SearchAsync` callback will return `IReadOnlyList<NationalRegisterSearchMatch>`. `RowActions` will render as a `RenderFragment`. Errors will be managed internally by the form.
 
-A `LeadContent` RenderFragment will appear before the search section. ParentLinkDialog will use this slot for a role selector. A `NationalRegisterFormatting` utility may handle national register number formatting in Municipal. The `NationalRegisterSearchCriteria` record is being implemented in `Municipal.Components`.</details></think>
+A `LeadContent` RenderFragment will appear before the search section. ParentLinkDialog will use this slot for a role selector. A `NationalRegisterFormatting` utility may handle national register number formatting in Municipal. The `NationalRegisterSearchCriteria` record is being implemented in `Municipal.Components`.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchModels.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchModels.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/NationalRegisterFormatting.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/NationalRegisterFormatting.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/NationalRegisterSearchMapping.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/NationalRegisterSearchMapping.cs</summary>
 
 </details></tool-use>
 
@@ -2649,16 +2144,10 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 NationalRegisterSearchMapping.cs references Features/Registration, violating the independence of the Municipal module.
 
-The mapping will be deleted and handled inline within each dialog instead.</details></think>
+The mapping will be deleted and handled inline within each dialog instead.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="delete_file">
-<details><summary>Tool use: **delete_file**</summary>
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="delete_file"><details>
 <summary>Tool use: **delete_file**</summary>
@@ -2667,31 +2156,15 @@ _**Agent (default)**_
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/_Imports.razor</summary>
 
 </details></tool-use>
 
@@ -2700,20 +2173,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 NationalRegisterSearchForm catches a generic Exception, which may be too broad.
 
-Search() will catch only ValidationException, matching the original behavior. Each dialog will add a private static Map method to convert NationalRegisterMatchDto to NationalRegisterSearchMatch.</details></think>
+Search() will catch only ValidationException, matching the original behavior. Each dialog will add a private static Map method to convert NationalRegisterMatchDto to NationalRegisterSearchMatch.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
@@ -2722,50 +2188,27 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 LinkMatch error handling needs adjustment. Throwing InvalidOperationException prevents the form from catching and displaying link errors in the dialog. The original implementation showed _error directly in the dialog.
 
-NationalRegisterSearchForm only displays search errors. Link errors will be handled locally in the dialog with a local _linkError state and an AppAlert shown below the form.</details></think>
+NationalRegisterSearchForm only displays search errors. Link errors will be handled locally in the dialog with a local _linkError state and an AppAlert shown below the form.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
@@ -2774,64 +2217,40 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 NationalRegisterSearchForm should catch only ValidationException in Search, not generic Exception, to match the original.
 
-ParentLinkDialog and OpenChangeOfAddressDialog should be updated similarly.</details></think>
+ParentLinkDialog and OpenChangeOfAddressDialog should be updated similarly.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reviewing AddressStep and ChangeOfAddressCaseDetail address sections for BelgianAddressFields.</details></think>
+Reviewing AddressStep and ChangeOfAddressCaseDetail address sections for BelgianAddressFields.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -2899,103 +2318,51 @@ Result:
     },
     {
       "content": "Wire ToMudValidateValue into AddressStep, ResidenceStep category, BirthInformationStep, Birth household",
-      "id": "fluent-mud-complete",
-      "status": "pending"
-    },
-    {
-      "content": "Create AppEditableSection shell; migrate CivilStatusStep then other registration steps",
-      "id": "editable-section",
-      "status": "pending"
-    },
-    {
-      "content": "Extract AppDecisionChecklist + AppCaseLockBar from case detail/decision components",
-      "id": "decision-checklist",
-      "status": "pending"
-    },
-    {
-      "content": "Registration-only: IdentityFormSection, ReasonNotesDialog; remove or use AppFieldLabel",
-      "id": "slice-local-cleanup",
-      "status": "pending"
-    }
-  ],
-  "success": true,
-  "wasMerge": true
-}
+     
+… (output truncated)
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/DeclareAddress/DeclareAddressValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/DeclareAddress/DeclareAddressValidator.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Searching for the birth declaration household validator to locate address rules.</details></think>
+Searching for the birth declaration household validator to locate address rules.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3078,21 +2445,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3151,43 +2509,25 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reading SetDeclarationHouseholdValidator.</details></think>
+Reading SetDeclarationHouseholdValidator.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdRequest.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdRequest.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -3206,14 +2546,13 @@ AddressFormatting now contains two overloads. One formats a raw address string w
 
 Implemented four FluentValidation extension methods in BelgianAddressRules. Each method applies NotEmpty and length constraints to Belgian address fields: streets allow up to 256 characters, house numbers up to 16, postal codes exactly 4 digits, and municipalities up to 128.
 
-Added two more FluentValidation extensions in BelgianAddressRules. One enforces the postal code against the Schaerbeek commune constant. The other validates the municipality name matches the Schaerbeek commune name. These will be wired into the validators. BelgianAddressFields will use two-way binding for its parameters. Next, I will examine ChangeOfAddressCaseDetail to understand how the SearchStreets method works.</details></think>
+Added two more FluentValidation extensions in BelgianAddressRules. One enforces the postal code against the Schaerbeek commune constant. The other validates the municipality name matches the Schaerbeek commune name. These will be wired into the validators. BelgianAddressFields will use two-way binding for its parameters. Next, I will examine ChangeOfAddressCaseDetail to understand how the SearchStreets method works.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3244,122 +2583,60 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Creating BelgianAddressFields, AddressFormatting, and BelgianAddressRules. Updating related files.</details></think>
+Creating BelgianAddressFields, AddressFormatting, and BelgianAddressRules. Updating related files.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/BelgianAddressRules.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Validation/BelgianAddressRules.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/DeclareAddress/DeclareAddressValidator.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/DeclareAddress/DeclareAddressValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/DeclareNewAddress/DeclareNewAddressValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdRequest.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdRequest.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdRequest.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/SetDeclarationHousehold/SetDeclarationHouseholdRequest.cs</summary>
 
 </details></tool-use>
 
@@ -3370,140 +2647,69 @@ Updating AddressStep to use BelgianAddressFields and AddressFormatting.
 
 Also updating ChangeOfAddressCaseDetail. AddressStep will use @bind-SelectedStreet, @bind-HouseNumber, and @bind-Box on BelgianAddressFields. FormatAddress will be replaced with AddressFormatting.FormatBelgianAddress.
 
-ChangeOfAddressCaseDetail will use BelgianAddressFields ngContent for housing and effective date. Adding `@using SchaerbeekMunicipality.Web.Municipal` to Features/_Imports for AddressFormatting.</details></think>
+ChangeOfAddressCaseDetail will use BelgianAddressFields ngContent for housing and effective date. Adding `@using SchaerbeekMunicipality.Web.Municipal` to Features/_Imports for AddressFormatting.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -3512,14 +2718,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Checking whether `DeclaredAddress` is a `BelgianAddressDto` in `AddressStep`, since it is passed directly to `AddressFormatting.FormatBelgianAddress`.
 
-Confirmed the `BelgianAddressDto` overload exists. Now wiring FluentMud validation into `AddressStep`, `ResidenceStep` category, `BirthInformationStep`, and birth household. Reading those files next.</details></think>
+Confirmed the `BelgianAddressDto` overload exists. Now wiring FluentMud validation into `AddressStep`, `ResidenceStep` category, `BirthInformationStep`, and birth household. Reading those files next.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -3587,46 +2792,17 @@ Result:
     },
     {
       "content": "Wire ToMudValidateValue into AddressStep, ResidenceStep category, BirthInformationStep, Birth household",
-      "id": "fluent-mud-complete",
-      "status": "pending"
-    },
-    {
-      "content": "Create AppEditableSection shell; migrate CivilStatusStep then other registration steps",
-      "id": "editable-section",
-      "status": "pending"
-    },
-    {
-      "content": "Extract AppDecisionChecklist + AppCaseLockBar from case detail/decision components",
-      "id": "decision-checklist",
-      "status": "pending"
-    },
-    {
-      "content": "Registration-only: IdentityFormSection, ReasonNotesDialog; remove or use AppFieldLabel",
-      "id": "slice-local-cleanup",
-      "status": "pending"
-    }
-  ],
-  "success": true,
-  "wasMerge": true
-}
+ 
+… (output truncated)
 ```
 Status: **completed**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3657,34 +2833,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3715,13 +2876,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -3729,53 +2883,34 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Reviewing ResidenceStep for category forms, BirthInformationStep for MapRequest patterns, BirthDeclarationCaseDetail for household sections, and AddressStep for validator wiring.
 
-AddressStep requires DeclareAddressValidar with a form model. Housing uses RecordHousingSituationValidator. Reviewing validators and request types.</details></think>
+AddressStep requires DeclareAddressValidar with a form model. Housing uses RecordHousingSituationValidator. Reviewing validators and request types.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -3814,13 +2949,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -3830,44 +2958,27 @@ Following the FluentMud wiring pattern from CivilStatusStep using FormModel and 
 
 Designing an AddressFormModel for AddressStep. It will bind Street, HouseNumber, and Box to the existing fields. DeclareAddressValidator will handle validation on the MudForm.
 
-The Map function converts the form model into DeclareAddressRequest. Street is tricky because it comes from StreetDto rather than a simple field. Two options are being weighed: syncing Street from _selectedStreet into the model, or using a composite form model. ChangeOfAddress offers a useful reference</details></think>
+The Map function converts the form model into DeclareAddressRequest. Street is tricky because it comes from StreetDto rather than a simple field. Two options are being weighed: syncing Street from _selectedStreet into the model, or using a composite form model. ChangeOfAddress offers a useful reference
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationRequestValidator.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationRequestValidator.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/SetResidenceCategory/SetResidenceCategoryValidator.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/SetResidenceCategory/SetResidenceCategoryValidator.cs</summary>
 
 </details></tool-use>
 
@@ -3882,7 +2993,8 @@ Syncing address model values before validation in SaveAddress. House number and 
 
 Defined a sealed `AddressFormModel` class with Street, HouseNumber, and Box properties. `_selectedStreet` will remain for autocomplete display, while `_addressModel` holds the actual form values.
 
-A `SyncAddressModel()` method will update the address model from the street autocomplete before validation. The housing step will use a `RecordHousingSituationRequest` validator and bind `MudSelect` to `_housingModel.Situation`. All FluentMud changes will be applied in a batch.</details></think>
+A `SyncAddressModel()` method will update the address model from the street autocomplete before validation. The housing step will use a `RecordHousingSituationRequest` validator and bind `MudSelect` to `_housingModel.Situation`. All FluentMud changes will be applied in a batch.
+</details></think>
 
 _**Agent (default)**_
 
@@ -3891,240 +3003,119 @@ Implementing FluentMud validation across the remaining forms.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-ResidenceStep category, BirthInformationStep, and BirthDeclaration household are next.</details></think>
+ResidenceStep category, BirthInformationStep, and BirthDeclaration household are next.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4155,13 +3146,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -4169,409 +3153,224 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Replacing all instances of `_selectedCategory` with `_categoryModel`.
 
-Updating `ResidenceStep` to use `_categoryModel`.</details></think>
+Updating `ResidenceStep` to use `_categoryModel`.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Adding CategoryFormModel and MapCategoryRequest before PermitFormModel.</details></think>
+Adding CategoryFormModel and MapCategoryRequest before PermitFormModel.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 Incorrect tool arguments
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Fixing the cancel and save methods in BirthInformationStep.</details></think>
+Fixing the cancel and save methods in BirthInformationStep.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Fixing the remaining _birthPlace references in BirthInformationStep.</details></think>
+Fixing the remaining _birthPlace references in BirthInformationStep.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Reading SaveHousehold to inject a validator into the BirthDeclarationCaseDetail household form.</details></think>
+Reading SaveHousehold to inject a validator into the BirthDeclarationCaseDetail household form.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Updating the household section in BirthDeclarationCaseDetail to use the form model and validator.</details></think>
+Updating the household section in BirthDeclarationCaseDetail to use the form model and validator.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Deciding where to place MapHouseholdRequest and HouseholdFormModel relative to ChildDetailsFormModel.</details></think>
+Deciding where to place MapHouseholdRequest and HouseholdFormModel relative to ChildDetailsFormModel.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -4580,14 +3379,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Reviewing CivilStatusStep to design AppEditableSection. Then migrating CivilStatusStep and other registration steps per the plan.
 
-AppEditableSection will accept prerequisite flags, data state, editing flags, title, callbacks, and content fragments. It renders prerequisite content when prerequisites are missing, edit content inside an AppCard when editing, or read content with an edit header action otherwise.</details></think>
+AppEditableSection will accept prerequisite flags, data state, editing flags, title, callbacks, and content fragments. It renders prerequisite content when prerequisites are missing, edit content inside an AppCard when editing, or read content with an edit header action otherwise.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -4655,50 +3453,17 @@ Result:
     },
     {
       "content": "Wire ToMudValidateValue into AddressStep, ResidenceStep category, BirthInformationStep, Birth household",
-      "id": "fluent-mud-complete",
-      "status": "in_progress"
-    },
-    {
-      "content": "Create AppEditableSection shell; migrate CivilStatusStep then other registration steps",
-      "id": "editable-section",
-      "status": "pending"
-    },
-    {
-      "content": "Extract AppDecisionChecklist + AppCaseLockBar from case detail/decision components",
-      "id": "decision-checklist",
-      "status": "pending"
-    },
-    {
-      "content": "Registration-only: IdentityFormSection, ReasonNotesDialog; remove or use AppFieldLabel",
-      "id": "slice-local-cleanup",
-      "status": "pending"
-    }
-  ],
-  "success": true,
-  "wasMerge": true
-}
+ 
+… (output truncated)
 ```
 Status: **completed**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
@@ -4713,53 +3478,33 @@ Defined the component parameters and child content slots. Will migrate CivilStat
 
 Drafting the CivilStatusStep migration. It passes the identity checklist flag, null check on civil status, editing state, and edit callback to AppEditableSection.
 
-Mapping out the remaining migrations. AddressStep uses IdentityEstablished and DeclaredAddress. ResidenceStep needs three sections migrated. Checking HouseholdStep next.</details></think>
+Mapping out the remaining migrations. AddressStep uses IdentityEstablished and DeclaredAddress. ResidenceStep needs three sections migrated. Checking HouseholdStep next.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppEditableSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Layout/AppEditableSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Removing a duplicate @code block from CivilStatusStep.</details></think>
+Removing a duplicate @code block from CivilStatusStep.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
@@ -4770,35 +3515,20 @@ CivilStatusStep looks correct. Next, migrate BirthInformationStep and AddressSte
 
 BirthInformationStep requires IdentityEstablished and non-null Person.BirthInformation. AddressStep needs two AppEditableSections for address and housing. ResidenceStep and HouseholdStep are larger and may be migrated later if time allows.
 
-Running the build and checking local status first. Then migrating BirthInformationStep and AddressStep, followed by decision checklist components.</details></think>
+Running the build and checking local status first. Then migrating BirthInformationStep and AddressStep, followed by decision checklist components.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
@@ -4807,53 +3537,34 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Migrating AddressStep's address and housing sections to AppEditableSection.
 
-Replacing essStep's large if/else blocks with AppEditableSection. Creating AppChecklist, OfficerDecisionChecklist, and CaseLockBar components. Reading decision sectionsAddr next.</details></think>
+Replacing essStep's large if/else blocks with AppEditableSection. Creating AppChecklist, OfficerDecisionChecklist, and CaseLockBar components. Reading decision sectionsAddr next.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4884,26 +3595,18 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Searching for the ChecklistQuestion type.</details></think>
+Searching for the ChecklistQuestion type.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -4942,13 +3645,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -4966,65 +3662,34 @@ AppChecklist will accept `IReadOnlyList<AppChecklistItem>`. Decision sections wi
 
 OfficerDecisionChecklist will be a thin wrapper around AppChecklist, applying a bottom margin class and forwarding items. AppChecklistItem will live in DesignSystem/Data.
 
-AppChecklist.razor will live in DesignSystem/Data. CaseLockBar.razor will live in Municipal. IdentityFormSection and ReasonNotesDialog will be updated by reading RegistrationCaseDetail and the reject or suspend dialogs.</details></think>
+AppChecklist.razor will live in DesignSystem/Data. CaseLockBar.razor will live in Municipal. IdentityFormSection and ReasonNotesDialog will be updated by reading RegistrationCaseDetail and the reject or suspend dialogs.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppChecklistItem.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppChecklistItem.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppChecklist.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/DesignSystem/Components/Data/AppChecklist.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/OfficerDecisionChecklist.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/OfficerDecisionChecklist.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockBar.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockBar.razor</summary>
 
 </details></tool-use>
 
@@ -5039,48 +3704,27 @@ The approach changed. CaseLockActions will hold the header buttons for the page 
 
 Birth and CoA pages will be updated to use both CaseLockActions and CaseLockBar. Decision sections will switch from checklist MudLists to OfficerDecisionChecklist. Registration CaseDecisionSection is next.
 
-A helper method maps checklist DTO questions into AppChecklistItem objects for the new component. The Data namespace is already imported in the municipal design system. Decision sections and birth and CoA detail pages still need updating.</details></think>
+A helper method maps checklist DTO questions into AppChecklistItem objects for the new component. The Data namespace is already imported in the municipal design system. Decision sections and birth and CoA detail pages still need updating.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockActions.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/CaseLockActions.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
 
 </details></tool-use>
 
@@ -5089,27 +3733,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Adding MapChecklist to the CaseDecisionSection code block.
 
-Checking GetCaseReviewChecklistResponse to find the correct type name.</details></think>
+Checking GetCaseReviewChecklistResponse to find the correct type name.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistResponse.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistResponse.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -5140,201 +3777,107 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<think><details><summary>Thought Process</summary>
+Adding a MapChecklist method to CaseDecisionSection.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Adding a MapChecklist method to CaseDecisionSection.</details></think>
+Adding MapChecklist to the Birth and CoA decision sections.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Adding MapChecklist to the Birth and CoA decision sections.</details></think>
+Updating Birth and CoA case detail pages to use CaseLockActions and CaseLockBar.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<think><details><summary>Thought Process</summary>
-Updating Birth and CoA case detail pages to use CaseLockActions and CaseLockBar.</details></think>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -5343,14 +3886,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Beginning slice-local cleanup. Starting with IdentityFormSection in Registration.
 
-ReasonNotesDialog cleanup is next. AppFieldLabel will be wired into IdentityFormSection read mode. RegistrationCaseDetail is being checked for identity form duplication.</details></think>
+ReasonNotesDialog cleanup is next. AppFieldLabel will be wired into IdentityFormSection read mode. RegistrationCaseDetail is being checked for identity form duplication.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -5381,38 +3923,19 @@ Additional data:
 ```
 Status: **completed**
 
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RejectCaseDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RejectCaseDialog.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/SuspendCaseDialog.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/SuspendCaseDialog.razor</summary>
 
 </details></tool-use>
 
@@ -5429,18 +3952,13 @@ Rejected the `object` return type for `CreateRequest` in favor of the generic `T
 
 Static methods cannot be passed as component attributes in Razor, so `RejectCaseDialog` needs a thin `@code` block to wire up `FormatReason` and `CreateRequest` for `ReasonNotesDialog`.
 
-IdentityFormSection will be split into a reusable component. It will expose parameters for model, validation, save and cancel text, disabled state, and event handlers. The component will contain only the form fields and the AppSaveCancelBar. The existing form section code in RegistrationCaseDetail will be reviewed to guide the extraction.</details></think>
+IdentityFormSection will be split into a reusable component. It will expose parameters for model, validation, save and cancel text, disabled state, and event handlers. The component will contain only the form fields and the AppSaveCancelBar. The existing form section code in RegistrationCaseDetail will be reviewed to guide the extraction.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -5453,31 +3971,20 @@ IdentityFormModel is private to RegistrationCaseDetail. IdentityFormSection will
 
 IdentityFormModel will be declared public inside IdentityFormSection.razor so the parent page can reference it. The component will accept the four identity fields as separate parameters. An optional ShowSearchInfo flag will control the info box visibility.
 
-ReasonNotesDialog will be a generic component. AppFieldLabel will be used in the identity read view.</details></think>
+ReasonNotesDialog will be a generic component. AppFieldLabel will be used in the identity read view.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -5490,139 +3997,75 @@ Creating a generic ReasonNotesDialog.razor. Updating Reject and Suspend dialogs.
 
 Decided against using AppFieldLabel in the identity read view or IdentityFormSection. Will delete it to avoid unnecessary complexity.
 
-Reconsidered AppFieldLabel placement. Will use it in the identity read view within RegistrationCaseDetail to structure labeled fields. Proceeding to create files and run the build.</details></think>
+Reconsidered AppFieldLabel placement. Will use it in the identity read view within RegistrationCaseDetail to structure labeled fields. Proceeding to create files and run the build.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/IdentityFormSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/IdentityFormSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ReasonNotesDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/ReasonNotesDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RejectCaseDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RejectCaseDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/SuspendCaseDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/SuspendCaseDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 Incorrect tool arguments
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Removing the private IdentityFormModel from RegistrationCaseDetail. Using the shared version from IdentityFormSection instead.</details></think>
+Removing the private IdentityFormModel from RegistrationCaseDetail. Using the shared version from IdentityFormSection instead.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor</summary>
 
 </details></tool-use>
 
@@ -5633,85 +4076,41 @@ RejectCaseDialog needs a CascadingParameter for MudDialog. The ReasonNotesDialog
 
 RejectCaseDialog and SuspendCaseDialog correctly pass parameters to their nested dialogs. Next steps are to run dotnet build, fix the BirthDeclarationChecklistDto type in BirthDeclarationDecisionSection, and verify that splitting the BelgianStreet validator's NotEmpty and WithMessage calls preserves the original custom messages.
 
-IdentityFormModel cannot be declared as a public class after the @code block in a Razor file. It should be moved to a separate .cs file.</details></think>
+IdentityFormModel cannot be declared as a public class after the @code block in a Razor file. It should be moved to a separate .cs file.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/IdentityFormModel.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/IdentityFormModel.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/IdentityFormSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/IdentityFormSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -50</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build --no-restore 2&gt;&amp;1 | tail -50</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --no-restore 2>&1 | tail -50
 ```
 
 ```
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(118,7): error RZ1006: The code block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs(15,48): error CS0246: The type or namespace name 'BelgianAddressDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor(56,12): error CS0246: The type or namespace name 'StreetDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor(59,26): error CS0246: The type or namespace name 'StreetDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor(74,61): error CS0246: The type or namespace name 'StreetDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(170,65): error CS0246: The type or namespace name 'BirthDeclarationChecklistDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor(53,80): error CS0104: 'NationalRegisterSearchCriteria' is an ambiguous reference between 'SchaerbeekMunicipality.Web.Municipal.Components.NationalRegisterSearchCriteria' and 'SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterSearchCriteria' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(116,65): error CS0246: The type or namespace name 'ChangeOfAddressChecklistDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor(69,80): error CS0104: 'NationalRegisterSearchCriteria' is an ambiguous reference between 'SchaerbeekMunicipality.Web.Municipal.Components.NationalRegisterSearchCriteria' and 'SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterSearchCriteria' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-
-Build FAILED.
-
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(118,7): error RZ1006: The code block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs(15,48): error CS0246: The type or namespace name 'BelgianAddressDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor(56,12): error CS0246: The type or namespace name 'StreetDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor(59,26): error CS0246: The type or namespace name 'StreetDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor(74,61): error CS0246: The type or namespace name 'StreetDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor(170,65): error CS0246: The type or namespace name 'BirthDeclarationChecklistDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor(53,80): error CS0104: 'NationalRegisterSearchCriteria' is an ambiguous reference between 'SchaerbeekMunicipality.Web.Municipal.Components.NationalRegisterSearchCriteria' and 'SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterSearchCriteria' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor(116,65): error CS0246: The type or namespace name 'ChangeOfAddressChecklistDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor(69,80): error CS0104: 'NationalRegisterSearchCriteria' is an ambiguous reference between 'SchaerbeekMunicipality.Web.Municipal.Components.NationalRegisterSearchCriteria' and 'SchaerbeekMunicipality.Domain.NationalRegister.NationalRegisterSearchCriteria' [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-    0 Warning(s)
-    9 Error(s)
-
-Time Elapsed 00:00:07.06
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor(56,12): error CS0246: The type or namespace name 'StreetDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Privat
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -5719,27 +4118,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 A missing closing brace was found in CivilStatusStep at the end of the file.
 
-AddressFormatting needs a BelgianDto using directive. BelgianAddressFields needs a StreetDto using directive. BirthDeclarationChecklistDto and ChangeOfAddressChecklistDto need correct type names. The municipal NationalRegisterSearchCriteria will be renamed to NationalRegisterSearchFormCriteria to avoid conflicts.</details></think>
+AddressFormatting needs a BelgianDto using directive. BelgianAddressFields needs a StreetDto using directive. BirthDeclarationChecklistDto and ChangeOfAddressChecklistDto need correct type names. The municipal NationalRegisterSearchCriteria will be renamed to NationalRegisterSearchFormCriteria to avoid conflicts.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -5774,13 +4166,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -5788,40 +4173,27 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The @code block for CivilStatusStep was truncated during replacement.
 
-Reconstructing the full @code section from git history and earlier conversation context. Checking GetBirthDeclarationChecklistHandler.cs for the BirthDeclarationChecklistQuestion record.</details></think>
+Reconstructing the full @code section from git history and earlier conversation context. Checking GetBirthDeclarationChecklistHandler.cs for the BirthDeclarationChecklistQuestion record.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/GetBirthDeclarationChecklist/GetBirthDeclarationChecklistHandler.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/GetBirthDeclarationChecklist/GetBirthDeclarationChecklistHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/GetChangeOfAddressChecklist/ChangeOfAddressChecklistMapper.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/GetChangeOfAddressChecklist/ChangeOfAddressChecklistMapper.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -5852,13 +4224,6 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -5866,155 +4231,76 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Updating MapChecklist to use BirthDeclarationChecklistResponse and ChangeOfAddressChecklistResponse.
 
-Renaming NationalRegisterSearchCriteria to NrSearchFormCrria in Municipal. Fixing CivilStatusStep by appending the full @code block.</details></think>
+Renaming NationalRegisterSearchCriteria to NrSearchFormCrria in Municipal. Fixing CivilStatusStep by appending the full @code block.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchModels.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchModels.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/NationalRegisterSearchForm.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/NationalRegisterSearchDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/ParentLinkDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/OpenChangeOfAddressDialog.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/BirthDeclarationDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Components/ChangeOfAddressDecisionSection.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor</summary>
 
 </details></tool-use>
 
@@ -6023,13 +4309,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Restoring the full @code block in CivilStatusStep.
 
-Using git show to retrieve the original code section.</details></think>
+Using git show to retrieve the original code section.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git show HEAD:src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor | tail -n +130</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; git show HEAD:src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor | tail -n +130</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git show HEAD:src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor | tail -n +130
 ```
@@ -6059,8 +4345,8 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git show HEAD:s
         _editing = false;
     }
 
-    private bool FormDirty =&gt;
-        _case.CivilStatus is not null &amp;&amp;
+    private bool FormDirty =>
+        _case.CivilStatus is not null &&
         (_status != _case.CivilStatus.Status ||
          _spouseGivenName != _case.CivilStatus.SpouseGivenName ||
          _spouseFamilyName != _case.CivilStatus.SpouseFamilyName ||
@@ -6068,150 +4354,23 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git show HEAD:s
          _marriagePlace != _case.CivilStatus.MarriagePlace ||
          _marriageRecognitionStatus != _case.CivilStatus.MarriageRecognitionStatus);
 
-    private static bool RequiresMarriageDetails(CivilStatus? status) =&gt;
+    private static bool RequiresMarriageDetails(CivilStatus? status) =>
         status is CivilStatus.Married or CivilStatus.RegisteredPartnership;
 
-    private static bool RequiresMarriageRecognition(string? marriagePlace) =&gt;
+    private static bool RequiresMarriageRecognition(string? marriagePlace) =>
         !string.IsNullOrWhiteSpace(marriagePlace)
-        &amp;&amp; !marriagePlace.Contains("Belgium", StringComparison.OrdinalIgnoreCase)
-        &amp;&amp; !marriagePlace.Contains("België", StringComparison.OrdinalIgnoreCase)
-        &amp;&amp; !marriagePlace.Contains("Belgique", StringComparison.OrdinalIgnoreCase);
+        && !marriagePlace.Contains("Belgium", StringComparison.OrdinalIgnoreCase)
+        && !marriagePlace.Contains("België", StringComparison.OrdinalIgnoreCase)
+        && !marriagePlace.Contains("Belgique", StringComparison.OrdinalIgnoreCase);
 
-    private static string FormatRecognitionStatus(MarriageRecognitionStatus status) =&gt;
+    private static string FormatRecognitionStatus(MarriageRecognitionStatus status) =>
         status switch
         {
-            MarriageRecognitionStatus.Recognised =&gt; "Recognised",
-            MarriageRecognitionStatus.PendingRecognition =&gt; "Pending recognition",
-            _ =&gt; "Not applicable",
-        };
-
-    private static string FormatStatus(CivilStatus? status) =&gt;
-        status switch
-        {
-            CivilStatus.Single =&gt; "Single",
-            CivilStatus.Married =&gt; "Married",
-            CivilStatus.Divorced =&gt; "Divorced",
-            CivilStatus.Widowed =&gt; "Widowed",
-            CivilStatus.Separated =&gt; "Separated",
-            CivilStatus.RegisteredPartnership =&gt; "Registered partnership",
-            _ =&gt; "Select status",
-        };
-
-    private void StartEditing()
-    {
-        if (_case.CivilStatus is null)
-        {
-            return;
-        }
-
-        _status = _case.CivilStatus.Status;
-        _spouseGivenName = _case.CivilStatus.SpouseGivenName;
-        _spouseFamilyName = _case.CivilStatus.SpouseFamilyName;
-        _marriageDate = _case.CivilStatus.MarriageDate?.ToDateTime(TimeOnly.MinValue);
-        _marriagePlace = _case.CivilStatus.MarriagePlace;
-        _marriageRecognitionStatus = _case.CivilStatus.MarriageRecognitionStatus;
-        _editing = true;
-    }
-
-    private async Task CancelEditing()
-    {
-        if (FormDirty)
-        {
-            var confirmed = await DialogService.ConfirmAsync(
-                "Discard changes?",
-                "You have unsaved civil status changes.",
-                "Discard");
-
-            if (!confirmed)
-            {
-                return;
-            }
-        }
-
-        _editing = false;
-    }
-
-    private void ClearForm()
-    {
-        _status = null;
-        _spouseGivenName = null;
-        _spouseFamilyName = null;
-        _marriageDate = null;
-        _marriagePlace = null;
-        _marriageRecognitionStatus = MarriageRecognitionStatus.NotApplicable;
-    }
-
-    private async Task HandleCancel()
-    {
-        if (_editing)
-        {
-            await CancelEditing();
-        }
-        else
-        {
-            ClearForm();
-        }
-    }
-
-    private async Task Save()
-    {
-        await _form.Validate();
-        if (!_formValid || _status is null)
-        {
-            return;
-        }
-
-        if (RequiresMarriageDetails(_status) &amp;&amp; _marriageDate is null)
-        {
-            return;
-        }
-
-        _saving = true;
-        try
-        {
-            await RecordCivilStatusHandler.Handle(
-                new Domain.Registration.RegistrationCaseId(CaseId),
-                new RecordCivilStatusRequest(
-                    _status.Value,
-                    _spouseGivenName,
-                    _spouseFamilyName,
-                    _marriageDate is null ? null : DateOnly.FromDateTime(_marriageDate.Value),
-                    _marriagePlace,
-                    RequiresMarriageRecognition(_marriagePlace)
-                        ? _marriageRecognitionStatus
-                        : MarriageRecognitionStatus.NotApplicable),
-                CancellationToken.None);
-
-            _editing = false;
-            Snackbar.Add("Civil status saved.", Severity.Success);
-            await OnUpdated.InvokeAsync();
-        }
-        catch (FluentValidation.ValidationException ex)
-        {
-            Snackbar.Add(string.Join(" ", ex.Errors.Select(e =&gt; e.ErrorMessage)), Severity.Error);
-        }
-        catch (InvalidRegistrationTransitionException ex)
-        {
-            Snackbar.Add(ex.Message, Severity.Error);
-        }
-        catch (ArgumentException ex)
-        {
-            Snackbar.Add(ex.Message, Severity.Error);
-        }
-        finally
-        {
-            _saving = false;
-        }
-    }
-}
-
+            MarriageRecognitionStatus.Recognised => "Recognised",
+            MarriageRecognitionStatus.PendingRecognition => "Pending recognition",
+            _ => "Not applic
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -6219,20 +4378,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The current git HEAD lacks the _model component.
 
-I will replace the `@code` block with the full code from lines 130–316 of my earlier read. That block includes `CivilStatusFormModel` and `MapCivilStatusRequest`.</details></think>
+I will replace the `@code` block with the full code from lines 130–316 of my earlier read. That block includes `CivilStatusFormModel` and `MapCivilStatusRequest`.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
@@ -6241,13 +4393,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Adding the GetBirthDeclarationChecklist using directive to BirthDeclarationDecisionSection and the ChangeOfAddress checklist mapper.
 
-Running the build again.</details></think>
+Running the build again.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -30</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build 2&gt;&amp;1 | tail -30</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -30
 ```
@@ -6255,42 +4407,30 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs(3,7): error CS0105: The using directive for 'SchaerbeekMunicipality.Domain.Address' appeared previously in this namespace [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs(17,48): error CS0246: The type or namespace name 'BelgianAddressDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 
 Build FAILED.
 
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs(3,7): error CS0105: The using directive for 'SchaerbeekMunicipality.Domain.Address' appeared previously in this namespace [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs(17,48): error CS0246: The type or namespace name 'BelgianAddressDto' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-    0 Warning(s)
-    2 Error(s)
-
-Time Elapsed 00:00:07.74
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs(3,7): error CS0105: The using directive for 'SchaerbeekMunicipality.Domain.Address' appeared previously in this namespace [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMun
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Searching for the definition of BelgianAddressDto.</details></think>
+Searching for the definition of BelgianAddressDto.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -6321,25 +4461,12 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs</summary>
 
 </details></tool-use>
 
@@ -6348,35 +4475,27 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 BelgianAddressDto belongs to the Registration feature rather than Domain. The overload should use the Web feature namespace or be restricted to string parameters.
 
-The simpler approach is to import the Registration namespace directly into AddressFormatting and remove the duplicate Domain.Addresstra using directive.</details></think>
+The simpler approach is to import the Registration namespace directly into AddressFormatting and remove the duplicate Domain.Addresstra using directive.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -15</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build 2&gt;&amp;1 | tail -15</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -15
 ```
 
 ```
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(52,45): error CS8602: Dereference of a possibly null reference. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(52,45): error CS8602: Dereference of a possibly null reference. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(89,14): error CS8602: Dereference of a possibly null reference. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
@@ -6384,20 +4503,9 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>
 Build FAILED.
 
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(52,45): error CS8602: Dereference of a possibly null reference. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(52,45): error CS8602: Dereference of a possibly null reference. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor(89,14): error CS8602: Dereference of a possibly null reference. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-    0 Warning(s)
-    3 Error(s)
-
-Time Elapsed 00:00:08.00
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor(52,45): error CS8602: Dereference of a possibly null reference. [/Users/job
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -6405,31 +4513,20 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Addressing nullable reference issues in ReadContent by applying null-forgiving or conditional operators.
 
-Checking ReadContent for nested null issues between Person and BirthInformation. Will add null checks or ! operators where needed.</details></think>
+Checking ReadContent for nested null issues between Person and BirthInformation. Will add null checks or ! operators where needed.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
@@ -6438,52 +4535,36 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 A fix is needed using a local variable or negation.
 
-The fix targets CivilStatus in lines 89–115 and Person! in lines 52+.</details></think>
+The fix targets CivilStatus in lines 89–115 and Person! in lines 52+.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -10</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build 2&gt;&amp;1 | tail -10</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build 2>&1 | tail -10
 ```
 
 ```
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
-  SchaerbeekMunicipality.AppHost -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.AppHost -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Debug/net10.0/SchaerbeekMunicipality.AppHost.dll
 
 Build succeeded.
     0 Warning(s)
@@ -6492,24 +4573,18 @@ Build succeeded.
 Time Elapsed 00:00:09.95
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The build succeeded. Tests will be run before marking all todos complete.</details></think>
+The build succeeded. Tests will be run before marking all todos complete.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --no-build 2>&1 | tail -20</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test --no-build 2&gt;&amp;1 | tail -20</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --no-build 2>&1 | tail -20
 ```
@@ -6531,20 +4606,12 @@ Passed!  - Failed:     0, Passed:    76, Skipped:     0, Total:    76, Duration:
 Passed!  - Failed:     0, Passed:    90, Skipped:     0, Total:    90, Duration: 12 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -6612,44 +4679,17 @@ Result:
     },
     {
       "content": "Wire ToMudValidateValue into AddressStep, ResidenceStep category, BirthInformationStep, Birth household",
-      "id": "fluent-mud-complete",
-      "status": "completed"
-    },
-    {
-      "content": "Create AppEditableSection shell; migrate CivilStatusStep then other registration steps",
-      "id": "editable-section",
-      "status": "in_progress"
-    },
-    {
-      "content": "Extract AppDecisionChecklist + AppCaseLockBar from case detail/decision components",
-      "id": "decision-checklist",
-      "status": "pending"
-    },
-    {
-      "content": "Registration-only: IdentityFormSection, ReasonNotesDialog; remove or use AppFieldLabel",
-      "id": "slice-local-cleanup",
-      "status": "pending"
-    }
-  ],
-  "success": true,
-  "wasMerge": true
-}
+… (output truncated)
 ```
 Status: **completed**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-All to-do items are complete. The build and tests pass.</details></think>
+All to-do items are complete. The build and tests pass.
+</details></think>
 
 _**Agent (default)**_
 
@@ -6688,3 +4728,856 @@ Validators, handlers, and form models stay in their vertical slices; shared code
 _**User**_
 
 ok do you see any other things that can be improved ? 
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user wants suggestions for further improvements beyond the existing code sharing implementation.
+
+Reviewing completed work against the original plan to identify remaining gaps and duplication.
+
+Several components remain partially shared. AppEditableSection covers only CivilStatusStep and BirthInformationStep. OfficerDecisionChecklist, CaseLockBar, and CaseLockActions are shared. IdentityFormSection, ReasonNotesDialog, and AppFieldLabel usage are also shared.
+
+Deferred items still need attention. These include AppFileUploadCard, migrating AppEditableSection to AddressStep, ResidenceStep, and HouseholdStep, abstracting the case list page, creating AppTextField and AppEnumSelect, and resolving the RegistrationRoleGate cross-slice dependency.
+</details></think>
+
+_**Agent (default)**_
+
+Most of the plan is already in place — I'll scan what's left deferred or only partially done and look for new improvement opportunities.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "AppEditableSection"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "AppEditableSection",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "AppFileUploadCard"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "AppFileUploadCard",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features",
+  "pattern": "MudList T=\\\"string\\\".*CheckCircle|RadioButtonUnchecked"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features",
+  "pattern": "MudList T=\\\"string\\\".*CheckCircle|RadioButtonUnchecked",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationCaseChecklistProgress.razor"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **11** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web`** (11 files)
+
+| File |
+|------|
+| `Municipal/Components/BelgianAddressFields.razor` |
+| `Municipal/Components/CaseDocumentItem.cs` |
+| `Municipal/Components/CaseLockBar.razor` |
+| `Municipal/NationalRegisterFormatting.cs` |
+| `Municipal/Components/CaseLockActions.razor` |
+| `Municipal/Components/CaseDocumentPanel.razor` |
+| `Municipal/AddressFormatting.cs` |
+| `Municipal/_Imports.razor` |
+| `Municipal/Components/OfficerDecisionChecklist.razor` |
+| `Municipal/Components/NationalRegisterSearchModels.cs` |
+| `Municipal/Components/NationalRegisterSearchForm.razor` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Remaining duplication exists across case list pages, document uploads, residence step editing, registration role gating, and documentation updates.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.razor",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features",
+  "pattern": "else if.*_editing|_editingAddress|_editingCategory|_editingHousing"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features",
+  "pattern": "else if.*_editing|_editingAddress|_editingCategory|_editingHousing",
+  "topFiles": [
+    {
+      "matchCount": 20,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor"
+    },
+    {
+      "matchCount": 10,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 31
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs",
+  "pattern": "Municipal"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs",
+  "pattern": "Municipal",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "docs/DOMAIN.md"
+    },
+    {
+      "matchCount": 12,
+      "uri": "docs/TECH-STACK.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/APP-OVERVIEW.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/07-architecture-and-guidelines.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/design-system/README.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/CI.md"
+    },
+    {
+      "matchCount": 3,
+      "uri": "docs/features/registration/declare-address.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/phases/phase-1-case-intake-identity.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/phases/phase-15-reporting-dashboard.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/get-registration-case.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/open-registration-case.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "docs/features/registration/list-registration-cases.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/record-identity.md"
+    },
+    {
+      "matchCount": 12,
+      "uri": "docs/phases/phase-0-foundation.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "docs/features/registration/attach-document.md"
+    },
+    {
+      "matchCount": 6,
+      "uri": "docs/TESTING.md"
+    },
+    {
+      "matchCount": 6,
+      "uri": "docs/design-system/04-mudtheme-and-css.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": "docs/ARCHITECTURE.md"
+    },
+    {
+      "matchCount": 10,
+      "uri": "docs/phases/phase-0.1-tooling-hygiene.md"
+    }
+  ],
+  "totalFiles": 19,
+  "totalMatches": 70
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking additional items for improvement:
+
+- HouseholdStep
+- RegistrationRoleGate usage
+- Documentation gaps for the Municipal layer
+- ToMudValidateValue coverage
+- MudTimePicker
+- Case guard duplication
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.razor",
+  "outputMode": "count",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "ToMudValidateValue"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "count",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "ToMudValidateValue",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor"
+    }
+  ],
+  "totalFiles": 8,
+  "totalMatches": 13
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.razor",
+  "outputMode": "count",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "MudTimePicker"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "count",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web",
+  "pattern": "MudTimePicker",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "RegistrationRoleGate"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "RegistrationRoleGate",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseDetail.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor"
+    }
+  ],
+  "totalFiles": 5,
+  "totalMatches": 10
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/HouseholdStep.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*CaseGuard*",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "GetForEditAsync"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src",
+  "pattern": "GetForEditAsync",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationCaseGuard.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/BirthDeclarationCaseGuard.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/ChangeOfAddressCaseGuard.cs"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether documentation needs updating for the Municipal layer. Exploring how the AppDateField pattern could be extended.
+
+Also checking the design system showcase and bUnit tests mentioned in the guidelines.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*.razor",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components",
+  "pattern": "AppCard Title.*Outlined"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components",
+  "pattern": "AppCard Title.*Outlined",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CertificatesSection.razor"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/PoliceVerificationSection.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor"
+    },
+    {
+      "matchCount": 6,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor"
+    }
+  ],
+  "totalFiles": 6,
+  "totalMatches": 16
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/design-system/07-architecture-and-guidelines.md</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing the implementation for additional improvements.
+
+Several gaps remain from the full plan.
+
+- AppEditableSection covers only two steps. Address, Residence, Household, and RegistrationCaseDetail identity still need coverage.
+- AppFileUploadCard is not yet implemented. DocumentUpload and MedicalDeclarationUpload still duplicate logic.
+- The case list page abstraction is deferred. Roughly 240 lines are duplicated across three list pages.
+- AppTextField and AppEnumSelect are still missing.
+
+Documentation is stale. Architecture docs omit the Municipal layer, and the design-system showcase likely misses new components.
+
+RegistrationRoleGate should move from Features/Registration into Municipal since Birth and CoA depend on it.
+
+Birth household fields could use BelgianAddressFields instead of plain text.
+
+AppTimeField is needed for MudTimePicker in BirthDeclarationCaseDetail.
+
+ResidenceStep still duplicates the edit and view pattern heavily.
+
+New component wrappers lack bUnit tests per design-system guidelines.
+
+DesignSystemShowcase needs updates for the new App* components.
+
+RegistrationCaseChecklistProgress should adopt AppChecklist3.
+
+The CSS class registration-case-document-panel should be renamed to municipal-case-document-panel.
+
+AddressFormatting currently depends on the Registration DTO. BelgianAddressDto should move to a shared location or accept primitives only.
+
+A concise follow-up plan with prioritized items will be created next.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+Glob pattern "**/*" matches every file and is not allowed. Use a more specific glob or no glob.
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **1** result in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (1 file)
+
+| File |
+|------|
+| `src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor` |
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/DesignSystemShowcase*",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AppDateField|AppEditable"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "AppDateField|AppEditable",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing DesignSystemShowcase to identify further improvements.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "AppDateField|bUnit|Bunit"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "AppDateField|bUnit|Bunit",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/DesignSystem/DesignSystemComponentTests.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 1
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Reviewing DesignSystemComponentTests for additional improvements.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/DesignSystem/DesignSystemComponentTests.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+I'll draft a follow-up improvement plan.
+
+The plan will acknowledge completed work, list unfinished items, and add new steps like documentation, a showcase, tests, and RegistrationRoleGate.
+</details></think>
+
+_**Agent (default)**_
+
+Most of the original plan is done; I'll outline what's still partial or deferred and the best next improvements.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
+<summary>Tool use: **create_plan**</summary>
+
+Parameters:
+
+````json
+{
+  "name": "Follow-up improvements",
+  "overview": "The first code-sharing pass delivered the Municipal layer and core extractions. The highest-value follow-ups are finishing AppEditableSection adoption, extracting AppFileUploadCard, documenting the three-layer UI model, and a few targeted consistency wins — without touching deferred high-risk abstractions like case list pages.",
+  "plan": "# Follow-Up Improvements (Post Code-Sharing Pass)\n\n## What the first pass already delivered\n\nThe attached plan is largely **implemented**:\n\n| Done | Location |\n|------|----------|\n| `AppFilePreview`, `AppChecklist`, `AppEditableSection` | [`DesignSystem/Components/`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/) |\n| `CaseDocumentPanel`, `NationalRegisterSearchForm`, `BelgianAddressFields`, `OfficerDecisionChecklist`, `CaseLockBar`, `CaseLockActions` | [`Municipal/Components/`](src/SchaerbeekMunicipality.Web/Municipal/Components/) |\n| `BelgianAddressRules`, wider `FluentMudValidation` | [`Web/Validation/`](src/SchaerbeekMunicipality.Web/Validation/) |\n| `IdentityFormSection`, `ReasonNotesDialog` | [`Features/Registration/Components/`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/) |\n\nBuild and tests pass. Vertical slice boundaries are preserved: handlers/validators stay in slices; shared UI uses callbacks.\n\n---\n\n## Remaining gaps from the original plan\n\n### 1. `AppEditableSection` only partially adopted (high ROI, low risk)\n\nCurrently used in **2 of 6+** candidates:\n\n- [`CivilStatusStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor)\n- [`BirthInformationStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor)\n\nStill using hand-rolled prerequisite / edit / read cards:\n\n| File | Repeated blocks |\n|------|-----------------|\n| [`AddressStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/AddressStep.razor) | Address + housing (2×) |\n| [`ResidenceStep.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor) | Category + permit + decision (3×) — **largest win (~150 lines)** |\n| [`RegistrationCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor) | Identity edit block (could wrap `IdentityFormSection` in `AppEditableSection`) |\n\n`HouseholdStep` uses a different pattern (list + add form), so it is a weaker fit.\n\n```mermaid\nflowchart LR\n    subgraph done [Done]\n        CivilStatus[\"CivilStatusStep\"]\n        BirthInfo[\"BirthInformationStep\"]\n    end\n    subgraph next [Next]\n        Address[\"AddressStep x2\"]\n        Residence[\"ResidenceStep x3\"]\n        Identity[\"RegistrationCaseDetail identity\"]\n    end\n    AppEditable[\"AppEditableSection\"] --\u003e done\n    AppEditable --\u003e next\n```\n\n**Action:** Migrate `ResidenceStep` first (3 repetitions), then `AddressStep`, then identity on the case detail page.\n\n---\n\n### 2. `AppFileUploadCard` not built (medium ROI)\n\n[`DocumentUpload.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/DocumentUpload.razor) and [`MedicalDeclarationUpload.razor`](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Components/MedicalDeclarationUpload.razor) still duplicate:\n\n- `MudFileUpload` + “Choose file” button\n- Selected file label\n- Upload button + `_uploading` flag\n\n**Action:** Add [`AppFileUploadCard`](src/SchaerbeekMunicipality.Web/DesignSystem/Components/Forms/AppFileUploadCard.razor) in **DesignSystem** (domain-neutral). Each slice keeps document-type select and `AttachDocumentHandler` injection; the card only handles file pick + `EventCallback\u003cIBrowserFile\u003e` upload.\n\n---\n\n### 3. Case list page abstraction (deferred — still ~240 lines)\n\n[`RegistrationCaseList.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor), [`BirthDeclarationCaseList.razor`](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseList.razor), and [`ChangeOfAddressCaseList.razor`](src/SchaerbeekMunicipality.Web/Features/ChangeOfAddress/Pages/ChangeOfAddressCaseList.razor) still share skeleton / empty / filter / table shell.\n\n**Recommendation:** Keep deferred unless you want a dedicated refactor PR. Filters and columns differ enough that a generic `AppCaseListPage\u003cT\u003e` can hurt readability. A lighter alternative: extract only **`CaseListFilterBar`** (search + filter buttons) into Municipal, leaving table columns per feature.\n\n---\n\n### 4. `AppTextField` / `AppEnumSelect` (low ROI, consistency)\n\n~40+ raw `MudTextField` usages remain. Thin wrappers (outlined, dense defaults) match `AppDateField` parity but save fewer lines than structural extractions. **Optional** unless you are standardizing all inputs in one pass.\n\n---\n\n### 5. `AppTimeField` (small, Birth-only)\n\n[`BirthDeclarationCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor) still uses raw `MudTimePicker`. Mirror `AppDateField` for time-of-birth if you want consistent binding/validation.\n\n---\n\n## New improvements not in the original plan\n\n### 6. Move cross-feature auth chrome to `Municipal/` (architecture hygiene)\n\n[`RegistrationRoleGate.razor`](src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationRoleGate.razor) lives in Registration but is used by **all three** bounded contexts (Birth/CoA lists and detail pages). Same tension we solved for NR search UI.\n\n**Action:** Promote to `Municipal/Components/OfficerRoleGate.razor` (or `PopulationOfficerGate`) — no business logic change, just correct layering.\n\n---\n\n### 7. Birth household → `BelgianAddressFields` (medium ROI)\n\nBirth declaration household form on [`BirthDeclarationCaseDetail.razor`](src/SchaerbeekMunicipality.Web/Features/BirthDeclaration/Pages/BirthDeclarationCaseDetail.razor) still uses 5 plain `MudTextField`s. Registration and CoA already use [`BelgianAddressFields`](src/SchaerbeekMunicipality.Web/Municipal/Components/BelgianAddressFields.razor).\n\n**Action:** Replace with `BelgianAddressFields` + `SearchStreetsHandler` callback (same as CoA). Reuses validators via existing `BelgianAddressRules`.\n\n---\n\n### 8. Documentation + showcase lag (governance)\n\n[`docs/design-system/07-architecture-and-guidelines.md`](docs/design-system/07-architecture-and-guidelines.md) does **not** document the new `Municipal/` layer or updated promotion rule (genericity vs reuse).\n\n[`DesignSystemShowcase.razor`](src/SchaerbeekMunicipality.Web/Components/Pages/DesignSystemShowcase.razor) has no entries for `AppFilePreview`, `AppChecklist`, `AppEditableSection`, or `AppDateField`.\n\n[`DesignSystemComponentTests.cs`](tests/SchaerbeekMunicipality.Integration.Tests/DesignSystem/DesignSystemComponentTests.cs) covers older wrappers only.\n\n**Action (small PR):**\n- Add `Municipal/` to architecture docs with the three-layer diagram\n- Add showcase sections for new DesignSystem components\n- Add bUnit smoke tests for `AppFilePreview`, `AppChecklist`, `AppEditableSection`\n\n---\n\n### 9. Minor cleanup\n\n- **CSS naming:** [`CaseDocumentPanel`](src/SchaerbeekMunicipality.Web/Municipal/Components/CaseDocumentPanel.razor) still uses `registration-case-document-panel` classes from [`app.css`](src/SchaerbeekMunicipality.Web/wwwroot/app.css) — rename to `municipal-case-document-*` when touching styles\n- **`AddressFormatting`:** [`AddressFormatting.cs`](src/SchaerbeekMunicipality.Web/Municipal/AddressFormatting.cs) references `BelgianAddressDto` from Registration — acceptable for now; optional overload using primitives only avoids Municipal → Registration DTO coupling\n- **`RegistrationCaseChecklistProgress`:** could compose `AppChecklist` instead of inline check icons (cosmetic)\n\n---\n\n## Suggested order (independent PRs)\n\n1. **Finish `AppEditableSection`** — `ResidenceStep` → `AddressStep` → identity on case detail\n2. **`AppFileUploadCard`** — unify document upload cards\n3. **Docs + showcase + bUnit** for new DesignSystem components\n4. **Promote `RegistrationRoleGate`** → Municipal\n5. **Birth household** → `BelgianAddressFields`\n6. **`AppTimeField`** (optional)\n7. **Case list filter bar** or full list abstraction (only if you want the bigger refactor)\n\n**Defer:** `AppTextField`/`AppEnumSelect` unless doing a dedicated input-standardization pass.\n\n---\n\n## What to keep slice-specific (unchanged)\n\n- `FormModel` + `MapXxxRequest()` per step\n- `*Handler`, `*Validator`, `*Endpoint` per use case\n- Decision section business actions (approve/reject/confirm differ per context)\n- `*CaseGuard` parallel structure (~30 lines each; base class adds coupling)\n",
+  "todos": [
+    {
+      "content": "Migrate ResidenceStep, AddressStep, and RegistrationCaseDetail identity to AppEditableSection",
+      "id": "editable-section-remaining",
+      "status": "pending"
+    },
+    {
+      "content": "Create AppFileUploadCard in DesignSystem; refactor DocumentUpload and MedicalDeclarationUpload",
+      "id": "file-upload-card",
+      "status": "pending"
+    },
+    {
+      "content": "Document Municipal/ layer in design-system docs; update showcase + bUnit tests for new components",
+      "id": "docs-showcase-tests",
+      "status": "pending"
+    },
+    {
+      "content": "Promote RegistrationRoleGate to Municipal/Components as cross-feature officer gate",
+      "id": "role-gate-municipal",
+      "status": "pending"
+    },
+    {
+      "content": "Replace Birth declaration household plain fields with BelgianAddressFields",
+      "id": "birth-address-fields",
+      "status": "pending"
+    },
+    {
+      "content": "Optional: AppTimeField for BirthDeclarationCaseDetail MudTimePicker",
+      "id": "app-time-field",
+      "status": "pending"
+    }
+  ]
+}
+````
+Additional data:
+
+```json
+{
+  "hasOpenedEditor": true,
+  "planId": "follow-up_improvements_29381912",
+  "planUri": "file:///Users/joba/.cursor/plans/follow-up_improvements_29381912.plan.md",
+  "reviewData": {
+    "isShowingInput": false,
+    "selectedOption": "none",
+    "status": "Requested"
+  }
+}
+```
+Result:
+
+```json
+{
+  "rejected": {}
+}
+```
+Status: **completed**
+
+</details></tool-use>

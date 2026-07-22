@@ -13,7 +13,8 @@ ok now that we have that docs made, let's start with the roadmap and impement ph
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Starting implementation of Phase 0 from the roadmap.</details></think>
+Starting implementation of Phase 0 from the roadmap.
+</details></think>
 
 _**Agent (default)**_
 
@@ -22,37 +23,24 @@ I'll read the roadmap and scan the repo so we know exactly what Phase 0 requires
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **44** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (44 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (44 files)
 
 | File |
 |------|
@@ -100,19 +88,13 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (44 fi
 | `docs/TECH-STACK.md` |
 | `docs/TESTING.md` |
 | `IDEA.md` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The repository currently contains only documentation. No .NET solution exists yet.</details></think>
+The repository currently contains only documentation. No .NET solution exists yet.
+</details></think>
 
 _**Agent (default)**_
 
@@ -121,73 +103,44 @@ The repo is docs-only so far. I'll read the architecture, tech stack, and testin
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ARCHITECTURE.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TECH-STACK.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TECH-STACK.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TESTING.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/TESTING.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github/workflows/ci.yml</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github/workflows/ci.yml</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/DOMAIN.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/DOMAIN.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The plan is clear. I'll scaffold the full .NET solution for Phase 0.</details></think>
+The plan is clear. I'll scaffold the full .NET solution for Phase 0.
+</details></think>
 
 _**Agent (default)**_
 
@@ -196,9 +149,8 @@ Checking the .NET SDK and scaffolding the Phase 0 solution structure.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: dotnet --version && dotnet new list aspire 2>/dev/null | head -20; dotnet new list blazor 2>/dev/null | head -15</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet --version &amp;&amp; dotnet new list aspire 2&gt;/dev/null | head -20; dotnet new list blazor 2&gt;/dev/null | head -15</summary>
 ```bash
 dotnet --version && dotnet new list aspire 2>/dev/null | head -20; dotnet new list blazor 2>/dev/null | head -15
 ```
@@ -222,33 +174,15 @@ Aspire Test Project (xUnit)                 aspire-xunit                 [C#]   
 
 These templates matched your input: 'blazor'
 
-Template Name                        Short Name       Language  Tags                                                                         
------------------------------------  ---------------  --------  -----------------------------------------------------------------------------
-.NET MAUI Blazor Hybrid and Web App  maui-blazor-web  [C#]      MAUI/Android/iOS/macOS/Mac Catalyst/Windows/Blazor/Blazor Hybrid/Mobile/Tizen
-.NET MAUI Blazor Hybrid App          maui-blazor      [C#]      MAUI/Android/iOS/macOS/Mac Catalyst/Windows/Blazor/Blazor Hybrid/Mobile/Tizen
-Blazor Web App                       blazor           [C#]      Web/Blazor/WebAssembly                                                       
-Blazor WebAssembly Standalone App    blazorwasm       [C#]      Web/Blazor/WebAssembly/PWA                                                   
-
-
+Te
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
 
 </details></tool-use>
 
@@ -257,14 +191,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 I'll scaffold the project using dotnet templates.
 
-The plan is to create a solution file first. Then I'll use individual dotnet templates for ServiceDefaults, AppHost, a Blazor Web App, and separate class libraries for Domain and Infrastructure. The Aspire starter template was rejected because it would generate too much boilerplate.</details></think>
+The plan is to create a solution file first. Then I'll use individual dotnet templates for ServiceDefaults, AppHost, a Blazor Web App, and separate class libraries for Domain and Infrastructure. The Aspire starter template was rejected because it would generate too much boilerplate.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -314,20 +247,12 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && mkdir -p src tests && dotnet new sln -n SchaerbeekMunicipality -o . --force && dotnet new aspire-servicedefaults -n SchaerbeekMunicipality.ServiceDefaults -o src/SchaerbeekMunicipality.ServiceDefaults --force && dotnet new aspire-apphost -n SchaerbeekMunicipality.AppHost -o src/SchaerbeekMunicipality.AppHost --force && dotnet new blazor -n SchaerbeekMunicipality.Web -o src/SchaerbeekMunicipality.Web --interactivity Server --empty --no-https --force && dotnet new classlib -n SchaerbeekMunicipality.Domain -o src/SchaerbeekMunicipality.Domain --force && dotnet new classlib -n SchaerbeekMunicipality.Infrastructure -o src/SchaerbeekMunicipality.Infrastructure --force && dotnet new xunit -n SchaerbeekMunicipality.Domain.Tests -o tests/SchaerbeekMunicipality.Domain.Tests --force && dotnet new xunit -n SchaerbeekMunicipality.Integration.Tests -o tests/SchaerbeekMunicipality.Integration.Tests --force</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; mkdir -p src tests &amp;&amp; dotnet new sln -n SchaerbeekMunicipality -o . --force &amp;&amp; dotnet new aspire-servicedefaults -n SchaerbeekMunicipality.ServiceDefaults -o src/SchaerbeekMunicipality.ServiceDefaults --force &amp;&amp; dotnet new aspire-apphost -n SchaerbeekMunicipality.AppHost -o src/SchaerbeekMunicipality.AppHost --force &amp;&amp; dotnet new blazor -n SchaerbeekMunicipality.Web -o src/SchaerbeekMunicipality.Web --interactivity Server --empty --no-https --force &amp;&amp; dotnet new classlib -n SchaerbeekMunicipality.Domain -o src/SchaerbeekMunicipality.Domain --force &amp;&amp; dotnet new classlib -n SchaerbeekMunicipality.Infrastructure -o src/SchaerbeekMunicipality.Infrastructure --force &amp;&amp; dotnet new xunit -n SchaerbeekMunicipality.Domain.Tests -o tests/SchaerbeekMunicipality.Domain.Tests --force &amp;&amp; dotnet new xunit -n SchaerbeekMunicipality.Integration.Tests -o tests/SchaerbeekMunicipality.Integration.Tests --force</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && mkdir -p src tests && dotnet new sln -n SchaerbeekMunicipality -o . --force && dotnet new aspire-servicedefaults -n SchaerbeekMunicipality.ServiceDefaults -o src/SchaerbeekMunicipality.ServiceDefaults --force && dotnet new aspire-apphost -n SchaerbeekMunicipality.AppHost -o src/SchaerbeekMunicipality.AppHost --force && dotnet new blazor -n SchaerbeekMunicipality.Web -o src/SchaerbeekMunicipality.Web --interactivity Server --empty --no-https --force && dotnet new classlib -n SchaerbeekMunicipality.Domain -o src/SchaerbeekMunicipality.Domain --force && dotnet new classlib -n SchaerbeekMunicipality.Infrastructure -o src/SchaerbeekMunicipality.Infrastructure --force && dotnet new xunit -n SchaerbeekMunicipality.Domain.Tests -o tests/SchaerbeekMunicipality.Domain.Tests --force && dotnet new xunit -n SchaerbeekMunicipality.Integration.Tests -o tests/SchaerbeekMunicipality.Integration.Tests --force
 ```
@@ -349,137 +274,50 @@ Restoring /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/Schaerb
 Restore succeeded.
 
 
-An update for template package 'Aspire.ProjectTemplates::13.0.2' is available.
-To update the package use:
-   dotnet new install Aspire.ProjectTemplates::13.4.6
-
-The template "Aspire AppHost" was created successfully.
-This template contains technologies from parties other than Microsoft, see https://aka.ms/dotnet/aspire/third-party-notices for details.
-
-Processing post-creation actions...
-Restoring /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj:
-  Determining projects to restore...
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1902: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2f33-pr97-265q
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1902: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2x83-8g95-xh59
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1902: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-cj9g-3mj2-g8vv
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1902: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-cxmj-83gh-fp49
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1903: Package 'MessagePack' 2.5.192 has a known high severity vulnerability, https://github.com/advisories/GHSA-hv8m-jj95-wg3x
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1902: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-q2h6-ghwm-5qm8
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1902: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-qhmf-xw27-6rqr
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1902: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-v72x-2h86-7f8m
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1903: Package 'MessagePack' 2.5.192 has a known high severity vulnerability, https://github.com/advisories/GHSA-vh6j-jc39-fggf
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1902: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-w567-gjr2-hm5j
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : warning NU1902: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-wfr3-xj75-pfwh
-  Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj (in 289 ms).
-Restore succeeded.
-
-
-An update for template package 'Aspire.ProjectTemplates::13.0.2' is available.
-To update the package use:
-   dotnet new install Aspire.ProjectTemplates::13.4.6
-
-The template "Blazor Web App" was created successfully.
-This template contains technologies from parties other than Microsoft, see https://aka.ms/aspnetcore/10.0-third-party-notices for details.
-
-Processing post-creation actions...
-Restoring /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj:
-  Determining projects to restore...
-  Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj (in 115 ms).
-Restore succeeded.
-
-
-The template "Class Library" was created successfully.
-
-Processing post-creation actions...
-Restoring /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj:
-  Determining projects to restore...
-  Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj (in 53 ms).
-Restore succeeded.
-
-
-The template "Class Library" was created successfully.
-
-Processing post-creation actions...
-Restoring /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj:
-  Determining projects to restore...
-  Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj (in 52 ms).
-Restore succeeded.
-
-
-The template "xUnit Test Project" was created successfully.
-
-Processing post-creation actions...
-Restoring /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj:
-  Determining projects to restore...
-  Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj (in 152 ms).
-Restore succeeded.
-
-
-The template "xUnit Test Project" was created successfully.
-
-Processing post-creation actions...
-Restoring /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj:
-  Determining projects to restore...
-  Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj (in 137 ms).
-Restore succeeded.
-
-
-
+An update for template package 'Aspire.ProjectTempl
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Projects are created. Starting the roadmap and Phase 0 implementation.</details></think>
+Projects are created. Starting the roadmap and Phase 0 implementation.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet sln add src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj && dotnet add src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj reference src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj && dotnet add src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj reference src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj && dotnet add src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj reference src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj && dotnet add tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj reference src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj && dotnet add tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj reference src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet sln add src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj &amp;&amp; dotnet add src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj reference src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj &amp;&amp; dotnet add src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj reference src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj &amp;&amp; dotnet add src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj reference src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj &amp;&amp; dotnet add tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj reference src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj &amp;&amp; dotnet add tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj reference src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet sln add src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj && dotnet add src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj reference src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj && dotnet add src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj reference src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj && dotnet add src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj reference src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj && dotnet add tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj reference src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj && dotnet add tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj reference src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj
 ```
 
 ```
-Project &#96;src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj&#96; added to the solution.
-Project &#96;src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj&#96; added to the solution.
-Project &#96;src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj&#96; added to the solution.
-Project &#96;src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj&#96; added to the solution.
-Project &#96;src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj&#96; added to the solution.
-Project &#96;tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj&#96; added to the solution.
-Project &#96;tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj&#96; added to the solution.
-Reference &#96;..\SchaerbeekMunicipality.Web\SchaerbeekMunicipality.Web.csproj&#96; added to the project.
-Reference &#96;..\SchaerbeekMunicipality.ServiceDefaults\SchaerbeekMunicipality.ServiceDefaults.csproj&#96; added to the project.
-Reference &#96;..\SchaerbeekMunicipality.Domain\SchaerbeekMunicipality.Domain.csproj&#96; added to the project.
-Reference &#96;..\SchaerbeekMunicipality.Infrastructure\SchaerbeekMunicipality.Infrastructure.csproj&#96; added to the project.
-Reference &#96;..\SchaerbeekMunicipality.Domain\SchaerbeekMunicipality.Domain.csproj&#96; added to the project.
-Reference &#96;..\..\src\SchaerbeekMunicipality.Domain\SchaerbeekMunicipality.Domain.csproj&#96; added to the project.
-Reference &#96;..\..\src\SchaerbeekMunicipality.Web\SchaerbeekMunicipality.Web.csproj&#96; added to the project.
+Project `src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj` added to the solution.
+Project `src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj` added to the solution.
+Project `src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj` added to the solution.
+Project `src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj` added to the solution.
+Project `src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj` added to the solution.
+Project `tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj` added to the solution.
+Project `tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj` added to the solution.
+Reference `..\SchaerbeekMunicipality.Web\SchaerbeekMunicipality.Web.csproj` added to the project.
+Reference `..\SchaerbeekMunicipality.ServiceDefaults\SchaerbeekMunicipality.ServiceDefaults.csproj` added to the project.
+Reference `..\SchaerbeekMunicipality.Domain\SchaerbeekMunicipality.Domain.csproj` added to the project.
+Reference `..\SchaerbeekMunicipality.Infrastructure\SchaerbeekMunicipality.Infrastructure.csproj` added to the project.
+Reference `..\SchaerbeekMunicipality.Domain\SchaerbeekMunicipality.Domain.csproj` added to the project.
+Reference `..\..\src\SchaerbeekMunicipality.Domain\SchaerbeekMunicipality.Domain.csproj` added to the project.
+Reference `..\..\src\SchaerbeekMunicipality.Web\SchaerbeekMunicipality.Web.csproj` added to the project.
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **53** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src** (53 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src`** (53 files)
 
 | File |
 |------|
@@ -536,150 +374,82 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src** (5
 | `SchaerbeekMunicipality.ServiceDefaults/obj/SchaerbeekMunicipality.ServiceDefaults.csproj.nuget.g.props` |
 | `SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj` |
 | `SchaerbeekMunicipality.ServiceDefaults/Extensions.cs` |
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/AppHost.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/AppHost.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/Extensions.cs</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Beginning implementation of the roadmap and Phase 0.</details></think>
+Beginning implementation of the roadmap and Phase 0.
+</details></think>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
-<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
-
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (0 files)
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (0 files)
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/App.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/App.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Routes.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Routes.razor</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
 
 </details></tool-use>
 
@@ -724,7 +494,8 @@ The test factory will keep an in-memory SQLite connection open and pass it direc
 
 Standard .gitignore rules for .NET will be added. The AppHost project will explicitly reference the Aspire.Hosting.PostgreSQL package. The Web project will pull in MudBlazor, FluentValidation.DependencyInjectionExtensions, Microsoft.AspNetCore.OpenApi, and Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.
 
-The Web project will not need the Aspire.Npgsql package because the DbContext is registered manually in Infrastructure. Infrastructure will instead pull in EF Core, Npgsql, SQLite, and EFCore.NamingConventions. A Directory.Build.props file will enable nullable references and treat warnings as errors. Auto-migrating the database on startup is deferred until phase 9; the initial empty migration will remain manual.</details></think>
+The Web project will not need the Aspire.Npgsql package because the DbContext is registered manually in Infrastructure. Infrastructure will instead pull in EF Core, Npgsql, SQLite, and EFCore.NamingConventions. A Directory.Build.props file will enable nullable references and treat warnings as errors. Auto-migrating the database on startup is deferred until phase 9; the initial empty migration will remain manual.
+</details></think>
 
 _**Agent (default)**_
 
@@ -733,42 +504,19 @@ Creating domain, infrastructure, and web layers, then wiring everything together
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.gitignore</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.gitignore</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Directory.Build.props</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Directory.Build.props</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="delete_file">
-<details><summary>Tool use: **delete_file**</summary>
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="delete_file"><details>
 <summary>Tool use: **delete_file**</summary>
@@ -777,13 +525,6 @@ _**Agent (default)**_
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="delete_file">
-<details><summary>Tool use: **delete_file**</summary>
-
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="delete_file"><details>
 <summary>Tool use: **delete_file**</summary>
 
@@ -791,379 +532,182 @@ _**Agent (default)**_
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseId.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseId.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseStatus.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseStatus.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/RegistrationCase.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/IRegistrationCaseRepository.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/Registration/IRegistrationCaseRepository.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/MunicipalDbContext.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/MunicipalDbContext.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/RegistrationCaseConfiguration.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/RegistrationCaseConfiguration.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/RegistrationCaseRepository.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/RegistrationCaseRepository.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Fixing the RegistrationCaseRepository. The ContinueWith pattern is ugly and unnecessary.</details></think>
+Fixing the RegistrationCaseRepository. The ContinueWith pattern is ugly and unnecessary.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/RegistrationCaseRepository.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/RegistrationCaseRepository.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/OfficerRole.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/OfficerRole.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/ICurrentOfficer.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/ICurrentOfficer.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/CurrentOfficer.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/CurrentOfficer.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/ListRegistrationCases/ListRegistrationCasesHandler.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/ListRegistrationCases/ListRegistrationCasesHandler.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/ListRegistrationCases/ListRegistrationCasesEndpoint.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/ListRegistrationCases/ListRegistrationCasesEndpoint.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationEndpoints.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationEndpoints.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/AppHost.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/AppHost.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/Home.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Pages/Home.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
@@ -1172,121 +716,59 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Updating _Imports.razor and App.razor for MudBlazor.
 
-MainLayout and RegistrationCaseList need InteractiveServer render mode because they contain interactive MudBlazor components. Pages using server handlers also require InteractiveServer.</details></think>
+MainLayout and RegistrationCaseList need InteractiveServer render mode because they contain interactive MudBlazor components. Pages using server handlers also require InteractiveServer.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/App.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/App.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/App.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/App.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/HealthEndpointTests.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/HealthEndpointTests.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="delete_file">
-<details><summary>Tool use: **delete_file**</summary>
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="delete_file"><details>
 <summary>Tool use: **delete_file**</summary>
@@ -1294,13 +776,6 @@ _**Agent (default)**_
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="delete_file">
-<details><summary>Tool use: **delete_file**</summary>
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="delete_file"><details>
 <summary>Tool use: **delete_file**</summary>
@@ -1320,115 +795,52 @@ The factory will remove the existing DbContextOptions descriptor before register
 
 Realized the factory's connection string override might not reach AddInfrastructure during service registration. AddInfrastructure reads the connection string before the override takes effect.
 
-Confirmed that WebApplicationFactory applies UseSetting before the host builds, so the overridden connection string reaches AddInfrastructure during service registration. The real problem is that AddInfrastructure already registered the DbContext using the :memory: connection string from the configuration setting.</details></think>
+Confirmed that WebApplicationFactory applies UseSetting before the host builds, so the overridden connection string reaches AddInfrastructure during service registration. The real problem is that AddInfrastructure already registered the DbContext using the :memory: connection string from the configuration setting.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore && dotnet build --configuration Release 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet restore &amp;&amp; dotnet build --configuration Release 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore && dotnet build --configuration Release 2>&1
 ```
 
 ```
   Determining projects to restore...
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1608: Warning As Error: Detected package version outside of dependency constraint: EFCore.NamingConventions 9.0.0 requires Microsoft.EntityFrameworkCore (&gt;= 9.0.0 &amp;&amp; &lt; 10.0.0) but version Microsoft.EntityFrameworkCore 10.0.0 was resolved. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1608: Warning As Error: Detected package version outside of dependency constraint: EFCore.NamingConventions 9.0.0 requires Microsoft.EntityFrameworkCore (&gt;= 9.0.0 &amp;&amp; &lt; 10.0.0) but version Microsoft.EntityFrameworkCore 10.0.0 was resolved. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1608: Warning As Error: Detected package version outside of dependency constraint: EFCore.NamingConventions 9.0.0 requires Microsoft.EntityFrameworkCore.Relational (&gt;= 9.0.0 &amp;&amp; &lt; 10.0.0) but version Microsoft.EntityFrameworkCore.Relational 10.0.0 was resolved. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1608: Warning As Error: Detected package version outside of dependency constraint: EFCore.NamingConventions 9.0.0 requires Microsoft.EntityFrameworkCore (&gt;= 9.0.0 &amp;&amp; &lt; 10.0.0) but version Microsoft.EntityFrameworkCore 10.0.0 was resolved. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1903: Warning As Error: Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Api' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-g94r-2vxg-569j [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1903: Warning As Error: Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1903: Warning As Error: Package 'SQLitePCLRaw.lib.e_sqlite3' 2.1.11 has a known high severity vulnerability, https://github.com/advisories/GHSA-2m69-gcr7-jv3q [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Api' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-g94r-2vxg-569j [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Exporter.OpenTelemetryProtocol' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-4625-4j76-fww9 [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1903: Warning As Error: Package 'System.Security.Cryptography.Xml' 9.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-37gx-xxp4-5rgx [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Exporter.OpenTelemetryProtocol' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-mr8r-92fq-pj8p [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1902: Warning As Error: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2f33-pr97-265q [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Exporter.OpenTelemetryProtocol' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-q834-8qmm-v933 [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Exporter.OpenTelemetryProtocol' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-4625-4j76-fww9 [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1903: Warning As Error: Package 'System.Security.Cryptography.Xml' 9.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-w3x6-4m5h-cxqf [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1902: Warning As Error: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2x83-8g95-xh59 [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Exporter.OpenTelemetryProtocol' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-mr8r-92fq-pj8p [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1902: Warning As Error: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-cj9g-3mj2-g8vv [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Exporter.OpenTelemetryProtocol' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-q834-8qmm-v933 [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1902: Warning As Error: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-cxmj-83gh-fp49 [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1903: Warning As Error: Package 'SQLitePCLRaw.lib.e_sqlite3' 2.1.11 has a known high severity vulnerability, https://github.com/advisories/GHSA-2m69-gcr7-jv3q [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1903: Warning As Error: Package 'MessagePack' 2.5.192 has a known high severity vulnerability, https://github.com/advisories/GHSA-hv8m-jj95-wg3x [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1902: Warning As Error: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-q2h6-ghwm-5qm8 [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1902: Warning As Error: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-qhmf-xw27-6rqr [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1902: Warning As Error: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-v72x-2h86-7f8m [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1903: Warning As Error: Package 'MessagePack' 2.5.192 has a known high severity vulnerability, https://github.com/advisories/GHSA-vh6j-jc39-fggf [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1902: Warning As Error: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-w567-gjr2-hm5j [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Api' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-g94r-2vxg-569j [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj : error NU1902: Warning As Error: Package 'MessagePack' 2.5.192 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-wfr3-xj75-pfwh [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Exporter.OpenTelemetryProtocol' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-4625-4j76-fww9 [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Exporter.OpenTelemetryProtocol' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-mr8r-92fq-pj8p [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1902: Warning As Error: Package 'OpenTelemetry.Exporter.OpenTelemetryProtocol' 1.13.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-q834-8qmm-v933 [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1903: Warning As Error: Package 'SQLitePCLRaw.lib.e_sqlite3' 2.1.11 has a known high severity vulnerability, https://github.com/advisories/GHSA-2m69-gcr7-jv3q [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1107: Version conflict detected for Microsoft.EntityFrameworkCore.Relational. Install/reference Microsoft.EntityFrameworkCore.Relational 10.0.0 directly to project SchaerbeekMunicipality.Web to resolve this issue.  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1107:  SchaerbeekMunicipality.Web -&gt; SchaerbeekMunicipality.Infrastructure -&gt; Npgsql.EntityFrameworkCore.PostgreSQL 10.0.0 -&gt; Microsoft.EntityFrameworkCore.Relational (&gt;= 10.0.0 &amp;&amp; &lt; 11.0.0)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1107:  SchaerbeekMunicipality.Web -&gt; SchaerbeekMunicipality.Infrastructure -&gt; EFCore.NamingConventions 9.0.0 -&gt; Microsoft.EntityFrameworkCore.Relational (&gt;= 9.0.0 &amp;&amp; &lt; 10.0.0). [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj (in 194 ms).
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj (in 208 ms).
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj (in 194 ms).
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj (in 201 ms).
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1107: Version conflict detected for Microsoft.EntityFrameworkCore.Relational. Install/reference Microsoft.EntityFrameworkCore.Relational 10.0.0 directly to project SchaerbeekMunicipality.Infrastructure to resolve this issue.  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1107:  SchaerbeekMunicipality.Infrastructure -&gt; Microsoft.EntityFrameworkCore.Design 10.0.0 -&gt; Microsoft.EntityFrameworkCore.Relational (&gt;= 10.0.0)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1107:  SchaerbeekMunicipality.Infrastructure -&gt; EFCore.NamingConventions 9.0.0 -&gt; Microsoft.EntityFrameworkCore.Relational (&gt;= 9.0.0 &amp;&amp; &lt; 10.0.0). [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj (in 223 ms).
-  2 of 7 projects are up-to-date for restore.
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1608: Warning As Error: Detected package version outside of dependency constraint: EFCore.NamingConventions 9.0.0 requires Microsoft.EntityFrameworkCore (>= 9.0.0 && < 10.0.0) but version Microsoft.EntityFrameworkCore 10.0.0 was resolved. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1608: Warning As Error: Detected package version outside of dependency constraint: EFCore.NamingConventions 9.0.0 requires Microsoft.EntityFrameworkCore (>= 9.0.0 && < 10.0.0) but version Microsoft.EntityFrameworkCore 10.0.0 was resolved. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1608: Warning As Error: Detected package version outside of dependency constraint: EFCore.NamingConventions 9.0.0 requires Microsoft.EntityFrameworkCore.Relational (>= 9.0.0 && < 10.0.0) but version Microsoft.EntityFrameworkCore.Relational 10.0.0 was resolved. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1608: Warning As Error: Detected package version outside of dependency constraint: EFCore.NamingConventions 9.0.0 requires Microsoft.EntityFrameworkCore (>= 9.0.0 && < 10.0.0) but version Microsoft.EntityFrameworkCore 10.0.0 was resolved. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
+/Users/joba/Pro
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-EFCore.NamingConventions 9.0 does not support EF Core 10. I need to check for a 10.0 release or skip snake_case for now. Phase 9 already covers snake_case.</details></think>
+EFCore.NamingConventions 9.0 does not support EF Core 10. I need to check for a 10.0 release or skip snake_case for now. Phase 9 already covers snake_case.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: dotnet package search EFCore.NamingConventions --take 3 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet package search EFCore.NamingConventions --take 3 2&gt;&amp;1</summary>
 ```bash
 dotnet package search EFCore.NamingConventions --take 3 2>&1
 ```
@@ -1451,54 +863,32 @@ Source: nuget.org (https://api.nuget.org/v3/index.json)
 | ---------------- | -------------- | ---------------- | --------------- |
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-EFCore.NamingConventions version 10.0.1 is available.</details></think>
+EFCore.NamingConventions version 10.0.1 is available.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Directory.Build.props</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/Directory.Build.props</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore && dotnet build --configuration Release 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet restore &amp;&amp; dotnet build --configuration Release 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore && dotnet build --configuration Release 2>&1
 ```
@@ -1510,62 +900,31 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore 
   Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj (in 270 ms).
   Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj (in 289 ms).
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605: Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 10.0.1 to 10.0.0. Reference the package directly from the project to select a different version.  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605:  SchaerbeekMunicipality.Web -&gt; SchaerbeekMunicipality.Infrastructure -&gt; EFCore.NamingConventions 10.0.1 -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.1 &amp;&amp; &lt; 11.0.0)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605:  SchaerbeekMunicipality.Web -&gt; SchaerbeekMunicipality.Infrastructure -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.0) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1605: Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 10.0.1 to 10.0.0. Reference the package directly from the project to select a different version.  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1605:  SchaerbeekMunicipality.Integration.Tests -&gt; Microsoft.EntityFrameworkCore.Sqlite 10.0.0 -&gt; Microsoft.EntityFrameworkCore.Sqlite.Core 10.0.0 -&gt; Microsoft.EntityFrameworkCore.Relational 10.0.1 -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.1)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1605:  SchaerbeekMunicipality.Integration.Tests -&gt; SchaerbeekMunicipality.Web -&gt; SchaerbeekMunicipality.Infrastructure -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.0) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj (in 413 ms).
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj (in 421 ms).
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1605: Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 10.0.1 to 10.0.0. Reference the package directly from the project to select a different version.  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1605:  SchaerbeekMunicipality.Infrastructure -&gt; EFCore.NamingConventions 10.0.1 -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.1 &amp;&amp; &lt; 11.0.0)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1605:  SchaerbeekMunicipality.Infrastructure -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.0) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj (in 465 ms).
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605:  SchaerbeekMunicipality.Web -> SchaerbeekMunicipality.Infrastructure -> EFCore.NamingConventions 10.0.1 -> Microsoft.EntityFrameworkCore (>= 10.0.1 && < 11.0.0)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605:  SchaerbeekMunicipality.Web -> SchaerbeekMunicipality.Infrastructure -> Microsoft.EntityFrameworkCore (>= 10.0.0) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1605: Warn
+… (output truncated)
 ```
-</details>
-</tool-use>
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore && dotnet build --configuration Release 2>&1</summary>
-
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet restore &amp;&amp; dotnet build --configuration Release 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore && dotnet build --configuration Release 2>&1
 ```
@@ -1573,63 +932,32 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore 
 ```
   Determining projects to restore...
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605: Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 10.0.4 to 10.0.1. Reference the package directly from the project to select a different version.  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605:  SchaerbeekMunicipality.Web -&gt; SchaerbeekMunicipality.Infrastructure -&gt; Npgsql.EntityFrameworkCore.PostgreSQL 10.0.1 -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.4 &amp;&amp; &lt; 11.0.0)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605:  SchaerbeekMunicipality.Web -&gt; SchaerbeekMunicipality.Infrastructure -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.1) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605:  SchaerbeekMunicipality.Web -> SchaerbeekMunicipality.Infrastructure -> Npgsql.EntityFrameworkCore.PostgreSQL 10.0.1 -> Microsoft.EntityFrameworkCore (>= 10.0.4 && < 11.0.0)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj : error NU1605:  SchaerbeekMunicipality.Web -> SchaerbeekMunicipality.Infrastructure -> Microsoft.EntityFrameworkCore (>= 10.0.1) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1605: Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 10.0.4 to 10.0.1. Reference the package directly from the project to select a different version.  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1605:  SchaerbeekMunicipality.Integration.Tests -&gt; Microsoft.EntityFrameworkCore.Sqlite 10.0.1 -&gt; Microsoft.EntityFrameworkCore.Sqlite.Core 10.0.1 -&gt; Microsoft.EntityFrameworkCore.Relational 10.0.4 -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.4)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1605:  SchaerbeekMunicipality.Integration.Tests -&gt; SchaerbeekMunicipality.Web -&gt; SchaerbeekMunicipality.Infrastructure -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.1) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1605: Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 10.0.4 to 10.0.1. Reference the package directly from the project to select a different version.  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1605:  SchaerbeekMunicipality.Infrastructure -&gt; Npgsql.EntityFrameworkCore.PostgreSQL 10.0.1 -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.4 &amp;&amp; &lt; 11.0.0)  [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj : error NU1605:  SchaerbeekMunicipality.Infrastructure -&gt; Microsoft.EntityFrameworkCore (&gt;= 10.0.1) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln]
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj (in 492 ms).
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj (in 520 ms).
-  Failed to restore /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj (in 502 ms).
-  4 of 7 projects are up-to-date for restore.
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj : error NU1605:  SchaerbeekMunicipality.Integration.Tests -> Microsoft.EntityFrameworkCore.Sqlite 10.0.1 -> Microsoft.EntityFrameworkCore.Sqlite.Core 10.0.1 -> Microsoft.EntityFrameworkCore.Relational 10.0.4 -> Microsoft
+… (output truncated)
 ```
-</details>
-</tool-use>
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore && dotnet build --configuration Release 2>&1</summary>
-
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet restore &amp;&amp; dotnet build --configuration Release 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore && dotnet build --configuration Release 2>&1
 ```
@@ -1642,89 +970,46 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet restore 
   4 of 7 projects are up-to-date for restore.
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(4,28): error CS0234: The type or namespace name 'Hosting' does not exist in the namespace 'Microsoft.Extensions' (are you missing an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(13,66): error CS0246: The type or namespace name 'IHostApplicationBuilder' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(13,19): error CS0246: The type or namespace name 'IHostApplicationBuilder' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(36,86): error CS0246: The type or namespace name 'IHostEnvironment' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-
-Build FAILED.
-
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(4,28): error CS0234: The type or namespace name 'Hosting' does not exist in the namespace 'Microsoft.Extensions' (are you missing an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(13,66): error CS0246: The type or namespace name 'IHostApplicationBuilder' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(13,19): error CS0246: The type or namespace name 'IHostApplicationBuilder' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(36,86): error CS0246: The type or namespace name 'IHostEnvironment' could not be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
-    0 Warning(s)
-    4 Error(s)
-
-Time Elapsed 00:00:03.32
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastruc
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Phase 0 infrastructure requires Microsoft.</details></think>
+Phase 0 infrastructure requires Microsoft.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Program.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --configuration Release 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build --configuration Release 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --configuration Release 2>&1
 ```
@@ -1732,9 +1017,9 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs(29,22): error CS1061: 'DbContextOptionsBuilder' does not contain a definition for 'UseSnakeCaseNamingConvention' and no accessible extension method 'UseSnakeCaseNamingConvention' accepting a first argument of type 'DbContextOptionsBuilder' could be found (are you missing a using directive or an assembly reference?) [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
 
 Build FAILED.
@@ -1746,47 +1031,26 @@ Build FAILED.
 Time Elapsed 00:00:03.71
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
-
-</details>
-
-</tool-use>
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --configuration Release 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build --configuration Release 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --configuration Release 2>&1
 ```
@@ -1794,80 +1058,34 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor(4,1): error RZ10012: Found markup element with unexpected name 'MudSelect'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
 /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor(12,5): error RZ10012: Found markup element with unexpected name 'MudSelectItem'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor(13,5): error RZ10012: Found markup element with unexpected name 'MudSelectItem'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor(14,5): error RZ10012: Found markup element with unexpected name 'MudSelectItem'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(6,1): error RZ10012: Found markup element with unexpected name 'PageTitle'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(8,1): error RZ10012: Found markup element with unexpected name 'MudText'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(9,1): error RZ10012: Found markup element with unexpected name 'MudText'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(15,5): error RZ10012: Found markup element with unexpected name 'MudProgressLinear'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(19,5): error RZ10012: Found markup element with unexpected name 'MudAlert'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(25,5): error RZ10012: Found markup element with unexpected name 'MudDataGrid'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(26,9): error RZ10012: Found markup element with unexpected name 'Columns'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(27,13): error RZ10012: Found markup element with unexpected name 'PropertyColumn'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(28,13): error RZ10012: Found markup element with unexpected name 'PropertyColumn'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/Microsoft.CodeAnalysis.Razor.Compiler/Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator/Features_Registration_Pages_RegistrationCaseList_razor.g.cs(154,101): error CS0103: The name 'InteractiveServer' does not exist in the current context [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-
-Build FAILED.
-
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor(4,1): error RZ10012: Found markup element with unexpected name 'MudSelect'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor(12,5): error RZ10012: Found markup element with unexpected name 'MudSelectItem'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor(13,5): error RZ10012: Found markup element with unexpected name 'MudSelectItem'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor(14,5): error RZ10012: Found markup element with unexpected name 'MudSelectItem'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(6,1): error RZ10012: Found markup element with unexpected name 'PageTitle'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(8,1): error RZ10012: Found markup element with unexpected name 'MudText'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(9,1): error RZ10012: Found markup element with unexpected name 'MudText'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(15,5): error RZ10012: Found markup element with unexpected name 'MudProgressLinear'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(19,5): error RZ10012: Found markup element with unexpected name 'MudAlert'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(25,5): error RZ10012: Found markup element with unexpected name 'MudDataGrid'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(26,9): error RZ10012: Found markup element with unexpected name 'Columns'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(27,13): error RZ10012: Found markup element with unexpected name 'PropertyColumn'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseList.razor(28,13): error RZ10012: Found markup element with unexpected name 'PropertyColumn'. If this is intended to be a component, add a @using directive for its namespace. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/Microsoft.CodeAnalysis.Razor.Compiler/Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator/Features_Registration_Pages_RegistrationCaseList_razor.g.cs(154,101): error CS0103: The name 'InteractiveServer' does not exist in the current context [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj]
-    0 Warning(s)
-    14 Error(s)
-
-Time Elapsed 00:00:06.29
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/Registration/Components/RoleSwitcher.razor(13,5): error RZ10012: Found markup element with unexpected name 'MudSelectItem'. If this is intended to be a component, add 
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The Features folder sits outside the Components folder, so it won't inherit the _Imports.razor file.</details></think>
+The Features folder sits outside the Components folder, so it won't inherit the _Imports.razor file.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Features/_Imports.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --configuration Release 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet build --configuration Release 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --configuration Release 2>&1
 ```
@@ -1875,945 +1093,68 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet build --
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs(46,17): error CS0114: 'MunicipalAppFactory.DisposeAsync()' hides inherited member 'WebApplicationFactory&lt;Program&gt;.DisposeAsync()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj]
-  SchaerbeekMunicipality.AppHost -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Release/net10.0/SchaerbeekMunicipality.AppHost.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs(46,17): error CS0114: 'MunicipalAppFactory.DisposeAsync()' hides inherited member 'WebApplicationFactory<Program>.DisposeAsync()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj]
+  SchaerbeekMunicipality.AppHost -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/bin/Release/net10.0/SchaerbeekMunicipality.AppHost.dll
 
 Build FAILED.
 
-/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs(46,17): error CS0114: 'MunicipalAppFactory.DisposeAsync()' hides inherited member 'WebApplicationFactory&lt;Program&gt;.DisposeAsync()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj]
-    0 Warning(s)
-    1 Error(s)
-
-Time Elapsed 00:00:06.47
-
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs(46,17): error CS0114: 'MunicipalAppFactory.DisposeAsync()' hides inherited member 'WebAp
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-EnsureCreated should run at application startup rather than on disposal.</details></think>
+EnsureCreated should run at application startup rather than on disposal.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/MunicipalAppFactory.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --configuration Release --verbosity normal 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test --configuration Release --verbosity normal 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --configuration Release --verbosity normal 2>&1
 ```
 
 ```
 Build started 7/3/2026 8:53:00 PM.
-     1&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" on node 1 (Restore target(s)).
-     1&gt;ValidateSolutionConfiguration:
+     1>Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" on node 1 (Restore target(s)).
+     1>ValidateSolutionConfiguration:
          Building solution configuration "Release|Any CPU".
        _GetAllRestoreProjectPathItems:
          Determining projects to restore...
-     1&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj" (7:4) on node 5 (_GenerateRestoreGraphProjectEntry target(s)).
-     7&gt;AddReferenceToDashboardAndDCP:
+     1>Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj" (7:4) on node 5 (_GenerateRestoreGraphProjectEntry target(s)).
+     7>AddReferenceToDashboardAndDCP:
          "/usr/local/share/dotnet/dotnet" exec "/Users/joba/.nuget/packages/aspire.apphost.sdk/13.0.2/tools/net8.0/Aspire.RuntimeIdentifier.Tool.dll" --runtimeGraphPath "/usr/local/share/dotnet/sdk/10.0.100/RuntimeIdentifierGraph.json" --supportedRids "win-x64,win-x86,win-arm64,linux-x64,linux-arm64,linux-musl-x64,osx-x64,osx-arm64" --netcoreSdkRuntimeIdentifier "osx-arm64"
-     7&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj" (_GenerateRestoreGraphProjectEntry target(s)).
-     1&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj" (2:6) on node 1 (_GenerateProjectRestoreGraph target(s)).
-     2&gt;AddPrunePackageReferences:
+     7>Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj" (_GenerateRestoreGraphProjectEntry target(s)).
+     1>Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj" (2:6) on node 1 (_GenerateProjectRestoreGraph target(s)).
+     2>AddPrunePackageReferences:
          Loading prune package data from PrunePackageData folder
          Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
          Looking for targeting packs in /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref
-         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0
-         Found package overrides file /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/data/PackageOverrides.txt
-     1&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj" (5:5) on node 3 (_GenerateProjectRestoreGraph target(s)).
-     5&gt;AddPrunePackageReferences:
-         Loading prune package data from PrunePackageData folder
-     2&gt;AddPrunePackageReferences:
-         Loading prune package data from PrunePackageData folder
-     5&gt;AddPrunePackageReferences:
-         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
-     2&gt;AddPrunePackageReferences:
-         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
-     5&gt;AddPrunePackageReferences:
-         Looking for targeting packs in /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref
-     2&gt;AddPrunePackageReferences:
-         Looking for targeting packs in /usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref
-     5&gt;AddPrunePackageReferences:
-         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0
-     2&gt;AddPrunePackageReferences:
-         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0
-         Found package overrides file /usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/data/PackageOverrides.txt
-     1&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj" (7:5) on node 5 (_GenerateProjectRestoreGraph target(s)).
-     7&gt;AddPrunePackageReferences:
-         Loading prune package data from PrunePackageData folder
-         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
-         Looking for targeting packs in /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref
-         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0
-     1&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj" (4:8) on node 4 (_GenerateProjectRestoreGraph target(s)).
-     4&gt;AddPrunePackageReferences:
-         Loading prune package data from PrunePackageData folder
-         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
-         Looking for targeting packs in /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref
-         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0
-     5&gt;AddPrunePackageReferences:
-         Found package overrides file /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/data/PackageOverrides.txt
-     1&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (3:5) on node 2 (_GenerateProjectRestoreGraph target(s)).
-     3&gt;AddPrunePackageReferences:
-         Loading prune package data from PrunePackageData folder
-         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
-         Looking for targeting packs in /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref
-         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0
-     1&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj" (6:6) on node 7 (_GenerateProjectRestoreGraph target(s)).
-     6&gt;AddPrunePackageReferences:
-         Loading prune package data from PrunePackageData folder
-         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
-     7&gt;AddPrunePackageReferences:
-         Found package overrides file /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/data/PackageOverrides.txt
-     4&gt;AddPrunePackageReferences:
-         Found package overrides file /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/data/PackageOverrides.txt
-     3&gt;AddPrunePackageReferences:
-         Found package overrides file /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/data/PackageOverrides.txt
-     1&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj" (8:7) on node 6 (_GenerateProjectRestoreGraph target(s)).
-     8&gt;AddPrunePackageReferences:
-         Loading prune package data from PrunePackageData folder
-         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
-     6&gt;AddPrunePackageReferences:
-         Looking for targeting packs in /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref
-         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0
-         Found package overrides file /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/data/PackageOverrides.txt
-     8&gt;AddPrunePackageReferences:
-         Looking for targeting packs in /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref
-         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0
-         Found package overrides file /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/data/PackageOverrides.txt
-     4&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj" (_GenerateProjectRestoreGraph target(s)).
-     2&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj" (_GenerateProjectRestoreGraph target(s)).
-     7&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj" (_GenerateProjectRestoreGraph target(s)).
-     8&gt;AddPrunePackageReferences:
-         Loading prune package data from PrunePackageData folder
-         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
-         Looking for targeting packs in /usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref
-         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0
-         Found package overrides file /usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/data/PackageOverrides.txt
-     5&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj" (_GenerateProjectRestoreGraph target(s)).
-     6&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj" (_GenerateProjectRestoreGraph target(s)).
-     3&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (_GenerateProjectRestoreGraph target(s)).
-     8&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj" (_GenerateProjectRestoreGraph target(s)).
-     1&gt;Restore:
-         X.509 certificate chain validation will use the fallback certificate bundle at '/usr/local/share/dotnet/sdk/10.0.100/trustedroots/codesignctl.pem'.
-         X.509 certificate chain validation will use the fallback certificate bundle at '/usr/local/share/dotnet/sdk/10.0.100/trustedroots/timestampctl.pem'.
-         Assets file has not changed. Skipping assets file writing. Path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/obj/project.assets.json
-         Assets file has not changed. Skipping assets file writing. Path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/obj/project.assets.json
-         Assets file has not changed. Skipping assets file writing. Path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/obj/project.assets.json
-         Assets file has not changed. Skipping assets file writing. Path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/obj/project.assets.json
-         Assets file has not changed. Skipping assets file writing. Path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/obj/project.assets.json
-         Assets file has not changed. Skipping assets file writing. Path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/project.assets.json
-         Assets file has not changed. Skipping assets file writing. Path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/obj/project.assets.json
-         Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj (in 26 ms).
-         Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj (in 26 ms).
-         Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj (in 26 ms).
-         Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj (in 26 ms).
-         Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj (in 26 ms).
-         Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj (in 26 ms).
-         Restored /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.AppHost/SchaerbeekMunicipality.AppHost.csproj (in 26 ms).
-         
-         NuGet Config files used:
-             /Users/joba/.nuget/NuGet/NuGet.Config
-         
-         Feeds used:
-             https://api.nuget.org/v3/index.json
-             /usr/local/share/dotnet/library-packs
-         All projects are up-to-date for restore.
-     1&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (Restore target(s)).
-   1:2&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" on node 1 (VSTest target(s)).
-     1&gt;ValidateSolutionConfiguration:
-         Building solution configuration "Release|Any CPU".
-   1:2&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1:2) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj" (5:6) on node 3 (VSTest target(s)).
-     5&gt;BuildProject:
-         Build started, please wait...
-   1:2&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (1:2) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (3:6) on node 2 (VSTest target(s)).
-     3&gt;BuildProject:
-         Build started, please wait...
-   5:6&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj" (5:6) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj" (5:7) on node 3 (default targets).
-   5:7&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj" (5:7) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj" (4:12) on node 4 (default targets).
-     4&gt;GenerateTargetFrameworkMonikerAttribute:
-       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
-       CoreGenerateAssemblyInfo:
-       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
-   3:6&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (3:6) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (3:7) on node 2 (default targets).
-   3:7&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (3:7) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj" (2:9) on node 1 (default targets).
-     2&gt;GenerateTargetFrameworkMonikerAttribute:
-       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
-     4&gt;_GenerateSourceLinkFile:
-         Source Link file 'obj/Release/net10.0/SchaerbeekMunicipality.Domain.sourcelink.json' is up-to-date.
-     2&gt;CoreGenerateAssemblyInfo:
-       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
-     4&gt;CoreCompile:
-       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
-       GenerateBuildDependencyFile:
-       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.
-       CopyFilesToOutputDirectory:
-         SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
-     4&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/SchaerbeekMunicipality.Domain.csproj" (default targets).
-     2&gt;_GenerateSourceLinkFile:
-         Source Link file 'obj/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.sourcelink.json' is up-to-date.
-       CoreCompile:
-       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
-       GenerateBuildDependencyFile:
-       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.
-       CopyFilesToOutputDirectory:
-         SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-     2&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/SchaerbeekMunicipality.ServiceDefaults.csproj" (default targets).
-   3:7&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (3:7) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj" (6:9) on node 7 (default targets).
-     6&gt;GenerateTargetFrameworkMonikerAttribute:
-       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
-     5&gt;GenerateTargetFrameworkMonikerAttribute:
-       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
-     6&gt;CoreGenerateAssemblyInfo:
-       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
-     5&gt;CoreGenerateAssemblyInfo:
-       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
-     6&gt;_GenerateSourceLinkFile:
-         Source Link file 'obj/Release/net10.0/SchaerbeekMunicipality.Infrastructure.sourcelink.json' is up-to-date.
-       CoreCompile:
-       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
-       GenerateBuildDependencyFile:
-       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.
-     5&gt;_GenerateSourceLinkFile:
-         Source Link file 'obj/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.sourcelink.json' is up-to-date.
-     6&gt;GenerateBuildRuntimeConfigurationFiles:
-       Skipping target "GenerateBuildRuntimeConfigurationFiles" because all output files are up-to-date with respect to the input files.
-       CopyFilesToOutputDirectory:
-         SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-     5&gt;CoreCompile:
-       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
-       _CopyOutOfDateSourceItemsToOutputDirectory:
-       Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with respect to the input files.
-       GenerateBuildDependencyFile:
-       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.
-     6&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj" (default targets).
-     5&gt;GenerateBuildRuntimeConfigurationFiles:
-       Skipping target "GenerateBuildRuntimeConfigurationFiles" because all output files are up-to-date with respect to the input files.
-       CopyFilesToOutputDirectory:
-         SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
-     5&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj" (default targets).
-     5&gt;BuildProject:
-         Build completed.
-         
-Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll (.NETCoreApp,Version=v10.0)
-VSTest version 18.0.1 (arm64)
-
-   3:7&gt;Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (3:7) is building "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj" (8:10) on node 6 (default targets).
-     8&gt;GenerateTargetFrameworkMonikerAttribute:
-       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
-Starting test execution, please wait...
-       CoreGenerateAssemblyInfo:
-       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
-       _DiscoverMvcApplicationParts:
-       Skipping target "_DiscoverMvcApplicationParts" because all output files are up-to-date with respect to the input files.
-A total of 1 test files matched the specified pattern.
-       _GenerateSourceLinkFile:
-         Source Link file 'obj/Release/net10.0/SchaerbeekMunicipality.Web.sourcelink.json' is up-to-date.
-       CoreCompile:
-       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
-       _CreateAppHost:
-       Skipping target "_CreateAppHost" because all output files are up-to-date with respect to the input files.
-       _ProcessScopedCssFiles:
-       Skipping target "_ProcessScopedCssFiles" because all output files are up-to-date with respect to the input files.
-       ResolveBuildCompressedStaticWebAssetsConfiguration:
-         Accepted compressed asset '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/tzxjg6is5z-{0}-7c7lhmh1j6-7c7lhmh1j6.gz' for '/Users/joba/.nuget/packages/mudblazor/8.15.0/staticwebassets/MudBlazor.min.css'.
-         Accepted compressed asset '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/0wz98yz2xy-{0}-f96y5mhlyw-f96y5mhlyw.gz' for '/Users/joba/.nuget/packages/mudblazor/8.15.0/staticwebassets/MudBlazor.min.js'.
-         Accepted compressed asset '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/mdnakghixt-{0}-z4z4fil66m-z4z4fil66m.gz' for '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/wwwroot/app.css'.
-         Accepted compressed asset '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/y42ki5cg6g-{0}-w97mql0d9w-w97mql0d9w.gz' for '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/ReconnectModal.razor.js'.
-         Accepted compressed asset '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/j91mafitdf-{0}-j8lzlu28q6-j8lzlu28q6.gz' for '/Users/joba/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.0/_framework/blazor.web.js'.
-         Accepted compressed asset '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/x2kk15miqz-{0}-u1n4jc5v46-u1n4jc5v46.gz' for '/Users/joba/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.0/_framework/blazor.server.js'.
-         Accepted compressed asset '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/oh5czvbvd6-{0}-j51plvrq4q-j51plvrq4q.gz' for '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/scopedcss/bundle/SchaerbeekMunicipality.Web.styles.css'.
-         Accepted compressed asset '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/1uihp6to02-{0}-j51plvrq4q-j51plvrq4q.gz' for '/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/scopedcss/projectbundle/SchaerbeekMunicipality.Web.bundle.scp.css'.
-         Resolved 8 compressed assets for 8 candidate assets.
-       ResolveBuildCompressedStaticWebAssets:
-         Processing compressed asset: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/tzxjg6is5z-{0}-7c7lhmh1j6-7c7lhmh1j6.gz
-         Processing compressed asset: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/0wz98yz2xy-{0}-f96y5mhlyw-f96y5mhlyw.gz
-         Processing compressed asset: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/mdnakghixt-{0}-z4z4fil66m-z4z4fil66m.gz
-         Processing compressed asset: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/y42ki5cg6g-{0}-w97mql0d9w-w97mql0d9w.gz
-         Processing compressed asset: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/j91mafitdf-{0}-j8lzlu28q6-j8lzlu28q6.gz
-         Processing compressed asset: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/x2kk15miqz-{0}-u1n4jc5v46-u1n4jc5v46.gz
-         Processing compressed asset: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/oh5czvbvd6-{0}-j51plvrq4q-j51plvrq4q.gz
-         Processing compressed asset: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/compressed/1uihp6to02-{0}-j51plvrq4q-j51plvrq4q.gz
-       _BuildCopyStaticWebAssetsPreserveNewest:
-       Skipping target "_BuildCopyStaticWebAssetsPreserveNewest" because it has no outputs.
-       _CopyOutOfDateSourceItemsToOutputDirectory:
-       Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with respect to the input files.
-       GenerateBuildDependencyFile:
-       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.
-       GenerateBuildRuntimeConfigurationFiles:
-       Skipping target "GenerateBuildRuntimeConfigurationFiles" because all output files are up-to-date with respect to the input files.
-       CopyFilesToOutputDirectory:
-         SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
-     8&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj" (default targets).
-     3&gt;GenerateTargetFrameworkMonikerAttribute:
-       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
-[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.0)
-       CoreGenerateAssemblyInfo:
-       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
-       _GenerateSourceLinkFile:
-         Source Link file 'obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.sourcelink.json' is up-to-date.
-       CoreCompile:
-         Setting DOTNET_ROOT to '/usr/local/share/dotnet'
-         /usr/local/share/dotnet/sdk/10.0.100/Roslyn/bincore/csc /noconfig /unsafe- /checked- /nowarn:NU1901,NU1902,NU1903,NU1904,1701,1702 /fullpaths /nostdlib+ /errorreport:prompt /warn:10 /define:TRACE;RELEASE;NET;NET10_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER /highentropyva+ /nullable:enable /reference:/Users/joba/.nuget/packages/efcore.namingconventions/10.0.1/lib/net10.0/EFCore.NamingConventions.dll /reference:/Users/joba/.nuget/packages/fluentassertions/7.2.0/lib/net6.0/FluentAssertions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Antiforgery.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.BearerToken.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.Cookies.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.OAuth.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authorization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authorization.Policy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Authorization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Endpoints.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Forms.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Server.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Web.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Connections.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.CookiePolicy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Cors.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.DataProtection.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.DataProtection.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Diagnostics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Diagnostics.HealthChecks.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HostFiltering.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Hosting.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Hosting.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Html.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Connections.Common.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Connections.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Features.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Results.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HttpLogging.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HttpOverrides.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HttpsPolicy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Identity.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Localization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Localization.Routing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Metadata.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.ApiExplorer.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Cors.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.DataAnnotations.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Localization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Razor.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.RazorPages.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll /reference:/Users/joba/.nuget/packages/microsoft.aspnetcore.mvc.testing/10.0.0/lib/net10.0/Microsoft.AspNetCore.Mvc.Testing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.ViewFeatures.dll /reference:/Users/joba/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0/lib/net10.0/Microsoft.AspNetCore.OpenApi.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.OutputCaching.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.RateLimiting.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Razor.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Razor.Runtime.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.RequestDecompression.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.ResponseCaching.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.ResponseCompression.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Rewrite.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Routing.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Routing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.HttpSys.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.IIS.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.IISIntegration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Session.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.Common.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.StaticAssets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.StaticFiles.dll /reference:/Users/joba/.nuget/packages/microsoft.aspnetcore.testhost/10.0.0/lib/net10.0/Microsoft.AspNetCore.TestHost.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.WebSockets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.WebUtilities.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.CSharp.dll /reference:/Users/joba/.nuget/packages/microsoft.data.sqlite.core/10.0.4/lib/net8.0/Microsoft.Data.Sqlite.dll /reference:/Users/joba/.nuget/packages/microsoft.entityframeworkcore.abstractions/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.entityframeworkcore/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.dll /reference:/Users/joba/.nuget/packages/microsoft.entityframeworkcore.relational/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll /reference:/Users/joba/.nuget/packages/microsoft.entityframeworkcore.sqlite.core/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.Sqlite.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.ambientmetadata.application/10.0.0/lib/net10.0/Microsoft.Extensions.AmbientMetadata.Application.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.caching.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.Caching.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.caching.memory/10.0.4/lib/net10.0/Microsoft.Extensions.Caching.Memory.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.compliance.abstractions/10.0.0/lib/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.Configuration.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Binder.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.CommandLine.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.FileExtensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Ini.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.KeyPerFile.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.UserSecrets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Xml.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.dependencyinjection.autoactivation/10.0.0/lib/net10.0/Microsoft.Extensions.DependencyInjection.AutoActivation.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.4/lib/net10.0/Microsoft.Extensions.DependencyInjection.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.dependencymodel/10.0.4/lib/net10.0/Microsoft.Extensions.DependencyModel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.diagnostics.exceptionsummarization/10.0.0/lib/net10.0/Microsoft.Extensions.Diagnostics.ExceptionSummarization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Features.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Composite.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Embedded.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Physical.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileSystemGlobbing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Hosting.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Hosting.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.http.diagnostics/10.0.0/lib/net10.0/Microsoft.Extensions.Http.Diagnostics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Http.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.http.resilience/10.0.0/lib/net10.0/Microsoft.Extensions.Http.Resilience.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Identity.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Identity.Stores.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Localization.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Localization.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.Logging.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.Configuration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.Console.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.Debug.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.logging/10.0.4/lib/net10.0/Microsoft.Extensions.Logging.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.EventLog.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.EventSource.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.TraceSource.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.ObjectPool.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Options.DataAnnotations.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.options/10.0.4/lib/net10.0/Microsoft.Extensions.Options.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.primitives/10.0.4/lib/net10.0/Microsoft.Extensions.Primitives.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.resilience/10.0.0/lib/net10.0/Microsoft.Extensions.Resilience.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.servicediscovery.abstractions/10.0.0/lib/net10.0/Microsoft.Extensions.ServiceDiscovery.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.servicediscovery/10.0.0/lib/net10.0/Microsoft.Extensions.ServiceDiscovery.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.telemetry.abstractions/10.0.0/lib/net10.0/Microsoft.Extensions.Telemetry.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.telemetry/10.0.0/lib/net10.0/Microsoft.Extensions.Telemetry.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Validation.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.WebEncoders.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.JSInterop.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Net.Http.Headers.dll /reference:/Users/joba/.nuget/packages/microsoft.openapi/2.0.0/lib/net8.0/Microsoft.OpenApi.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.CommunicationUtilities.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.CoreUtilities.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.CrossPlatEngine.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.PlatformAbstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.Utilities.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.VisualBasic.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.VisualBasic.dll /reference:/Users/joba/.nuget/packages/microsoft.codecoverage/17.14.1/lib/net8.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.VisualStudio.TestPlatform.Common.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Win32.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Win32.Registry.dll /reference:/Users/joba/.nuget/packages/microsoft.win32.systemevents/6.0.0/lib/net6.0/Microsoft.Win32.SystemEvents.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/mscorlib.dll /reference:/Users/joba/.nuget/packages/mudblazor/8.15.0/lib/net9.0/MudBlazor.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/netstandard.dll /reference:/Users/joba/.nuget/packages/newtonsoft.json/13.0.3/lib/net6.0/Newtonsoft.Json.dll /reference:/Users/joba/.nuget/packages/npgsql/10.0.2/lib/net10.0/Npgsql.dll /reference:/Users/joba/.nuget/packages/npgsql.entityframeworkcore.postgresql/10.0.1/lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll /reference:/Users/joba/.nuget/packages/opentelemetry.api/1.13.1/lib/net9.0/OpenTelemetry.Api.dll /reference:/Users/joba/.nuget/packages/opentelemetry.api.providerbuilderextensions/1.13.1/lib/net9.0/OpenTelemetry.Api.ProviderBuilderExtensions.dll /reference:/Users/joba/.nuget/packages/opentelemetry/1.13.1/lib/net9.0/OpenTelemetry.dll /reference:/Users/joba/.nuget/packages/opentelemetry.exporter.opentelemetryprotocol/1.13.1/lib/net9.0/OpenTelemetry.Exporter.OpenTelemetryProtocol.dll /reference:/Users/joba/.nuget/packages/opentelemetry.extensions.hosting/1.13.1/lib/net9.0/OpenTelemetry.Extensions.Hosting.dll /reference:/Users/joba/.nuget/packages/opentelemetry.instrumentation.aspnetcore/1.13.0/lib/net8.0/OpenTelemetry.Instrumentation.AspNetCore.dll /reference:/Users/joba/.nuget/packages/opentelemetry.instrumentation.http/1.13.0/lib/net8.0/OpenTelemetry.Instrumentation.Http.dll /reference:/Users/joba/.nuget/packages/opentelemetry.instrumentation.runtime/1.13.0/lib/net8.0/OpenTelemetry.Instrumentation.Runtime.dll /reference:/Users/joba/.nuget/packages/polly.core/8.4.2/lib/net8.0/Polly.Core.dll /reference:/Users/joba/.nuget/packages/polly.extensions/8.4.2/lib/net8.0/Polly.Extensions.dll /reference:/Users/joba/.nuget/packages/polly.ratelimiting/8.4.2/lib/net8.0/Polly.RateLimiting.dll /reference:/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/obj/Release/net10.0/ref/SchaerbeekMunicipality.Domain.dll /reference:/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/obj/Release/net10.0/ref/SchaerbeekMunicipality.Infrastructure.dll /reference:/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/obj/Release/net10.0/ref/SchaerbeekMunicipality.ServiceDefaults.dll /reference:/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/ref/SchaerbeekMunicipality.Web.dll /reference:/Users/joba/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.11/lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll /reference:/Users/joba/.nuget/packages/sqlitepclraw.core/2.1.11/lib/netstandard2.0/SQLitePCLRaw.core.dll /reference:/Users/joba/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.11/lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.AppContext.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Buffers.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.Concurrent.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.Immutable.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.NonGeneric.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.Specialized.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.Annotations.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.DataAnnotations.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.EventBasedAsync.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.TypeConverter.dll /reference:/Users/joba/.nuget/packages/system.configuration.configurationmanager/6.0.0/lib/net6.0/System.Configuration.ConfigurationManager.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Configuration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Console.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Data.Common.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Data.DataSetExtensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Data.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Contracts.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Debug.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.DiagnosticSource.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.EventLog.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.FileVersionInfo.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Process.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.StackTrace.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.TextWriterTraceListener.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Tools.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.TraceSource.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Tracing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.dll /reference:/Users/joba/.nuget/packages/system.drawing.common/6.0.0/lib/net6.0/System.Drawing.Common.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Drawing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Drawing.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Dynamic.Runtime.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Formats.Asn1.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Formats.Cbor.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Formats.Tar.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Globalization.Calendars.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Globalization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Globalization.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.Brotli.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.FileSystem.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.ZipFile.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.AccessControl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.DriveInfo.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.Watcher.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.IsolatedStorage.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.MemoryMappedFiles.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Pipelines.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Pipes.AccessControl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Pipes.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.UnmanagedMemoryStream.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.AsyncEnumerable.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.Expressions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.Parallel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.Queryable.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Memory.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Http.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Http.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.HttpListener.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Mail.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.NameResolution.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.NetworkInformation.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Ping.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Quic.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Requests.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Security.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.ServerSentEvents.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.ServicePoint.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Sockets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebClient.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebHeaderCollection.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebProxy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebSockets.Client.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebSockets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Numerics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Numerics.Vectors.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ObjectModel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.DispatchProxy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Emit.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Emit.ILGeneration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Emit.Lightweight.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Metadata.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.TypeExtensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Resources.Reader.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Resources.ResourceManager.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Resources.Writer.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.CompilerServices.Unsafe.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.CompilerServices.VisualC.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Handles.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.InteropServices.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.InteropServices.JavaScript.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.InteropServices.RuntimeInformation.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Intrinsics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Loader.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Numerics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Formatters.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Xml.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.AccessControl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Claims.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Algorithms.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Cng.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Csp.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Encoding.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.OpenSsl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Primitives.dll /reference:/Users/joba/.nuget/packages/system.security.cryptography.protecteddata/6.0.0/lib/net6.0/System.Security.Cryptography.ProtectedData.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.X509Certificates.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Xml.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.dll /reference:/Users/joba/.nuget/packages/system.security.permissions/6.0.0/lib/net6.0/System.Security.Permissions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Principal.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Principal.Windows.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.SecureString.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ServiceModel.Web.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ServiceProcess.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encoding.CodePages.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encoding.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encoding.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encodings.Web.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.RegularExpressions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.AccessControl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Channels.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Overlapped.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Threading.RateLimiting.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.Dataflow.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.Parallel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Thread.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.ThreadPool.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Timer.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Transactions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Transactions.Local.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ValueTuple.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Web.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Web.HttpUtility.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Windows.dll /reference:/Users/joba/.nuget/packages/system.windows.extensions/6.0.0/lib/net6.0/System.Windows.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.Linq.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.ReaderWriter.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.Serialization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XDocument.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XmlDocument.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XmlSerializer.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XPath.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XPath.XDocument.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/testhost.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/WindowsBase.dll /reference:/Users/joba/.nuget/packages/xunit.abstractions/2.0.3/lib/netstandard2.0/xunit.abstractions.dll /reference:/Users/joba/.nuget/packages/xunit.assert/2.9.3/lib/net6.0/xunit.assert.dll /reference:/Users/joba/.nuget/packages/xunit.extensibility.core/2.9.3/lib/netstandard1.1/xunit.core.dll /reference:/Users/joba/.nuget/packages/xunit.extensibility.execution/2.9.3/lib/netstandard1.1/xunit.execution.dotnet.dll /features:"InterceptorsNamespaces=;Microsoft.Extensions.Validation.Generated" /debug+ /debug:portable /filealign:512 /optimize+ /out:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll /refout:obj/Release/net10.0/refint/SchaerbeekMunicipality.Integration.Tests.dll /target:exe /warnaserror+ /utf8output /deterministic+ /sourcelink:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.sourcelink.json /langversion:14.0 /embed:/Users/joba/.nuget/packages/microsoft.net.test.sdk/17.14.1/build/net8.0/Microsoft.NET.Test.Sdk.Program.cs /embed:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.GlobalUsings.g.cs /embed:"obj/Release/net10.0/.NETCoreApp,Version=v10.0.AssemblyAttributes.cs" /embed:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.AssemblyInfo.cs /analyzerconfig:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.GeneratedMSBuildEditorConfig.editorconfig /analyzerconfig:/usr/local/share/dotnet/sdk/10.0.100/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_10_default.globalconfig /analyzer:/usr/local/share/dotnet/sdk/10.0.100/Sdks/Microsoft.NET.Sdk/targets/../analyzers/Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll /analyzer:/usr/local/share/dotnet/sdk/10.0.100/Sdks/Microsoft.NET.Sdk/targets/../analyzers/Microsoft.CodeAnalysis.NetAnalyzers.dll /analyzer:/Users/joba/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.OpenApi.SourceGenerators.dll /analyzer:/Users/joba/.nuget/packages/microsoft.entityframeworkcore.analyzers/10.0.4/analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll /analyzer:/Users/joba/.nuget/packages/microsoft.extensions.options/10.0.4/analyzers/dotnet/roslyn4.4/cs/Microsoft.Extensions.Options.SourceGeneration.dll /analyzer:/Users/joba/.nuget/packages/microsoft.extensions.telemetry.abstractions/10.0.0/analyzers/dotnet/cs/Microsoft.Gen.Logging.dll /analyzer:/Users/joba/.nuget/packages/microsoft.extensions.telemetry.abstractions/10.0.0/analyzers/dotnet/cs/Microsoft.Gen.Metrics.dll /analyzer:/Users/joba/.nuget/packages/mudblazor/8.15.0/analyzers/dotnet/cs/MudBlazor.Analyzers.dll /analyzer:/Users/joba/.nuget/packages/xunit.analyzers/1.18.0/analyzers/dotnet/cs/xunit.analyzers.dll /analyzer:/Users/joba/.nuget/packages/xunit.analyzers/1.18.0/analyzers/dotnet/cs/xunit.analyzers.fixes.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Interop.ComInterfaceGenerator.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Interop.JavaScript.JSImportGenerator.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Interop.LibraryImportGenerator.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Interop.SourceGeneration.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/System.Text.Json.SourceGeneration.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/System.Text.RegularExpressions.Generator.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.App.Analyzers.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.App.CodeFixes.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.App.SourceGenerators.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Extensions.Validation.ValidationsGenerator.dll HealthEndpointTests.cs MunicipalAppFactory.cs /Users/joba/.nuget/packages/microsoft.net.test.sdk/17.14.1/build/net8.0/Microsoft.NET.Test.Sdk.Program.cs obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.GlobalUsings.g.cs "obj/Release/net10.0/.NETCoreApp,Version=v10.0.AssemblyAttributes.cs" obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.AssemblyInfo.cs /warnaserror+:NU1605,SYSLIB0011
-         Compilation request SchaerbeekMunicipality.Integration.Tests (net10.0), PathToTool=/usr/local/share/dotnet/sdk/10.0.100/Roslyn/bincore/csc
-         CommandLine = ' /noconfig'
-         BuildResponseFile = '/unsafe- /checked- /nowarn:NU1901,NU1902,NU1903,NU1904,1701,1702 /fullpaths /nostdlib+ /errorreport:prompt /warn:10 /define:TRACE;RELEASE;NET;NET10_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER /highentropyva+ /nullable:enable /reference:/Users/joba/.nuget/packages/efcore.namingconventions/10.0.1/lib/net10.0/EFCore.NamingConventions.dll /reference:/Users/joba/.nuget/packages/fluentassertions/7.2.0/lib/net6.0/FluentAssertions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Antiforgery.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.BearerToken.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.Cookies.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.OAuth.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authorization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authorization.Policy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Authorization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Endpoints.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Forms.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Server.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Web.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Connections.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.CookiePolicy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Cors.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.DataProtection.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.DataProtection.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Diagnostics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Diagnostics.HealthChecks.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HostFiltering.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Hosting.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Hosting.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Html.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Connections.Common.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Connections.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Features.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Results.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HttpLogging.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HttpOverrides.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HttpsPolicy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Identity.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Localization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Localization.Routing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Metadata.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.ApiExplorer.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Cors.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.DataAnnotations.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Localization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Razor.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.RazorPages.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll /reference:/Users/joba/.nuget/packages/microsoft.aspnetcore.mvc.testing/10.0.0/lib/net10.0/Microsoft.AspNetCore.Mvc.Testing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.ViewFeatures.dll /reference:/Users/joba/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0/lib/net10.0/Microsoft.AspNetCore.OpenApi.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.OutputCaching.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.RateLimiting.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Razor.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Razor.Runtime.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.RequestDecompression.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.ResponseCaching.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.ResponseCompression.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Rewrite.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Routing.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Routing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.HttpSys.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.IIS.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.IISIntegration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Session.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.Common.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.StaticAssets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.StaticFiles.dll /reference:/Users/joba/.nuget/packages/microsoft.aspnetcore.testhost/10.0.0/lib/net10.0/Microsoft.AspNetCore.TestHost.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.WebSockets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.WebUtilities.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.CSharp.dll /reference:/Users/joba/.nuget/packages/microsoft.data.sqlite.core/10.0.4/lib/net8.0/Microsoft.Data.Sqlite.dll /reference:/Users/joba/.nuget/packages/microsoft.entityframeworkcore.abstractions/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.entityframeworkcore/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.dll /reference:/Users/joba/.nuget/packages/microsoft.entityframeworkcore.relational/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll /reference:/Users/joba/.nuget/packages/microsoft.entityframeworkcore.sqlite.core/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.Sqlite.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.ambientmetadata.application/10.0.0/lib/net10.0/Microsoft.Extensions.AmbientMetadata.Application.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.caching.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.Caching.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.caching.memory/10.0.4/lib/net10.0/Microsoft.Extensions.Caching.Memory.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.compliance.abstractions/10.0.0/lib/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.Configuration.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Binder.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.CommandLine.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.FileExtensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Ini.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.KeyPerFile.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.UserSecrets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Xml.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.dependencyinjection.autoactivation/10.0.0/lib/net10.0/Microsoft.Extensions.DependencyInjection.AutoActivation.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.4/lib/net10.0/Microsoft.Extensions.DependencyInjection.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.dependencymodel/10.0.4/lib/net10.0/Microsoft.Extensions.DependencyModel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.diagnostics.exceptionsummarization/10.0.0/lib/net10.0/Microsoft.Extensions.Diagnostics.ExceptionSummarization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Features.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Composite.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Embedded.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Physical.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileSystemGlobbing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Hosting.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Hosting.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.http.diagnostics/10.0.0/lib/net10.0/Microsoft.Extensions.Http.Diagnostics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Http.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.http.resilience/10.0.0/lib/net10.0/Microsoft.Extensions.Http.Resilience.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Identity.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Identity.Stores.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Localization.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Localization.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.Logging.Abstractions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.Configuration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.Console.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.Debug.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.logging/10.0.4/lib/net10.0/Microsoft.Extensions.Logging.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.EventLog.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.EventSource.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.TraceSource.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.ObjectPool.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Options.DataAnnotations.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.options/10.0.4/lib/net10.0/Microsoft.Extensions.Options.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.primitives/10.0.4/lib/net10.0/Microsoft.Extensions.Primitives.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.resilience/10.0.0/lib/net10.0/Microsoft.Extensions.Resilience.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.servicediscovery.abstractions/10.0.0/lib/net10.0/Microsoft.Extensions.ServiceDiscovery.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.servicediscovery/10.0.0/lib/net10.0/Microsoft.Extensions.ServiceDiscovery.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.telemetry.abstractions/10.0.0/lib/net10.0/Microsoft.Extensions.Telemetry.Abstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.extensions.telemetry/10.0.0/lib/net10.0/Microsoft.Extensions.Telemetry.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Validation.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.WebEncoders.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.JSInterop.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Net.Http.Headers.dll /reference:/Users/joba/.nuget/packages/microsoft.openapi/2.0.0/lib/net8.0/Microsoft.OpenApi.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.CommunicationUtilities.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.CoreUtilities.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.CrossPlatEngine.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.PlatformAbstractions.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.Utilities.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.VisualBasic.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.VisualBasic.dll /reference:/Users/joba/.nuget/packages/microsoft.codecoverage/17.14.1/lib/net8.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.VisualStudio.TestPlatform.Common.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Win32.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Win32.Registry.dll /reference:/Users/joba/.nuget/packages/microsoft.win32.systemevents/6.0.0/lib/net6.0/Microsoft.Win32.SystemEvents.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/mscorlib.dll /reference:/Users/joba/.nuget/packages/mudblazor/8.15.0/lib/net9.0/MudBlazor.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/netstandard.dll /reference:/Users/joba/.nuget/packages/newtonsoft.json/13.0.3/lib/net6.0/Newtonsoft.Json.dll /reference:/Users/joba/.nuget/packages/npgsql/10.0.2/lib/net10.0/Npgsql.dll /reference:/Users/joba/.nuget/packages/npgsql.entityframeworkcore.postgresql/10.0.1/lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll /reference:/Users/joba/.nuget/packages/opentelemetry.api/1.13.1/lib/net9.0/OpenTelemetry.Api.dll /reference:/Users/joba/.nuget/packages/opentelemetry.api.providerbuilderextensions/1.13.1/lib/net9.0/OpenTelemetry.Api.ProviderBuilderExtensions.dll /reference:/Users/joba/.nuget/packages/opentelemetry/1.13.1/lib/net9.0/OpenTelemetry.dll /reference:/Users/joba/.nuget/packages/opentelemetry.exporter.opentelemetryprotocol/1.13.1/lib/net9.0/OpenTelemetry.Exporter.OpenTelemetryProtocol.dll /reference:/Users/joba/.nuget/packages/opentelemetry.extensions.hosting/1.13.1/lib/net9.0/OpenTelemetry.Extensions.Hosting.dll /reference:/Users/joba/.nuget/packages/opentelemetry.instrumentation.aspnetcore/1.13.0/lib/net8.0/OpenTelemetry.Instrumentation.AspNetCore.dll /reference:/Users/joba/.nuget/packages/opentelemetry.instrumentation.http/1.13.0/lib/net8.0/OpenTelemetry.Instrumentation.Http.dll /reference:/Users/joba/.nuget/packages/opentelemetry.instrumentation.runtime/1.13.0/lib/net8.0/OpenTelemetry.Instrumentation.Runtime.dll /reference:/Users/joba/.nuget/packages/polly.core/8.4.2/lib/net8.0/Polly.Core.dll /reference:/Users/joba/.nuget/packages/polly.extensions/8.4.2/lib/net8.0/Polly.Extensions.dll /reference:/Users/joba/.nuget/packages/polly.ratelimiting/8.4.2/lib/net8.0/Polly.RateLimiting.dll /reference:/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/obj/Release/net10.0/ref/SchaerbeekMunicipality.Domain.dll /reference:/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/obj/Release/net10.0/ref/SchaerbeekMunicipality.Infrastructure.dll /reference:/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/obj/Release/net10.0/ref/SchaerbeekMunicipality.ServiceDefaults.dll /reference:/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/ref/SchaerbeekMunicipality.Web.dll /reference:/Users/joba/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.11/lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll /reference:/Users/joba/.nuget/packages/sqlitepclraw.core/2.1.11/lib/netstandard2.0/SQLitePCLRaw.core.dll /reference:/Users/joba/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.11/lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.AppContext.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Buffers.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.Concurrent.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.Immutable.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.NonGeneric.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.Specialized.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.Annotations.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.DataAnnotations.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.EventBasedAsync.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.TypeConverter.dll /reference:/Users/joba/.nuget/packages/system.configuration.configurationmanager/6.0.0/lib/net6.0/System.Configuration.ConfigurationManager.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Configuration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Console.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Core.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Data.Common.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Data.DataSetExtensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Data.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Contracts.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Debug.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.DiagnosticSource.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.EventLog.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.FileVersionInfo.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Process.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.StackTrace.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.TextWriterTraceListener.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Tools.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.TraceSource.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Tracing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.dll /reference:/Users/joba/.nuget/packages/system.drawing.common/6.0.0/lib/net6.0/System.Drawing.Common.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Drawing.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Drawing.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Dynamic.Runtime.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Formats.Asn1.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Formats.Cbor.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Formats.Tar.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Globalization.Calendars.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Globalization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Globalization.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.Brotli.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.FileSystem.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.ZipFile.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.AccessControl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.DriveInfo.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.Watcher.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.IsolatedStorage.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.MemoryMappedFiles.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Pipelines.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Pipes.AccessControl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Pipes.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.UnmanagedMemoryStream.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.AsyncEnumerable.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.Expressions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.Parallel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.Queryable.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Memory.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Http.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Http.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.HttpListener.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Mail.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.NameResolution.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.NetworkInformation.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Ping.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Quic.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Requests.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Security.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.ServerSentEvents.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.ServicePoint.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Sockets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebClient.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebHeaderCollection.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebProxy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebSockets.Client.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebSockets.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Numerics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Numerics.Vectors.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ObjectModel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.DispatchProxy.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Emit.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Emit.ILGeneration.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Emit.Lightweight.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Metadata.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.TypeExtensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Resources.Reader.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Resources.ResourceManager.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Resources.Writer.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.CompilerServices.Unsafe.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.CompilerServices.VisualC.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Handles.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.InteropServices.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.InteropServices.JavaScript.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.InteropServices.RuntimeInformation.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Intrinsics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Loader.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Numerics.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Formatters.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Primitives.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Xml.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.AccessControl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Claims.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Algorithms.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Cng.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Csp.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Encoding.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.OpenSsl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Primitives.dll /reference:/Users/joba/.nuget/packages/system.security.cryptography.protecteddata/6.0.0/lib/net6.0/System.Security.Cryptography.ProtectedData.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.X509Certificates.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Xml.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.dll /reference:/Users/joba/.nuget/packages/system.security.permissions/6.0.0/lib/net6.0/System.Security.Permissions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Principal.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Principal.Windows.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.SecureString.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ServiceModel.Web.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ServiceProcess.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encoding.CodePages.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encoding.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encoding.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encodings.Web.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Json.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.RegularExpressions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.AccessControl.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Channels.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Overlapped.dll /reference:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Threading.RateLimiting.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.Dataflow.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.Parallel.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Thread.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.ThreadPool.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Timer.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Transactions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Transactions.Local.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ValueTuple.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Web.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Web.HttpUtility.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Windows.dll /reference:/Users/joba/.nuget/packages/system.windows.extensions/6.0.0/lib/net6.0/System.Windows.Extensions.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.Linq.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.ReaderWriter.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.Serialization.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XDocument.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XmlDocument.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XmlSerializer.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XPath.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XPath.XDocument.dll /reference:/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/testhost.dll /reference:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/WindowsBase.dll /reference:/Users/joba/.nuget/packages/xunit.abstractions/2.0.3/lib/netstandard2.0/xunit.abstractions.dll /reference:/Users/joba/.nuget/packages/xunit.assert/2.9.3/lib/net6.0/xunit.assert.dll /reference:/Users/joba/.nuget/packages/xunit.extensibility.core/2.9.3/lib/netstandard1.1/xunit.core.dll /reference:/Users/joba/.nuget/packages/xunit.extensibility.execution/2.9.3/lib/netstandard1.1/xunit.execution.dotnet.dll /features:"InterceptorsNamespaces=;Microsoft.Extensions.Validation.Generated" /debug+ /debug:portable /filealign:512 /optimize+ /out:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll /refout:obj/Release/net10.0/refint/SchaerbeekMunicipality.Integration.Tests.dll /target:exe /warnaserror+ /utf8output /deterministic+ /sourcelink:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.sourcelink.json /langversion:14.0 /embed:/Users/joba/.nuget/packages/microsoft.net.test.sdk/17.14.1/build/net8.0/Microsoft.NET.Test.Sdk.Program.cs /embed:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.GlobalUsings.g.cs /embed:"obj/Release/net10.0/.NETCoreApp,Version=v10.0.AssemblyAttributes.cs" /embed:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.AssemblyInfo.cs /analyzerconfig:obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.GeneratedMSBuildEditorConfig.editorconfig /analyzerconfig:/usr/local/share/dotnet/sdk/10.0.100/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_10_default.globalconfig /analyzer:/usr/local/share/dotnet/sdk/10.0.100/Sdks/Microsoft.NET.Sdk/targets/../analyzers/Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll /analyzer:/usr/local/share/dotnet/sdk/10.0.100/Sdks/Microsoft.NET.Sdk/targets/../analyzers/Microsoft.CodeAnalysis.NetAnalyzers.dll /analyzer:/Users/joba/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.OpenApi.SourceGenerators.dll /analyzer:/Users/joba/.nuget/packages/microsoft.entityframeworkcore.analyzers/10.0.4/analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll /analyzer:/Users/joba/.nuget/packages/microsoft.extensions.options/10.0.4/analyzers/dotnet/roslyn4.4/cs/Microsoft.Extensions.Options.SourceGeneration.dll /analyzer:/Users/joba/.nuget/packages/microsoft.extensions.telemetry.abstractions/10.0.0/analyzers/dotnet/cs/Microsoft.Gen.Logging.dll /analyzer:/Users/joba/.nuget/packages/microsoft.extensions.telemetry.abstractions/10.0.0/analyzers/dotnet/cs/Microsoft.Gen.Metrics.dll /analyzer:/Users/joba/.nuget/packages/mudblazor/8.15.0/analyzers/dotnet/cs/MudBlazor.Analyzers.dll /analyzer:/Users/joba/.nuget/packages/xunit.analyzers/1.18.0/analyzers/dotnet/cs/xunit.analyzers.dll /analyzer:/Users/joba/.nuget/packages/xunit.analyzers/1.18.0/analyzers/dotnet/cs/xunit.analyzers.fixes.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Interop.ComInterfaceGenerator.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Interop.JavaScript.JSImportGenerator.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Interop.LibraryImportGenerator.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Interop.SourceGeneration.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/System.Text.Json.SourceGeneration.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/analyzers/dotnet/cs/System.Text.RegularExpressions.Generator.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.App.Analyzers.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.App.CodeFixes.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.App.SourceGenerators.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll /analyzer:/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/analyzers/dotnet/cs/Microsoft.Extensions.Validation.ValidationsGenerator.dll HealthEndpointTests.cs MunicipalAppFactory.cs /Users/joba/.nuget/packages/microsoft.net.test.sdk/17.14.1/build/net8.0/Microsoft.NET.Test.Sdk.Program.cs obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.GlobalUsings.g.cs "obj/Release/net10.0/.NETCoreApp,Version=v10.0.AssemblyAttributes.cs" obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.AssemblyInfo.cs /warnaserror+:NU1605,SYSLIB0011'
-         Attempting to create process '/usr/local/share/dotnet/sdk/10.0.100/Roslyn/bincore/VBCSCompiler' "-pipename:TWNW325SjtepijjoAC9ukj+5L22QXTv1RrZ+IooUqjc"
-[xUnit.net 00:00:00.05]   Discovering: SchaerbeekMunicipality.Domain.Tests
-         Setting DOTNET_ROOT to '/usr/local/share/dotnet'
-[xUnit.net 00:00:00.08]   Discovered:  SchaerbeekMunicipality.Domain.Tests
-[xUnit.net 00:00:00.09]   Starting:    SchaerbeekMunicipality.Domain.Tests
-         Successfully created process with process id 6450
-         Attempt to open named pipe 'TWNW325SjtepijjoAC9ukj+5L22QXTv1RrZ+IooUqjc'
-         Attempt to connect named pipe 'TWNW325SjtepijjoAC9ukj+5L22QXTv1RrZ+IooUqjc'
-[xUnit.net 00:00:00.12]   Finished:    SchaerbeekMunicipality.Domain.Tests
-         Named pipe 'TWNW325SjtepijjoAC9ukj+5L22QXTv1RrZ+IooUqjc' connected
-         Begin writing request for SchaerbeekMunicipality.Integration.Tests (net10.0)
-  Passed SchaerbeekMunicipality.Domain.Tests.Registration.RegistrationCaseTests.Create_ReturnsIntakeStatus [7 ms]
-
-Test Run Successful.
-Total tests: 1
-     Passed: 1
-         End writing request for SchaerbeekMunicipality.Integration.Tests (net10.0)
-         Begin reading response for SchaerbeekMunicipality.Integration.Tests (net10.0)
- Total time: 0.5279 Seconds
-     5&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/SchaerbeekMunicipality.Domain.Tests.csproj" (VSTest target(s)).
-     3&gt;CoreCompile:
-         End reading response for SchaerbeekMunicipality.Integration.Tests (net10.0)
-         CompilerServer: server - server processed compilation - SchaerbeekMunicipality.Integration.Tests (net10.0)
-       _CopyFilesMarkedCopyLocal:
-         Copying file from "/Users/joba/.nuget/packages/microsoft.aspnetcore.mvc.testing/10.0.0/lib/net10.0/Microsoft.AspNetCore.Mvc.Testing.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.AspNetCore.Mvc.Testing.dll".
-         Copying file from "/Users/joba/.nuget/packages/fluentassertions/7.2.0/lib/net6.0/FluentAssertions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/FluentAssertions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0/lib/net10.0/Microsoft.AspNetCore.OpenApi.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.AspNetCore.OpenApi.dll".
-         Copying file from "/Users/joba/.nuget/packages/efcore.namingconventions/10.0.1/lib/net10.0/EFCore.NamingConventions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/EFCore.NamingConventions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.aspnetcore.testhost/10.0.0/lib/net10.0/Microsoft.AspNetCore.TestHost.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.AspNetCore.TestHost.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.codecoverage/17.14.1/lib/net8.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.data.sqlite.core/10.0.4/lib/net8.0/Microsoft.Data.Sqlite.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Data.Sqlite.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.entityframeworkcore/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.EntityFrameworkCore.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.entityframeworkcore.abstractions/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.entityframeworkcore.relational/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.EntityFrameworkCore.Relational.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.entityframeworkcore.sqlite.core/10.0.4/lib/net10.0/Microsoft.EntityFrameworkCore.Sqlite.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.EntityFrameworkCore.Sqlite.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.caching.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.Caching.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Caching.Abstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.caching.memory/10.0.4/lib/net10.0/Microsoft.Extensions.Caching.Memory.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Caching.Memory.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.compliance.abstractions/10.0.0/lib/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.ambientmetadata.application/10.0.0/lib/net10.0/Microsoft.Extensions.AmbientMetadata.Application.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.AmbientMetadata.Application.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.Configuration.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Configuration.Abstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.4/lib/net10.0/Microsoft.Extensions.DependencyInjection.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.DependencyInjection.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.dependencyinjection.autoactivation/10.0.0/lib/net10.0/Microsoft.Extensions.DependencyInjection.AutoActivation.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.DependencyInjection.AutoActivation.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.dependencymodel/10.0.4/lib/net10.0/Microsoft.Extensions.DependencyModel.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.DependencyModel.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.diagnostics.exceptionsummarization/10.0.0/lib/net10.0/Microsoft.Extensions.Diagnostics.ExceptionSummarization.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Diagnostics.ExceptionSummarization.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.http.diagnostics/10.0.0/lib/net10.0/Microsoft.Extensions.Http.Diagnostics.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Http.Diagnostics.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.http.resilience/10.0.0/lib/net10.0/Microsoft.Extensions.Http.Resilience.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Http.Resilience.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.logging/10.0.4/lib/net10.0/Microsoft.Extensions.Logging.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Logging.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.primitives/10.0.4/lib/net10.0/Microsoft.Extensions.Primitives.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Primitives.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.options/10.0.4/lib/net10.0/Microsoft.Extensions.Options.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Options.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.4/lib/net10.0/Microsoft.Extensions.Logging.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Logging.Abstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.servicediscovery/10.0.0/lib/net10.0/Microsoft.Extensions.ServiceDiscovery.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.ServiceDiscovery.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.resilience/10.0.0/lib/net10.0/Microsoft.Extensions.Resilience.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Resilience.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.telemetry/10.0.0/lib/net10.0/Microsoft.Extensions.Telemetry.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Telemetry.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.telemetry.abstractions/10.0.0/lib/net10.0/Microsoft.Extensions.Telemetry.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.Telemetry.Abstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.openapi/2.0.0/lib/net8.0/Microsoft.OpenApi.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.OpenApi.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.extensions.servicediscovery.abstractions/10.0.0/lib/net10.0/Microsoft.Extensions.ServiceDiscovery.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Extensions.ServiceDiscovery.Abstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/Microsoft.TestPlatform.CoreUtilities.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.TestPlatform.CoreUtilities.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/Microsoft.TestPlatform.PlatformAbstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.Utilities.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.TestPlatform.Utilities.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.CommunicationUtilities.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.TestPlatform.CrossPlatEngine.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/testhost.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/testhost.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.win32.systemevents/6.0.0/lib/net6.0/Microsoft.Win32.SystemEvents.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.Win32.SystemEvents.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/Microsoft.VisualStudio.TestPlatform.Common.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll".
-         Copying file from "/Users/joba/.nuget/packages/newtonsoft.json/13.0.3/lib/net6.0/Newtonsoft.Json.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Newtonsoft.Json.dll".
-         Copying file from "/Users/joba/.nuget/packages/mudblazor/8.15.0/lib/net9.0/MudBlazor.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/MudBlazor.dll".
-         Copying file from "/Users/joba/.nuget/packages/npgsql/10.0.2/lib/net10.0/Npgsql.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Npgsql.dll".
-         Copying file from "/Users/joba/.nuget/packages/opentelemetry/1.13.1/lib/net9.0/OpenTelemetry.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/OpenTelemetry.dll".
-         Copying file from "/Users/joba/.nuget/packages/npgsql.entityframeworkcore.postgresql/10.0.1/lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll".
-         Copying file from "/Users/joba/.nuget/packages/opentelemetry.api.providerbuilderextensions/1.13.1/lib/net9.0/OpenTelemetry.Api.ProviderBuilderExtensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/OpenTelemetry.Api.ProviderBuilderExtensions.dll".
-         Copying file from "/Users/joba/.nuget/packages/opentelemetry.api/1.13.1/lib/net9.0/OpenTelemetry.Api.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/OpenTelemetry.Api.dll".
-         Copying file from "/Users/joba/.nuget/packages/opentelemetry.exporter.opentelemetryprotocol/1.13.1/lib/net9.0/OpenTelemetry.Exporter.OpenTelemetryProtocol.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/OpenTelemetry.Exporter.OpenTelemetryProtocol.dll".
-         Copying file from "/Users/joba/.nuget/packages/opentelemetry.instrumentation.aspnetcore/1.13.0/lib/net8.0/OpenTelemetry.Instrumentation.AspNetCore.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/OpenTelemetry.Instrumentation.AspNetCore.dll".
-         Copying file from "/Users/joba/.nuget/packages/opentelemetry.instrumentation.http/1.13.0/lib/net8.0/OpenTelemetry.Instrumentation.Http.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/OpenTelemetry.Instrumentation.Http.dll".
-         Copying file from "/Users/joba/.nuget/packages/opentelemetry.instrumentation.runtime/1.13.0/lib/net8.0/OpenTelemetry.Instrumentation.Runtime.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/OpenTelemetry.Instrumentation.Runtime.dll".
-         Copying file from "/Users/joba/.nuget/packages/opentelemetry.extensions.hosting/1.13.1/lib/net9.0/OpenTelemetry.Extensions.Hosting.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/OpenTelemetry.Extensions.Hosting.dll".
-         Copying file from "/Users/joba/.nuget/packages/polly.core/8.4.2/lib/net8.0/Polly.Core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Polly.Core.dll".
-         Copying file from "/Users/joba/.nuget/packages/polly.extensions/8.4.2/lib/net8.0/Polly.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Polly.Extensions.dll".
-         Copying file from "/Users/joba/.nuget/packages/polly.ratelimiting/8.4.2/lib/net8.0/Polly.RateLimiting.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/Polly.RateLimiting.dll".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.11/lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SQLitePCLRaw.batteries_v2.dll".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.core/2.1.11/lib/netstandard2.0/SQLitePCLRaw.core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SQLitePCLRaw.core.dll".
-         Copying file from "/Users/joba/.nuget/packages/system.configuration.configurationmanager/6.0.0/lib/net6.0/System.Configuration.ConfigurationManager.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/System.Configuration.ConfigurationManager.dll".
-         Copying file from "/Users/joba/.nuget/packages/system.security.cryptography.protecteddata/6.0.0/lib/net6.0/System.Security.Cryptography.ProtectedData.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/System.Security.Cryptography.ProtectedData.dll".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.11/lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SQLitePCLRaw.provider.e_sqlite3.dll".
-         Copying file from "/Users/joba/.nuget/packages/system.security.permissions/6.0.0/lib/net6.0/System.Security.Permissions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/System.Security.Permissions.dll".
-         Copying file from "/Users/joba/.nuget/packages/system.drawing.common/6.0.0/lib/net6.0/System.Drawing.Common.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/System.Drawing.Common.dll".
-         Copying file from "/Users/joba/.nuget/packages/system.windows.extensions/6.0.0/lib/net6.0/System.Windows.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/System.Windows.Extensions.dll".
-         Copying file from "/Users/joba/.nuget/packages/xunit.abstractions/2.0.3/lib/netstandard2.0/xunit.abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/xunit.abstractions.dll".
-         Copying file from "/Users/joba/.nuget/packages/xunit.assert/2.9.3/lib/net6.0/xunit.assert.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/xunit.assert.dll".
-         Copying file from "/Users/joba/.nuget/packages/xunit.extensibility.core/2.9.3/lib/netstandard1.1/xunit.core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/xunit.core.dll".
-         Copying file from "/Users/joba/.nuget/packages/xunit.extensibility.execution/2.9.3/lib/netstandard1.1/xunit.execution.dotnet.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/xunit.execution.dotnet.dll".
-         Creating directory "bin/Release/net10.0/cs".
-         Creating directory "bin/Release/net10.0/de".
-         Creating directory "bin/Release/net10.0/cs".
-         Creating directory "bin/Release/net10.0/de".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Creating directory "bin/Release/net10.0/es".
-         Creating directory "bin/Release/net10.0/es".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Creating directory "bin/Release/net10.0/fr".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Creating directory "bin/Release/net10.0/it".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Creating directory "bin/Release/net10.0/ja".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Creating directory "bin/Release/net10.0/ko".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Creating directory "bin/Release/net10.0/pl".
-         Creating directory "bin/Release/net10.0/pt-BR".
-         Creating directory "bin/Release/net10.0/pt-BR".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Creating directory "bin/Release/net10.0/ru".
-         Creating directory "bin/Release/net10.0/tr".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Creating directory "bin/Release/net10.0/zh-Hans".
-         Creating directory "bin/Release/net10.0/tr".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Creating directory "bin/Release/net10.0/zh-Hant".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.objectmodel/17.14.1/lib/net8.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Creating directory "bin/Release/net10.0/runtimes/browser-wasm/nativeassets/net9.0".
-         Creating directory "bin/Release/net10.0/runtimes/win/lib/net6.0".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/browser-wasm/nativeassets/net9.0/e_sqlite3.a" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/browser-wasm/nativeassets/net9.0/e_sqlite3.a".
-         Creating directory "bin/Release/net10.0/runtimes/linux-arm/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-arm/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-arm/native/libe_sqlite3.so".
-         Creating directory "bin/Release/net10.0/runtimes/linux-arm64/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-arm64/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-arm64/native/libe_sqlite3.so".
-         Creating directory "bin/Release/net10.0/runtimes/linux-armel/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-armel/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-armel/native/libe_sqlite3.so".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll".
-         Creating directory "bin/Release/net10.0/runtimes/linux-mips64/native".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-mips64/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-mips64/native/libe_sqlite3.so".
-         Creating directory "bin/Release/net10.0/runtimes/linux-musl-arm64/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-musl-arm64/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-musl-arm64/native/libe_sqlite3.so".
-         Creating directory "bin/Release/net10.0/runtimes/linux-musl-arm/native".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.testplatform.testhost/17.14.1/lib/net8.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll".
-         Copying file from "/Users/joba/.nuget/packages/microsoft.win32.systemevents/6.0.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-musl-arm/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-musl-arm/native/libe_sqlite3.so".
-         Creating directory "bin/Release/net10.0/runtimes/linux-musl-s390x/native".
-         Creating directory "bin/Release/net10.0/runtimes/linux-musl-x64/native".
-         Creating directory "bin/Release/net10.0/runtimes/linux-musl-riscv64/native".
-         Creating directory "bin/Release/net10.0/runtimes/linux-ppc64le/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-musl-riscv64/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-musl-riscv64/native/libe_sqlite3.so".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-ppc64le/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-ppc64le/native/libe_sqlite3.so".
-         Creating directory "bin/Release/net10.0/runtimes/linux-riscv64/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-riscv64/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-riscv64/native/libe_sqlite3.so".
-         Creating directory "bin/Release/net10.0/runtimes/linux-s390x/native".
-         Creating directory "bin/Release/net10.0/runtimes/linux-x64/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-s390x/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-s390x/native/libe_sqlite3.so".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-x64/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-x64/native/libe_sqlite3.so".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-musl-x64/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-musl-x64/native/libe_sqlite3.so".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-musl-s390x/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-musl-s390x/native/libe_sqlite3.so".
-         Creating directory "bin/Release/net10.0/runtimes/maccatalyst-arm64/native".
-         Creating directory "bin/Release/net10.0/runtimes/linux-x86/native".
-         Creating directory "bin/Release/net10.0/runtimes/maccatalyst-x64/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/maccatalyst-arm64/native/libe_sqlite3.dylib" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/maccatalyst-arm64/native/libe_sqlite3.dylib".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-x86/native/libe_sqlite3.so" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/linux-x86/native/libe_sqlite3.so".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/maccatalyst-x64/native/libe_sqlite3.dylib" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/maccatalyst-x64/native/libe_sqlite3.dylib".
-         Creating directory "bin/Release/net10.0/runtimes/osx-arm64/native".
-         Creating directory "bin/Release/net10.0/runtimes/osx-x64/native".
-         Creating directory "bin/Release/net10.0/runtimes/win-arm/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/osx-arm64/native/libe_sqlite3.dylib" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/osx-arm64/native/libe_sqlite3.dylib".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/osx-x64/native/libe_sqlite3.dylib" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/osx-x64/native/libe_sqlite3.dylib".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/win-arm/native/e_sqlite3.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/win-arm/native/e_sqlite3.dll".
-         Creating directory "bin/Release/net10.0/runtimes/win-arm64/native".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/win-arm64/native/e_sqlite3.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/win-arm64/native/e_sqlite3.dll".
-         Creating directory "bin/Release/net10.0/runtimes/win-x64/native".
-         Creating directory "bin/Release/net10.0/runtimes/win/lib/net10.0".
-         Creating directory "bin/Release/net10.0/runtimes/win-x86/native".
-         Creating directory "bin/Release/net10.0/runtimes/unix/lib/net6.0".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/win-x64/native/e_sqlite3.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/win-x64/native/e_sqlite3.dll".
-         Copying file from "/Users/joba/.nuget/packages/system.diagnostics.eventlog/10.0.0/runtimes/win/lib/net10.0/System.Diagnostics.EventLog.Messages.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/win/lib/net10.0/System.Diagnostics.EventLog.Messages.dll".
-         Copying file from "/Users/joba/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/win-x86/native/e_sqlite3.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/win-x86/native/e_sqlite3.dll".
-         Copying file from "/Users/joba/.nuget/packages/system.drawing.common/6.0.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll".
-         Copying file from "/Users/joba/.nuget/packages/system.security.cryptography.protecteddata/6.0.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll".
-         Copying file from "/Users/joba/.nuget/packages/system.windows.extensions/6.0.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.pdb" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Web.pdb".
-         Copying file from "/Users/joba/.nuget/packages/system.drawing.common/6.0.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.pdb" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.pdb".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.pdb" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.pdb".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.pdb" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.pdb".
-         Creating "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/obj/Release/net10.0/Schaerbe.33F5FE2A.Up2Date" because "AlwaysCreate" was specified.
-         Touching "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/obj/Release/net10.0/Schaerbe.33F5FE2A.Up2Date".
-       _CopyOutOfDateSourceItemsToOutputDirectory:
-       Building target "_CopyOutOfDateSourceItemsToOutputDirectory" partially, because some output files are out of date with respect to their input files.
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.runtimeconfig.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Web.runtimeconfig.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/staticwebassets.development.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Web.staticwebassets.runtime.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.deps.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Web.deps.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/staticwebassets.build.endpoints.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Web.staticwebassets.endpoints.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/appsettings.Development.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/appsettings.Development.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/appsettings.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/appsettings.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/obj/Release/net10.0/MvcTestingAppManifest.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/MvcTestingAppManifest.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/obj/Release/net10.0/apphost" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Web".
-         Copying file from "/Users/joba/.nuget/packages/xunit.runner.visualstudio/3.1.4/build/net8.0/xunit.runner.visualstudio.testadapter.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/xunit.runner.visualstudio.testadapter.dll".
-       CopyFilesToOutputDirectory:
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll".
-         Copying reference assembly from "obj/Release/net10.0/refint/SchaerbeekMunicipality.Integration.Tests.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/obj/Release/net10.0/ref/SchaerbeekMunicipality.Integration.Tests.dll".
-         SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/obj/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.pdb" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.pdb".
-       _CopyReferenceOnlyAssembliesForBuild:
-         Creating directory "bin/Release/net10.0/refs".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.Cookies.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Authentication.Cookies.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.BearerToken.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Authentication.BearerToken.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Antiforgery.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Antiforgery.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Authentication.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.Core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Authentication.Core.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Authentication.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authentication.OAuth.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Authentication.OAuth.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authorization.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Authorization.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Authorization.Policy.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Authorization.Policy.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Authorization.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Components.Authorization.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Components.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Endpoints.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Components.Endpoints.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Forms.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Components.Forms.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Server.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Components.Server.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Components.Web.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Components.Web.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Connections.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Connections.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Cors.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Cors.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Cryptography.Internal.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Cryptography.Internal.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.CookiePolicy.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.CookiePolicy.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.DataProtection.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.DataProtection.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.DataProtection.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Diagnostics.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Diagnostics.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Diagnostics.HealthChecks.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Diagnostics.HealthChecks.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.DataProtection.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.DataProtection.Extensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Diagnostics.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Diagnostics.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HostFiltering.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.HostFiltering.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Hosting.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Hosting.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Hosting.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Hosting.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Html.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Html.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Http.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Connections.Common.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Http.Connections.Common.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Connections.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Http.Connections.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Http.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Http.Extensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Features.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Http.Features.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HttpLogging.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.HttpLogging.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Http.Results.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Http.Results.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HttpOverrides.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.HttpOverrides.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Identity.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Identity.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.HttpsPolicy.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.HttpsPolicy.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Localization.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Localization.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Localization.Routing.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Localization.Routing.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Metadata.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Metadata.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.ApiExplorer.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.ApiExplorer.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Cors.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.Cors.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.Core.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.DataAnnotations.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.DataAnnotations.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Json.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.Formatters.Json.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Razor.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.Razor.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.Formatters.Xml.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.Localization.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.Localization.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.RazorPages.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.RazorPages.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.TagHelpers.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Mvc.ViewFeatures.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Mvc.ViewFeatures.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.OutputCaching.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.OutputCaching.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.RateLimiting.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.RateLimiting.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Razor.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Razor.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Razor.Runtime.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Razor.Runtime.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.RequestDecompression.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.RequestDecompression.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Rewrite.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Rewrite.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.ResponseCaching.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.ResponseCaching.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Routing.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Routing.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.ResponseCompression.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.ResponseCompression.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Routing.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Routing.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.HttpSys.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Server.HttpSys.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.IIS.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Server.IIS.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Server.Kestrel.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.IISIntegration.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Server.IISIntegration.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Server.Kestrel.Core.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.Session.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.Session.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.Common.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.SignalR.Common.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.Core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.SignalR.Core.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.Protocols.Json.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.SignalR.Protocols.Json.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.StaticAssets.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.StaticAssets.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.StaticFiles.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.StaticFiles.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.SignalR.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.SignalR.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.WebSockets.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.WebSockets.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.AspNetCore.WebUtilities.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.AspNetCore.WebUtilities.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.CSharp.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.CSharp.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Binder.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.Binder.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.CommandLine.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.CommandLine.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.EnvironmentVariables.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.FileExtensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.FileExtensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Json.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.Json.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.KeyPerFile.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.KeyPerFile.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.UserSecrets.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.UserSecrets.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Xml.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.Xml.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Diagnostics.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Configuration.Ini.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Configuration.Ini.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Diagnostics.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Diagnostics.HealthChecks.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Features.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Features.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Composite.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.FileProviders.Composite.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.FileProviders.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileSystemGlobbing.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.FileSystemGlobbing.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Physical.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.FileProviders.Physical.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.FileProviders.Embedded.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.FileProviders.Embedded.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Hosting.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Hosting.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Hosting.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Hosting.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Http.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Http.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Identity.Core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Identity.Core.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Identity.Stores.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Identity.Stores.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Localization.Abstractions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Localization.Abstractions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Localization.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Localization.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.Console.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Logging.Console.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.Configuration.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Logging.Configuration.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.Debug.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Logging.Debug.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.EventLog.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Logging.EventLog.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.EventSource.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Logging.EventSource.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Logging.TraceSource.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Logging.TraceSource.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Options.ConfigurationExtensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.ObjectPool.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.ObjectPool.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Options.DataAnnotations.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Options.DataAnnotations.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.Validation.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.Validation.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.JSInterop.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.JSInterop.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Net.Http.Headers.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Net.Http.Headers.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Extensions.WebEncoders.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Extensions.WebEncoders.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.VisualBasic.Core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.VisualBasic.Core.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Win32.Registry.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Win32.Registry.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.Win32.Primitives.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.Win32.Primitives.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/mscorlib.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/mscorlib.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/netstandard.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/netstandard.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/Microsoft.VisualBasic.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/Microsoft.VisualBasic.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.AppContext.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.AppContext.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Buffers.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Buffers.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.Concurrent.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Collections.Concurrent.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Collections.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.Immutable.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Collections.Immutable.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.NonGeneric.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Collections.NonGeneric.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Collections.Specialized.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Collections.Specialized.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.Annotations.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ComponentModel.Annotations.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.DataAnnotations.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ComponentModel.DataAnnotations.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.EventBasedAsync.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ComponentModel.EventBasedAsync.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ComponentModel.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.Primitives.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ComponentModel.Primitives.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ComponentModel.TypeConverter.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ComponentModel.TypeConverter.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Configuration.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Configuration.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Console.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Console.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Core.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Core.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Data.DataSetExtensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Data.DataSetExtensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Data.Common.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Data.Common.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Data.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Data.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Contracts.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.Contracts.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.FileVersionInfo.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.FileVersionInfo.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Debug.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.Debug.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.EventLog.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.EventLog.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.DiagnosticSource.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.DiagnosticSource.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Process.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.Process.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.StackTrace.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.StackTrace.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.TextWriterTraceListener.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.TextWriterTraceListener.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Tools.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.Tools.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.TraceSource.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.TraceSource.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Diagnostics.Tracing.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Diagnostics.Tracing.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Drawing.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Drawing.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Drawing.Primitives.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Drawing.Primitives.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Dynamic.Runtime.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Dynamic.Runtime.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Formats.Asn1.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Formats.Asn1.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Formats.Cbor.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Formats.Cbor.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Globalization.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Globalization.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Formats.Tar.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Formats.Tar.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Globalization.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Globalization.Extensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.Brotli.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.Compression.Brotli.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Globalization.Calendars.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Globalization.Calendars.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.Compression.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.ZipFile.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.Compression.ZipFile.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Compression.FileSystem.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.Compression.FileSystem.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.AccessControl.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.FileSystem.AccessControl.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.FileSystem.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.DriveInfo.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.FileSystem.DriveInfo.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.Primitives.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.FileSystem.Primitives.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.FileSystem.Watcher.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.FileSystem.Watcher.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.IsolatedStorage.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.IsolatedStorage.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.MemoryMappedFiles.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.MemoryMappedFiles.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Pipelines.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.Pipelines.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Pipes.AccessControl.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.Pipes.AccessControl.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.Pipes.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.Pipes.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.IO.UnmanagedMemoryStream.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.IO.UnmanagedMemoryStream.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Linq.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.Parallel.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Linq.Parallel.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.AsyncEnumerable.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Linq.AsyncEnumerable.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.Queryable.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Linq.Queryable.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Linq.Expressions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Linq.Expressions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Memory.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Memory.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Http.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.Http.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Http.Json.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.Http.Json.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.HttpListener.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.HttpListener.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Mail.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.Mail.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.NameResolution.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.NameResolution.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.NetworkInformation.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.NetworkInformation.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Ping.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.Ping.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Primitives.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.Primitives.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.ServerSentEvents.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.ServerSentEvents.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Quic.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.Quic.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Requests.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.Requests.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.ServicePoint.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.ServicePoint.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Security.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.Security.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebClient.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.WebClient.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.Sockets.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.Sockets.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebHeaderCollection.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.WebHeaderCollection.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebSockets.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.WebSockets.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebProxy.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.WebProxy.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Numerics.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Numerics.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Net.WebSockets.Client.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Net.WebSockets.Client.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Numerics.Vectors.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Numerics.Vectors.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ObjectModel.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ObjectModel.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Reflection.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.DispatchProxy.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Reflection.DispatchProxy.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Emit.ILGeneration.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Reflection.Emit.ILGeneration.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Emit.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Reflection.Emit.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Emit.Lightweight.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Reflection.Emit.Lightweight.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Reflection.Extensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Metadata.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Reflection.Metadata.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.Primitives.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Reflection.Primitives.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Reflection.TypeExtensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Reflection.TypeExtensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Resources.Reader.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Resources.Reader.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.CompilerServices.VisualC.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.CompilerServices.VisualC.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Resources.ResourceManager.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Resources.ResourceManager.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Resources.Writer.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Resources.Writer.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.CompilerServices.Unsafe.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.CompilerServices.Unsafe.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Extensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.InteropServices.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.InteropServices.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Handles.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Handles.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.InteropServices.JavaScript.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.InteropServices.JavaScript.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Intrinsics.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Intrinsics.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.InteropServices.RuntimeInformation.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.InteropServices.RuntimeInformation.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Loader.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Loader.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Numerics.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Numerics.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Serialization.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Formatters.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Serialization.Formatters.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Json.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Serialization.Json.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Primitives.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Serialization.Primitives.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Runtime.Serialization.Xml.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Runtime.Serialization.Xml.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.AccessControl.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.AccessControl.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Claims.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Claims.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Algorithms.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Cryptography.Algorithms.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Cryptography.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Cng.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Cryptography.Cng.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Csp.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Cryptography.Csp.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.OpenSsl.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Cryptography.OpenSsl.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Primitives.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Cryptography.Primitives.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Xml.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Cryptography.Xml.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.X509Certificates.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Cryptography.X509Certificates.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Cryptography.Encoding.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Cryptography.Encoding.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Principal.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Principal.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.SecureString.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.SecureString.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ServiceModel.Web.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ServiceModel.Web.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Security.Principal.Windows.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Security.Principal.Windows.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ServiceProcess.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ServiceProcess.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encoding.CodePages.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Text.Encoding.CodePages.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encoding.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Text.Encoding.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encoding.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Text.Encoding.Extensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Encodings.Web.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Text.Encodings.Web.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.Json.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Text.Json.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Text.RegularExpressions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Text.RegularExpressions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.AccessControl.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.AccessControl.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Channels.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.Channels.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Overlapped.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.Overlapped.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.AspNetCore.App.Ref/10.0.0/ref/net10.0/System.Threading.RateLimiting.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.RateLimiting.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.Dataflow.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.Tasks.Dataflow.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.Tasks.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.Extensions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.Tasks.Extensions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Thread.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.Thread.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Tasks.Parallel.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.Tasks.Parallel.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.ThreadPool.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.ThreadPool.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Threading.Timer.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Threading.Timer.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Transactions.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Transactions.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.ValueTuple.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.ValueTuple.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Web.HttpUtility.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Web.HttpUtility.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Windows.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Windows.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Web.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Web.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.Linq.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Xml.Linq.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Transactions.Local.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Transactions.Local.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.ReaderWriter.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Xml.ReaderWriter.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XmlSerializer.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Xml.XmlSerializer.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Xml.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.Serialization.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Xml.Serialization.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XmlDocument.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Xml.XmlDocument.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XPath.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Xml.XPath.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XDocument.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Xml.XDocument.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/System.Xml.XPath.XDocument.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/System.Xml.XPath.XDocument.dll".
-         Copying file from "/usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/10.0.0/ref/net10.0/WindowsBase.dll" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/refs/WindowsBase.dll".
-       _MvcCopyDependencyFiles:
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.deps.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.deps.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.deps.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.deps.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.deps.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.deps.json".
-         Copying file from "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.deps.json" to "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Web.deps.json".
-     3&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (default targets).
-     3&gt;BuildProject:
-         Build completed.
-         
-Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
-VSTest version 18.0.1 (arm64)
-
-Starting test execution, please wait...
-A total of 1 test files matched the specified pattern.
-[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.0)
-[xUnit.net 00:00:00.04]   Discovering: SchaerbeekMunicipality.Integration.Tests
-[xUnit.net 00:00:00.06]   Discovered:  SchaerbeekMunicipality.Integration.Tests
-[xUnit.net 00:00:00.07]   Starting:    SchaerbeekMunicipality.Integration.Tests
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE "registration_cases" (
-          "id" TEXT NOT NULL CONSTRAINT "PK_registration_cases" PRIMARY KEY,
-          "status" TEXT NOT NULL
-      );
-info: Microsoft.Hosting.Lifetime[0]
-      Application started. Press Ctrl+C to shut down.
-info: Microsoft.Hosting.Lifetime[0]
-      Hosting environment: Development
-info: Microsoft.Hosting.Lifetime[0]
-      Content root path: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web
-info: Microsoft.Hosting.Lifetime[0]
-      Application is shutting down...
-[xUnit.net 00:00:01.23]   Finished:    SchaerbeekMunicipality.Integration.Tests
-  Passed SchaerbeekMunicipality.Integration.Tests.HealthEndpointTests.Health_ReturnsOk [1 s]
-
-Test Run Successful.
-Total tests: 1
-     Passed: 1
- Total time: 1.5715 Seconds
-     3&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj" (VSTest target(s)).
-     1&gt;Done Building Project "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/SchaerbeekMunicipality.sln" (VSTest target(s)).
-
-Build succeeded.
-    0 Warning(s)
-    0 Error(s)
-
-Time Elapsed 00:00:06.46
-
+         Pack directories found: /usr/local/share/dotnet/packs/Microsoft.NETC
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -2823,9 +1164,8 @@ Tests passed. Creating the initial EF migration and updating the docs.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet tool run dotnet-ef migrations add InitialCreate --project src/SchaerbeekMunicipality.Infrastructure --startup-project src/SchaerbeekMunicipality.Web 2>&1 || dotnet ef migrations add InitialCreate --project src/SchaerbeekMunicipality.Infrastructure --startup-project src/SchaerbeekMunicipality.Web 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet tool run dotnet-ef migrations add InitialCreate --project src/SchaerbeekMunicipality.Infrastructure --startup-project src/SchaerbeekMunicipality.Web 2&gt;&amp;1 || dotnet ef migrations add InitialCreate --project src/SchaerbeekMunicipality.Infrastructure --startup-project src/SchaerbeekMunicipality.Web 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet tool run dotnet-ef migrations add InitialCreate --project src/SchaerbeekMunicipality.Infrastructure --startup-project src/SchaerbeekMunicipality.Web 2>&1 || dotnet ef migrations add InitialCreate --project src/SchaerbeekMunicipality.Infrastructure --startup-project src/SchaerbeekMunicipality.Web 2>&1
 ```
@@ -2837,20 +1177,12 @@ Build succeeded.
 Your startup project 'SchaerbeekMunicipality.Web' doesn't reference Microsoft.EntityFrameworkCore.Design. This package is required for the Entity Framework Core Tools to work. Ensure your startup project is correct, install the package, and try again.
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -2933,40 +1265,25 @@ Result:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The EF Design package needs to be added to the Web startup project as PrivateAssets, or the Infrastructure project should be used as the startup instead.</details></think>
+The EF Design package needs to be added to the Web startup project as PrivateAssets, or the Infrastructure project should be used as the startup instead.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet ef migrations add InitialCreate --project src/SchaerbeekMunicipality.Infrastructure --startup-project src/SchaerbeekMunicipality.Web 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet ef migrations add InitialCreate --project src/SchaerbeekMunicipality.Infrastructure --startup-project src/SchaerbeekMunicipality.Web 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet ef migrations add InitialCreate --project src/SchaerbeekMunicipality.Infrastructure --startup-project src/SchaerbeekMunicipality.Web 2>&1
 ```
@@ -2977,12 +1294,6 @@ Build succeeded.
 Done. To undo this action, use 'ef migrations remove'
 
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -2990,154 +1301,89 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 A migration was created. Next steps include verifying migration files, rerunning tests, and updating the README and ROADMAP.
 
-The role switcher needs an event callback to refresh the layout display. MudSelect updates the current officer without triggering a MainLayout re-render.</details></think>
+The role switcher needs an event callback to refresh the layout display. MudSelect updates the current officer without triggering a MainLayout re-render.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **3** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (3 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (3 files)
 
 | File |
 |------|
 | `src/SchaerbeekMunicipality.Infrastructure/Migrations/MunicipalDbContextModelSnapshot.cs` |
 | `src/SchaerbeekMunicipality.Infrastructure/Migrations/20260703185339_InitialCreate.Designer.cs` |
 | `src/SchaerbeekMunicipality.Infrastructure/Migrations/20260703185339_InitialCreate.cs` |
+</details></tool-use>
 
-</details>
-</tool-use>
+_**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/ICurrentOfficer.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/ICurrentOfficer.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/CurrentOfficer.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Auth/CurrentOfficer.cs</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/Components/Layout/MainLayout.razor</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-MainLayout needs InteractiveServer render mode for the drawer toggle and role switcher to function.</details></think>
+MainLayout needs InteractiveServer render mode for the drawer toggle and role switcher to function.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
 Incorrect tool arguments
+</details></tool-use>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-
-</tool-use>
-
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
-
-</details></tool-use>
-
-_**Agent (default)**_
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --configuration Release --verbosity minimal 2>&1</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; dotnet test --configuration Release --verbosity minimal 2&gt;&amp;1</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --configuration Release --verbosity minimal 2>&1
 ```
@@ -3145,9 +1391,9 @@ cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && dotnet test --c
 ```
   Determining projects to restore...
   All projects are up-to-date for restore.
-  SchaerbeekMunicipality.Domain -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
-  SchaerbeekMunicipality.ServiceDefaults -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
-  SchaerbeekMunicipality.Domain.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Release/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Release/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Domain.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll
 Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Domain.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Domain.Tests.dll (.NETCoreApp,Version=v10.0)
 VSTest version 18.0.1 (arm64)
 
@@ -3155,37 +1401,27 @@ Starting test execution, please wait...
 A total of 1 test files matched the specified pattern.
 
 Passed!  - Failed:     0, Passed:     1, Skipped:     0, Total:     1, Duration: 12 ms - SchaerbeekMunicipality.Domain.Tests.dll (net10.0)
-  SchaerbeekMunicipality.Infrastructure -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
-  SchaerbeekMunicipality.Web -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
-  SchaerbeekMunicipality.Integration.Tests -&gt; /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Release/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Release/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
 Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Release/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
 VSTest version 18.0.1 (arm64)
 
-Starting test execution, please wait...
-A total of 1 test files matched the specified pattern.
-
-Passed!  - Failed:     0, Passed:     1, Skipped:     0, Total:     1, Duration: 748 ms - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
-
+Starting test execut
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-All tests pass. I'll mark the remaining todos complete and provide a summary.</details></think>
+All tests pass. I'll mark the remaining todos complete and provide a summary.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="todo_write">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
 <summary>Tool use: **todo_write**</summary>
-
 
 Parameters:
 
@@ -3267,13 +1503,6 @@ Result:
 }
 ```
 Status: **completed**
-
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
-<summary>Tool use: **todo_write**</summary>
 
 </details></tool-use>
 

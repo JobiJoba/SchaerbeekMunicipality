@@ -81,111 +81,687 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+<think><details><summary>Thought Process</summary>
+A 500 error occurs when viewing a person page.
 
-</details>
-</tool-use>
+The root cause is a type mismatch in `PersonFileQuery.ListDocumentsByPersonIdAsync`. `RegistrationCaseId` is passed where `RegistrationCaseId?` is expected. This breaks the `Contains` translation with Npgsql. I will examine `PersonFileQuery.cs` near line 505.
+</details></think>
+
+_**Agent (default)**_
+
+The stack trace points to a type mismatch: `RegistrationCaseId` vs `RegistrationCaseId?` in a `Contains` query inside `ListDocumentsByPersonIdAsync`. I'll inspect that method next.
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs",
+  "pattern": "RegistrationCaseId|Contains|ListDocumentsByPersonIdAsync"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs",
+  "pattern": "RegistrationCaseId|Contains|ListDocumentsByPersonIdAsync",
+  "topFiles": [
+    {
+      "matchCount": 10,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 10
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/RegistrationCaseId*",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "RegistrationCaseId"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "RegistrationCaseId",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseId.cs"
+    }
+  ],
+  "totalFiles": 1,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
+<think><details><summary>Thought Process</summary>
+The 500 error appears to stem from Npgsql/EF Core failing to translate a `Contains` operation between a list of `RegistrationCaseId` values and a database column.
 
-Status: **loading**
+The root cause is a nullable versus non-nullable mismatch. `RegistrationCaseId` is a nullable value type, but the list contains non-nullable instances. Npgsql cannot convert the array because the element types do not match. The fix is to compare underlying Guid values directly instead of the wrapper objects.
 
+Checking how `AdministrativeDocument` is configured and reviewing similar queries elsewhere to find the correct pattern.
+</details></think>
 
-</details>
-</tool-use>
+_**Agent (default)**_
+
+The failure is Npgsql choking on `Contains` with `RegistrationCaseId` vs `RegistrationCaseId?`. I'll check how that property is mapped and how similar queries avoid this.
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*Document*",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "RegistrationCaseId|AdministrativeDocument"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "RegistrationCaseId|AdministrativeDocument",
+  "topFiles": [
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Domain/IdentityDocuments/DocumentRequestCase.cs"
+    },
+    {
+      "matchCount": 11,
+      "uri": "src/SchaerbeekMunicipality.Domain/Documents/IAdministrativeDocumentRepository.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Domain/Documents/AdministrativeDocumentId.cs"
+    },
+    {
+      "matchCount": 23,
+      "uri": "src/SchaerbeekMunicipality.Domain/Documents/AdministrativeDocument.cs"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 39
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
-Status: **loading**
-
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "registrationCaseIds\\.Contains|Contains\\(d\\.RegistrationCaseId"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "registrationCaseIds\\.Contains|Contains\\(d\\.RegistrationCaseId",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-19_18-12-09Z-project-status-summary.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 3
+}
+```
+Status: **completed**
+
 </details></tool-use>
 
 _**Agent (default)**_
-
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: </summary>
-
-</details>
-</tool-use>
 
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+Parameters:
 
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*Configuration*",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure",
+  "pattern": "RegistrationCaseId"
+}
+```
+Additional data:
 
-</details>
-</tool-use>
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure",
+  "pattern": "RegistrationCaseId",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/ResidencePermitConfiguration.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/PoliceVerificationRequestConfiguration.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/RegistrationCaseConfiguration.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/CertificateRequestConfiguration.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/HouseholdConfiguration.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/AdministrativeDocumentConfiguration.cs"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/OutboundNotificationConfiguration.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/CaseAuditEntryConfiguration.cs"
+    }
+  ],
+  "totalFiles": 8,
+  "totalMatches": 20
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The 500 error originates from DemoOfficerMiddleware. The stack trace points to a database query failure.
+
+The database query fails because Npgsql cannot translate the `Contains` call on the nullable `RegistrationCaseId` property into a PostgreSQL `ANY`/`IN` expression. The non-nullable `CaseId` field works correctly in the same pattern.
+
+Using `.Value` after a null check still confuses EF and Npgsql about the value converter. Comparing underlying Guids directly or moving the comparison to the store level would likely work better.
+
+The root cause is a type mismatch. The `Contains` list holds non-nullable `RegistrationCaseId`, but the database property is nullable. Npgsql's array converter expects nullable elements. Casting the list to `List<RegistrationCaseId?>` or calling `Contains` directly on the nullable property may resolve the translation error.
+
+The concrete fix is to cast the list elements to `RegistrationCaseId?` so they match the nullable database property. Alternatively, select raw Guids directly instead of strongly typed IDs.
+
+Double `.Value` access on the nullable property may not translate cleanly through EF value converters. I will examine how repository queries handle case ID lookups to find a safer pattern.
+</details></think>
+
+_**Agent (default)**_
 
 <tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure",
+  "pattern": "ListByRegistrationCaseIdAsync|RegistrationCaseId =="
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure",
+  "pattern": "ListByRegistrationCaseIdAsync|RegistrationCaseId ==",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/AdministrativeDocumentRepository.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/ResidencePermitRepository.cs"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/PoliceVerificationRepository.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/OutboundNotificationRepository.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/HouseholdRepository.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Infrastructure/Persistence/Repositories/CertificateRequestRepository.cs"
+    }
+  ],
+  "totalFiles": 7,
+  "totalMatches": 11
+}
+```
+Status: **completed**
+
 </details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/AdministrativeDocumentConfiguration.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The 500 error stems from a known Npgsql EF Core bug. The `Contains` operator fails on nullable strongly-typed IDs when value converters are used.
+
+The root cause is a mismatch between nullable and non-nullable types inside the array converter. The cleanest fix is to build a nullable list and pass the nullable property directly to `Contains`.
+
+Using raw Guid values instead of the strongly-typed ID may also sidestep the converter issue. Alternatively, replacing `Contains` with an `Any` expression that checks the property is not null first could avoid the array conversion problem entirely.
+
+An `Any` expression typically translates to `EXISTS` or multiple `OR` conditions, which sidesteps the array conversion bug entirely. A join is another option, though `Contains` is more idiomatic. Forcing client evaluation with `.AsEnumerable()` would work but is inefficient.
+
+The same bug exists in five similar query blocks inside `ListDocumentsByPersonIdAsync`. All five will be fixed with the nullable `Contains` pattern for consistency.
+
+Checking for existing tests covering PersonFileQuery.
+</details></think>
+
+_**Agent (default)**_
+
+Npgsql fails when `Contains` mixes non-nullable strongly-typed IDs with a nullable converted column. I'll align the queries so both sides use the nullable ID type.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "ListDocumentsByPersonIdAsync|PersonFileQuery"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "ListDocumentsByPersonIdAsync|PersonFileQuery",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The Contains patterns will be fixed by using nullable ID lists and querying the nullable property directly.
+
+This should resolve the Npgsql type mismatch.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The `Contains` check against nullable values is safe because non-null values are cast explicitly.
+
+The real issue may be Npgsql's array converter failing on nullable Guid values. Using a non-nullable `Contains` check against a nullable property could still cause problems. A more proven approach might be using explicit Guid lists instead.
+
+Using `List<RegistrationCaseId?>` aligns with Npgsql's element converter. Alternatively, extracting raw Guids and using `.Value.Value` would be even safer.
+
+Accessing `.Value.Value` inside an EF expression tree is risky because the converter may not translate that nested access correctly. The safer EF-friendly pattern is to pass the nullable list directly into `.Contains(d.RegistrationCaseId))`.
+
+Checking whether `RegisterAmendmentCaseId` has a constructor that accepts the raw value, since the converter uses `From(value.Value)`.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "record struct RegisterAmendmentCaseId|record struct BirthDeclarationCaseId|record struct ChangeOfAddressCaseId|record struct DocumentRequestCaseId"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain",
+  "pattern": "record struct RegisterAmendmentCaseId|record struct BirthDeclarationCaseId|record struct ChangeOfAddressCaseId|record struct DocumentRequestCaseId",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/RegisterAmendment/RegisterAmendmentCaseId.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/IdentityDocuments/DocumentRequestCaseId.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/ChangeOfAddress/ChangeOfAddressCaseId.cs"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/SchaerbeekMunicipality.Domain/BirthDeclaration/BirthDeclarationCaseId.cs"
+    }
+  ],
+  "totalFiles": 4,
+  "totalMatches": 4
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj --no-restore 2&gt;&amp;1 | tail -30</summary>
+```bash
+dotnet build src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj --no-restore 2>&1 | tail -30
+```
+
+```
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs(610,9): error CS1519: Invalid token 'return' in a member declaration [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs(611,31): error CS1519: Invalid token '(' in a member declaration [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs(611,34): error CS8124: Tuple must contain at least two elements. [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs(611,34): error CS1026: ) expected [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs(611,34): error CS1519: Invalid token '=>' in a member declaration [/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj]
+/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipa
+… (output truncated)
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+A syntax error was accidentally introduced, likely caused by an early method closure or a missing brace.
+
+The closing brace in the amendment block likely terminated the method prematurely. I will inspect the surrounding code.
+</details></think>
+
+_**Agent (default)**_
+
+Syntax error from the edit — checking the braces around that section.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Line 608 contains an extra closing brace (`}}`) instead of a single `}`.
+
+The extra brace closed the method prematurely.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking whether `RegisterAmendmentCaseId` has a constructor that accepts a `Guid`.
+
+Confirmed `RegisterAmendmentCaseId` is a record struct with a `Guid` constructor. The original code used `new RegisterAmendmentCaseId(c.CaseId)`, but the configuration now uses `RegisterAmendmentCaseId.From`. Will trim the comment to be less verbose.
+</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet build src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj --no-restore 2&gt;&amp;1 | tail -20</summary>
+```bash
+dotnet build src/SchaerbeekMunicipality.Infrastructure/SchaerbeekMunicipality.Infrastructure.csproj --no-restore 2>&1 | tail -20
+```
+
+```
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.50
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "**/*Tests*",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "GetPersonFile|PersonFile"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests",
+  "pattern": "GetPersonFile|PersonFile",
+  "topFiles": [
+    {
+      "matchCount": 16,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/PersonFile/PersonFileTests.cs"
+    },
+    {
+      "matchCount": 2,
+      "uri": "tests/SchaerbeekMunicipality.Integration.Tests/Features/RegisterAmendment/RegisterAmendmentTests.cs"
+    }
+  ],
+  "totalFiles": 2,
+  "totalMatches": 18
+}
+```
+Status: **completed**
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The build succeeded. Now running the PersonFile integration tests to verify the fix works at runtime with Npgsql.
+</details></think>
+
+_**Agent (default)**_
+
+Build succeeded. Running the person-file integration tests to confirm the query works against Postgres.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj --filter &#34;FullyQualifiedName~PersonFile&#34; --no-restore 2&gt;&amp;1 | tail -40</summary>
+```bash
+dotnet test tests/SchaerbeekMunicipality.Integration.Tests/SchaerbeekMunicipality.Integration.Tests.csproj --filter "FullyQualifiedName~PersonFile" --no-restore 2>&1 | tail -40
+```
+
+```
+  SchaerbeekMunicipality.Domain -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Domain/bin/Debug/net10.0/SchaerbeekMunicipality.Domain.dll
+  SchaerbeekMunicipality.ServiceDefaults -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.ServiceDefaults/bin/Debug/net10.0/SchaerbeekMunicipality.ServiceDefaults.dll
+  SchaerbeekMunicipality.Infrastructure -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/bin/Debug/net10.0/SchaerbeekMunicipality.Infrastructure.dll
+  SchaerbeekMunicipality.Application -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Application/bin/Debug/net10.0/SchaerbeekMunicipality.Application.dll
+  SchaerbeekMunicipality.Api -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Api/bin/Debug/net10.0/SchaerbeekMunicipality.Api.dll
+  SchaerbeekMunicipality.Web -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Web/bin/Debug/net10.0/SchaerbeekMunicipality.Web.dll
+  SchaerbeekMunicipality.Integration.Tests -> /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll
+Test run for /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/tests/SchaerbeekMunicipality.Integration.Tests/bin/Debug/net10.0/SchaerbeekMunicipality.Integration.Tests.dll (.NETCoreApp,Version=v10.0)
+VSTest version 18.0.1 (arm64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     9, Skipped:     0, Total:     9, Duration: 3 s - SchaerbeekMunicipality.Integration.Tests.dll (net10.0)
+
+```
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/src/SchaerbeekMunicipality.Infrastructure/Persistence/Queries/PersonFileQuery.cs</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The fix is working. All 9 PersonFile tests passed.
+</details></think>
+
+_**Agent (default)**_
+
+The 500 came from `PersonFileQuery.ListDocumentsByPersonIdAsync`: Npgsql couldn’t translate `Contains` when the list was `RegistrationCaseId` and the column was `RegistrationCaseId?` (same pattern for the other case-id document filters).
+
+**Fix:** build nullable ID lists and call `Contains` on the nullable properties directly, e.g.:
+
+```csharp
+.Select(c => (RegistrationCaseId?)new RegistrationCaseId(c.CaseId))
+// ...
+.Where(d => registrationCaseIds.Contains(d.RegistrationCaseId))
+```
+
+All 9 PersonFile integration tests pass. Reload the person page and it should load.

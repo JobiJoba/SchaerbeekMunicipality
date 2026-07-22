@@ -15,7 +15,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The user wants to know whether the Azure deployment URL remains static or changes.
 
-Checking the Azure deployment configuration to determine if the URL is static or dynamic.</details></think>
+Checking the Azure deployment configuration to determine if the URL is static or dynamic.
+</details></think>
 
 _**Agent (default)**_
 
@@ -24,11 +25,10 @@ I'll check your Azure deployment configuration to see how the URL is defined and
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **9** results in **1** directory</summary>
 
-Directory: **** (9 files)
+Directory: **``** (9 files)
 
 | File |
 |------|
@@ -41,21 +41,12 @@ Directory: **** (9 files)
 | `deploy/azure/postgres/parameters.json` |
 | `deploy/azure/sqlite/deploy.sh` |
 | `deploy/azure/sqlite/main.bicep` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -101,56 +92,32 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Checking the Bicep files and README to see how container app names are generated and whether the Azure URL changes between deployments.</details></think>
+Checking the Bicep files and README to see how container app names are generated and whether the Azure URL changes between deployments.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/main.bicep</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/main.bicep</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/README.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/README.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/README.md</summary>
 
 </details></tool-use>
 
@@ -161,18 +128,13 @@ I understand the question about whether Azure deployment URLs remain constant.
 
 Azure Container App URLs stay the same across redeployments. The FQDN is assigned when the container app is first created and remains tied to that specific resource. It only changes if the container app itself is deleted and recreated.
 
-I am checking the deploy.sh script to confirm it updates existing resources rather than recreating them.</details></think>
+I am checking the deploy.sh script to confirm it updates existing resources rather than recreating them.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/deploy.sh</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/deploy/azure/sqlite/deploy.sh</summary>
 
 </details></tool-use>
 
@@ -181,7 +143,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Reviewing the deployment setup to determine whether Azure assigns a static or dynamic URL after deployment.
 
-The Azure Container App URL is stable. It is assigned once at creation and remains unchanged during subsequent deployments. The address only changes if the Container App is deleted and recreated.</details></think>
+The Azure Container App URL is stable. It is assigned once at creation and remains unchanged during subsequent deployments. The address only changes if the Container App is deleted and recreated.
+</details></think>
 
 _**Agent (default)**_
 
@@ -222,18 +185,13 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 Adding the live demo URL to the main README and inviting users to try the app.
 
-Reading the current main README to find the right place for the link.</details></think>
+Reading the current main README to find the right place for the link.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
 
 </details></tool-use>
 
@@ -242,7 +200,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 I'll add the live demo URL to the main README in one of the early sections and invite people to try the app.
 
-A "Try it live" section will sit right after the intro paragraph. It will include the Azure URL, a role switcher demo, and a note that data resets on cold starts.</details></think>
+A "Try it live" section will sit right after the intro paragraph. It will include the Azure URL, a role switcher demo, and a note that data resets on cold starts.
+</details></think>
 
 _**Agent (default)**_
 
@@ -251,23 +210,16 @@ Adding a prominent "Try it live" section near the top of the README with the dem
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The README has been updated with the application URL and an invitation for users to try the app.</details></think>
+The README has been updated with the application URL and an invitation for users to try the app.
+</details></think>
 
 _**Agent (default)**_
 

@@ -9,7 +9,7 @@ Two Bicep-based profiles deploy the same **GHCR** container image to **Azure Con
 
 ## Image source — GitHub Container Registry (GHCR)
 
-On green CI for `main`, [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) builds the image, scans it with Trivy, and pushes:
+On green CI for `main`, [`.github/workflows/cd.yml`](../../.github/workflows/cd.yml) builds the image, scans it with Trivy, and pushes:
 
 ```text
 ghcr.io/<github-owner>/schaerbeek-municipality-web:latest
@@ -38,7 +38,7 @@ Use a [fine-grained PAT](https://github.com/settings/tokens) with `read:packages
 
 ## Continuous deploy (SQLite profile)
 
-After publish, CI can update the existing Container App to the **SHA-tagged** image via **Azure OIDC** (no long-lived client secret). README live-URL rewrite is **not** done from CI.
+After publish, **CD** can update the existing Container App to the **SHA-tagged** image via **Azure OIDC** (no long-lived client secret). README live-URL rewrite is **not** done from CD.
 
 See [docs/CI.md — Continuous deploy](../../docs/CI.md#continuous-deploy-azure-oidc) for federated credential setup and the `AZURE_DEPLOY_ENABLED` variable.
 
@@ -48,7 +48,7 @@ Until that variable is set, only the image is published; Azure is unchanged.
 
 Use this for the **first** deploy, Bicep/parameter changes, or the optional PostgreSQL profile.
 
-1. Push to `main` (or run the **CI** workflow via `workflow_dispatch`) so GHCR has an image.
+1. Push to `main` (CI then CD) — or run the **CD** workflow via `workflow_dispatch` — so GHCR has an image.
 2. `az login` and pick a subscription.
 3. Run `./deploy.sh` from [sqlite/](./sqlite/) or [postgres/](./postgres/).
 
@@ -58,7 +58,7 @@ Pin `CONTAINER_IMAGE` (or `parameters.json`) to a **SHA tag** when possible, for
 export CONTAINER_IMAGE=ghcr.io/jobijoba/schaerbeek-municipality-web:a80d2b2
 ```
 
-After a successful manual deploy, the script prints the live app URL and updates the **Try it live** link in the repo [README.md](../../README.md). Set `UPDATE_README_URL=0` to skip the README edit (CI never rewrites it). You can also refresh the link manually:
+After a successful manual deploy, the script prints the live app URL and updates the **Try it live** link in the repo [README.md](../../README.md). Set `UPDATE_README_URL=0` to skip the README edit (CD never rewrites it). You can also refresh the link manually:
 
 ```bash
 chmod +x deploy/azure/update-readme-url.sh

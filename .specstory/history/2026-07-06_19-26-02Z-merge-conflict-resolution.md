@@ -13,7 +13,8 @@ Resolve this merge conflict @Branch
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Resolving the merge conflict.</details></think>
+Resolving the merge conflict.
+</details></think>
 
 _**Agent (default)**_
 
@@ -22,9 +23,8 @@ Checking git status and locating merge conflicts.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git status</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; git status</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git status
 ```
@@ -61,80 +61,15 @@ Changes to be committed:
 	modified:   src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseChecklist.cs
 	new file:   src/SchaerbeekMunicipality.Domain/Registration/RegistrationExceptionRules.cs
 	modified:   src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs
-	new file:   src/SchaerbeekMunicipality.Infrastructure/Migrations/20260705194034_Phase9ExceptionScenarios.Designer.cs
-	new file:   src/SchaerbeekMunicipality.Infrastructure/Migrations/20260705194034_Phase9ExceptionScenarios.cs
-	modified:   src/SchaerbeekMunicipality.Infrastructure/Migrations/MunicipalDbContextModelSnapshot.cs
-	modified:   src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/PersonConfiguration.cs
-	modified:   src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/RegistrationCaseConfiguration.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/ApproveCase/ApproveCaseHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/AttachDocument/AttachDocumentHandler.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStep.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/RejectCaseDialog.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/CorrectIdentity/CorrectIdentityHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/CaseReviewChecklistMapper.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/LinkExistingPerson/LinkExistingPersonHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationEndpoint.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationHandler.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationRequest.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationRequestValidator.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordCivilStatus/RecordCivilStatusHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordCivilStatus/RecordCivilStatusRequest.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordIdentity/RecordIdentityHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordResidencePermit/RecordResidencePermitHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationEndpoints.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationExceptionEvaluator.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationExceptionStateCalculator.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationResidenceEvaluator.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RemoveDocument/RemoveDocumentHandler.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationEndpoint.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationHandler.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationRequest.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationRequestValidator.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/SetResidenceCategory/SetResidenceCategoryHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Program.cs
-	modified:   tests/SchaerbeekMunicipality.Domain.Tests/Immigration/ResidencePolicyTests.cs
-	modified:   tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegisterTargetResolverTests.cs
-	modified:   tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseDecisionTests.cs
-	new file:   tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationExceptionRulesTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs
-	new file:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/Phase9ExceptionScenarioTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationApiTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationIntakeStepSummariesTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationTestHelpers.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs
-
-Unmerged paths:
-  (use "git add &lt;file&gt;..." to mark resolution)
-	both modified:   docs/phases/README.md
-
-
+	new file:   src/SchaerbeekMunicipality.Inf
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -160,19 +95,13 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-Only one unmerged file remains: docs/phases/README.md.</details></think>
+Only one unmerged file remains: docs/phases/README.md.
+</details></think>
 
 _**Agent (default)**_
 
@@ -181,22 +110,15 @@ One conflict in `docs/phases/README.md`. Reading both versions to resolve it.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git show :1:docs/phases/README.md 2>/dev/null; echo "---OURS---"; git show :2:docs/phases/README.md 2>/dev/null; echo "---THEIRS---"; git show :3:docs/phases/README.md 2>/dev/null</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; git show :1:docs/phases/README.md 2&gt;/dev/null; echo &#34;---OURS---&#34;; git show :2:docs/phases/README.md 2&gt;/dev/null; echo &#34;---THEIRS---&#34;; git show :3:docs/phases/README.md 2&gt;/dev/null</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git show :1:docs/phases/README.md 2>/dev/null; echo "---OURS---"; git show :2:docs/phases/README.md 2>/dev/null; echo "---THEIRS---"; git show :3:docs/phases/README.md 2>/dev/null
 ```
@@ -210,83 +132,23 @@ Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) kee
 |-------|-------|--------|----------|
 | 0 | Foundation | Complete | [phase-0-foundation.md](./phase-0-foundation.md) |
 | 0.1 | Tooling hygiene | Complete | [phase-0.1-tooling-hygiene.md](./phase-0.1-tooling-hygiene.md) |
-| 1 | Case intake &amp; identity | Complete | [phase-1-case-intake-identity.md](./phase-1-case-intake-identity.md) |
-| 2 | Residence category &amp; permits | Complete | [phase-2-residence-category-permits.md](./phase-2-residence-category-permits.md) |
+| 1 | Case intake & identity | Complete | [phase-1-case-intake-identity.md](./phase-1-case-intake-identity.md) |
+| 2 | Residence category & permits | Complete | [phase-2-residence-category-permits.md](./phase-2-residence-category-permits.md) |
 | 2.1 | Intake corrections | Complete | [phase-2.1-intake-corrections.md](./phase-2.1-intake-corrections.md) |
-| 3 | Design system &amp; UI kit | Complete | [phase-3-design-system.md](./phase-3-design-system.md) |
-| 4 | Address &amp; household | Complete | [phase-4-address-household.md](./phase-4-address-household.md) |
-| 4.1 | Document preview &amp; case UX | Complete | [phase-4.1-document-preview-case-ux.md](./phase-4.1-document-preview-case-ux.md) |
-| 5 | National Register search &amp; BIS | Complete | [phase-5-national-register-search-bis.md](./phase-5-national-register-search-bis.md) |
+| 3 | Design system & UI kit | Complete | [phase-3-design-system.md](./phase-3-design-system.md) |
+| 4 | Address & household | Complete | [phase-4-address-household.md](./phase-4-address-household.md) |
+| 4.1 | Document preview & case UX | Complete | [phase-4.1-document-preview-case-ux.md](./phase-4.1-document-preview-case-ux.md) |
+| 5 | National Register search & BIS | Complete | [phase-5-national-register-search-bis.md](./phase-5-national-register-search-bis.md) |
 | 6 | Police verification loop | Complete | [phase-6-police-verification-loop.md](./phase-6-police-verification-loop.md) |
 | 6.1 | Collapsible intake sections | Complete | [phase-6.1-collapsible-intake-sections.md](./phase-6.1-collapsible-intake-sections.md) |
-| 7 | Decision &amp; registration | Complete | [phase-7-decision-registration.md](./phase-7-decision-registration.md) |
-| 8 | Certificates &amp; outbound stubs | In progress | — |
-| 8.1 | Role boundaries, case locking &amp; officer UX | Complete | [phase-8.1-role-boundaries-case-locking.md](./phase-8.1-role-boundaries-case-locking.md) |
+| 7 | Decision & registration | Complete | [phase-7-decision-registration.md](./phase-7-decision-registration.md) |
+| 8 | Certificates & outbound stubs | In progress | — |
+| 8.1 | Role boundaries, case locking & officer UX | Complete | [phase-8.1-role-boundaries-case-locking.md](./phase-8.1-role-boundaries-case-locking.md) |
 | 9 | Exception scenarios | Planned | — |
-| 10 | PostgreSQL hardening &amp; Aspire deployment | Planned | — |
-| 11 | Extended municipality | Optional | — |
-
-When a phase is completed, add a document here using the same naming pattern: &#96;phase-N-short-title.md&#96;.
----OURS---
-# Phases
-
-Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) keeps the high-level plan; each file here records what was actually built, how to demo it, and what carries forward.
-
-| Phase | Title | Status | Document |
-|-------|-------|--------|----------|
-| 0 | Foundation | Complete | [phase-0-foundation.md](./phase-0-foundation.md) |
-| 0.1 | Tooling hygiene | Complete | [phase-0.1-tooling-hygiene.md](./phase-0.1-tooling-hygiene.md) |
-| 1 | Case intake &amp; identity | Complete | [phase-1-case-intake-identity.md](./phase-1-case-intake-identity.md) |
-| 2 | Residence category &amp; permits | Complete | [phase-2-residence-category-permits.md](./phase-2-residence-category-permits.md) |
-| 2.1 | Intake corrections | Complete | [phase-2.1-intake-corrections.md](./phase-2.1-intake-corrections.md) |
-| 3 | Design system &amp; UI kit | Complete | [phase-3-design-system.md](./phase-3-design-system.md) |
-| 4 | Address &amp; household | Complete | [phase-4-address-household.md](./phase-4-address-household.md) |
-| 4.1 | Document preview &amp; case UX | Complete | [phase-4.1-document-preview-case-ux.md](./phase-4.1-document-preview-case-ux.md) |
-| 5 | National Register search &amp; BIS | Complete | [phase-5-national-register-search-bis.md](./phase-5-national-register-search-bis.md) |
-| 6 | Police verification loop | Complete | [phase-6-police-verification-loop.md](./phase-6-police-verification-loop.md) |
-| 6.1 | Collapsible intake sections | Complete | [phase-6.1-collapsible-intake-sections.md](./phase-6.1-collapsible-intake-sections.md) |
-| 7 | Decision &amp; registration | Complete | [phase-7-decision-registration.md](./phase-7-decision-registration.md) |
-| 8 | Certificates &amp; outbound stubs | In progress | — |
-| 8.1 | Role boundaries, case locking &amp; officer UX | Complete | [phase-8.1-role-boundaries-case-locking.md](./phase-8.1-role-boundaries-case-locking.md) |
-| 9 | Exception scenarios | Planned | — |
-| 10 | Azure deployment | Complete | [phase-10-azure-deployment.md](./phase-10-azure-deployment.md) |
-| 11 | Extended municipality | Optional | — |
-
-When a phase is completed, add a document here using the same naming pattern: &#96;phase-N-short-title.md&#96;.
----THEIRS---
-# Phases
-
-Detailed delivery notes for each roadmap phase. The [ROADMAP](../ROADMAP.md) keeps the high-level plan; each file here records what was actually built, how to demo it, and what carries forward.
-
-| Phase | Title | Status | Document |
-|-------|-------|--------|----------|
-| 0 | Foundation | Complete | [phase-0-foundation.md](./phase-0-foundation.md) |
-| 0.1 | Tooling hygiene | Complete | [phase-0.1-tooling-hygiene.md](./phase-0.1-tooling-hygiene.md) |
-| 1 | Case intake &amp; identity | Complete | [phase-1-case-intake-identity.md](./phase-1-case-intake-identity.md) |
-| 2 | Residence category &amp; permits | Complete | [phase-2-residence-category-permits.md](./phase-2-residence-category-permits.md) |
-| 2.1 | Intake corrections | Complete | [phase-2.1-intake-corrections.md](./phase-2.1-intake-corrections.md) |
-| 3 | Design system &amp; UI kit | Complete | [phase-3-design-system.md](./phase-3-design-system.md) |
-| 4 | Address &amp; household | Complete | [phase-4-address-household.md](./phase-4-address-household.md) |
-| 4.1 | Document preview &amp; case UX | Complete | [phase-4.1-document-preview-case-ux.md](./phase-4.1-document-preview-case-ux.md) |
-| 5 | National Register search &amp; BIS | Complete | [phase-5-national-register-search-bis.md](./phase-5-national-register-search-bis.md) |
-| 6 | Police verification loop | Complete | [phase-6-police-verification-loop.md](./phase-6-police-verification-loop.md) |
-| 6.1 | Collapsible intake sections | Complete | [phase-6.1-collapsible-intake-sections.md](./phase-6.1-collapsible-intake-sections.md) |
-| 7 | Decision &amp; registration | Complete | [phase-7-decision-registration.md](./phase-7-decision-registration.md) |
-| 8 | Certificates &amp; outbound stubs | In progress | — |
-| 8.1 | Role boundaries, case locking &amp; officer UX | Complete | [phase-8.1-role-boundaries-case-locking.md](./phase-8.1-role-boundaries-case-locking.md) |
-| 9 | Exception scenarios | Complete | [phase-9-exception-scenarios.md](./phase-9-exception-scenarios.md) |
-| 10 | PostgreSQL hardening &amp; Aspire deployment | Planned | — |
-| 11 | Extended municipality | Optional | — |
-
-When a phase is completed, add a document here using the same naming pattern: &#96;phase-N-short-title.md&#96;.
-
+| 10 | PostgreSQL hardening & Aspire deployment | Planned | — |
+| 11 | Extended 
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -294,7 +156,8 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The merge conflict is in `docs/phases/README.md`.
 
-The working tree already contains a partial resolution. Phase 9 should be marked Complete with the phase-9 document from the incoming branch. Phase 10 should reflect the PostgreSQL hardening and Aspire deployment status.</details></think>
+The working tree already contains a partial resolution. Phase 9 should be marked Complete with the phase-9 document from the incoming branch. Phase 10 should reflect the PostgreSQL hardening and Aspire deployment status.
+</details></think>
 
 _**Agent (default)**_
 
@@ -303,10 +166,8 @@ Checking ROADMAP and phase docs to confirm the correct merged state.
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
-<details>
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
-
 
 Parameters:
 
@@ -337,22 +198,14 @@ Additional data:
 ```
 Status: **completed**
 
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
-<summary>Tool use: **ripgrep_raw_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="search" data-tool-name="glob_file_search">
-<details>
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
 <summary>Tool use: **glob_file_search** • Searched codebase "" • **15** results in **1** directory</summary>
 
-Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (15 files)
+Directory: **`/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality`** (15 files)
 
 | File |
 |------|
@@ -371,13 +224,6 @@ Directory: **/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality** (15 fi
 | `docs/phases/phase-3-design-system.md` |
 | `docs/phases/phase-6.1-collapsible-intake-sections.md` |
 | `docs/phases/phase-8.1-role-boundaries-case-locking.md` |
-
-</details>
-</tool-use>
-
-<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
-<summary>Tool use: **glob_file_search**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
@@ -385,25 +231,21 @@ _**Agent (default)**_
 <think><details><summary>Thought Process</summary>
 The ROADMAP indicates Phase 9 covers exception scenarios.
 
-Phase 10 is complete and Phase 11 is optional. The current working file incorrectly marks Phase 9 as Planned instead of Complete.</details></think>
+Phase 10 is complete and Phase 11 is optional. The current working file incorrectly marks Phase 9 as Planned instead of Complete.
+</details></think>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="read" data-tool-name="read_file_v2">
-<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
-
-</details>
-</tool-use>
-
 <tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
-<summary>Tool use: **read_file_v2**</summary>
+<summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/ROADMAP.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The correct resolution is clear.</details></think>
+The correct resolution is clear.
+</details></think>
 
 _**Agent (default)**_
 
@@ -412,24 +254,15 @@ Merging both branches: Phase 9 is complete (incoming) and Phase 10 is Azure depl
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
-
-<details><summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
-
-</details>
-
-</tool-use>
-
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
-<summary>Tool use: **edit_file_v2**</summary>
+<summary>Tool use: **edit_file_v2** • Edit file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/phases/README.md</summary>
 
 </details></tool-use>
 
 _**Agent (default)**_
 
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
-<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git add docs/phases/README.md && git status</summary>
-
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2** • Run command: cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality &amp;&amp; git add docs/phases/README.md &amp;&amp; git status</summary>
 ```bash
 cd /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality && git add docs/phases/README.md && git status
 ```
@@ -466,74 +299,16 @@ Changes to be committed:
 	modified:   src/SchaerbeekMunicipality.Domain/Registration/RegistrationCaseChecklist.cs
 	new file:   src/SchaerbeekMunicipality.Domain/Registration/RegistrationExceptionRules.cs
 	modified:   src/SchaerbeekMunicipality.Infrastructure/DependencyInjection.cs
-	new file:   src/SchaerbeekMunicipality.Infrastructure/Migrations/20260705194034_Phase9ExceptionScenarios.Designer.cs
-	new file:   src/SchaerbeekMunicipality.Infrastructure/Migrations/20260705194034_Phase9ExceptionScenarios.cs
-	modified:   src/SchaerbeekMunicipality.Infrastructure/Migrations/MunicipalDbContextModelSnapshot.cs
-	modified:   src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/PersonConfiguration.cs
-	modified:   src/SchaerbeekMunicipality.Infrastructure/Persistence/Configurations/RegistrationCaseConfiguration.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/ApproveCase/ApproveCaseHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/AttachDocument/AttachDocumentHandler.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/BirthInformationStep.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/CaseDecisionSection.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/CivilStatusStep.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStep.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/RegistrationIntakeStepSummaries.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/RejectCaseDialog.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Components/ResidenceStep.razor
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/CorrectIdentity/CorrectIdentityHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/CaseReviewChecklistMapper.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/GetCaseReviewChecklist/GetCaseReviewChecklistHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/GetRegistrationCaseHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/GetRegistrationCase/RegistrationCaseDetailDto.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/LinkExistingPerson/LinkExistingPersonHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/Pages/RegistrationCaseDetail.razor
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationEndpoint.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationHandler.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationRequest.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordBirthInformation/RecordBirthInformationRequestValidator.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordCivilStatus/RecordCivilStatusHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordCivilStatus/RecordCivilStatusRequest.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordIdentity/RecordIdentityHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordImmigrationDecision/RecordImmigrationDecisionHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RecordResidencePermit/RecordResidencePermitHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationEndpoints.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationExceptionEvaluator.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationExceptionStateCalculator.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RegistrationResidenceEvaluator.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/RemoveDocument/RemoveDocumentHandler.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationEndpoint.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationHandler.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationRequest.cs
-	new file:   src/SchaerbeekMunicipality.Web/Features/Registration/ResolveDuplicateInvestigation/ResolveDuplicateInvestigationRequestValidator.cs
-	modified:   src/SchaerbeekMunicipality.Web/Features/Registration/SetResidenceCategory/SetResidenceCategoryHandler.cs
-	modified:   src/SchaerbeekMunicipality.Web/Program.cs
-	modified:   tests/SchaerbeekMunicipality.Domain.Tests/Immigration/ResidencePolicyTests.cs
-	modified:   tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegisterTargetResolverTests.cs
-	modified:   tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationCaseDecisionTests.cs
-	new file:   tests/SchaerbeekMunicipality.Domain.Tests/Registration/RegistrationExceptionRulesTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CaseDecisionTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/CertificatesAndNotificationsTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/IntakeCorrectionTests.cs
-	new file:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/Phase9ExceptionScenarioTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationApiTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationIntakeStepSummariesTests.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/RegistrationTestHelpers.cs
-	modified:   tests/SchaerbeekMunicipality.Integration.Tests/Features/Registration/ResidenceCategoryTests.cs
-
-
+	new file:   src/SchaerbeekMunici
+… (output truncated)
 ```
-</details>
-</tool-use>
-
-<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
-<summary>Tool use: **run_terminal_command_v2**</summary>
-
 </details></tool-use>
 
 _**Agent (default)**_
 
 <think><details><summary>Thought Process</summary>
-The merge conflict is resolved.</details></think>
+The merge conflict is resolved.
+</details></think>
 
 _**Agent (default)**_
 
