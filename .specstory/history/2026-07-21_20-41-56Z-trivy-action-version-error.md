@@ -494,10 +494,385 @@ _**Agent (default)**_
 ```bash
 echo "AZURE_CLIENT_ID length: ${#AZURE_CLIENT_ID}"; if [ -n "$AZURE_CLIENT_ID" ]; then echo "AZURE_CLIENT_ID=$AZURE_CLIENT_ID"; else echo "AZURE_CLIENT_ID is empty/unset"; fi; az account show --query '{subscription:name, tenantId:tenantId, user:user.name}' -o json 2>&1; az version --query '"azure-cli"' -o tsv 2>&1
 ```
+
+```
+AZURE_CLIENT_ID length: 0
+AZURE_CLIENT_ID is empty/unset
+{
+  "subscription": "Azure subscription 1",
+  "tenantId": "88a4e447-cd28-43fe-a7a1-23c843bbdebe",
+  "user": "Johann.Baziret@gmail.com"
+}
+2.87.0
+
+```
 </details>
 </tool-use>
 
 <tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
 <summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+AZURE_CLIENT_ID is empty.
+
+Checking for an existing Azure app registration. If none exists, one must be created.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: az ad app list --display-name "SchaerbeekMunicipality" --query '[].{displayName:displayName, appId:appId, id:id}' -o json 2>&1; az ad app list --filter "startswith(displayName,'Schaerbeek') or startswith(displayName,'github')" --query '[].{displayName:displayName, appId:appId}' -o json 2>&1; az ad sp list --display-name "SchaerbeekMunicipality" --query '[].{displayName:displayName, appId:appId}' -o json 2>&1</summary>
+
+```bash
+az ad app list --display-name "SchaerbeekMunicipality" --query '[].{displayName:displayName, appId:appId, id:id}' -o json 2>&1; az ad app list --filter "startswith(displayName,'Schaerbeek') or startswith(displayName,'github')" --query '[].{displayName:displayName, appId:appId}' -o json 2>&1; az ad sp list --display-name "SchaerbeekMunicipality" --query '[].{displayName:displayName, appId:appId}' -o json 2>&1
+```
+
+```
+[]
+[
+  {
+    "appId": "e7d1365f-72df-449b-a0a4-ebf49239829c",
+    "displayName": "github-schaerbeek-cd"
+  }
+]
+[]
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+An app registration named `github-schaerbeek-cd` already exists with appId `e7d1365f-72df-449b-a0a4-ebf49239829c`.
+
+Checking whether the existing app registration already has federated credentials or a service principal.</details></think>
+
+_**Agent (default)**_
+
+Found an existing app. Checking its federated credentials:
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: APP_ID="e7d1365f-72df-449b-a0a4-ebf49239829c"; echo "Using APP_ID=$APP_ID"; az ad app federated-credential list --id "$APP_ID" -o json 2>&1; az ad sp show --id "$APP_ID" --query '{appId:appId, id:id, displayName:displayName}' -o json 2>&1; az account show --query tenantId -o tsv; az account show --query id -o tsv</summary>
+
+```bash
+APP_ID="e7d1365f-72df-449b-a0a4-ebf49239829c"; echo "Using APP_ID=$APP_ID"; az ad app federated-credential list --id "$APP_ID" -o json 2>&1; az ad sp show --id "$APP_ID" --query '{appId:appId, id:id, displayName:displayName}' -o json 2>&1; az account show --query tenantId -o tsv; az account show --query id -o tsv
+```
+
+```
+Using APP_ID=e7d1365f-72df-449b-a0a4-ebf49239829c
+[
+  {
+    "audiences": [
+      "api://AzureADTokenExchange"
+    ],
+    "description": "",
+    "id": "72a86b4f-f2eb-46e4-8b69-636a2c1e0d4f",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "name": "github-main",
+    "subject": "repo:JobiJoba@6494791/SchaerbeekMunicipality@1288582976:ref:refs/heads/main"
+  }
+]
+{
+  "appId": "e7d1365f-72df-449b-a0a4-ebf49239829c",
+  "displayName": "github-schaerbeek-cd",
+  "id": "d622fd88-e14b-4c45-9007-256424a5bc27"
+}
+88a4e447-cd28-43fe-a7a1-23c843bbdebe
+472113ae-7635-41e2-b158-f68f4ddf16b8
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The root cause is an incorrect federated credential subject.
+
+The subject contains extra numeric IDs (`@6494791/@1288582976`) that should not be there. The user likely picked the wrong portal template or entity type. They must delete and recreate the federated credential with the correct subject. Their `$AZURE_CLIENT_ID` is also empty; they need to set it to the actual app ID.
+
+The GitHub secret should be `e7d1365f72df-449b-a0a4-ebf49239829c`.</details></think>
+
+_**Agent (default)**_
+
+Root cause: the federated credential subject is wrong — it has numeric IDs baked in. Updating it to the correct GitHub subject.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: APP_ID="e7d1365f-72df-449b-a0a4-ebf49239829c"
+# Delete wrong credential, then create the correct one
+az ad app federated-credential delete --id "$APP_ID" --federated-credential-id "github-main" -o none
+az ad app federated-credential create --id "$APP_ID" --parameters '{
+  "name": "github-main",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "subject": "repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main",
+  "audiences": ["api://AzureADTokenExchange"]
+}' -o json
+echo "---"
+az ad app federated-credential list --id "$APP_ID" --query '[].{name:name, subject:subject}' -o json
+echo "Use these GitHub secrets:"
+echo "AZURE_CLIENT_ID=$APP_ID"
+echo "AZURE_TENANT_ID=$(az account show --query tenantId -o tsv)"
+echo "AZURE_SUBSCRIPTION_ID=$(az account show --query id -o tsv)"</summary>
+
+```bash
+APP_ID="e7d1365f-72df-449b-a0a4-ebf49239829c"
+# Delete wrong credential, then create the correct one
+az ad app federated-credential delete --id "$APP_ID" --federated-credential-id "github-main" -o none
+az ad app federated-credential create --id "$APP_ID" --parameters '{
+  "name": "github-main",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "subject": "repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main",
+  "audiences": ["api://AzureADTokenExchange"]
+}' -o json
+echo "---"
+az ad app federated-credential list --id "$APP_ID" --query '[].{name:name, subject:subject}' -o json
+echo "Use these GitHub secrets:"
+echo "AZURE_CLIENT_ID=$APP_ID"
+echo "AZURE_TENANT_ID=$(az account show --query tenantId -o tsv)"
+echo "AZURE_SUBSCRIPTION_ID=$(az account show --query id -o tsv)"
+```
+
+```
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications('cbccd219-d9d9-4e6c-b9a8-3bac027e7b55')/federatedIdentityCredentials/$entity",
+  "audiences": [
+    "api://AzureADTokenExchange"
+  ],
+  "description": null,
+  "id": "f149d927-2cd3-495b-b5e5-f85c72e3ffc5",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "name": "github-main",
+  "subject": "repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main"
+}
+---
+[
+  {
+    "name": "github-main",
+    "subject": "repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main"
+  }
+]
+Use these GitHub secrets:
+AZURE_CLIENT_ID=e7d1365f-72df-449b-a0a4-ebf49239829c
+AZURE_TENANT_ID=88a4e447-cd28-43fe-a7a1-23c843bbdebe
+AZURE_SUBSCRIPTION_ID=472113ae-7635-41e2-b158-f68f4ddf16b8
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The issue is fixed. I'll explain the two problems briefly.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: APP_ID="e7d1365f-72df-449b-a0a4-ebf49239829c"
+# Confirm SP has Contributor (or similar) on the RG used by deploy
+az role assignment list --assignee "$APP_ID" --all --query '[].{role:roleDefinitionName, scope:scope}' -o table 2>&1</summary>
+
+```bash
+APP_ID="e7d1365f-72df-449b-a0a4-ebf49239829c"
+# Confirm SP has Contributor (or similar) on the RG used by deploy
+az role assignment list --assignee "$APP_ID" --all --query '[].{role:roleDefinitionName, scope:scope}' -o table 2>&1
+```
+
+```
+
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Empty role assignments might be the next failure after authentication succeeds.
+
+Checking whether assignments are tied to the service principal object ID rather than the app ID, and reviewing available resource groups.</details></think>
+
+_**Agent (default)**_
+
+Auth should work now, but the service principal has no role assignments yet — checking that next so deploy doesn't fail on permissions.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: SP_OID="d622fd88-e14b-4c45-9007-256424a5bc27"
+az role assignment list --assignee "$SP_OID" --all -o table 2>&1
+echo "---"
+az group list --query "[?contains(name, 'schaerbeek') || contains(name, 'Schaerbeek')].{name:name, location:location}" -o table 2>&1
+az group list --query '[].name' -o tsv 2>&1 | head -20</summary>
+
+```bash
+SP_OID="d622fd88-e14b-4c45-9007-256424a5bc27"
+az role assignment list --assignee "$SP_OID" --all -o table 2>&1
+echo "---"
+az group list --query "[?contains(name, 'schaerbeek') || contains(name, 'Schaerbeek')].{name:name, location:location}" -o table 2>&1
+az group list --query '[].name' -o tsv 2>&1 | head -20
+```
+
+```
+
+---
+Name           Location
+-------------  ----------
+schaerbeek-rg  westeurope
+thai
+schaerbeek-rg
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The root cause is missing role assignments. After successful OIDC login, `az containerapp update` fails with an authorization error.
+
+I will grant the Contributor role on schaerbeek-rg to resolve the authorization error.</details></think>
+
+_**Agent (default)**_
+
+Granting Contributor on `schaerbeek-rg` so deploy can update the Container App after login.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: az role assignment create \
+  --assignee "e7d1365f-72df-449b-a0a4-ebf49239829c" \
+  --role Contributor \
+  --scope "/subscriptions/472113ae-7635-41e2-b158-f68f4ddf16b8/resourceGroups/schaerbeek-rg" \
+  -o json --query '{principalId:principalId, role:roleDefinitionName, scope:scope}'</summary>
+
+```bash
+az role assignment create \
+  --assignee "e7d1365f-72df-449b-a0a4-ebf49239829c" \
+  --role Contributor \
+  --scope "/subscriptions/472113ae-7635-41e2-b158-f68f4ddf16b8/resourceGroups/schaerbeek-rg" \
+  -o json --query '{principalId:principalId, role:roleDefinitionName, scope:scope}'
+```
+
+```
+{
+  "principalId": "d622fd88-e14b-4c45-9007-256424a5bc27",
+  "role": null,
+  "scope": "/subscriptions/472113ae-7635-41e2-b158-f68f4ddf16b8/resourceGroups/schaerbeek-rg"
+}
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The referenced terminal file contains an error at lines 100–107.</details></think>
+
+_**Agent (default)**_
+
+Two separate issues:
+
+**1. Your CLI command failed** because `$AZURE_CLIENT_ID` was empty in the shell (not the GitHub secret). Azure then queried with a bad filter → that `identifierUris` error.
+
+**2. The real auth bug** was already on app `github-schaerbeek-cd`. Subject was wrong:
+
+- Was: `repo:JobiJoba@6494791/SchaerbeekMunicipality@1288582976:ref:refs/heads/main`
+- Now: `repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main`
+
+I also granted that principal **Contributor** on `schaerbeek-rg` (it had no roles).
+
+Confirm GitHub secrets match:
+
+| Secret | Value |
+|--------|--------|
+| `AZURE_CLIENT_ID` | `e7d1365f-72df-449b-a0a4-ebf49239829c` |
+| `AZURE_TENANT_ID` | `88a4e447-cd28-43fe-a7a1-23c843bbdebe` |
+| `AZURE_SUBSCRIPTION_ID` | `472113ae-7635-41e2-b158-f68f4ddf16b8` |
+
+Then re-run the failed deploy job.
+
+---
+
+_**User**_
+
+new error when deploying 
+
+Run SHORT_SHA="${GITHUB_SHA:0:7}"
+Deploying ghcr.io/JobiJoba/schaerbeek-municipality-web:385b065
+
+/ Running ..
+| Running ..
+\ Running ..ERROR: Failed to provision revision for container app 'schaerbeek-web'. Error details: The following field(s) are either invalid or missing. Field 'template.containers.web.image' is invalid with details: 'Invalid value: "ghcr.io/JobiJoba/schaerbeek-municipality-web:385b065": could not parse reference: ghcr.io/JobiJoba/schaerbeek-municipality-web:385b065';..
+Error: Process completed with exit code 1.
+
+---
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: </summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+Status: **loading**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
 
 </details></tool-use>

@@ -202,8 +202,10 @@ jobs:
 
       - name: Update Container App image
         run: |
+          # OCI image refs must be lowercase; GitHub owners can be mixed-case.
+          OWNER_LC="${GITHUB_REPOSITORY_OWNER,,}"
           SHORT_SHA="${GITHUB_SHA:0:7}"
-          IMAGE_REF="ghcr.io/${{ github.repository_owner }}/schaerbeek-municipality-web:${SHORT_SHA}"
+          IMAGE_REF="ghcr.io/${OWNER_LC}/schaerbeek-municipality-web:${SHORT_SHA}"
           echo "Deploying ${IMAGE_REF}"
           az containerapp update \
             --name "${CONTAINER_APP_NAME}" \
