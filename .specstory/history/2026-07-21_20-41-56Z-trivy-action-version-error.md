@@ -312,3 +312,192 @@ uses: aquasecurity/trivy-action@v0.36.0
 Your existing inputs (`image-ref`, `exit-code`, `severity`, etc.) are unchanged in that release.
 
 Commit and push this so CI can pick it up — or say if you want me to commit it.
+
+---
+
+_**User**_
+
+at the push level I had the following error; do you see something ? Error: AADSTS700213: No matching federated identity record found for presented assertion subject 'repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main'. Check your federated identity credential Subject, Audience and Issuer against the presented assertion. https://learn.microsoft.com/entra/workload-id/workload-identity-federation Trace ID: a3b66f1d-ce0d-4fb5-8a7c-51e7cfab1700 Correlation ID: dab26ca5-d14c-48e2-afb4-fb62e0cda190 Timestamp: 2026-07-21 20:48:02Z
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The user is hitting an Azure AD federated identity credential error during a GitHub Actions OIDC deployment.
+
+The Azure federated identity credential does not match the GitHub presentation. The subject claim `repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main` must be configured exactly in the Azure App Registration or User-Assigned Managed Identity.
+
+I need to examine the deploy workflow and OIDC setup documentation to provide accurate guidance.</details></think>
+
+_**Agent (default)**_
+
+That error means Azure’s federated identity subject doesn’t match what GitHub sent. I’ll check how the deploy workflow and OIDC setup are configured.
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.{yml,yaml,md,bicep,tf,sh,ps1,json}",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "federated|AZURE_CLIENT_ID|azure/login|oidc|workload.identity|subject"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "/Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality",
+  "pattern": "federated|AZURE_CLIENT_ID|azure/login|oidc|workload.identity|subject",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": ".specstory/history/2026-07-14_07-28-17Z-document-upload-overview.md"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".github/workflows/ci.yml"
+    },
+    {
+      "matchCount": 4,
+      "uri": "docs/CI.md"
+    },
+    {
+      "matchCount": 1,
+      "uri": "deploy/azure/README.md"
+    },
+    {
+      "matchCount": 22,
+      "uri": ".specstory/history/2026-07-21_20-09-13Z-devops-improvement-discussion.md"
+    }
+  ],
+  "totalFiles": 5,
+  "totalMatches": 30
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/.github/workflows/ci.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Checking the CI documentation for federated credential configuration details to diagnose the assertion subject mismatch.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Users/joba/Projects/Private/dotnet/SchaerbeekMunicipality/docs/CI.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+GitHub is presenting the correct subject. The mismatch likely lies in the Azure AD federated identity credential configuration.
+
+The exact subject string is `repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main`. The credential may be missing entirely, or the subject may be typed incorrectly. Other possibilities include a mismatched app registration, using "Environment" instead of "Branch", or case sensitivity issues.
+
+The workflow configuration appears correct. This is an Azure portal or Azure CLI configuration issue.</details></think>
+
+_**Agent (default)**_
+
+Yes — the workflow is fine. Azure is rejecting the GitHub OIDC token because **no federated credential matches** this subject:
+
+`repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main`
+
+So either the federated credential is missing, or it was created with a different subject / on a different app than `AZURE_CLIENT_ID`.
+
+**Fix in Azure** (on the app registration whose Application ID is your `AZURE_CLIENT_ID` secret):
+
+1. **App registrations** → that app → **Certificates & secrets** → **Federated credentials**
+2. Add (or correct) a credential with:
+   - **Issuer:** `https://token.actions.githubusercontent.com`
+   - **Subject:** `repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main`
+   - **Audience:** `api://AzureADTokenExchange`
+
+Or via CLI:
+
+```bash
+az ad app federated-credential create --id "$AZURE_CLIENT_ID" --parameters '{
+  "name": "github-main",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "subject": "repo:JobiJoba/SchaerbeekMunicipality:ref:refs/heads/main",
+  "audiences": ["api://AzureADTokenExchange"]
+}'
+```
+
+**Usual mismatches:** wrong repo/org name, subject for another branch, `environment:` instead of `ref:refs/heads/main`, or credential on a different app than the secret.
+
+After it matches, re-run the failed deploy job.
+
+---
+
+_**User**_
+
+When I did got the following error: @/Users/joba/.cursor/projects/Users-joba-Projects-Private-dotnet-SchaerbeekMunicipality/terminals/1.txt:100-107 
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Azure CLI failed while creating a federated credential.
+
+The error likely stems from an empty or invalid `$AZURE_CLIENT_ID` variable. This causes Azure CLI to query the Application resource with an invalid `identifierUris` filter. The `--id` parameter may also be receiving an incorrect value. I will verify the environment variable and provide the correct command to create the federated credential.</details></think>
+
+_**Agent (default)**_
+
+That CLI error usually means `$AZURE_CLIENT_ID` is empty or not a real app ID — Azure then looks up the app incorrectly. Checking what's set locally:
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: echo "AZURE_CLIENT_ID length: ${#AZURE_CLIENT_ID}"; if [ -n "$AZURE_CLIENT_ID" ]; then echo "AZURE_CLIENT_ID=$AZURE_CLIENT_ID"; else echo "AZURE_CLIENT_ID is empty/unset"; fi; az account show --query '{subscription:name, tenantId:tenantId, user:user.name}' -o json 2>&1; az version --query '"azure-cli"' -o tsv 2>&1</summary>
+
+```bash
+echo "AZURE_CLIENT_ID length: ${#AZURE_CLIENT_ID}"; if [ -n "$AZURE_CLIENT_ID" ]; then echo "AZURE_CLIENT_ID=$AZURE_CLIENT_ID"; else echo "AZURE_CLIENT_ID is empty/unset"; fi; az account show --query '{subscription:name, tenantId:tenantId, user:user.name}' -o json 2>&1; az version --query '"azure-cli"' -o tsv 2>&1
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
