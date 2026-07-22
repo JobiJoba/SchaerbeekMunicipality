@@ -21,10 +21,13 @@ RUN dotnet restore src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csp
 
 COPY src/ src/
 
+# Do not use --no-restore here: in .NET 10, blazor.web.js comes from the implicit
+# Microsoft.AspNetCore.App.Internal.Assets package. A csproj-only restore layer
+# does not pull that package, and publish --no-restore then omits _framework/,
+# which causes a blank UI (404 on /_framework/blazor.web.js) in production.
 RUN dotnet publish src/SchaerbeekMunicipality.Web/SchaerbeekMunicipality.Web.csproj \
     -c Release \
     -o /app/publish \
-    --no-restore \
     /p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
